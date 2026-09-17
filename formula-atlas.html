@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Formula Atlas | IAL ATLAS</title>
+<title>Formula Atlas | Physics U1 | IAL ATLAS</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,26 +14,19 @@
 :root{
     --bg:#05070d;
     --panel:#0a0f1c;
-    --panel2:#0d1424;
     --border:rgba(255,255,255,.09);
     --text:#f4f7fb;
     --muted:#91a0b8;
-    --math:#9b7cff;
     --physics:#38bdf8;
-    --chem:#34d399;
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
     background:
-        radial-gradient(circle at 15% 10%,rgba(155,124,255,.12),transparent 28%),
-        radial-gradient(circle at 85% 20%,rgba(56,189,248,.10),transparent 25%),
-        var(--bg);
+    radial-gradient(circle at 15% 10%,rgba(56,189,248,.12),transparent 28%),
+    radial-gradient(circle at 85% 20%,rgba(56,189,248,.06),transparent 25%),
+    var(--bg);
     color:var(--text);
     font-family:Inter,sans-serif;
     min-height:100vh;
@@ -45,8 +38,8 @@ body:before{
     inset:0;
     pointer-events:none;
     background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
     background-size:45px 45px;
     mask-image:linear-gradient(to bottom,black,transparent);
 }
@@ -54,9 +47,9 @@ body:before{
 header{
     position:sticky;
     top:0;
-    z-index:10;
+    z-index:20;
     backdrop-filter:blur(18px);
-    background:rgba(5,7,13,.78);
+    background:rgba(5,7,13,.8);
     border-bottom:1px solid var(--border);
 }
 
@@ -65,24 +58,21 @@ header{
     margin:auto;
     padding:20px 24px;
     display:flex;
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
 }
 
 .logo{
     font-family:"Space Grotesk";
     font-size:22px;
     font-weight:700;
-    letter-spacing:-.5px;
 }
 
-.logo span{
-    color:#38bdf8;
-}
+.logo span{color:var(--physics)}
 
 .nav-tag{
-    font-size:12px;
     color:#71809a;
+    font-size:12px;
     letter-spacing:2px;
     text-transform:uppercase;
 }
@@ -90,17 +80,17 @@ header{
 .hero{
     max-width:1250px;
     margin:auto;
-    padding:80px 24px 45px;
+    padding:75px 24px 45px;
 }
 
 .badge{
-    display:inline-flex;
+    display:inline-block;
     padding:8px 13px;
-    border:1px solid rgba(56,189,248,.25);
+    border:1px solid rgba(56,189,248,.3);
     background:rgba(56,189,248,.07);
     border-radius:30px;
     color:#7dd3fc;
-    font-size:12px;
+    font-size:11px;
     font-weight:700;
     letter-spacing:1.5px;
     text-transform:uppercase;
@@ -108,18 +98,17 @@ header{
 
 h1{
     font-family:"Space Grotesk";
-    font-size:clamp(44px,7vw,82px);
+    font-size:clamp(44px,7vw,80px);
     line-height:.95;
-    margin-top:22px;
     letter-spacing:-4px;
+    margin-top:22px;
 }
 
 .hero p{
-    max-width:700px;
+    max-width:720px;
     color:var(--muted);
-    font-size:16px;
     line-height:1.8;
-    margin-top:24px;
+    margin-top:23px;
 }
 
 .controls{
@@ -131,9 +120,9 @@ h1{
 .search{
     width:100%;
     padding:16px 20px;
-    border-radius:14px;
-    border:1px solid var(--border);
     background:rgba(255,255,255,.035);
+    border:1px solid var(--border);
+    border-radius:14px;
     color:white;
     outline:none;
     font-size:15px;
@@ -143,28 +132,27 @@ h1{
     border-color:rgba(56,189,248,.5);
 }
 
-.subjects{
+.filter{
     display:flex;
     flex-wrap:wrap;
-    gap:10px;
-    margin-top:15px;
+    gap:9px;
+    margin-top:14px;
 }
 
-.subject-btn{
+.filter button{
     border:1px solid var(--border);
     background:rgba(255,255,255,.035);
     color:#aebbd0;
-    padding:10px 17px;
+    padding:9px 15px;
     border-radius:30px;
     cursor:pointer;
-    transition:.2s;
 }
 
-.subject-btn:hover,
-.subject-btn.active{
+.filter button:hover,
+.filter button.active{
     color:white;
-    border-color:#38bdf8;
-    background:rgba(56,189,248,.10);
+    border-color:var(--physics);
+    background:rgba(56,189,248,.1);
 }
 
 .container{
@@ -173,101 +161,98 @@ h1{
     padding:0 24px 80px;
 }
 
-.subject-section{
-    margin-top:35px;
-}
-
-.subject-heading{
+.unit-header{
     display:flex;
     align-items:center;
     gap:14px;
-    margin-bottom:18px;
+    margin:30px 0 20px;
 }
 
-.subject-heading h2{
+.unit-header h2{
     font-family:"Space Grotesk";
-    font-size:27px;
+    font-size:28px;
 }
 
-.subject-line{
-    height:1px;
+.line{
     flex:1;
+    height:1px;
     background:var(--border);
+}
+
+.topic{
+    margin-top:34px;
+}
+
+.topic-title{
+    color:#7dd3fc;
+    font-size:12px;
+    letter-spacing:1.7px;
+    text-transform:uppercase;
+    margin-bottom:13px;
 }
 
 .cards{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:16px;
+    grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+    gap:15px;
 }
 
 .card{
     background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
     border:1px solid var(--border);
     border-radius:18px;
-    padding:24px;
-    transition:.25s;
+    padding:23px;
+    transition:.22s;
 }
 
 .card:hover{
-    transform:translateY(-4px);
-    border-color:rgba(255,255,255,.20);
-}
-
-.math .card:hover{border-color:rgba(155,124,255,.55)}
-.physics .card:hover{border-color:rgba(56,189,248,.55)}
-.chem .card:hover{border-color:rgba(52,211,153,.55)}
-
-.topic{
-    color:#8190a9;
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:1.5px;
+    transform:translateY(-3px);
+    border-color:rgba(56,189,248,.45);
 }
 
 .card h3{
-    margin:10px 0 16px;
     font-family:"Space Grotesk";
+    font-size:18px;
+    margin:9px 0 15px;
 }
 
 .formula{
-    padding:18px;
-    border-radius:12px;
     background:rgba(0,0,0,.25);
+    border-radius:11px;
+    padding:18px;
+    text-align:center;
     font-family:"Times New Roman",serif;
     font-size:25px;
-    text-align:center;
-    margin-bottom:16px;
     overflow:auto;
+    margin-bottom:14px;
 }
 
-.description{
-    color:#aab6c9;
-    line-height:1.65;
+.desc{
+    color:#a8b4c7;
     font-size:13px;
+    line-height:1.7;
 }
 
 .variables{
-    margin-top:15px;
-    color:#8492a9;
+    margin-top:13px;
+    padding-top:12px;
+    border-top:1px solid var(--border);
+    color:#7e8da5;
     font-size:12px;
     line-height:1.8;
 }
 
+.hidden{display:none}
+
 footer{
     border-top:1px solid var(--border);
-    padding:28px 24px;
+    padding:28px 20px;
     text-align:center;
     color:#647189;
     font-size:12px;
 }
 
-.hidden{
-    display:none;
-}
-
 @media(max-width:600px){
-    .hero{padding-top:55px}
     h1{letter-spacing:-2px}
     .nav-tag{display:none}
 }
@@ -277,239 +262,447 @@ footer{
 <body>
 
 <header>
-    <div class="nav">
-        <div class="logo">IAL <span>ATLAS</span></div>
-        <div class="nav-tag">Formula Atlas</div>
-    </div>
+<div class="nav">
+    <div class="logo">IAL <span>ATLAS</span></div>
+    <div class="nav-tag">Formula Atlas · Physics</div>
+</div>
 </header>
 
 <section class="hero">
-    <span class="badge">Formula Atlas</span>
 
-    <h1>Every formula.<br>One place.</h1>
+<span class="badge">Physics · WPH11</span>
 
-    <p>
-        A structured formula reference for Edexcel International A Level
-        Mathematics, Physics and Chemistry.
-    </p>
+<h1>
+Mechanics<br>
+& Materials
+</h1>
+
+<p>
+Edexcel International A Level Physics Unit 1 formula reference.
+Organised by Mechanics and Materials for fast exam revision.
+</p>
+
 </section>
 
 <div class="controls">
 
-    <input
-        id="search"
-        class="search"
-        type="search"
-        placeholder="Search formulas, topics or keywords..."
-    >
+<input
+    id="search"
+    class="search"
+    placeholder="Search a formula, topic or variable..."
+>
 
-    <div class="subjects">
-        <button class="subject-btn active" onclick="filterSubject('all',this)">All</button>
-        <button class="subject-btn" onclick="filterSubject('math',this)">Mathematics</button>
-        <button class="subject-btn" onclick="filterSubject('physics',this)">Physics</button>
-        <button class="subject-btn" onclick="filterSubject('chem',this)">Chemistry</button>
-    </div>
+<div class="filter">
+<button class="active" onclick="filterTopic('all',this)">All</button>
+<button onclick="filterTopic('mechanics',this)">Mechanics</button>
+<button onclick="filterTopic('materials',this)">Materials</button>
+</div>
 
 </div>
 
 <main class="container">
 
-<!-- MATHEMATICS -->
+<div class="unit-header">
+    <h2>WPH11 · Unit 1</h2>
+    <div class="line"></div>
+</div>
 
-<section class="subject-section math" data-subject="math">
 
-    <div class="subject-heading">
-        <h2>Mathematics</h2>
-        <div class="subject-line"></div>
-    </div>
+<!-- MECHANICS -->
 
-    <div class="cards">
+<section class="topic" data-topic="mechanics">
 
-        <article class="card formula-card">
-            <div class="topic">Algebra</div>
-            <h3>Quadratic Formula</h3>
+<div class="topic-title">Mechanics</div>
 
-            <div class="formula">
-                x = (-b ± √(b² − 4ac)) / 2a
-            </div>
+<div class="cards">
 
-            <div class="description">
-                Used to solve quadratic equations of the form
-                ax² + bx + c = 0.
-            </div>
+<article class="card">
+<h3>First Equation of Motion</h3>
 
-            <div class="variables">
-                a, b, c = coefficients of the quadratic equation
-            </div>
-        </article>
+<div class="formula">
+v = u + at
+</div>
 
-        <article class="card formula-card">
-            <div class="topic">Coordinate Geometry</div>
-            <h3>Gradient</h3>
+<div class="desc">
+Relates initial velocity, final velocity, acceleration and time
+for uniformly accelerated motion.
+</div>
 
-            <div class="formula">
-                m = (y₂ − y₁) / (x₂ − x₁)
-            </div>
+<div class="variables">
+u = initial velocity · v = final velocity ·
+a = acceleration · t = time
+</div>
+</article>
 
-            <div class="description">
-                Determines the gradient of a straight line between two points.
-            </div>
-        </article>
 
-        <article class="card formula-card">
-            <div class="topic">Differentiation</div>
-            <h3>Power Rule</h3>
+<article class="card">
+<h3>Second Equation of Motion</h3>
 
-            <div class="formula">
-                d/dx (xⁿ) = nxⁿ⁻¹
-            </div>
+<div class="formula">
+s = ut + ½at²
+</div>
 
-            <div class="description">
-                Fundamental differentiation rule for powers of x.
-            </div>
-        </article>
+<div class="desc">
+Gives displacement for motion with constant acceleration.
+</div>
 
-    </div>
+<div class="variables">
+s = displacement · u = initial velocity ·
+a = acceleration · t = time
+</div>
+</article>
+
+
+<article class="card">
+<h3>Third Equation of Motion</h3>
+
+<div class="formula">
+v² = u² + 2as
+</div>
+
+<div class="desc">
+Useful when time is not given in a uniformly accelerated motion problem.
+</div>
+</article>
+
+
+<article class="card">
+<h3>Displacement Equation</h3>
+
+<div class="formula">
+s = ½(u + v)t
+</div>
+
+<div class="desc">
+Displacement for uniformly accelerated motion.
+</div>
+</article>
+
+
+<article class="card">
+<h3>Newton's Second Law</h3>
+
+<div class="formula">
+ΣF = ma
+</div>
+
+<div class="desc">
+The resultant force on an object equals its mass multiplied by
+its acceleration.
+</div>
+</article>
+
+
+<article class="card">
+<h3>Weight</h3>
+
+<div class="formula">
+W = mg
+</div>
+
+<div class="desc">
+Weight is the gravitational force acting on a mass.
+</div>
+
+<div class="variables">
+W = weight · m = mass · g = gravitational field strength
+</div>
+</article>
+
+
+<article class="card">
+<h3>Gravitational Field Strength</h3>
+
+<div class="formula">
+g = F / m
+</div>
+
+<div class="desc">
+Gravitational force per unit mass.
+</div>
+</article>
+
+
+<article class="card">
+<h3>Momentum</h3>
+
+<div class="formula">
+p = mv
+</div>
+
+<div class="desc">
+Momentum is the product of mass and velocity.
+</div>
+</article>
+
+
+<article class="card">
+<h3>Moment of a Force</h3>
+
+<div class="formula">
+Moment = Fx
+</div>
+
+<div class="desc">
+The turning effect of a force about an axis.
+</div>
+
+<div class="variables">
+F = force · x = perpendicular distance from axis
+</div>
+</article>
+
+
+<article class="card">
+<h3>Work Done</h3>
+
+<div class="formula">
+ΔW = FΔs
+</div>
+
+<div class="desc">
+Work done when a force acts through a displacement in the direction
+of the force.
+</div>
+</article>
+
+
+<article class="card">
+<h3>Kinetic Energy</h3>
+
+<div class="formula">
+Eₖ = ½mv²
+</div>
+
+<div class="desc">
+Energy associated with the motion of an object.
+</div>
+</article>
+
+
+<article class="card">
+<h3>Gravitational Potential Energy</h3>
+
+<div class="formula">
+ΔE<sub>grav</sub> = mgΔh
+</div>
+
+<div class="desc">
+Change in gravitational potential energy near the Earth's surface.
+</div>
+</article>
+
+
+<article class="card">
+<h3>Power from Energy</h3>
+
+<div class="formula">
+P = E / t
+</div>
+
+<div class="desc">
+Power is the rate of energy transfer.
+</div>
+</article>
+
+
+<article class="card">
+<h3>Power from Work</h3>
+
+<div class="formula">
+P = W / t
+</div>
+
+<div class="desc">
+Power is the rate at which work is done.
+</div>
+</article>
+
+
+<article class="card">
+<h3>Efficiency from Energy</h3>
+
+<div class="formula">
+η = useful energy output / total energy input
+</div>
+
+<div class="desc">
+Efficiency compares useful energy output with total energy input.
+</div>
+</article>
+
+
+<article class="card">
+<h3>Efficiency from Power</h3>
+
+<div class="formula">
+η = useful power output / total power input
+</div>
+
+<div class="desc">
+Efficiency can also be calculated using useful and total power.
+</div>
+</article>
+
+</div>
 </section>
 
 
-<!-- PHYSICS -->
+<!-- MATERIALS -->
 
-<section class="subject-section physics" data-subject="physics">
+<section class="topic" data-topic="materials">
 
-    <div class="subject-heading">
-        <h2>Physics</h2>
-        <div class="subject-line"></div>
-    </div>
+<div class="topic-title">Materials</div>
 
-    <div class="cards">
+<div class="cards">
 
-        <article class="card formula-card">
-            <div class="topic">Mechanics</div>
-            <h3>Newton's Second Law</h3>
+<article class="card">
+<h3>Density</h3>
 
-            <div class="formula">
-                F = ma
-            </div>
+<div class="formula">
+ρ = m / V
+</div>
 
-            <div class="description">
-                The resultant force acting on an object equals its mass
-                multiplied by its acceleration.
-            </div>
+<div class="desc">
+Density is mass per unit volume.
+</div>
 
-            <div class="variables">
-                F = force &nbsp; | &nbsp; m = mass &nbsp; | &nbsp; a = acceleration
-            </div>
-        </article>
-
-        <article class="card formula-card">
-            <div class="topic">Motion</div>
-            <h3>Equation of Motion</h3>
-
-            <div class="formula">
-                v = u + at
-            </div>
-
-            <div class="description">
-                Relates initial velocity, final velocity, acceleration and time.
-            </div>
-        </article>
-
-        <article class="card formula-card">
-            <div class="topic">Energy</div>
-            <h3>Kinetic Energy</h3>
-
-            <div class="formula">
-                Eₖ = ½mv²
-            </div>
-
-            <div class="description">
-                Energy possessed by an object due to its motion.
-            </div>
-        </article>
-
-    </div>
-</section>
+<div class="variables">
+ρ = density · m = mass · V = volume
+</div>
+</article>
 
 
-<!-- CHEMISTRY -->
+<article class="card">
+<h3>Stokes' Law</h3>
 
-<section class="subject-section chem" data-subject="chem">
+<div class="formula">
+F = 6πηrv
+</div>
 
-    <div class="subject-heading">
-        <h2>Chemistry</h2>
-        <div class="subject-line"></div>
-    </div>
+<div class="desc">
+Viscous drag on a small sphere moving slowly through a fluid.
+</div>
 
-    <div class="cards">
+<div class="variables">
+F = drag force · η = viscosity · r = radius ·
+v = speed
+</div>
+</article>
 
-        <article class="card formula-card">
-            <div class="topic">Amount of Substance</div>
-            <h3>Moles</h3>
 
-            <div class="formula">
-                n = m / M
-            </div>
+<article class="card">
+<h3>Hooke's Law</h3>
 
-            <div class="description">
-                Calculates the amount of substance from mass and molar mass.
-            </div>
+<div class="formula">
+ΔF = kΔx
+</div>
 
-            <div class="variables">
-                n = moles &nbsp; | &nbsp; m = mass &nbsp; | &nbsp; M = molar mass
-            </div>
-        </article>
+<div class="desc">
+Within the limit of proportionality, extension is proportional
+to applied force.
+</div>
 
-        <article class="card formula-card">
-            <div class="topic">Concentration</div>
-            <h3>Concentration</h3>
+<div class="variables">
+k = stiffness · Δx = extension
+</div>
+</article>
 
-            <div class="formula">
-                c = n / V
-            </div>
 
-            <div class="description">
-                Calculates concentration in terms of amount of substance
-                and volume.
-            </div>
-        </article>
+<article class="card">
+<h3>Tensile / Compressive Stress</h3>
 
-        <article class="card formula-card">
-            <div class="topic">Gas Laws</div>
-            <h3>Ideal Gas Equation</h3>
+<div class="formula">
+Stress = F / A
+</div>
 
-            <div class="formula">
-                pV = nRT
-            </div>
+<div class="desc">
+Force per unit cross-sectional area.
+</div>
 
-            <div class="description">
-                Relates pressure, volume, amount, temperature and the gas constant.
-            </div>
-        </article>
+<div class="variables">
+F = force · A = cross-sectional area
+</div>
+</article>
 
-    </div>
+
+<article class="card">
+<h3>Strain</h3>
+
+<div class="formula">
+Strain = ΔL / L
+</div>
+
+<div class="desc">
+Change in length divided by original length.
+</div>
+
+<div class="variables">
+ΔL = change in length · L = original length
+</div>
+</article>
+
+
+<article class="card">
+<h3>Young Modulus</h3>
+
+<div class="formula">
+E = stress / strain
+</div>
+
+<div class="desc">
+Ratio of tensile or compressive stress to strain.
+</div>
+</article>
+
+
+<article class="card">
+<h3>Elastic Strain Energy</h3>
+
+<div class="formula">
+E<sub>el</sub> = ½FΔx
+</div>
+
+<div class="desc">
+Elastic strain energy stored in a material when the force-extension
+relationship is linear.
+</div>
+</article>
+
+
+<article class="card">
+<h3>Elastic Energy from Graph</h3>
+
+<div class="formula">
+E<sub>el</sub> = area under force-extension graph
+</div>
+
+<div class="desc">
+The area under a force-extension graph represents elastic strain energy.
+For non-linear graphs, the area may need to be estimated.
+</div>
+</article>
+
+</div>
 </section>
 
 </main>
 
 <footer>
-    IAL ATLAS · Built for Edexcel International A Level students
+IAL ATLAS · Pearson Edexcel International A Level Physics · WPH11
 </footer>
-
 
 <script>
 
 const search = document.getElementById("search");
-const sections = document.querySelectorAll(".subject-section");
+let currentTopic = "all";
 
-let currentSubject = "all";
+function filterTopic(topic,button){
 
-function filterSubject(subject,button){
+    currentTopic = topic;
 
-    currentSubject = subject;
-
-    document.querySelectorAll(".subject-btn")
-        .forEach(btn => btn.classList.remove("active"));
+    document.querySelectorAll(".filter button")
+    .forEach(b => b.classList.remove("active"));
 
     button.classList.add("active");
 
@@ -520,36 +713,37 @@ search.addEventListener("input",applyFilters);
 
 function applyFilters(){
 
-    const query = search.value.toLowerCase().trim();
+    const query =
+        search.value.toLowerCase().trim();
 
-    sections.forEach(section => {
+    document.querySelectorAll(".topic")
+    .forEach(section => {
 
-        const subjectMatch =
-            currentSubject === "all" ||
-            section.dataset.subject === currentSubject;
+        const topicMatch =
+            currentTopic === "all" ||
+            section.dataset.topic === currentTopic;
 
-        let hasMatch = false;
+        let visible = 0;
 
-        section.querySelectorAll(".formula-card").forEach(card => {
+        section.querySelectorAll(".card")
+        .forEach(card => {
 
-            const text = card.innerText.toLowerCase();
+            const match =
+                !query ||
+                card.innerText.toLowerCase().includes(query);
 
-            const match = text.includes(query);
+            const show = topicMatch && match;
 
-            card.classList.toggle(
-                "hidden",
-                !match
-            );
+            card.classList.toggle("hidden",!show);
 
-            if(match) hasMatch = true;
+            if(show) visible++;
 
         });
 
         section.classList.toggle(
             "hidden",
-            !(subjectMatch && (hasMatch || query === ""))
+            visible === 0
         );
-
     });
 }
 
