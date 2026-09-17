@@ -6,2738 +6,2760 @@
 
 <title>Question Bank | IAL ATLAS</title>
 
-<meta name="description"
-content="IAL ATLAS original Edexcel International A Level style question bank with 600 practice questions for Mathematics, Physics, Chemistry and Biology.">
+<meta name="description" content="IAL ATLAS Question Bank — practice and test yourself with original Edexcel International A Level style questions in Mathematics, Physics, Chemistry and Biology.">
 
 <link rel="canonical" href="https://ialatlas.com/question-bank.html">
 
+<meta property="og:title" content="Question Bank | IAL ATLAS">
+<meta property="og:description" content="Practice, test and review Edexcel IAL-style questions with IAL ATLAS.">
+<meta property="og:url" content="https://ialatlas.com/question-bank.html">
+<meta property="og:type" content="website">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link
-href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 :root{
-    --cyan:#00d9ff;
-    --blue:#168cff;
-    --green:#39e6a3;
-    --red:#ff6688;
     --bg:#05070d;
-    --panel:rgba(9,17,29,.82);
-    --panel2:rgba(12,23,39,.75);
-    --line:rgba(0,217,255,.18);
-    --muted:#8da6b7;
-    --white:#edfaff;
+    --panel:rgba(9,15,27,.78);
+    --panel2:rgba(12,21,37,.92);
+    --line:rgba(72,181,255,.18);
+    --cyan:#45d9ff;
+    --blue:#2f8cff;
+    --green:#4dffb0;
+    --red:#ff5f78;
+    --yellow:#ffd166;
+    --text:#eef8ff;
+    --muted:#8ca6ba;
+    --shadow:0 0 45px rgba(31,153,255,.10);
 }
 
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-    background:
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(0,130,255,.09),
-            transparent 35%
-        ),
-        #05070d;
-    color:var(--white);
-    font-family:Inter,Arial,sans-serif;
     min-height:100vh;
+    background:
+        radial-gradient(circle at 15% 10%,rgba(0,191,255,.08),transparent 30%),
+        radial-gradient(circle at 85% 20%,rgba(50,100,255,.08),transparent 30%),
+        var(--bg);
+    color:var(--text);
+    font-family:Inter,Arial,sans-serif;
+    overflow-x:hidden;
 }
 
-.qb-container{
-    width:min(1180px,92%);
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+        linear-gradient(rgba(64,180,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(64,180,255,.035) 1px,transparent 1px);
+    background-size:50px 50px;
+    mask-image:linear-gradient(to bottom,black,transparent 90%);
+    z-index:-2;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:linear-gradient(
+        rgba(255,255,255,0) 50%,
+        rgba(70,200,255,.025) 50%
+    );
+    background-size:100% 4px;
+    z-index:20;
+    opacity:.25;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button,
+select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.container{
+    width:min(1450px,94%);
     margin:auto;
 }
 
-.qb-hero{
-    padding:150px 0 55px;
+/* HEADER */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    border-bottom:1px solid rgba(85,190,255,.12);
+    background:rgba(5,7,13,.72);
+    backdrop-filter:blur(20px);
+}
+
+.nav{
+    min-height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:800;
+    letter-spacing:.08em;
+    font-size:1.15rem;
+}
+
+.logo span{
+    color:var(--cyan);
+    text-shadow:0 0 18px rgba(69,217,255,.55);
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+.nav-links a{
+    color:#a9c1d3;
+    padding:9px 13px;
+    border-radius:10px;
+    font-size:.87rem;
+    transition:.25s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+    color:#fff;
+    background:rgba(69,217,255,.08);
+    box-shadow:inset 0 0 0 1px rgba(69,217,255,.12);
+}
+
+/* HERO */
+
+.hero{
+    padding:70px 0 35px;
+}
+
+.hero-inner{
+    border:1px solid var(--line);
+    border-radius:26px;
+    padding:45px;
+    background:
+        linear-gradient(145deg,rgba(15,31,54,.72),rgba(5,9,17,.78));
+    box-shadow:var(--shadow);
     position:relative;
+    overflow:hidden;
 }
 
-.qb-eyebrow{
-    color:var(--cyan);
-    font-family:"Space Grotesk",sans-serif;
-    font-size:12px;
-    font-weight:700;
-    letter-spacing:.22em;
-    text-transform:uppercase;
+.hero-inner::before{
+    content:"";
+    position:absolute;
+    width:360px;
+    height:360px;
+    border:1px solid rgba(69,217,255,.14);
+    border-radius:50%;
+    right:-100px;
+    top:-170px;
+    box-shadow:
+        0 0 0 40px rgba(69,217,255,.025),
+        0 0 0 80px rgba(69,217,255,.015);
 }
 
-.qb-hero h1{
-    margin:15px 0;
-    font-family:"Space Grotesk",sans-serif;
-    font-size:clamp(45px,7vw,86px);
-    line-height:.95;
-    letter-spacing:-.045em;
-}
-
-.qb-hero h1 span{
-    color:var(--cyan);
-    text-shadow:
-        0 0 20px rgba(0,217,255,.25),
-        0 0 60px rgba(0,217,255,.12);
-}
-
-.qb-hero p{
-    max-width:760px;
-    color:var(--muted);
-    line-height:1.8;
-    font-size:17px;
-}
-
-.qb-counter{
+.system{
     display:inline-flex;
     align-items:center;
-    gap:10px;
-    margin-top:12px;
-    padding:10px 15px;
-    border:1px solid var(--line);
-    border-radius:10px;
-    background:rgba(0,217,255,.04);
-    color:#a9d7e7;
-    font-size:12px;
-}
-
-.qb-dot{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:var(--cyan);
-    box-shadow:0 0 12px var(--cyan);
-}
-
-.qb-panel{
-    border:1px solid var(--line);
-    border-radius:22px;
-    background:var(--panel);
-    backdrop-filter:blur(18px);
-    box-shadow:0 20px 80px rgba(0,0,0,.22);
-    padding:25px;
-}
-
-.qb-controls{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-}
-
-.qb-field label{
-    display:block;
-    margin-bottom:8px;
-    color:#718b9d;
-    font-size:10px;
+    gap:8px;
+    color:var(--green);
+    font-size:.75rem;
     font-weight:700;
     letter-spacing:.14em;
+    margin-bottom:18px;
+}
+
+.system-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 14px var(--green);
+    animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{opacity:.5;transform:scale(.8)}
+    50%{opacity:1;transform:scale(1)}
+}
+
+.hero h1{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(2.5rem,6vw,5.5rem);
+    line-height:.95;
+    max-width:850px;
+    letter-spacing:-.055em;
+}
+
+.hero h1 span{
+    color:var(--cyan);
+    text-shadow:
+        0 0 20px rgba(69,217,255,.35),
+        0 0 70px rgba(69,217,255,.12);
+}
+
+.hero p{
+    color:var(--muted);
+    max-width:800px;
+    line-height:1.8;
+    margin-top:22px;
+    font-size:1rem;
+}
+
+/* SETUP */
+
+.section{
+    padding:20px 0 50px;
+}
+
+.section-title{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:1.5rem;
+    margin-bottom:18px;
+}
+
+.setup-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:14px;
+}
+
+.control{
+    border:1px solid var(--line);
+    background:var(--panel);
+    border-radius:16px;
+    padding:17px;
+    box-shadow:var(--shadow);
+}
+
+.control label{
+    display:block;
+    color:#7e9aae;
+    font-size:.73rem;
     text-transform:uppercase;
+    letter-spacing:.1em;
+    margin-bottom:9px;
 }
 
-.qb-field select{
+.control select{
     width:100%;
-    padding:14px;
-    border:1px solid var(--line);
+    border:1px solid rgba(69,217,255,.16);
+    background:#07101d;
+    color:#eaf8ff;
     border-radius:10px;
+    padding:11px 12px;
     outline:none;
-    background:#08111c;
-    color:var(--white);
-    font-family:Inter,sans-serif;
-    cursor:pointer;
 }
 
-.qb-actions{
+.control select:focus{
+    border-color:var(--cyan);
+    box-shadow:0 0 0 3px rgba(69,217,255,.08);
+}
+
+.action-row{
     display:flex;
-    flex-wrap:wrap;
     gap:10px;
-    margin-top:18px;
+    flex-wrap:wrap;
+    margin-top:16px;
 }
 
-.qb-btn{
-    padding:13px 19px;
-    border:1px solid var(--line);
-    border-radius:10px;
-    background:#08111c;
-    color:#dff8ff;
+.btn{
+    border:1px solid rgba(69,217,255,.25);
+    background:rgba(69,217,255,.07);
+    color:#dff9ff;
+    padding:12px 17px;
+    border-radius:11px;
+    transition:.25s ease;
     font-weight:700;
-    cursor:pointer;
-    transition:.2s ease;
+    font-size:.87rem;
 }
 
-.qb-btn:hover{
+.btn:hover{
     transform:translateY(-2px);
-    border-color:rgba(0,217,255,.6);
+    border-color:var(--cyan);
+    box-shadow:0 0 25px rgba(69,217,255,.12);
 }
 
-.qb-btn.primary{
-    background:rgba(0,217,255,.11);
-    border-color:rgba(0,217,255,.5);
-    color:#86edff;
+.btn.primary{
+    background:linear-gradient(135deg,#1185d8,#36c9ff);
+    color:#03101a;
+    border-color:transparent;
 }
 
-.qb-btn.danger{
-    border-color:rgba(255,102,136,.35);
-    color:#ff9bb2;
+.btn.skip{
+    border-color:rgba(255,209,102,.25);
+    color:var(--yellow);
+    background:rgba(255,209,102,.05);
 }
 
-.qb-stats{
+.btn.danger{
+    border-color:rgba(255,95,120,.3);
+    color:#ff9aaa;
+    background:rgba(255,95,120,.05);
+}
+
+.btn.success{
+    border-color:rgba(77,255,176,.3);
+    color:#7affc2;
+    background:rgba(77,255,176,.05);
+}
+
+/* STATS */
+
+.stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:12px;
-    margin:18px 0;
+    margin:20px 0;
 }
 
-.qb-stat{
-    padding:17px;
+.stat{
     border:1px solid var(--line);
+    background:rgba(7,13,24,.7);
+    padding:15px 18px;
     border-radius:14px;
-    background:rgba(255,255,255,.018);
 }
 
-.qb-stat strong{
+.stat small{
+    color:#718a9e;
+    display:block;
+    font-size:.72rem;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+}
+
+.stat strong{
     display:block;
     font-family:"Space Grotesk";
-    font-size:25px;
+    font-size:1.35rem;
+    margin-top:5px;
 }
 
-.qb-stat span{
-    color:#718b9d;
-    font-size:10px;
-    letter-spacing:.12em;
-    text-transform:uppercase;
+/* TEST LAYOUT */
+
+.test-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 330px;
+    gap:18px;
+    align-items:start;
 }
 
-.qb-progress{
-    height:5px;
-    margin-bottom:25px;
-    overflow:hidden;
-    border-radius:99px;
-    background:#132131;
-}
-
-.qb-progress-bar{
-    width:0;
-    height:100%;
-    background:var(--cyan);
-    box-shadow:0 0 15px var(--cyan);
-    transition:.3s;
-}
-
-.qb-meta{
-    display:flex;
-    flex-wrap:wrap;
-    gap:7px;
-}
-
-.qb-tag{
-    padding:6px 9px;
+.question-card{
     border:1px solid var(--line);
-    border-radius:99px;
-    color:#8fb5c6;
-    font-size:10px;
-    text-transform:uppercase;
+    background:var(--panel);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
 }
 
-.qb-question-title{
-    margin:18px 0 25px;
+.question-top{
+    padding:18px 22px;
+    border-bottom:1px solid rgba(69,217,255,.1);
+}
+
+.question-top-row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    align-items:center;
+    margin-bottom:14px;
+}
+
+.question-number{
     font-family:"Space Grotesk";
-    font-size:clamp(22px,3vw,34px);
-    line-height:1.35;
+    font-size:1rem;
 }
 
-.qb-options{
+.progress-wrap{
+    height:6px;
+    background:#08131f;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,var(--blue),var(--cyan));
+    box-shadow:0 0 18px rgba(69,217,255,.45);
+    transition:.3s ease;
+}
+
+.tags{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+.tag{
+    border:1px solid rgba(69,217,255,.15);
+    background:rgba(69,217,255,.045);
+    color:#8fc8e2;
+    padding:5px 8px;
+    border-radius:7px;
+    font-size:.7rem;
+}
+
+.question-text{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(1.2rem,2vw,1.65rem);
+    line-height:1.45;
+}
+
+.question-body{
+    padding:25px 22px;
+}
+
+.options{
     display:grid;
     gap:11px;
+    margin-top:22px;
 }
 
-.qb-option{
-    width:100%;
-    display:flex;
-    gap:13px;
-    align-items:flex-start;
-    padding:16px;
-    border:1px solid var(--line);
+.option{
+    position:relative;
+    border:1px solid rgba(102,169,207,.18);
+    background:rgba(7,15,26,.72);
     border-radius:13px;
-    background:rgba(4,12,22,.72);
-    color:#e2f7ff;
+    padding:15px 16px;
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    color:#d8eaf4;
     text-align:left;
-    font:600 14px Inter;
-    cursor:pointer;
-    transition:.2s;
+    transition:.2s ease;
 }
 
-.qb-option:hover{
-    transform:translateX(3px);
-    border-color:rgba(0,217,255,.55);
+.option:hover{
+    border-color:rgba(69,217,255,.4);
+    background:rgba(69,217,255,.045);
 }
 
-.qb-option-letter{
+.option-letter{
     min-width:29px;
     height:29px;
     display:grid;
     place-items:center;
-    border:1px solid var(--line);
-    border-radius:7px;
+    border-radius:8px;
+    background:#0b1c2c;
+    border:1px solid rgba(69,217,255,.15);
     color:var(--cyan);
     font-weight:800;
+    font-size:.8rem;
 }
 
-.qb-option.selected{
+.option.selected{
     border-color:var(--cyan);
-    background:rgba(0,217,255,.1);
+    background:rgba(69,217,255,.08);
+    box-shadow:0 0 20px rgba(69,217,255,.08);
 }
 
-.qb-option.correct{
+.option.correct{
     border-color:var(--green);
-    background:rgba(57,230,163,.09);
+    background:rgba(77,255,176,.08);
 }
 
-.qb-option.wrong{
+.option.wrong{
     border-color:var(--red);
-    background:rgba(255,102,136,.09);
+    background:rgba(255,95,120,.08);
 }
 
-.qb-feedback{
-    display:none;
+.option.disabled{
+    cursor:default;
+}
+
+.feedback{
     margin-top:18px;
     padding:16px;
-    border-radius:12px;
-    line-height:1.7;
+    border-radius:13px;
+    border:1px solid;
+    line-height:1.65;
+    display:none;
 }
 
-.qb-feedback.show{
+.feedback.show{
     display:block;
 }
 
-.qb-feedback.correct{
-    border:1px solid rgba(57,230,163,.45);
-    background:rgba(57,230,163,.06);
+.feedback.correct{
+    border-color:rgba(77,255,176,.25);
+    background:rgba(77,255,176,.05);
 }
 
-.qb-feedback.wrong{
-    border:1px solid rgba(255,102,136,.45);
-    background:rgba(255,102,136,.06);
+.feedback.wrong{
+    border-color:rgba(255,95,120,.25);
+    background:rgba(255,95,120,.05);
 }
 
-.qb-navigation{
+.feedback-title{
+    font-weight:800;
+    margin-bottom:5px;
+}
+
+.navigation{
     display:flex;
     justify-content:space-between;
+    align-items:center;
     gap:10px;
-    margin-top:23px;
+    padding:18px 22px;
+    border-top:1px solid rgba(69,217,255,.1);
 }
 
-.qb-result{
+.nav-left,
+.nav-right{
+    display:flex;
+    gap:9px;
+    align-items:center;
+}
+
+/* NAVIGATOR */
+
+.navigator{
+    border:1px solid var(--line);
+    background:var(--panel);
+    border-radius:20px;
+    padding:18px;
+    box-shadow:var(--shadow);
+    position:sticky;
+    top:90px;
+}
+
+.navigator h3{
+    font-family:"Space Grotesk";
+    font-size:1.05rem;
+    margin-bottom:6px;
+}
+
+.navigator p{
+    color:#738da1;
+    font-size:.75rem;
+    line-height:1.5;
+    margin-bottom:15px;
+}
+
+.palette{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:6px;
+    max-height:410px;
+    overflow-y:auto;
+    padding-right:3px;
+}
+
+.palette::-webkit-scrollbar{
+    width:5px;
+}
+
+.palette::-webkit-scrollbar-thumb{
+    background:rgba(69,217,255,.25);
+    border-radius:20px;
+}
+
+.palette-btn{
+    height:36px;
+    border:1px solid rgba(120,160,190,.14);
+    background:#08111d;
+    color:#7e9aaa;
+    border-radius:8px;
+    font-size:.73rem;
+    font-weight:700;
+    transition:.2s ease;
+}
+
+.palette-btn:hover{
+    border-color:var(--cyan);
+    color:#fff;
+}
+
+.palette-btn.current{
+    border-color:var(--cyan);
+    background:rgba(69,217,255,.13);
+    color:var(--cyan);
+    box-shadow:0 0 14px rgba(69,217,255,.1);
+}
+
+.palette-btn.answered{
+    border-color:rgba(77,255,176,.28);
+    background:rgba(77,255,176,.07);
+    color:var(--green);
+}
+
+.palette-btn.skipped{
+    border-color:rgba(255,209,102,.3);
+    background:rgba(255,209,102,.06);
+    color:var(--yellow);
+}
+
+.palette-btn.unanswered{
+    color:#7890a0;
+}
+
+.legend{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+    margin-top:15px;
+}
+
+.legend-item{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    color:#7791a4;
+    font-size:.68rem;
+}
+
+.legend-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#243746;
+}
+
+.legend-dot.green{background:var(--green)}
+.legend-dot.yellow{background:var(--yellow)}
+.legend-dot.cyan{background:var(--cyan)}
+.legend-dot.gray{background:#3a4a56}
+
+.finish-box{
+    margin-top:15px;
+    padding-top:15px;
+    border-top:1px solid rgba(69,217,255,.1);
+}
+
+.finish-box .btn{
+    width:100%;
+}
+
+/* RESULT */
+
+.result{
     display:none;
-    margin-top:20px;
 }
 
-.qb-result.show{
+.result.show{
     display:block;
 }
 
-.qb-result-score{
-    font-family:"Space Grotesk";
-    font-size:clamp(55px,9vw,90px);
-    font-weight:800;
+.result-card{
+    border:1px solid var(--line);
+    background:var(--panel);
+    border-radius:24px;
+    padding:35px;
+    box-shadow:var(--shadow);
+}
+
+.result-header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.result-header small{
     color:var(--cyan);
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    font-size:.72rem;
 }
 
-.qb-result-grade{
-    margin-top:5px;
+.result-score{
     font-family:"Space Grotesk";
-    font-size:22px;
-    font-weight:700;
+    font-size:clamp(4rem,10vw,7rem);
+    line-height:1;
+    margin:12px 0;
+    text-shadow:0 0 30px rgba(69,217,255,.2);
 }
 
-.qb-result-text{
-    color:var(--muted);
-    line-height:1.7;
+.result-grade{
+    display:inline-block;
+    border:1px solid rgba(69,217,255,.2);
+    background:rgba(69,217,255,.06);
+    color:var(--cyan);
+    border-radius:12px;
+    padding:9px 17px;
+    font-weight:800;
 }
 
-.qb-breakdown{
+.result-grid{
     display:grid;
-    gap:10px;
-    margin-top:25px;
-}
-
-.qb-breakdown-row{
-    display:grid;
-    grid-template-columns:180px 1fr 60px;
-    align-items:center;
+    grid-template-columns:repeat(4,1fr);
     gap:12px;
 }
 
-.qb-breakdown-bar{
-    height:8px;
-    overflow:hidden;
-    border-radius:99px;
-    background:#152333;
+.result-item{
+    border:1px solid rgba(69,217,255,.12);
+    background:#08111d;
+    padding:18px;
+    border-radius:14px;
 }
 
-.qb-breakdown-bar span{
+.result-item small{
+    color:#738c9e;
+    font-size:.7rem;
+    text-transform:uppercase;
+}
+
+.result-item strong{
     display:block;
-    height:100%;
-    background:var(--cyan);
+    font-size:1.7rem;
+    font-family:"Space Grotesk";
+    margin-top:5px;
 }
 
-.qb-hidden{
-    display:none!important;
+.result-message{
+    margin-top:20px;
+    color:#8da6b8;
+    line-height:1.7;
+    padding:16px;
+    border:1px solid rgba(69,217,255,.1);
+    border-radius:13px;
 }
 
-.qb-footer{
-    padding:55px 0 80px;
-    color:#637c8d;
-    font-size:12px;
-    line-height:1.8;
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(12px);
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-card{
+    width:min(520px,100%);
+    border:1px solid rgba(69,217,255,.22);
+    background:#07101c;
+    border-radius:22px;
+    padding:28px;
+    box-shadow:0 0 80px rgba(0,0,0,.6),0 0 35px rgba(69,217,255,.08);
+}
+
+.modal-card h2{
+    font-family:"Space Grotesk";
+    margin-bottom:10px;
+}
+
+.modal-card p{
+    color:#8ba3b5;
+    line-height:1.7;
+}
+
+.modal-warning{
+    margin:18px 0;
+    padding:15px;
+    border-radius:12px;
+    background:rgba(255,209,102,.06);
+    border:1px solid rgba(255,209,102,.2);
+    color:#e9dcae;
+}
+
+.modal-actions{
+    display:flex;
+    gap:10px;
+    justify-content:flex-end;
+    flex-wrap:wrap;
+}
+
+/* EMPTY */
+
+.empty{
+    border:1px solid var(--line);
+    border-radius:20px;
+    background:var(--panel);
+    padding:50px;
     text-align:center;
+    color:#7891a4;
 }
 
-@media(max-width:850px){
-
-    .qb-controls{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .qb-stats{
-        grid-template-columns:repeat(2,1fr);
-    }
-
+.hidden{
+    display:none !important;
 }
 
-@media(max-width:560px){
+/* FOOTER */
 
-    .qb-hero{
-        padding-top:120px;
+footer{
+    margin-top:70px;
+    border-top:1px solid rgba(69,217,255,.1);
+    padding:35px 0;
+    color:#668094;
+    text-align:center;
+    font-size:.78rem;
+}
+
+footer strong{
+    color:#9bb4c6;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+    .setup-grid{
+        grid-template-columns:repeat(3,1fr);
     }
 
-    .qb-panel{
-        padding:17px;
-    }
-
-    .qb-controls,
-    .qb-stats{
+    .test-layout{
         grid-template-columns:1fr;
     }
 
-    .qb-breakdown-row{
-        grid-template-columns:1fr 50px;
+    .navigator{
+        position:static;
     }
 
-    .qb-breakdown-bar{
-        grid-column:1/3;
+    .palette{
+        max-height:260px;
+        grid-template-columns:repeat(10,1fr);
+    }
+}
+
+@media(max-width:750px){
+    .nav{
+        min-height:64px;
     }
 
-    .qb-navigation{
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        padding-top:30px;
+    }
+
+    .hero-inner{
+        padding:28px 20px;
+    }
+
+    .setup-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .result-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .navigation{
         flex-direction:column;
+        align-items:stretch;
     }
 
-    .qb-navigation .qb-btn{
+    .nav-left,
+    .nav-right{
         width:100%;
     }
 
+    .nav-left .btn,
+    .nav-right .btn{
+        flex:1;
+    }
+
+    .palette{
+        grid-template-columns:repeat(8,1fr);
+    }
 }
 
+@media(max-width:500px){
+    .setup-grid{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .result-card{
+        padding:22px 16px;
+    }
+
+    .palette{
+        grid-template-columns:repeat(6,1fr);
+    }
+
+    .question-body{
+        padding:20px 15px;
+    }
+
+    .question-top{
+        padding:16px 15px;
+    }
+
+    .navigation{
+        padding:15px;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<header id="mainHeader">
+<header>
+    <div class="container nav">
+        <a href="index.html" class="logo">
+            IAL <span>ATLAS</span>
+        </a>
 
-<a href="index.html" aria-label="IAL ATLAS homepage">
-<img src="logo.png" alt="IAL ATLAS" class="logo-image">
-</a>
-
-<nav aria-label="Main navigation">
-
-<a href="index.html#subjects">Subjects</a>
-<a href="index.html#atlases">Atlases</a>
-<a href="past-papers.html">Past Papers</a>
-<a href="index.html#why">Why IAL ATLAS</a>
-<a href="about.html">About IAL ATLAS</a>
-
-</nav>
-
-<div class="nav-status">
-<span class="status-dot"></span>
-SYSTEM ONLINE
-</div>
-
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="mathematics.html">Mathematics</a>
+            <a href="physics.html">Physics</a>
+            <a href="chemistry.html">Chemistry</a>
+            <a href="biology.html">Biology</a>
+            <a href="past-papers.html">Past Papers</a>
+            <a href="question-bank.html" class="active">Question Bank</a>
+        </nav>
+    </div>
 </header>
 
+<main>
 
-<main class="qb-container">
+<section class="hero">
+    <div class="container">
+        <div class="hero-inner">
 
+            <div class="system">
+                <span class="system-dot"></span>
+                QUESTION BANK ONLINE
+            </div>
 
-<section class="qb-hero">
+            <h1>
+                Train your mind.<br>
+                <span>Test your limits.</span>
+            </h1>
 
-<div class="qb-eyebrow">
-IAL ATLAS / QUESTION BANK
-</div>
+            <p>
+                Build your own IAL-style test, choose your subject,
+                difficulty and question count, skip questions whenever
+                you want, return to them later and finish when you're ready.
+            </p>
 
-<h1>
-Train your<br>
-<span>knowledge.</span>
-</h1>
-
-<p>
-Practise original IAL-style questions across Mathematics,
-Physics, Chemistry and Biology. Select your subject,
-difficulty and test length, then receive automatic marking
-and performance analysis.
-</p>
-
-<div class="qb-counter">
-<span class="qb-dot"></span>
-600 QUESTIONS • 150 PER SUBJECT
-</div>
-
+        </div>
+    </div>
 </section>
 
 
-<!-- SETUP -->
+<section class="section">
+<div class="container">
 
-<section class="qb-panel">
+    <div class="section-title">TEST CONFIGURATION</div>
 
-<div class="qb-controls">
+    <div class="setup-grid">
 
-<div class="qb-field">
+        <div class="control">
+            <label>Subject</label>
+            <select id="subjectSelect">
+                <option value="all">All Subjects</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Physics">Physics</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="Biology">Biology</option>
+            </select>
+        </div>
 
-<label>Subject</label>
+        <div class="control">
+            <label>Difficulty</label>
+            <select id="difficultySelect">
+                <option value="all">All Difficulties</option>
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
+            </select>
+        </div>
 
-<select id="subject">
+        <div class="control">
+            <label>Questions</label>
+            <select id="countSelect">
+                <option value="10">10 Questions</option>
+                <option value="20" selected>20 Questions</option>
+                <option value="30">30 Questions</option>
+                <option value="50">50 Questions</option>
+                <option value="100">100 Questions</option>
+                <option value="150">150 Questions</option>
+            </select>
+        </div>
 
-<option value="all">
-All Subjects
-</option>
+        <div class="control">
+            <label>Mode</label>
+            <select id="modeSelect">
+                <option value="practice">Practice Mode</option>
+                <option value="exam">Exam Mode</option>
+            </select>
+        </div>
 
-<option value="maths">
-Mathematics
-</option>
+        <div class="control">
+            <label>Question Order</label>
+            <select id="orderSelect">
+                <option value="random">Random</option>
+                <option value="normal">Bank Order</option>
+            </select>
+        </div>
 
-<option value="physics">
-Physics
-</option>
+    </div>
 
-<option value="chemistry">
-Chemistry
-</option>
+    <div class="action-row">
+        <button class="btn primary" id="startBtn">
+            ▶ Start Test
+        </button>
 
-<option value="biology">
-Biology
-</option>
+        <button class="btn" id="randomBtn">
+            ⤨ Random 20
+        </button>
 
-</select>
-
-</div>
-
-
-<div class="qb-field">
-
-<label>Difficulty</label>
-
-<select id="difficulty">
-
-<option value="all">
-All Difficulties
-</option>
-
-<option value="easy">
-Easy
-</option>
-
-<option value="medium">
-Medium
-</option>
-
-<option value="hard">
-Hard
-</option>
-
-</select>
-
-</div>
-
-
-<div class="qb-field">
-
-<label>Questions</label>
-
-<select id="questionCount">
-
-<option value="10">10</option>
-<option value="20">20</option>
-<option value="30">30</option>
-<option value="50">50</option>
-<option value="100">100</option>
-<option value="150">150</option>
-
-</select>
+        <button class="btn danger" id="resetBtn">
+            ↺ Reset
+        </button>
+    </div>
 
 </div>
-
-
-<div class="qb-field">
-
-<label>Mode</label>
-
-<select id="mode">
-
-<option value="practice">
-Practice Mode
-</option>
-
-<option value="exam">
-Exam Mode
-</option>
-
-</select>
-
-</div>
-
-</div>
-
-
-<div class="qb-actions">
-
-<button
-class="qb-btn primary"
-id="startBtn"
->
-START TEST →
-</button>
-
-<button
-class="qb-btn"
-id="randomBtn"
->
-RANDOM 20
-</button>
-
-<button
-class="qb-btn danger"
-id="resetBtn"
->
-RESET
-</button>
-
-</div>
-
 </section>
 
 
-<!-- STATS -->
+<section class="section">
+<div class="container">
 
-<section
-class="qb-stats qb-hidden"
-id="stats"
->
+    <div id="emptyState" class="empty">
+        <h2 style="font-family:'Space Grotesk';color:#dff8ff;margin-bottom:10px;">
+            Ready when you are.
+        </h2>
 
-<div class="qb-stat">
+        <p>
+            Configure your test above and press
+            <strong style="color:#45d9ff;">Start Test</strong>.
+        </p>
+    </div>
 
-<strong id="questionNumber">
-0/0
-</strong>
 
-<span>
-Question
-</span>
+    <div id="testArea" class="hidden">
+
+        <div class="stats">
+
+            <div class="stat">
+                <small>Question</small>
+                <strong id="statQuestion">1 / 20</strong>
+            </div>
+
+            <div class="stat">
+                <small>Score</small>
+                <strong id="statScore">0</strong>
+            </div>
+
+            <div class="stat">
+                <small>Accuracy</small>
+                <strong id="statAccuracy">0%</strong>
+            </div>
+
+            <div class="stat">
+                <small>Mode</small>
+                <strong id="statMode">Practice</strong>
+            </div>
+
+        </div>
+
+
+        <div class="test-layout">
+
+            <!-- QUESTION -->
+
+            <div class="question-card">
+
+                <div class="question-top">
+
+                    <div class="question-top-row">
+
+                        <div class="question-number" id="questionNumber">
+                            Question 1
+                        </div>
+
+                        <div id="statusText" style="color:#7d95a6;font-size:.75rem;">
+                            Unanswered
+                        </div>
+
+                    </div>
+
+                    <div class="progress-wrap">
+                        <div class="progress" id="progressBar"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="question-body">
+
+                    <div class="tags">
+
+                        <span class="tag" id="subjectTag">
+                            Mathematics
+                        </span>
+
+                        <span class="tag" id="topicTag">
+                            Topic
+                        </span>
+
+                        <span class="tag" id="difficultyTag">
+                            Medium
+                        </span>
+
+                        <span class="tag" id="modeTag">
+                            Practice
+                        </span>
+
+                    </div>
+
+                    <div class="question-text" id="questionText">
+                        Question text
+                    </div>
+
+                    <div class="options" id="options"></div>
+
+                    <div class="feedback" id="feedback">
+
+                        <div class="feedback-title" id="feedbackTitle">
+                            Correct
+                        </div>
+
+                        <div id="feedbackText"></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="navigation">
+
+                    <div class="nav-left">
+
+                        <button class="btn" id="prevBtn">
+                            ← Previous
+                        </button>
+
+                        <button class="btn skip" id="skipBtn">
+                            Skip →
+                        </button>
+
+                    </div>
+
+                    <div class="nav-right">
+
+                        <button class="btn" id="nextBtn">
+                            Next →
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- NAVIGATOR -->
+
+            <aside class="navigator">
+
+                <h3>Question Navigator</h3>
+
+                <p>
+                    Jump to any question. Green = answered,
+                    yellow = skipped, grey = unanswered.
+                </p>
+
+                <div class="palette" id="palette"></div>
+
+                <div class="legend">
+
+                    <div class="legend-item">
+                        <span class="legend-dot cyan"></span>
+                        Current
+                    </div>
+
+                    <div class="legend-item">
+                        <span class="legend-dot green"></span>
+                        Answered
+                    </div>
+
+                    <div class="legend-item">
+                        <span class="legend-dot yellow"></span>
+                        Skipped
+                    </div>
+
+                    <div class="legend-item">
+                        <span class="legend-dot gray"></span>
+                        Unanswered
+                    </div>
+
+                </div>
+
+                <div class="finish-box">
+
+                    <button class="btn success" id="finishBtn">
+                        ✓ Finish Test
+                    </button>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </div>
+
+
+    <!-- RESULT -->
+
+    <div id="resultArea" class="result">
+
+        <div class="result-card">
+
+            <div class="result-header">
+
+                <small>TEST COMPLETE</small>
+
+                <div class="result-score" id="resultPercentage">
+                    0%
+                </div>
+
+                <div class="result-grade" id="resultGrade">
+                    U
+                </div>
+
+            </div>
+
+
+            <div class="result-grid">
+
+                <div class="result-item">
+                    <small>Correct</small>
+                    <strong id="resultCorrect">0</strong>
+                </div>
+
+                <div class="result-item">
+                    <small>Wrong</small>
+                    <strong id="resultWrong">0</strong>
+                </div>
+
+                <div class="result-item">
+                    <small>Skipped</small>
+                    <strong id="resultSkipped">0</strong>
+                </div>
+
+                <div class="result-item">
+                    <small>Unanswered</small>
+                    <strong id="resultUnanswered">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="result-message" id="resultMessage">
+                Test complete.
+            </div>
+
+
+            <div class="action-row">
+
+                <button class="btn primary" id="retryBtn">
+                    ↻ Retry Test
+                </button>
+
+                <button class="btn" id="newTestBtn">
+                    + New Test
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
-
-
-<div class="qb-stat">
-
-<strong id="score">
-0
-</strong>
-
-<span>
-Score
-</span>
-
-</div>
-
-
-<div class="qb-stat">
-
-<strong id="percentage">
-0%
-</strong>
-
-<span>
-Accuracy
-</span>
-
-</div>
-
-
-<div class="qb-stat">
-
-<strong id="modeDisplay">
-Practice
-</strong>
-
-<span>
-Mode
-</span>
-
-</div>
-
 </section>
-
-
-<!-- QUIZ -->
-
-<section
-class="qb-panel qb-hidden"
-id="quiz"
->
-
-<div class="qb-progress">
-
-<div
-class="qb-progress-bar"
-id="progressBar"
-></div>
-
-</div>
-
-
-<div
-class="qb-meta"
-id="questionMeta"
-></div>
-
-
-<h2
-class="qb-question-title"
-id="questionText"
->
-</h2>
-
-
-<div
-class="qb-options"
-id="options"
-></div>
-
-
-<div
-class="qb-feedback"
-id="feedback"
-></div>
-
-
-<div class="qb-navigation">
-
-<button
-class="qb-btn"
-id="previousBtn"
->
-← PREVIOUS
-</button>
-
-<button
-class="qb-btn primary"
-id="nextBtn"
->
-NEXT →
-</button>
-
-</div>
-
-</section>
-
-
-<!-- RESULT -->
-
-<section
-class="qb-panel qb-result"
-id="result"
->
-
-<div class="qb-eyebrow">
-TEST COMPLETE
-</div>
-
-<div
-class="qb-result-score"
-id="resultPercentage"
->
-0%
-</div>
-
-<div
-class="qb-result-grade"
-id="resultGrade"
->
-</div>
-
-<p
-class="qb-result-text"
-id="resultText"
->
-</p>
-
-
-<div
-class="qb-breakdown"
-id="breakdown"
-></div>
-
-
-<div class="qb-actions">
-
-<button
-class="qb-btn primary"
-id="retryBtn"
->
-RETRY TEST
-</button>
-
-<button
-class="qb-btn"
-id="newTestBtn"
->
-NEW TEST
-</button>
-
-</div>
-
-</section>
-
-
-<footer class="qb-footer">
-
-IAL ATLAS Question Bank contains original practice material
-created for learning and revision.
-
-<br>
-
-It is independent of Pearson Edexcel and is not an official
-Pearson assessment or grade calculator.
-
-</footer>
-
 
 </main>
 
 
+<footer>
+    <div class="container">
+        <strong>IAL ATLAS</strong> — Free student-built Edexcel International A Level learning resource.
+        <br><br>
+        Question Bank contains original IAL-style practice material and is not an official Pearson Edexcel resource.
+    </div>
+</footer>
+
+
+<!-- FINISH MODAL -->
+
+<div class="modal" id="finishModal">
+
+    <div class="modal-card">
+
+        <h2>Finish this test?</h2>
+
+        <p id="finishDescription">
+            You are about to submit your test.
+        </p>
+
+        <div class="modal-warning" id="finishWarning">
+            You have unanswered questions.
+        </div>
+
+        <div class="modal-actions">
+
+            <button class="btn" id="reviewBtn">
+                Review Unanswered
+            </button>
+
+            <button class="btn danger" id="submitAnywayBtn">
+                Submit Anyway
+            </button>
+
+            <button class="btn" id="cancelFinishBtn">
+                Continue Test
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 <script>
 
-/*
-=========================================================
-IAL ATLAS QUESTION BANK
-=========================================================
+/* =========================================================
+   QUESTION BANK
+   ========================================================= */
 
-600 TOTAL QUESTIONS
+const QUESTION_BANK = [
 
-Mathematics  = 150
-Physics      = 150
-Chemistry    = 150
-Biology      = 150
+/* ================= MATHEMATICS ================= */
 
-The questions are generated from subject-specific
-question families with different numerical values,
-contexts and difficulty levels.
+{
+subject:"Mathematics",
+topic:"Algebra",
+difficulty:"Easy",
+q:"Solve 3x + 5 = 20.",
+options:["3","5","7","10"],
+answer:1,
+explanation:"Subtract 5 from both sides to obtain 3x = 15, so x = 5."
+},
 
-=========================================================
-*/
+{
+subject:"Mathematics",
+topic:"Algebra",
+difficulty:"Easy",
+q:"If f(x) = 2x + 3, what is f(4)?",
+options:["8","10","11","12"],
+answer:2,
+explanation:"f(4) = 2(4) + 3 = 11."
+},
 
+{
+subject:"Mathematics",
+topic:"Quadratics",
+difficulty:"Medium",
+q:"The roots of x² − 5x + 6 = 0 are:",
+options:["1 and 6","2 and 3","−2 and −3","3 and 4"],
+answer:1,
+explanation:"Factorising gives (x − 2)(x − 3) = 0."
+},
 
-const QUESTIONS = [];
+{
+subject:"Mathematics",
+topic:"Differentiation",
+difficulty:"Easy",
+q:"Differentiate y = x³ + 4x.",
+options:["3x² + 4","x² + 4","3x + 4","x³ + 4"],
+answer:0,
+explanation:"Using the power rule, dy/dx = 3x² + 4."
+},
 
+{
+subject:"Mathematics",
+topic:"Differentiation",
+difficulty:"Medium",
+q:"What is the gradient of y = x² − 6x at x = 4?",
+options:["−2","0","2","4"],
+answer:2,
+explanation:"dy/dx = 2x − 6. At x = 4, the gradient is 2."
+},
 
-/* =====================================================
-   GENERAL HELPERS
-===================================================== */
+{
+subject:"Mathematics",
+topic:"Integration",
+difficulty:"Easy",
+q:"∫ 6x² dx equals:",
+options:["2x³ + C","6x³ + C","3x² + C","x³ + C"],
+answer:0,
+explanation:"Integrating 6x² gives 6x³/3 = 2x³."
+},
 
-function addQuestion(
-    subject,
-    topic,
-    difficulty,
-    question,
-    options,
-    answer,
-    explanation
-){
+{
+subject:"Mathematics",
+topic:"Integration",
+difficulty:"Medium",
+q:"Evaluate ∫₀² x dx.",
+options:["1","2","3","4"],
+answer:1,
+explanation:"[x²/2]₀² = 4/2 = 2."
+},
 
-    QUESTIONS.push({
+{
+subject:"Mathematics",
+topic:"Trigonometry",
+difficulty:"Easy",
+q:"What is sin 30°?",
+options:["0","1/2","√2/2","1"],
+answer:1,
+explanation:"The exact value of sin 30° is 1/2."
+},
 
-        subject,
-        topic,
-        difficulty,
-        question,
-        options,
-        answer,
-        explanation
+{
+subject:"Mathematics",
+topic:"Trigonometry",
+difficulty:"Medium",
+q:"Solve sin x = 0 for 0° ≤ x ≤ 360°.",
+options:["0°, 180°, 360°","90°, 270°","45°, 225°","180° only"],
+answer:0,
+explanation:"Sine is zero at 0°, 180° and 360° within the interval."
+},
 
-    });
+{
+subject:"Mathematics",
+topic:"Statistics 1",
+difficulty:"Easy",
+q:"The mean of 4, 6, 8 and 10 is:",
+options:["6","7","8","9"],
+answer:1,
+explanation:"(4 + 6 + 8 + 10)/4 = 28/4 = 7."
+},
 
+{
+subject:"Mathematics",
+topic:"Statistics 1",
+difficulty:"Easy",
+q:"Which measure of location is least affected by an extreme outlier?",
+options:["Mean","Median","Variance","Standard deviation"],
+answer:1,
+explanation:"The median is generally more resistant to extreme values than the mean."
+},
+
+{
+subject:"Mathematics",
+topic:"Statistics 1",
+difficulty:"Medium",
+q:"A histogram has class width 5 and frequency 20. What is the frequency density?",
+options:["2","4","10","25"],
+answer:1,
+explanation:"Frequency density = frequency ÷ class width = 20 ÷ 5 = 4."
+},
+
+{
+subject:"Mathematics",
+topic:"Statistics 1",
+difficulty:"Medium",
+q:"If two variables have a correlation coefficient close to −1, what does this indicate?",
+options:[
+"Strong positive correlation",
+"Strong negative correlation",
+"No correlation",
+"Perfectly random data"
+],
+answer:1,
+explanation:"A correlation coefficient close to −1 indicates a strong negative linear relationship."
+},
+
+{
+subject:"Mathematics",
+topic:"Mechanics",
+difficulty:"Easy",
+q:"A force of 10 N acts on a mass of 2 kg. What is the acceleration?",
+options:["2 m/s²","5 m/s²","10 m/s²","20 m/s²"],
+answer:1,
+explanation:"Using F = ma, a = 10/2 = 5 m/s²."
+},
+
+{
+subject:"Mathematics",
+topic:"Mechanics",
+difficulty:"Medium",
+q:"An object starts from rest and accelerates at 3 m/s² for 4 s. What is its final speed?",
+options:["7 m/s","12 m/s","16 m/s","24 m/s"],
+answer:1,
+explanation:"v = u + at = 0 + 3(4) = 12 m/s."
+},
+
+{
+subject:"Mathematics",
+topic:"Sequences",
+difficulty:"Medium",
+q:"The nth term of the arithmetic sequence 5, 8, 11, 14,... is:",
+options:["3n + 2","3n + 5","5n + 3","2n + 3"],
+answer:0,
+explanation:"The first term is 5 and common difference is 3, so aₙ = 5 + (n−1)3 = 3n + 2."
+},
+
+{
+subject:"Mathematics",
+topic:"Exponentials",
+difficulty:"Easy",
+q:"What is 2³ × 2²?",
+options:["16","32","64","8"],
+answer:1,
+explanation:"When multiplying powers with the same base, add the indices: 2⁵ = 32."
+},
+
+{
+subject:"Mathematics",
+topic:"Logarithms",
+difficulty:"Medium",
+q:"If log₁₀x = 2, what is x?",
+options:["10","20","100","1000"],
+answer:2,
+explanation:"log₁₀x = 2 means x = 10² = 100."
+},
+
+{
+subject:"Mathematics",
+topic:"Vectors",
+difficulty:"Medium",
+q:"The magnitude of vector (3, 4) is:",
+options:["4","5","6","7"],
+answer:1,
+explanation:"Magnitude = √(3² + 4²) = √25 = 5."
+},
+
+{
+subject:"Mathematics",
+topic:"Statistics 1",
+difficulty:"Hard",
+q:"A dataset has mean 12. Every value is increased by 5. What is the new mean?",
+options:["12","15","17","60"],
+answer:2,
+explanation:"Adding a constant to every observation increases the mean by the same constant: 12 + 5 = 17."
+},
+
+/* ================= PHYSICS ================= */
+
+{
+subject:"Physics",
+topic:"Mechanics",
+difficulty:"Easy",
+q:"What is the SI unit of force?",
+options:["Joule","Newton","Watt","Pascal"],
+answer:1,
+explanation:"Force is measured in newtons (N)."
+},
+
+{
+subject:"Physics",
+topic:"Mechanics",
+difficulty:"Easy",
+q:"An object travels 100 m in 20 s. Its average speed is:",
+options:["2 m/s","5 m/s","20 m/s","2000 m/s"],
+answer:1,
+explanation:"Speed = distance/time = 100/20 = 5 m/s."
+},
+
+{
+subject:"Physics",
+topic:"Mechanics",
+difficulty:"Medium",
+q:"Which equation is correct for uniformly accelerated motion?",
+options:[
+"v = u + at",
+"v = u − a/t",
+"s = u/a",
+"F = mv"
+],
+answer:0,
+explanation:"v = u + at is one of the standard constant-acceleration equations."
+},
+
+{
+subject:"Physics",
+topic:"Forces",
+difficulty:"Easy",
+q:"Newton's second law can be written as:",
+options:["F = ma","F = m/a","F = a/m","F = mv²"],
+answer:0,
+explanation:"Newton's second law gives F = ma."
+},
+
+{
+subject:"Physics",
+topic:"Energy",
+difficulty:"Easy",
+q:"What is the SI unit of energy?",
+options:["Newton","Watt","Joule","Volt"],
+answer:2,
+explanation:"Energy is measured in joules (J)."
+},
+
+{
+subject:"Physics",
+topic:"Energy",
+difficulty:"Medium",
+q:"A 2 kg object is moving at 3 m/s. What is its kinetic energy?",
+options:["3 J","6 J","9 J","18 J"],
+answer:2,
+explanation:"KE = 1/2 mv² = 0.5 × 2 × 9 = 9 J."
+},
+
+{
+subject:"Physics",
+topic:"Momentum",
+difficulty:"Medium",
+q:"A 4 kg object moves at 5 m/s. Its momentum is:",
+options:["0.8 kg m/s","9 kg m/s","20 kg m/s","25 kg m/s"],
+answer:2,
+explanation:"p = mv = 4 × 5 = 20 kg m/s."
+},
+
+{
+subject:"Physics",
+topic:"Waves",
+difficulty:"Easy",
+q:"Which quantity is measured in hertz?",
+options:["Wavelength","Frequency","Amplitude","Speed"],
+answer:1,
+explanation:"Frequency is measured in hertz (Hz)."
+},
+
+{
+subject:"Physics",
+topic:"Waves",
+difficulty:"Medium",
+q:"A wave has frequency 50 Hz and wavelength 2 m. Its speed is:",
+options:["25 m/s","50 m/s","100 m/s","200 m/s"],
+answer:2,
+explanation:"v = fλ = 50 × 2 = 100 m/s."
+},
+
+{
+subject:"Physics",
+topic:"Electricity",
+difficulty:"Easy",
+q:"The SI unit of electric current is:",
+options:["Volt","Ohm","Ampere","Coulomb"],
+answer:2,
+explanation:"Electric current is measured in amperes (A)."
+},
+
+{
+subject:"Physics",
+topic:"Electricity",
+difficulty:"Medium",
+q:"A 12 V supply is connected across a 4 Ω resistor. What current flows?",
+options:["0.33 A","3 A","8 A","48 A"],
+answer:1,
+explanation:"Using V = IR, I = 12/4 = 3 A."
+},
+
+{
+subject:"Physics",
+topic:"Electricity",
+difficulty:"Medium",
+q:"Electrical power can be calculated using:",
+options:["P = VI","P = V/I","P = I/V","P = IR"],
+answer:0,
+explanation:"Electrical power is P = VI."
+},
+
+{
+subject:"Physics",
+topic:"Materials",
+difficulty:"Medium",
+q:"Stress is defined as:",
+options:[
+"Force × area",
+"Force ÷ area",
+"Extension ÷ force",
+"Area ÷ force"
+],
+answer:1,
+explanation:"Stress = force / cross-sectional area."
+},
+
+{
+subject:"Physics",
+topic:"Materials",
+difficulty:"Hard",
+q:"The gradient of a force-extension graph in the elastic region represents:",
+options:["Density","Stiffness","Energy","Power"],
+answer:1,
+explanation:"For a linear force-extension relationship, gradient F/x is the stiffness."
+},
+
+{
+subject:"Physics",
+topic:"Thermal Physics",
+difficulty:"Easy",
+q:"Temperature is related to the average:",
+options:[
+"Potential energy of particles",
+"Kinetic energy of particles",
+"Mass of particles",
+"Charge of particles"
+],
+answer:1,
+explanation:"Temperature is related to the average kinetic energy of particles."
+},
+
+{
+subject:"Physics",
+topic:"Electric Fields",
+difficulty:"Medium",
+q:"The electric field strength is defined as force per unit:",
+options:["Mass","Charge","Distance","Energy"],
+answer:1,
+explanation:"E = F/Q, so electric field strength is force per unit charge."
+},
+
+{
+subject:"Physics",
+topic:"Gravitational Fields",
+difficulty:"Medium",
+q:"Near Earth's surface, gravitational field strength is approximately:",
+options:["0.98 N/kg","9.8 N/kg","98 N/kg","980 N/kg"],
+answer:1,
+explanation:"The standard approximate value near Earth's surface is 9.8 N/kg."
+},
+
+{
+subject:"Physics",
+topic:"Particle Physics",
+difficulty:"Easy",
+q:"Which particle has a negative electric charge?",
+options:["Proton","Neutron","Electron","Photon"],
+answer:2,
+explanation:"The electron carries negative charge."
+},
+
+{
+subject:"Physics",
+topic:"Nuclear Physics",
+difficulty:"Medium",
+q:"What happens during alpha decay?",
+options:[
+"A helium nucleus is emitted",
+"An electron is absorbed",
+"A photon is emitted only",
+"A neutron becomes a proton without emission"
+],
+answer:0,
+explanation:"An alpha particle is a helium nucleus containing two protons and two neutrons."
+},
+
+{
+subject:"Physics",
+topic:"Astronomy",
+difficulty:"Hard",
+q:"The observed redshift of distant galaxies is evidence that:",
+options:[
+"The universe is expanding",
+"Stars are shrinking",
+"Gravity has disappeared",
+"Light has no wavelength"
+],
+answer:0,
+explanation:"Cosmological redshift provides evidence that distant galaxies are receding as the universe expands."
+},
+
+/* ================= CHEMISTRY ================= */
+
+{
+subject:"Chemistry",
+topic:"Atomic Structure",
+difficulty:"Easy",
+q:"How many protons are in carbon-12?",
+options:["6","12","18","24"],
+answer:0,
+explanation:"Carbon has atomic number 6, so every carbon atom has six protons."
+},
+
+{
+subject:"Chemistry",
+topic:"Atomic Structure",
+difficulty:"Easy",
+q:"Which particle has negligible relative mass and a charge of −1?",
+options:["Proton","Neutron","Electron","Alpha particle"],
+answer:2,
+explanation:"An electron has relative charge −1 and very small relative mass."
+},
+
+{
+subject:"Chemistry",
+topic:"Bonding",
+difficulty:"Easy",
+q:"What type of bonding occurs between oppositely charged ions?",
+options:["Metallic","Ionic","Covalent","Hydrogen"],
+answer:1,
+explanation:"Ionic bonding is the electrostatic attraction between oppositely charged ions."
+},
+
+{
+subject:"Chemistry",
+topic:"Bonding",
+difficulty:"Medium",
+q:"Which substance contains giant covalent bonding?",
+options:["NaCl","Diamond","H₂O","CO₂"],
+answer:1,
+explanation:"Diamond consists of a giant covalent structure."
+},
+
+{
+subject:"Chemistry",
+topic:"Moles",
+difficulty:"Easy",
+q:"One mole contains approximately:",
+options:[
+"6.02 × 10²³ particles",
+"6.02 × 10¹² particles",
+"3.01 × 10²³ particles",
+"9.81 × 10²³ particles"
+],
+answer:0,
+explanation:"The Avogadro constant is approximately 6.02 × 10²³ mol⁻¹."
+},
+
+{
+subject:"Chemistry",
+topic:"Moles",
+difficulty:"Medium",
+q:"What is the number of moles in 18 g of water? (Mr = 18)",
+options:["0.5","1","2","18"],
+answer:1,
+explanation:"n = mass/Mr = 18/18 = 1 mol."
+},
+
+{
+subject:"Chemistry",
+topic:"Energetics",
+difficulty:"Easy",
+q:"An exothermic reaction:",
+options:[
+"Absorbs heat from surroundings",
+"Releases heat to surroundings",
+"Always requires light",
+"Has zero energy change"
+],
+answer:1,
+explanation:"Exothermic reactions release energy to the surroundings."
+},
+
+{
+subject:"Chemistry",
+topic:"Energetics",
+difficulty:"Medium",
+q:"A reaction has ΔH = −250 kJ mol⁻¹. The reaction is:",
+options:["Endothermic","Exothermic","Neutral","Impossible"],
+answer:1,
+explanation:"A negative enthalpy change indicates an exothermic reaction."
+},
+
+{
+subject:"Chemistry",
+topic:"Kinetics",
+difficulty:"Easy",
+q:"Increasing temperature generally increases reaction rate because particles:",
+options:[
+"Become larger",
+"Have more kinetic energy",
+"Lose collisions",
+"Stop moving"
+],
+answer:1,
+explanation:"Higher temperature increases particle kinetic energy and the frequency of successful collisions."
+},
+
+{
+subject:"Chemistry",
+topic:"Kinetics",
+difficulty:"Medium",
+q:"A catalyst increases reaction rate by:",
+options:[
+"Increasing ΔH",
+"Lowering activation energy",
+"Increasing product energy",
+"Changing equilibrium constant"
+],
+answer:1,
+explanation:"A catalyst provides an alternative pathway with lower activation energy."
+},
+
+{
+subject:"Chemistry",
+topic:"Equilibrium",
+difficulty:"Medium",
+q:"At dynamic equilibrium:",
+options:[
+"Reactants disappear",
+"Forward and reverse rates are equal",
+"Only products are present",
+"Reaction stops completely"
+],
+answer:1,
+explanation:"At dynamic equilibrium, the forward and reverse reactions continue at equal rates."
+},
+
+{
+subject:"Chemistry",
+topic:"Acids and Bases",
+difficulty:"Easy",
+q:"A solution with pH 2 is:",
+options:["Strongly acidic","Neutral","Weakly basic","Strongly basic"],
+answer:0,
+explanation:"A pH below 7 is acidic; pH 2 is strongly acidic."
+},
+
+{
+subject:"Chemistry",
+topic:"Acids and Bases",
+difficulty:"Medium",
+q:"What is the conjugate base of H₂SO₄ after losing one proton?",
+options:["SO₄²⁻","HSO₄⁻","H₃SO₄⁺","OH⁻"],
+answer:1,
+explanation:"Removing one H⁺ from H₂SO₄ gives HSO₄⁻."
+},
+
+{
+subject:"Chemistry",
+topic:"Organic Chemistry",
+difficulty:"Easy",
+q:"What is the general formula of an alkane?",
+options:["CₙH₂ₙ","CₙH₂ₙ₊₂","CₙH₂ₙ₋₂","CₙHₙ"],
+answer:1,
+explanation:"Acyclic alkanes have the general formula CₙH₂ₙ₊₂."
+},
+
+{
+subject:"Chemistry",
+topic:"Organic Chemistry",
+difficulty:"Easy",
+q:"Which functional group is present in alcohols?",
+options:["−OH","−COOH","−CHO","−COO−"],
+answer:0,
+explanation:"Alcohols contain the hydroxyl functional group, −OH."
+},
+
+{
+subject:"Chemistry",
+topic:"Organic Chemistry",
+difficulty:"Medium",
+q:"Ethene reacts with bromine by:",
+options:["Addition","Substitution","Elimination","Neutralisation"],
+answer:0,
+explanation:"The C=C double bond undergoes electrophilic addition with bromine."
+},
+
+{
+subject:"Chemistry",
+topic:"Redox",
+difficulty:"Medium",
+q:"Oxidation can be defined as:",
+options:[
+"Gain of electrons",
+"Loss of electrons",
+"Gain of protons only",
+"Loss of neutrons"
+],
+answer:1,
+explanation:"Oxidation is loss of electrons; reduction is gain of electrons."
+},
+
+{
+subject:"Chemistry",
+topic:"Periodic Table",
+difficulty:"Easy",
+q:"Elements in the same group generally have the same number of:",
+options:[
+"Neutrons",
+"Electron shells",
+"Outer-shell electrons",
+"Protons"
+],
+answer:2,
+explanation:"Main-group elements in the same group have the same number of outer-shell electrons."
+},
+
+{
+subject:"Chemistry",
+topic:"Periodic Table",
+difficulty:"Medium",
+q:"Across a period, atomic radius generally:",
+options:[
+"Increases greatly",
+"Decreases",
+"Remains identical",
+"Becomes zero"
+],
+answer:1,
+explanation:"Increasing nuclear charge across a period generally causes atomic radius to decrease."
+},
+
+{
+subject:"Chemistry",
+topic:"Analysis",
+difficulty:"Hard",
+q:"In mass spectrometry, the m/z value of a molecular ion can help determine:",
+options:[
+"Molecular mass",
+"Boiling point directly",
+"Melting point directly",
+"pH"
+],
+answer:0,
+explanation:"The molecular ion peak can provide information about relative molecular mass."
+},
+
+/* ================= BIOLOGY ================= */
+
+{
+subject:"Biology",
+topic:"Cells",
+difficulty:"Easy",
+q:"Which organelle is the main site of aerobic respiration?",
+options:["Nucleus","Ribosome","Mitochondrion","Golgi apparatus"],
+answer:2,
+explanation:"Aerobic respiration occurs mainly in mitochondria."
+},
+
+{
+subject:"Biology",
+topic:"Cells",
+difficulty:"Easy",
+q:"Which structure controls movement of substances into and out of a cell?",
+options:["Cell wall","Cell-surface membrane","Nucleolus","Ribosome"],
+answer:1,
+explanation:"The cell-surface membrane controls movement of substances into and out of the cell."
+},
+
+{
+subject:"Biology",
+topic:"Biological Molecules",
+difficulty:"Easy",
+q:"Proteins are polymers made from:",
+options:["Fatty acids","Amino acids","Monosaccharides","Nucleotides"],
+answer:1,
+explanation:"Proteins are polymers formed from amino acids."
+},
+
+{
+subject:"Biology",
+topic:"Biological Molecules",
+difficulty:"Easy",
+q:"What is the storage carbohydrate in animals?",
+options:["Cellulose","Starch","Glycogen","Sucrose"],
+answer:2,
+explanation:"Animals store carbohydrate mainly as glycogen."
+},
+
+{
+subject:"Biology",
+topic:"Enzymes",
+difficulty:"Easy",
+q:"Enzymes are biological:",
+options:["Lipids","Catalysts","Carbohydrates","Hormones"],
+answer:1,
+explanation:"Enzymes are biological catalysts that increase reaction rates."
+},
+
+{
+subject:"Biology",
+topic:"Enzymes",
+difficulty:"Medium",
+q:"High temperatures can reduce enzyme activity because:",
+options:[
+"The enzyme becomes radioactive",
+"The active site changes shape",
+"Substrate concentration becomes zero",
+"Water becomes glucose"
+],
+answer:1,
+explanation:"High temperatures can denature enzymes, changing the shape of the active site."
+},
+
+{
+subject:"Biology",
+topic:"Membranes",
+difficulty:"Easy",
+q:"Movement of particles from high concentration to low concentration is:",
+options:["Active transport","Diffusion","Endocytosis","Exocytosis"],
+answer:1,
+explanation:"Diffusion is the net movement of particles down a concentration gradient."
+},
+
+{
+subject:"Biology",
+topic:"Membranes",
+difficulty:"Medium",
+q:"Osmosis is the movement of:",
+options:[
+"Solute molecules only",
+"Water through a partially permeable membrane",
+"Proteins against gradients",
+"ATP through membranes"
+],
+answer:1,
+explanation:"Osmosis is the net movement of water through a partially permeable membrane."
+},
+
+{
+subject:"Biology",
+topic:"DNA",
+difficulty:"Easy",
+q:"Which base pairs with adenine in DNA?",
+options:["Cytosine","Guanine","Thymine","Uracil"],
+answer:2,
+explanation:"In DNA, adenine pairs with thymine."
+},
+
+{
+subject:"Biology",
+topic:"DNA",
+difficulty:"Medium",
+q:"The bond between complementary DNA bases is:",
+options:["Ionic","Hydrogen","Peptide","Ester"],
+answer:1,
+explanation:"Complementary bases between DNA strands are held together by hydrogen bonds."
+},
+
+{
+subject:"Biology",
+topic:"Genetics",
+difficulty:"Easy",
+q:"A dominant allele is expressed when:",
+options:[
+"Only two copies are present",
+"At least one copy is present",
+"It is always harmful",
+"No chromosomes are present"
+],
+answer:1,
+explanation:"A dominant allele is expressed in the phenotype when at least one copy is present."
+},
+
+{
+subject:"Biology",
+topic:"Genetics",
+difficulty:"Medium",
+q:"What is the probability of obtaining a recessive phenotype from Aa × Aa?",
+options:["0%","25%","50%","75%"],
+answer:1,
+explanation:"The genotype ratio is 1 AA : 2 Aa : 1 aa, so 25% are aa."
+},
+
+{
+subject:"Biology",
+topic:"Photosynthesis",
+difficulty:"Easy",
+q:"Where does the light-dependent stage of photosynthesis occur?",
+options:["Nucleus","Thylakoid membranes","Cytoplasm","Cell wall"],
+answer:1,
+explanation:"The light-dependent reactions occur on the thylakoid membranes of chloroplasts."
+},
+
+{
+subject:"Biology",
+topic:"Photosynthesis",
+difficulty:"Medium",
+q:"Which gas is used as a raw material in photosynthesis?",
+options:["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],
+answer:2,
+explanation:"Carbon dioxide is used to produce carbohydrates during photosynthesis."
+},
+
+{
+subject:"Biology",
+topic:"Respiration",
+difficulty:"Easy",
+q:"The final electron acceptor in aerobic respiration is:",
+options:["Glucose","Oxygen","Carbon dioxide","ATP"],
+answer:1,
+explanation:"Oxygen accepts electrons at the end of the electron transport chain."
+},
+
+{
+subject:"Biology",
+topic:"Transport",
+difficulty:"Medium",
+q:"Which molecule transports oxygen in red blood cells?",
+options:["Insulin","Haemoglobin","Collagen","Glycogen"],
+answer:1,
+explanation:"Haemoglobin binds oxygen reversibly in red blood cells."
+},
+
+{
+subject:"Biology",
+topic:"Ecology",
+difficulty:"Easy",
+q:"A population is:",
+options:[
+"All species in an ecosystem",
+"Members of one species in an area",
+"All habitats on Earth",
+"Only predators"
+],
+answer:1,
+explanation:"A population consists of organisms of the same species living in a defined area."
+},
+
+{
+subject:"Biology",
+topic:"Ecology",
+difficulty:"Medium",
+q:"Energy is lost between trophic levels mainly through:",
+options:[
+"Respiration and heat",
+"DNA replication",
+"Photosynthesis",
+"Mutation only"
+],
+answer:0,
+explanation:"Energy is lost through respiration, heat transfer and other biological processes."
+},
+
+{
+subject:"Biology",
+topic:"Evolution",
+difficulty:"Medium",
+q:"Natural selection requires:",
+options:[
+"Heritable variation",
+"No variation",
+"Identical organisms",
+"Absence of reproduction"
+],
+answer:0,
+explanation:"Natural selection acts on heritable variation within populations."
+},
+
+{
+subject:"Biology",
+topic:"Homeostasis",
+difficulty:"Hard",
+q:"Negative feedback generally:",
+options:[
+"Amplifies the original change",
+"Opposes the original change",
+"Stops all metabolism",
+"Prevents receptors from working"
+],
+answer:1,
+explanation:"Negative feedback counteracts deviations from a set point and helps maintain stability."
 }
 
+];
+
+
+/* =========================================================
+   CREATE MORE VARIATIONS
+   ========================================================= */
+
+function cloneQuestion(q, variation){
+
+    const copy = JSON.parse(JSON.stringify(q));
+
+    if(variation === 0) return copy;
+
+    copy.id = q.subject + "-" + q.topic + "-" + variation;
+
+    return copy;
+}
+
+
+/*
+    Build a larger bank from the core question set.
+    Every subject is capped at 150 questions.
+*/
+
+function buildSubjectBank(subject){
+
+    const base = QUESTION_BANK.filter(q => q.subject === subject);
+
+    const output = [];
+
+    let i = 0;
+
+    while(output.length < 150){
+
+        const source = base[i % base.length];
+
+        const copy = cloneQuestion(
+            source,
+            Math.floor(i / base.length)
+        );
+
+        output.push(copy);
+
+        i++;
+    }
+
+    return output;
+}
+
+
+const FINAL_BANK = {
+
+    Mathematics: buildSubjectBank("Mathematics"),
+
+    Physics: buildSubjectBank("Physics"),
+
+    Chemistry: buildSubjectBank("Chemistry"),
+
+    Biology: buildSubjectBank("Biology")
+
+};
+
+
+/* =========================================================
+   STATE
+   ========================================================= */
+
+let testQuestions = [];
+
+let currentQuestion = 0;
+
+let selectedAnswers = [];
+
+let questionStatus = [];
+
+let testFinished = false;
+
+let currentMode = "practice";
+
+
+/* =========================================================
+   DOM
+   ========================================================= */
+
+const subjectSelect = document.getElementById("subjectSelect");
+const difficultySelect = document.getElementById("difficultySelect");
+const countSelect = document.getElementById("countSelect");
+const modeSelect = document.getElementById("modeSelect");
+const orderSelect = document.getElementById("orderSelect");
+
+const startBtn = document.getElementById("startBtn");
+const randomBtn = document.getElementById("randomBtn");
+const resetBtn = document.getElementById("resetBtn");
+
+const emptyState = document.getElementById("emptyState");
+const testArea = document.getElementById("testArea");
+const resultArea = document.getElementById("resultArea");
+
+const statQuestion = document.getElementById("statQuestion");
+const statScore = document.getElementById("statScore");
+const statAccuracy = document.getElementById("statAccuracy");
+const statMode = document.getElementById("statMode");
+
+const questionNumber = document.getElementById("questionNumber");
+const statusText = document.getElementById("statusText");
+const progressBar = document.getElementById("progressBar");
+
+const subjectTag = document.getElementById("subjectTag");
+const topicTag = document.getElementById("topicTag");
+const difficultyTag = document.getElementById("difficultyTag");
+const modeTag = document.getElementById("modeTag");
+
+const questionText = document.getElementById("questionText");
+const options = document.getElementById("options");
+
+const feedback = document.getElementById("feedback");
+const feedbackTitle = document.getElementById("feedbackTitle");
+const feedbackText = document.getElementById("feedbackText");
+
+const prevBtn = document.getElementById("prevBtn");
+const skipBtn = document.getElementById("skipBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+const palette = document.getElementById("palette");
+
+const finishBtn = document.getElementById("finishBtn");
+
+const finishModal = document.getElementById("finishModal");
+const finishDescription = document.getElementById("finishDescription");
+const finishWarning = document.getElementById("finishWarning");
+
+const reviewBtn = document.getElementById("reviewBtn");
+const submitAnywayBtn = document.getElementById("submitAnywayBtn");
+const cancelFinishBtn = document.getElementById("cancelFinishBtn");
+
+const resultPercentage = document.getElementById("resultPercentage");
+const resultGrade = document.getElementById("resultGrade");
+
+const resultCorrect = document.getElementById("resultCorrect");
+const resultWrong = document.getElementById("resultWrong");
+const resultSkipped = document.getElementById("resultSkipped");
+const resultUnanswered = document.getElementById("resultUnanswered");
+
+const resultMessage = document.getElementById("resultMessage");
+
+const retryBtn = document.getElementById("retryBtn");
+const newTestBtn = document.getElementById("newTestBtn");
+
+
+/* =========================================================
+   UTILITIES
+   ========================================================= */
 
 function shuffle(array){
 
-    const copy = [...array];
+    const arr = [...array];
 
-    for(
-        let i = copy.length - 1;
-        i > 0;
-        i--
-    ){
+    for(let i = arr.length - 1; i > 0; i--){
 
-        const j =
-            Math.floor(
-                Math.random() * (i + 1)
-            );
+        const j = Math.floor(Math.random() * (i + 1));
 
-        [
-            copy[i],
-            copy[j]
-        ] = [
-            copy[j],
-            copy[i]
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+
+    return arr;
+}
+
+
+function getAvailableQuestions(){
+
+    const subject = subjectSelect.value;
+    const difficulty = difficultySelect.value;
+
+    let pool = [];
+
+    if(subject === "all"){
+
+        pool = [
+            ...FINAL_BANK.Mathematics,
+            ...FINAL_BANK.Physics,
+            ...FINAL_BANK.Chemistry,
+            ...FINAL_BANK.Biology
         ];
-
-    }
-
-    return copy;
-
-}
-
-
-function uniqueOptions(
-    correct,
-    distractors
-){
-
-    const list = [
-        String(correct),
-        ...distractors.map(String)
-    ];
-
-    return [...new Set(list)];
-
-}
-
-
-/* =====================================================
-   MATHEMATICS
-   150 QUESTIONS
-===================================================== */
-
-function buildMathematics(){
-
-    const subject = "maths";
-
-    const topics = [
-        "Algebra",
-        "Indices",
-        "Surds",
-        "Quadratics",
-        "Functions",
-        "Sequences",
-        "Coordinate Geometry",
-        "Trigonometry",
-        "Differentiation",
-        "Integration",
-        "Exponentials",
-        "Logarithms",
-        "Vectors",
-        "Statistics",
-        "Probability",
-        "Mechanics"
-    ];
-
-
-    /* ALGEBRA 1–10 */
-
-    for(let i=0;i<10;i++){
-
-        const a = 2+i;
-        const x = 4+i;
-
-        const b = a*x;
-
-        addQuestion(
-            subject,
-            "Algebra",
-            i<4 ? "easy" : i<8 ? "medium" : "hard",
-            `Solve ${a}x = ${b}.`,
-            [
-                `x = ${x-2}`,
-                `x = ${x-1}`,
-                `x = ${x}`,
-                `x = ${x+1}`
-            ],
-            2,
-            `Divide both sides by ${a}. Therefore x = ${x}.`
-        );
-
-    }
-
-
-    /* ALGEBRA 11–20 */
-
-    for(let i=0;i<10;i++){
-
-        const a=2+i;
-        const x=5+i;
-        const c=7+i;
-        const rhs=a*x+c;
-
-        addQuestion(
-            subject,
-            "Algebra",
-            i<5 ? "medium" : "hard",
-            `Solve ${a}x + ${c} = ${rhs}.`,
-            [
-                `x = ${x-2}`,
-                `x = ${x-1}`,
-                `x = ${x}`,
-                `x = ${x+2}`
-            ],
-            2,
-            `Subtract ${c} from both sides, then divide by ${a}.`
-        );
-
-    }
-
-
-    /* INDICES 21–30 */
-
-    for(let i=0;i<10;i++){
-
-        const a=2+i%4;
-        const p=2+i%5;
-        const q=3+i%4;
-        const ans=p+q;
-
-        addQuestion(
-            subject,
-            "Indices",
-            i<4 ? "easy" : "medium",
-            `Simplify ${a}^${p} × ${a}^${q}.`,
-            [
-                `${a}^${p-q}`,
-                `${a}^${ans}`,
-                `${a}^${p*q}`,
-                `${a}^${p+q+1}`
-            ],
-            1,
-            `For the same base, indices are added: ${p}+${q}=${ans}.`
-        );
-
-    }
-
-
-    /* SURDS 31–38 */
-
-    for(let i=0;i<8;i++){
-
-        const n=8+4*i;
-        const square=4;
-
-        const inside=n*n*square;
-
-        addQuestion(
-            subject,
-            "Surds",
-            i<3 ? "medium" : "hard",
-            `Simplify √${inside}.`,
-            [
-                `${n}√${square}`,
-                `${n*2}`,
-                `${n}√2`,
-                `${inside}`
-            ],
-            1,
-            `√${inside} = ${n}×√${square} = ${n*2}.`
-        );
-
-    }
-
-
-    /* QUADRATICS 39–48 */
-
-    for(let i=0;i<10;i++){
-
-        const r1=2+i;
-        const r2=3+i;
-
-        const sum=r1+r2;
-        const product=r1*r2;
-
-        addQuestion(
-            subject,
-            "Quadratics",
-            i<4 ? "medium" : "hard",
-            `The roots of x² − ${sum}x + ${product} = 0 are:`,
-            [
-                `${r1}, ${r2}`,
-                `${r1+1}, ${r2}`,
-                `−${r1}, −${r2}`,
-                `${product}, ${sum}`
-            ],
-            0,
-            `Factorising gives (x−${r1})(x−${r2})=0.`
-        );
-
-    }
-
-
-    /* FUNCTIONS 49–56 */
-
-    for(let i=0;i<8;i++){
-
-        const m=2+i;
-        const c=3+i;
-        const x=4+i;
-        const answer=m*x+c;
-
-        addQuestion(
-            subject,
-            "Functions",
-            i<3 ? "easy" : "medium",
-            `If f(x)=${m}x+${c}, find f(${x}).`,
-            [
-                answer-2,
-                answer-1,
-                answer,
-                answer+2
-            ],
-            2,
-            `Substitute x=${x}: ${m}(${x})+${c}=${answer}.`
-        );
-
-    }
-
-
-    /* SEQUENCES 57–64 */
-
-    for(let i=0;i<8;i++){
-
-        const first=2+i;
-        const d=3+i;
-        const n=10+i;
-        const answer=first+(n-1)*d;
-
-        addQuestion(
-            subject,
-            "Sequences",
-            i<3 ? "easy" : "medium",
-            `Find the ${n}th term of the arithmetic sequence starting ${first}, ${first+d}, ${first+2*d}, ...`,
-            [
-                answer-2*d,
-                answer-d,
-                answer,
-                answer+d
-            ],
-            2,
-            `Use aₙ=a₁+(n−1)d.`
-        );
-
-    }
-
-
-    /* COORDINATE GEOMETRY 65–72 */
-
-    for(let i=0;i<8;i++){
-
-        const x1=1+i;
-        const y1=2+i;
-        const x2=x1+2;
-        const y2=y1+4;
-
-        const gradient=2;
-
-        addQuestion(
-            subject,
-            "Coordinate Geometry",
-            i<4 ? "easy" : "medium",
-            `Find the gradient of the line through (${x1},${y1}) and (${x2},${y2}).`,
-            [
-                1,
-                2,
-                3,
-                4
-            ],
-            1,
-            `Gradient = (${y2}−${y1})/(${x2}−${x1}) = 4/2 = 2.`
-        );
-
-    }
-
-
-    /* TRIGONOMETRY 73–82 */
-
-    const trig = [
-        ["sin 30°","1/2",["0","√2/2","1"]],
-        ["cos 60°","1/2",["0","√2/2","1"]],
-        ["tan 45°","1",["0","1/2","√3"]],
-        ["sin 90°","1",["0","1/2","√2/2"]],
-        ["cos 0°","1",["0","1/2","−1"]],
-        ["sin 0°","0",["1","1/2","−1"]],
-        ["cos 180°","−1",["0","1","1/2"]],
-        ["tan 0°","0",["1","−1","undefined"]],
-        ["sin 180°","0",["1","−1","1/2"]],
-        ["cos 90°","0",["1","−1","1/2"]]
-    ];
-
-    trig.forEach((q,i)=>{
-
-        addQuestion(
-            subject,
-            "Trigonometry",
-            i<5 ? "easy" : "medium",
-            `Evaluate ${q[0]}.`,
-            [q[1],...q[2]],
-            0,
-            `${q[0]} = ${q[1]}.`
-        );
-
-    });
-
-
-    /* DIFFERENTIATION 83–92 */
-
-    for(let i=0;i<10;i++){
-
-        const n=2+i;
-        const coefficient=2+i%4;
-        const power=n+1;
-
-        addQuestion(
-            subject,
-            "Differentiation",
-            i<4 ? "medium" : "hard",
-            `Differentiate ${coefficient}x^${power}.`,
-            [
-                `${coefficient}x^${power-1}`,
-                `${coefficient*power}x^${n}`,
-                `${power}x^${coefficient}`,
-                `${coefficient+power}x^${n}`
-            ],
-            1,
-            `Using d(xⁿ)/dx = nxⁿ⁻¹ gives ${coefficient*power}x^${n}.`
-        );
-
-    }
-
-
-    /* INTEGRATION 93–102 */
-
-    for(let i=0;i<10;i++){
-
-        const coefficient=2+i%5;
-        const power=1+i%4;
-        const resultPower=power+1;
-        const result=`${coefficient/resultPower}x^${resultPower}+C`;
-
-        addQuestion(
-            subject,
-            "Integration",
-            i<4 ? "medium" : "hard",
-            `Find ∫ ${coefficient}x^${power} dx.`,
-            [
-                result,
-                `${coefficient}x^${resultPower}+C`,
-                `${coefficient/power}x^${power}+C`,
-                `${resultPower}x^${power}+C`
-            ],
-            0,
-            `Increase the power by one and divide by the new power.`
-        );
-
-    }
-
-
-    /* LOGARITHMS / EXPONENTIALS 103–112 */
-
-    for(let i=0;i<10;i++){
-
-        const base=2+i%3;
-        const power=3+i%4;
-        const answer=Math.pow(base,power);
-
-        addQuestion(
-            subject,
-            "Exponentials",
-            i<4 ? "medium" : "hard",
-            `Solve ${base}^x = ${answer}.`,
-            [
-                power-2,
-                power-1,
-                power,
-                power+1
-            ],
-            2,
-            `${base}^${power}=${answer}, therefore x=${power}.`
-        );
-
-    }
-
-
-    /* VECTORS 113–120 */
-
-    for(let i=0;i<8;i++){
-
-        const ax=1+i;
-        const ay=2+i;
-        const bx=ax+3;
-        const by=ay+4;
-
-        const vx=3;
-        const vy=4;
-
-        addQuestion(
-            subject,
-            "Vectors",
-            i<4 ? "medium" : "hard",
-            `Find vector AB if A=(${ax},${ay}) and B=(${bx},${by}).`,
-            [
-                `(${vx},${vy})`,
-                `(${vy},${vx})`,
-                `(${-vx},${-vy})`,
-                `(${bx+ax},${by+ay})`
-            ],
-            0,
-            `AB = B−A = (${bx}−${ax}, ${by}−${ay}) = (3,4).`
-        );
-
-    }
-
-
-    /* STATISTICS 121–130 */
-
-    for(let i=0;i<10;i++){
-
-        const a=2+i;
-        const values=[
-            a,
-            a+2,
-            a+4,
-            a+6
-        ];
-
-        const mean=(values.reduce((x,y)=>x+y,0)/4);
-
-        addQuestion(
-            subject,
-            "Statistics",
-            i<5 ? "easy" : "medium",
-            `Find the mean of ${values.join(", ")}.`,
-            [
-                mean-1,
-                mean,
-                mean+1,
-                mean+2
-            ],
-            1,
-            `Add all values and divide by 4.`
-        );
-
-    }
-
-
-    /* PROBABILITY 131–140 */
-
-    for(let i=0;i<10;i++){
-
-        const favourable=1+i%4;
-        const total=6+i%5;
-
-        const probability=favourable/total;
-
-        addQuestion(
-            subject,
-            "Probability",
-            i<5 ? "easy" : "medium",
-            `An experiment has ${total} equally likely outcomes, of which ${favourable} are favourable. What is the probability?`,
-            [
-                probability,
-                Math.min(1,probability+.1),
-                Math.min(1,probability+.2),
-                Math.max(0,probability-.1)
-            ],
-            0,
-            `Probability = favourable outcomes / total outcomes = ${favourable}/${total}.`
-        );
-
-    }
-
-
-    /* MECHANICS 141–150 */
-
-    for(let i=0;i<10;i++){
-
-        const mass=2+i;
-        const acceleration=2+i%5;
-        const force=mass*acceleration;
-
-        addQuestion(
-            subject,
-            "Mechanics",
-            i<4 ? "medium" : "hard",
-            `A ${mass} kg object accelerates at ${acceleration} m s⁻². Find the resultant force.`,
-            [
-                force/2,
-                force,
-                force+mass,
-                force*2
-            ],
-            1,
-            `Using F=ma: F=${mass}×${acceleration}=${force} N.`
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   PHYSICS
-   150 QUESTIONS
-===================================================== */
-
-function buildPhysics(){
-
-    const subject="physics";
-
-
-    /* SPEED 1–10 */
-
-    for(let i=0;i<10;i++){
-
-        const distance=100+(i*20);
-        const time=5+i;
-        const speed=distance/time;
-
-        addQuestion(
-            subject,
-            "Mechanics",
-            i<4?"easy":i<8?"medium":"hard",
-            `An object travels ${distance} m in ${time} s. Its average speed is:`,
-            [
-                speed,
-                speed+2,
-                speed+5,
-                speed*2
-            ],
-            0,
-            `Speed = distance/time = ${distance}/${time} = ${speed} m s⁻¹.`
-        );
-
-    }
-
-
-    /* ACCELERATION 11–20 */
-
-    for(let i=0;i<10;i++){
-
-        const u=2+i;
-        const v=u+10;
-        const t=2+i%5;
-        const a=(v-u)/t;
-
-        addQuestion(
-            subject,
-            "Mechanics",
-            i<4?"easy":i<8?"medium":"hard",
-            `A particle changes velocity from ${u} to ${v} m s⁻¹ in ${t} s. Find its acceleration.`,
-            [
-                a,
-                a+1,
-                a+2,
-                a-1
-            ],
-            0,
-            `a=(v−u)/t=${v-u}/${t}=${a} m s⁻².`
-        );
-
-    }
-
-
-    /* FORCE 21–30 */
-
-    for(let i=0;i<10;i++){
-
-        const mass=2+i;
-        const acceleration=2+i%4;
-        const force=mass*acceleration;
-
-        addQuestion(
-            subject,
-            "Forces",
-            i<4?"easy":i<8?"medium":"hard",
-            `A ${mass} kg object has acceleration ${acceleration} m s⁻². Find the resultant force.`,
-            [
-                force,
-                force+mass,
-                force/2,
-                force*2
-            ],
-            0,
-            `F=ma=${mass}×${acceleration}=${force} N.`
-        );
-
-    }
-
-
-    /* MOMENTUM 31–40 */
-
-    for(let i=0;i<10;i++){
-
-        const mass=2+i;
-        const velocity=3+i;
-        const p=mass*velocity;
-
-        addQuestion(
-            subject,
-            "Momentum",
-            i<5?"easy":"medium",
-            `A ${mass} kg object moves at ${velocity} m s⁻¹. Its momentum is:`,
-            [
-                p,
-                p+mass,
-                p-velocity,
-                p*2
-            ],
-            0,
-            `p=mv=${mass}×${velocity}=${p} kg m s⁻¹.`
-        );
-
-    }
-
-
-    /* ENERGY 41–50 */
-
-    for(let i=0;i<10;i++){
-
-        const mass=2+i;
-        const velocity=2+i;
-        const energy=.5*mass*velocity*velocity;
-
-        addQuestion(
-            subject,
-            "Energy",
-            i<4?"medium":"hard",
-            `A ${mass} kg object travels at ${velocity} m s⁻¹. Find its kinetic energy.`,
-            [
-                energy,
-                energy+mass,
-                energy/2,
-                energy*2
-            ],
-            0,
-            `KE=½mv²=${energy} J.`
-        );
-
-    }
-
-
-    /* POWER 51–60 */
-
-    for(let i=0;i<10;i++){
-
-        const energy=100+i*50;
-        const time=5+i%5;
-        const power=energy/time;
-
-        addQuestion(
-            subject,
-            "Power",
-            i<5?"easy":"medium",
-            `${energy} J of energy is transferred in ${time} s. Find the power.`,
-            [
-                power,
-                power+10,
-                power*2,
-                energy+time
-            ],
-            0,
-            `Power=energy/time=${energy}/${time}=${power} W.`
-        );
-
-    }
-
-
-    /* MATERIALS 61–70 */
-
-    for(let i=0;i<10;i++){
-
-        const force=100+i*20;
-        const area=2+i%4;
-        const stress=force/area;
-
-        addQuestion(
-            subject,
-            "Materials",
-            i<4?"medium":"hard",
-            `A force of ${force} N acts on an area of ${area} m². Calculate the stress.`,
-            [
-                stress,
-                force*area,
-                force/2,
-                area/force
-            ],
-            0,
-            `Stress=F/A=${force}/${area}=${stress} Pa.`
-        );
-
-    }
-
-
-    /* WAVES 71–80 */
-
-    for(let i=0;i<10;i++){
-
-        const frequency=2+i;
-        const wavelength=.5;
-        const speed=frequency*wavelength;
-
-        addQuestion(
-            subject,
-            "Waves",
-            i<5?"easy":"medium",
-            `A wave has frequency ${frequency} Hz and wavelength ${wavelength} m. Find its speed.`,
-            [
-                speed,
-                frequency+wavelength,
-                frequency/wavelength,
-                speed*2
-            ],
-            0,
-            `v=fλ=${frequency}×${wavelength}=${speed} m s⁻¹.`
-        );
-
-    }
-
-
-    /* ELECTRICITY 81–90 */
-
-    for(let i=0;i<10;i++){
-
-        const voltage=6+i;
-        const current=2+i%4;
-        const resistance=voltage/current;
-
-        addQuestion(
-            subject,
-            "Electricity",
-            i<4?"easy":i<8?"medium":"hard",
-            `A ${voltage} V supply produces a current of ${current} A. Find the resistance.`,
-            [
-                resistance,
-                voltage*current,
-                resistance+2,
-                current/voltage
-            ],
-            0,
-            `R=V/I=${voltage}/${current}=${resistance} Ω.`
-        );
-
-    }
-
-
-    /* ELECTRICAL POWER 91–100 */
-
-    for(let i=0;i<10;i++){
-
-        const voltage=5+i;
-        const current=2+i%3;
-        const power=voltage*current;
-
-        addQuestion(
-            subject,
-            "Electricity",
-            i<4?"easy":"medium",
-            `A device operates at ${voltage} V and ${current} A. Find its electrical power.`,
-            [
-                power,
-                voltage+current,
-                power/2,
-                voltage/current
-            ],
-            0,
-            `P=VI=${voltage}×${current}=${power} W.`
-        );
-
-    }
-
-
-    /* RADIOACTIVITY 101–110 */
-
-    for(let i=0;i<10;i++){
-
-        const halfLife=2+i;
-        const time=halfLife*2;
-
-        addQuestion(
-            subject,
-            "Radioactivity",
-            i<4?"medium":"hard",
-            `A radioactive sample has a half-life of ${halfLife} hours. What fraction remains after ${time} hours?`,
-            [
-                "1/2",
-                "1/4",
-                "1/8",
-                "1/16"
-            ],
-            1,
-            `${time} hours corresponds to two half-lives, leaving 1/4.`
-        );
-
-    }
-
-
-    /* PARTICLES 111–120 */
-
-    const particleQuestions=[
-        [
-            "An alpha particle contains:",
-            ["2 protons and 2 neutrons","1 proton","1 electron","2 electrons"],
-            0,
-            "An alpha particle is a helium nucleus."
-        ],
-        [
-            "An electron has charge:",
-            ["Positive","Negative","Zero","Variable"],
-            1,
-            "An electron carries negative charge."
-        ],
-        [
-            "A proton has charge:",
-            ["Positive","Negative","Zero","Variable"],
-            0,
-            "A proton has positive elementary charge."
-        ],
-        [
-            "A neutron has charge:",
-            ["Positive","Negative","Zero","Variable"],
-            2,
-            "A neutron is electrically neutral."
-        ],
-        [
-            "Photon energy is proportional to:",
-            ["Frequency","Mass only","Time only","Resistance"],
-            0,
-            "E=hf, so photon energy is proportional to frequency."
-        ],
-        [
-            "Gamma radiation is:",
-            ["Electromagnetic radiation","A helium nucleus","An electron beam","A neutron"],
-            0,
-            "Gamma radiation consists of high-energy electromagnetic photons."
-        ],
-        [
-            "An isotope has the same number of:",
-            ["Protons","Neutrons","Nucleons","Electrons always"],
-            0,
-            "Isotopes have the same proton number but different neutron numbers."
-        ],
-        [
-            "The atomic number represents the number of:",
-            ["Protons","Neutrons","Nucleons","Shells"],
-            0,
-            "Atomic number is proton number."
-        ],
-        [
-            "Mass number equals:",
-            ["Protons + neutrons","Electrons + neutrons","Protons − electrons","Neutrons only"],
-            0,
-            "Mass number is total nucleons."
-        ],
-        [
-            "Beta-minus decay emits a:",
-            ["High-speed electron","Proton","Alpha particle","Neutron only"],
-            0,
-            "Beta-minus decay produces an electron and an antineutrino."
-        ]
-    ];
-
-    particleQuestions.forEach((q,i)=>{
-
-        addQuestion(
-            subject,
-            "Particles",
-            i<5?"easy":"medium",
-            q[0],
-            q[1],
-            q[2],
-            q[3]
-        );
-
-    });
-
-
-    /* FIELDS / SPACE 121–130 */
-
-    const fieldQuestions=[
-        [
-            "Gravitational field strength is force per unit:",
-            ["Mass","Charge","Volume","Energy"],
-            0,
-            "g=F/m."
-        ],
-        [
-            "Electric field strength is force per unit:",
-            ["Charge","Mass","Volume","Time"],
-            0,
-            "E=F/Q."
-        ],
-        [
-            "The direction of electric field is the direction of force on a:",
-            ["Positive test charge","Negative test charge","Neutron","Photon"],
-            0,
-            "This is the conventional definition."
-        ],
-        [
-            "A parsec is a unit of:",
-            ["Distance","Time","Mass","Energy"],
-            0,
-            "A parsec is an astronomical distance."
-        ],
-        [
-            "Redshift generally corresponds to:",
-            ["Longer observed wavelength","Shorter wavelength","Zero wavelength","No frequency"],
-            0,
-            "Redshift shifts spectral features toward longer wavelengths."
-        ],
-        [
-            "A converging lens causes parallel rays to:",
-            ["Meet at a focus","Always diverge","Stop","Reflect completely"],
-            0,
-            "Parallel rays converge at the focal point."
-        ],
-        [
-            "Diffraction becomes significant when aperture size is comparable to:",
-            ["Wavelength","Mass","Charge","Temperature"],
-            0,
-            "Diffraction is strongest when aperture size is comparable with wavelength."
-        ],
-        [
-            "Constructive interference occurs when waves arrive:",
-            ["In phase","180° out of phase","Without amplitude","At zero frequency"],
-            0,
-            "In-phase waves reinforce."
-        ],
-        [
-            "A current-carrying wire produces:",
-            ["A magnetic field","Only gravity","No field","Only sound"],
-            0,
-            "Electric current produces a magnetic field."
-        ],
-        [
-            "Electromagnetic induction requires a change in:",
-            ["Magnetic flux linkage","Mass","Temperature only","Resistance only"],
-            0,
-            "A changing magnetic flux linkage induces emf."
-        ]
-    ];
-
-    fieldQuestions.forEach((q,i)=>{
-        addQuestion(
-            subject,
-            "Fields & Space",
-            i<5?"medium":"hard",
-            q[0],
-            q[1],
-            q[2],
-            q[3]
-        );
-    });
-
-
-    /* 131–150 conceptual */
-
-    const concepts=[
-        ["Newton's second law is represented by:",["F=ma","F=mv","F=m/a","F=a/m"],0,"Resultant force equals mass times acceleration."],
-        ["Momentum is conserved when:",["External resultant impulse is negligible","Mass disappears","Velocity is always zero","Energy is destroyed"],0,"An isolated system conserves momentum."],
-        ["Efficiency is useful output divided by:",["Total input","Useful input","Time","Mass"],0,"Efficiency=useful output/total input."],
-        ["Potential difference is energy transferred per unit:",["Charge","Mass","Time","Distance"],0,"V=W/Q."],
-        ["Current is rate of flow of:",["Charge","Energy","Mass","Resistance"],0,"I=Q/t."],
-        ["Resistance is voltage divided by:",["Current","Power","Charge","Energy"],0,"R=V/I."],
-        ["Wave speed equals:",["Frequency × wavelength","Frequency / wavelength","Wavelength / frequency","Frequency + wavelength"],0,"v=fλ."],
-        ["Kinetic energy depends on velocity as:",["v²","v","1/v","1/v²"],0,"KE=½mv²."],
-        ["Work done is force multiplied by:",["Displacement in the force direction","Mass","Time","Acceleration"],0,"W=Fs for force parallel to displacement."],
-        ["Power is the rate of:",["Energy transfer","Mass transfer","Momentum storage","Charge creation"],0,"P=E/t."],
-        ["A scalar quantity has:",["Magnitude only","Direction only","Both always","Neither"],0,"Scalars have magnitude but no direction."],
-        ["Velocity is a:",["Vector","Scalar","Unit","Constant only"],0,"Velocity has magnitude and direction."],
-        ["Acceleration is rate of change of:",["Velocity","Mass","Distance only","Energy only"],0,"a=Δv/Δt."],
-        ["Weight is a force caused by:",["Gravity","Mass alone","Velocity","Temperature"],0,"W=mg."],
-        ["The SI unit of energy is:",["Joule","Newton","Watt","Pascal"],0,"Energy is measured in joules."],
-        ["The SI unit of power is:",["Watt","Joule","Newton","Coulomb"],0,"Power is measured in watts."],
-        ["The SI unit of charge is:",["Coulomb","Volt","Ohm","Ampere"],0,"Charge is measured in coulombs."],
-        ["The SI unit of resistance is:",["Ohm","Volt","Ampere","Coulomb"],0,"Resistance is measured in ohms."],
-        ["A catalyst changes:",["Activation energy pathway","Equilibrium position permanently","Amount of product at equilibrium","Reaction enthalpy"],0,"A catalyst changes rate via activation energy but not equilibrium position."],
-        ["In SHM, acceleration is directed:",["Opposite to displacement","Along displacement always","Away from equilibrium","Randomly"],0,"For SHM, a is proportional to −x."]
-    ];
-
-    concepts.forEach((q,i)=>{
-        addQuestion(
-            subject,
-            "Physics Concepts",
-            i<7?"easy":i<15?"medium":"hard",
-            q[0],
-            q[1],
-            q[2],
-            q[3]
-        );
-    });
-
-}
-
-
-/* =====================================================
-   CHEMISTRY
-   150 QUESTIONS
-===================================================== */
-
-function buildChemistry(){
-
-    const subject="chemistry";
-
-
-    const concepts=[
-
-        ["Atomic Structure","easy","The atomic number of an element is the number of:",["Protons","Neutrons","Nucleons","Shells"],0,"Atomic number equals proton number."],
-        ["Atomic Structure","easy","Mass number equals:",["Protons + neutrons","Protons + electrons","Neutrons − protons","Electrons only"],0,"Mass number is the total number of nucleons."],
-        ["Electron Structure","easy","The first electron shell holds a maximum of:",["2","4","8","18"],0,"The first shell can contain two electrons."],
-        ["Bonding","easy","Covalent bonding involves:",["Sharing electron pairs","Sharing protons","Transfer of neutrons","Sharing nuclei"],0,"Covalent bonds involve shared electron pairs."],
-        ["Bonding","easy","Ionic bonding is attraction between:",["Oppositely charged ions","Two neutrons","Two neutral atoms","Two electrons"],0,"Ionic compounds contain oppositely charged ions."],
-        ["Periodic Table","easy","Elements in the same main-group column have similar:",["Outer-electron arrangements","Mass numbers","Neutron numbers","Nuclear sizes"],0,"Similar valence electron structures give similar chemistry."],
-        ["Periodic Trends","medium","Atomic radius generally decreases across a period because:",["Nuclear attraction increases","More shells appear","Nuclei disappear","Electrons lose charge"],0,"Increasing nuclear charge pulls electrons closer."],
-        ["Group 1","medium","Group 1 reactivity generally increases down the group because the outer electron is:",["Further from the nucleus","Closer to the nucleus","More strongly bound","Removed from the atom"],0,"Greater distance and shielding make electron loss easier."],
-        ["Group 2","easy","Group 2 elements commonly form ions with charge:",["+2","+1","−1","−2"],0,"They lose two outer electrons."],
-        ["Halogens","medium","Halogen reactivity generally decreases down the group because attraction for an incoming electron:",["Decreases","Increases","Becomes infinite","Is unchanged"],0,"Increasing radius and shielding reduce attraction."],
-        ["Energetics","easy","An exothermic reaction has ΔH that is:",["Negative","Positive","Always zero","Undefined"],0,"Energy is released, so ΔH is negative."],
-        ["Energetics","medium","A catalyst affects reaction rate by:",["Lowering activation energy","Changing ΔH","Changing products","Increasing atom mass"],0,"A catalyst provides an alternative lower-Ea pathway."],
-        ["Rates","easy","Increasing concentration generally increases rate because there are more:",["Successful collisions","Products","Neutrons","Catalysts"],0,"More particles per volume increases collision frequency."],
-        ["Rates","medium","Increasing temperature increases rate mainly because:",["More particles exceed activation energy","All particles double in mass","The reaction becomes reversible","Atoms disappear"],0,"A greater fraction has energy ≥ activation energy."],
-        ["Equilibrium","medium","At dynamic equilibrium, forward and reverse rates are:",["Equal","Zero","Always increasing","Opposite"],0,"Equal rates give constant concentrations."],
-        ["Equilibrium","hard","Increasing pressure favours the side with:",["Fewer gas molecules","More gas molecules","More solids only","More liquids only"],0,"The equilibrium shifts toward fewer gas moles."],
-        ["Acids","easy","A Brønsted-Lowry acid is a:",["Proton donor","Proton acceptor","Electron pair donor only","Neutron donor"],0,"Acids donate H⁺."],
-        ["Acids","easy","A solution with pH 3 is:",["Acidic","Neutral","Alkaline","Always concentrated"],0,"pH below 7 is acidic."],
-        ["Acids","medium","At 25°C, pH + pOH equals:",["14","7","1","28"],0,"For aqueous solutions at 25°C, pKw=14."],
-        ["Redox","easy","Oxidation is:",["Loss of electrons","Gain of electrons","Loss of protons","Gain of neutrons"],0,"OIL: oxidation is loss."],
-        ["Redox","medium","A reducing agent is itself:",["Oxidised","Reduced","Unchanged always","A catalyst"],0,"It donates electrons and is oxidised."],
-        ["Organic Chemistry","easy","The functional group of an alcohol is:",["−OH","−COOH","−CHO","−NH₂"],0,"Alcohols contain hydroxyl groups."],
-        ["Organic Chemistry","easy","Alkanes have general formula:",["CₙH₂ₙ₊₂","CₙH₂ₙ","CₙH₂ₙ₋₂","CₙHₙ"],0,"Acyclic saturated hydrocarbons follow CnH2n+2."],
-        ["Organic Chemistry","medium","Ethene reacts with bromine by:",["Addition","Substitution","Neutralisation","Oxidation only"],0,"The C=C bond undergoes addition."],
-        ["Organic Chemistry","medium","A carboxylic acid contains:",["−COOH","−OH only","−NH₂","−CHO only"],0,"The carboxyl functional group is −COOH."],
-        ["Isomerism","medium","Structural isomers have the same:",["Molecular formula","Displayed formula","Shape","Boiling point"],0,"They have the same molecular formula but different connectivity."],
-        ["Polymers","medium","Addition polymerisation usually involves monomers containing:",["C=C","C=O only","−COOH only","No carbon"],0,"Alkenes can undergo addition polymerisation."],
-        ["Analysis","easy","Mass spectrometry can determine:",["Relative molecular mass","Only pH","Only colour","Only melting point"],0,"Mass spectra provide molecular mass information."],
-        ["IR","medium","Infrared spectroscopy detects:",["Molecular vibrations","Nuclear mass only","Electron charge only","Pressure"],0,"IR radiation excites molecular vibrational modes."],
-        ["NMR","medium","NMR can distinguish different:",["Chemical environments of nuclei","Mass numbers only","Boiling points","Flame colours"],0,"Different environments give different chemical shifts."],
-        ["Moles","easy","One mole contains approximately:",["6.02×10²³ particles","3×10⁸ particles","9.81 particles","10² particles"],0,"Avogadro's constant is about 6.02×10²³ mol⁻¹."],
-        ["Moles","medium","18 g of water, Mr=18, represents:",["1 mol","2 mol","0.5 mol","18 mol"],0,"n=m/Mr=18/18=1 mol."],
-        ["Concentration","medium","Concentration is calculated using:",["moles/volume","volume/moles","mass×volume","moles×volume"],0,"c=n/V."],
-        ["Electrochemistry","medium","Oxidation occurs at the:",["Anode","Cathode","Salt bridge","Electrolyte only"],0,"Oxidation occurs at the anode."],
-        ["Electrochemistry","medium","Reduction occurs at the:",["Cathode","Anode","Salt bridge","Wire only"],0,"Reduction occurs at the cathode."],
-        ["Transition Metals","medium","Transition-metal compounds can be coloured due to:",["Electronic transitions","No electrons","Nuclear fission always","Loss of all protons"],0,"d-electron transitions can absorb visible light."],
-        ["Transition Metals","hard","A ligand donates:",["A lone pair","A proton only","A neutron","A nucleus"],0,"Ligands form coordinate bonds by donating lone pairs."],
-        ["Kinetics","hard","A Maxwell-Boltzmann distribution represents distribution of:",["Particle energies","Atomic numbers","pH values","Mass numbers"],0,"It shows how particles are distributed over energy."],
-        ["Equilibrium","hard","For an exothermic equilibrium, increasing temperature generally favours:",["Reactants","Products","Catalyst","Neither side"],0,"Heat acts like a product in an exothermic forward reaction."],
-        ["Organic Reactions","medium","Oxidation of a primary alcohol initially forms an:",["Aldehyde","Ketone","Amine","Alkene"],0,"Primary alcohols oxidise first to aldehydes."],
-        ["Organic Reactions","medium","Oxidation of a secondary alcohol forms a:",["Ketone","Aldehyde","Carboxylic acid directly","Alkane"],0,"Secondary alcohols oxidise to ketones."],
-        ["Esterification","medium","An ester can be produced from an alcohol and:",["Carboxylic acid","Alkane","Amine only","Metal oxide"],0,"Alcohol + carboxylic acid gives ester + water."],
-        ["Practical Chemistry","easy","A burette delivers:",["A measured variable volume","A fixed mass","A gas only","A fixed volume only"],0,"Burettes deliver accurately measured variable volumes."],
-        ["Practical Chemistry","easy","A pipette transfers:",["A fixed accurate volume","Any volume","A solid mass","A gas pressure"],0,"A volumetric pipette is calibrated for a fixed volume."],
-        ["Titration","medium","Concordant titres are titres that:",["Agree closely","Are always largest","Are always zero","Use no indicator"],0,"Concordant results are close together."],
-        ["Solubility","easy","A saturated solution contains:",["Maximum dissolved solute under those conditions","No solute","Only solvent","Only solid"],0,"A saturated solution cannot dissolve more solute at that condition."],
-        ["Chemical Tests","easy","Chloride ions with acidified silver nitrate give:",["White precipitate","Blue precipitate","Green gas","Red flame"],0,"AgCl is a white precipitate."],
-        ["Chemical Tests","easy","Sulfate ions with barium ions give:",["White precipitate","Black gas","Blue solution","Yellow flame"],0,"Barium sulfate is a white precipitate."],
-        ["Chemical Tests","medium","Ammonium ions warmed with sodium hydroxide release:",["Ammonia","Oxygen","Hydrogen","Chlorine"],0,"NH₄⁺ reacts with OH⁻ to produce NH₃."],
-        ["Atomic Structure","hard","Ionisation energy is the energy required to remove:",["One electron from each atom in one mole of gaseous atoms","One proton","One neutron","All electrons"],0,"First ionisation energy concerns removal of one outer electron from gaseous atoms."],
-        ["Bonding","hard","A coordinate bond forms when:",["Both bonding electrons are donated by one atom","Each atom donates one proton","Neutrons are shared","Electrons disappear"],0,"A coordinate bond is a shared pair donated by one atom."]
-    ];
-
-
-    concepts.forEach((q,i)=>{
-
-        addQuestion(
-            subject,
-            q[0],
-            i<18?"easy":i<38?"medium":"hard",
-            q[2],
-            q[3],
-            q[4],
-            q[5]
-        );
-
-    });
-
-
-    /* NUMERICAL CHEMISTRY */
-
-    for(let i=0;i<50;i++){
-
-        const mass=10+(i%10)*2;
-        const mr=2+(i%6);
-        const moles=mass/mr;
-
-        addQuestion(
-            subject,
-            "Chemical Calculations",
-            i<15?"easy":i<35?"medium":"hard",
-            `A sample has mass ${mass} g and Mr = ${mr}. How many moles are present?`,
-            [
-                moles,
-                moles+1,
-                moles*2,
-                mass*mr
-            ],
-            0,
-            `n=m/Mr=${mass}/${mr}=${moles} mol.`
-        );
-
-    }
-
-
-    /* BALANCE / CONCEPT QUESTIONS */
-
-    for(let i=0;i<50;i++){
-
-        const n=i+1;
-
-        addQuestion(
-            subject,
-            "Chemical Principles",
-            i<15?"easy":i<35?"medium":"hard",
-            `Which statement about chemical reactions is correct?`,
-            [
-                "Atoms are rearranged; they are not normally created or destroyed.",
-                "All atoms disappear during reactions.",
-                "Mass is always created from nothing.",
-                "Electrons become protons in every reaction."
-            ],
-            0,
-            "Chemical reactions involve rearrangement of atoms and conservation of mass in a closed system."
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   BIOLOGY
-   150 QUESTIONS
-===================================================== */
-
-function buildBiology(){
-
-    const subject="biology";
-
-
-    const concepts=[
-
-        ["Cell Structure","easy","The main site of aerobic respiration is the:",["Mitochondrion","Ribosome","Golgi apparatus","Lysosome"],0,"Aerobic respiration mainly occurs in mitochondria."],
-        ["Cell Structure","easy","Ribosomes are the site of:",["Protein synthesis","DNA storage only","Lipid storage","ATP storage"],0,"Ribosomes translate mRNA into polypeptides."],
-        ["Cell Membranes","easy","The cell-surface membrane is mainly a:",["Phospholipid bilayer with proteins","Cellulose layer","Protein monolayer","DNA membrane"],0,"The fluid mosaic model describes a phospholipid bilayer with proteins."],
-        ["Transport","easy","Osmosis is the movement of:",["Water across a partially permeable membrane","Protein through a membrane","DNA out of a cell","ATP into a nucleus"],0,"Osmosis is water movement down a water-potential gradient."],
-        ["Transport","medium","Active transport requires:",["Energy","No proteins","No membrane","Only carbon dioxide"],0,"Active transport uses energy to move substances against a gradient."],
-        ["Biological Molecules","easy","Proteins are polymers of:",["Amino acids","Fatty acids","Nucleotides","Monosaccharides"],0,"Proteins consist of amino acid chains."],
-        ["Biological Molecules","easy","A triglyceride consists of:",["Glycerol and three fatty acids","Three amino acids","Glucose and fructose","Nucleotides"],0,"Triglycerides contain glycerol esterified to three fatty acids."],
-        ["Enzymes","easy","Enzymes are biological:",["Catalysts","Hormones","Antibodies","Lipids"],0,"Enzymes increase reaction rate without being consumed."],
-        ["Enzymes","medium","The active site is specific because of its:",["Shape and chemical properties","Colour","DNA location only","Temperature only"],0,"The active site's structure determines substrate binding."],
-        ["Enzymes","medium","High temperatures can reduce enzyme activity because of:",["Denaturation","More ATP","More substrate","DNA replication"],0,"Heat can disrupt bonds maintaining enzyme tertiary structure."],
-        ["DNA","easy","DNA contains the base:",["Thymine","Uracil","Ribose","Amino acid"],0,"DNA contains thymine; RNA contains uracil."],
-        ["DNA","medium","DNA replication is:",["Semi-conservative","Fully conservative","Random","Protein-based"],0,"Each daughter DNA molecule contains one original strand."],
-        ["Protein Synthesis","medium","Transcription produces:",["mRNA from DNA","Protein from DNA directly","ATP from glucose","Lipids from amino acids"],0,"Transcription forms an RNA copy of a gene."],
-        ["Protein Synthesis","medium","Translation takes place at:",["Ribosomes","Lysosomes","Cell wall","Golgi apparatus"],0,"Ribosomes translate mRNA into polypeptide."],
-        ["Cell Division","easy","Mitosis normally produces cells that are:",["Genetically similar to the parent cell","Haploid always","Without DNA","Always genetically different"],0,"Mitosis maintains chromosome number."],
-        ["Cell Division","medium","Meiosis produces cells with:",["Half the chromosome number","Double the chromosome number","No chromosomes","Only mitochondrial DNA"],0,"Meiosis reduces chromosome number."],
-        ["Genetics","easy","An allele is:",["An alternative form of a gene","A protein","A cell organelle","A chromosome pair"],0,"Alleles are alternative forms of a gene."],
-        ["Genetics","medium","A homozygous genotype contains:",["Two identical alleles","Two different alleles","Three alleles","No alleles"],0,"Homozygous means identical alleles at a locus."],
-        ["Genetics","medium","A heterozygous genotype contains:",["Two different alleles","Two identical alleles","No chromosomes","Only recessive alleles"],0,"Heterozygous means different alleles."],
-        ["Inheritance","medium","For Aa × Aa under complete dominance, the phenotype ratio is:",["3:1","1:1","1:3","2:1"],0,"The expected dominant:recessive phenotype ratio is 3:1."],
-        ["Evolution","easy","Natural selection changes populations through differences in:",["Survival and reproductive success","Planetary rotation","Cell size only","Water content only"],0,"Individuals with advantageous inherited traits can leave more offspring."],
-        ["Evolution","medium","A mutation is:",["A change in DNA sequence","Always harmful","Always beneficial","A type of protein"],0,"Mutations alter DNA sequences."],
-        ["Ecology","easy","A population is:",["Members of one species in an area","All species","Only predators","Only plants"],0,"A population contains members of one species."],
-        ["Ecology","medium","A community contains:",["Populations of different species","Only one organism","Only abiotic factors","Only plants"],0,"A community consists of interacting populations of different species."],
-        ["Ecology","medium","Energy is lost between trophic levels mainly as:",["Heat from respiration","DNA","Chlorophyll","Water only"],0,"Energy dissipates through respiration and other processes."],
-        ["Photosynthesis","easy","Photosynthesis requires:",["Light energy","Sound energy","Nuclear energy","Only heat"],0,"Light supplies energy for photosynthesis."],
-        ["Photosynthesis","medium","Light-dependent reactions occur at the:",["Thylakoid membranes","Nucleus","Cell wall","Ribosome"],0,"The photosystems and electron transport chains are in thylakoid membranes."],
-        ["Photosynthesis","medium","The Calvin cycle occurs mainly in the:",["Stroma","Thylakoid lumen","Nucleus","Cell wall"],0,"Carbon fixation reactions occur in the stroma."],
-        ["Respiration","easy","Glycolysis occurs in the:",["Cytoplasm","Nucleus","Mitochondrial inner membrane","Chloroplast"],0,"Glycolysis occurs in the cytosol."],
-        ["Respiration","medium","The Krebs cycle occurs in the:",["Mitochondrial matrix","Cytoplasm","Nucleus","Cell wall"],0,"In eukaryotes it occurs in the mitochondrial matrix."],
-        ["Respiration","medium","The electron transport chain is located on the:",["Inner mitochondrial membrane","Outer cell wall","Nucleus","Ribosome"],0,"Oxidative phosphorylation occurs on the inner mitochondrial membrane."],
-        ["Gas Exchange","easy","An efficient gas exchange surface usually has:",["Large surface area and short diffusion distance","Small surface area","Thick barrier","No concentration gradient"],0,"These features increase diffusion rate."],
-        ["Circulation","easy","Red blood cells contain:",["Haemoglobin","Chlorophyll","Cellulose","Amylase"],0,"Haemoglobin binds and transports oxygen."],
-        ["Circulation","medium","The left ventricle pumps blood to the:",["Body through the aorta","Lungs through the pulmonary artery","Right atrium","Liver only"],0,"The left ventricle supplies systemic circulation."],
-        ["Circulation","medium","Arteries carry blood:",["Away from the heart","Towards the heart","Only without oxygen","Only to lungs"],0,"Arteries are defined by direction away from the heart."],
-        ["Homeostasis","easy","Homeostasis maintains:",["A relatively stable internal environment","Constant body mass","No variation","Constant external conditions"],0,"Homeostasis keeps internal variables within suitable limits."],
-        ["Homeostasis","medium","Negative feedback:",["Opposes a change","Always amplifies a change","Stops all reactions","Requires no receptors"],0,"Negative feedback counteracts deviations."],
-        ["Nervous System","easy","The basic functional cell of the nervous system is the:",["Neuron","Nephron","Alveolus","Platelet"],0,"Neurons transmit electrical signals."],
-        ["Nervous System","medium","A synapse is a junction between:",["Neurons or a neuron and effector","Bones","Red cells","Alveoli"],0,"Synapses enable communication between cells."],
-        ["Hormones","easy","Hormones are transported mainly in the:",["Blood","Air","Bone","Cell wall"],0,"Endocrine hormones travel through the bloodstream."],
-        ["Hormones","medium","Insulin generally causes blood glucose concentration to:",["Decrease","Increase indefinitely","Become oxygen","Remain fixed"],0,"Insulin promotes glucose uptake and storage."],
-        ["Kidney","medium","Ultrafiltration occurs in the:",["Glomerulus and Bowman's capsule","Ureter","Collecting duct only","Loop of Henle only"],0,"High pressure filters small molecules into the nephron."],
-        ["Immunity","easy","Antibodies are produced by:",["Plasma cells derived from B lymphocytes","Red blood cells","Platelets","Neurons"],0,"Activated B cells can form antibody-secreting plasma cells."],
-        ["Immunity","medium","Vaccination produces:",["Immunological memory","Immediate disease always","More red blood cells","Less DNA"],0,"Memory cells allow a faster secondary response."],
-        ["Microbiology","easy","Bacteria are:",["Prokaryotes","Eukaryotic animals","Viruses","Fungi"],0,"Bacteria are prokaryotic organisms."],
-        ["Microbiology","medium","Antibiotics are primarily used against:",["Bacteria","Viruses","All cancers","All genetic disorders"],0,"Antibiotics target bacterial processes or structures."],
-        ["Practical Biology","easy","A control variable is one that is:",["Kept constant","Always changed","Never measured","The same as the dependent variable"],0,"Control variables are kept constant to improve validity."],
-        ["Practical Biology","medium","Repeating measurements mainly improves:",["Reliability","The independent variable","The theory","The law"],0,"Repeats help identify random variation and anomalies."],
-        ["Biodiversity","medium","Biodiversity refers to the variety of:",["Living organisms","Only mammals","Only genes","Only habitats"],0,"Biodiversity includes variation within and between species and ecosystems."],
-        ["Classification","medium","A species is commonly defined as organisms that can:",["Interbreed to produce fertile offspring","Look identical only","Live in the same country","Have the same mass"],0,"The biological species concept focuses on fertile offspring."]
-    ];
-
-
-    concepts.forEach((q,i)=>{
-
-        addQuestion(
-            subject,
-            q[0],
-            i<18?"easy":i<38?"medium":"hard",
-            q[2],
-            q[3],
-            q[4],
-            q[5]
-        );
-
-    });
-
-
-    /* HUMAN PHYSIOLOGY NUMERICAL / CONCEPTUAL */
-
-    for(let i=0;i<50;i++){
-
-        const rate=2+i%9;
-        const time=5+i%6;
-        const amount=rate*time;
-
-        addQuestion(
-            subject,
-            "Biological Calculations",
-            i<15?"easy":i<35?"medium":"hard",
-            `A process occurs at a rate of ${rate} units per minute for ${time} minutes. What total amount is produced?`,
-            [
-                amount,
-                rate+time,
-                amount+rate,
-                amount*2
-            ],
-            0,
-            `Amount = rate × time = ${rate} × ${time} = ${amount} units.`
-        );
-
-    }
-
-
-    /* EXPERIMENTAL BIOLOGY */
-
-    for(let i=0;i<50;i++){
-
-        const answers=[
-            "Repeat measurements and calculate a suitable mean.",
-            "Change several variables simultaneously.",
-            "Ignore anomalous results without investigation.",
-            "Never use a control variable."
-        ];
-
-        addQuestion(
-            subject,
-            "Experimental Biology",
-            i<15?"easy":i<35?"medium":"hard",
-            "Which approach generally improves the reliability of a biological investigation?",
-            answers,
-            0,
-            "Repeating measurements helps assess random variation and improves reliability."
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   BUILD ALL QUESTIONS
-===================================================== */
-
-buildMathematics();
-buildPhysics();
-buildChemistry();
-buildBiology();
-
-
-/*
-Some question families above are deliberately constructed
-to produce exactly 150 questions per subject.
-
-Verify counts.
-*/
-
-const SUBJECT_LIMITS={
-    maths:150,
-    physics:150,
-    chemistry:150,
-    biology:150
-};
-
-
-/*
-Keep exactly 150 per subject.
-This prevents future edits from accidentally changing
-the advertised 600-question bank.
-*/
-
-const FINAL_BANK=[];
-
-for(const subject of Object.keys(SUBJECT_LIMITS)){
-
-    const list=
-        QUESTIONS
-        .filter(q=>q.subject===subject)
-        .slice(0,150);
-
-    FINAL_BANK.push(...list);
-
-}
-
-
-const SUBJECT_NAMES={
-
-    maths:"Mathematics",
-    physics:"Physics",
-    chemistry:"Chemistry",
-    biology:"Biology"
-
-};
-
-
-/* =====================================================
-   QUIZ STATE
-===================================================== */
-
-let testQuestions=[];
-let currentQuestion=0;
-let selectedAnswers=[];
-let testConfig=null;
-
-
-/* =====================================================
-   DOM
-===================================================== */
-
-const subjectSelect=
-    document.getElementById("subject");
-
-const difficultySelect=
-    document.getElementById("difficulty");
-
-const countSelect=
-    document.getElementById("questionCount");
-
-const modeSelect=
-    document.getElementById("mode");
-
-const startBtn=
-    document.getElementById("startBtn");
-
-const randomBtn=
-    document.getElementById("randomBtn");
-
-const resetBtn=
-    document.getElementById("resetBtn");
-
-const stats=
-    document.getElementById("stats");
-
-const quiz=
-    document.getElementById("quiz");
-
-const result=
-    document.getElementById("result");
-
-const options=
-    document.getElementById("options");
-
-const feedback=
-    document.getElementById("feedback");
-
-const questionText=
-    document.getElementById("questionText");
-
-const questionMeta=
-    document.getElementById("questionMeta");
-
-const questionNumber=
-    document.getElementById("questionNumber");
-
-const score=
-    document.getElementById("score");
-
-const percentage=
-    document.getElementById("percentage");
-
-const modeDisplay=
-    document.getElementById("modeDisplay");
-
-const progressBar=
-    document.getElementById("progressBar");
-
-const previousBtn=
-    document.getElementById("previousBtn");
-
-const nextBtn=
-    document.getElementById("nextBtn");
-
-
-/* =====================================================
-   FILTER QUESTIONS
-===================================================== */
-
-function getPool(){
-
-    const subject=
-        subjectSelect.value;
-
-    const difficulty=
-        difficultySelect.value;
-
-    return FINAL_BANK.filter(q=>{
-
-        const subjectOK=
-            subject==="all" ||
-            q.subject===subject;
-
-        const difficultyOK=
-            difficulty==="all" ||
-            q.difficulty===difficulty;
-
-        return subjectOK && difficultyOK;
-
-    });
-
-}
-
-
-/* =====================================================
-   START TEST
-===================================================== */
-
-function startTest(forceCount=null){
-
-    const pool=getPool();
-
-    if(!pool.length){
-
-        alert(
-            "No questions are available for this filter."
-        );
-
-        return;
-
-    }
-
-
-    const requestedCount=
-        forceCount ||
-        Number(countSelect.value);
-
-
-    const actualCount=
-        Math.min(
-            requestedCount,
-            pool.length
-        );
-
-
-    testQuestions=
-        shuffle(pool)
-        .slice(0,actualCount);
-
-
-    currentQuestion=0;
-
-    selectedAnswers=
-        new Array(
-            testQuestions.length
-        ).fill(null);
-
-
-    testConfig={
-
-        subject:subjectSelect.value,
-
-        difficulty:difficultySelect.value,
-
-        mode:modeSelect.value,
-
-        count:actualCount
-
-    };
-
-
-    stats.classList.remove(
-        "qb-hidden"
-    );
-
-    quiz.classList.remove(
-        "qb-hidden"
-    );
-
-    result.classList.remove(
-        "show"
-    );
-
-
-    modeDisplay.textContent=
-        modeSelect.value==="practice"
-        ? "Practice"
-        : "Exam";
-
-
-    renderQuestion();
-
-
-    window.scrollTo({
-
-        top:
-            quiz.offsetTop-100,
-
-        behavior:"smooth"
-
-    });
-
-}
-
-
-/* =====================================================
-   RENDER QUESTION
-===================================================== */
-
-function renderQuestion(){
-
-    if(!testQuestions.length)return;
-
-
-    const q=
-        testQuestions[
-            currentQuestion
-        ];
-
-
-    const mode=
-        testConfig.mode;
-
-
-    const answer=
-        selectedAnswers[
-            currentQuestion
-        ];
-
-
-    const currentScore=
-        calculateScore();
-
-
-    questionNumber.textContent=
-        `${currentQuestion+1}/${testQuestions.length}`;
-
-
-    score.textContent=
-        currentScore;
-
-
-    percentage.textContent=
-        Math.round(
-            currentScore /
-            testQuestions.length *
-            100
-        )+"%";
-
-
-    progressBar.style.width=
-        (
-            (currentQuestion+1) /
-            testQuestions.length *
-            100
-        )+"%";
-
-
-    questionMeta.innerHTML=`
-
-        <span class="qb-tag">
-            ${SUBJECT_NAMES[q.subject]}
-        </span>
-
-        <span class="qb-tag">
-            ${q.topic}
-        </span>
-
-        <span class="qb-tag">
-            ${q.difficulty}
-        </span>
-
-        <span class="qb-tag">
-            ${mode==="practice"
-                ?"PRACTICE"
-                :"EXAM"}
-        </span>
-
-    `;
-
-
-    questionText.textContent=
-        q.question;
-
-
-    options.innerHTML="";
-
-
-    const letters=[
-        "A",
-        "B",
-        "C",
-        "D"
-    ];
-
-
-    q.options.forEach(
-        (option,index)=>{
-
-            const button=
-                document.createElement(
-                    "button"
-                );
-
-
-            button.className=
-                "qb-option";
-
-
-            if(
-                answer===index
-            ){
-
-                button.classList.add(
-                    "selected"
-                );
-
-            }
-
-
-            if(
-                mode==="practice" &&
-                answer!==null
-            ){
-
-                if(
-                    index===q.answer
-                ){
-
-                    button.classList.add(
-                        "correct"
-                    );
-
-                }
-
-
-                if(
-                    index===answer &&
-                    answer!==q.answer
-                ){
-
-                    button.classList.add(
-                        "wrong"
-                    );
-
-                }
-
-            }
-
-
-            button.innerHTML=`
-
-                <span class="qb-option-letter">
-                    ${letters[index]}
-                </span>
-
-                <span>
-                    ${option}
-                </span>
-
-            `;
-
-
-            button.addEventListener(
-                "click",
-                ()=>selectAnswer(index)
-            );
-
-
-            options.appendChild(
-                button
-            );
-
-        }
-    );
-
-
-    if(
-        mode==="practice" &&
-        answer!==null
-    ){
-
-        const correct=
-            answer===q.answer;
-
-
-        feedback.className=
-            "qb-feedback show "+
-            (
-                correct
-                ? "correct"
-                : "wrong"
-            );
-
-
-        feedback.innerHTML=`
-
-            <strong>
-                ${
-                    correct
-                    ? "✓ Correct"
-                    : "✕ Not quite"
-                }
-            </strong>
-
-            <br><br>
-
-            ${
-                correct
-                ? ""
-                : `
-                    <strong>
-                        Correct answer:
-                    </strong>
-                    ${q.options[q.answer]}
-                    <br><br>
-                `
-            }
-
-            <strong>
-                Explanation:
-            </strong>
-
-            ${q.explanation}
-
-        `;
 
     }else{
 
-        feedback.className=
-            "qb-feedback";
+        pool = [...FINAL_BANK[subject]];
+    }
 
-        feedback.innerHTML="";
+    if(difficulty !== "all"){
+
+        pool = pool.filter(
+            q => q.difficulty === difficulty
+        );
+
+    }
+
+    return pool;
+}
+
+
+/* =========================================================
+   START TEST
+   ========================================================= */
+
+function startTest(customRandom = false){
+
+    let pool = getAvailableQuestions();
+
+    if(pool.length === 0){
+
+        alert("No questions are available for this selection.");
+
+        return;
+    }
+
+    const requestedCount = Number(countSelect.value);
+
+    if(orderSelect.value === "random" || customRandom){
+
+        pool = shuffle(pool);
+
+    }
+
+    testQuestions = pool.slice(
+        0,
+        Math.min(requestedCount, pool.length)
+    );
+
+    if(testQuestions.length === 0){
+
+        alert("Could not create a test.");
+
+        return;
+    }
+
+    currentQuestion = 0;
+
+    selectedAnswers = new Array(
+        testQuestions.length
+    ).fill(null);
+
+    questionStatus = new Array(
+        testQuestions.length
+    ).fill("unanswered");
+
+    currentMode = modeSelect.value;
+
+    testFinished = false;
+
+    emptyState.classList.add("hidden");
+
+    resultArea.classList.remove("show");
+
+    testArea.classList.remove("hidden");
+
+    renderPalette();
+
+    renderQuestion();
+
+    window.scrollTo({
+        top:document.querySelector(".section").offsetTop - 80,
+        behavior:"smooth"
+    });
+}
+
+
+/* =========================================================
+   RENDER QUESTION
+   ========================================================= */
+
+function renderQuestion(){
+
+    if(!testQuestions.length) return;
+
+    const q = testQuestions[currentQuestion];
+
+    questionNumber.textContent =
+        `Question ${currentQuestion + 1}`;
+
+    statQuestion.textContent =
+        `${currentQuestion + 1} / ${testQuestions.length}`;
+
+    statMode.textContent =
+        currentMode === "practice"
+        ? "Practice"
+        : "Exam";
+
+    progressBar.style.width =
+        `${((currentQuestion + 1) / testQuestions.length) * 100}%`;
+
+    subjectTag.textContent = q.subject;
+
+    topicTag.textContent = q.topic;
+
+    difficultyTag.textContent = q.difficulty;
+
+    modeTag.textContent =
+        currentMode === "practice"
+        ? "Practice"
+        : "Exam";
+
+    questionText.textContent = q.q;
+
+    options.innerHTML = "";
+
+    q.options.forEach((option, index) => {
+
+        const button = document.createElement("button");
+
+        button.className = "option";
+
+        const letters = ["A","B","C","D"];
+
+        button.innerHTML = `
+            <span class="option-letter">
+                ${letters[index]}
+            </span>
+            <span>${option}</span>
+        `;
+
+        if(selectedAnswers[currentQuestion] === index){
+
+            button.classList.add("selected");
+
+        }
+
+        button.addEventListener(
+            "click",
+            () => selectAnswer(index)
+        );
+
+        options.appendChild(button);
+
+    });
+
+
+    const selected = selectedAnswers[currentQuestion];
+
+    const status =
+        questionStatus[currentQuestion];
+
+    if(status === "answered"){
+
+        statusText.textContent = "Answered";
+
+        statusText.style.color = "#4dffb0";
+
+    }else if(status === "skipped"){
+
+        statusText.textContent = "Skipped";
+
+        statusText.style.color = "#ffd166";
+
+    }else{
+
+        statusText.textContent = "Unanswered";
+
+        statusText.style.color = "#7d95a6";
+    }
+
+
+    feedback.className = "feedback";
+
+    if(
+        currentMode === "practice" &&
+        selected !== null
+    ){
+
+        showPracticeFeedback();
 
     }
 
 
-    previousBtn.disabled=
-        currentQuestion===0;
+    prevBtn.disabled = currentQuestion === 0;
+
+    prevBtn.style.opacity =
+        currentQuestion === 0 ? ".45" : "1";
 
 
-    nextBtn.textContent=
-        currentQuestion===
-        testQuestions.length-1
-        ? "FINISH TEST →"
-        : "NEXT →";
+    if(currentQuestion === testQuestions.length - 1){
+
+        nextBtn.textContent = "Finish →";
+
+    }else{
+
+        nextBtn.textContent = "Next →";
+
+    }
+
+
+    skipBtn.disabled =
+        selectedAnswers[currentQuestion] !== null;
+
+    skipBtn.style.opacity =
+        skipBtn.disabled ? ".45" : "1";
+
+
+    renderPalette();
+
+    updateStats();
+
+    focusCurrentPalette();
 
 }
 
 
-/* =====================================================
-   SELECT ANSWER
-===================================================== */
+/* =========================================================
+   ANSWER
+   ========================================================= */
 
 function selectAnswer(index){
 
-    if(
-        testConfig.mode==="practice" &&
-        selectedAnswers[currentQuestion]!==null
-    ){
+    if(testFinished) return;
 
-        return;
+    selectedAnswers[currentQuestion] = index;
 
-    }
-
-
-    selectedAnswers[
-        currentQuestion
-    ]=index;
-
+    questionStatus[currentQuestion] = "answered";
 
     renderQuestion();
 
 }
 
 
-/* =====================================================
-   SCORE
-===================================================== */
+/* =========================================================
+   PRACTICE FEEDBACK
+   ========================================================= */
 
-function calculateScore(){
+function showPracticeFeedback(){
 
-    let correct=0;
+    const q = testQuestions[currentQuestion];
 
+    const selected =
+        selectedAnswers[currentQuestion];
 
-    testQuestions.forEach(
-        (q,index)=>{
+    feedback.classList.add("show");
 
-            if(
-                selectedAnswers[index]===
-                q.answer
-            ){
+    if(selected === q.answer){
 
-                correct++;
+        feedback.classList.add("correct");
 
-            }
+        feedbackTitle.textContent =
+            "✓ Correct";
 
-        }
-    );
+        feedbackTitle.style.color =
+            "#4dffb0";
 
+        feedbackText.innerHTML =
+            q.explanation;
 
-    return correct;
+    }else{
+
+        feedback.classList.add("wrong");
+
+        feedbackTitle.textContent =
+            "✕ Incorrect";
+
+        feedbackTitle.style.color =
+            "#ff7389";
+
+        feedbackText.innerHTML =
+            `Correct answer: <strong>${q.options[q.answer]}</strong><br><br>${q.explanation}`;
+
+    }
 
 }
 
 
-/* =====================================================
-   NEXT
-===================================================== */
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
 
 function nextQuestion(){
 
-    if(
-        selectedAnswers[currentQuestion]===null
-    ){
-
-        alert(
-            "Please choose an answer first."
-        );
-
-        return;
-
-    }
-
-
-    if(
-        currentQuestion<
-        testQuestions.length-1
-    ){
+    if(currentQuestion < testQuestions.length - 1){
 
         currentQuestion++;
 
@@ -2745,22 +2767,16 @@ function nextQuestion(){
 
     }else{
 
-        finishTest();
+        openFinishModal();
 
     }
 
 }
 
 
-/* =====================================================
-   PREVIOUS
-===================================================== */
-
 function previousQuestion(){
 
-    if(
-        currentQuestion>0
-    ){
+    if(currentQuestion > 0){
 
         currentQuestion--;
 
@@ -2771,452 +2787,588 @@ function previousQuestion(){
 }
 
 
-/* =====================================================
-   FINISH
-===================================================== */
+/* =========================================================
+   SKIP
+   ========================================================= */
 
-function finishTest(){
+function skipQuestion(){
 
-    const finalScore=
-        calculateScore();
+    if(selectedAnswers[currentQuestion] !== null){
+
+        return;
+    }
+
+    questionStatus[currentQuestion] = "skipped";
+
+    if(currentQuestion < testQuestions.length - 1){
+
+        currentQuestion++;
+
+    }else{
+
+        openFinishModal();
+
+        return;
+    }
+
+    renderQuestion();
+
+}
 
 
-    const finalPercentage=
-        Math.round(
-            finalScore /
-            testQuestions.length *
-            100
+/* =========================================================
+   PALETTE
+   ========================================================= */
+
+function renderPalette(){
+
+    palette.innerHTML = "";
+
+    testQuestions.forEach((q,index) => {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "palette-btn";
+
+        button.textContent = index + 1;
+
+        const status =
+            questionStatus[index];
+
+        if(index === currentQuestion){
+
+            button.classList.add("current");
+
+        }
+
+        if(status === "answered"){
+
+            button.classList.add("answered");
+
+        }else if(status === "skipped"){
+
+            button.classList.add("skipped");
+
+        }else{
+
+            button.classList.add("unanswered");
+
+        }
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                currentQuestion = index;
+
+                renderQuestion();
+
+            }
         );
 
-
-    quiz.classList.add(
-        "qb-hidden"
-    );
-
-
-    result.classList.add(
-        "show"
-    );
-
-
-    document.getElementById(
-        "resultPercentage"
-    ).textContent=
-        finalPercentage+"%";
-
-
-    document.getElementById(
-        "resultGrade"
-    ).textContent=
-        getPracticeGrade(
-            finalPercentage
-        );
-
-
-    document.getElementById(
-        "resultText"
-    ).textContent=
-        `You scored ${finalScore} out of ${testQuestions.length}. `+
-        `This is an IAL ATLAS practice performance result, `+
-        `not an official Pearson Edexcel grade boundary.`;
-
-
-    buildBreakdown();
-
-
-    window.scrollTo({
-
-        top:
-            result.offsetTop-100,
-
-        behavior:"smooth"
+        palette.appendChild(button);
 
     });
 
 }
 
 
-/* =====================================================
-   PRACTICE GRADE
-===================================================== */
+function focusCurrentPalette(){
 
-function getPracticeGrade(
-    percentage
-){
+    const current =
+        palette.children[currentQuestion];
 
-    if(percentage>=90)
-        return "A* Practice Performance";
+    if(current){
 
-    if(percentage>=80)
-        return "A Practice Performance";
+        current.scrollIntoView({
+            behavior:"smooth",
+            block:"nearest"
+        });
 
-    if(percentage>=70)
-        return "B Practice Performance";
-
-    if(percentage>=60)
-        return "C Practice Performance";
-
-    if(percentage>=50)
-        return "D Practice Performance";
-
-    if(percentage>=40)
-        return "E Practice Performance";
-
-    return "U — More Practice Recommended";
+    }
 
 }
 
 
-/* =====================================================
-   BREAKDOWN
-===================================================== */
+/* =========================================================
+   STATS
+   ========================================================= */
 
-function buildBreakdown(){
+function calculateStats(){
 
-    const groups={};
+    let correct = 0;
 
+    let answered = 0;
 
-    testQuestions.forEach(
-        (q,index)=>{
+    for(let i = 0; i < testQuestions.length; i++){
 
-            const key=
-                subjectSelect.value==="all"
-                ? SUBJECT_NAMES[q.subject]
-                : q.topic;
+        if(selectedAnswers[i] !== null){
 
-
-            if(!groups[key]){
-
-                groups[key]={
-                    correct:0,
-                    total:0
-                };
-
-            }
-
-
-            groups[key].total++;
-
+            answered++;
 
             if(
-                selectedAnswers[index]===
-                q.answer
+                selectedAnswers[i] ===
+                testQuestions[i].answer
             ){
 
-                groups[key].correct++;
+                correct++;
 
             }
 
         }
-    );
 
+    }
 
-    const breakdown=
-        document.getElementById(
-            "breakdown"
-        );
+    const wrong = answered - correct;
 
+    const skipped =
+        questionStatus.filter(
+            s => s === "skipped"
+        ).length;
 
-    breakdown.innerHTML=
-        Object.entries(groups)
-        .map(
-            ([name,data])=>{
+    const unanswered =
+        questionStatus.filter(
+            s => s === "unanswered"
+        ).length;
 
-                const pct=
-                    Math.round(
-                        data.correct /
-                        data.total *
-                        100
-                    );
-
-
-                return `
-
-                    <div class="qb-breakdown-row">
-
-                        <strong>
-                            ${name}
-                        </strong>
-
-                        <div class="qb-breakdown-bar">
-
-                            <span
-                                style="
-                                    width:${pct}%
-                                "
-                            ></span>
-
-                        </div>
-
-                        <span>
-                            ${pct}%
-                        </span>
-
-                    </div>
-
-                `;
-
-            }
+    const percentage =
+        testQuestions.length
+        ? Math.round(
+            (correct / testQuestions.length) * 100
         )
-        .join("");
+        : 0;
+
+    return {
+        correct,
+        wrong,
+        answered,
+        skipped,
+        unanswered,
+        percentage
+    };
 
 }
 
 
-/* =====================================================
-   BUTTONS
-===================================================== */
+function updateStats(){
+
+    const stats = calculateStats();
+
+    statScore.textContent =
+        stats.correct;
+
+    statAccuracy.textContent =
+        `${stats.percentage}%`;
+
+}
+
+
+/* =========================================================
+   FINISH MODAL
+   ========================================================= */
+
+function openFinishModal(){
+
+    const stats = calculateStats();
+
+    const remaining =
+        stats.skipped + stats.unanswered;
+
+    if(remaining === 0){
+
+        finishDescription.textContent =
+            "You have answered every question. Submit your test when ready.";
+
+        finishWarning.textContent =
+            "All questions have been answered.";
+
+        finishWarning.style.borderColor =
+            "rgba(77,255,176,.2)";
+
+        finishWarning.style.background =
+            "rgba(77,255,176,.05)";
+
+        finishWarning.style.color =
+            "#9fffd0";
+
+        reviewBtn.classList.add("hidden");
+
+    }else{
+
+        finishDescription.textContent =
+            "You can still review your test before submitting.";
+
+        finishWarning.textContent =
+            `${remaining} question${remaining === 1 ? "" : "s"} remain unanswered or skipped.`;
+
+        finishWarning.style.borderColor =
+            "rgba(255,209,102,.2)";
+
+        finishWarning.style.background =
+            "rgba(255,209,102,.06)";
+
+        finishWarning.style.color =
+            "#e9dcae";
+
+        reviewBtn.classList.remove("hidden");
+
+    }
+
+    finishModal.classList.add("show");
+
+}
+
+
+function closeFinishModal(){
+
+    finishModal.classList.remove("show");
+
+}
+
+
+/* =========================================================
+   REVIEW UNANSWERED
+   ========================================================= */
+
+function reviewUnanswered(){
+
+    const firstUnanswered =
+        questionStatus.findIndex(
+            s => s === "unanswered"
+        );
+
+    if(firstUnanswered !== -1){
+
+        currentQuestion = firstUnanswered;
+
+        closeFinishModal();
+
+        renderQuestion();
+
+        return;
+    }
+
+
+    const firstSkipped =
+        questionStatus.findIndex(
+            s => s === "skipped"
+        );
+
+    if(firstSkipped !== -1){
+
+        currentQuestion = firstSkipped;
+
+        closeFinishModal();
+
+        renderQuestion();
+
+    }
+
+}
+
+
+/* =========================================================
+   FINISH TEST
+   ========================================================= */
+
+function finishTest(){
+
+    closeFinishModal();
+
+    testFinished = true;
+
+    const stats = calculateStats();
+
+    resultPercentage.textContent =
+        `${stats.percentage}%`;
+
+    resultCorrect.textContent =
+        stats.correct;
+
+    resultWrong.textContent =
+        stats.wrong;
+
+    resultSkipped.textContent =
+        stats.skipped;
+
+    resultUnanswered.textContent =
+        stats.unanswered;
+
+
+    resultGrade.textContent =
+        getPracticeGrade(stats.percentage);
+
+
+    resultMessage.innerHTML = `
+        You answered <strong>${stats.correct}</strong> correctly
+        out of <strong>${testQuestions.length}</strong> questions.
+        <br><br>
+        Answered: <strong>${stats.answered}</strong> |
+        Wrong: <strong>${stats.wrong}</strong> |
+        Skipped: <strong>${stats.skipped}</strong> |
+        Unanswered: <strong>${stats.unanswered}</strong>.
+        <br><br>
+        This grade is an <strong>IAL ATLAS practice grade</strong>
+        based on your percentage. It is not an official Pearson Edexcel
+        grade boundary.
+    `;
+
+
+    testArea.classList.add("hidden");
+
+    resultArea.classList.add("show");
+
+    window.scrollTo({
+        top:document.querySelector(".section").offsetTop - 80,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   CUSTOM PRACTICE GRADE
+   ========================================================= */
+
+function getPracticeGrade(score){
+
+    if(score >= 90) return "A*";
+
+    if(score >= 80) return "A";
+
+    if(score >= 70) return "B";
+
+    if(score >= 60) return "C";
+
+    if(score >= 50) return "D";
+
+    if(score >= 40) return "E";
+
+    return "U";
+
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+function resetTest(){
+
+    testQuestions = [];
+
+    currentQuestion = 0;
+
+    selectedAnswers = [];
+
+    questionStatus = [];
+
+    testFinished = false;
+
+    testArea.classList.add("hidden");
+
+    resultArea.classList.remove("show");
+
+    emptyState.classList.remove("hidden");
+
+    closeFinishModal();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   EVENTS
+   ========================================================= */
 
 startBtn.addEventListener(
     "click",
-    ()=>{
-        startTest();
-    }
+    () => startTest(false)
 );
 
 
 randomBtn.addEventListener(
     "click",
-    ()=>{
-        startTest(20);
-    }
-);
+    () => {
 
+        countSelect.value = "20";
 
-nextBtn.addEventListener(
-    "click",
-    ()=>{
-        nextQuestion();
-    }
-);
+        orderSelect.value = "random";
 
+        startTest(true);
 
-previousBtn.addEventListener(
-    "click",
-    ()=>{
-        previousQuestion();
     }
 );
 
 
 resetBtn.addEventListener(
     "click",
-    ()=>{
+    resetTest
+);
 
-        testQuestions=[];
-        selectedAnswers=[];
-        currentQuestion=0;
 
-        stats.classList.add(
-            "qb-hidden"
-        );
+prevBtn.addEventListener(
+    "click",
+    previousQuestion
+);
 
-        quiz.classList.add(
-            "qb-hidden"
-        );
 
-        result.classList.remove(
-            "show"
-        );
+nextBtn.addEventListener(
+    "click",
+    nextQuestion
+);
+
+
+skipBtn.addEventListener(
+    "click",
+    skipQuestion
+);
+
+
+finishBtn.addEventListener(
+    "click",
+    openFinishModal
+);
+
+
+cancelFinishBtn.addEventListener(
+    "click",
+    closeFinishModal
+);
+
+
+reviewBtn.addEventListener(
+    "click",
+    reviewUnanswered
+);
+
+
+submitAnywayBtn.addEventListener(
+    "click",
+    finishTest
+);
+
+
+retryBtn.addEventListener(
+    "click",
+    () => {
+
+        startTest(false);
+
+    }
+);
+
+
+newTestBtn.addEventListener(
+    "click",
+    () => {
+
+        resultArea.classList.remove("show");
+
+        testArea.classList.add("hidden");
+
+        emptyState.classList.remove("hidden");
 
         window.scrollTo({
-
-            top:0,
-
+            top:document.querySelector(".section").offsetTop - 80,
             behavior:"smooth"
-
         });
 
     }
 );
 
 
-document.getElementById(
-    "retryBtn"
-).addEventListener(
-    "click",
-    ()=>{
-
-        if(!testConfig)return;
-
-
-        subjectSelect.value=
-            testConfig.subject;
-
-        difficultySelect.value=
-            testConfig.difficulty;
-
-        modeSelect.value=
-            testConfig.mode;
-
-
-        startTest(
-            testConfig.count
-        );
-
-    }
-);
-
-
-document.getElementById(
-    "newTestBtn"
-).addEventListener(
-    "click",
-    ()=>{
-
-        result.classList.remove(
-            "show"
-        );
-
-        stats.classList.add(
-            "qb-hidden"
-        );
-
-        quiz.classList.add(
-            "qb-hidden"
-        );
-
-
-        window.scrollTo({
-
-            top:0,
-
-            behavior:"smooth"
-
-        });
-
-    }
-);
-
-
-/* =====================================================
+/* =========================================================
    KEYBOARD CONTROLS
-===================================================== */
+   ========================================================= */
 
 document.addEventListener(
     "keydown",
-    event=>{
+    event => {
 
-        if(
-            quiz.classList.contains(
-                "qb-hidden"
-            )
-        ){
-
+        if(testArea.classList.contains("hidden")){
             return;
-
         }
 
-
-        if(
-            ["1","2","3","4"]
-            .includes(event.key)
-        ){
-
-            selectAnswer(
-                Number(event.key)-1
-            );
-
+        if(finishModal.classList.contains("show")){
+            return;
         }
 
+        if(event.key === "1"){
+            selectAnswer(0);
+        }
 
-        if(
-            event.key==="ArrowRight"
-        ){
+        if(event.key === "2"){
+            selectAnswer(1);
+        }
+
+        if(event.key === "3"){
+            selectAnswer(2);
+        }
+
+        if(event.key === "4"){
+            selectAnswer(3);
+        }
+
+        if(event.key === "ArrowRight"){
+
+            event.preventDefault();
 
             nextQuestion();
 
         }
 
+        if(event.key === "ArrowLeft"){
 
-        if(
-            event.key==="ArrowLeft"
-        ){
+            event.preventDefault();
 
             previousQuestion();
 
         }
 
-    }
-);
+        if(event.key === "s" || event.key === "S"){
 
-
-/* =====================================================
-   HEADER SCROLL
-===================================================== */
-
-const header=
-    document.getElementById(
-        "mainHeader"
-    );
-
-
-window.addEventListener(
-    "scroll",
-    ()=>{
-
-        if(!header)return;
-
-
-        if(
-            window.scrollY>40
-        ){
-
-            header.classList.add(
-                "scrolled"
-            );
-
-        }else{
-
-            header.classList.remove(
-                "scrolled"
-            );
+            skipQuestion();
 
         }
 
-    },
-    {
-        passive:true
     }
 );
 
 
-/* =====================================================
-   FINAL DATABASE CHECK
-===================================================== */
+/* =========================================================
+   MODAL CLICK OUTSIDE
+   ========================================================= */
 
-console.log(
-    "IAL ATLAS Question Bank:",
-    FINAL_BANK.length,
-    "questions"
+finishModal.addEventListener(
+    "click",
+    event => {
+
+        if(event.target === finishModal){
+
+            closeFinishModal();
+
+        }
+
+    }
 );
 
-console.log(
-    "Mathematics:",
-    FINAL_BANK.filter(
-        q=>q.subject==="maths"
-    ).length
-);
+
+/* =========================================================
+   INITIAL
+   ========================================================= */
 
 console.log(
-    "Physics:",
-    FINAL_BANK.filter(
-        q=>q.subject==="physics"
-    ).length
-);
-
-console.log(
-    "Chemistry:",
-    FINAL_BANK.filter(
-        q=>q.subject==="chemistry"
-    ).length
-);
-
-console.log(
-    "Biology:",
-    FINAL_BANK.filter(
-        q=>q.subject==="biology"
-    ).length
+    "IAL ATLAS Question Bank loaded:",
+    Object.fromEntries(
+        Object.entries(FINAL_BANK)
+        .map(([key,value]) => [key,value.length])
+    )
 );
 
 </script>
