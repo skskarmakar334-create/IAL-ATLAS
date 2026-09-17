@@ -1,1071 +1,2419 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Past Papers Atlas | IAL ATLAS</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-
-<style>
-:root{
-    --bg:#05070d;
-    --panel:rgba(11,17,29,.78);
-    --panel2:rgba(15,23,38,.9);
-    --border:rgba(255,255,255,.09);
-    --text:#f4f7fb;
-    --muted:#91a0b8;
-    --cyan:#38bdf8;
-    --blue:#2563eb;
-    --green:#34d399;
-    --purple:#a78bfa;
-    --orange:#fb923c;
-}
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    min-height:100vh;
-    background:
-        radial-gradient(circle at 20% 10%,rgba(56,189,248,.10),transparent 28%),
-        radial-gradient(circle at 80% 20%,rgba(37,99,235,.10),transparent 30%),
-        linear-gradient(180deg,#05070d,#070b13 55%,#05070d);
-    color:var(--text);
-    font-family:Inter,sans-serif;
-    overflow-x:hidden;
-}
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-    background-size:50px 50px;
-    mask-image:linear-gradient(to bottom,black,transparent 90%);
-}
-
-a{
-    color:inherit;
-    text-decoration:none;
-}
-
-/* NAV */
-
-.nav{
-    position:sticky;
-    top:0;
-    z-index:50;
-    height:72px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 6%;
-    background:rgba(5,7,13,.78);
-    backdrop-filter:blur(20px);
-    border-bottom:1px solid var(--border);
-}
-
-.logo{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:20px;
-    font-weight:700;
-    letter-spacing:.5px;
-}
-
-.logo span{
-    color:var(--cyan);
-}
-
-.nav-right{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.status{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    color:#9caec8;
-    font-size:11px;
-    letter-spacing:1.5px;
-    text-transform:uppercase;
-}
-
-.status-dot{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:var(--green);
-    box-shadow:0 0 14px var(--green);
-}
-
-/* HERO */
-
-.hero{
-    max-width:1250px;
-    margin:auto;
-    padding:90px 24px 55px;
-    text-align:center;
-}
-
-.badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:8px 14px;
-    border:1px solid rgba(56,189,248,.25);
-    background:rgba(56,189,248,.07);
-    border-radius:999px;
-    color:#7dd3fc;
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:1.5px;
-    text-transform:uppercase;
-}
-
-.hero h1{
-    margin-top:22px;
-    font-family:"Space Grotesk",sans-serif;
-    font-size:clamp(42px,7vw,82px);
-    line-height:.95;
-    letter-spacing:-4px;
-}
-
-.hero h1 span{
-    color:var(--cyan);
-    text-shadow:0 0 35px rgba(56,189,248,.3);
-}
-
-.hero p{
-    max-width:700px;
-    margin:24px auto 0;
-    color:var(--muted);
-    line-height:1.8;
-    font-size:15px;
-}
-
-/* CONTROLS */
-
-.wrapper{
-    max-width:1250px;
-    margin:auto;
-    padding:0 24px 80px;
-}
-
-.control-panel{
-    padding:20px;
-    border:1px solid var(--border);
-    border-radius:22px;
-    background:var(--panel);
-    backdrop-filter:blur(18px);
-    box-shadow:0 20px 80px rgba(0,0,0,.25);
-}
-
-.search{
-    position:relative;
-    margin-bottom:18px;
-}
-
-.search input{
-    width:100%;
-    height:55px;
-    padding:0 20px;
-    border-radius:14px;
-    border:1px solid var(--border);
-    outline:none;
-    background:rgba(255,255,255,.035);
-    color:white;
-    font:inherit;
-}
-
-.search input:focus{
-    border-color:rgba(56,189,248,.55);
-    box-shadow:0 0 0 4px rgba(56,189,248,.06);
-}
-
-.filters{
-    display:flex;
-    gap:9px;
-    flex-wrap:wrap;
-}
-
-.filter{
-    cursor:pointer;
-    border:1px solid var(--border);
-    background:rgba(255,255,255,.035);
-    color:#aab8cc;
-    padding:10px 15px;
-    border-radius:10px;
-    font-size:12px;
-    font-weight:600;
-    transition:.2s;
-}
-
-.filter:hover{
-    border-color:rgba(56,189,248,.35);
-    color:white;
-}
-
-.filter.active{
-    background:rgba(56,189,248,.12);
-    color:#7dd3fc;
-    border-color:rgba(56,189,248,.4);
-}
-
-.select-row{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-    margin-top:15px;
-}
-
-select{
-    width:100%;
-    height:48px;
-    padding:0 14px;
-    border-radius:11px;
-    border:1px solid var(--border);
-    background:#0b111d;
-    color:#dbe7f5;
-    outline:none;
-    font:inherit;
-    font-size:13px;
-}
-
-/* RESULTS */
-
-.result-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin:35px 0 17px;
-}
-
-.result-header h2{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:24px;
-}
-
-.count{
-    color:var(--muted);
-    font-size:12px;
-}
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:16px;
-}
-
-.paper{
-    position:relative;
-    padding:23px;
-    border:1px solid var(--border);
-    border-radius:20px;
-    background:linear-gradient(145deg,rgba(15,23,38,.88),rgba(8,12,21,.88));
-    overflow:hidden;
-    transition:.25s;
-}
-
-.paper::before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:2px;
-    background:linear-gradient(90deg,transparent,var(--cyan),transparent);
-    opacity:.7;
-}
-
-.paper:hover{
-    transform:translateY(-4px);
-    border-color:rgba(56,189,248,.25);
-    box-shadow:0 15px 50px rgba(0,0,0,.3);
-}
-
-.paper-top{
-    display:flex;
-    justify-content:space-between;
-    gap:12px;
-    align-items:flex-start;
-}
-
-.unit{
-    color:#7dd3fc;
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:1px;
-    text-transform:uppercase;
-}
-
-.paper h3{
-    margin-top:8px;
-    font-family:"Space Grotesk",sans-serif;
-    font-size:20px;
-}
-
-.meta{
-    margin-top:8px;
-    color:var(--muted);
-    font-size:12px;
-}
-
-.subject-tag{
-    padding:6px 9px;
-    border-radius:8px;
-    background:rgba(56,189,248,.08);
-    border:1px solid rgba(56,189,248,.18);
-    color:#7dd3fc;
-    font-size:10px;
-    font-weight:800;
-}
-
-.links{
-    display:flex;
-    gap:9px;
-    flex-wrap:wrap;
-    margin-top:20px;
-}
-
-.link-btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:10px 13px;
-    border-radius:9px;
-    border:1px solid var(--border);
-    background:rgba(255,255,255,.035);
-    color:#dce8f7;
-    font-size:11px;
-    font-weight:700;
-    transition:.2s;
-}
-
-.link-btn:hover{
-    background:rgba(56,189,248,.1);
-    border-color:rgba(56,189,248,.35);
-    color:#7dd3fc;
-}
-
-.link-btn.primary{
-    background:rgba(56,189,248,.12);
-    border-color:rgba(56,189,248,.35);
-    color:#7dd3fc;
-}
-
-/* INFO */
-
-.info{
-    margin-top:30px;
-    padding:20px;
-    border:1px solid rgba(56,189,248,.14);
-    border-radius:16px;
-    background:rgba(56,189,248,.035);
-}
-
-.info h3{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:15px;
-    margin-bottom:8px;
-}
-
-.info p{
-    color:var(--muted);
-    font-size:12px;
-    line-height:1.7;
-}
-
-.empty{
-    grid-column:1/-1;
-    text-align:center;
-    padding:60px 20px;
-    border:1px dashed var(--border);
-    border-radius:20px;
-    color:var(--muted);
-}
-
-.footer{
-    text-align:center;
-    padding:35px 20px 50px;
-    color:#59677b;
-    font-size:11px;
-    letter-spacing:.5px;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:800px){
-    .cards{
-        grid-template-columns:1fr;
-    }
-
-    .select-row{
-        grid-template-columns:1fr;
-    }
-
-    .nav{
-        padding:0 20px;
-    }
-
-    .status{
-        display:none;
-    }
-
-    .hero{
-        padding-top:65px;
-    }
-
-    .hero h1{
-        letter-spacing:-2px;
-    }
-}
-
-@media(max-width:500px){
-    .wrapper{
-        padding:0 14px 60px;
-    }
-
-    .hero{
-        padding-left:15px;
-        padding-right:15px;
-    }
-
-    .paper{
-        padding:19px;
-    }
-}
-</style>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Past Papers Atlas | IAL ATLAS</title>
+
+    <meta
+        name="description"
+        content="IAL ATLAS Past Papers Atlas — find Pearson Edexcel International A Level past papers, mark schemes and examiner resources for Mathematics, Physics, Chemistry and Biology."
+    >
+
+    <meta
+        name="keywords"
+        content="Edexcel IAL past papers, International A Level past papers, Pearson Edexcel past papers, IAL Mathematics past papers, IAL Physics past papers, IAL Chemistry past papers, IAL Biology past papers, mark schemes"
+    >
+
+    <meta
+        name="author"
+        content="Shuvojit Karmakar"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
+    >
+
+    <link
+        rel="canonical"
+        href="https://ialatlas.com/past-papers.html"
+    >
+
+
+    <!-- OPEN GRAPH -->
+
+    <meta
+        property="og:title"
+        content="Past Papers Atlas | IAL ATLAS"
+    >
+
+    <meta
+        property="og:description"
+        content="Find Edexcel International A Level past papers and official examination resources through IAL ATLAS."
+    >
+
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <meta
+        property="og:url"
+        content="https://ialatlas.com/past-papers.html"
+    >
+
+    <meta
+        property="og:site_name"
+        content="IAL ATLAS"
+    >
+
+    <meta
+        property="og:image"
+        content="https://ialatlas.com/logo.png"
+    >
+
+
+    <!-- FONTS -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        :root {
+
+            --bg: #05070d;
+            --bg2: #080c15;
+            --panel: rgba(8, 15, 28, 0.72);
+            --panel2: rgba(10, 20, 37, 0.85);
+
+            --cyan: #00d9ff;
+            --cyan-soft: rgba(0, 217, 255, 0.14);
+
+            --blue: #2f7dff;
+
+            --text: #eef8ff;
+            --muted: #8ea5b9;
+
+            --border: rgba(0, 217, 255, 0.18);
+
+            --shadow:
+                0 20px 70px rgba(0, 0, 0, 0.42);
+
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(0, 150, 255, 0.11),
+                    transparent 34%
+                ),
+                radial-gradient(
+                    circle at 90% 40%,
+                    rgba(0, 217, 255, 0.06),
+                    transparent 30%
+                ),
+                var(--bg);
+
+            color: var(--text);
+
+            font-family:
+                "Inter",
+                sans-serif;
+
+            min-height: 100vh;
+
+            overflow-x: hidden;
+
+        }
+
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            z-index: -2;
+
+            opacity: 0.35;
+
+            background-image:
+                linear-gradient(
+                    rgba(0, 217, 255, 0.035) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(0, 217, 255, 0.035) 1px,
+                    transparent 1px
+                );
+
+            background-size:
+                70px 70px;
+
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    black,
+                    transparent 90%
+                );
+
+        }
+
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            z-index: 100;
+
+            opacity: 0.04;
+
+            background:
+                repeating-linear-gradient(
+                    to bottom,
+                    transparent 0,
+                    transparent 3px,
+                    rgba(255,255,255,0.12) 4px
+                );
+
+        }
+
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 50;
+
+            height: 78px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding:
+                0 5vw;
+
+            background:
+                rgba(5, 7, 13, 0.72);
+
+            border-bottom:
+                1px solid
+                rgba(0, 217, 255, 0.1);
+
+            backdrop-filter:
+                blur(18px);
+
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-weight: 700;
+
+            letter-spacing: 0.08em;
+
+        }
+
+
+        .brand img {
+
+            width: 42px;
+
+            height: 42px;
+
+            object-fit: contain;
+
+        }
+
+
+        .brand span {
+
+            font-size: 18px;
+
+        }
+
+
+        .nav {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 28px;
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+        }
+
+
+        .nav a {
+
+            transition:
+                color 0.25s ease;
+
+        }
+
+
+        .nav a:hover {
+
+            color: var(--cyan);
+
+        }
+
+
+        .system {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            font-size: 10px;
+
+            letter-spacing: 0.14em;
+
+            color: #86a7bb;
+
+        }
+
+
+        .dot {
+
+            width: 7px;
+
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: var(--cyan);
+
+            box-shadow:
+                0 0 12px
+                var(--cyan);
+
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+
+            position: relative;
+
+            max-width: 1250px;
+
+            margin: auto;
+
+            padding:
+                110px 5vw
+                75px;
+
+            text-align: center;
+
+        }
+
+
+        .hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 520px;
+
+            height: 520px;
+
+            left: 50%;
+
+            top: 30px;
+
+            transform:
+                translateX(-50%);
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(0, 217, 255, 0.09),
+                    transparent 68%
+                );
+
+            filter: blur(12px);
+
+            pointer-events: none;
+
+        }
+
+
+        .eyebrow {
+
+            position: relative;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            padding:
+                8px 14px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 999px;
+
+            color: var(--cyan);
+
+            background:
+                rgba(0, 217, 255, 0.05);
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.18em;
+
+        }
+
+
+        h1 {
+
+            position: relative;
+
+            margin:
+                24px auto 18px;
+
+            max-width: 900px;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(48px, 8vw, 92px);
+
+            line-height: 0.96;
+
+            letter-spacing:
+                -0.055em;
+
+        }
+
+
+        h1 span {
+
+            color: var(--cyan);
+
+            text-shadow:
+                0 0 35px
+                rgba(0, 217, 255, 0.3);
+
+        }
+
+
+        .hero-text {
+
+            position: relative;
+
+            max-width: 700px;
+
+            margin: auto;
+
+            color: var(--muted);
+
+            line-height: 1.8;
+
+            font-size: 15px;
+
+        }
+
+
+        /* =========================
+           OFFICIAL NOTICE
+        ========================= */
+
+        .notice {
+
+            max-width: 980px;
+
+            margin:
+                0 auto 55px;
+
+            padding: 22px 24px;
+
+            border:
+                1px solid
+                rgba(0, 217, 255, 0.2);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0, 217, 255, 0.08),
+                    rgba(10, 20, 37, 0.75)
+                );
+
+            border-radius: 18px;
+
+            box-shadow:
+                var(--shadow);
+
+        }
+
+
+        .notice-title {
+
+            color: var(--cyan);
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .notice p {
+
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+        }
+
+
+        .notice a {
+
+            color: var(--cyan);
+
+            font-weight: 600;
+
+        }
+
+
+        /* =========================
+           CONTROLS
+        ========================= */
+
+        .controls {
+
+            max-width: 1150px;
+
+            margin:
+                0 auto 45px;
+
+            padding:
+                25px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 22px;
+
+            background:
+                var(--panel);
+
+            backdrop-filter:
+                blur(18px);
+
+            box-shadow:
+                var(--shadow);
+
+        }
+
+
+        .controls-title {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .control-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 15px;
+
+        }
+
+
+        .search {
+
+            grid-column:
+                1 / -1;
+
+        }
+
+
+        input,
+        select {
+
+            width: 100%;
+
+            height: 50px;
+
+            padding:
+                0 16px;
+
+            color: var(--text);
+
+            background:
+                rgba(2, 7, 15, 0.8);
+
+            border:
+                1px solid
+                rgba(0, 217, 255, 0.15);
+
+            border-radius: 12px;
+
+            outline: none;
+
+            transition:
+                border 0.25s ease,
+                box-shadow 0.25s ease;
+
+        }
+
+
+        input::placeholder {
+            color: #607789;
+        }
+
+
+        input:focus,
+        select:focus {
+
+            border-color:
+                rgba(0, 217, 255, 0.6);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(0, 217, 255, 0.08);
+
+        }
+
+
+        option {
+
+            background:
+                #08101d;
+
+            color:
+                white;
+
+        }
+
+
+        /* =========================
+           PAPERS
+        ========================= */
+
+        .content {
+
+            max-width: 1150px;
+
+            margin: auto;
+
+            padding:
+                0 5vw 100px;
+
+        }
+
+
+        .result-count {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+        }
+
+
+        .result-count strong {
+
+            color: var(--cyan);
+
+        }
+
+
+        .papers {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 20px;
+
+        }
+
+
+        .paper {
+
+            position: relative;
+
+            padding: 25px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(11, 22, 39, 0.9),
+                    rgba(5, 10, 19, 0.9)
+                );
+
+            overflow: hidden;
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+
+        }
+
+
+        .paper::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+
+            height: 180px;
+
+            top: -100px;
+
+            right: -90px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(0, 217, 255, 0.08);
+
+            filter: blur(20px);
+
+        }
+
+
+        .paper:hover {
+
+            transform:
+                translateY(-7px);
+
+            border-color:
+                rgba(0, 217, 255, 0.45);
+
+            box-shadow:
+                0 25px 70px
+                rgba(0, 0, 0, 0.45);
+
+        }
+
+
+        .paper-top {
+
+            position: relative;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .subject-tag {
+
+            display: inline-flex;
+
+            padding:
+                6px 10px;
+
+            border-radius: 999px;
+
+            color: var(--cyan);
+
+            background:
+                var(--cyan-soft);
+
+            border:
+                1px solid
+                rgba(0, 217, 255, 0.15);
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.1em;
+
+        }
+
+
+        .year {
+
+            color:
+                #70889b;
+
+            font-size: 11px;
+
+        }
+
+
+        .paper h2 {
+
+            position: relative;
+
+            margin:
+                0 0 9px;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size: 24px;
+
+        }
+
+
+        .paper-description {
+
+            position: relative;
+
+            margin:
+                0 0 22px;
+
+            color:
+                var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+        }
+
+
+        .paper-meta {
+
+            position: relative;
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .meta {
+
+            padding:
+                6px 9px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            border-radius: 7px;
+
+            color:
+                #9db2c2;
+
+            background:
+                rgba(255,255,255,0.025);
+
+            font-size: 10px;
+
+        }
+
+
+        .paper-actions {
+
+            position: relative;
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 9px;
+
+        }
+
+
+        .action {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 42px;
+
+            padding:
+                0 14px;
+
+            border-radius: 10px;
+
+            border:
+                1px solid
+                rgba(0, 217, 255, 0.2);
+
+            background:
+                rgba(0, 217, 255, 0.06);
+
+            color:
+                #dffaff;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            transition:
+                all 0.25s ease;
+
+        }
+
+
+        .action:hover {
+
+            background:
+                rgba(0, 217, 255, 0.14);
+
+            border-color:
+                rgba(0, 217, 255, 0.55);
+
+            color:
+                white;
+
+        }
+
+
+        .action.primary {
+
+            background:
+                var(--cyan);
+
+            color:
+                #031018;
+
+            border-color:
+                var(--cyan);
+
+        }
+
+
+        .action.primary:hover {
+
+            box-shadow:
+                0 0 25px
+                rgba(0, 217, 255, 0.3);
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        /* =========================
+           SUBJECT LAUNCHER
+        ========================= */
+
+        .launcher {
+
+            margin-top: 60px;
+
+            padding: 28px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 22px;
+
+            background:
+                rgba(7, 14, 25, 0.75);
+
+        }
+
+
+        .launcher h2 {
+
+            margin:
+                0 0 8px;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+        }
+
+
+        .launcher p {
+
+            color:
+                var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+        }
+
+
+        .launcher-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 12px;
+
+            margin-top: 20px;
+
+        }
+
+
+        .launcher a {
+
+            min-height: 85px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            gap: 6px;
+
+            padding: 15px;
+
+            border:
+                1px solid
+                rgba(0, 217, 255, 0.12);
+
+            border-radius: 13px;
+
+            background:
+                rgba(0, 217, 255, 0.035);
+
+            transition:
+                all 0.25s ease;
+
+        }
+
+
+        .launcher a:hover {
+
+            border-color:
+                rgba(0, 217, 255, 0.45);
+
+            background:
+                rgba(0, 217, 255, 0.08);
+
+            transform:
+                translateY(-3px);
+
+        }
+
+
+        .launcher strong {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+        }
+
+
+        .launcher span {
+
+            color:
+                var(--muted);
+
+            font-size: 10px;
+
+        }
+
+
+        /* =========================
+           EMPTY STATE
+        ========================= */
+
+        .empty {
+
+            display: none;
+
+            text-align: center;
+
+            padding:
+                60px 20px;
+
+            border:
+                1px dashed
+                rgba(0, 217, 255, 0.18);
+
+            border-radius: 20px;
+
+            color:
+                var(--muted);
+
+        }
+
+
+        .empty.show {
+            display: block;
+        }
+
+
+        .empty strong {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color:
+                var(--text);
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size: 20px;
+
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            border-top:
+                1px solid
+                rgba(0, 217, 255, 0.1);
+
+            padding:
+                45px 5vw;
+
+            text-align: center;
+
+            background:
+                rgba(2, 5, 10, 0.8);
+
+        }
+
+
+        footer h2 {
+
+            margin: 0 0 7px;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            letter-spacing:
+                0.08em;
+
+        }
+
+
+        footer p {
+
+            margin: 5px 0;
+
+            color:
+                var(--muted);
+
+            font-size: 11px;
+
+        }
+
+
+        .footer-links {
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 20px;
+
+            margin:
+                25px 0;
+
+        }
+
+
+        .footer-links a {
+
+            color:
+                #7890a3;
+
+            font-size: 11px;
+
+        }
+
+
+        .footer-links a:hover {
+
+            color:
+                var(--cyan);
+
+        }
+
+
+        .disclaimer {
+
+            margin-top: 20px;
+
+            color:
+                #526879;
+
+            font-size: 10px;
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .nav {
+                display: none;
+            }
+
+
+            .papers {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .launcher-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            header {
+
+                height: 68px;
+
+                padding:
+                    0 20px;
+
+            }
+
+
+            .system {
+                display: none;
+            }
+
+
+            .hero {
+
+                padding:
+                    80px 20px 60px;
+
+            }
+
+
+            h1 {
+
+                font-size:
+                    clamp(45px, 15vw, 70px);
+
+            }
+
+
+            .control-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .search {
+
+                grid-column:
+                    auto;
+
+            }
+
+
+            .content {
+
+                padding:
+                    0 20px 70px;
+
+            }
+
+
+            .controls {
+
+                padding:
+                    18px;
+
+            }
+
+
+            .paper {
+
+                padding:
+                    20px;
+
+            }
+
+
+            .launcher-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .paper-actions {
+
+                flex-direction:
+                    column;
+
+            }
+
+
+            .action {
+
+                width: 100%;
+
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-<header class="nav">
-    <a href="index.html" class="logo">
-        IAL <span>ATLAS</span>
+
+<!-- HEADER -->
+
+<header>
+
+    <a
+        href="index.html"
+        class="brand"
+    >
+
+        <img
+            src="logo.png"
+            alt="IAL ATLAS"
+        >
+
+        <span>
+            IAL ATLAS
+        </span>
+
     </a>
 
-    <div class="nav-right">
-        <div class="status">
-            <span class="status-dot"></span>
-            SYSTEM ONLINE
-        </div>
+
+    <nav
+        class="nav"
+        aria-label="Main navigation"
+    >
+
+        <a href="index.html#subjects">
+            Subjects
+        </a>
+
+        <a href="formula-atlas.html">
+            Formula Atlas
+        </a>
+
+        <a href="theory-atlas.html">
+            Theory Atlas
+        </a>
+
+        <a href="past-papers.html">
+            Past Papers
+        </a>
+
+        <a href="about.html">
+            About
+        </a>
+
+    </nav>
+
+
+    <div class="system">
+
+        <span class="dot"></span>
+
+        SYSTEM ONLINE
+
     </div>
+
 </header>
+
+
+<!-- HERO -->
 
 <section class="hero">
 
-    <div class="badge">
-        PAST PAPERS ATLAS
+    <div class="eyebrow">
+        EXAMINATION RESOURCE SYSTEM
     </div>
 
+
     <h1>
-        Practice.<br>
-        <span>Master.</span>
+        Past Papers
+        <span>Atlas.</span>
     </h1>
 
-    <p>
-        Find Edexcel International A Level past papers,
-        mark schemes and examiner resources by subject,
-        unit and examination session.
+
+    <p class="hero-text">
+
+        A central hub for finding Pearson Edexcel
+        International A Level past papers, mark schemes
+        and examination resources across Mathematics,
+        Physics, Chemistry and Biology.
+
     </p>
 
 </section>
 
-<main class="wrapper">
 
-    <section class="control-panel">
+<!-- OFFICIAL NOTICE -->
+
+<div class="notice">
+
+    <div class="notice-title">
+        ⚡ Official Pearson source
+    </div>
+
+    <p>
+
+        IAL ATLAS does not host or redistribute copyrighted
+        examination papers. The buttons below take you to
+        Pearson Edexcel's official past-paper system, where
+        you can search the available materials for your
+        subject and examination series.
+
+        <a
+            href="https://qualifications.pearson.com/en/support/support-topics/exams/past-papers.html"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Open Pearson Past Papers →
+        </a>
+
+    </p>
+
+</div>
+
+
+<!-- CONTROLS -->
+
+<section
+    class="controls"
+    aria-label="Past paper filters"
+>
+
+    <div class="controls-title">
+        Find your paper
+    </div>
+
+
+    <div class="control-grid">
 
         <div class="search">
+
             <input
-                type="text"
+                type="search"
                 id="search"
-                placeholder="Search papers, units, subjects..."
+                placeholder="Search subject, unit, paper, year..."
+                autocomplete="off"
             >
+
         </div>
 
-        <div class="filters">
 
-            <button class="filter active" data-subject="All">
-                All
-            </button>
+        <select id="subjectFilter">
 
-            <button class="filter" data-subject="Mathematics">
+            <option value="all">
+                All Subjects
+            </option>
+
+            <option value="Mathematics">
                 Mathematics
-            </button>
+            </option>
 
-            <button class="filter" data-subject="Physics">
+            <option value="Physics">
                 Physics
-            </button>
+            </option>
 
-            <button class="filter" data-subject="Chemistry">
+            <option value="Chemistry">
                 Chemistry
-            </button>
+            </option>
 
-            <button class="filter" data-subject="Biology">
+            <option value="Biology">
                 Biology
-            </button>
+            </option>
 
-        </div>
-
-        <div class="select-row">
-
-            <select id="unitFilter">
-                <option value="All">All Units</option>
-            </select>
-
-            <select id="sessionFilter">
-                <option value="All">All Sessions</option>
-            </select>
-
-            <select id="yearFilter">
-                <option value="All">All Years</option>
-            </select>
-
-        </div>
-
-    </section>
+        </select>
 
 
-    <div class="result-header">
+        <select id="unitFilter">
 
-        <h2>Available Papers</h2>
+            <option value="all">
+                All Units
+            </option>
 
-        <div class="count" id="count">
-            0 papers
-        </div>
+            <option value="Unit 1">
+                Unit 1
+            </option>
+
+            <option value="Unit 2">
+                Unit 2
+            </option>
+
+            <option value="Unit 3">
+                Unit 3
+            </option>
+
+            <option value="Unit 4">
+                Unit 4
+            </option>
+
+            <option value="Unit 5">
+                Unit 5
+            </option>
+
+            <option value="Unit 6">
+                Unit 6
+            </option>
+
+            <option value="WST01">
+                WST01 — Statistics 1
+            </option>
+
+        </select>
+
+
+        <select id="yearFilter">
+
+            <option value="all">
+                All Years
+            </option>
+
+            <option value="2026">
+                2026
+            </option>
+
+            <option value="2025">
+                2025
+            </option>
+
+            <option value="2024">
+                2024
+            </option>
+
+            <option value="2023">
+                2023
+            </option>
+
+            <option value="2022">
+                2022
+            </option>
+
+            <option value="2021">
+                2021
+            </option>
+
+            <option value="2020">
+                2020
+            </option>
+
+            <option value="2019">
+                2019
+            </option>
+
+            <option value="2018">
+                2018
+            </option>
+
+        </select>
+
+
+        <select id="sessionFilter">
+
+            <option value="all">
+                All Sessions
+            </option>
+
+            <option value="January">
+                January
+            </option>
+
+            <option value="May / June">
+                May / June
+            </option>
+
+            <option value="October">
+                October
+            </option>
+
+        </select>
+
+    </div>
+
+</section>
+
+
+<!-- CONTENT -->
+
+<main class="content">
+
+
+    <div class="result-count">
+
+        <span>
+            Available resource routes
+        </span>
+
+        <strong id="count">
+            4 subjects
+        </strong>
 
     </div>
 
 
-    <section class="cards" id="cards"></section>
-
-
-    <div class="info">
-
-        <h3>Official Pearson Access</h3>
-
-        <p>
-            IAL ATLAS does not host copyrighted examination PDFs.
-            The buttons below take you to the relevant Pearson
-            Edexcel examination resources. Availability can vary
-            by year and access status.
-        </p>
-
-    </div>
-
-</main>
-
-
-<footer class="footer">
-    IAL ATLAS · Free student-built Edexcel IAL resource
-</footer>
-
-
-<script>
-
-/*
-==========================================================
-PAST PAPERS DATA
-==========================================================
-*/
-
-const papers = [
-
-    {
-        subject:"Mathematics",
-        unit:"WMA11",
-        title:"Pure Mathematics 1",
-        session:"January",
-        year:"2024"
-    },
-
-    {
-        subject:"Mathematics",
-        unit:"WMA11",
-        title:"Pure Mathematics 1",
-        session:"June",
-        year:"2024"
-    },
-
-    {
-        subject:"Mathematics",
-        unit:"WMA11",
-        title:"Pure Mathematics 1",
-        session:"October",
-        year:"2024"
-    },
-
-    {
-        subject:"Mathematics",
-        unit:"WMA12",
-        title:"Pure Mathematics 2",
-        session:"January",
-        year:"2024"
-    },
-
-    {
-        subject:"Mathematics",
-        unit:"WMA12",
-        title:"Pure Mathematics 2",
-        session:"June",
-        year:"2024"
-    },
-
-    {
-        subject:"Mathematics",
-        unit:"WMA13",
-        title:"Pure Mathematics 3",
-        session:"June",
-        year:"2024"
-    },
-
-    {
-        subject:"Mathematics",
-        unit:"WMA14",
-        title:"Pure Mathematics 4",
-        session:"October",
-        year:"2024"
-    },
-
-    {
-        subject:"Mathematics",
-        unit:"WME01",
-        title:"Mechanics 1",
-        session:"June",
-        year:"2024"
-    },
-
-    {
-        subject:"Mathematics",
-        unit:"WME02",
-        title:"Mechanics 2",
-        session:"October",
-        year:"2024"
-    },
-
-    {
-        subject:"Mathematics",
-        unit:"WST01",
-        title:"Statistics 1",
-        session:"June",
-        year:"2024"
-    },
-
-    {
-        subject:"Mathematics",
-        unit:"WST02",
-        title:"Statistics 2",
-        session:"October",
-        year:"2024"
-    },
-
-    {
-        subject:"Physics",
-        unit:"WPH11",
-        title:"Unit 1: Mechanics and Materials",
-        session:"June",
-        year:"2024"
-    },
-
-    {
-        subject:"Physics",
-        unit:"WPH12",
-        title:"Unit 2: Waves and Electricity",
-        session:"June",
-        year:"2024"
-    },
-
-    {
-        subject:"Physics",
-        unit:"WPH13",
-        title:"Unit 3: Practical Skills in Physics I",
-        session:"June",
-        year:"2024"
-    },
-
-    {
-        subject:"Physics",
-        unit:"WPH14",
-        title:"Unit 4: Further Mechanics, Fields and Particles",
-        session:"June",
-        year:"2024"
-    },
-
-    {
-        subject:"Physics",
-        unit:"WPH15",
-        title:"Unit 5: Thermodynamics, Radiation, Oscillations and Cosmology",
-        session:"October",
-        year:"2026"
-    },
-
-    {
-        subject:"Physics",
-        unit:"WPH16",
-        title:"Unit 6: Practical Skills in Physics II",
-        session:"October",
-        year:"2026"
-    },
-
-    {
-        subject:"Chemistry",
-        unit:"WCH11",
-        title:"Unit 1: Structure, Bonding and Introductory Organic Chemistry",
-        session:"June",
-        year:"2024"
-    },
-
-    {
-        subject:"Chemistry",
-        unit:"WCH12",
-        title:"Unit 2: Energetics, Group Chemistry, Halogenoalkanes and Alcohols",
-        session:"June",
-        year:"2024"
-    },
-
-    {
-        subject:"Chemistry",
-        unit:"WCH13",
-        title:"Unit 3: Practical Skills in Chemistry I",
-        session:"June",
-        year:"2024"
-    },
-
-    {
-        subject:"Chemistry",
-        unit:"WCH14",
-        title:"Unit 4: Rates, Equilibrium and Further Organic Chemistry",
-        session:"June",
-        year:"2024"
-    },
-
-    {
-        subject:"Chemistry",
-        unit:"WCH15",
-        title:"Unit 5: Transition Metals and Organic Nitrogen Chemistry",
-        session:"October",
-        year:"2026"
-    },
-
-    {
-        subject:"Chemistry",
-        unit:"WCH16",
-        title:"Unit 6: Practical Skills in Chemistry II",
-        session:"October",
-        year:"2026"
-    },
-
-    {
-        subject:"Biology",
-        unit:"WBI11",
-        title:"Unit 1: Molecules, Diet, Transport and Health",
-        session:"June",
-        year:"2024"
-    },
-
-    {
-        subject:"Biology",
-        unit:"WBI12",
-        title:"Unit 2: Cells, Development, Biodiversity and Conservation",
-        session:"June",
-        year:"2024"
-    },
-
-    {
-        subject:"Biology",
-        unit:"WBI13",
-        title:"Unit 3: Practical Skills in Biology I",
-        session:"June",
-        year:"2024"
-    },
-
-    {
-        subject:"Biology",
-        unit:"WBI14",
-        title:"Unit 4: Energy, Environment, Microbiology and Immunity",
-        session:"June",
-        year:"2024"
-    },
-
-    {
-        subject:"Biology",
-        unit:"WBI15",
-        title:"Unit 5: Respiration, Internal Environment, Coordination and Gene Technology",
-        session:"October",
-        year:"2026"
-    },
-
-    {
-        subject:"Biology",
-        unit:"WBI16",
-        title:"Unit 6: Practical Skills in Biology II",
-        session:"October",
-        year:"2026"
-    }
-
-];
-
-
-/*
-==========================================================
-PEARSON OFFICIAL SEARCH
-==========================================================
-*/
-
-const pearsonURL =
-"https://qualifications.pearson.com/en/support/support-topics/exams/past-papers.html";
-
-
-/*
-==========================================================
-ELEMENTS
-==========================================================
-*/
-
-const cards = document.getElementById("cards");
-const search = document.getElementById("search");
-const unitFilter = document.getElementById("unitFilter");
-const sessionFilter = document.getElementById("sessionFilter");
-const yearFilter = document.getElementById("yearFilter");
-const count = document.getElementById("count");
-
-let activeSubject = "All";
-
-
-/*
-==========================================================
-FILTER BUTTONS
-==========================================================
-*/
-
-document.querySelectorAll(".filter").forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        document
-            .querySelectorAll(".filter")
-            .forEach(b => b.classList.remove("active"));
-
-        button.classList.add("active");
-
-        activeSubject = button.dataset.subject;
-
-        updateFilters();
-        render();
-
-    });
-
-});
-
-
-/*
-==========================================================
-DYNAMIC FILTER OPTIONS
-==========================================================
-*/
-
-function updateFilters(){
-
-    const filtered = papers.filter(p =>
-        activeSubject === "All" ||
-        p.subject === activeSubject
-    );
-
-    const units = [...new Set(filtered.map(p => p.unit))].sort();
-    const sessions = [...new Set(filtered.map(p => p.session))].sort();
-    const years = [...new Set(filtered.map(p => p.year))].sort((a,b)=>b-a);
-
-    unitFilter.innerHTML =
-        `<option value="All">All Units</option>` +
-        units.map(u => `<option value="${u}">${u}</option>`).join("");
-
-    sessionFilter.innerHTML =
-        `<option value="All">All Sessions</option>` +
-        sessions.map(s => `<option value="${s}">${s}</option>`).join("");
-
-    yearFilter.innerHTML =
-        `<option value="All">All Years</option>` +
-        years.map(y => `<option value="${y}">${y}</option>`).join("");
-}
-
-
-/*
-==========================================================
-RENDER
-==========================================================
-*/
-
-function render(){
-
-    const query = search.value.toLowerCase().trim();
-
-    const selectedUnit = unitFilter.value;
-    const selectedSession = sessionFilter.value;
-    const selectedYear = yearFilter.value;
-
-    const filtered = papers.filter(p => {
-
-        const subjectMatch =
-            activeSubject === "All" ||
-            p.subject === activeSubject;
-
-        const unitMatch =
-            selectedUnit === "All" ||
-            p.unit === selectedUnit;
-
-        const sessionMatch =
-            selectedSession === "All" ||
-            p.session === selectedSession;
-
-        const yearMatch =
-            selectedYear === "All" ||
-            p.year === selectedYear;
-
-        const text =
-            `${p.subject} ${p.unit} ${p.title} ${p.session} ${p.year}`
-            .toLowerCase();
-
-        const searchMatch =
-            !query || text.includes(query);
-
-        return (
-            subjectMatch &&
-            unitMatch &&
-            sessionMatch &&
-            yearMatch &&
-            searchMatch
-        );
-
-    });
-
-
-    count.textContent =
-        `${filtered.length} ${filtered.length === 1 ? "paper" : "papers"}`;
-
-
-    if(!filtered.length){
-
-        cards.innerHTML = `
-            <div class="empty">
-                <h3>No papers found</h3>
-                <p style="margin-top:8px">
-                    Try another subject, unit, year or search term.
-                </p>
-            </div>
-        `;
-
-        return;
-    }
-
-
-    cards.innerHTML = filtered.map(p => `
-
-        <article class="paper">
+    <section
+        class="papers"
+        id="papers"
+    >
+
+
+        <!-- MATHEMATICS -->
+
+        <article
+            class="paper"
+            data-subject="Mathematics"
+            data-unit="all"
+            data-year="all"
+            data-session="all"
+            data-search="mathematics maths edexcel ial wma wfm wme statistics wst01 pure mechanics past papers mark scheme examiner report"
+        >
 
             <div class="paper-top">
 
-                <div>
+                <span class="subject-tag">
+                    MATHEMATICS
+                </span>
 
-                    <div class="unit">
-                        ${p.unit}
-                    </div>
-
-                    <h3>
-                        ${p.title}
-                    </h3>
-
-                    <div class="meta">
-                        ${p.session} · ${p.year}
-                    </div>
-
-                </div>
-
-                <div class="subject-tag">
-                    ${p.subject}
-                </div>
+                <span class="year">
+                    WFM / WME / WST
+                </span>
 
             </div>
 
 
-            <div class="links">
+            <h2>
+                Mathematics
+            </h2>
+
+
+            <p class="paper-description">
+
+                Access Pearson Edexcel International A Level
+                Mathematics papers and search for Pure
+                Mathematics, Mechanics and Statistics units.
+
+            </p>
+
+
+            <div class="paper-meta">
+
+                <span class="meta">
+                    WFM
+                </span>
+
+                <span class="meta">
+                    WME
+                </span>
+
+                <span class="meta">
+                    WST
+                </span>
+
+                <span class="meta">
+                    Question Papers
+                </span>
+
+                <span class="meta">
+                    Mark Schemes
+                </span>
+
+            </div>
+
+
+            <div class="paper-actions">
 
                 <a
-                    class="link-btn primary"
-                    href="${pearsonURL}"
+                    class="action primary"
+                    href="https://qualifications.pearson.com/en/support/support-topics/exams/past-papers.html"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    Question Paper ↗
+                    SEARCH PAPERS →
                 </a>
 
                 <a
-                    class="link-btn"
-                    href="${pearsonURL}"
+                    class="action"
+                    href="https://qualifications.pearson.com/en/support/support-topics/exams/past-papers.html"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    Mark Scheme ↗
-                </a>
-
-                <a
-                    class="link-btn"
-                    href="${pearsonURL}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Examiner Report ↗
+                    MARK SCHEMES
                 </a>
 
             </div>
 
         </article>
 
-    `).join("");
+
+        <!-- PHYSICS -->
+
+        <article
+            class="paper"
+            data-subject="Physics"
+            data-unit="all"
+            data-year="all"
+            data-session="all"
+            data-search="physics edexcel ial wph11 wph12 wph13 wph14 wph15 wph16 past papers mark schemes examiner reports"
+        >
+
+            <div class="paper-top">
+
+                <span class="subject-tag">
+                    PHYSICS
+                </span>
+
+                <span class="year">
+                    WPH11–WPH16
+                </span>
+
+            </div>
+
+
+            <h2>
+                Physics
+            </h2>
+
+
+            <p class="paper-description">
+
+                Find Pearson Edexcel International A Level
+                Physics examination papers, mark schemes
+                and other available assessment materials.
+
+            </p>
+
+
+            <div class="paper-meta">
+
+                <span class="meta">
+                    WPH11
+                </span>
+
+                <span class="meta">
+                    WPH12
+                </span>
+
+                <span class="meta">
+                    WPH13
+                </span>
+
+                <span class="meta">
+                    WPH14–16
+                </span>
+
+            </div>
+
+
+            <div class="paper-actions">
+
+                <a
+                    class="action primary"
+                    href="https://qualifications.pearson.com/en/support/support-topics/exams/past-papers.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    SEARCH PAPERS →
+                </a>
+
+                <a
+                    class="action"
+                    href="https://qualifications.pearson.com/en/support/support-topics/exams/past-papers.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    MARK SCHEMES
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- CHEMISTRY -->
+
+        <article
+            class="paper"
+            data-subject="Chemistry"
+            data-unit="all"
+            data-year="all"
+            data-session="all"
+            data-search="chemistry edexcel ial wch11 wch12 wch13 wch14 wch15 wch16 past papers mark schemes examiner reports"
+        >
+
+            <div class="paper-top">
+
+                <span class="subject-tag">
+                    CHEMISTRY
+                </span>
+
+                <span class="year">
+                    WCH11–WCH16
+                </span>
+
+            </div>
+
+
+            <h2>
+                Chemistry
+            </h2>
+
+
+            <p class="paper-description">
+
+                Search Pearson Edexcel International A Level
+                Chemistry papers, mark schemes and available
+                examination resources.
+
+            </p>
+
+
+            <div class="paper-meta">
+
+                <span class="meta">
+                    WCH11
+                </span>
+
+                <span class="meta">
+                    WCH12
+                </span>
+
+                <span class="meta">
+                    WCH13
+                </span>
+
+                <span class="meta">
+                    WCH14–16
+                </span>
+
+            </div>
+
+
+            <div class="paper-actions">
+
+                <a
+                    class="action primary"
+                    href="https://qualifications.pearson.com/en/support/support-topics/exams/past-papers.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    SEARCH PAPERS →
+                </a>
+
+                <a
+                    class="action"
+                    href="https://qualifications.pearson.com/en/support/support-topics/exams/past-papers.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    MARK SCHEMES
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- BIOLOGY -->
+
+        <article
+            class="paper"
+            data-subject="Biology"
+            data-unit="all"
+            data-year="all"
+            data-session="all"
+            data-search="biology edexcel ial wbi11 wbi12 wbi13 wbi14 wbi15 wbi16 past papers mark schemes examiner reports"
+        >
+
+            <div class="paper-top">
+
+                <span class="subject-tag">
+                    BIOLOGY
+                </span>
+
+                <span class="year">
+                    WBI11–WBI16
+                </span>
+
+            </div>
+
+
+            <h2>
+                Biology
+            </h2>
+
+
+            <p class="paper-description">
+
+                Search Pearson Edexcel International A Level
+                Biology examination papers, mark schemes and
+                available practical assessment resources.
+
+            </p>
+
+
+            <div class="paper-meta">
+
+                <span class="meta">
+                    WBI11
+                </span>
+
+                <span class="meta">
+                    WBI12
+                </span>
+
+                <span class="meta">
+                    WBI13
+                </span>
+
+                <span class="meta">
+                    WBI14–16
+                </span>
+
+            </div>
+
+
+            <div class="paper-actions">
+
+                <a
+                    class="action primary"
+                    href="https://qualifications.pearson.com/en/support/support-topics/exams/past-papers.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    SEARCH PAPERS →
+                </a>
+
+                <a
+                    class="action"
+                    href="https://qualifications.pearson.com/en/support/support-topics/exams/past-papers.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    MARK SCHEMES
+                </a>
+
+            </div>
+
+        </article>
+
+
+    </section>
+
+
+    <div
+        class="empty"
+        id="empty"
+    >
+
+        <strong>
+            No matching resource
+        </strong>
+
+        Try another subject, unit or search term.
+
+    </div>
+
+
+    <!-- SUBJECT LAUNCHER -->
+
+    <section class="launcher">
+
+        <h2>
+            Continue your revision.
+        </h2>
+
+
+        <p>
+
+            Jump directly into the IAL ATLAS subject
+            resources or revision systems.
+
+        </p>
+
+
+        <div class="launcher-grid">
+
+            <a href="mathematics.html">
+
+                <strong>
+                    📐 Mathematics
+                </strong>
+
+                <span>
+                    Subject Atlas →
+                </span>
+
+            </a>
+
+
+            <a href="physics.html">
+
+                <strong>
+                    ⚛️ Physics
+                </strong>
+
+                <span>
+                    Subject Atlas →
+                </span>
+
+            </a>
+
+
+            <a href="chemistry.html">
+
+                <strong>
+                    🧪 Chemistry
+                </strong>
+
+                <span>
+                    Subject Atlas →
+                </span>
+
+            </a>
+
+
+            <a href="biology.html">
+
+                <strong>
+                    🧬 Biology
+                </strong>
+
+                <span>
+                    Subject Atlas →
+                </span>
+
+            </a>
+
+
+            <a href="formula-atlas.html">
+
+                <strong>
+                    ∑ Formula Atlas
+                </strong>
+
+                <span>
+                    Essential formulas →
+                </span>
+
+            </a>
+
+
+            <a href="theory-atlas.html">
+
+                <strong>
+                    Ψ Theory Atlas
+                </strong>
+
+                <span>
+                    Exam theory →
+                </span>
+
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h2>
+        IAL ATLAS
+    </h2>
+
+
+    <p>
+        Explore • Learn • Master
+    </p>
+
+
+    <div class="footer-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="formula-atlas.html">
+            Formula Atlas
+        </a>
+
+        <a href="theory-atlas.html">
+            Theory Atlas
+        </a>
+
+        <a href="past-papers.html">
+            Past Papers
+        </a>
+
+        <a href="about.html">
+            About
+        </a>
+
+    </div>
+
+
+    <p>
+        © 2026 IAL ATLAS • Independent student resource
+    </p>
+
+
+    <p class="disclaimer">
+
+        IAL ATLAS is not affiliated with or endorsed by
+        Pearson Edexcel.
+
+    </p>
+
+</footer>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+const search =
+    document.getElementById("search");
+
+const subjectFilter =
+    document.getElementById("subjectFilter");
+
+const unitFilter =
+    document.getElementById("unitFilter");
+
+const yearFilter =
+    document.getElementById("yearFilter");
+
+const sessionFilter =
+    document.getElementById("sessionFilter");
+
+const papers =
+    [...document.querySelectorAll(".paper")];
+
+const count =
+    document.getElementById("count");
+
+const empty =
+    document.getElementById("empty");
+
+
+function filterPapers() {
+
+    const query =
+        search.value
+            .toLowerCase()
+            .trim();
+
+    const subject =
+        subjectFilter.value;
+
+    const unit =
+        unitFilter.value;
+
+    const year =
+        yearFilter.value;
+
+    const session =
+        sessionFilter.value;
+
+
+    let visible = 0;
+
+
+    papers.forEach(paper => {
+
+        const paperSubject =
+            paper.dataset.subject;
+
+        const paperUnit =
+            paper.dataset.unit;
+
+        const paperYear =
+            paper.dataset.year;
+
+        const paperSession =
+            paper.dataset.session;
+
+        const text =
+            paper.dataset.search
+                .toLowerCase();
+
+
+        const matchesQuery =
+            !query ||
+            text.includes(query) ||
+            paper.innerText
+                .toLowerCase()
+                .includes(query);
+
+
+        const matchesSubject =
+            subject === "all" ||
+            paperSubject === subject;
+
+
+        const matchesUnit =
+            unit === "all" ||
+            paperUnit === "all" ||
+            paperUnit === unit ||
+            paper.dataset.search
+                .toLowerCase()
+                .includes(unit.toLowerCase());
+
+
+        const matchesYear =
+            year === "all" ||
+            paperYear === "all" ||
+            paperYear === year ||
+            paper.dataset.search
+                .toLowerCase()
+                .includes(year);
+
+
+        const matchesSession =
+            session === "all" ||
+            paperSession === "all" ||
+            paperSession === session;
+
+
+        const show =
+            matchesQuery &&
+            matchesSubject &&
+            matchesUnit &&
+            matchesYear &&
+            matchesSession;
+
+
+        paper.style.display =
+            show ? "" : "none";
+
+
+        if (show) {
+            visible++;
+        }
+
+    });
+
+
+    count.textContent =
+        visible +
+        (visible === 1
+            ? " resource"
+            : " resources");
+
+
+    empty.classList.toggle(
+        "show",
+        visible === 0
+    );
 
 }
 
 
-/*
-==========================================================
-EVENTS
-==========================================================
-*/
+search.addEventListener(
+    "input",
+    filterPapers
+);
 
-search.addEventListener("input", render);
+subjectFilter.addEventListener(
+    "change",
+    filterPapers
+);
 
-unitFilter.addEventListener("change", render);
+unitFilter.addEventListener(
+    "change",
+    filterPapers
+);
 
-sessionFilter.addEventListener("change", render);
+yearFilter.addEventListener(
+    "change",
+    filterPapers
+);
 
-yearFilter.addEventListener("change", render);
+sessionFilter.addEventListener(
+    "change",
+    filterPapers
+);
 
 
-/*
-==========================================================
-INITIALIZE
-==========================================================
-*/
-
-updateFilters();
-render();
+filterPapers();
 
 </script>
 
+
 </body>
+
 </html>
