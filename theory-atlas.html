@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Theory Atlas | IAL ATLAS</title>
+<title>Theory Atlas | Physics U1 | IAL ATLAS</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,9 +17,7 @@
     --border:rgba(255,255,255,.09);
     --text:#f4f7fb;
     --muted:#91a0b8;
-    --math:#9b7cff;
     --physics:#38bdf8;
-    --chem:#34d399;
 }
 
 *{
@@ -30,9 +28,9 @@
 
 body{
     background:
-        radial-gradient(circle at 15% 10%,rgba(155,124,255,.11),transparent 28%),
-        radial-gradient(circle at 85% 20%,rgba(52,211,153,.08),transparent 25%),
-        #05070d;
+    radial-gradient(circle at 15% 10%,rgba(56,189,248,.11),transparent 28%),
+    radial-gradient(circle at 85% 20%,rgba(56,189,248,.06),transparent 25%),
+    var(--bg);
     color:var(--text);
     font-family:Inter,sans-serif;
     min-height:100vh;
@@ -44,8 +42,8 @@ body:before{
     inset:0;
     pointer-events:none;
     background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
     background-size:45px 45px;
     mask-image:linear-gradient(to bottom,black,transparent);
 }
@@ -54,8 +52,8 @@ header{
     position:sticky;
     top:0;
     z-index:20;
-    background:rgba(5,7,13,.78);
     backdrop-filter:blur(18px);
+    background:rgba(5,7,13,.8);
     border-bottom:1px solid var(--border);
 }
 
@@ -65,7 +63,6 @@ header{
     padding:20px 24px;
     display:flex;
     justify-content:space-between;
-    align-items:center;
 }
 
 .logo{
@@ -75,12 +72,12 @@ header{
 }
 
 .logo span{
-    color:#38bdf8;
+    color:var(--physics);
 }
 
 .nav-tag{
-    font-size:12px;
     color:#71809a;
+    font-size:12px;
     letter-spacing:2px;
     text-transform:uppercase;
 }
@@ -88,17 +85,17 @@ header{
 .hero{
     max-width:1250px;
     margin:auto;
-    padding:80px 24px 45px;
+    padding:75px 24px 45px;
 }
 
 .badge{
     display:inline-block;
     padding:8px 13px;
-    border:1px solid rgba(155,124,255,.28);
-    background:rgba(155,124,255,.07);
+    border:1px solid rgba(56,189,248,.3);
+    background:rgba(56,189,248,.07);
     border-radius:30px;
-    color:#b8a7ff;
-    font-size:12px;
+    color:#7dd3fc;
+    font-size:11px;
     font-weight:700;
     letter-spacing:1.5px;
     text-transform:uppercase;
@@ -106,7 +103,7 @@ header{
 
 h1{
     font-family:"Space Grotesk";
-    font-size:clamp(44px,7vw,82px);
+    font-size:clamp(44px,7vw,80px);
     line-height:.95;
     letter-spacing:-4px;
     margin-top:22px;
@@ -115,9 +112,8 @@ h1{
 .hero p{
     max-width:720px;
     color:var(--muted);
-    font-size:16px;
     line-height:1.8;
-    margin-top:24px;
+    margin-top:23px;
 }
 
 .controls{
@@ -129,40 +125,35 @@ h1{
 .search{
     width:100%;
     padding:16px 20px;
-    border-radius:14px;
-    border:1px solid var(--border);
     background:rgba(255,255,255,.035);
+    border:1px solid var(--border);
+    border-radius:14px;
     color:white;
     outline:none;
     font-size:15px;
 }
 
-.search:focus{
-    border-color:rgba(155,124,255,.55);
-}
-
 .filters{
     display:flex;
     flex-wrap:wrap;
-    gap:10px;
-    margin-top:15px;
+    gap:9px;
+    margin-top:14px;
 }
 
-button{
+.filters button{
     border:1px solid var(--border);
     background:rgba(255,255,255,.035);
     color:#aebbd0;
-    padding:10px 16px;
+    padding:9px 15px;
     border-radius:30px;
     cursor:pointer;
-    transition:.2s;
 }
 
-button:hover,
-button.active{
+.filters button:hover,
+.filters button.active{
     color:white;
-    border-color:#9b7cff;
-    background:rgba(155,124,255,.10);
+    border-color:var(--physics);
+    background:rgba(56,189,248,.1);
 }
 
 .container{
@@ -171,18 +162,14 @@ button.active{
     padding:0 24px 80px;
 }
 
-.subject{
-    margin-top:38px;
-}
-
-.subject-header{
+.unit-header{
     display:flex;
     align-items:center;
     gap:14px;
-    margin-bottom:20px;
+    margin:30px 0 25px;
 }
 
-.subject-header h2{
+.unit-header h2{
     font-family:"Space Grotesk";
     font-size:28px;
 }
@@ -193,19 +180,19 @@ button.active{
     background:var(--border);
 }
 
-.category{
-    margin-top:25px;
+.section{
+    margin-top:38px;
 }
 
-.category-title{
-    font-size:13px;
+.section-title{
+    color:#7dd3fc;
+    font-size:12px;
+    letter-spacing:1.7px;
     text-transform:uppercase;
-    letter-spacing:1.5px;
-    color:#8492a9;
-    margin-bottom:12px;
+    margin-bottom:14px;
 }
 
-.theory-card{
+.card{
     background:linear-gradient(
         145deg,
         rgba(255,255,255,.055),
@@ -215,59 +202,59 @@ button.active{
     border-radius:18px;
     padding:25px;
     margin-bottom:14px;
-    transition:.25s;
+    transition:.22s;
 }
 
-.theory-card:hover{
+.card:hover{
     transform:translateY(-3px);
-    border-color:rgba(155,124,255,.45);
+    border-color:rgba(56,189,248,.45);
 }
 
-.type{
+.label{
     display:inline-block;
-    font-size:10px;
-    text-transform:uppercase;
-    letter-spacing:1.3px;
     padding:6px 9px;
     border-radius:20px;
-    background:rgba(155,124,255,.10);
-    color:#b8a7ff;
+    background:rgba(56,189,248,.09);
+    color:#7dd3fc;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1.2px;
 }
 
-.theory-card h3{
+.card h3{
     font-family:"Space Grotesk";
     font-size:20px;
-    margin:14px 0;
+    margin:13px 0;
 }
 
 .question{
     padding:15px 17px;
-    background:rgba(0,0,0,.22);
-    border-left:3px solid #9b7cff;
-    border-radius:8px;
-    line-height:1.7;
+    border-left:3px solid var(--physics);
+    border-radius:7px;
+    background:rgba(0,0,0,.23);
     color:#e7ebf2;
+    line-height:1.7;
 }
 
 .answer{
     margin-top:17px;
     color:#aab6c9;
-    line-height:1.75;
+    line-height:1.8;
     font-size:14px;
 }
 
 .points{
     margin-top:15px;
-    padding:14px 17px;
+    padding:15px 17px;
     border:1px solid var(--border);
     border-radius:10px;
-    color:#8f9db3;
+    color:#8d9bb1;
     font-size:13px;
     line-height:1.8;
 }
 
 .points strong{
-    color:#d9dfeb;
+    color:#dbe2ec;
 }
 
 .hidden{
@@ -276,26 +263,15 @@ button.active{
 
 footer{
     border-top:1px solid var(--border);
-    padding:28px 24px;
+    padding:28px;
     text-align:center;
     color:#647189;
     font-size:12px;
 }
 
 @media(max-width:600px){
-
-    .hero{
-        padding-top:55px;
-    }
-
-    h1{
-        letter-spacing:-2px;
-    }
-
-    .nav-tag{
-        display:none;
-    }
-
+    h1{letter-spacing:-2px}
+    .nav-tag{display:none}
 }
 
 </style>
@@ -304,316 +280,713 @@ footer{
 <body>
 
 <header>
+<div class="nav">
 
-    <div class="nav">
-
-        <div class="logo">
-            IAL <span>ATLAS</span>
-        </div>
-
-        <div class="nav-tag">
-            Theory Atlas
-        </div>
-
+    <div class="logo">
+        IAL <span>ATLAS</span>
     </div>
 
+    <div class="nav-tag">
+        Theory Atlas · Physics
+    </div>
+
+</div>
 </header>
 
 
 <section class="hero">
 
-    <span class="badge">
-        Theory Atlas
-    </span>
+<span class="badge">
+Physics · WPH11
+</span>
 
-    <h1>
-        Understand the theory.<br>
-        Master the exam.
-    </h1>
+<h1>
+Mechanics<br>
+& Materials
+</h1>
 
-    <p>
-        A structured exam-focused theory bank containing
-        long-answer questions, 6-mark theories, S1 theory
-        and other essential theoretical knowledge.
-    </p>
+<p>
+Specification-focused theory revision for Pearson Edexcel
+International A Level Physics Unit 1.
+</p>
 
 </section>
 
 
 <div class="controls">
 
-    <input
-        id="search"
-        class="search"
-        placeholder="Search theories, questions, topics..."
-    >
+<input
+    id="search"
+    class="search"
+    placeholder="Search a theory, definition or question..."
+>
 
-    <div class="filters">
+<div class="filters">
 
-        <button class="active"
-                onclick="filterSubject('all',this)">
-            All
-        </button>
+<button class="active"
+onclick="setFilter('all',this)">
+All
+</button>
 
-        <button onclick="filterSubject('math',this)">
-            Mathematics
-        </button>
+<button onclick="setFilter('long',this)">
+6-Mark / Long
+</button>
 
-        <button onclick="filterSubject('physics',this)">
-            Physics
-        </button>
+<button onclick="setFilter('s1',this)">
+S1 Theory
+</button>
 
-        <button onclick="filterSubject('chem',this)">
-            Chemistry
-        </button>
+<button onclick="setFilter('other',this)">
+Other Theory
+</button>
 
-        <button onclick="filterType('long',this)">
-            6-Mark / Long
-        </button>
-
-        <button onclick="filterType('s1',this)">
-            S1 Theory
-        </button>
-
-        <button onclick="filterType('other',this)">
-            Other Theory
-        </button>
-
-    </div>
+</div>
 
 </div>
 
 
 <main class="container">
 
-
-<!-- MATHEMATICS -->
-
-<section class="subject" data-subject="math">
-
-    <div class="subject-header">
-        <h2>Mathematics</h2>
-        <div class="line"></div>
-    </div>
+<div class="unit-header">
+<h2>WPH11 · Unit 1 Theory</h2>
+<div class="line"></div>
+</div>
 
 
-    <div class="category">
+<!-- MECHANICS LONG THEORY -->
 
-        <div class="category-title">
-            6-Mark / Long Theory
-        </div>
+<section class="section">
 
-        <article class="theory-card" data-type="long">
-
-            <span class="type">
-                6-Mark Theory
-            </span>
-
-            <h3>Mathematical Proof</h3>
-
-            <div class="question">
-                Explain how a mathematical statement can be proved
-                using a logical sequence of valid steps.
-            </div>
-
-            <div class="answer">
-                A mathematical proof establishes that a statement is
-                true by beginning with accepted facts, definitions or
-                previously established results and applying valid
-                mathematical reasoning step by step.
-            </div>
-
-            <div class="points">
-                <strong>Key points:</strong><br>
-                Clear assumptions · Logical progression · Valid reasoning ·
-                Correct conclusion
-            </div>
-
-        </article>
-
-    </div>
+<div class="section-title">
+Mechanics · 6-Mark / Long Theory
+</div>
 
 
-    <div class="category">
+<article class="card" data-type="long">
 
-        <div class="category-title">
-            S1 Theory
-        </div>
+<span class="label">Extended Theory</span>
 
-        <article class="theory-card" data-type="s1">
+<h3>Projectile Motion</h3>
 
-            <span class="type">
-                S1 Theory
-            </span>
+<div class="question">
+Explain why the horizontal and vertical components of the motion
+of a projectile can be treated independently.
+</div>
 
-            <h3>Statistical Population</h3>
+<div class="answer">
+A projectile moving freely under gravity has two perpendicular
+components of motion. Horizontally, if air resistance is neglected,
+there is no resultant horizontal force, so the horizontal velocity
+remains constant. Vertically, the projectile experiences a downward
+gravitational acceleration g.
 
-            <div class="question">
-                Define a population in statistics.
-            </div>
+The horizontal motion therefore determines how far the projectile
+travels horizontally, while the vertical motion determines its
+vertical position. The two components occur simultaneously but can
+be analysed separately and then combined to describe the complete
+motion.
+</div>
 
-            <div class="answer">
-                A population is the complete set of individuals or objects
-                that are being studied.
-            </div>
+<div class="points">
+<strong>Key marking points:</strong><br>
+Horizontal acceleration is zero · horizontal velocity is constant ·
+vertical acceleration is g downward · components are independent ·
+both motions occur simultaneously
+</div>
 
-        </article>
+</article>
 
-    </div>
+
+<article class="card" data-type="long">
+
+<span class="label">Extended Theory</span>
+
+<h3>Newton's Laws and Equilibrium</h3>
+
+<div class="question">
+Explain how Newton's laws can be used to analyse an object that is
+at rest or moving at constant velocity.
+</div>
+
+<div class="answer">
+Newton's second law states that the resultant force on an object is
+equal to its mass multiplied by its acceleration. If the object is at
+rest or moving with constant velocity, its acceleration is zero.
+Therefore the resultant force is zero.
+
+The forces acting on the object must consequently balance. A free-body
+diagram can be used to identify all the forces acting on the object
+and their directions. Resolving forces into suitable directions allows
+the equilibrium conditions to be checked quantitatively.
+</div>
+
+<div class="points">
+<strong>Key marking points:</strong><br>
+ΣF = ma · a = 0 · resultant force = 0 · forces balance ·
+appropriate force diagram/resolution
+</div>
+
+</article>
+
+
+<article class="card" data-type="long">
+
+<span class="label">Extended Theory</span>
+
+<h3>Conservation of Momentum</h3>
+
+<div class="question">
+Explain the principle of conservation of linear momentum and how it
+can be applied to collisions or interactions.
+</div>
+
+<div class="answer">
+Momentum is the product of mass and velocity. In an isolated system,
+where no resultant external force acts, the total momentum remains
+constant.
+
+For an interaction between objects, the total momentum before the
+interaction equals the total momentum after the interaction. Momentum
+must be treated as a vector quantity, so a chosen positive direction
+must be used consistently when solving one-dimensional problems.
+</div>
+
+<div class="points">
+<strong>Key marking points:</strong><br>
+p = mv · isolated system · no resultant external force ·
+total momentum conserved · direction/sign convention
+</div>
+
+</article>
+
+
+<article class="card" data-type="long">
+
+<span class="label">Extended Theory</span>
+
+<h3>Principle of Moments</h3>
+
+<div class="question">
+Explain how the principle of moments can be used to determine whether
+an extended rigid body is in equilibrium.
+</div>
+
+<div class="answer">
+The moment of a force about an axis is the force multiplied by the
+perpendicular distance between the line of action of the force and
+the axis.
+
+For an extended rigid body in equilibrium, the sum of the clockwise
+moments about any chosen axis equals the sum of the anticlockwise
+moments. The centre of gravity must also be considered because the
+weight of the body acts through its centre of gravity.
+</div>
+
+<div class="points">
+<strong>Key marking points:</strong><br>
+Moment = force × perpendicular distance · clockwise moments ·
+anticlockwise moments · equilibrium · centre of gravity
+</div>
+
+</article>
+
+
+<article class="card" data-type="long">
+
+<span class="label">Extended Theory</span>
+
+<h3>Energy Conservation</h3>
+
+<div class="question">
+Explain how kinetic energy, gravitational potential energy and work
+done are related by conservation of energy.
+</div>
+
+<div class="answer">
+Energy cannot be created or destroyed. It can only be transferred
+between different stores or forms.
+
+For a system near the Earth's surface, gravitational potential energy
+can be transferred into kinetic energy as an object moves downward.
+Work done by forces can also transfer energy into or out of the
+system. If dissipative effects are absent, the total mechanical energy
+remains constant.
+</div>
+
+<div class="points">
+<strong>Key marking points:</strong><br>
+Energy conserved · gravitational potential energy · kinetic energy ·
+work done represents energy transfer · dissipative effects where relevant
+</div>
+
+</article>
+
+
+<!-- MATERIALS LONG THEORY -->
+
+<div class="section-title">
+Materials · 6-Mark / Long Theory
+</div>
+
+
+<article class="card" data-type="long">
+
+<span class="label">Extended Theory</span>
+
+<h3>Stokes' Law and Terminal Velocity</h3>
+
+<div class="question">
+Explain how a small spherical object falling through a viscous liquid
+can reach terminal velocity.
+</div>
+
+<div class="answer">
+As the sphere begins to fall, its weight acts downward while the
+upthrust and viscous drag act upward. Initially the sphere accelerates
+because the downward resultant force is non-zero.
+
+As its speed increases, the viscous drag increases. Eventually the
+upward forces balance the weight. The resultant force then becomes
+zero, so acceleration becomes zero and the sphere continues at a
+constant terminal velocity.
+
+Stokes' law applies to small spherical objects moving at low speeds
+where the flow is laminar.
+</div>
+
+<div class="points">
+<strong>Key marking points:</strong><br>
+Weight downward · upthrust upward · drag increases with speed ·
+forces balance · resultant force zero · acceleration zero ·
+constant terminal velocity · conditions for Stokes' law
+</div>
+
+</article>
+
+
+<article class="card" data-type="long">
+
+<span class="label">Extended Theory</span>
+
+<h3>Hooke's Law and Elastic Behaviour</h3>
+
+<div class="question">
+Explain Hooke's law and distinguish between elastic and plastic
+deformation.
+</div>
+
+<div class="answer">
+Hooke's law states that the extension of an object is proportional
+to the applied force provided the limit of proportionality is not
+exceeded.
+
+In the proportional region, increasing the force by a given factor
+produces the same factor increase in extension. When an object is
+elastically deformed, it returns to its original dimensions when the
+force is removed. If the material is plastically deformed, it does not
+fully return to its original dimensions.
+</div>
+
+<div class="points">
+<strong>Key marking points:</strong><br>
+ΔF = kΔx · proportional region · limit of proportionality ·
+elastic deformation · plastic deformation
+</div>
+
+</article>
+
+
+<article class="card" data-type="long">
+
+<span class="label">Extended Theory</span>
+
+<h3>Stress, Strain and Young Modulus</h3>
+
+<div class="question">
+Explain the relationship between stress, strain and Young modulus
+for a material.
+</div>
+
+<div class="answer">
+Stress is the applied force per unit cross-sectional area, while
+strain is the change in length divided by the original length.
+Young modulus is the ratio of stress to strain.
+
+A material with a high Young modulus requires a relatively large
+stress to produce a given strain and is therefore relatively stiff.
+The behaviour of the material can be investigated using a
+stress-strain graph.
+</div>
+
+<div class="points">
+<strong>Key marking points:</strong><br>
+Stress = force/area · strain = change in length/original length ·
+Young modulus = stress/strain · stiffness · stress-strain graph
+</div>
+
+</article>
+
+
+<article class="card" data-type="long">
+
+<span class="label">Extended Theory</span>
+
+<h3>Force-Extension Graph</h3>
+
+<div class="question">
+Explain how a force-extension graph can be used to describe the
+behaviour of a material.
+</div>
+
+<div class="answer">
+Initially, the force may be proportional to extension, giving a
+straight-line section through the origin. The end of this region is
+the limit of proportionality.
+
+If the material is stretched further, the graph may become
+non-linear. The elastic limit represents the greatest deformation
+from which the material can return to its original shape. Beyond the
+elastic region, permanent plastic deformation may occur. The material
+may eventually reach a point where it breaks.
+</div>
+
+<div class="points">
+<strong>Key marking points:</strong><br>
+Linear proportional region · limit of proportionality ·
+elastic limit · plastic deformation · breaking point/stress
+</div>
+
+</article>
 
 </section>
 
 
-<!-- PHYSICS -->
+<!-- S1 THEORY -->
 
-<section class="subject" data-subject="physics">
+<section class="section">
 
-    <div class="subject-header">
-        <h2>Physics</h2>
-        <div class="line"></div>
-    </div>
-
-
-    <div class="category">
-
-        <div class="category-title">
-            6-Mark / Long Theory
-        </div>
-
-        <article class="theory-card" data-type="long">
-
-            <span class="type">
-                6-Mark Theory
-            </span>
-
-            <h3>Energy Transfers</h3>
-
-            <div class="question">
-                Explain how energy is transferred between different
-                forms in a physical system.
-            </div>
-
-            <div class="answer">
-                Energy can be transferred between different forms while
-                the total amount of energy is conserved. For example,
-                gravitational potential energy can be transferred into
-                kinetic energy as an object falls.
-            </div>
-
-            <div class="points">
-                <strong>Key points:</strong><br>
-                Energy conservation · Energy transfer · Useful energy ·
-                Dissipation
-            </div>
-
-        </article>
-
-    </div>
+<div class="section-title">
+S1 Theory · Definitions & Principles
+</div>
 
 
-    <div class="category">
+<article class="card" data-type="s1">
+<span class="label">S1 Theory</span>
 
-        <div class="category-title">
-            S1 Theory
-        </div>
+<h3>Scalar Quantity</h3>
 
-        <article class="theory-card" data-type="s1">
+<div class="question">
+What is a scalar quantity?
+</div>
 
-            <span class="type">
-                S1 Theory
-            </span>
+<div class="answer">
+A scalar quantity has magnitude only and no direction.
+</div>
 
-            <h3>Scalar Quantity</h3>
+</article>
 
-            <div class="question">
-                What is a scalar quantity?
-            </div>
 
-            <div class="answer">
-                A scalar quantity has magnitude only and no direction.
-                Examples include mass, temperature and time.
-            </div>
+<article class="card" data-type="s1">
+<span class="label">S1 Theory</span>
 
-        </article>
+<h3>Vector Quantity</h3>
 
-    </div>
+<div class="question">
+What is a vector quantity?
+</div>
+
+<div class="answer">
+A vector quantity has both magnitude and direction.
+</div>
+
+</article>
+
+
+<article class="card" data-type="s1">
+<span class="label">S1 Theory</span>
+
+<h3>Centre of Gravity</h3>
+
+<div class="question">
+What is the centre of gravity of an extended body?
+</div>
+
+<div class="answer">
+The centre of gravity is the point through which the weight of an
+extended body may be considered to act.
+</div>
+
+</article>
+
+
+<article class="card" data-type="s1">
+<span class="label">S1 Theory</span>
+
+<h3>Newton's First Law</h3>
+
+<div class="question">
+State Newton's first law of motion.
+</div>
+
+<div class="answer">
+An object remains at rest or continues to move with constant velocity
+unless acted upon by a resultant external force.
+</div>
+
+</article>
+
+
+<article class="card" data-type="s1">
+<span class="label">S1 Theory</span>
+
+<h3>Newton's Third Law</h3>
+
+<div class="question">
+State Newton's third law of motion.
+</div>
+
+<div class="answer">
+When two bodies interact, they exert forces on each other that are
+equal in magnitude and opposite in direction.
+</div>
+
+</article>
+
+
+<article class="card" data-type="s1">
+<span class="label">S1 Theory</span>
+
+<h3>Momentum</h3>
+
+<div class="question">
+Define momentum.
+</div>
+
+<div class="answer">
+Momentum is the product of an object's mass and velocity.
+</div>
+
+</article>
+
+
+<article class="card" data-type="s1">
+<span class="label">S1 Theory</span>
+
+<h3>Terminal Velocity</h3>
+
+<div class="question">
+What is terminal velocity?
+</div>
+
+<div class="answer">
+Terminal velocity is the constant velocity reached when the resultant
+force on a falling object becomes zero.
+</div>
+
+</article>
+
+
+<article class="card" data-type="s1">
+<span class="label">S1 Theory</span>
+
+<h3>Upthrust</h3>
+
+<div class="question">
+State the relationship between upthrust and displaced fluid.
+</div>
+
+<div class="answer">
+The upthrust on an object is equal to the weight of the fluid displaced
+by the object.
+</div>
+
+</article>
+
+
+<article class="card" data-type="s1">
+<span class="label">S1 Theory</span>
+
+<h3>Viscosity</h3>
+
+<div class="question">
+What is viscosity?
+</div>
+
+<div class="answer">
+Viscosity is a measure of a fluid's resistance to flow. A more viscous
+fluid provides greater resistance to motion through it.
+</div>
+
+</article>
+
+
+<article class="card" data-type="s1">
+<span class="label">S1 Theory</span>
+
+<h3>Limit of Proportionality</h3>
+
+<div class="question">
+What is the limit of proportionality?
+</div>
+
+<div class="answer">
+It is the point up to which extension remains directly proportional
+to applied force.
+</div>
+
+</article>
+
+
+<article class="card" data-type="s1">
+<span class="label">S1 Theory</span>
+
+<h3>Elastic Deformation</h3>
+
+<div class="question">
+What is elastic deformation?
+</div>
+
+<div class="answer">
+Elastic deformation is deformation from which a material returns to
+its original shape and dimensions when the applied force is removed.
+</div>
+
+</article>
+
+
+<article class="card" data-type="s1">
+<span class="label">S1 Theory</span>
+
+<h3>Plastic Deformation</h3>
+
+<div class="question">
+What is plastic deformation?
+</div>
+
+<div class="answer">
+Plastic deformation is permanent deformation that remains after the
+applied force is removed.
+</div>
+
+</article>
 
 </section>
 
 
-<!-- CHEMISTRY -->
+<!-- OTHER THEORY -->
 
-<section class="subject" data-subject="chem">
+<section class="section">
 
-    <div class="subject-header">
-        <h2>Chemistry</h2>
-        <div class="line"></div>
-    </div>
-
-
-    <div class="category">
-
-        <div class="category-title">
-            6-Mark / Long Theory
-        </div>
-
-        <article class="theory-card" data-type="long">
-
-            <span class="type">
-                6-Mark Theory
-            </span>
-
-            <h3>Dynamic Equilibrium</h3>
-
-            <div class="question">
-                Explain what is meant by dynamic equilibrium
-                in a reversible reaction.
-            </div>
-
-            <div class="answer">
-                Dynamic equilibrium is reached in a closed system when
-                the forward and reverse reactions continue to occur at
-                equal rates. The concentrations of reactants and products
-                remain constant even though the reactions continue.
-            </div>
-
-            <div class="points">
-                <strong>Key points:</strong><br>
-                Closed system · Forward reaction · Reverse reaction ·
-                Equal rates · Constant concentrations
-            </div>
-
-        </article>
-
-    </div>
+<div class="section-title">
+Other Theory · Important Understanding
+</div>
 
 
-    <div class="category">
+<article class="card" data-type="other">
+<span class="label">Other Theory</span>
 
-        <div class="category-title">
-            S1 Theory
-        </div>
+<h3>Displacement-Time Graph</h3>
 
-        <article class="theory-card" data-type="s1">
+<div class="question">
+What does the gradient of a displacement-time graph represent?
+</div>
 
-            <span class="type">
-                S1 Theory
-            </span>
+<div class="answer">
+The gradient represents velocity. A steeper gradient corresponds to
+a greater magnitude of velocity, while a horizontal line represents
+zero velocity.
+</div>
 
-            <h3>Isotope</h3>
+</article>
 
-            <div class="question">
-                Define an isotope.
-            </div>
 
-            <div class="answer">
-                Isotopes are atoms of the same element that have the same
-                number of protons but different numbers of neutrons.
-            </div>
+<article class="card" data-type="other">
+<span class="label">Other Theory</span>
 
-        </article>
+<h3>Velocity-Time Graph</h3>
 
-    </div>
+<div class="question">
+What do the gradient and area under a velocity-time graph represent?
+</div>
+
+<div class="answer">
+The gradient represents acceleration. The area under the graph
+represents displacement.
+</div>
+
+</article>
+
+
+<article class="card" data-type="other">
+<span class="label">Other Theory</span>
+
+<h3>Acceleration-Time Graph</h3>
+
+<div class="question">
+What does the area under an acceleration-time graph represent?
+</div>
+
+<div class="answer">
+The area under an acceleration-time graph represents the change
+in velocity.
+</div>
+
+</article>
+
+
+<article class="card" data-type="other">
+<span class="label">Other Theory</span>
+
+<h3>Free-Body Diagram</h3>
+
+<div class="question">
+What is the purpose of a free-body diagram?
+</div>
+
+<div class="answer">
+A free-body diagram represents the forces acting on a selected
+object. It helps identify the magnitude and direction of forces
+before applying Newton's laws or resolving forces.
+</div>
+
+</article>
+
+
+<article class="card" data-type="other">
+<span class="label">Other Theory</span>
+
+<h3>Conditions for Stokes' Law</h3>
+
+<div class="question">
+Under what conditions can Stokes' law be applied?
+</div>
+
+<div class="answer">
+Stokes' law applies to a small spherical object moving at low speed
+through a fluid where the flow is laminar rather than turbulent.
+Viscosity also depends on temperature.
+</div>
+
+</article>
+
+
+<article class="card" data-type="other">
+<span class="label">Other Theory</span>
+
+<h3>Elastic Strain Energy</h3>
+
+<div class="question">
+How can elastic strain energy be found from a force-extension graph?
+</div>
+
+<div class="answer">
+The elastic strain energy stored is equal to the area under the
+force-extension graph. For a linear relationship, this area is a
+triangle and gives ½FΔx. For a non-linear graph, the area can be
+estimated.
+</div>
+
+</article>
 
 </section>
 
@@ -621,7 +994,7 @@ footer{
 
 
 <footer>
-    IAL ATLAS · Built for Edexcel International A Level students
+IAL ATLAS · Pearson Edexcel International A Level Physics · WPH11
 </footer>
 
 
@@ -629,89 +1002,44 @@ footer{
 
 const search = document.getElementById("search");
 
-let subjectFilter = "all";
-let typeFilter = "all";
+let filter = "all";
 
+function setFilter(type,button){
 
-function filterSubject(subject,button){
-
-    subjectFilter = subject;
-    typeFilter = "all";
+    filter = type;
 
     document.querySelectorAll(".filters button")
-        .forEach(btn => btn.classList.remove("active"));
+    .forEach(btn => btn.classList.remove("active"));
 
     button.classList.add("active");
 
-    applyFilters();
+    apply();
 }
 
+search.addEventListener("input",apply);
 
-function filterType(type,button){
-
-    typeFilter = type;
-    subjectFilter = "all";
-
-    document.querySelectorAll(".filters button")
-        .forEach(btn => btn.classList.remove("active"));
-
-    button.classList.add("active");
-
-    applyFilters();
-}
-
-
-search.addEventListener("input",applyFilters);
-
-
-function applyFilters(){
+function apply(){
 
     const query =
         search.value.toLowerCase().trim();
 
-    document.querySelectorAll(".subject").forEach(subject => {
+    document.querySelectorAll(".card")
+    .forEach(card => {
 
-        const subjectMatch =
-            subjectFilter === "all" ||
-            subject.dataset.subject === subjectFilter;
+        const typeMatch =
+            filter === "all" ||
+            card.dataset.type === filter;
 
-        let visibleCards = 0;
+        const searchMatch =
+            !query ||
+            card.innerText.toLowerCase().includes(query);
 
-        subject.querySelectorAll(".theory-card")
-            .forEach(card => {
-
-                const typeMatch =
-                    typeFilter === "all" ||
-                    card.dataset.type === typeFilter;
-
-                const text =
-                    card.innerText.toLowerCase();
-
-                const searchMatch =
-                    !query || text.includes(query);
-
-                const visible =
-                    subjectMatch &&
-                    typeMatch &&
-                    searchMatch;
-
-                card.classList.toggle(
-                    "hidden",
-                    !visible
-                );
-
-                if(visible)
-                    visibleCards++;
-
-            });
-
-        subject.classList.toggle(
+        card.classList.toggle(
             "hidden",
-            visibleCards === 0
+            !(typeMatch && searchMatch)
         );
 
     });
-
 }
 
 </script>
