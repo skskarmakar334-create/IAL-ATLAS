@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Past Papers Atlas | IAL ATLAS</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#05070d;
+    --panel:rgba(11,17,29,.78);
+    --panel2:rgba(15,23,38,.9);
+    --border:rgba(255,255,255,.09);
+    --text:#f4f7fb;
+    --muted:#91a0b8;
+    --cyan:#38bdf8;
+    --blue:#2563eb;
+    --green:#34d399;
+    --purple:#a78bfa;
+    --orange:#fb923c;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 20% 10%,rgba(56,189,248,.10),transparent 28%),
+        radial-gradient(circle at 80% 20%,rgba(37,99,235,.10),transparent 30%),
+        linear-gradient(180deg,#05070d,#070b13 55%,#05070d);
+    color:var(--text);
+    font-family:Inter,sans-serif;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:50px 50px;
+    mask-image:linear-gradient(to bottom,black,transparent 90%);
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+/* NAV */
+
+.nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+    background:rgba(5,7,13,.78);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+}
+
+.logo{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:.5px;
+}
+
+.logo span{
+    color:var(--cyan);
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#9caec8;
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.status-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 14px var(--green);
+}
+
+/* HERO */
+
+.hero{
+    max-width:1250px;
+    margin:auto;
+    padding:90px 24px 55px;
+    text-align:center;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 14px;
+    border:1px solid rgba(56,189,248,.25);
+    background:rgba(56,189,248,.07);
+    border-radius:999px;
+    color:#7dd3fc;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.hero h1{
+    margin-top:22px;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(42px,7vw,82px);
+    line-height:.95;
+    letter-spacing:-4px;
+}
+
+.hero h1 span{
+    color:var(--cyan);
+    text-shadow:0 0 35px rgba(56,189,248,.3);
+}
+
+.hero p{
+    max-width:700px;
+    margin:24px auto 0;
+    color:var(--muted);
+    line-height:1.8;
+    font-size:15px;
+}
+
+/* CONTROLS */
+
+.wrapper{
+    max-width:1250px;
+    margin:auto;
+    padding:0 24px 80px;
+}
+
+.control-panel{
+    padding:20px;
+    border:1px solid var(--border);
+    border-radius:22px;
+    background:var(--panel);
+    backdrop-filter:blur(18px);
+    box-shadow:0 20px 80px rgba(0,0,0,.25);
+}
+
+.search{
+    position:relative;
+    margin-bottom:18px;
+}
+
+.search input{
+    width:100%;
+    height:55px;
+    padding:0 20px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    outline:none;
+    background:rgba(255,255,255,.035);
+    color:white;
+    font:inherit;
+}
+
+.search input:focus{
+    border-color:rgba(56,189,248,.55);
+    box-shadow:0 0 0 4px rgba(56,189,248,.06);
+}
+
+.filters{
+    display:flex;
+    gap:9px;
+    flex-wrap:wrap;
+}
+
+.filter{
+    cursor:pointer;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.035);
+    color:#aab8cc;
+    padding:10px 15px;
+    border-radius:10px;
+    font-size:12px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.filter:hover{
+    border-color:rgba(56,189,248,.35);
+    color:white;
+}
+
+.filter.active{
+    background:rgba(56,189,248,.12);
+    color:#7dd3fc;
+    border-color:rgba(56,189,248,.4);
+}
+
+.select-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:15px;
+}
+
+select{
+    width:100%;
+    height:48px;
+    padding:0 14px;
+    border-radius:11px;
+    border:1px solid var(--border);
+    background:#0b111d;
+    color:#dbe7f5;
+    outline:none;
+    font:inherit;
+    font-size:13px;
+}
+
+/* RESULTS */
+
+.result-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:35px 0 17px;
+}
+
+.result-header h2{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:24px;
+}
+
+.count{
+    color:var(--muted);
+    font-size:12px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.paper{
+    position:relative;
+    padding:23px;
+    border:1px solid var(--border);
+    border-radius:20px;
+    background:linear-gradient(145deg,rgba(15,23,38,.88),rgba(8,12,21,.88));
+    overflow:hidden;
+    transition:.25s;
+}
+
+.paper::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:2px;
+    background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+    opacity:.7;
+}
+
+.paper:hover{
+    transform:translateY(-4px);
+    border-color:rgba(56,189,248,.25);
+    box-shadow:0 15px 50px rgba(0,0,0,.3);
+}
+
+.paper-top{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    align-items:flex-start;
+}
+
+.unit{
+    color:#7dd3fc;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.paper h3{
+    margin-top:8px;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:20px;
+}
+
+.meta{
+    margin-top:8px;
+    color:var(--muted);
+    font-size:12px;
+}
+
+.subject-tag{
+    padding:6px 9px;
+    border-radius:8px;
+    background:rgba(56,189,248,.08);
+    border:1px solid rgba(56,189,248,.18);
+    color:#7dd3fc;
+    font-size:10px;
+    font-weight:800;
+}
+
+.links{
+    display:flex;
+    gap:9px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.link-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:10px 13px;
+    border-radius:9px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.035);
+    color:#dce8f7;
+    font-size:11px;
+    font-weight:700;
+    transition:.2s;
+}
+
+.link-btn:hover{
+    background:rgba(56,189,248,.1);
+    border-color:rgba(56,189,248,.35);
+    color:#7dd3fc;
+}
+
+.link-btn.primary{
+    background:rgba(56,189,248,.12);
+    border-color:rgba(56,189,248,.35);
+    color:#7dd3fc;
+}
+
+/* INFO */
+
+.info{
+    margin-top:30px;
+    padding:20px;
+    border:1px solid rgba(56,189,248,.14);
+    border-radius:16px;
+    background:rgba(56,189,248,.035);
+}
+
+.info h3{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:15px;
+    margin-bottom:8px;
+}
+
+.info p{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.7;
+}
+
+.empty{
+    grid-column:1/-1;
+    text-align:center;
+    padding:60px 20px;
+    border:1px dashed var(--border);
+    border-radius:20px;
+    color:var(--muted);
+}
+
+.footer{
+    text-align:center;
+    padding:35px 20px 50px;
+    color:#59677b;
+    font-size:11px;
+    letter-spacing:.5px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:800px){
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .select-row{
+        grid-template-columns:1fr;
+    }
+
+    .nav{
+        padding:0 20px;
+    }
+
+    .status{
+        display:none;
+    }
+
+    .hero{
+        padding-top:65px;
+    }
+
+    .hero h1{
+        letter-spacing:-2px;
+    }
+}
+
+@media(max-width:500px){
+    .wrapper{
+        padding:0 14px 60px;
+    }
+
+    .hero{
+        padding-left:15px;
+        padding-right:15px;
+    }
+
+    .paper{
+        padding:19px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+    <a href="index.html" class="logo">
+        IAL <span>ATLAS</span>
+    </a>
+
+    <div class="nav-right">
+        <div class="status">
+            <span class="status-dot"></span>
+            SYSTEM ONLINE
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+
+    <div class="badge">
+        PAST PAPERS ATLAS
+    </div>
+
+    <h1>
+        Practice.<br>
+        <span>Master.</span>
+    </h1>
+
+    <p>
+        Find Edexcel International A Level past papers,
+        mark schemes and examiner resources by subject,
+        unit and examination session.
+    </p>
+
+</section>
+
+<main class="wrapper">
+
+    <section class="control-panel">
+
+        <div class="search">
+            <input
+                type="text"
+                id="search"
+                placeholder="Search papers, units, subjects..."
+            >
+        </div>
+
+        <div class="filters">
+
+            <button class="filter active" data-subject="All">
+                All
+            </button>
+
+            <button class="filter" data-subject="Mathematics">
+                Mathematics
+            </button>
+
+            <button class="filter" data-subject="Physics">
+                Physics
+            </button>
+
+            <button class="filter" data-subject="Chemistry">
+                Chemistry
+            </button>
+
+            <button class="filter" data-subject="Biology">
+                Biology
+            </button>
+
+        </div>
+
+        <div class="select-row">
+
+            <select id="unitFilter">
+                <option value="All">All Units</option>
+            </select>
+
+            <select id="sessionFilter">
+                <option value="All">All Sessions</option>
+            </select>
+
+            <select id="yearFilter">
+                <option value="All">All Years</option>
+            </select>
+
+        </div>
+
+    </section>
+
+
+    <div class="result-header">
+
+        <h2>Available Papers</h2>
+
+        <div class="count" id="count">
+            0 papers
+        </div>
+
+    </div>
+
+
+    <section class="cards" id="cards"></section>
+
+
+    <div class="info">
+
+        <h3>Official Pearson Access</h3>
+
+        <p>
+            IAL ATLAS does not host copyrighted examination PDFs.
+            The buttons below take you to the relevant Pearson
+            Edexcel examination resources. Availability can vary
+            by year and access status.
+        </p>
+
+    </div>
+
+</main>
+
+
+<footer class="footer">
+    IAL ATLAS · Free student-built Edexcel IAL resource
+</footer>
+
+
+<script>
+
+/*
+==========================================================
+PAST PAPERS DATA
+==========================================================
+*/
+
+const papers = [
+
+    {
+        subject:"Mathematics",
+        unit:"WMA11",
+        title:"Pure Mathematics 1",
+        session:"January",
+        year:"2024"
+    },
+
+    {
+        subject:"Mathematics",
+        unit:"WMA11",
+        title:"Pure Mathematics 1",
+        session:"June",
+        year:"2024"
+    },
+
+    {
+        subject:"Mathematics",
+        unit:"WMA11",
+        title:"Pure Mathematics 1",
+        session:"October",
+        year:"2024"
+    },
+
+    {
+        subject:"Mathematics",
+        unit:"WMA12",
+        title:"Pure Mathematics 2",
+        session:"January",
+        year:"2024"
+    },
+
+    {
+        subject:"Mathematics",
+        unit:"WMA12",
+        title:"Pure Mathematics 2",
+        session:"June",
+        year:"2024"
+    },
+
+    {
+        subject:"Mathematics",
+        unit:"WMA13",
+        title:"Pure Mathematics 3",
+        session:"June",
+        year:"2024"
+    },
+
+    {
+        subject:"Mathematics",
+        unit:"WMA14",
+        title:"Pure Mathematics 4",
+        session:"October",
+        year:"2024"
+    },
+
+    {
+        subject:"Mathematics",
+        unit:"WME01",
+        title:"Mechanics 1",
+        session:"June",
+        year:"2024"
+    },
+
+    {
+        subject:"Mathematics",
+        unit:"WME02",
+        title:"Mechanics 2",
+        session:"October",
+        year:"2024"
+    },
+
+    {
+        subject:"Mathematics",
+        unit:"WST01",
+        title:"Statistics 1",
+        session:"June",
+        year:"2024"
+    },
+
+    {
+        subject:"Mathematics",
+        unit:"WST02",
+        title:"Statistics 2",
+        session:"October",
+        year:"2024"
+    },
+
+    {
+        subject:"Physics",
+        unit:"WPH11",
+        title:"Unit 1: Mechanics and Materials",
+        session:"June",
+        year:"2024"
+    },
+
+    {
+        subject:"Physics",
+        unit:"WPH12",
+        title:"Unit 2: Waves and Electricity",
+        session:"June",
+        year:"2024"
+    },
+
+    {
+        subject:"Physics",
+        unit:"WPH13",
+        title:"Unit 3: Practical Skills in Physics I",
+        session:"June",
+        year:"2024"
+    },
+
+    {
+        subject:"Physics",
+        unit:"WPH14",
+        title:"Unit 4: Further Mechanics, Fields and Particles",
+        session:"June",
+        year:"2024"
+    },
+
+    {
+        subject:"Physics",
+        unit:"WPH15",
+        title:"Unit 5: Thermodynamics, Radiation, Oscillations and Cosmology",
+        session:"October",
+        year:"2026"
+    },
+
+    {
+        subject:"Physics",
+        unit:"WPH16",
+        title:"Unit 6: Practical Skills in Physics II",
+        session:"October",
+        year:"2026"
+    },
+
+    {
+        subject:"Chemistry",
+        unit:"WCH11",
+        title:"Unit 1: Structure, Bonding and Introductory Organic Chemistry",
+        session:"June",
+        year:"2024"
+    },
+
+    {
+        subject:"Chemistry",
+        unit:"WCH12",
+        title:"Unit 2: Energetics, Group Chemistry, Halogenoalkanes and Alcohols",
+        session:"June",
+        year:"2024"
+    },
+
+    {
+        subject:"Chemistry",
+        unit:"WCH13",
+        title:"Unit 3: Practical Skills in Chemistry I",
+        session:"June",
+        year:"2024"
+    },
+
+    {
+        subject:"Chemistry",
+        unit:"WCH14",
+        title:"Unit 4: Rates, Equilibrium and Further Organic Chemistry",
+        session:"June",
+        year:"2024"
+    },
+
+    {
+        subject:"Chemistry",
+        unit:"WCH15",
+        title:"Unit 5: Transition Metals and Organic Nitrogen Chemistry",
+        session:"October",
+        year:"2026"
+    },
+
+    {
+        subject:"Chemistry",
+        unit:"WCH16",
+        title:"Unit 6: Practical Skills in Chemistry II",
+        session:"October",
+        year:"2026"
+    },
+
+    {
+        subject:"Biology",
+        unit:"WBI11",
+        title:"Unit 1: Molecules, Diet, Transport and Health",
+        session:"June",
+        year:"2024"
+    },
+
+    {
+        subject:"Biology",
+        unit:"WBI12",
+        title:"Unit 2: Cells, Development, Biodiversity and Conservation",
+        session:"June",
+        year:"2024"
+    },
+
+    {
+        subject:"Biology",
+        unit:"WBI13",
+        title:"Unit 3: Practical Skills in Biology I",
+        session:"June",
+        year:"2024"
+    },
+
+    {
+        subject:"Biology",
+        unit:"WBI14",
+        title:"Unit 4: Energy, Environment, Microbiology and Immunity",
+        session:"June",
+        year:"2024"
+    },
+
+    {
+        subject:"Biology",
+        unit:"WBI15",
+        title:"Unit 5: Respiration, Internal Environment, Coordination and Gene Technology",
+        session:"October",
+        year:"2026"
+    },
+
+    {
+        subject:"Biology",
+        unit:"WBI16",
+        title:"Unit 6: Practical Skills in Biology II",
+        session:"October",
+        year:"2026"
+    }
+
+];
+
+
+/*
+==========================================================
+PEARSON OFFICIAL SEARCH
+==========================================================
+*/
+
+const pearsonURL =
+"https://qualifications.pearson.com/en/support/support-topics/exams/past-papers.html";
+
+
+/*
+==========================================================
+ELEMENTS
+==========================================================
+*/
+
+const cards = document.getElementById("cards");
+const search = document.getElementById("search");
+const unitFilter = document.getElementById("unitFilter");
+const sessionFilter = document.getElementById("sessionFilter");
+const yearFilter = document.getElementById("yearFilter");
+const count = document.getElementById("count");
+
+let activeSubject = "All";
+
+
+/*
+==========================================================
+FILTER BUTTONS
+==========================================================
+*/
+
+document.querySelectorAll(".filter").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        document
+            .querySelectorAll(".filter")
+            .forEach(b => b.classList.remove("active"));
+
+        button.classList.add("active");
+
+        activeSubject = button.dataset.subject;
+
+        updateFilters();
+        render();
+
+    });
+
+});
+
+
+/*
+==========================================================
+DYNAMIC FILTER OPTIONS
+==========================================================
+*/
+
+function updateFilters(){
+
+    const filtered = papers.filter(p =>
+        activeSubject === "All" ||
+        p.subject === activeSubject
+    );
+
+    const units = [...new Set(filtered.map(p => p.unit))].sort();
+    const sessions = [...new Set(filtered.map(p => p.session))].sort();
+    const years = [...new Set(filtered.map(p => p.year))].sort((a,b)=>b-a);
+
+    unitFilter.innerHTML =
+        `<option value="All">All Units</option>` +
+        units.map(u => `<option value="${u}">${u}</option>`).join("");
+
+    sessionFilter.innerHTML =
+        `<option value="All">All Sessions</option>` +
+        sessions.map(s => `<option value="${s}">${s}</option>`).join("");
+
+    yearFilter.innerHTML =
+        `<option value="All">All Years</option>` +
+        years.map(y => `<option value="${y}">${y}</option>`).join("");
+}
+
+
+/*
+==========================================================
+RENDER
+==========================================================
+*/
+
+function render(){
+
+    const query = search.value.toLowerCase().trim();
+
+    const selectedUnit = unitFilter.value;
+    const selectedSession = sessionFilter.value;
+    const selectedYear = yearFilter.value;
+
+    const filtered = papers.filter(p => {
+
+        const subjectMatch =
+            activeSubject === "All" ||
+            p.subject === activeSubject;
+
+        const unitMatch =
+            selectedUnit === "All" ||
+            p.unit === selectedUnit;
+
+        const sessionMatch =
+            selectedSession === "All" ||
+            p.session === selectedSession;
+
+        const yearMatch =
+            selectedYear === "All" ||
+            p.year === selectedYear;
+
+        const text =
+            `${p.subject} ${p.unit} ${p.title} ${p.session} ${p.year}`
+            .toLowerCase();
+
+        const searchMatch =
+            !query || text.includes(query);
+
+        return (
+            subjectMatch &&
+            unitMatch &&
+            sessionMatch &&
+            yearMatch &&
+            searchMatch
+        );
+
+    });
+
+
+    count.textContent =
+        `${filtered.length} ${filtered.length === 1 ? "paper" : "papers"}`;
+
+
+    if(!filtered.length){
+
+        cards.innerHTML = `
+            <div class="empty">
+                <h3>No papers found</h3>
+                <p style="margin-top:8px">
+                    Try another subject, unit, year or search term.
+                </p>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    cards.innerHTML = filtered.map(p => `
+
+        <article class="paper">
+
+            <div class="paper-top">
+
+                <div>
+
+                    <div class="unit">
+                        ${p.unit}
+                    </div>
+
+                    <h3>
+                        ${p.title}
+                    </h3>
+
+                    <div class="meta">
+                        ${p.session} · ${p.year}
+                    </div>
+
+                </div>
+
+                <div class="subject-tag">
+                    ${p.subject}
+                </div>
+
+            </div>
+
+
+            <div class="links">
+
+                <a
+                    class="link-btn primary"
+                    href="${pearsonURL}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Question Paper ↗
+                </a>
+
+                <a
+                    class="link-btn"
+                    href="${pearsonURL}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Mark Scheme ↗
+                </a>
+
+                <a
+                    class="link-btn"
+                    href="${pearsonURL}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Examiner Report ↗
+                </a>
+
+            </div>
+
+        </article>
+
+    `).join("");
+
+}
+
+
+/*
+==========================================================
+EVENTS
+==========================================================
+*/
+
+search.addEventListener("input", render);
+
+unitFilter.addEventListener("change", render);
+
+sessionFilter.addEventListener("change", render);
+
+yearFilter.addEventListener("change", render);
+
+
+/*
+==========================================================
+INITIALIZE
+==========================================================
+*/
+
+updateFilters();
+render();
+
+</script>
+
+</body>
+</html>
