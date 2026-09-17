@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Theory Atlas | IAL ATLAS</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --bg:#05070d;
+    --border:rgba(255,255,255,.09);
+    --text:#f4f7fb;
+    --muted:#91a0b8;
+    --math:#9b7cff;
+    --physics:#38bdf8;
+    --chem:#34d399;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:
+        radial-gradient(circle at 15% 10%,rgba(155,124,255,.11),transparent 28%),
+        radial-gradient(circle at 85% 20%,rgba(52,211,153,.08),transparent 25%),
+        #05070d;
+    color:var(--text);
+    font-family:Inter,sans-serif;
+    min-height:100vh;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:45px 45px;
+    mask-image:linear-gradient(to bottom,black,transparent);
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:rgba(5,7,13,.78);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+}
+
+.nav{
+    max-width:1250px;
+    margin:auto;
+    padding:20px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-family:"Space Grotesk";
+    font-size:22px;
+    font-weight:700;
+}
+
+.logo span{
+    color:#38bdf8;
+}
+
+.nav-tag{
+    font-size:12px;
+    color:#71809a;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.hero{
+    max-width:1250px;
+    margin:auto;
+    padding:80px 24px 45px;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 13px;
+    border:1px solid rgba(155,124,255,.28);
+    background:rgba(155,124,255,.07);
+    border-radius:30px;
+    color:#b8a7ff;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+h1{
+    font-family:"Space Grotesk";
+    font-size:clamp(44px,7vw,82px);
+    line-height:.95;
+    letter-spacing:-4px;
+    margin-top:22px;
+}
+
+.hero p{
+    max-width:720px;
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.8;
+    margin-top:24px;
+}
+
+.controls{
+    max-width:1250px;
+    margin:auto;
+    padding:0 24px 35px;
+}
+
+.search{
+    width:100%;
+    padding:16px 20px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.035);
+    color:white;
+    outline:none;
+    font-size:15px;
+}
+
+.search:focus{
+    border-color:rgba(155,124,255,.55);
+}
+
+.filters{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:15px;
+}
+
+button{
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.035);
+    color:#aebbd0;
+    padding:10px 16px;
+    border-radius:30px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+button:hover,
+button.active{
+    color:white;
+    border-color:#9b7cff;
+    background:rgba(155,124,255,.10);
+}
+
+.container{
+    max-width:1250px;
+    margin:auto;
+    padding:0 24px 80px;
+}
+
+.subject{
+    margin-top:38px;
+}
+
+.subject-header{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:20px;
+}
+
+.subject-header h2{
+    font-family:"Space Grotesk";
+    font-size:28px;
+}
+
+.line{
+    flex:1;
+    height:1px;
+    background:var(--border);
+}
+
+.category{
+    margin-top:25px;
+}
+
+.category-title{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    color:#8492a9;
+    margin-bottom:12px;
+}
+
+.theory-card{
+    background:linear-gradient(
+        145deg,
+        rgba(255,255,255,.055),
+        rgba(255,255,255,.018)
+    );
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:14px;
+    transition:.25s;
+}
+
+.theory-card:hover{
+    transform:translateY(-3px);
+    border-color:rgba(155,124,255,.45);
+}
+
+.type{
+    display:inline-block;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1.3px;
+    padding:6px 9px;
+    border-radius:20px;
+    background:rgba(155,124,255,.10);
+    color:#b8a7ff;
+}
+
+.theory-card h3{
+    font-family:"Space Grotesk";
+    font-size:20px;
+    margin:14px 0;
+}
+
+.question{
+    padding:15px 17px;
+    background:rgba(0,0,0,.22);
+    border-left:3px solid #9b7cff;
+    border-radius:8px;
+    line-height:1.7;
+    color:#e7ebf2;
+}
+
+.answer{
+    margin-top:17px;
+    color:#aab6c9;
+    line-height:1.75;
+    font-size:14px;
+}
+
+.points{
+    margin-top:15px;
+    padding:14px 17px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    color:#8f9db3;
+    font-size:13px;
+    line-height:1.8;
+}
+
+.points strong{
+    color:#d9dfeb;
+}
+
+.hidden{
+    display:none;
+}
+
+footer{
+    border-top:1px solid var(--border);
+    padding:28px 24px;
+    text-align:center;
+    color:#647189;
+    font-size:12px;
+}
+
+@media(max-width:600px){
+
+    .hero{
+        padding-top:55px;
+    }
+
+    h1{
+        letter-spacing:-2px;
+    }
+
+    .nav-tag{
+        display:none;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="nav">
+
+        <div class="logo">
+            IAL <span>ATLAS</span>
+        </div>
+
+        <div class="nav-tag">
+            Theory Atlas
+        </div>
+
+    </div>
+
+</header>
+
+
+<section class="hero">
+
+    <span class="badge">
+        Theory Atlas
+    </span>
+
+    <h1>
+        Understand the theory.<br>
+        Master the exam.
+    </h1>
+
+    <p>
+        A structured exam-focused theory bank containing
+        long-answer questions, 6-mark theories, S1 theory
+        and other essential theoretical knowledge.
+    </p>
+
+</section>
+
+
+<div class="controls">
+
+    <input
+        id="search"
+        class="search"
+        placeholder="Search theories, questions, topics..."
+    >
+
+    <div class="filters">
+
+        <button class="active"
+                onclick="filterSubject('all',this)">
+            All
+        </button>
+
+        <button onclick="filterSubject('math',this)">
+            Mathematics
+        </button>
+
+        <button onclick="filterSubject('physics',this)">
+            Physics
+        </button>
+
+        <button onclick="filterSubject('chem',this)">
+            Chemistry
+        </button>
+
+        <button onclick="filterType('long',this)">
+            6-Mark / Long
+        </button>
+
+        <button onclick="filterType('s1',this)">
+            S1 Theory
+        </button>
+
+        <button onclick="filterType('other',this)">
+            Other Theory
+        </button>
+
+    </div>
+
+</div>
+
+
+<main class="container">
+
+
+<!-- MATHEMATICS -->
+
+<section class="subject" data-subject="math">
+
+    <div class="subject-header">
+        <h2>Mathematics</h2>
+        <div class="line"></div>
+    </div>
+
+
+    <div class="category">
+
+        <div class="category-title">
+            6-Mark / Long Theory
+        </div>
+
+        <article class="theory-card" data-type="long">
+
+            <span class="type">
+                6-Mark Theory
+            </span>
+
+            <h3>Mathematical Proof</h3>
+
+            <div class="question">
+                Explain how a mathematical statement can be proved
+                using a logical sequence of valid steps.
+            </div>
+
+            <div class="answer">
+                A mathematical proof establishes that a statement is
+                true by beginning with accepted facts, definitions or
+                previously established results and applying valid
+                mathematical reasoning step by step.
+            </div>
+
+            <div class="points">
+                <strong>Key points:</strong><br>
+                Clear assumptions · Logical progression · Valid reasoning ·
+                Correct conclusion
+            </div>
+
+        </article>
+
+    </div>
+
+
+    <div class="category">
+
+        <div class="category-title">
+            S1 Theory
+        </div>
+
+        <article class="theory-card" data-type="s1">
+
+            <span class="type">
+                S1 Theory
+            </span>
+
+            <h3>Statistical Population</h3>
+
+            <div class="question">
+                Define a population in statistics.
+            </div>
+
+            <div class="answer">
+                A population is the complete set of individuals or objects
+                that are being studied.
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- PHYSICS -->
+
+<section class="subject" data-subject="physics">
+
+    <div class="subject-header">
+        <h2>Physics</h2>
+        <div class="line"></div>
+    </div>
+
+
+    <div class="category">
+
+        <div class="category-title">
+            6-Mark / Long Theory
+        </div>
+
+        <article class="theory-card" data-type="long">
+
+            <span class="type">
+                6-Mark Theory
+            </span>
+
+            <h3>Energy Transfers</h3>
+
+            <div class="question">
+                Explain how energy is transferred between different
+                forms in a physical system.
+            </div>
+
+            <div class="answer">
+                Energy can be transferred between different forms while
+                the total amount of energy is conserved. For example,
+                gravitational potential energy can be transferred into
+                kinetic energy as an object falls.
+            </div>
+
+            <div class="points">
+                <strong>Key points:</strong><br>
+                Energy conservation · Energy transfer · Useful energy ·
+                Dissipation
+            </div>
+
+        </article>
+
+    </div>
+
+
+    <div class="category">
+
+        <div class="category-title">
+            S1 Theory
+        </div>
+
+        <article class="theory-card" data-type="s1">
+
+            <span class="type">
+                S1 Theory
+            </span>
+
+            <h3>Scalar Quantity</h3>
+
+            <div class="question">
+                What is a scalar quantity?
+            </div>
+
+            <div class="answer">
+                A scalar quantity has magnitude only and no direction.
+                Examples include mass, temperature and time.
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- CHEMISTRY -->
+
+<section class="subject" data-subject="chem">
+
+    <div class="subject-header">
+        <h2>Chemistry</h2>
+        <div class="line"></div>
+    </div>
+
+
+    <div class="category">
+
+        <div class="category-title">
+            6-Mark / Long Theory
+        </div>
+
+        <article class="theory-card" data-type="long">
+
+            <span class="type">
+                6-Mark Theory
+            </span>
+
+            <h3>Dynamic Equilibrium</h3>
+
+            <div class="question">
+                Explain what is meant by dynamic equilibrium
+                in a reversible reaction.
+            </div>
+
+            <div class="answer">
+                Dynamic equilibrium is reached in a closed system when
+                the forward and reverse reactions continue to occur at
+                equal rates. The concentrations of reactants and products
+                remain constant even though the reactions continue.
+            </div>
+
+            <div class="points">
+                <strong>Key points:</strong><br>
+                Closed system · Forward reaction · Reverse reaction ·
+                Equal rates · Constant concentrations
+            </div>
+
+        </article>
+
+    </div>
+
+
+    <div class="category">
+
+        <div class="category-title">
+            S1 Theory
+        </div>
+
+        <article class="theory-card" data-type="s1">
+
+            <span class="type">
+                S1 Theory
+            </span>
+
+            <h3>Isotope</h3>
+
+            <div class="question">
+                Define an isotope.
+            </div>
+
+            <div class="answer">
+                Isotopes are atoms of the same element that have the same
+                number of protons but different numbers of neutrons.
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+    IAL ATLAS · Built for Edexcel International A Level students
+</footer>
+
+
+<script>
+
+const search = document.getElementById("search");
+
+let subjectFilter = "all";
+let typeFilter = "all";
+
+
+function filterSubject(subject,button){
+
+    subjectFilter = subject;
+    typeFilter = "all";
+
+    document.querySelectorAll(".filters button")
+        .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    applyFilters();
+}
+
+
+function filterType(type,button){
+
+    typeFilter = type;
+    subjectFilter = "all";
+
+    document.querySelectorAll(".filters button")
+        .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    applyFilters();
+}
+
+
+search.addEventListener("input",applyFilters);
+
+
+function applyFilters(){
+
+    const query =
+        search.value.toLowerCase().trim();
+
+    document.querySelectorAll(".subject").forEach(subject => {
+
+        const subjectMatch =
+            subjectFilter === "all" ||
+            subject.dataset.subject === subjectFilter;
+
+        let visibleCards = 0;
+
+        subject.querySelectorAll(".theory-card")
+            .forEach(card => {
+
+                const typeMatch =
+                    typeFilter === "all" ||
+                    card.dataset.type === typeFilter;
+
+                const text =
+                    card.innerText.toLowerCase();
+
+                const searchMatch =
+                    !query || text.includes(query);
+
+                const visible =
+                    subjectMatch &&
+                    typeMatch &&
+                    searchMatch;
+
+                card.classList.toggle(
+                    "hidden",
+                    !visible
+                );
+
+                if(visible)
+                    visibleCards++;
+
+            });
+
+        subject.classList.toggle(
+            "hidden",
+            visibleCards === 0
+        );
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
