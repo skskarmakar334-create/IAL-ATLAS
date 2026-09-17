@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Theory Atlas | Physics U1 | IAL ATLAS</title>
+<title>Theory Atlas | IAL ATLAS</title>
+
+<meta name="description"
+content="Complete Edexcel International A Level Theory Atlas covering Mathematics, Physics, Chemistry and Biology.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,265 +16,369 @@
 <style>
 
 :root{
-    --bg:#05070d;
-    --border:rgba(255,255,255,.09);
-    --text:#f4f7fb;
-    --muted:#91a0b8;
-    --physics:#38bdf8;
+  --bg:#05070d;
+  --panel:#0a0f19;
+  --panel2:#0d1420;
+  --border:rgba(255,255,255,.09);
+  --text:#f4f7fb;
+  --muted:#91a0b8;
+  --cyan:#38bdf8;
+  --blue:#60a5fa;
+  --green:#34d399;
+  --purple:#a78bfa;
+  --orange:#fb923c;
+  --pink:#f472b6;
 }
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
-    background:
-    radial-gradient(circle at 15% 10%,rgba(56,189,248,.11),transparent 28%),
-    radial-gradient(circle at 85% 20%,rgba(56,189,248,.06),transparent 25%),
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 15% 0%,rgba(56,189,248,.11),transparent 30%),
+    radial-gradient(circle at 90% 15%,rgba(96,165,250,.08),transparent 30%),
     var(--bg);
-    color:var(--text);
-    font-family:Inter,sans-serif;
-    min-height:100vh;
+  color:var(--text);
+  font-family:Inter,Arial,sans-serif;
 }
 
-body:before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    background-image:
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.2;
+  background-image:
     linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
     linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-    background-size:45px 45px;
-    mask-image:linear-gradient(to bottom,black,transparent);
+  background-size:45px 45px;
+  mask-image:linear-gradient(to bottom,black,transparent 90%);
 }
 
-header{
-    position:sticky;
-    top:0;
-    z-index:20;
-    backdrop-filter:blur(18px);
-    background:rgba(5,7,13,.8);
-    border-bottom:1px solid var(--border);
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(5,7,13,.78);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
 }
 
 .nav{
-    max-width:1250px;
-    margin:auto;
-    padding:20px 24px;
-    display:flex;
-    justify-content:space-between;
+  max-width:1250px;
+  height:74px;
+  margin:auto;
+  padding:0 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
 .logo{
-    font-family:"Space Grotesk";
-    font-size:22px;
-    font-weight:700;
+  font-family:"Space Grotesk",sans-serif;
+  font-size:22px;
+  font-weight:700;
+  letter-spacing:.08em;
 }
 
 .logo span{
-    color:var(--physics);
+  color:var(--cyan);
 }
 
-.nav-tag{
-    color:#71809a;
-    font-size:12px;
-    letter-spacing:2px;
-    text-transform:uppercase;
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.nav-link{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.nav-link:hover{
+  color:white;
+}
+
+.status{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#9deecf;
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.status-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 12px var(--green);
 }
 
 .hero{
-    max-width:1250px;
-    margin:auto;
-    padding:75px 24px 45px;
+  max-width:1250px;
+  margin:auto;
+  padding:78px 24px 42px;
 }
 
 .badge{
-    display:inline-block;
-    padding:8px 13px;
-    border:1px solid rgba(56,189,248,.3);
-    background:rgba(56,189,248,.07);
-    border-radius:30px;
-    color:#7dd3fc;
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:1.5px;
-    text-transform:uppercase;
+  display:inline-flex;
+  border:1px solid rgba(56,189,248,.25);
+  background:rgba(56,189,248,.07);
+  color:var(--cyan);
+  border-radius:999px;
+  padding:8px 13px;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
 }
 
-h1{
-    font-family:"Space Grotesk";
-    font-size:clamp(44px,7vw,80px);
-    line-height:.95;
-    letter-spacing:-4px;
-    margin-top:22px;
+.hero h1{
+  margin-top:20px;
+  font-family:"Space Grotesk",sans-serif;
+  font-size:clamp(44px,7vw,76px);
+  line-height:.98;
+  letter-spacing:-.05em;
+}
+
+.hero h1 span{
+  color:var(--cyan);
 }
 
 .hero p{
-    max-width:720px;
-    color:var(--muted);
-    line-height:1.8;
-    margin-top:23px;
+  max-width:790px;
+  margin-top:20px;
+  color:var(--muted);
+  line-height:1.8;
+  font-size:15px;
 }
 
 .controls{
-    max-width:1250px;
-    margin:auto;
-    padding:0 24px 35px;
+  max-width:1250px;
+  margin:auto;
+  padding:0 24px 25px;
 }
 
 .search{
-    width:100%;
-    padding:16px 20px;
-    background:rgba(255,255,255,.035);
-    border:1px solid var(--border);
-    border-radius:14px;
-    color:white;
-    outline:none;
-    font-size:15px;
+  width:100%;
+  padding:17px 20px;
+  border-radius:17px;
+  outline:none;
+  color:white;
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--border);
+}
+
+.search:focus{
+  border-color:rgba(56,189,248,.5);
+  box-shadow:0 0 0 4px rgba(56,189,248,.06);
 }
 
 .filters{
-    display:flex;
-    flex-wrap:wrap;
-    gap:9px;
-    margin-top:14px;
+  margin-top:12px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
 }
 
-.filters button{
-    border:1px solid var(--border);
-    background:rgba(255,255,255,.035);
-    color:#aebbd0;
-    padding:9px 15px;
-    border-radius:30px;
-    cursor:pointer;
+.filter{
+  cursor:pointer;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.035);
+  color:var(--muted);
+  padding:9px 14px;
+  border-radius:999px;
+  font-size:11px;
 }
 
-.filters button:hover,
-.filters button.active{
-    color:white;
-    border-color:var(--physics);
-    background:rgba(56,189,248,.1);
+.filter.active,
+.filter:hover{
+  color:white;
+  background:rgba(56,189,248,.09);
+  border-color:rgba(56,189,248,.4);
 }
 
-.container{
-    max-width:1250px;
-    margin:auto;
-    padding:0 24px 80px;
+main{
+  max-width:1250px;
+  margin:auto;
+  padding:0 24px 100px;
 }
 
-.unit-header{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    margin:30px 0 25px;
+.subject{
+  margin-top:58px;
 }
 
-.unit-header h2{
-    font-family:"Space Grotesk";
-    font-size:28px;
+.subject.hidden{
+  display:none;
 }
 
-.line{
-    flex:1;
-    height:1px;
-    background:var(--border);
+.subject-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:20px;
 }
 
-.section{
-    margin-top:38px;
+.subject-title{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:32px;
+  letter-spacing:-.03em;
 }
 
-.section-title{
-    color:#7dd3fc;
-    font-size:12px;
-    letter-spacing:1.7px;
-    text-transform:uppercase;
-    margin-bottom:14px;
+.subject-description{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:6px;
 }
 
-.card{
-    background:linear-gradient(
-        145deg,
-        rgba(255,255,255,.055),
-        rgba(255,255,255,.018)
-    );
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:25px;
-    margin-bottom:14px;
-    transition:.22s;
+.unit-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
 }
 
-.card:hover{
-    transform:translateY(-3px);
-    border-color:rgba(56,189,248,.45);
+.unit{
+  border:1px solid var(--border);
+  border-radius:22px;
+  overflow:hidden;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+  box-shadow:0 20px 55px rgba(0,0,0,.25);
 }
 
-.label{
-    display:inline-block;
-    padding:6px 9px;
-    border-radius:20px;
-    background:rgba(56,189,248,.09);
-    color:#7dd3fc;
-    font-size:10px;
-    text-transform:uppercase;
-    letter-spacing:1.2px;
+.unit.hidden{
+  display:none;
 }
 
-.card h3{
-    font-family:"Space Grotesk";
-    font-size:20px;
-    margin:13px 0;
+.unit-head{
+  padding:20px 21px;
+  border-bottom:1px solid var(--border);
 }
 
-.question{
-    padding:15px 17px;
-    border-left:3px solid var(--physics);
-    border-radius:7px;
-    background:rgba(0,0,0,.23);
-    color:#e7ebf2;
-    line-height:1.7;
+.unit-name{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:19px;
+  font-weight:700;
 }
 
-.answer{
-    margin-top:17px;
-    color:#aab6c9;
-    line-height:1.8;
-    font-size:14px;
+.unit-code{
+  margin-top:6px;
+  color:var(--cyan);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.12em;
 }
 
-.points{
-    margin-top:15px;
-    padding:15px 17px;
-    border:1px solid var(--border);
-    border-radius:10px;
-    color:#8d9bb1;
-    font-size:13px;
-    line-height:1.8;
+.theory-list{
+  padding:9px;
 }
 
-.points strong{
-    color:#dbe2ec;
+.theory{
+  padding:17px 15px;
+  border-radius:15px;
 }
 
-.hidden{
+.theory:hover{
+  background:rgba(255,255,255,.035);
+}
+
+.theory-title{
+  font-size:14px;
+  font-weight:800;
+  margin-bottom:9px;
+}
+
+.theory-type{
+  display:inline-block;
+  margin-bottom:9px;
+  padding:4px 7px;
+  border-radius:5px;
+  background:rgba(56,189,248,.08);
+  color:var(--cyan);
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.theory p{
+  color:#c4cedc;
+  font-size:12px;
+  line-height:1.75;
+}
+
+.theory ul{
+  margin:8px 0 0 17px;
+  color:#c4cedc;
+  font-size:12px;
+  line-height:1.8;
+}
+
+.exam{
+  margin-top:10px;
+  padding:11px 12px;
+  border-left:2px solid var(--cyan);
+  background:rgba(56,189,248,.035);
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.65;
+}
+
+.no-results{
+  display:none;
+  text-align:center;
+  color:var(--muted);
+  padding:60px 20px;
+}
+
+.footer{
+  border-top:1px solid var(--border);
+  padding:35px 24px;
+  text-align:center;
+  color:var(--muted);
+  font-size:11px;
+}
+
+@media(max-width:800px){
+
+  .unit-grid{
+    grid-template-columns:1fr;
+  }
+
+  .nav-link{
     display:none;
-}
+  }
 
-footer{
-    border-top:1px solid var(--border);
-    padding:28px;
-    text-align:center;
-    color:#647189;
-    font-size:12px;
-}
+  .hero{
+    padding-top:55px;
+  }
 
-@media(max-width:600px){
-    h1{letter-spacing:-2px}
-    .nav-tag{display:none}
+  .hero h1{
+    font-size:48px;
+  }
+
 }
 
 </style>
@@ -279,722 +386,3125 @@ footer{
 
 <body>
 
-<header>
-<div class="nav">
+<header class="header">
 
-    <div class="logo">
-        IAL <span>ATLAS</span>
-    </div>
+<nav class="nav">
 
-    <div class="nav-tag">
-        Theory Atlas · Physics
-    </div>
+<a href="index.html" class="logo">
+IAL <span>ATLAS</span>
+</a>
+
+<div class="nav-right">
+
+<a href="index.html" class="nav-link">
+Home
+</a>
+
+<a href="formula-atlas.html" class="nav-link">
+Formula Atlas
+</a>
+
+<div class="status">
+<span class="status-dot"></span>
+Theory System Online
+</div>
 
 </div>
+
+</nav>
+
 </header>
 
 
 <section class="hero">
 
-<span class="badge">
-Physics · WPH11
-</span>
+<div class="badge">
+IAL ATLAS · Theory Database
+</div>
 
 <h1>
-Mechanics<br>
-& Materials
+The Theory<br>
+<span>Atlas.</span>
 </h1>
 
 <p>
-Specification-focused theory revision for Pearson Edexcel
-International A Level Physics Unit 1.
+Exam-focused theory, definitions, principles, explanations,
+processes, practical theory and extended-response guidance
+for Pearson Edexcel International A Level Mathematics,
+Physics, Chemistry and Biology.
 </p>
 
 </section>
 
 
-<div class="controls">
+<section class="controls">
 
 <input
-    id="search"
-    class="search"
-    placeholder="Search a theory, definition or question..."
+id="search"
+class="search"
+type="search"
+placeholder="Search theory, definitions, processes, 6-mark questions..."
 >
 
 <div class="filters">
 
-<button class="active"
-onclick="setFilter('all',this)">
+<button class="filter active" data-filter="all">
 All
 </button>
 
-<button onclick="setFilter('long',this)">
-6-Mark / Long
+<button class="filter" data-filter="maths">
+Mathematics
 </button>
 
-<button onclick="setFilter('s1',this)">
-S1 Theory
+<button class="filter" data-filter="physics">
+Physics
 </button>
 
-<button onclick="setFilter('other',this)">
-Other Theory
+<button class="filter" data-filter="chemistry">
+Chemistry
+</button>
+
+<button class="filter" data-filter="biology">
+Biology
 </button>
 
 </div>
-
-</div>
-
-
-<main class="container">
-
-<div class="unit-header">
-<h2>WPH11 · Unit 1 Theory</h2>
-<div class="line"></div>
-</div>
-
-
-<!-- MECHANICS LONG THEORY -->
-
-<section class="section">
-
-<div class="section-title">
-Mechanics · 6-Mark / Long Theory
-</div>
-
-
-<article class="card" data-type="long">
-
-<span class="label">Extended Theory</span>
-
-<h3>Projectile Motion</h3>
-
-<div class="question">
-Explain why the horizontal and vertical components of the motion
-of a projectile can be treated independently.
-</div>
-
-<div class="answer">
-A projectile moving freely under gravity has two perpendicular
-components of motion. Horizontally, if air resistance is neglected,
-there is no resultant horizontal force, so the horizontal velocity
-remains constant. Vertically, the projectile experiences a downward
-gravitational acceleration g.
-
-The horizontal motion therefore determines how far the projectile
-travels horizontally, while the vertical motion determines its
-vertical position. The two components occur simultaneously but can
-be analysed separately and then combined to describe the complete
-motion.
-</div>
-
-<div class="points">
-<strong>Key marking points:</strong><br>
-Horizontal acceleration is zero · horizontal velocity is constant ·
-vertical acceleration is g downward · components are independent ·
-both motions occur simultaneously
-</div>
-
-</article>
-
-
-<article class="card" data-type="long">
-
-<span class="label">Extended Theory</span>
-
-<h3>Newton's Laws and Equilibrium</h3>
-
-<div class="question">
-Explain how Newton's laws can be used to analyse an object that is
-at rest or moving at constant velocity.
-</div>
-
-<div class="answer">
-Newton's second law states that the resultant force on an object is
-equal to its mass multiplied by its acceleration. If the object is at
-rest or moving with constant velocity, its acceleration is zero.
-Therefore the resultant force is zero.
-
-The forces acting on the object must consequently balance. A free-body
-diagram can be used to identify all the forces acting on the object
-and their directions. Resolving forces into suitable directions allows
-the equilibrium conditions to be checked quantitatively.
-</div>
-
-<div class="points">
-<strong>Key marking points:</strong><br>
-ΣF = ma · a = 0 · resultant force = 0 · forces balance ·
-appropriate force diagram/resolution
-</div>
-
-</article>
-
-
-<article class="card" data-type="long">
-
-<span class="label">Extended Theory</span>
-
-<h3>Conservation of Momentum</h3>
-
-<div class="question">
-Explain the principle of conservation of linear momentum and how it
-can be applied to collisions or interactions.
-</div>
-
-<div class="answer">
-Momentum is the product of mass and velocity. In an isolated system,
-where no resultant external force acts, the total momentum remains
-constant.
-
-For an interaction between objects, the total momentum before the
-interaction equals the total momentum after the interaction. Momentum
-must be treated as a vector quantity, so a chosen positive direction
-must be used consistently when solving one-dimensional problems.
-</div>
-
-<div class="points">
-<strong>Key marking points:</strong><br>
-p = mv · isolated system · no resultant external force ·
-total momentum conserved · direction/sign convention
-</div>
-
-</article>
-
-
-<article class="card" data-type="long">
-
-<span class="label">Extended Theory</span>
-
-<h3>Principle of Moments</h3>
-
-<div class="question">
-Explain how the principle of moments can be used to determine whether
-an extended rigid body is in equilibrium.
-</div>
-
-<div class="answer">
-The moment of a force about an axis is the force multiplied by the
-perpendicular distance between the line of action of the force and
-the axis.
-
-For an extended rigid body in equilibrium, the sum of the clockwise
-moments about any chosen axis equals the sum of the anticlockwise
-moments. The centre of gravity must also be considered because the
-weight of the body acts through its centre of gravity.
-</div>
-
-<div class="points">
-<strong>Key marking points:</strong><br>
-Moment = force × perpendicular distance · clockwise moments ·
-anticlockwise moments · equilibrium · centre of gravity
-</div>
-
-</article>
-
-
-<article class="card" data-type="long">
-
-<span class="label">Extended Theory</span>
-
-<h3>Energy Conservation</h3>
-
-<div class="question">
-Explain how kinetic energy, gravitational potential energy and work
-done are related by conservation of energy.
-</div>
-
-<div class="answer">
-Energy cannot be created or destroyed. It can only be transferred
-between different stores or forms.
-
-For a system near the Earth's surface, gravitational potential energy
-can be transferred into kinetic energy as an object moves downward.
-Work done by forces can also transfer energy into or out of the
-system. If dissipative effects are absent, the total mechanical energy
-remains constant.
-</div>
-
-<div class="points">
-<strong>Key marking points:</strong><br>
-Energy conserved · gravitational potential energy · kinetic energy ·
-work done represents energy transfer · dissipative effects where relevant
-</div>
-
-</article>
-
-
-<!-- MATERIALS LONG THEORY -->
-
-<div class="section-title">
-Materials · 6-Mark / Long Theory
-</div>
-
-
-<article class="card" data-type="long">
-
-<span class="label">Extended Theory</span>
-
-<h3>Stokes' Law and Terminal Velocity</h3>
-
-<div class="question">
-Explain how a small spherical object falling through a viscous liquid
-can reach terminal velocity.
-</div>
-
-<div class="answer">
-As the sphere begins to fall, its weight acts downward while the
-upthrust and viscous drag act upward. Initially the sphere accelerates
-because the downward resultant force is non-zero.
-
-As its speed increases, the viscous drag increases. Eventually the
-upward forces balance the weight. The resultant force then becomes
-zero, so acceleration becomes zero and the sphere continues at a
-constant terminal velocity.
-
-Stokes' law applies to small spherical objects moving at low speeds
-where the flow is laminar.
-</div>
-
-<div class="points">
-<strong>Key marking points:</strong><br>
-Weight downward · upthrust upward · drag increases with speed ·
-forces balance · resultant force zero · acceleration zero ·
-constant terminal velocity · conditions for Stokes' law
-</div>
-
-</article>
-
-
-<article class="card" data-type="long">
-
-<span class="label">Extended Theory</span>
-
-<h3>Hooke's Law and Elastic Behaviour</h3>
-
-<div class="question">
-Explain Hooke's law and distinguish between elastic and plastic
-deformation.
-</div>
-
-<div class="answer">
-Hooke's law states that the extension of an object is proportional
-to the applied force provided the limit of proportionality is not
-exceeded.
-
-In the proportional region, increasing the force by a given factor
-produces the same factor increase in extension. When an object is
-elastically deformed, it returns to its original dimensions when the
-force is removed. If the material is plastically deformed, it does not
-fully return to its original dimensions.
-</div>
-
-<div class="points">
-<strong>Key marking points:</strong><br>
-ΔF = kΔx · proportional region · limit of proportionality ·
-elastic deformation · plastic deformation
-</div>
-
-</article>
-
-
-<article class="card" data-type="long">
-
-<span class="label">Extended Theory</span>
-
-<h3>Stress, Strain and Young Modulus</h3>
-
-<div class="question">
-Explain the relationship between stress, strain and Young modulus
-for a material.
-</div>
-
-<div class="answer">
-Stress is the applied force per unit cross-sectional area, while
-strain is the change in length divided by the original length.
-Young modulus is the ratio of stress to strain.
-
-A material with a high Young modulus requires a relatively large
-stress to produce a given strain and is therefore relatively stiff.
-The behaviour of the material can be investigated using a
-stress-strain graph.
-</div>
-
-<div class="points">
-<strong>Key marking points:</strong><br>
-Stress = force/area · strain = change in length/original length ·
-Young modulus = stress/strain · stiffness · stress-strain graph
-</div>
-
-</article>
-
-
-<article class="card" data-type="long">
-
-<span class="label">Extended Theory</span>
-
-<h3>Force-Extension Graph</h3>
-
-<div class="question">
-Explain how a force-extension graph can be used to describe the
-behaviour of a material.
-</div>
-
-<div class="answer">
-Initially, the force may be proportional to extension, giving a
-straight-line section through the origin. The end of this region is
-the limit of proportionality.
-
-If the material is stretched further, the graph may become
-non-linear. The elastic limit represents the greatest deformation
-from which the material can return to its original shape. Beyond the
-elastic region, permanent plastic deformation may occur. The material
-may eventually reach a point where it breaks.
-</div>
-
-<div class="points">
-<strong>Key marking points:</strong><br>
-Linear proportional region · limit of proportionality ·
-elastic limit · plastic deformation · breaking point/stress
-</div>
-
-</article>
 
 </section>
 
 
-<!-- S1 THEORY -->
+<main id="content">
 
-<section class="section">
 
-<div class="section-title">
-S1 Theory · Definitions & Principles
+<!-- =========================================================
+MATHEMATICS
+========================================================= -->
+
+<section class="subject" data-subject="maths">
+
+<div class="subject-heading">
+
+<div>
+
+<div class="subject-title">
+Mathematics
+</div>
+
+<div class="subject-description">
+Pure Mathematics · Mechanics · Statistics
+</div>
+
+</div>
+
 </div>
 
 
-<article class="card" data-type="s1">
-<span class="label">S1 Theory</span>
+<div class="unit-grid">
 
-<h3>Scalar Quantity</h3>
 
-<div class="question">
-What is a scalar quantity?
+<!-- P1 -->
+
+<article class="unit" data-search="mathematics p1 algebra quadratics coordinate geometry sequences series trigonometry differentiation integration">
+
+<div class="unit-head">
+<div class="unit-name">
+Pure Mathematics 1
+</div>
+<div class="unit-code">
+P1 · WMA11
+</div>
 </div>
 
-<div class="answer">
-A scalar quantity has magnitude only and no direction.
+<div class="theory-list">
+
+<div class="theory">
+
+<div class="theory-title">
+Algebraic Manipulation
 </div>
 
+<div class="theory-type">
+Core Theory
+</div>
+
+<p>
+Be able to simplify expressions involving indices, surds,
+algebraic fractions and brackets. Correct factorisation and
+use of algebraic identities are essential before solving
+equations.
+</p>
+
+</div>
+
+
+<div class="theory">
+
+<div class="theory-title">
+Quadratic Equations
+</div>
+
+<div class="theory-type">
+Exam Theory
+</div>
+
+<p>
+Quadratic equations can be solved by factorisation,
+completing the square or the quadratic formula.
+The discriminant determines the nature of the roots.
+</p>
+
+<ul>
+<li>Δ &gt; 0 gives two distinct real roots.</li>
+<li>Δ = 0 gives one repeated real root.</li>
+<li>Δ &lt; 0 gives no real roots.</li>
+</ul>
+
+</div>
+
+
+<div class="theory">
+
+<div class="theory-title">
+Sequences and Series
+</div>
+
+<div class="theory-type">
+Core Theory
+</div>
+
+<p>
+An arithmetic sequence has a constant difference between
+successive terms. A geometric sequence has a constant
+ratio between successive terms.
+</p>
+
+</div>
+
+
+<div class="theory">
+
+<div class="theory-title">
+Coordinate Geometry
+</div>
+
+<div class="theory-type">
+Method
+</div>
+
+<p>
+A straight-line equation can be determined from a point and
+gradient. Parallel lines have equal gradients while
+perpendicular lines have gradients whose product is −1.
+</p>
+
+</div>
+
+
+<div class="theory">
+
+<div class="theory-title">
+Trigonometric Equations
+</div>
+
+<div class="theory-type">
+Exam Theory
+</div>
+
+<p>
+When solving trigonometric equations, first find the
+principal solution and then use the symmetry and periodicity
+of the relevant trigonometric function to obtain all required
+solutions in the given interval.
+</p>
+
+<div class="exam">
+Always check the requested interval and include every valid
+solution.
+</div>
+
+</div>
+
+
+<div class="theory">
+
+<div class="theory-title">
+Differentiation
+</div>
+
+<div class="theory-type">
+Core Theory
+</div>
+
+<p>
+Differentiation gives the gradient of a curve. At a stationary
+point, the first derivative is zero. The second derivative can
+be used to classify the stationary point.
+</p>
+
+<ul>
+<li>Second derivative positive → local minimum.</li>
+<li>Second derivative negative → local maximum.</li>
+</ul>
+
+</div>
+
+
+<div class="theory">
+
+<div class="theory-title">
+Integration
+</div>
+
+<div class="theory-type">
+Core Theory
+</div>
+
+<p>
+Integration reverses differentiation. An arbitrary constant
+must be included for indefinite integrals. Definite integration
+can be used to calculate areas under curves.
+</p>
+
+</div>
+
+
+<div class="theory">
+
+<div class="theory-title">
+6-Mark Style: Curve Analysis
+</div>
+
+<div class="theory-type">
+Long Response
+</div>
+
+<p>
+A complete solution should establish the required equation,
+differentiate accurately, identify stationary points, classify
+them and interpret the result in the context of the question.
+</p>
+
+<div class="exam">
+Show the chain of reasoning. Do not give only the final
+coordinates or answer.
+</div>
+
+</div>
+
+</div>
 </article>
 
 
-<article class="card" data-type="s1">
-<span class="label">S1 Theory</span>
+<!-- P2 -->
 
-<h3>Vector Quantity</h3>
+<article class="unit" data-search="mathematics p2 logarithms exponentials binomial trigonometry differentiation integration">
 
-<div class="question">
-What is a vector quantity?
+<div class="unit-head">
+<div class="unit-name">
+Pure Mathematics 2
+</div>
+<div class="unit-code">
+P2 · WMA12
+</div>
 </div>
 
-<div class="answer">
-A vector quantity has both magnitude and direction.
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Logarithms
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+A logarithm is the inverse operation to exponentiation.
+Logarithm laws allow products, quotients and powers to be
+rewritten in simpler forms.
+</p>
 </div>
 
+
+<div class="theory">
+<div class="theory-title">
+Exponential Functions
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+Exponential models describe quantities that grow or decay
+at a rate proportional to their current value. The natural
+exponential function has the special property that its
+derivative is itself.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Binomial Expansion
+</div>
+<div class="theory-type">
+Exam Theory
+</div>
+<p>
+The binomial theorem expands a power of a sum into a sequence
+of terms involving binomial coefficients.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Chain Rule
+</div>
+<div class="theory-type">
+Method
+</div>
+<p>
+The chain rule is used when one function is contained inside
+another. Differentiate the outer function with respect to the
+inner function and multiply by the derivative of the inner
+function.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Product Rule
+</div>
+<div class="theory-type">
+Method
+</div>
+<p>
+When differentiating the product of two functions, differentiate
+one function while keeping the other unchanged, then reverse
+the roles and add the two results.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Trigonometric Identities
+</div>
+<div class="theory-type">
+Exam Theory
+</div>
+<p>
+Identities are true for all permitted values of the variable.
+They can be used to transform complicated trigonometric
+expressions into a form that can be solved or differentiated.
+</p>
+</div>
+
+</div>
 </article>
 
 
-<article class="card" data-type="s1">
-<span class="label">S1 Theory</span>
+<!-- P3 -->
 
-<h3>Centre of Gravity</h3>
+<article class="unit" data-search="mathematics p3 functions numerical methods iteration Newton Raphson differentiation integration">
 
-<div class="question">
-What is the centre of gravity of an extended body?
+<div class="unit-head">
+<div class="unit-name">
+Pure Mathematics 3
+</div>
+<div class="unit-code">
+P3 · WMA13
+</div>
 </div>
 
-<div class="answer">
-The centre of gravity is the point through which the weight of an
-extended body may be considered to act.
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Composite Functions
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+A composite function applies one function to the output of
+another. The order matters, so fg(x) and gf(x) generally
+produce different results.
+</p>
 </div>
 
+
+<div class="theory">
+<div class="theory-title">
+Inverse Functions
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+An inverse function reverses the effect of the original
+function. The original function must satisfy the necessary
+one-to-one condition on its domain for an inverse to exist.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Newton-Raphson Method
+</div>
+<div class="theory-type">
+Numerical Method
+</div>
+<p>
+Newton-Raphson is an iterative method for finding an
+approximate root of an equation. A starting value is required
+and repeated iterations move the estimate towards a root.
+</p>
+
+<div class="exam">
+State the starting value and show sufficient iterations before
+giving the required accuracy.
+</div>
+
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Numerical Iteration
+</div>
+<div class="theory-type">
+Numerical Method
+</div>
+<p>
+An equation can be rearranged into an iterative form
+x = g(x). Starting from an initial estimate, repeated
+substitution can converge to a solution.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Implicit Differentiation
+</div>
+<div class="theory-type">
+Method
+</div>
+<p>
+When y cannot conveniently be expressed explicitly in terms
+of x, differentiate both sides with respect to x and treat y
+as a function of x.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Integration by Parts
+</div>
+<div class="theory-type">
+Method
+</div>
+<p>
+Integration by parts is useful when the integrand is a product
+of functions and direct integration is not convenient.
+</p>
+</div>
+
+</div>
 </article>
 
 
-<article class="card" data-type="s1">
-<span class="label">S1 Theory</span>
+<!-- P4 -->
 
-<h3>Newton's First Law</h3>
+<article class="unit" data-search="mathematics p4 vectors differential equations parametric equations further pure">
 
-<div class="question">
-State Newton's first law of motion.
+<div class="unit-head">
+<div class="unit-name">
+Pure Mathematics 4
+</div>
+<div class="unit-code">
+P4 · WMA14
+</div>
 </div>
 
-<div class="answer">
-An object remains at rest or continues to move with constant velocity
-unless acted upon by a resultant external force.
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Vectors
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+Vectors have both magnitude and direction. They can represent
+displacement, velocity and other directed quantities.
+</p>
 </div>
 
+
+<div class="theory">
+<div class="theory-title">
+Scalar Product
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+The scalar product produces a scalar. It can be used to find
+the angle between vectors and determine whether two vectors
+are perpendicular.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Parametric Equations
+</div>
+<div class="theory-type">
+Method
+</div>
+<p>
+Parametric equations express x and y in terms of a third
+parameter, usually t. They are particularly useful for curves
+that are difficult to describe directly as y=f(x).
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Differential Equations
+</div>
+<div class="theory-type">
+Long Response
+</div>
+<p>
+A differential equation relates a function to one or more
+of its derivatives. Separation of variables allows the
+variables to be placed on opposite sides before integration.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+First-Order Differential Equations
+</div>
+<div class="theory-type">
+Exam Theory
+</div>
+<p>
+After integration, use the supplied initial condition to
+determine the arbitrary constant. The final solution should
+satisfy both the differential equation and the initial condition.
+</p>
+</div>
+
+</div>
 </article>
 
 
-<article class="card" data-type="s1">
-<span class="label">S1 Theory</span>
+<!-- M1 -->
 
-<h3>Newton's Third Law</h3>
+<article class="unit" data-search="mathematics mechanics M1 forces motion SUVAT projectiles Newton momentum energy friction">
 
-<div class="question">
-State Newton's third law of motion.
+<div class="unit-head">
+<div class="unit-name">
+Mechanics 1
+</div>
+<div class="unit-code">
+M1 · WME01
+</div>
 </div>
 
-<div class="answer">
-When two bodies interact, they exert forces on each other that are
-equal in magnitude and opposite in direction.
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Particle Model
+</div>
+<div class="theory-type">
+Mechanics Theory
+</div>
+<p>
+A particle is treated as having mass but negligible dimensions.
+This model allows forces to be considered as acting at a single
+point.
+</p>
 </div>
 
+
+<div class="theory">
+<div class="theory-title">
+Newton's Laws
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+Newton's laws describe how forces affect the motion of objects.
+The resultant force determines acceleration according to
+Newton's second law.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Connected Particles
+</div>
+<div class="theory-type">
+Exam Theory
+</div>
+<p>
+For connected particles, identify the forces acting on each
+particle separately. Use a consistent positive direction and
+apply Newton's second law to each particle.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Friction
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+Friction acts to oppose relative motion or the tendency for
+relative motion between surfaces. Limiting friction occurs
+when motion is about to begin.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Momentum Conservation
+</div>
+<div class="theory-type">
+Long Response
+</div>
+<p>
+When the external resultant impulse on a system is negligible,
+the total momentum of the system remains constant.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Energy Conservation
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+Energy cannot be created or destroyed. It can be transferred
+between kinetic, gravitational potential, elastic and other
+forms.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Projectile Motion
+</div>
+<div class="theory-type">
+Long Response
+</div>
+<p>
+Resolve the initial velocity into horizontal and vertical
+components. Treat the horizontal motion independently from
+the vertical motion, where acceleration is due to gravity.
+</p>
+
+<div class="exam">
+For a full projectile solution: resolve → choose equations →
+solve simultaneously → check the physical meaning of the
+answer.
+</div>
+
+</div>
+
+</div>
 </article>
 
 
-<article class="card" data-type="s1">
-<span class="label">S1 Theory</span>
+<!-- M2 -->
 
-<h3>Momentum</h3>
+<article class="unit" data-search="mathematics mechanics M2 circular motion centre mass collisions moments">
 
-<div class="question">
-Define momentum.
+<div class="unit-head">
+<div class="unit-name">
+Mechanics 2
+</div>
+<div class="unit-code">
+M2 · WME02
+</div>
 </div>
 
-<div class="answer">
-Momentum is the product of an object's mass and velocity.
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Circular Motion
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+An object moving in a circle has acceleration directed towards
+the centre. The force responsible for this acceleration is the
+resultant radial force.
+</p>
 </div>
 
+
+<div class="theory">
+<div class="theory-title">
+Collisions
+</div>
+<div class="theory-type">
+Long Response
+</div>
+<p>
+Momentum is conserved in an isolated collision. The coefficient
+of restitution describes the relative speed of separation
+compared with relative speed of approach.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Centre of Mass
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+The centre of mass is the point at which the mass of a system
+can be considered concentrated for translational motion.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Moments and Equilibrium
+</div>
+<div class="theory-type">
+Exam Theory
+</div>
+<p>
+For a body in equilibrium, both the resultant force and
+resultant moment must be zero.
+</p>
+</div>
+
+</div>
 </article>
 
 
-<article class="card" data-type="s1">
-<span class="label">S1 Theory</span>
+<!-- S1 -->
 
-<h3>Terminal Velocity</h3>
+<article class="unit" data-search="mathematics statistics S1 statistics 1 sampling data presentation probability correlation regression histograms box plots">
 
-<div class="question">
-What is terminal velocity?
+<div class="unit-head">
+<div class="unit-name">
+Statistics 1
+</div>
+<div class="unit-code">
+S1 · WST01
+</div>
 </div>
 
-<div class="answer">
-Terminal velocity is the constant velocity reached when the resultant
-force on a falling object becomes zero.
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Sampling
+</div>
+<div class="theory-type">
+Statistics Theory
+</div>
+<p>
+A sample is a subset of a population. Sampling methods are
+used when studying the entire population is impractical.
+</p>
+
+<ul>
+<li>Simple random sampling</li>
+<li>Systematic sampling</li>
+<li>Stratified sampling</li>
+<li>Quota sampling</li>
+<li>Opportunity sampling</li>
+</ul>
+
 </div>
 
+
+<div class="theory">
+<div class="theory-title">
+Types of Data
+</div>
+<div class="theory-type">
+Definitions
+</div>
+<p>
+Data may be qualitative or quantitative. Quantitative data
+may be discrete or continuous.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Primary and Secondary Data
+</div>
+<div class="theory-type">
+Definitions
+</div>
+<p>
+Primary data are collected directly for the investigation.
+Secondary data were previously collected for another purpose
+or by another source.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Measures of Location
+</div>
+<div class="theory-type">
+Statistics Theory
+</div>
+<p>
+Mean, median and mode describe the central location of data.
+The choice of measure depends on the distribution and the
+presence of extreme values.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Measures of Dispersion
+</div>
+<div class="theory-type">
+Statistics Theory
+</div>
+<p>
+Range, interquartile range and standard deviation describe
+how spread out data are. A larger measure of dispersion
+indicates greater variability.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Outliers
+</div>
+<div class="theory-type">
+Exam Theory
+</div>
+<p>
+An outlier is an observation that is unusually distant from
+the rest of the data. Outliers can have a substantial effect
+on the mean and standard deviation.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Histograms
+</div>
+<div class="theory-type">
+Exam Theory
+</div>
+<p>
+For grouped continuous data, histogram area represents
+frequency. Therefore class width must be considered when
+comparing bars.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Cumulative Frequency
+</div>
+<div class="theory-type">
+Method
+</div>
+<p>
+Cumulative frequency is the running total of frequencies.
+A cumulative frequency graph can be used to estimate
+quartiles, median and percentages below a particular value.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Box Plots
+</div>
+<div class="theory-type">
+Statistics Theory
+</div>
+<p>
+A box plot displays the minimum, lower quartile, median,
+upper quartile and maximum. It allows distributions to be
+compared using location and spread.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Probability
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+Probability measures how likely an event is to occur.
+Probabilities lie between 0 and 1 inclusive.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Independent Events
+</div>
+<div class="theory-type">
+Statistics Theory
+</div>
+<p>
+Two events are independent when the occurrence of one does
+not change the probability of the other.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Correlation
+</div>
+<div class="theory-type">
+Exam Theory
+</div>
+<p>
+Correlation measures the strength and direction of a linear
+relationship between two variables. Correlation does not
+establish causation.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Regression
+</div>
+<div class="theory-type">
+Exam Theory
+</div>
+<p>
+A regression line provides an equation for predicting one
+variable from another. Predictions should preferably be made
+within the range of the observed data.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Coding
+</div>
+<div class="theory-type">
+Statistics Theory
+</div>
+<p>
+Coding transforms every observation using a linear
+transformation. It can simplify calculations while preserving
+the underlying statistical information.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+6-Mark Statistics Question
+</div>
+<div class="theory-type">
+Long Response
+</div>
+<p>
+A strong statistical response should identify the correct
+method, perform the calculation accurately, interpret the
+result in context and give a conclusion that answers the
+question directly.
+</p>
+
+<div class="exam">
+Never stop at a numerical result when the question asks for
+an interpretation or conclusion.
+</div>
+
+</div>
+
+</div>
 </article>
 
 
-<article class="card" data-type="s1">
-<span class="label">S1 Theory</span>
+<!-- S2 -->
 
-<h3>Upthrust</h3>
+<article class="unit" data-search="mathematics statistics S2 distributions binomial poisson normal hypothesis">
 
-<div class="question">
-State the relationship between upthrust and displaced fluid.
+<div class="unit-head">
+<div class="unit-name">
+Statistics 2
+</div>
+<div class="unit-code">
+S2 · WST02
+</div>
 </div>
 
-<div class="answer">
-The upthrust on an object is equal to the weight of the fluid displaced
-by the object.
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Discrete Random Variables
+</div>
+<div class="theory-type">
+Statistics Theory
+</div>
+<p>
+A discrete random variable takes a countable set of possible
+values, each associated with a probability.
+</p>
 </div>
 
+
+<div class="theory">
+<div class="theory-title">
+Binomial Distribution
+</div>
+<div class="theory-type">
+Distribution Theory
+</div>
+<p>
+A binomial model applies when there is a fixed number of
+independent trials, two possible outcomes and a constant
+probability of success.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Poisson Distribution
+</div>
+<div class="theory-type">
+Distribution Theory
+</div>
+<p>
+The Poisson distribution models the number of occurrences of
+an event within a fixed interval when events occur with a
+constant average rate and independently.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Normal Distribution
+</div>
+<div class="theory-type">
+Distribution Theory
+</div>
+<p>
+The normal distribution is continuous, symmetric and
+bell-shaped. Its mean determines the centre and its standard
+deviation determines the spread.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Hypothesis Testing
+</div>
+<div class="theory-type">
+Long Response
+</div>
+<p>
+A hypothesis test begins with a null hypothesis and alternative
+hypothesis. Evidence from a sample is used to determine
+whether the null hypothesis should be rejected at the stated
+significance level.
+</p>
+
+</div>
+
+</div>
 </article>
 
-
-<article class="card" data-type="s1">
-<span class="label">S1 Theory</span>
-
-<h3>Viscosity</h3>
-
-<div class="question">
-What is viscosity?
 </div>
-
-<div class="answer">
-Viscosity is a measure of a fluid's resistance to flow. A more viscous
-fluid provides greater resistance to motion through it.
-</div>
-
-</article>
-
-
-<article class="card" data-type="s1">
-<span class="label">S1 Theory</span>
-
-<h3>Limit of Proportionality</h3>
-
-<div class="question">
-What is the limit of proportionality?
-</div>
-
-<div class="answer">
-It is the point up to which extension remains directly proportional
-to applied force.
-</div>
-
-</article>
-
-
-<article class="card" data-type="s1">
-<span class="label">S1 Theory</span>
-
-<h3>Elastic Deformation</h3>
-
-<div class="question">
-What is elastic deformation?
-</div>
-
-<div class="answer">
-Elastic deformation is deformation from which a material returns to
-its original shape and dimensions when the applied force is removed.
-</div>
-
-</article>
-
-
-<article class="card" data-type="s1">
-<span class="label">S1 Theory</span>
-
-<h3>Plastic Deformation</h3>
-
-<div class="question">
-What is plastic deformation?
-</div>
-
-<div class="answer">
-Plastic deformation is permanent deformation that remains after the
-applied force is removed.
-</div>
-
-</article>
-
 </section>
 
 
-<!-- OTHER THEORY -->
+<!-- =========================================================
+PHYSICS
+========================================================= -->
 
-<section class="section">
+<section class="subject" data-subject="physics">
 
-<div class="section-title">
-Other Theory · Important Understanding
+<div class="subject-heading">
+
+<div>
+
+<div class="subject-title">
+Physics
+</div>
+
+<div class="subject-description">
+Mechanics · Materials · Waves · Electricity · Fields · Particles · Cosmology
+</div>
+
+</div>
+
 </div>
 
 
-<article class="card" data-type="other">
-<span class="label">Other Theory</span>
+<div class="unit-grid">
 
-<h3>Displacement-Time Graph</h3>
 
-<div class="question">
-What does the gradient of a displacement-time graph represent?
+<!-- U1 -->
+
+<article class="unit" data-search="physics U1 mechanics materials WPH11 motion forces momentum energy density stress strain young modulus stokes hooke">
+
+<div class="unit-head">
+<div class="unit-name">
+Unit 1 · Mechanics & Materials
+</div>
+<div class="unit-code">
+WPH11
+</div>
 </div>
 
-<div class="answer">
-The gradient represents velocity. A steeper gradient corresponds to
-a greater magnitude of velocity, while a horizontal line represents
-zero velocity.
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Scalars and Vectors
+</div>
+<div class="theory-type">
+Definitions
+</div>
+<p>
+A scalar has magnitude only. A vector has both magnitude and
+direction.
+</p>
 </div>
 
+
+<div class="theory">
+<div class="theory-title">
+Newton's Laws of Motion
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+Newton's laws explain the relationship between resultant
+force, mass and acceleration. In equilibrium the resultant
+force is zero.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Momentum Conservation
+</div>
+<div class="theory-type">
+Long Response
+</div>
+<p>
+For an isolated system, total momentum before an interaction
+equals total momentum after the interaction.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Principle of Moments
+</div>
+<div class="theory-type">
+Long Response
+</div>
+<p>
+For a body in rotational equilibrium, the sum of clockwise
+moments about a point equals the sum of anticlockwise moments
+about that point.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Work, Energy and Power
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+Work is the transfer of energy by a force acting through a
+distance. Power is the rate of energy transfer.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Hooke's Law
+</div>
+<div class="theory-type">
+Materials
+</div>
+<p>
+For an elastic material below the limit of proportionality,
+extension is proportional to applied force.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Stress, Strain and Young Modulus
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+Stress measures force per unit cross-sectional area.
+Strain measures fractional change in length. Young modulus
+describes the stiffness of a material in the elastic region.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Stokes' Law and Terminal Velocity
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+For a small sphere moving slowly through a viscous fluid,
+viscous drag increases with velocity. As the sphere accelerates,
+drag increases until the resultant force becomes zero and
+terminal velocity is reached.
+</p>
+
+<div class="exam">
+Typical explanation chain:
+weight → acceleration → velocity increases → drag increases
+→ resultant decreases → acceleration decreases → terminal
+velocity.
+</div>
+
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Force-Extension Graph
+</div>
+<div class="theory-type">
+Graph Theory
+</div>
+<p>
+The initial straight-line region represents proportional
+behaviour. Beyond the elastic limit, permanent deformation
+may occur.
+</p>
+</div>
+
+</div>
 </article>
 
 
-<article class="card" data-type="other">
-<span class="label">Other Theory</span>
+<!-- U2 -->
 
-<h3>Velocity-Time Graph</h3>
+<article class="unit" data-search="physics U2 waves electricity WPH12 wave particle duality refraction diffraction interference resistance circuits">
 
-<div class="question">
-What do the gradient and area under a velocity-time graph represent?
+<div class="unit-head">
+<div class="unit-name">
+Unit 2 · Waves & Electricity
+</div>
+<div class="unit-code">
+WPH12
+</div>
 </div>
 
-<div class="answer">
-The gradient represents acceleration. The area under the graph
-represents displacement.
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Wave Properties
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+A progressive wave transfers energy and information from one
+location to another without transferring matter overall.
+</p>
 </div>
 
+
+<div class="theory">
+<div class="theory-title">
+Transverse and Longitudinal Waves
+</div>
+<div class="theory-type">
+Definitions
+</div>
+<p>
+In a transverse wave, oscillations are perpendicular to the
+direction of energy transfer. In a longitudinal wave,
+oscillations are parallel to the direction of energy transfer.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Diffraction
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+Diffraction is the spreading of waves when they pass through
+a gap or around an obstacle. The effect is most significant
+when the gap size is comparable to the wavelength.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Interference
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+Interference occurs when waves overlap. Constructive
+interference occurs when the waves reinforce each other,
+while destructive interference occurs when they partially
+or completely cancel.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Refraction
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+Refraction occurs when a wave changes speed as it enters
+another medium. A change in speed causes a change in
+wavelength; frequency remains constant.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Electric Current
+</div>
+<div class="theory-type">
+Definitions
+</div>
+<p>
+Electric current is the rate of flow of charge through a
+conductor.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Resistance
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+Resistance describes how strongly a component opposes the
+flow of electric charge. For an ohmic conductor at constant
+temperature, current is proportional to potential difference.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Series and Parallel Circuits
+</div>
+<div class="theory-type">
+Exam Theory
+</div>
+<p>
+In series, the current is the same through each component.
+In parallel, the potential difference across each branch is
+the same.
+</p>
+</div>
+
+</div>
 </article>
 
 
-<article class="card" data-type="other">
-<span class="label">Other Theory</span>
+<!-- U3 -->
 
-<h3>Acceleration-Time Graph</h3>
+<article class="unit" data-search="physics U3 practical skills experimental uncertainty measurements graphs practical">
 
-<div class="question">
-What does the area under an acceleration-time graph represent?
+<div class="unit-head">
+<div class="unit-name">
+Unit 3 · Practical Skills I
+</div>
+<div class="unit-code">
+WPH13
+</div>
 </div>
 
-<div class="answer">
-The area under an acceleration-time graph represents the change
-in velocity.
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Experimental Variables
+</div>
+<div class="theory-type">
+Practical Theory
+</div>
+<p>
+The independent variable is deliberately changed. The
+dependent variable is measured. Control variables are kept
+constant to make the investigation fair.
+</p>
 </div>
 
+
+<div class="theory">
+<div class="theory-title">
+Accuracy, Precision and Resolution
+</div>
+<div class="theory-type">
+Practical Theory
+</div>
+<p>
+Accuracy describes closeness to the accepted value. Precision
+describes how closely repeated measurements agree. Resolution
+is the smallest change that an instrument can detect.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Uncertainty
+</div>
+<div class="theory-type">
+Practical Theory
+</div>
+<p>
+Every measurement has an associated uncertainty. Repeated
+measurements can be used to estimate random uncertainty,
+while systematic errors tend to shift all measurements in
+the same direction.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Best-Fit Lines
+</div>
+<div class="theory-type">
+Graph Theory
+</div>
+<p>
+A best-fit line should represent the overall trend of the
+data rather than simply joining adjacent points.
+</p>
+</div>
+
+</div>
 </article>
 
 
-<article class="card" data-type="other">
-<span class="label">Other Theory</span>
+<!-- U4 -->
 
-<h3>Free-Body Diagram</h3>
+<article class="unit" data-search="physics U4 WPH14 further mechanics electric fields gravitational fields particles circular motion">
 
-<div class="question">
-What is the purpose of a free-body diagram?
+<div class="unit-head">
+<div class="unit-name">
+Unit 4 · Further Mechanics, Fields & Particles
+</div>
+<div class="unit-code">
+WPH14
+</div>
 </div>
 
-<div class="answer">
-A free-body diagram represents the forces acting on a selected
-object. It helps identify the magnitude and direction of forces
-before applying Newton's laws or resolving forces.
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Circular Motion
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+An object moving in a circle continuously changes direction,
+so it has centripetal acceleration directed towards the centre.
+The resultant radial force provides this acceleration.
+</p>
 </div>
 
+
+<div class="theory">
+<div class="theory-title">
+Gravitational Fields
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+A gravitational field is a region in which a mass experiences
+a gravitational force. Field strength is force per unit mass.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Electric Fields
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+An electric field is a region where a charged particle
+experiences an electric force. Field direction is defined as
+the direction of force on a positive test charge.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Electric Potential
+</div>
+<div class="theory-type">
+Definitions
+</div>
+<p>
+Electric potential at a point is the work done per unit
+positive charge in bringing a small positive test charge from
+infinity to that point.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Particle Classification
+</div>
+<div class="theory-type">
+Particle Physics
+</div>
+<p>
+Particles can be classified into groups such as leptons,
+quarks, hadrons and exchange particles. Conservation laws
+constrain which particle interactions are possible.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Particle Interactions
+</div>
+<div class="theory-type">
+Exam Theory
+</div>
+<p>
+Interactions are represented using particle diagrams and
+must obey conservation of charge, energy, momentum and
+other relevant quantum numbers.
+</p>
+</div>
+
+</div>
 </article>
 
 
-<article class="card" data-type="other">
-<span class="label">Other Theory</span>
+<!-- U5 -->
 
-<h3>Conditions for Stokes' Law</h3>
+<article class="unit" data-search="physics U5 WPH15 thermodynamics radiation oscillations cosmology radioactive decay Hubble">
 
-<div class="question">
-Under what conditions can Stokes' law be applied?
+<div class="unit-head">
+<div class="unit-name">
+Unit 5 · Thermodynamics, Radiation, Oscillations & Cosmology
+</div>
+<div class="unit-code">
+WPH15
+</div>
 </div>
 
-<div class="answer">
-Stokes' law applies to a small spherical object moving at low speed
-through a fluid where the flow is laminar rather than turbulent.
-Viscosity also depends on temperature.
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Thermal Energy
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+Temperature is related to the average kinetic energy of
+particles. Heating transfers energy and can increase
+temperature or change the state of matter.
+</p>
 </div>
 
+
+<div class="theory">
+<div class="theory-title">
+Simple Harmonic Motion
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+Simple harmonic motion occurs when acceleration is directly
+proportional to displacement from equilibrium and directed
+towards the equilibrium position.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Radioactive Decay
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+Radioactive decay is spontaneous and random for individual
+nuclei. The activity of a sufficiently large sample follows
+a predictable statistical decay law.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Half-Life
+</div>
+<div class="theory-type">
+Definition
+</div>
+<p>
+Half-life is the time required for the number of undecayed
+nuclei, or the activity, to decrease to half its initial value.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Redshift
+</div>
+<div class="theory-type">
+Cosmology
+</div>
+<p>
+Light from a receding astronomical object is observed at a
+longer wavelength than when emitted. The observed redshift
+provides evidence about the object's relative motion.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Hubble's Law
+</div>
+<div class="theory-type">
+Cosmology
+</div>
+<p>
+For sufficiently distant galaxies, recession speed is
+approximately proportional to distance. This relationship
+provides evidence for the expansion of the universe.
+</p>
+</div>
+
+</div>
 </article>
 
 
-<article class="card" data-type="other">
-<span class="label">Other Theory</span>
+<!-- U6 -->
 
-<h3>Elastic Strain Energy</h3>
+<article class="unit" data-search="physics U6 WPH16 practical skills experimental physics uncertainty">
 
-<div class="question">
-How can elastic strain energy be found from a force-extension graph?
+<div class="unit-head">
+<div class="unit-name">
+Unit 6 · Practical Skills II
+</div>
+<div class="unit-code">
+WPH16
+</div>
 </div>
 
-<div class="answer">
-The elastic strain energy stored is equal to the area under the
-force-extension graph. For a linear relationship, this area is a
-triangle and gives ½FΔx. For a non-linear graph, the area can be
-estimated.
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Planning an Investigation
+</div>
+<div class="theory-type">
+Practical Theory
+</div>
+<p>
+A good investigation identifies variables, selects suitable
+equipment, explains the method, controls relevant variables
+and considers safety.
+</p>
 </div>
 
+
+<div class="theory">
+<div class="theory-title">
+Evaluation
+</div>
+<div class="theory-type">
+6-Mark Practical
+</div>
+<p>
+Evaluation should identify limitations, distinguish random
+from systematic errors and propose realistic improvements
+that directly address the limitation.
+</p>
+</div>
+
+</div>
 </article>
 
+</div>
 </section>
+
+
+<!-- =========================================================
+CHEMISTRY
+========================================================= -->
+
+<section class="subject" data-subject="chemistry">
+
+<div class="subject-heading">
+
+<div>
+
+<div class="subject-title">
+Chemistry
+</div>
+
+<div class="subject-description">
+Structure · Bonding · Energetics · Rates · Equilibrium · Organic · Transition Metals
+</div>
+
+</div>
+
+</div>
+
+
+<div class="unit-grid">
+
+
+<!-- CHEM U1 -->
+
+<article class="unit" data-search="chemistry U1 WCH11 atomic structure bonding periodicity organic chemistry">
+
+<div class="unit-head">
+<div class="unit-name">
+Unit 1 · Structure, Bonding & Introduction to Organic Chemistry
+</div>
+<div class="unit-code">
+WCH11
+</div>
+</div>
+
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Atomic Structure
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+Atoms contain protons and neutrons in the nucleus with
+electrons occupying shells or orbitals around the nucleus.
+Isotopes contain the same number of protons but different
+numbers of neutrons.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Mass Spectrometry
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+A mass spectrometer can be used to identify isotopes and
+determine relative isotopic abundance. Particles are
+ionised, accelerated, separated according to mass-to-charge
+ratio and detected.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Ionic Bonding
+</div>
+<div class="theory-type">
+Definitions
+</div>
+<p>
+Ionic bonding is the electrostatic attraction between
+oppositely charged ions formed following electron transfer.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Covalent Bonding
+</div>
+<div class="theory-type">
+Definitions
+</div>
+<p>
+A covalent bond is the electrostatic attraction between
+a shared pair of electrons and the nuclei of the bonded
+atoms.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Metallic Bonding
+</div>
+<div class="theory-type">
+Definitions
+</div>
+<p>
+Metallic bonding is the electrostatic attraction between
+positive metal ions and delocalised electrons.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Electronegativity
+</div>
+<div class="theory-type">
+Exam Theory
+</div>
+<p>
+Electronegativity is the ability of an atom to attract the
+bonding pair of electrons in a covalent bond.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Organic Functional Groups
+</div>
+<div class="theory-type">
+Organic Theory
+</div>
+<p>
+A functional group determines many of the characteristic
+chemical reactions of an organic compound.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Structural Isomerism
+</div>
+<div class="theory-type">
+Definitions
+</div>
+<p>
+Structural isomers have the same molecular formula but
+different structural arrangements of atoms.
+</p>
+</div>
+
+</div>
+</article>
+
+
+<!-- CHEM U2 -->
+
+<article class="unit" data-search="chemistry U2 WCH12 energetics group 2 halogenoalkanes alcohols">
+
+<div class="unit-head">
+<div class="unit-name">
+Unit 2 · Energetics, Group Chemistry, Halogenoalkanes & Alcohols
+</div>
+<div class="unit-code">
+WCH12
+</div>
+</div>
+
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Enthalpy Changes
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+Enthalpy change measures the heat energy transferred during
+a reaction under constant pressure.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Hess's Law
+</div>
+<div class="theory-type">
+Long Response
+</div>
+<p>
+The enthalpy change for a reaction is independent of the
+route taken between reactants and products because enthalpy
+is a state function.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Bond Enthalpy
+</div>
+<div class="theory-type">
+Exam Theory
+</div>
+<p>
+Average bond enthalpy is the average energy required to
+break one mole of a particular bond in gaseous molecules.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Group 2 Trends
+</div>
+<div class="theory-type">
+Inorganic Theory
+</div>
+<p>
+Down Group 2, atomic radius increases and the outer electrons
+are further from the nucleus. This affects ionisation energy
+and chemical reactivity.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Halogenoalkanes
+</div>
+<div class="theory-type">
+Organic Theory
+</div>
+<p>
+Halogenoalkanes undergo reactions including nucleophilic
+substitution. Their reactivity is influenced by the strength
+of the carbon-halogen bond.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Alcohols
+</div>
+<div class="theory-type">
+Organic Theory
+</div>
+<p>
+Alcohols can undergo oxidation, dehydration and reactions
+associated with the hydroxyl functional group.
+</p>
+</div>
+
+</div>
+</article>
+
+
+<!-- CHEM U3 -->
+
+<article class="unit" data-search="chemistry U3 WCH13 practical skills chemistry">
+
+<div class="unit-head">
+<div class="unit-name">
+Unit 3 · Practical Skills I
+</div>
+<div class="unit-code">
+WCH13
+</div>
+</div>
+
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Titration
+</div>
+<div class="theory-type">
+Practical Theory
+</div>
+<p>
+A titration determines the concentration of an unknown
+solution by reacting it with a solution of known concentration.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Uncertainty in Measurements
+</div>
+<div class="theory-type">
+Practical Theory
+</div>
+<p>
+Measured quantities contain uncertainty. The effect of
+uncertainty should be considered when reporting calculated
+results.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Qualitative Analysis
+</div>
+<div class="theory-type">
+Practical Theory
+</div>
+<p>
+Chemical tests can identify ions and functional groups through
+characteristic observations such as colour changes, precipitates
+or gas formation.
+</p>
+</div>
+
+</div>
+</article>
+
+
+<!-- CHEM U4 -->
+
+<article class="unit" data-search="chemistry U4 WCH14 rates equilibrium organic chemistry acids bases">
+
+<div class="unit-head">
+<div class="unit-name">
+Unit 4 · Rates, Equilibrium & Further Organic Chemistry
+</div>
+<div class="unit-code">
+WCH14
+</div>
+</div>
+
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Collision Theory
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+For a reaction to occur, particles must collide with sufficient
+energy and suitable orientation. Increasing temperature
+increases the proportion of particles with energy above the
+activation energy.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Catalysts
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+A catalyst provides an alternative reaction pathway with a
+lower activation energy. It does not change the equilibrium
+position.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Dynamic Equilibrium
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+At dynamic equilibrium, the forward and reverse reactions
+continue at equal rates. Concentrations remain constant
+although particles continue to react.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Le Chatelier's Principle
+</div>
+<div class="theory-type">
+Long Response
+</div>
+<p>
+When a change is imposed on a system at equilibrium, the
+system responds in the direction that tends to oppose the
+change.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Acids and Bases
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+An acid donates protons while a base accepts protons.
+Strong acids and bases ionise or dissociate extensively,
+whereas weak acids and bases establish equilibria.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Organic Reaction Mechanisms
+</div>
+<div class="theory-type">
+Organic Theory
+</div>
+<p>
+Reaction mechanisms show how bonds break and form using
+curly arrows to represent electron movement.
+</p>
+</div>
+
+</div>
+</article>
+
+
+<!-- CHEM U5 -->
+
+<article class="unit" data-search="chemistry U5 WCH15 transition metals organic nitrogen amines amino acids">
+
+<div class="unit-head">
+<div class="unit-name">
+Unit 5 · Transition Metals & Organic Nitrogen Chemistry
+</div>
+<div class="unit-code">
+WCH15
+</div>
+</div>
+
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Transition Metals
+</div>
+<div class="theory-type">
+Inorganic Theory
+</div>
+<p>
+Transition metals form ions with partially filled d orbitals
+and commonly exhibit variable oxidation states, coloured
+compounds and complex formation.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Complex Ions
+</div>
+<div class="theory-type">
+Core Theory
+</div>
+<p>
+A complex ion consists of a central metal ion surrounded by
+ligands that donate lone pairs to form coordinate bonds.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Ligands
+</div>
+<div class="theory-type">
+Definitions
+</div>
+<p>
+A ligand is an ion or molecule that donates a lone pair of
+electrons to a central metal ion.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Amines
+</div>
+<div class="theory-type">
+Organic Theory
+</div>
+<p>
+Amines are derivatives of ammonia in which one or more
+hydrogen atoms have been replaced by organic groups.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Amino Acids
+</div>
+<div class="theory-type">
+Organic Theory
+</div>
+<p>
+Amino acids contain both amine and carboxylic acid functional
+groups and can behave as both acids and bases.
+</p>
+</div>
+
+</div>
+</article>
+
+
+<!-- CHEM U6 -->
+
+<article class="unit" data-search="chemistry U6 WCH16 practical skills chemistry evaluation">
+
+<div class="unit-head">
+<div class="unit-name">
+Unit 6 · Practical Skills II
+</div>
+<div class="unit-code">
+WCH16
+</div>
+</div>
+
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Experimental Design
+</div>
+<div class="theory-type">
+Practical Theory
+</div>
+<p>
+A good chemical investigation identifies variables, controls
+conditions, selects appropriate apparatus and produces
+repeatable measurements.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Evaluation of Results
+</div>
+<div class="theory-type">
+6-Mark Practical
+</div>
+<p>
+An evaluation should identify specific limitations and explain
+how each limitation affects the result. Improvements should
+directly address the identified limitation.
+</p>
+</div>
+
+</div>
+</article>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+BIOLOGY
+========================================================= -->
+
+<section class="subject" data-subject="biology">
+
+<div class="subject-heading">
+
+<div>
+
+<div class="subject-title">
+Biology
+</div>
+
+<div class="subject-description">
+Molecules · Cells · Transport · Energy · Environment · Genetics · Gene Technology
+</div>
+
+</div>
+
+</div>
+
+
+<div class="unit-grid">
+
+
+<!-- BIO U1 -->
+
+<article class="unit" data-search="biology U1 WBI11 molecules diet transport health proteins carbohydrates lipids enzymes membranes">
+
+<div class="unit-head">
+<div class="unit-name">
+Unit 1 · Molecules, Diet, Transport & Health
+</div>
+<div class="unit-code">
+WBI11
+</div>
+</div>
+
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Carbohydrates
+</div>
+<div class="theory-type">
+Core Biology
+</div>
+<p>
+Carbohydrates include monosaccharides, disaccharides and
+polysaccharides. Monosaccharides join through condensation
+reactions to form larger carbohydrates.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Proteins
+</div>
+<div class="theory-type">
+Core Biology
+</div>
+<p>
+Proteins are polymers of amino acids. The sequence of amino
+acids determines the primary structure and influences higher
+levels of protein structure.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Lipids
+</div>
+<div class="theory-type">
+Core Biology
+</div>
+<p>
+Triglycerides contain glycerol and three fatty acids. Phospholipids
+have hydrophilic phosphate-containing heads and hydrophobic
+fatty-acid tails.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Enzymes
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+Enzymes are biological catalysts. Their active site has a
+specific shape complementary to the substrate. Temperature,
+pH and substrate concentration can affect enzyme activity.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Cell Membranes
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+Cell membranes contain phospholipids and proteins arranged
+according to the fluid mosaic model. Membrane proteins
+perform functions including transport, recognition and
+reception.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Gas Exchange
+</div>
+<div class="theory-type">
+Long Response
+</div>
+<p>
+Efficient gas exchange surfaces have a large surface area,
+short diffusion distance and suitable concentration gradients.
+Ventilation and blood flow help maintain concentration
+gradients.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Transport in Plants
+</div>
+<div class="theory-type">
+Core Biology
+</div>
+<p>
+Xylem transports water and mineral ions. Phloem transports
+assimilates such as sucrose between sources and sinks.
+</p>
+</div>
+
+</div>
+</article>
+
+
+<!-- BIO U2 -->
+
+<article class="unit" data-search="biology U2 WBI12 cells development biodiversity conservation mitosis meiosis DNA genetics evolution">
+
+<div class="unit-head">
+<div class="unit-name">
+Unit 2 · Cells, Development, Biodiversity & Conservation
+</div>
+<div class="unit-code">
+WBI12
+</div>
+</div>
+
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Cell Ultrastructure
+</div>
+<div class="theory-type">
+Core Biology
+</div>
+<p>
+Eukaryotic cells contain membrane-bound organelles with
+specialised functions. Prokaryotic cells lack a membrane-bound
+nucleus and have a simpler internal organisation.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Mitosis
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+Mitosis produces genetically identical daughter cells.
+It is important for growth, repair and asexual reproduction.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Meiosis
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+Meiosis produces genetically different haploid cells.
+Variation arises through independent assortment and crossing
+over.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+DNA Replication
+</div>
+<div class="theory-type">
+Long Response
+</div>
+<p>
+DNA replication is semi-conservative. Each original strand
+acts as a template for a new complementary strand.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Inheritance
+</div>
+<div class="theory-type">
+Genetics
+</div>
+<p>
+Alleles are alternative forms of a gene. Genotype describes
+the alleles present while phenotype describes the observable
+characteristics.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Natural Selection
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+Individuals within a population vary. Individuals with
+advantageous heritable characteristics are more likely to
+survive and reproduce, increasing the frequency of those
+alleles over generations.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Biodiversity and Conservation
+</div>
+<div class="theory-type">
+Extended Theory
+</div>
+<p>
+Biodiversity refers to variation within and between species
+and ecosystems. Conservation aims to maintain biodiversity
+and prevent species loss.
+</p>
+</div>
+
+</div>
+</article>
+
+
+<!-- BIO U3 -->
+
+<article class="unit" data-search="biology U3 WBI13 practical skills microscopy enzymes sampling biological practical">
+
+<div class="unit-head">
+<div class="unit-name">
+Unit 3 · Practical Skills in Biology I
+</div>
+<div class="unit-code">
+WBI13
+</div>
+</div>
+
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Microscopy
+</div>
+<div class="theory-type">
+Practical Theory
+</div>
+<p>
+Microscopes allow structures smaller than the unaided eye
+can resolve to be observed. Magnification and resolution are
+different properties.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Sampling
+</div>
+<div class="theory-type">
+Practical Theory
+</div>
+<p>
+Random sampling reduces selection bias. Systematic and
+stratified methods may be used where the population has
+known structure.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Variables and Controls
+</div>
+<div class="theory-type">
+Practical Theory
+</div>
+<p>
+A biological investigation should clearly identify the
+independent and dependent variables and control relevant
+environmental factors.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Validity and Reliability
+</div>
+<div class="theory-type">
+Evaluation
+</div>
+<p>
+A valid investigation measures what it is intended to measure.
+Reliability increases when repeated measurements produce
+consistent results.
+</p>
+</div>
+
+</div>
+</article>
+
+
+<!-- BIO U4 -->
+
+<article class="unit" data-search="biology U4 WBI14 energy environment microbiology immunity photosynthesis respiration ecosystems">
+
+<div class="unit-head">
+<div class="unit-name">
+Unit 4 · Energy, Environment, Microbiology & Immunity
+</div>
+<div class="unit-code">
+WBI14
+</div>
+</div>
+
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Photosynthesis
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+Light energy is converted into chemical energy during
+photosynthesis. Light-dependent reactions generate ATP and
+reduced NADP, which support carbon fixation reactions.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Respiration
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+Aerobic respiration transfers energy from glucose to ATP.
+Glycolysis occurs in the cytoplasm while later stages occur
+in mitochondria.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Energy Transfer in Ecosystems
+</div>
+<div class="theory-type">
+Long Response
+</div>
+<p>
+Energy enters many ecosystems through photosynthesis and
+passes between trophic levels. Energy is lost through
+respiration and other processes at each transfer.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Nutrient Cycles
+</div>
+<div class="theory-type">
+Core Biology
+</div>
+<p>
+Elements such as carbon and nitrogen cycle between organisms
+and the physical environment through biological and chemical
+processes.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Microorganisms
+</div>
+<div class="theory-type">
+Core Biology
+</div>
+<p>
+Microorganisms include bacteria and fungi. They can be
+beneficial in biotechnology and decomposition but can also
+cause disease.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Immune Response
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+The immune system recognises foreign antigens and produces
+specific responses involving lymphocytes, antibodies and
+memory cells.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Vaccination
+</div>
+<div class="theory-type">
+Long Response
+</div>
+<p>
+Vaccination exposes the immune system to an antigen or
+antigenic material so that memory cells are produced.
+A later exposure can therefore trigger a faster secondary
+immune response.
+</p>
+</div>
+
+</div>
+</article>
+
+
+<!-- BIO U5 -->
+
+<article class="unit" data-search="biology U5 WBI15 respiration internal environment coordination gene technology homeostasis nervous hormones genetics">
+
+<div class="unit-head">
+<div class="unit-name">
+Unit 5 · Respiration, Internal Environment, Coordination & Gene Technology
+</div>
+<div class="unit-code">
+WBI15
+</div>
+</div>
+
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Homeostasis
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+Homeostasis maintains a relatively stable internal environment
+despite external or internal changes. Negative feedback
+returns conditions towards a set point.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Nervous Coordination
+</div>
+<div class="theory-type">
+Core Biology
+</div>
+<p>
+The nervous system coordinates rapid responses using
+electrical impulses transmitted along neurones.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Synapses
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+At a chemical synapse, neurotransmitter is released from
+the presynaptic neurone, diffuses across the synaptic cleft
+and binds to receptors on the postsynaptic membrane.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Hormonal Coordination
+</div>
+<div class="theory-type">
+Core Biology
+</div>
+<p>
+Hormones are chemical messengers transported in the blood.
+They bind to specific receptors on target cells.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Gene Expression
+</div>
+<div class="theory-type">
+Genetics
+</div>
+<p>
+Gene expression involves transcription of DNA into RNA and
+translation of the genetic information into a polypeptide.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Gene Technology
+</div>
+<div class="theory-type">
+6-Mark Theory
+</div>
+<p>
+Gene technology involves techniques used to isolate,
+amplify, modify or transfer genetic material. Applications
+include medicine, agriculture and research.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Hardy-Weinberg Principle
+</div>
+<div class="theory-type">
+Genetics
+</div>
+<p>
+The Hardy-Weinberg principle describes allele and genotype
+frequencies in an ideal population where evolutionary forces
+such as selection, mutation and migration are absent.
+</p>
+</div>
+
+</div>
+</article>
+
+
+<!-- BIO U6 -->
+
+<article class="unit" data-search="biology U6 WBI16 practical skills evaluation data analysis scientific investigation">
+
+<div class="unit-head">
+<div class="unit-name">
+Unit 6 · Practical Skills in Biology II
+</div>
+<div class="unit-code">
+WBI16
+</div>
+</div>
+
+<div class="theory-list">
+
+<div class="theory">
+<div class="theory-title">
+Experimental Design
+</div>
+<div class="theory-type">
+Practical Theory
+</div>
+<p>
+A strong investigation identifies the hypothesis, variables,
+controls, method, repeats, appropriate equipment and safety
+considerations.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Data Presentation
+</div>
+<div class="theory-type">
+Practical Theory
+</div>
+<p>
+Tables should include appropriate headings and units.
+Graphs should use suitable scales, labelled axes and
+appropriate plotting conventions.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Statistical Testing
+</div>
+<div class="theory-type">
+Data Analysis
+</div>
+<p>
+Statistical tests are used to determine whether observed
+differences or relationships are likely to have arisen by
+chance.
+</p>
+</div>
+
+
+<div class="theory">
+<div class="theory-title">
+Evaluation
+</div>
+<div class="theory-type">
+6-Mark Practical
+</div>
+<p>
+An effective evaluation identifies specific limitations,
+explains their effect on the results and proposes practical
+improvements.
+</p>
+
+<div class="exam">
+Avoid vague statements such as “human error”.
+State exactly what went wrong, how it affected the result
+and how the method could be improved.
+</div>
+
+</div>
+
+</div>
+</article>
+
+</div>
+</section>
+
+
+<div class="no-results" id="noResults">
+No matching theory found.
+</div>
 
 </main>
 
 
-<footer>
-IAL ATLAS · Pearson Edexcel International A Level Physics · WPH11
+<footer class="footer">
+
+<div>
+IAL ATLAS · Theory Atlas
+</div>
+
+<div style="margin-top:8px;">
+Free student-built Edexcel IAL learning resource.
+</div>
+
 </footer>
 
 
@@ -1002,45 +3512,109 @@ IAL ATLAS · Pearson Edexcel International A Level Physics · WPH11
 
 const search = document.getElementById("search");
 
-let filter = "all";
+const filters =
+document.querySelectorAll(".filter");
 
-function setFilter(type,button){
+const units =
+document.querySelectorAll(".unit");
 
-    filter = type;
+const subjects =
+document.querySelectorAll(".subject");
 
-    document.querySelectorAll(".filters button")
-    .forEach(btn => btn.classList.remove("active"));
+const noResults =
+document.getElementById("noResults");
+
+let activeFilter = "all";
+
+
+function update(){
+
+  const query =
+    search.value.toLowerCase().trim();
+
+  let visible = 0;
+
+  units.forEach(unit => {
+
+    const subject =
+      unit.closest(".subject").dataset.subject;
+
+    const text =
+      unit.innerText.toLowerCase();
+
+    const searchable =
+      (unit.dataset.search || "").toLowerCase();
+
+    const filterMatch =
+      activeFilter === "all" ||
+      activeFilter === subject;
+
+    const searchMatch =
+      !query ||
+      text.includes(query) ||
+      searchable.includes(query);
+
+    if(filterMatch && searchMatch){
+
+      unit.classList.remove("hidden");
+
+      visible++;
+
+    }else{
+
+      unit.classList.add("hidden");
+
+    }
+
+  });
+
+
+  subjects.forEach(subject => {
+
+    const visibleUnit =
+      [...subject.querySelectorAll(".unit")]
+      .some(unit =>
+        !unit.classList.contains("hidden")
+      );
+
+    subject.classList.toggle(
+      "hidden",
+      !visibleUnit
+    );
+
+  });
+
+
+  noResults.style.display =
+    visible ? "none" : "block";
+
+}
+
+
+filters.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    filters.forEach(b =>
+      b.classList.remove("active")
+    );
 
     button.classList.add("active");
 
-    apply();
-}
+    activeFilter =
+      button.dataset.filter;
 
-search.addEventListener("input",apply);
+    update();
 
-function apply(){
+  });
 
-    const query =
-        search.value.toLowerCase().trim();
+});
 
-    document.querySelectorAll(".card")
-    .forEach(card => {
 
-        const typeMatch =
-            filter === "all" ||
-            card.dataset.type === filter;
-
-        const searchMatch =
-            !query ||
-            card.innerText.toLowerCase().includes(query);
-
-        card.classList.toggle(
-            "hidden",
-            !(typeMatch && searchMatch)
-        );
-
-    });
-}
+search.addEventListener(
+  "input",
+  update
+);
 
 </script>
 
