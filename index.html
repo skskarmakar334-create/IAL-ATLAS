@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-
 
 <meta charset="UTF-8">
 
@@ -16,12 +14,12 @@
 
 <meta
     name="description"
-    content="IAL ATLAS is a free student-built resource for Edexcel International A Levels, offering organised Mathematics, Physics, Chemistry and Biology notes, formulas, theory, worked examples and revision resources."
+    content="IAL ATLAS is a free student-built resource for Edexcel International A Levels, offering organised Mathematics, Physics, Chemistry and Biology notes, formulas, theory, past papers and revision resources."
 >
 
 <meta
     name="keywords"
-    content="IAL ATLAS, Edexcel IAL, Edexcel International A Level, International A Level notes, Edexcel IAL notes, Edexcel Maths notes, Edexcel Physics notes, Edexcel Chemistry notes, Edexcel Biology notes, IAL Mathematics, IAL Physics, IAL Chemistry, IAL Biology, Formula Atlas, Theory Atlas, Edexcel revision resources"
+    content="IAL ATLAS, Edexcel IAL, Edexcel International A Level, International A Level notes, Edexcel IAL notes, Edexcel Maths notes, Edexcel Physics notes, Edexcel Chemistry notes, Edexcel Biology notes, IAL Mathematics, IAL Physics, IAL Chemistry, IAL Biology, Formula Atlas, Theory Atlas, Past Papers Atlas"
 >
 
 <meta
@@ -54,6 +52,7 @@
     href="https://ialatlas.com/"
 >
 
+
 <!-- OPEN GRAPH -->
 
 <meta
@@ -63,7 +62,7 @@
 
 <meta
     property="og:description"
-    content="Free, student-built resources for Edexcel International A Levels, including Mathematics, Physics, Chemistry and Biology notes, formulas, theory and revision materials."
+    content="Free, student-built resources for Edexcel International A Levels, including Mathematics, Physics, Chemistry and Biology notes, formulas, theory, past papers and revision materials."
 >
 
 <meta
@@ -101,6 +100,7 @@
     content="image/png"
 >
 
+
 <!-- TWITTER / X -->
 
 <meta
@@ -122,6 +122,7 @@
     name="twitter:image"
     content="https://ialatlas.com/logo.png"
 >
+
 
 <!-- STRUCTURED DATA — WEBSITE -->
 
@@ -150,6 +151,7 @@
 }
 </script>
 
+
 <!-- STRUCTURED DATA — WEBPAGE -->
 
 <script type="application/ld+json">
@@ -170,7 +172,8 @@
         "Edexcel International A Level Chemistry",
         "Edexcel International A Level Biology",
         "Edexcel IAL Formula Atlas",
-        "Edexcel IAL Theory Atlas"
+        "Edexcel IAL Theory Atlas",
+        "Edexcel IAL Past Papers"
     ],
     "author": {
         "@type": "Person",
@@ -178,6 +181,7 @@
     }
 }
 </script>
+
 
 <!-- STRUCTURED DATA — EDUCATIONAL ORGANIZATION -->
 
@@ -200,14 +204,12 @@
         "Edexcel International A Level Biology",
         "Edexcel International A Level formulas",
         "Edexcel International A Level theory",
-        "International A Level revision",
-        "A Level Mathematics",
-        "A Level Physics",
-        "A Level Chemistry",
-        "A Level Biology"
+        "Edexcel International A Level past papers",
+        "International A Level revision"
     ]
 }
 </script>
+
 
 <!-- STRUCTURED DATA — SUBJECTS -->
 
@@ -215,8 +217,8 @@
 {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "Edexcel International A Level Subjects",
-    "description": "Subject resources available on IAL ATLAS.",
+    "name": "Edexcel International A Level Subjects and Resources",
+    "description": "Subject and revision resources available on IAL ATLAS.",
     "itemListElement": [
         {
             "@type": "ListItem",
@@ -253,10 +255,17 @@
             "position": 6,
             "name": "IAL ATLAS Theory Atlas",
             "url": "https://ialatlas.com/theory-atlas.html"
+        },
+        {
+            "@type": "ListItem",
+            "position": 7,
+            "name": "IAL ATLAS Past Papers Atlas",
+            "url": "https://ialatlas.com/past-papers.html"
         }
     ]
 }
 </script>
+
 
 <!-- FONTS -->
 
@@ -276,6 +285,7 @@
     rel="stylesheet"
 >
 
+
 <!-- STYLESHEET -->
 
 <link
@@ -283,8 +293,8 @@
     href="style.css"
 >
 
-
 </head>
+
 
 <body id="top">
 
@@ -335,6 +345,10 @@
             Atlases
         </a>
 
+        <a href="past-papers.html">
+            Past Papers
+        </a>
+
         <a href="#why">
             Why IAL ATLAS
         </a>
@@ -365,739 +379,788 @@
 <main>
 
 
-    <!-- HERO -->
+<!-- HERO -->
 
-    <section
-        class="hero"
-        aria-labelledby="hero-title"
+<section
+    class="hero"
+    aria-labelledby="hero-title"
+>
+
+    <div
+        class="hero-beam beam-one"
+        aria-hidden="true"
+    ></div>
+
+    <div
+        class="hero-beam beam-two"
+        aria-hidden="true"
+    ></div>
+
+    <div
+        class="hero-beam beam-three"
+        aria-hidden="true"
+    ></div>
+
+
+    <div
+        class="science-symbol symbol-1"
+        aria-hidden="true"
+    >
+        ∫
+    </div>
+
+    <div
+        class="science-symbol symbol-2"
+        aria-hidden="true"
+    >
+        λ
+    </div>
+
+    <div
+        class="science-symbol symbol-3"
+        aria-hidden="true"
+    >
+        E = mc²
+    </div>
+
+    <div
+        class="science-symbol symbol-4"
+        aria-hidden="true"
+    >
+        ∑
+    </div>
+
+    <div
+        class="science-symbol symbol-5"
+        aria-hidden="true"
+    >
+        Δ
+    </div>
+
+    <div
+        class="science-symbol symbol-6"
+        aria-hidden="true"
+    >
+        ψ
+    </div>
+
+
+    <img
+        src="ial-atlas-globe.png"
+        alt=""
+        class="hero-globe"
+        aria-hidden="true"
     >
 
-        <div
-            class="hero-beam beam-one"
-            aria-hidden="true"
-        ></div>
 
-        <div
-            class="hero-beam beam-two"
-            aria-hidden="true"
-        ></div>
-
-        <div
-            class="hero-beam beam-three"
-            aria-hidden="true"
-        ></div>
+    <div
+        class="globe-atmosphere"
+        aria-hidden="true"
+    ></div>
 
 
-        <div
-            class="science-symbol symbol-1"
-            aria-hidden="true"
-        >
-            ∫
-        </div>
+    <div
+        class="orbital-system"
+        aria-hidden="true"
+    >
 
-        <div
-            class="science-symbol symbol-2"
-            aria-hidden="true"
-        >
-            λ
-        </div>
+        <div class="orbit"></div>
+        <div class="orbit"></div>
+        <div class="orbit"></div>
 
-        <div
-            class="science-symbol symbol-3"
-            aria-hidden="true"
-        >
-            E = mc²
-        </div>
-
-        <div
-            class="science-symbol symbol-4"
-            aria-hidden="true"
-        >
-            ∑
-        </div>
-
-        <div
-            class="science-symbol symbol-5"
-            aria-hidden="true"
-        >
-            Δ
-        </div>
-
-        <div
-            class="science-symbol symbol-6"
-            aria-hidden="true"
-        >
-            ψ
-        </div>
+    </div>
 
 
-        <img
-            src="ial-atlas-globe.png"
-            alt=""
-            class="hero-globe"
-            aria-hidden="true"
-        >
+    <div class="hero-content">
+
+        <p class="hero-label">
+            EDEXCEL INTERNATIONAL A LEVELS
+        </p>
 
 
-        <div
-            class="globe-atmosphere"
-            aria-hidden="true"
-        ></div>
+        <h1 id="hero-title">
+
+            Learn without<br>
+
+            <span>
+                the confusion.
+            </span>
+
+        </h1>
 
 
-        <div
-            class="orbital-system"
-            aria-hidden="true"
-        >
+        <p class="hero-description">
 
-            <div class="orbit"></div>
-            <div class="orbit"></div>
-            <div class="orbit"></div>
+            IAL ATLAS is a free, student-built learning platform
+            created to make Edexcel International A Levels
+            clearer, more organised, and easier to study.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="#subjects"
+                class="button primary-button"
+            >
+                Explore the Atlas →
+            </a>
+
+            <a
+                href="about.html"
+                class="button secondary-button"
+            >
+                About IAL ATLAS
+            </a>
 
         </div>
 
 
-        <div class="hero-content">
+        <div
+            class="hero-subjects"
+            aria-label="IAL ATLAS subjects"
+        >
 
-            <p class="hero-label">
-                EDEXCEL INTERNATIONAL A LEVELS
-            </p>
+            <span>
+                📐 Mathematics
+            </span>
+
+            <span>
+                ⚛️ Physics
+            </span>
+
+            <span>
+                🧪 Chemistry
+            </span>
+
+            <span>
+                🧬 Biology
+            </span>
+
+        </div>
+
+    </div>
 
 
-            <h1 id="hero-title">
+    <div
+        class="scroll-indicator"
+        aria-hidden="true"
+    >
 
-                Learn without<br>
+        SCROLL TO EXPLORE
 
-                <span>
-                    the confusion.
+        <div class="scroll-line"></div>
+
+    </div>
+
+</section>
+
+
+<div
+    class="energy-divider"
+    aria-hidden="true"
+></div>
+
+
+<!-- SUBJECTS -->
+
+<section
+    class="section"
+    id="subjects"
+    aria-labelledby="subjects-title"
+>
+
+    <p class="section-label reveal">
+        KNOWLEDGE SYSTEM
+    </p>
+
+
+    <h2
+        id="subjects-title"
+        class="reveal"
+    >
+        Explore the Atlas.
+    </h2>
+
+
+    <p class="section-intro reveal">
+
+        Explore organised learning resources for
+        Edexcel International A Level Mathematics,
+        Physics, Chemistry and Biology.
+
+    </p>
+
+
+    <div class="subjects">
+
+
+        <!-- MATHEMATICS -->
+
+        <a
+            href="mathematics.html"
+            class="card"
+            aria-label="Explore Edexcel International A Level Mathematics resources"
+        >
+
+            <div class="card-top">
+
+                <span class="card-number">
+                    SUBJECT / 01
                 </span>
 
-            </h1>
-
-
-            <p class="hero-description">
-
-                IAL ATLAS is a free, student-built learning platform
-                created to make Edexcel International A Levels
-                clearer, more organised, and easier to study.
-
-            </p>
-
-
-            <div class="hero-buttons">
-
-                <a
-                    href="#subjects"
-                    class="button primary-button"
-                >
-                    Explore the Atlas →
-                </a>
-
-                <a
-                    href="about.html"
-                    class="button secondary-button"
-                >
-                    About IAL ATLAS
-                </a>
+                <span class="card-status">
+                    AVAILABLE
+                </span>
 
             </div>
 
 
             <div
-                class="hero-subjects"
-                aria-label="IAL ATLAS subjects"
+                class="icon"
+                aria-hidden="true"
             >
-
-                <span>
-                    📐 Mathematics
-                </span>
-
-                <span>
-                    ⚛️ Physics
-                </span>
-
-                <span>
-                    🧪 Chemistry
-                </span>
-
-                <span>
-                    🧬 Biology
-                </span>
-
+                📐
             </div>
 
-        </div>
 
+            <h3>
+                Mathematics
+            </h3>
 
-        <div
-            class="scroll-indicator"
-            aria-hidden="true"
-        >
 
-            SCROLL TO EXPLORE
+            <p>
 
-            <div class="scroll-line"></div>
-
-        </div>
-
-    </section>
-
-
-    <div
-        class="energy-divider"
-        aria-hidden="true"
-    ></div>
-
-
-    <!-- SUBJECTS -->
-
-    <section
-        class="section"
-        id="subjects"
-        aria-labelledby="subjects-title"
-    >
-
-        <p class="section-label reveal">
-            KNOWLEDGE SYSTEM
-        </p>
-
-
-        <h2
-            id="subjects-title"
-            class="reveal"
-        >
-            Explore the Atlas.
-        </h2>
-
-
-        <p class="section-intro reveal">
-
-            Explore organised learning resources for
-            Edexcel International A Level Mathematics,
-            Physics, Chemistry and Biology.
-
-        </p>
-
-
-        <div class="subjects">
-
-
-            <!-- MATHEMATICS -->
-
-            <a
-                href="mathematics.html"
-                class="card"
-                aria-label="Explore Edexcel International A Level Mathematics resources"
-            >
-
-                <div class="card-top">
-
-                    <span class="card-number">
-                        SUBJECT / 01
-                    </span>
-
-                    <span class="card-status">
-                        AVAILABLE
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="icon"
-                    aria-hidden="true"
-                >
-                    📐
-                </div>
-
-
-                <h3>
-                    Mathematics
-                </h3>
-
-
-                <p>
-
-                    Explore Edexcel International A Level
-                    Mathematics notes, formulas, worked examples,
-                    topic explanations and revision resources.
-
-                </p>
-
-
-                <div class="card-arrow">
-                    ENTER SUBJECT →
-                </div>
-
-            </a>
-
-
-            <!-- PHYSICS -->
-
-            <a
-                href="physics.html"
-                class="card"
-                aria-label="Explore Edexcel International A Level Physics resources"
-            >
-
-                <div class="card-top">
-
-                    <span class="card-number">
-                        SUBJECT / 02
-                    </span>
-
-                    <span class="card-status">
-                        AVAILABLE
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="icon"
-                    aria-hidden="true"
-                >
-                    ⚛️
-                </div>
-
-
-                <h3>
-                    Physics
-                </h3>
-
-
-                <p>
-
-                    Study Edexcel International A Level
-                    Physics through concept explanations,
-                    equations, examples and revision resources.
-
-                </p>
-
-
-                <div class="card-arrow">
-                    ENTER SUBJECT →
-                </div>
-
-            </a>
-
-
-            <!-- CHEMISTRY -->
-
-            <a
-                href="chemistry.html"
-                class="card"
-                aria-label="Explore Edexcel International A Level Chemistry resources"
-            >
-
-                <div class="card-top">
-
-                    <span class="card-number">
-                        SUBJECT / 03
-                    </span>
-
-                    <span class="card-status">
-                        AVAILABLE
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="icon"
-                    aria-hidden="true"
-                >
-                    🧪
-                </div>
-
-
-                <h3>
-                    Chemistry
-                </h3>
-
-
-                <p>
-
-                    Learn Edexcel International A Level
-                    Chemistry with clear explanations,
-                    reactions, calculations and revision guides.
-
-                </p>
-
-
-                <div class="card-arrow">
-                    ENTER SUBJECT →
-                </div>
-
-            </a>
-
-
-            <!-- BIOLOGY -->
-
-            <a
-                href="biology.html"
-                class="card"
-                aria-label="Explore Edexcel International A Level Biology resources"
-            >
-
-                <div class="card-top">
-
-                    <span class="card-number">
-                        SUBJECT / 04
-                    </span>
-
-                    <span class="card-status">
-                        AVAILABLE
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="icon"
-                    aria-hidden="true"
-                >
-                    🧬
-                </div>
-
-
-                <h3>
-                    Biology
-                </h3>
-
-
-                <p>
-
-                    Explore Edexcel International A Level
-                    Biology with clear explanations, biological
-                    concepts, practical skills and revision resources.
-
-                </p>
-
-
-                <div class="card-arrow">
-                    ENTER SUBJECT →
-                </div>
-
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         FORMULA + THEORY ATLAS
-    ================================================== -->
-
-    <section
-        class="section"
-        id="atlases"
-        aria-labelledby="atlases-title"
-    >
-
-        <p class="section-label reveal">
-            REVISION SYSTEM
-        </p>
-
-
-        <h2
-            id="atlases-title"
-            class="reveal"
-        >
-            The Atlas Tools.
-        </h2>
-
-
-        <p class="section-intro reveal">
-
-            Fast-access revision systems built to help you
-            find the formulas and theory you need without
-            searching through everything.
-
-        </p>
-
-
-        <div class="subjects">
-
-
-            <!-- FORMULA ATLAS -->
-
-            <a
-                href="formula-atlas.html"
-                class="card"
-                aria-label="Open IAL ATLAS Formula Atlas"
-            >
-
-                <div class="card-top">
-
-                    <span class="card-number">
-                        ATLAS / 01
-                    </span>
-
-                    <span class="card-status">
-                        FORMULAS
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="icon"
-                    aria-hidden="true"
-                >
-                    ∑
-                </div>
-
-
-                <h3>
-                    Formula Atlas
-                </h3>
-
-
-                <p>
-
-                    A dedicated collection of essential
-                    Edexcel International A Level formulas,
-                    organised by subject, unit and topic for
-                    quick revision.
-
-                </p>
-
-
-                <div class="card-arrow">
-                    ENTER FORMULA ATLAS →
-                </div>
-
-            </a>
-
-
-            <!-- THEORY ATLAS -->
-
-            <a
-                href="theory-atlas.html"
-                class="card"
-                aria-label="Open IAL ATLAS Theory Atlas"
-            >
-
-                <div class="card-top">
-
-                    <span class="card-number">
-                        ATLAS / 02
-                    </span>
-
-                    <span class="card-status">
-                        THEORY
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="icon"
-                    aria-hidden="true"
-                >
-                    Ψ
-                </div>
-
-
-                <h3>
-                    Theory Atlas
-                </h3>
-
-
-                <p>
-
-                    Exam-focused theory covering long-answer
-                    questions, definitions, principles, processes,
-                    graphs and other important theory areas.
-
-                </p>
-
-
-                <div class="card-arrow">
-                    ENTER THEORY ATLAS →
-                </div>
-
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- WHY IAL ATLAS -->
-
-    <section
-        class="why-ial"
-        id="why"
-        aria-labelledby="why-title"
-    >
-
-        <div class="why-inner">
-
-            <p class="section-label reveal">
-                WHY IAL ATLAS?
-            </p>
-
-
-            <h2
-                id="why-title"
-                class="reveal"
-            >
-
-                Built to make learning
-
-                <span>
-                    simpler.
-                </span>
-
-            </h2>
-
-
-            <p class="why-intro reveal">
-
-                IAL ATLAS focuses on making difficult academic
-                content easier to navigate, understand and revise.
-                Resources are organised around the needs of
-                Edexcel International A Level students.
+                Explore Edexcel International A Level
+                Mathematics notes, formulas, worked examples,
+                topic explanations and revision resources.
 
             </p>
 
 
-            <div class="why-grid">
-
-
-                <div class="why-card reveal">
-
-                    <div
-                        class="why-icon"
-                        aria-hidden="true"
-                    >
-                        📖
-                    </div>
-
-
-                    <h3>
-                        Understand
-                    </h3>
-
-
-                    <p>
-
-                        Clear explanations help break complex
-                        Mathematics, Physics, Chemistry and Biology
-                        topics into easier-to-follow concepts.
-
-                    </p>
-
-                </div>
-
-
-                <div class="why-card reveal">
-
-                    <div
-                        class="why-icon"
-                        aria-hidden="true"
-                    >
-                        🧠
-                    </div>
-
-
-                    <h3>
-                        Practise
-                    </h3>
-
-
-                    <p>
-
-                        Worked examples and structured learning
-                        resources help turn theoretical knowledge
-                        into practical understanding.
-
-                    </p>
-
-                </div>
-
-
-                <div class="why-card reveal">
-
-                    <div
-                        class="why-icon"
-                        aria-hidden="true"
-                    >
-                        🎯
-                    </div>
-
-
-                    <h3>
-                        Prepare
-                    </h3>
-
-
-                    <p>
-
-                        Organised revision materials help students
-                        review important concepts and prepare
-                        more effectively for assessments.
-
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ABOUT GATEWAY -->
-
-    <section
-        class="about-gateway"
-        aria-labelledby="about-gateway-title"
-    >
-
-        <a
-            href="about.html"
-            class="about-gateway-card reveal"
-            aria-label="Learn more about IAL ATLAS"
-        >
-
-            <div class="gateway-inner">
-
-                <p class="gateway-label">
-                    SYSTEM / ABOUT
-                </p>
-
-
-                <h2
-                    class="gateway-title"
-                    id="about-gateway-title"
-                >
-                    Discover IAL ATLAS.
-                </h2>
-
-
-                <p class="gateway-description">
-
-                    Learn more about IAL ATLAS, why the platform
-                    was created, its educational philosophy,
-                    the people behind it and its future direction.
-
-                </p>
-
-
-                <div class="gateway-arrow">
-                    ENTER ABOUT IAL ATLAS →
-                </div>
-
+            <div class="card-arrow">
+                ENTER SUBJECT →
             </div>
 
         </a>
 
-    </section>
+
+        <!-- PHYSICS -->
+
+        <a
+            href="physics.html"
+            class="card"
+            aria-label="Explore Edexcel International A Level Physics resources"
+        >
+
+            <div class="card-top">
+
+                <span class="card-number">
+                    SUBJECT / 02
+                </span>
+
+                <span class="card-status">
+                    AVAILABLE
+                </span>
+
+            </div>
+
+
+            <div
+                class="icon"
+                aria-hidden="true"
+            >
+                ⚛️
+            </div>
+
+
+            <h3>
+                Physics
+            </h3>
+
+
+            <p>
+
+                Study Edexcel International A Level
+                Physics through concept explanations,
+                equations, examples and revision resources.
+
+            </p>
+
+
+            <div class="card-arrow">
+                ENTER SUBJECT →
+            </div>
+
+        </a>
+
+
+        <!-- CHEMISTRY -->
+
+        <a
+            href="chemistry.html"
+            class="card"
+            aria-label="Explore Edexcel International A Level Chemistry resources"
+        >
+
+            <div class="card-top">
+
+                <span class="card-number">
+                    SUBJECT / 03
+                </span>
+
+                <span class="card-status">
+                    AVAILABLE
+                </span>
+
+            </div>
+
+
+            <div
+                class="icon"
+                aria-hidden="true"
+            >
+                🧪
+            </div>
+
+
+            <h3>
+                Chemistry
+            </h3>
+
+
+            <p>
+
+                Learn Edexcel International A Level
+                Chemistry with clear explanations,
+                reactions, calculations and revision guides.
+
+            </p>
+
+
+            <div class="card-arrow">
+                ENTER SUBJECT →
+            </div>
+
+        </a>
+
+
+        <!-- BIOLOGY -->
+
+        <a
+            href="biology.html"
+            class="card"
+            aria-label="Explore Edexcel International A Level Biology resources"
+        >
+
+            <div class="card-top">
+
+                <span class="card-number">
+                    SUBJECT / 04
+                </span>
+
+                <span class="card-status">
+                    AVAILABLE
+                </span>
+
+            </div>
+
+
+            <div
+                class="icon"
+                aria-hidden="true"
+            >
+                🧬
+            </div>
+
+
+            <h3>
+                Biology
+            </h3>
+
+
+            <p>
+
+                Explore Edexcel International A Level
+                Biology with clear explanations, biological
+                concepts, practical skills and revision resources.
+
+            </p>
+
+
+            <div class="card-arrow">
+                ENTER SUBJECT →
+            </div>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ATLASES -->
+
+<section
+    class="section"
+    id="atlases"
+    aria-labelledby="atlases-title"
+>
+
+    <p class="section-label reveal">
+        REVISION SYSTEM
+    </p>
+
+
+    <h2
+        id="atlases-title"
+        class="reveal"
+    >
+        The Atlas Tools.
+    </h2>
+
+
+    <p class="section-intro reveal">
+
+        Fast-access revision systems built to help you
+        find the formulas, theory and examination resources
+        you need without searching through everything.
+
+    </p>
+
+
+    <div class="subjects">
+
+
+        <!-- FORMULA ATLAS -->
+
+        <a
+            href="formula-atlas.html"
+            class="card"
+            aria-label="Open IAL ATLAS Formula Atlas"
+        >
+
+            <div class="card-top">
+
+                <span class="card-number">
+                    ATLAS / 01
+                </span>
+
+                <span class="card-status">
+                    FORMULAS
+                </span>
+
+            </div>
+
+
+            <div
+                class="icon"
+                aria-hidden="true"
+            >
+                ∑
+            </div>
+
+
+            <h3>
+                Formula Atlas
+            </h3>
+
+
+            <p>
+
+                A dedicated collection of essential
+                Edexcel International A Level formulas,
+                organised by subject, unit and topic for
+                quick revision.
+
+            </p>
+
+
+            <div class="card-arrow">
+                ENTER FORMULA ATLAS →
+            </div>
+
+        </a>
+
+
+        <!-- THEORY ATLAS -->
+
+        <a
+            href="theory-atlas.html"
+            class="card"
+            aria-label="Open IAL ATLAS Theory Atlas"
+        >
+
+            <div class="card-top">
+
+                <span class="card-number">
+                    ATLAS / 02
+                </span>
+
+                <span class="card-status">
+                    THEORY
+                </span>
+
+            </div>
+
+
+            <div
+                class="icon"
+                aria-hidden="true"
+            >
+                Ψ
+            </div>
+
+
+            <h3>
+                Theory Atlas
+            </h3>
+
+
+            <p>
+
+                Exam-focused theory covering long-answer
+                questions, definitions, principles, processes,
+                graphs and other important theory areas.
+
+            </p>
+
+
+            <div class="card-arrow">
+                ENTER THEORY ATLAS →
+            </div>
+
+        </a>
+
+
+        <!-- PAST PAPERS ATLAS -->
+
+        <a
+            href="past-papers.html"
+            class="card"
+            aria-label="Open IAL ATLAS Past Papers Atlas"
+        >
+
+            <div class="card-top">
+
+                <span class="card-number">
+                    ATLAS / 03
+                </span>
+
+                <span class="card-status">
+                    PAST PAPERS
+                </span>
+
+            </div>
+
+
+            <div
+                class="icon"
+                aria-hidden="true"
+            >
+                📚
+            </div>
+
+
+            <h3>
+                Past Papers Atlas
+            </h3>
+
+
+            <p>
+
+                Find Edexcel International A Level
+                past papers, mark schemes and examiner
+                resources organised by subject, unit,
+                year and examination session.
+
+            </p>
+
+
+            <div class="card-arrow">
+                ENTER PAST PAPERS ATLAS →
+            </div>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- WHY IAL ATLAS -->
+
+<section
+    class="why-ial"
+    id="why"
+    aria-labelledby="why-title"
+>
+
+    <div class="why-inner">
+
+        <p class="section-label reveal">
+            WHY IAL ATLAS?
+        </p>
+
+
+        <h2
+            id="why-title"
+            class="reveal"
+        >
+
+            Built to make learning
+
+            <span>
+                simpler.
+            </span>
+
+        </h2>
+
+
+        <p class="why-intro reveal">
+
+            IAL ATLAS focuses on making difficult academic
+            content easier to navigate, understand and revise.
+            Resources are organised around the needs of
+            Edexcel International A Level students.
+
+        </p>
+
+
+        <div class="why-grid">
+
+
+            <div class="why-card reveal">
+
+                <div
+                    class="why-icon"
+                    aria-hidden="true"
+                >
+                    📖
+                </div>
+
+
+                <h3>
+                    Understand
+                </h3>
+
+
+                <p>
+
+                    Clear explanations help break complex
+                    Mathematics, Physics, Chemistry and Biology
+                    topics into easier-to-follow concepts.
+
+                </p>
+
+            </div>
+
+
+            <div class="why-card reveal">
+
+                <div
+                    class="why-icon"
+                    aria-hidden="true"
+                >
+                    🧠
+                </div>
+
+
+                <h3>
+                    Practise
+                </h3>
+
+
+                <p>
+
+                    Worked examples, theory resources and
+                    past-paper practice help turn theoretical
+                    knowledge into practical understanding.
+
+                </p>
+
+            </div>
+
+
+            <div class="why-card reveal">
+
+                <div
+                    class="why-icon"
+                    aria-hidden="true"
+                >
+                    🎯
+                </div>
+
+
+                <h3>
+                    Prepare
+                </h3>
+
+
+                <p>
+
+                    Organised revision materials help students
+                    review important concepts and prepare
+                    more effectively for assessments.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT GATEWAY -->
+
+<section
+    class="about-gateway"
+    aria-labelledby="about-gateway-title"
+>
+
+    <a
+        href="about.html"
+        class="about-gateway-card reveal"
+        aria-label="Learn more about IAL ATLAS"
+    >
+
+        <div class="gateway-inner">
+
+            <p class="gateway-label">
+                SYSTEM / ABOUT
+            </p>
+
+
+            <h2
+                class="gateway-title"
+                id="about-gateway-title"
+            >
+                Discover IAL ATLAS.
+            </h2>
+
+
+            <p class="gateway-description">
+
+                Learn more about IAL ATLAS, why the platform
+                was created, its educational philosophy,
+                the people behind it and its future direction.
+
+            </p>
+
+
+            <div class="gateway-arrow">
+                ENTER ABOUT IAL ATLAS →
+            </div>
+
+        </div>
+
+    </a>
+
+</section>
 
 </main>
 
@@ -1135,6 +1198,10 @@
 
             <a href="#atlases">
                 Atlases
+            </a>
+
+            <a href="past-papers.html">
+                Past Papers
             </a>
 
             <a href="#why">
@@ -1176,722 +1243,752 @@
 
 <script>
 
-    /* PARTICLE SYSTEM */
+/* =====================================================
+   PARTICLE SYSTEM
+===================================================== */
 
-    const canvas =
-        document.getElementById("particleCanvas");
+const canvas =
+    document.getElementById("particleCanvas");
 
-    const ctx =
-        canvas ? canvas.getContext("2d") : null;
+const ctx =
+    canvas ? canvas.getContext("2d") : null;
 
-    let particles = [];
+let particles = [];
 
-    let mouse = {
-        x: window.innerWidth / 2,
-        y: window.innerHeight / 2
-    };
+let mouse = {
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2
+};
 
 
-    function resizeCanvas() {
+function resizeCanvas() {
 
-        if (!canvas || !ctx) return;
+    if (!canvas || !ctx) return;
 
-        const dpr =
-            Math.min(window.devicePixelRatio || 1, 2);
-
-        canvas.width =
-            window.innerWidth * dpr;
-
-        canvas.height =
-            window.innerHeight * dpr;
-
-        canvas.style.width =
-            window.innerWidth + "px";
-
-        canvas.style.height =
-            window.innerHeight + "px";
-
-        ctx.setTransform(
-            dpr,
-            0,
-            0,
-            dpr,
-            0,
-            0
+    const dpr =
+        Math.min(
+            window.devicePixelRatio || 1,
+            2
         );
 
-    }
-
-
-    resizeCanvas();
-
-
-    class Particle {
-
-        constructor() {
-
-            this.x =
-                Math.random() *
-                window.innerWidth;
-
-            this.y =
-                Math.random() *
-                window.innerHeight;
-
-            this.size =
-                Math.random() * 1.7 + 0.3;
-
-            this.speedX =
-                (Math.random() - 0.5) * 0.25;
-
-            this.speedY =
-                (Math.random() - 0.5) * 0.25;
-
-            this.opacity =
-                Math.random() * 0.7 + 0.1;
-
-            this.phase =
-                Math.random() *
-                Math.PI *
-                2;
-
-        }
-
-
-        update() {
-
-            this.x += this.speedX;
-
-            this.y += this.speedY;
-
-            this.phase += 0.01;
-
-
-            if (this.x < 0)
-                this.x = window.innerWidth;
-
-            if (this.x > window.innerWidth)
-                this.x = 0;
-
-            if (this.y < 0)
-                this.y = window.innerHeight;
-
-            if (this.y > window.innerHeight)
-                this.y = 0;
-
-        }
-
-
-        draw() {
-
-            const pulse =
-                0.6 +
-                Math.sin(this.phase) * 0.3;
-
-
-            ctx.beginPath();
-
-            ctx.arc(
-                this.x,
-                this.y,
-                this.size,
-                0,
-                Math.PI * 2
-            );
-
-
-            ctx.fillStyle =
-                `rgba(
-                    0,
-                    210,
-                    255,
-                    ${this.opacity * pulse}
-                )`;
-
-
-            ctx.fill();
-
-        }
-
-    }
-
-
-    const particleCount =
-        window.innerWidth < 600 ? 65 : 140;
-
-
-    for (
-        let i = 0;
-        i < particleCount;
-        i++
-    ) {
-
-        particles.push(
-            new Particle()
-        );
-
-    }
-
-
-    function connectParticles() {
-
-        for (
-            let a = 0;
-            a < particles.length;
-            a++
-        ) {
-
-            for (
-                let b = a + 1;
-                b < particles.length;
-                b++
-            ) {
-
-                const dx =
-                    particles[a].x -
-                    particles[b].x;
-
-                const dy =
-                    particles[a].y -
-                    particles[b].y;
-
-                const distanceSquared =
-                    dx * dx +
-                    dy * dy;
-
-
-                const connectionDistance = 120;
-
-
-                if (
-                    distanceSquared <
-                    connectionDistance *
-                    connectionDistance
-                ) {
-
-                    const distance =
-                        Math.sqrt(
-                            distanceSquared
-                        );
-
-
-                    const opacity =
-                        0.07 *
-                        (1 - distance / connectionDistance);
-
-
-                    ctx.beginPath();
-
-
-                    ctx.moveTo(
-                        particles[a].x,
-                        particles[a].y
-                    );
-
-
-                    ctx.lineTo(
-                        particles[b].x,
-                        particles[b].y
-                    );
-
-
-                    ctx.strokeStyle =
-                        `rgba(
-                            0,
-                            210,
-                            255,
-                            ${opacity}
-                        )`;
-
-
-                    ctx.lineWidth = 0.5;
-
-                    ctx.stroke();
-
-                }
-
-            }
-
-        }
-
-    }
-
-
-    function animateParticles() {
-
-        if (!canvas || !ctx) return;
-
-
-        ctx.clearRect(
-            0,
-            0,
-            window.innerWidth,
-            window.innerHeight
-        );
-
-
-        particles.forEach(
-            particle => {
-
-                particle.update();
-                particle.draw();
-
-            }
-        );
-
-
-        connectParticles();
-
-
-        requestAnimationFrame(
-            animateParticles
-        );
-
-    }
-
-
-    if (
-        !window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches
-    ) {
-
-        animateParticles();
-
-    }
-
-
-    window.addEventListener(
-        "resize",
-        resizeCanvas
+    canvas.width =
+        window.innerWidth * dpr;
+
+    canvas.height =
+        window.innerHeight * dpr;
+
+    canvas.style.width =
+        window.innerWidth + "px";
+
+    canvas.style.height =
+        window.innerHeight + "px";
+
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
     );
 
-
-    /* CURSOR GLOW */
-
-    const cursor =
-        document.querySelector(
-            ".cursor-glow"
-        );
+}
 
 
-    if (
-        cursor &&
-        window.matchMedia("(pointer: fine)").matches
-    ) {
-
-        document.addEventListener(
-            "mousemove",
-            event => {
-
-                mouse.x =
-                    event.clientX;
-
-                mouse.y =
-                    event.clientY;
+resizeCanvas();
 
 
-                cursor.style.left =
-                    mouse.x + "px";
+class Particle {
 
-                cursor.style.top =
-                    mouse.y + "px";
+    constructor() {
 
-            }
-        );
+        this.x =
+            Math.random() *
+            window.innerWidth;
 
-    }
+        this.y =
+            Math.random() *
+            window.innerHeight;
 
+        this.size =
+            Math.random() * 1.7 + 0.3;
 
-    /* PARALLAX */
+        this.speedX =
+            (Math.random() - 0.5) * 0.25;
 
-    const hero =
-        document.querySelector(".hero");
+        this.speedY =
+            (Math.random() - 0.5) * 0.25;
 
-    const globe =
-        document.querySelector(".hero-globe");
+        this.opacity =
+            Math.random() * 0.7 + 0.1;
 
-    const orbit =
-        document.querySelector(".orbital-system");
-
-
-    if (
-        window.matchMedia("(pointer: fine)").matches
-    ) {
-
-        document.addEventListener(
-            "mousemove",
-            event => {
-
-                if (
-                    window.innerWidth < 800 ||
-                    !hero ||
-                    !globe ||
-                    !orbit
-                ) return;
-
-
-                const x =
-                    event.clientX /
-                    window.innerWidth -
-                    0.5;
-
-
-                const y =
-                    event.clientY /
-                    window.innerHeight -
-                    0.5;
-
-
-                globe.style.marginLeft =
-                    `${x * 25}px`;
-
-
-                globe.style.marginTop =
-                    `${y * 25}px`;
-
-
-                orbit.style.marginLeft =
-                    `${x * -15}px`;
-
-
-                orbit.style.marginTop =
-                    `${y * -15}px`;
-
-
-                hero.style.background =
-                    `
-                    radial-gradient(
-                        circle at
-                        ${50 + x * 12}%
-                        ${45 + y * 12}%,
-                        rgba(0,180,255,0.10),
-                        transparent 32%
-                    )
-                    `;
-
-            }
-        );
+        this.phase =
+            Math.random() *
+            Math.PI *
+            2;
 
     }
 
 
-    /* HEADER */
+    update() {
 
-    const header =
-        document.getElementById(
-            "mainHeader"
+        this.x += this.speedX;
+
+        this.y += this.speedY;
+
+        this.phase += 0.01;
+
+
+        if (this.x < 0)
+            this.x = window.innerWidth;
+
+        if (this.x > window.innerWidth)
+            this.x = 0;
+
+        if (this.y < 0)
+            this.y = window.innerHeight;
+
+        if (this.y > window.innerHeight)
+            this.y = 0;
+
+    }
+
+
+    draw() {
+
+        const pulse =
+            0.6 +
+            Math.sin(this.phase) * 0.3;
+
+
+        ctx.beginPath();
+
+        ctx.arc(
+            this.x,
+            this.y,
+            this.size,
+            0,
+            Math.PI * 2
         );
 
 
-    window.addEventListener(
-        "scroll",
-        () => {
+        ctx.fillStyle =
+            `rgba(
+                0,
+                210,
+                255,
+                ${this.opacity * pulse}
+            )`;
 
-            if (!header) return;
+
+        ctx.fill();
+
+    }
+
+}
+
+
+const particleCount =
+    window.innerWidth < 600
+        ? 65
+        : 140;
+
+
+for (
+    let i = 0;
+    i < particleCount;
+    i++
+) {
+
+    particles.push(
+        new Particle()
+    );
+
+}
+
+
+function connectParticles() {
+
+    for (
+        let a = 0;
+        a < particles.length;
+        a++
+    ) {
+
+        for (
+            let b = a + 1;
+            b < particles.length;
+            b++
+        ) {
+
+            const dx =
+                particles[a].x -
+                particles[b].x;
+
+            const dy =
+                particles[a].y -
+                particles[b].y;
+
+            const distanceSquared =
+                dx * dx +
+                dy * dy;
+
+
+            const connectionDistance =
+                120;
 
 
             if (
-                window.scrollY > 40
+                distanceSquared <
+                connectionDistance *
+                connectionDistance
             ) {
 
-                header.classList.add(
-                    "scrolled"
+                const distance =
+                    Math.sqrt(
+                        distanceSquared
+                    );
+
+
+                const opacity =
+                    0.07 *
+                    (
+                        1 -
+                        distance /
+                        connectionDistance
+                    );
+
+
+                ctx.beginPath();
+
+
+                ctx.moveTo(
+                    particles[a].x,
+                    particles[a].y
                 );
 
-            } else {
 
-                header.classList.remove(
-                    "scrolled"
+                ctx.lineTo(
+                    particles[b].x,
+                    particles[b].y
                 );
+
+
+                ctx.strokeStyle =
+                    `rgba(
+                        0,
+                        210,
+                        255,
+                        ${opacity}
+                    )`;
+
+
+                ctx.lineWidth =
+                    0.5;
+
+                ctx.stroke();
 
             }
 
-        },
-        { passive: true }
+        }
+
+    }
+
+}
+
+
+function animateParticles() {
+
+    if (!canvas || !ctx) return;
+
+
+    ctx.clearRect(
+        0,
+        0,
+        window.innerWidth,
+        window.innerHeight
     );
 
 
-    /* REVEAL ANIMATION */
+    particles.forEach(
+        particle => {
 
-    const revealElements =
-        document.querySelectorAll(
-            ".reveal, .card"
-        );
+            particle.update();
 
+            particle.draw();
 
-    if (
-        "IntersectionObserver" in window
-    ) {
-
-        const observer =
-            new IntersectionObserver(
-                entries => {
-
-                    entries.forEach(
-                        entry => {
-
-                            if (
-                                entry.isIntersecting
-                            ) {
-
-                                entry.target.classList.add(
-                                    "active"
-                                );
-
-                                entry.target.classList.add(
-                                    "visible"
-                                );
+        }
+    );
 
 
-                                observer.unobserve(
-                                    entry.target
-                                );
+    connectParticles();
 
-                            }
 
-                        }
-                    );
+    requestAnimationFrame(
+        animateParticles
+    );
 
-                },
-                {
-                    threshold: 0.12
-                }
+}
+
+
+if (
+    !window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches
+) {
+
+    animateParticles();
+
+}
+
+
+window.addEventListener(
+    "resize",
+    resizeCanvas
+);
+
+
+/* =====================================================
+   CURSOR GLOW
+===================================================== */
+
+const cursor =
+    document.querySelector(
+        ".cursor-glow"
+    );
+
+
+if (
+    cursor &&
+    window.matchMedia(
+        "(pointer: fine)"
+    ).matches
+) {
+
+    document.addEventListener(
+        "mousemove",
+        event => {
+
+            mouse.x =
+                event.clientX;
+
+            mouse.y =
+                event.clientY;
+
+
+            cursor.style.left =
+                mouse.x + "px";
+
+            cursor.style.top =
+                mouse.y + "px";
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   PARALLAX
+===================================================== */
+
+const hero =
+    document.querySelector(".hero");
+
+const globe =
+    document.querySelector(".hero-globe");
+
+const orbit =
+    document.querySelector(".orbital-system");
+
+
+if (
+    window.matchMedia(
+        "(pointer: fine)"
+    ).matches
+) {
+
+    document.addEventListener(
+        "mousemove",
+        event => {
+
+            if (
+                window.innerWidth < 800 ||
+                !hero ||
+                !globe ||
+                !orbit
+            ) return;
+
+
+            const x =
+                event.clientX /
+                window.innerWidth -
+                0.5;
+
+
+            const y =
+                event.clientY /
+                window.innerHeight -
+                0.5;
+
+
+            globe.style.marginLeft =
+                `${x * 25}px`;
+
+
+            globe.style.marginTop =
+                `${y * 25}px`;
+
+
+            orbit.style.marginLeft =
+                `${x * -15}px`;
+
+
+            orbit.style.marginTop =
+                `${y * -15}px`;
+
+
+            hero.style.background =
+                `
+                radial-gradient(
+                    circle at
+                    ${50 + x * 12}%
+                    ${45 + y * 12}%,
+                    rgba(0,180,255,0.10),
+                    transparent 32%
+                )
+                `;
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+const header =
+    document.getElementById(
+        "mainHeader"
+    );
+
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        if (!header) return;
+
+
+        if (
+            window.scrollY > 40
+        ) {
+
+            header.classList.add(
+                "scrolled"
             );
 
+        } else {
 
-        revealElements.forEach(
-            element => {
+            header.classList.remove(
+                "scrolled"
+            );
 
-                observer.observe(
-                    element
-                );
+        }
 
-            }
-        );
-
-    } else {
-
-        revealElements.forEach(
-            element => {
-
-                element.classList.add(
-                    "active"
-                );
-
-                element.classList.add(
-                    "visible"
-                );
-
-            }
-        );
-
+    },
+    {
+        passive:true
     }
+);
 
 
-    /* CARD TILT */
+/* =====================================================
+   REVEAL ANIMATION
+===================================================== */
 
-    const cards =
-        document.querySelectorAll(
-            ".card"
-        );
+const revealElements =
+    document.querySelectorAll(
+        ".reveal, .card"
+    );
 
 
-    if (
-        window.matchMedia("(pointer: fine)").matches
-    ) {
+if (
+    "IntersectionObserver" in window
+) {
 
-        cards.forEach(
-            card => {
+    const observer =
+        new IntersectionObserver(
+            entries => {
 
-                card.addEventListener(
-                    "mousemove",
-                    event => {
+                entries.forEach(
+                    entry => {
 
                         if (
-                            window.innerWidth < 900
-                        ) return;
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target.classList.add(
+                                "active"
+                            );
+
+                            entry.target.classList.add(
+                                "visible"
+                            );
 
 
-                        const rect =
-                            card.getBoundingClientRect();
+                            observer.unobserve(
+                                entry.target
+                            );
 
-
-                        const x =
-                            event.clientX -
-                            rect.left;
-
-
-                        const y =
-                            event.clientY -
-                            rect.top;
-
-
-                        const centerX =
-                            rect.width / 2;
-
-
-                        const centerY =
-                            rect.height / 2;
-
-
-                        const rotateX =
-                            (y - centerY) / 30;
-
-
-                        const rotateY =
-                            (centerX - x) / 30;
-
-
-                        card.style.transform =
-                            `
-                            translateY(-12px)
-                            perspective(800px)
-                            rotateX(${rotateX}deg)
-                            rotateY(${rotateY}deg)
-                            `;
+                        }
 
                     }
                 );
 
-
-                card.addEventListener(
-                    "mouseleave",
-                    () => {
-
-                        card.style.transform =
-                            "";
-
-                    }
-                );
-
+            },
+            {
+                threshold:0.12
             }
         );
 
-    }
 
+    revealElements.forEach(
+        element => {
 
-    /* ENERGY FLASH */
-
-    if (
-        !window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches
-    ) {
-
-        setInterval(
-            () => {
-
-                const beam =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                beam.style.position =
-                    "fixed";
-
-
-                beam.style.left =
-                    Math.random() * 100 +
-                    "%";
-
-
-                beam.style.top =
-                    Math.random() * 100 +
-                    "%";
-
-
-                beam.style.width =
-                    "2px";
-
-
-                beam.style.height =
-                    Math.random() * 80 +
-                    20 +
-                    "px";
-
-
-                beam.style.background =
-                    "linear-gradient(to bottom, transparent, rgba(0,217,255,0.7), transparent)";
-
-
-                beam.style.pointerEvents =
-                    "none";
-
-
-                beam.style.zIndex =
-                    "-2";
-
-
-                beam.style.opacity =
-                    "0";
-
-
-                document.body.appendChild(
-                    beam
-                );
-
-
-                beam.animate(
-                    [
-                        {
-                            opacity: 0,
-                            transform:
-                                "translateY(30px)"
-                        },
-
-                        {
-                            opacity: 0.7,
-                            transform:
-                                "translateY(0)"
-                        },
-
-                        {
-                            opacity: 0,
-                            transform:
-                                "translateY(-30px)"
-                        }
-                    ],
-                    {
-                        duration: 1800,
-                        easing: "ease-in-out"
-                    }
-                ).onfinish =
-                    () => beam.remove();
-
-            },
-            1700
-        );
-
-    }
-
-
-    /* PAGE LOAD */
-
-    window.addEventListener(
-        "load",
-        () => {
-
-            document.body.classList.add(
-                "loaded"
+            observer.observe(
+                element
             );
 
         }
     );
 
+} else {
+
+    revealElements.forEach(
+        element => {
+
+            element.classList.add(
+                "active"
+            );
+
+            element.classList.add(
+                "visible"
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CARD TILT
+===================================================== */
+
+const cards =
+    document.querySelectorAll(
+        ".card"
+    );
+
+
+if (
+    window.matchMedia(
+        "(pointer: fine)"
+    ).matches
+) {
+
+    cards.forEach(
+        card => {
+
+            card.addEventListener(
+                "mousemove",
+                event => {
+
+                    if (
+                        window.innerWidth < 900
+                    ) return;
+
+
+                    const rect =
+                        card.getBoundingClientRect();
+
+
+                    const x =
+                        event.clientX -
+                        rect.left;
+
+
+                    const y =
+                        event.clientY -
+                        rect.top;
+
+
+                    const centerX =
+                        rect.width / 2;
+
+
+                    const centerY =
+                        rect.height / 2;
+
+
+                    const rotateX =
+                        (y - centerY) / 30;
+
+
+                    const rotateY =
+                        (centerX - x) / 30;
+
+
+                    card.style.transform =
+                        `
+                        translateY(-12px)
+                        perspective(800px)
+                        rotateX(${rotateX}deg)
+                        rotateY(${rotateY}deg)
+                        `;
+
+                }
+            );
+
+
+            card.addEventListener(
+                "mouseleave",
+                () => {
+
+                    card.style.transform =
+                        "";
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ENERGY FLASH
+===================================================== */
+
+if (
+    !window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches
+) {
+
+    setInterval(
+        () => {
+
+            const beam =
+                document.createElement(
+                    "div"
+                );
+
+
+            beam.style.position =
+                "fixed";
+
+
+            beam.style.left =
+                Math.random() *
+                100 +
+                "%";
+
+
+            beam.style.top =
+                Math.random() *
+                100 +
+                "%";
+
+
+            beam.style.width =
+                "2px";
+
+
+            beam.style.height =
+                Math.random() *
+                80 +
+                20 +
+                "px";
+
+
+            beam.style.background =
+                "linear-gradient(to bottom, transparent, rgba(0,217,255,0.7), transparent)";
+
+
+            beam.style.pointerEvents =
+                "none";
+
+
+            beam.style.zIndex =
+                "-2";
+
+
+            beam.style.opacity =
+                "0";
+
+
+            document.body.appendChild(
+                beam
+            );
+
+
+            beam.animate(
+                [
+                    {
+                        opacity:0,
+                        transform:
+                            "translateY(30px)"
+                    },
+
+                    {
+                        opacity:0.7,
+                        transform:
+                            "translateY(0)"
+                    },
+
+                    {
+                        opacity:0,
+                        transform:
+                            "translateY(-30px)"
+                    }
+                ],
+                {
+                    duration:1800,
+                    easing:"ease-in-out"
+                }
+            ).onfinish =
+                () => beam.remove();
+
+        },
+        1700
+    );
+
+}
+
+
+/* =====================================================
+   PAGE LOAD
+===================================================== */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        document.body.classList.add(
+            "loaded"
+        );
+
+    }
+);
+
 </script>
-    
 
 </body>
-
 </html>
-
-
-
-
-
-
-
 
 
