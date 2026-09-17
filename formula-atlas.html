@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Formula Atlas | IAL ATLAS</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#05070d;
+    --panel:#0a0f1c;
+    --panel2:#0d1424;
+    --border:rgba(255,255,255,.09);
+    --text:#f4f7fb;
+    --muted:#91a0b8;
+    --math:#9b7cff;
+    --physics:#38bdf8;
+    --chem:#34d399;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:
+        radial-gradient(circle at 15% 10%,rgba(155,124,255,.12),transparent 28%),
+        radial-gradient(circle at 85% 20%,rgba(56,189,248,.10),transparent 25%),
+        var(--bg);
+    color:var(--text);
+    font-family:Inter,sans-serif;
+    min-height:100vh;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:45px 45px;
+    mask-image:linear-gradient(to bottom,black,transparent);
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:10;
+    backdrop-filter:blur(18px);
+    background:rgba(5,7,13,.78);
+    border-bottom:1px solid var(--border);
+}
+
+.nav{
+    max-width:1250px;
+    margin:auto;
+    padding:20px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-family:"Space Grotesk";
+    font-size:22px;
+    font-weight:700;
+    letter-spacing:-.5px;
+}
+
+.logo span{
+    color:#38bdf8;
+}
+
+.nav-tag{
+    font-size:12px;
+    color:#71809a;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.hero{
+    max-width:1250px;
+    margin:auto;
+    padding:80px 24px 45px;
+}
+
+.badge{
+    display:inline-flex;
+    padding:8px 13px;
+    border:1px solid rgba(56,189,248,.25);
+    background:rgba(56,189,248,.07);
+    border-radius:30px;
+    color:#7dd3fc;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+h1{
+    font-family:"Space Grotesk";
+    font-size:clamp(44px,7vw,82px);
+    line-height:.95;
+    margin-top:22px;
+    letter-spacing:-4px;
+}
+
+.hero p{
+    max-width:700px;
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.8;
+    margin-top:24px;
+}
+
+.controls{
+    max-width:1250px;
+    margin:auto;
+    padding:0 24px 35px;
+}
+
+.search{
+    width:100%;
+    padding:16px 20px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.035);
+    color:white;
+    outline:none;
+    font-size:15px;
+}
+
+.search:focus{
+    border-color:rgba(56,189,248,.5);
+}
+
+.subjects{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:15px;
+}
+
+.subject-btn{
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.035);
+    color:#aebbd0;
+    padding:10px 17px;
+    border-radius:30px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.subject-btn:hover,
+.subject-btn.active{
+    color:white;
+    border-color:#38bdf8;
+    background:rgba(56,189,248,.10);
+}
+
+.container{
+    max-width:1250px;
+    margin:auto;
+    padding:0 24px 80px;
+}
+
+.subject-section{
+    margin-top:35px;
+}
+
+.subject-heading{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:18px;
+}
+
+.subject-heading h2{
+    font-family:"Space Grotesk";
+    font-size:27px;
+}
+
+.subject-line{
+    height:1px;
+    flex:1;
+    background:var(--border);
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:16px;
+}
+
+.card{
+    background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:24px;
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(255,255,255,.20);
+}
+
+.math .card:hover{border-color:rgba(155,124,255,.55)}
+.physics .card:hover{border-color:rgba(56,189,248,.55)}
+.chem .card:hover{border-color:rgba(52,211,153,.55)}
+
+.topic{
+    color:#8190a9;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+}
+
+.card h3{
+    margin:10px 0 16px;
+    font-family:"Space Grotesk";
+}
+
+.formula{
+    padding:18px;
+    border-radius:12px;
+    background:rgba(0,0,0,.25);
+    font-family:"Times New Roman",serif;
+    font-size:25px;
+    text-align:center;
+    margin-bottom:16px;
+    overflow:auto;
+}
+
+.description{
+    color:#aab6c9;
+    line-height:1.65;
+    font-size:13px;
+}
+
+.variables{
+    margin-top:15px;
+    color:#8492a9;
+    font-size:12px;
+    line-height:1.8;
+}
+
+footer{
+    border-top:1px solid var(--border);
+    padding:28px 24px;
+    text-align:center;
+    color:#647189;
+    font-size:12px;
+}
+
+.hidden{
+    display:none;
+}
+
+@media(max-width:600px){
+    .hero{padding-top:55px}
+    h1{letter-spacing:-2px}
+    .nav-tag{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="nav">
+        <div class="logo">IAL <span>ATLAS</span></div>
+        <div class="nav-tag">Formula Atlas</div>
+    </div>
+</header>
+
+<section class="hero">
+    <span class="badge">Formula Atlas</span>
+
+    <h1>Every formula.<br>One place.</h1>
+
+    <p>
+        A structured formula reference for Edexcel International A Level
+        Mathematics, Physics and Chemistry.
+    </p>
+</section>
+
+<div class="controls">
+
+    <input
+        id="search"
+        class="search"
+        type="search"
+        placeholder="Search formulas, topics or keywords..."
+    >
+
+    <div class="subjects">
+        <button class="subject-btn active" onclick="filterSubject('all',this)">All</button>
+        <button class="subject-btn" onclick="filterSubject('math',this)">Mathematics</button>
+        <button class="subject-btn" onclick="filterSubject('physics',this)">Physics</button>
+        <button class="subject-btn" onclick="filterSubject('chem',this)">Chemistry</button>
+    </div>
+
+</div>
+
+<main class="container">
+
+<!-- MATHEMATICS -->
+
+<section class="subject-section math" data-subject="math">
+
+    <div class="subject-heading">
+        <h2>Mathematics</h2>
+        <div class="subject-line"></div>
+    </div>
+
+    <div class="cards">
+
+        <article class="card formula-card">
+            <div class="topic">Algebra</div>
+            <h3>Quadratic Formula</h3>
+
+            <div class="formula">
+                x = (-b ± √(b² − 4ac)) / 2a
+            </div>
+
+            <div class="description">
+                Used to solve quadratic equations of the form
+                ax² + bx + c = 0.
+            </div>
+
+            <div class="variables">
+                a, b, c = coefficients of the quadratic equation
+            </div>
+        </article>
+
+        <article class="card formula-card">
+            <div class="topic">Coordinate Geometry</div>
+            <h3>Gradient</h3>
+
+            <div class="formula">
+                m = (y₂ − y₁) / (x₂ − x₁)
+            </div>
+
+            <div class="description">
+                Determines the gradient of a straight line between two points.
+            </div>
+        </article>
+
+        <article class="card formula-card">
+            <div class="topic">Differentiation</div>
+            <h3>Power Rule</h3>
+
+            <div class="formula">
+                d/dx (xⁿ) = nxⁿ⁻¹
+            </div>
+
+            <div class="description">
+                Fundamental differentiation rule for powers of x.
+            </div>
+        </article>
+
+    </div>
+</section>
+
+
+<!-- PHYSICS -->
+
+<section class="subject-section physics" data-subject="physics">
+
+    <div class="subject-heading">
+        <h2>Physics</h2>
+        <div class="subject-line"></div>
+    </div>
+
+    <div class="cards">
+
+        <article class="card formula-card">
+            <div class="topic">Mechanics</div>
+            <h3>Newton's Second Law</h3>
+
+            <div class="formula">
+                F = ma
+            </div>
+
+            <div class="description">
+                The resultant force acting on an object equals its mass
+                multiplied by its acceleration.
+            </div>
+
+            <div class="variables">
+                F = force &nbsp; | &nbsp; m = mass &nbsp; | &nbsp; a = acceleration
+            </div>
+        </article>
+
+        <article class="card formula-card">
+            <div class="topic">Motion</div>
+            <h3>Equation of Motion</h3>
+
+            <div class="formula">
+                v = u + at
+            </div>
+
+            <div class="description">
+                Relates initial velocity, final velocity, acceleration and time.
+            </div>
+        </article>
+
+        <article class="card formula-card">
+            <div class="topic">Energy</div>
+            <h3>Kinetic Energy</h3>
+
+            <div class="formula">
+                Eₖ = ½mv²
+            </div>
+
+            <div class="description">
+                Energy possessed by an object due to its motion.
+            </div>
+        </article>
+
+    </div>
+</section>
+
+
+<!-- CHEMISTRY -->
+
+<section class="subject-section chem" data-subject="chem">
+
+    <div class="subject-heading">
+        <h2>Chemistry</h2>
+        <div class="subject-line"></div>
+    </div>
+
+    <div class="cards">
+
+        <article class="card formula-card">
+            <div class="topic">Amount of Substance</div>
+            <h3>Moles</h3>
+
+            <div class="formula">
+                n = m / M
+            </div>
+
+            <div class="description">
+                Calculates the amount of substance from mass and molar mass.
+            </div>
+
+            <div class="variables">
+                n = moles &nbsp; | &nbsp; m = mass &nbsp; | &nbsp; M = molar mass
+            </div>
+        </article>
+
+        <article class="card formula-card">
+            <div class="topic">Concentration</div>
+            <h3>Concentration</h3>
+
+            <div class="formula">
+                c = n / V
+            </div>
+
+            <div class="description">
+                Calculates concentration in terms of amount of substance
+                and volume.
+            </div>
+        </article>
+
+        <article class="card formula-card">
+            <div class="topic">Gas Laws</div>
+            <h3>Ideal Gas Equation</h3>
+
+            <div class="formula">
+                pV = nRT
+            </div>
+
+            <div class="description">
+                Relates pressure, volume, amount, temperature and the gas constant.
+            </div>
+        </article>
+
+    </div>
+</section>
+
+</main>
+
+<footer>
+    IAL ATLAS · Built for Edexcel International A Level students
+</footer>
+
+
+<script>
+
+const search = document.getElementById("search");
+const sections = document.querySelectorAll(".subject-section");
+
+let currentSubject = "all";
+
+function filterSubject(subject,button){
+
+    currentSubject = subject;
+
+    document.querySelectorAll(".subject-btn")
+        .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    applyFilters();
+}
+
+search.addEventListener("input",applyFilters);
+
+function applyFilters(){
+
+    const query = search.value.toLowerCase().trim();
+
+    sections.forEach(section => {
+
+        const subjectMatch =
+            currentSubject === "all" ||
+            section.dataset.subject === currentSubject;
+
+        let hasMatch = false;
+
+        section.querySelectorAll(".formula-card").forEach(card => {
+
+            const text = card.innerText.toLowerCase();
+
+            const match = text.includes(query);
+
+            card.classList.toggle(
+                "hidden",
+                !match
+            );
+
+            if(match) hasMatch = true;
+
+        });
+
+        section.classList.toggle(
+            "hidden",
+            !(subjectMatch && (hasMatch || query === ""))
+        );
+
+    });
+}
+
+</script>
+
+</body>
+</html>
