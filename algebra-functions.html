@@ -1,1929 +1,4914 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Algebra and Functions | IAL ATLAS</title>
-
-    <meta name="description"
-          content="Edexcel IAL Mathematics — Algebra and Functions revision resources.">
-
-    <meta name="author" content="Shuvojit Karmakar">
-
-    <meta name="robots" content="index, follow">
-
-    <meta name="theme-color" content="#050816">
-
-
-    <style>
-
-        /* =====================================================
-           RESET
-        ===================================================== */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #050816;
-            color: #ffffff;
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-
-        /* =====================================================
-           FUTURISTIC BACKGROUND
-        ===================================================== */
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-
-            background-image:
-                linear-gradient(
-                    rgba(0, 217, 255, 0.028) 1px,
-                    transparent 1px
-                ),
-                linear-gradient(
-                    90deg,
-                    rgba(0, 217, 255, 0.028) 1px,
-                    transparent 1px
-                );
-
-            background-size: 50px 50px;
-
-            pointer-events: none;
-            z-index: -5;
-        }
-
-
-        body::after {
-            content: "";
-
-            position: fixed;
-
-            width: 650px;
-            height: 650px;
-
-            top: -300px;
-            right: -200px;
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(0, 217, 255, 0.10),
-                    transparent 68%
-                );
-
-            pointer-events: none;
-
-            z-index: -4;
-        }
-
-
-        /* =====================================================
-           HEADER
-        ===================================================== */
-
-        header {
-            position: sticky;
-            top: 0;
-
-            z-index: 100;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            padding: 19px 7%;
-
-            background: rgba(5, 8, 22, 0.82);
-
-            border-bottom:
-                1px solid rgba(0, 217, 255, 0.12);
-
-            backdrop-filter: blur(18px);
-        }
-
-
-        .logo {
-            position: relative;
-
-            color: #ffffff;
-
-            text-decoration: none;
-
-            font-size: 25px;
-
-            font-weight: 900;
-
-            letter-spacing: 3px;
-        }
-
-
-        .logo::after {
-            content: "";
-
-            position: absolute;
-
-            left: 0;
-            bottom: -6px;
-
-            width: 30%;
-            height: 2px;
-
-            background: #00d9ff;
-
-            box-shadow:
-                0 0 10px #00d9ff,
-                0 0 20px rgba(0, 217, 255, 0.5);
-
-            transition: width 0.3s ease;
-        }
-
-
-        .logo:hover::after {
-            width: 100%;
-        }
-
-
-        header > a:last-child {
-            color: #9db1ca;
-
-            text-decoration: none;
-
-            font-size: 13px;
-
-            font-weight: 700;
-
-            padding: 9px 16px;
-
-            border:
-                1px solid rgba(0, 217, 255, 0.16);
-
-            border-radius: 8px;
-
-            background:
-                rgba(255, 255, 255, 0.025);
-
-            transition: 0.3s ease;
-        }
-
-
-        header > a:last-child:hover {
-            color: #ffffff;
-
-            border-color: #00d9ff;
-
-            box-shadow:
-                0 0 20px rgba(0, 217, 255, 0.13);
-
-            transform: translateX(-3px);
-        }
-
-
-        /* =====================================================
-           HERO
-        ===================================================== */
-
-        .hero {
-            position: relative;
-
-            min-height: 390px;
-
-            display: flex;
-            flex-direction: column;
-
-            justify-content: center;
-            align-items: center;
-
-            text-align: center;
-
-            padding: 90px 20px;
-
-            overflow: hidden;
-
-            background:
-                radial-gradient(
-                    circle at 50% 50%,
-                    rgba(0, 217, 255, 0.10),
-                    transparent 35%
-                ),
-                linear-gradient(
-                    180deg,
-                    #071127,
-                    #050816
-                );
-        }
-
-
-        /* Orbit */
-
-        .hero::before {
-            content: "";
-
-            position: absolute;
-
-            width: 430px;
-            height: 430px;
-
-            border:
-                1px solid rgba(0, 217, 255, 0.08);
-
-            border-radius: 50%;
-
-            animation:
-                heroPulse 5s ease-in-out infinite;
-        }
-
-
-        .hero::after {
-            content: "";
-
-            position: absolute;
-
-            width: 680px;
-            height: 680px;
-
-            border:
-                1px solid rgba(108, 99, 255, 0.045);
-
-            border-radius: 50%;
-        }
-
-
-        .hero h1 {
-            position: relative;
-
-            z-index: 2;
-
-            max-width: 950px;
-
-            font-size:
-                clamp(40px, 6vw, 72px);
-
-            line-height: 1.05;
-
-            font-weight: 900;
-
-            letter-spacing: -2px;
-
-            margin-bottom: 20px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #ffffff,
-                    #8feaff,
-                    #ffffff
-                );
-
-            -webkit-background-clip: text;
-            background-clip: text;
-
-            color: transparent;
-        }
-
-
-        .hero h1::before {
-            content: "PURE MATHEMATICS / TOPIC 01";
-
-            display: block;
-
-            margin-bottom: 17px;
-
-            color: #00d9ff;
-
-            font-size: 10px;
-
-            letter-spacing: 4px;
-
-            font-weight: 700;
-
-            text-shadow:
-                0 0 15px rgba(0, 217, 255, 0.7);
-        }
-
-
-        .hero p {
-            position: relative;
-
-            z-index: 2;
-
-            color: #9db1ca;
-
-            font-size: 16px;
-
-            letter-spacing: 1px;
-        }
-
-
-        .hero-line {
-            position: absolute;
-
-            bottom: 25px;
-
-            left: 50%;
-
-            transform: translateX(-50%);
-
-            width: min(500px, 70%);
-
-            height: 1px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    #00d9ff,
-                    transparent
-                );
-
-            opacity: 0.5;
-        }
-
-
-        /* =====================================================
-           CONTENT
-        ===================================================== */
-
-        .section {
-            max-width: 1050px;
-
-            margin: auto;
-
-            padding: 75px 20px 100px;
-        }
-
-
-        /* =====================================================
-           TOPIC CARDS
-        ===================================================== */
-
-        .topic-card {
-            position: relative;
-
-            margin-bottom: 28px;
-
-            padding: 35px;
-
-            border-radius: 18px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(18, 32, 59, 0.76),
-                    rgba(7, 13, 30, 0.88)
-                );
-
-            border:
-                1px solid rgba(112, 160, 200, 0.13);
-
-            box-shadow:
-                0 15px 55px rgba(0, 0, 0, 0.25),
-
-                inset 0 1px 0
-                rgba(255, 255, 255, 0.035);
-
-            backdrop-filter: blur(15px);
-
-            overflow: hidden;
-        }
-
-
-        /* top scanning line */
-
-        .topic-card::before {
-            content: "";
-
-            position: absolute;
-
-            left: 0;
-            top: 0;
-
-            width: 100%;
-            height: 1px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    rgba(0, 217, 255, 0.45),
-                    transparent
-                );
-        }
-
-
-        /* =====================================================
-           HEADINGS
-        ===================================================== */
-
-        .topic-card h2 {
-            color: #ffffff;
-
-            font-size: 27px;
-
-            line-height: 1.3;
-
-            margin-bottom: 18px;
-
-            letter-spacing: -0.4px;
-        }
-
-
-        .topic-card h2::before {
-            content: "// ";
-
-            color: #00d9ff;
-
-            font-weight: 400;
-        }
-
-
-        .topic-card h3 {
-            color: #dff9ff;
-
-            font-size: 19px;
-
-            margin-top: 25px;
-
-            margin-bottom: 10px;
-        }
-
-
-        .topic-card p {
-            color: #9aacc2;
-
-            font-size: 15px;
-
-            line-height: 1.85;
-
-            margin-bottom: 18px;
-        }
-
-
-        /* =====================================================
-           CORE AREAS
-        ===================================================== */
-
-        .topic-card ul {
-            list-style: none;
-
-            margin-top: 18px;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, 1fr);
-
-            gap: 8px 25px;
-
-            padding: 0;
-        }
-
-
-        .topic-card li {
-            position: relative;
-
-            color: #93a7bf;
-
-            font-size: 14px;
-
-            padding-left: 20px;
-        }
-
-
-        .topic-card li::before {
-            content: "▹";
-
-            position: absolute;
-
-            left: 0;
-
-            color: #00d9ff;
-
-            text-shadow:
-                0 0 8px rgba(0, 217, 255, 0.6);
-        }
-
-
-        /* =====================================================
-           FORMULA BOX
-        ===================================================== */
-
-        .formula {
-            position: relative;
-
-            margin: 18px 0;
-
-            padding: 19px 22px;
-
-            border-radius: 10px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    rgba(0, 217, 255, 0.065),
-                    rgba(108, 99, 255, 0.045)
-                );
-
-            border-left:
-                2px solid #00d9ff;
-
-            color: #e8fbff;
-
-            font-size: 18px;
-
-            font-weight: 700;
-
-            line-height: 1.8;
-
-            box-shadow:
-                inset 0 0 25px
-                rgba(0, 217, 255, 0.025);
-        }
-
-
-        .formula::before {
-            content: "FORMULA";
-
-            display: block;
-
-            margin-bottom: 7px;
-
-            color: #00d9ff;
-
-            font-size: 8px;
-
-            letter-spacing: 3px;
-
-            font-weight: 800;
-
-            opacity: 0.7;
-        }
-
-
-        /* =====================================================
-           DETAILS / SOLUTIONS
-        ===================================================== */
-
-        details {
-            margin-top: 18px;
-
-            border:
-                1px solid rgba(0, 217, 255, 0.12);
-
-            border-radius: 10px;
-
-            background:
-                rgba(0, 217, 255, 0.025);
-
-            overflow: hidden;
-        }
-
-
-        summary {
-            cursor: pointer;
-
-            padding: 14px 18px;
-
-            color: #9feeff;
-
-            font-size: 14px;
-
-            font-weight: 700;
-
-            list-style: none;
-
-            transition: 0.25s ease;
-        }
-
-
-        summary::-webkit-details-marker {
-            display: none;
-        }
-
-
-        summary::before {
-            content: "▶";
-
-            display: inline-block;
-
-            margin-right: 10px;
-
-            font-size: 9px;
-
-            color: #00d9ff;
-
-            transition: transform 0.25s ease;
-        }
-
-
-        details[open] summary::before {
-            transform: rotate(90deg);
-        }
-
-
-        summary:hover {
-            background:
-                rgba(0, 217, 255, 0.06);
-
-            color: #ffffff;
-        }
-
-
-        details > p,
-        details > .formula {
-            margin-left: 18px;
-            margin-right: 18px;
-        }
-
-
-        /* =====================================================
-           PRACTICE QUESTIONS
-        ===================================================== */
-
-        .practice-card {
-            border-color:
-                rgba(108, 99, 255, 0.20);
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(25, 21, 55, 0.70),
-                    rgba(7, 13, 30, 0.88)
-                );
-        }
-
-
-        .practice-card h2::before {
-            content: "/// ";
-            color: #8f86ff;
-        }
-
-
-        /* =====================================================
-           BACK BUTTONS
-        ===================================================== */
-
-        .button-area {
-            text-align: center;
-
-            margin-top: 45px;
-        }
-
-
-        .back {
-            display: inline-flex;
-
-            align-items: center;
-
-            gap: 9px;
-
-            padding: 13px 22px;
-
-            color: #dcecff;
-
-            text-decoration: none;
-
-            font-size: 14px;
-
-            font-weight: 700;
-
-            border:
-                1px solid rgba(0, 217, 255, 0.20);
-
-            border-radius: 10px;
-
-            background:
-                rgba(0, 217, 255, 0.035);
-
-            transition: 0.3s ease;
-        }
-
-
-        .back:hover {
-            color: #ffffff;
-
-            border-color: #00d9ff;
-
-            background:
-                rgba(0, 217, 255, 0.08);
-
-            box-shadow:
-                0 0 25px rgba(0, 217, 255, 0.13);
-
-            transform:
-                translateY(-3px);
-        }
-
-
-        /* =====================================================
-           FOOTER
-        ===================================================== */
-
-        footer {
-            position: relative;
-
-            padding: 30px 20px;
-
-            text-align: center;
-
-            color: #65758c;
-
-            background: #03050d;
-
-            border-top:
-                1px solid rgba(0, 217, 255, 0.08);
-
-            font-size: 12px;
-
-            letter-spacing: 0.5px;
-        }
-
-
-        footer::before {
-            content:
-                "IAL ATLAS // ALGEBRA & FUNCTIONS";
-
-            display: block;
-
-            margin-bottom: 10px;
-
-            color: #00d9ff;
-
-            font-size: 9px;
-
-            letter-spacing: 4px;
-
-            opacity: 0.7;
-        }
-
-
-        /* =====================================================
-           ANIMATION
-        ===================================================== */
-
-        @keyframes heroPulse {
-
-            0%,
-            100% {
-                transform: scale(0.95);
-                opacity: 0.30;
-            }
-
-            50% {
-                transform: scale(1.05);
-                opacity: 0.60;
-            }
-        }
-
-
-        /* =====================================================
-           MOBILE
-        ===================================================== */
-
-        @media (max-width: 750px) {
-
-            header {
-                padding: 17px 5%;
-            }
-
-
-            .logo {
-                font-size: 21px;
-                letter-spacing: 2px;
-            }
-
-
-            header > a:last-child {
-                font-size: 11px;
-                padding: 8px 11px;
-            }
-
-
-            .hero {
-                min-height: 350px;
-                padding: 75px 18px;
-            }
-
-
-            .hero h1 {
-                font-size: 43px;
-            }
-
-
-            .hero p {
-                font-size: 14px;
-            }
-
-
-            .section {
-                padding: 55px 15px 80px;
-            }
-
-
-            .topic-card {
-                padding: 25px 20px;
-            }
-
-
-            .topic-card h2 {
-                font-size: 24px;
-            }
-
-
-            .topic-card ul {
-                grid-template-columns: 1fr;
-            }
-
-
-            .formula {
-                font-size: 16px;
-
-                overflow-x: auto;
-            }
-
-        }
-
-
-        /* =====================================================
-           REDUCED MOTION
-        ===================================================== */
-
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-
-                animation-duration:
-                    0.01ms !important;
-
-                animation-iteration-count:
-                    1 !important;
-
-                scroll-behavior:
-                    auto !important;
-
-                transition-duration:
-                    0.01ms !important;
-            }
-
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Algebra & Functions | IAL ATLAS</title>
+<meta name="description" content="Deep Edexcel IAL Mathematics Algebra and Functions learning resource with theory, worked examples, practice and a 100-question mastery exam.">
+<meta name="author" content="Shuvojit Karmakar">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#05070d;
+    --bg2:#080d18;
+    --panel:rgba(10,18,31,.72);
+    --panel2:rgba(14,24,42,.78);
+    --line:rgba(88,220,255,.18);
+    --line2:rgba(164,110,255,.20);
+    --cyan:#59e8ff;
+    --cyan2:#0bc9ff;
+    --purple:#9b6cff;
+    --pink:#df73ff;
+    --blue:#3b82f6;
+    --green:#55f5b0;
+    --yellow:#ffd76a;
+    --red:#ff6b88;
+    --text:#edfaff;
+    --muted:#8ea7b8;
+    --muted2:#61798b;
+    --radius:24px;
+    --shadow:0 25px 80px rgba(0,0,0,.42);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 10% 5%,rgba(0,214,255,.10),transparent 25%),
+        radial-gradient(circle at 90% 10%,rgba(150,70,255,.12),transparent 28%),
+        radial-gradient(circle at 50% 70%,rgba(0,130,255,.055),transparent 30%),
+        var(--bg);
+    font-family:Inter,sans-serif;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.18;
+    background-image:
+        linear-gradient(rgba(80,220,255,.055) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(80,220,255,.055) 1px,transparent 1px);
+    background-size:55px 55px;
+    mask-image:linear-gradient(to bottom,black,transparent 90%);
+    z-index:-3;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        linear-gradient(
+            rgba(255,255,255,.015) 50%,
+            transparent 50%
+        );
+    background-size:100% 5px;
+    opacity:.08;
+    z-index:100;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    font:inherit;
+}
+
+.container{
+    width:min(1240px,92%);
+    margin:auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    backdrop-filter:blur(22px);
+    background:rgba(5,7,13,.72);
+    border-bottom:1px solid rgba(89,232,255,.10);
+}
+
+.nav{
+    min-height:74px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:800;
+    letter-spacing:.12em;
+    font-size:1.05rem;
+    color:white;
+}
+
+.logo span{
+    color:var(--cyan);
+    text-shadow:0 0 18px rgba(89,232,255,.8);
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 13px;
+    border:1px solid var(--line);
+    background:rgba(89,232,255,.045);
+    border-radius:999px;
+    color:var(--muted);
+    font-size:.75rem;
+    letter-spacing:.08em;
+}
+
+.status-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 12px var(--green);
+}
+
+.back{
+    padding:9px 15px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    color:var(--text);
+    font-size:.82rem;
+    transition:.25s;
+}
+
+.back:hover{
+    border-color:var(--cyan);
+    box-shadow:0 0 25px rgba(89,232,255,.14);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    position:relative;
+    padding:95px 0 75px;
+    overflow:hidden;
+}
+
+.hero-orbit{
+    position:absolute;
+    width:550px;
+    height:550px;
+    right:-170px;
+    top:-150px;
+    border:1px solid rgba(89,232,255,.13);
+    border-radius:50%;
+    transform:rotate(-25deg);
+    box-shadow:
+        0 0 70px rgba(89,232,255,.04),
+        inset 0 0 70px rgba(89,232,255,.025);
+}
+
+.hero-orbit::before{
+    content:"";
+    position:absolute;
+    inset:70px -35px;
+    border:1px solid rgba(155,108,255,.16);
+    border-radius:50%;
+    transform:rotate(55deg);
+}
+
+.hero-orbit::after{
+    content:"";
+    position:absolute;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--cyan);
+    box-shadow:0 0 25px var(--cyan);
+    top:65px;
+    left:70px;
+}
+
+.eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    padding:8px 13px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    color:var(--cyan);
+    background:rgba(89,232,255,.035);
+    font-size:.74rem;
+    font-weight:700;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    margin-bottom:24px;
+}
+
+.hero h1{
+    max-width:900px;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(3rem,7vw,6.7rem);
+    line-height:.91;
+    letter-spacing:-.065em;
+    margin-bottom:26px;
+}
+
+.hero h1 span{
+    background:linear-gradient(90deg,#fff,var(--cyan),#b887ff);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    max-width:800px;
+    color:var(--muted);
+    font-size:1.06rem;
+    line-height:1.9;
+}
+
+.hero-stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-top:42px;
+}
+
+.stat{
+    padding:18px;
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:rgba(10,20,35,.48);
+    backdrop-filter:blur(15px);
+}
+
+.stat strong{
+    display:block;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:1.5rem;
+    color:white;
+    margin-bottom:4px;
+}
+
+.stat span{
+    font-size:.76rem;
+    color:var(--muted2);
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.section{
+    padding:70px 0;
+}
+
+.section-title{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(2rem,4vw,3.3rem);
+    letter-spacing:-.04em;
+    margin-bottom:12px;
+}
+
+.section-intro{
+    max-width:820px;
+    color:var(--muted);
+    line-height:1.85;
+    margin-bottom:35px;
+}
+
+.glass{
+    position:relative;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.045),
+            rgba(255,255,255,.012)
+        ),
+        var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    backdrop-filter:blur(22px);
+    overflow:hidden;
+}
+
+.glass::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(89,232,255,.7),
+        rgba(155,108,255,.7),
+        transparent
+    );
+    opacity:.7;
+}
+
+.chapter{
+    margin-bottom:28px;
+}
+
+.chapter-head{
+    padding:30px 32px 20px;
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.chapter-number{
+    color:var(--cyan);
+    font-size:.72rem;
+    font-weight:800;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:9px;
+}
+
+.chapter h2{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(1.6rem,3vw,2.5rem);
+    letter-spacing:-.035em;
+}
+
+.chapter-body{
+    padding:30px 32px 34px;
+}
+
+.chapter-body h3{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:1.35rem;
+    margin:30px 0 12px;
+    color:#fff;
+}
+
+.chapter-body h3:first-child{
+    margin-top:0;
+}
+
+.chapter-body h4{
+    margin:22px 0 8px;
+    color:var(--cyan);
+}
+
+.chapter-body p{
+    color:#a9bbc8;
+    line-height:1.85;
+    margin:9px 0;
+}
+
+.chapter-body ul,
+.chapter-body ol{
+    margin:14px 0 18px 22px;
+    color:#a9bbc8;
+    line-height:1.9;
+}
+
+.chapter-body li{
+    margin:4px 0;
+}
+
+.formula{
+    margin:20px 0;
+    padding:20px 22px;
+    border:1px solid rgba(89,232,255,.22);
+    border-left:3px solid var(--cyan);
+    border-radius:15px;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(89,232,255,.075),
+            rgba(89,232,255,.015)
+        );
+    font-family:"Space Grotesk",sans-serif;
+    font-size:1.1rem;
+    color:#effdff;
+    overflow-x:auto;
+}
+
+.formula small{
+    display:block;
+    font-family:Inter,sans-serif;
+    color:var(--muted2);
+    font-size:.72rem;
+    margin-top:8px;
+}
+
+.definition{
+    margin:20px 0;
+    padding:20px;
+    border:1px solid rgba(155,108,255,.22);
+    border-radius:16px;
+    background:rgba(155,108,255,.045);
+}
+
+.definition strong{
+    display:block;
+    color:#c9b5ff;
+    margin-bottom:8px;
+}
+
+.example{
+    margin:24px 0;
+    border:1px solid rgba(85,245,176,.16);
+    border-radius:18px;
+    background:rgba(85,245,176,.025);
+    overflow:hidden;
+}
+
+.example-head{
+    padding:13px 18px;
+    border-bottom:1px solid rgba(85,245,176,.12);
+    color:var(--green);
+    font-size:.74rem;
+    font-weight:800;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+}
+
+.example-body{
+    padding:20px;
+}
+
+.example-body p{
+    margin:7px 0;
+}
+
+.step{
+    margin:10px 0;
+    padding:12px 15px;
+    border-left:2px solid rgba(89,232,255,.5);
+    background:rgba(255,255,255,.018);
+    border-radius:0 10px 10px 0;
+}
+
+.trap{
+    margin:20px 0;
+    padding:19px 20px;
+    border:1px solid rgba(255,107,136,.2);
+    border-left:3px solid var(--red);
+    border-radius:15px;
+    background:rgba(255,107,136,.035);
+}
+
+.trap strong{
+    color:#ff8da4;
+}
+
+.exam-lens{
+    margin:20px 0;
+    padding:19px 20px;
+    border:1px solid rgba(255,215,106,.18);
+    border-left:3px solid var(--yellow);
+    border-radius:15px;
+    background:rgba(255,215,106,.03);
+}
+
+.exam-lens strong{
+    color:var(--yellow);
+}
+
+.checkpoint{
+    margin-top:22px;
+    padding:18px 20px;
+    border-radius:15px;
+    border:1px solid rgba(89,232,255,.15);
+    background:rgba(89,232,255,.025);
+}
+
+.checkpoint strong{
+    color:var(--cyan);
+}
+
+.grid2{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.grid3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.mini-card{
+    padding:22px;
+    border:1px solid rgba(255,255,255,.07);
+    background:rgba(255,255,255,.018);
+    border-radius:18px;
+}
+
+.mini-card h4{
+    margin:0 0 10px;
+    color:white;
+}
+
+.mini-card p{
+    font-size:.9rem;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-wrap{
+    overflow:auto;
+    margin:20px 0;
+    border:1px solid rgba(89,232,255,.12);
+    border-radius:16px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:650px;
+}
+
+th,
+td{
+    padding:14px 16px;
+    text-align:left;
+    border-bottom:1px solid rgba(255,255,255,.055);
+    color:#a9bbc8;
+}
+
+th{
+    color:var(--cyan);
+    background:rgba(89,232,255,.045);
+    font-size:.78rem;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+}
+
+tr:last-child td{
+    border-bottom:0;
+}
+
+/* =========================
+   CHECKLIST
+========================= */
+
+.checklist{
+    display:grid;
+    gap:10px;
+}
+
+.check{
+    display:flex;
+    align-items:flex-start;
+    gap:13px;
+    padding:14px 16px;
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:13px;
+    background:rgba(255,255,255,.015);
+}
+
+.check::before{
+    content:"✓";
+    color:var(--green);
+    font-weight:800;
+}
+
+/* =========================
+   EXAM
+========================= */
+
+.exam-shell{
+    padding:0;
+}
+
+.exam-intro{
+    padding:34px;
+}
+
+.exam-badges{
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+    margin:22px 0;
+}
+
+.badge{
+    padding:8px 12px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:rgba(89,232,255,.035);
+    color:var(--muted);
+    font-size:.74rem;
+}
+
+.primary-btn{
+    border:0;
+    cursor:pointer;
+    color:#001015;
+    background:linear-gradient(135deg,var(--cyan),#8ff5ff);
+    font-weight:800;
+    padding:14px 21px;
+    border-radius:13px;
+    box-shadow:0 0 30px rgba(89,232,255,.18);
+    transition:.25s;
+}
+
+.primary-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 40px rgba(89,232,255,.3);
+}
+
+.secondary-btn{
+    border:1px solid var(--line);
+    cursor:pointer;
+    color:var(--text);
+    background:rgba(255,255,255,.025);
+    padding:13px 18px;
+    border-radius:13px;
+}
+
+.secondary-btn:hover{
+    border-color:var(--cyan);
+}
+
+.exam-panel{
+    display:none;
+}
+
+.exam-top{
+    padding:20px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:20px;
+    border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.exam-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+}
+
+.exam-meta span{
+    padding:8px 11px;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:9px;
+    color:var(--muted);
+    font-size:.75rem;
+}
+
+.timer{
+    min-width:110px;
+    text-align:center;
+    padding:10px 14px;
+    border:1px solid rgba(255,107,136,.22);
+    border-radius:11px;
+    color:#ff9aad;
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:700;
+}
+
+.progress-track{
+    height:5px;
+    background:rgba(255,255,255,.05);
+}
+
+.progress-fill{
+    height:100%;
+    width:0;
+    background:linear-gradient(90deg,var(--cyan),var(--purple));
+    transition:.3s;
+}
+
+.exam-layout{
+    display:grid;
+    grid-template-columns:1fr 250px;
+}
+
+.question-area{
+    padding:30px;
+    min-width:0;
+}
+
+.question-number{
+    color:var(--cyan);
+    font-size:.75rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    font-weight:800;
+    margin-bottom:13px;
+}
+
+.question-text{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(1.15rem,2vw,1.55rem);
+    line-height:1.55;
+    margin-bottom:25px;
+}
+
+.options{
+    display:grid;
+    gap:11px;
+}
+
+.option{
+    position:relative;
+}
+
+.option input{
+    position:absolute;
+    opacity:0;
+}
+
+.option label{
+    display:block;
+    cursor:pointer;
+    padding:17px 18px;
+    border:1px solid rgba(255,255,255,.075);
+    border-radius:14px;
+    background:rgba(255,255,255,.018);
+    color:#b7c7d2;
+    transition:.2s;
+}
+
+.option label:hover{
+    border-color:rgba(89,232,255,.35);
+    background:rgba(89,232,255,.035);
+}
+
+.option input:checked + label{
+    border-color:var(--cyan);
+    background:rgba(89,232,255,.075);
+    color:white;
+    box-shadow:0 0 25px rgba(89,232,255,.08);
+}
+
+.exam-controls{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:28px;
+}
+
+.exam-sidebar{
+    padding:20px;
+    border-left:1px solid rgba(255,255,255,.07);
+    background:rgba(0,0,0,.08);
+}
+
+.sidebar-title{
+    font-size:.73rem;
+    color:var(--muted2);
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    margin-bottom:14px;
+}
+
+.palette{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:6px;
+}
+
+.palette button{
+    min-width:0;
+    aspect-ratio:1;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:7px;
+    background:rgba(255,255,255,.02);
+    color:var(--muted);
+    cursor:pointer;
+    font-size:.7rem;
+}
+
+.palette button.current{
+    border-color:var(--cyan);
+    color:var(--cyan);
+}
+
+.palette button.done{
+    border-color:rgba(85,245,176,.35);
+    color:var(--green);
+    background:rgba(85,245,176,.045);
+}
+
+.palette button.locked{
+    opacity:.3;
+    cursor:not-allowed;
+}
+
+/* =========================
+   RESULTS
+========================= */
+
+.results{
+    display:none;
+    padding:34px;
+}
+
+.score-hero{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:25px;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.score-circle{
+    width:190px;
+    height:190px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    border:1px solid var(--cyan);
+    box-shadow:
+        0 0 45px rgba(89,232,255,.12),
+        inset 0 0 45px rgba(89,232,255,.05);
+    background:radial-gradient(circle,rgba(89,232,255,.09),transparent 65%);
+}
+
+.score-circle strong{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:2.6rem;
+}
+
+.result-summary{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.result-box{
+    padding:18px;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:15px;
+}
+
+.result-box strong{
+    display:block;
+    font-size:1.5rem;
+    margin-bottom:4px;
+}
+
+.result-box span{
+    color:var(--muted2);
+    font-size:.72rem;
+}
+
+.review{
+    margin-top:30px;
+}
+
+.review-item{
+    padding:20px;
+    border:1px solid rgba(255,107,136,.12);
+    border-radius:15px;
+    margin-bottom:12px;
+    background:rgba(255,107,136,.025);
+}
+
+.review-item h4{
+    margin-bottom:10px;
+    color:#fff;
+}
+
+.review-answer{
+    margin:6px 0;
+    color:var(--muted);
+}
+
+.correct-text{
+    color:var(--green);
+}
+
+.wrong-text{
+    color:var(--red);
+}
+
+.breakdown{
+    display:grid;
+    gap:9px;
+    margin-top:18px;
+}
+
+.breakdown-row{
+    display:grid;
+    grid-template-columns:1fr 100px 70px;
+    gap:10px;
+    align-items:center;
+    padding:12px;
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:10px;
+}
+
+.bar{
+    height:6px;
+    border-radius:99px;
+    background:rgba(255,255,255,.05);
+    overflow:hidden;
+}
+
+.bar span{
+    display:block;
+    height:100%;
+    background:linear-gradient(90deg,var(--cyan),var(--purple));
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    padding:50px 0 70px;
+    border-top:1px solid rgba(255,255,255,.06);
+    color:var(--muted2);
+    text-align:center;
+    font-size:.78rem;
+}
+
+footer strong{
+    color:var(--cyan);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+    .hero-stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .grid2,
+    .grid3{
+        grid-template-columns:1fr;
+    }
+
+    .exam-layout{
+        grid-template-columns:1fr;
+    }
+
+    .exam-sidebar{
+        border-left:0;
+        border-top:1px solid rgba(255,255,255,.07);
+    }
+
+    .palette{
+        grid-template-columns:repeat(10,1fr);
+    }
+
+    .score-hero{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+    .hero{
+        padding:65px 0 50px;
+    }
+
+    .hero h1{
+        font-size:3.15rem;
+    }
+
+    .hero-stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .chapter-head,
+    .chapter-body,
+    .exam-intro,
+    .results,
+    .question-area{
+        padding:22px;
+    }
+
+    .exam-top{
+        grid-template-columns:1fr;
+    }
+
+    .result-summary{
+        grid-template-columns:1fr;
+    }
+
+    .palette{
+        grid-template-columns:repeat(10,1fr);
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    *,
+    *::before,
+    *::after{
+        scroll-behavior:auto!important;
+        transition:none!important;
+    }
+}
+</style>
 </head>
 
-
-<body id="top">
-
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
+<body>
 
 <header>
+    <div class="container nav">
+        <a class="logo" href="index.html">IAL <span>ATLAS</span></a>
 
-    <a href="index.html" class="logo">
-        IAL ATLAS
-    </a>
-
-    <a href="pure-mathematics.html">
-        ← Pure Mathematics
-    </a>
-
+        <div class="nav-right">
+            <div class="status">
+                <span class="status-dot"></span>
+                SYSTEM ONLINE
+            </div>
+            <a class="back" href="pure-mathematics.html">← Pure Mathematics</a>
+        </div>
+    </div>
 </header>
 
+<main>
 
-<!-- =====================================================
+<!-- =========================
      HERO
-===================================================== -->
+========================= -->
 
 <section class="hero">
+    <div class="hero-orbit"></div>
 
-    <h1>
-        Algebra and Functions
-    </h1>
+    <div class="container">
+        <div class="eyebrow">Mathematics • Pure Mathematics • Master Atlas</div>
 
-    <p>
-        Edexcel International A Level Mathematics
-    </p>
+        <h1>
+            Algebra<br>
+            <span>& Functions</span>
+        </h1>
 
-    <div class="hero-line"></div>
+        <p>
+            A deep, structured learning system for algebraic manipulation,
+            indices, surds, quadratics, simultaneous equations, inequalities,
+            functions, composites, inverses, domains, ranges, modelling and
+            exam problem-solving.
+        </p>
 
+        <div class="hero-stats">
+            <div class="stat">
+                <strong>40+</strong>
+                <span>Deep concept sections</span>
+            </div>
+
+            <div class="stat">
+                <strong>100</strong>
+                <span>Mastery exam questions</span>
+            </div>
+
+            <div class="stat">
+                <strong>∞</strong>
+                <span>Practice possibilities</span>
+            </div>
+
+            <div class="stat">
+                <strong>IAL</strong>
+                <span>Student-focused resource</span>
+            </div>
+        </div>
+    </div>
 </section>
 
-
-<!-- =====================================================
-     MAIN CONTENT
-===================================================== -->
+<!-- =========================
+     LEARNING MAP
+========================= -->
 
 <section class="section">
+<div class="container">
 
+    <div class="section-title">Learning Architecture</div>
 
-    <!-- INTRODUCTION -->
+    <p class="section-intro">
+        Algebra becomes much easier when every operation has a reason.
+        This page therefore builds the topic from notation and structure,
+        through manipulation and equations, into functions and finally
+        exam-level reasoning.
+    </p>
 
-    <div class="topic-card">
-
-        <h2>What You'll Learn</h2>
-
-        <p>
-            Algebra and Functions is one of the foundations of Edexcel
-            International A Level Mathematics. You will learn how to manipulate
-            algebraic expressions, solve equations and inequalities, work with
-            functions and use algebraic methods to solve mathematical problems.
-        </p>
-
-
-        <h3>Core Areas</h3>
-
-        <ul>
-
-            <li>Laws of indices and rational exponents</li>
-
-            <li>Surds and rationalising denominators</li>
-
-            <li>Quadratic functions and graphs</li>
-
-            <li>The discriminant</li>
-
-            <li>Completing the square</li>
-
-            <li>Solving quadratic equations</li>
-
-            <li>Simultaneous equations</li>
-
-            <li>Linear and quadratic inequalities</li>
-
-            <li>Algebraic manipulation and factorisation</li>
-
-            <li>Functions and function notation</li>
-
-            <li>Composite and inverse functions</li>
-
-        </ul>
-
-    </div>
-
-
-    <!-- =================================================
-         1. ALGEBRAIC MANIPULATION
-    ================================================== -->
-
-    <div class="topic-card">
-
-        <h2>1. Algebraic Manipulation</h2>
-
-        <p>
-            Algebraic manipulation means changing an expression into an
-            equivalent form while preserving its mathematical value.
-        </p>
-
-
-        <h3>Expanding</h3>
-
-        <p>
-            Multiply each term inside one bracket by every term inside the
-            other bracket.
-        </p>
-
-        <div class="formula">
-            (a + b)(c + d) = ac + ad + bc + bd
+    <div class="glass chapter">
+        <div class="chapter-head">
+            <div class="chapter-number">00 • Before You Start</div>
+            <h2>How to Think About Algebra</h2>
         </div>
 
-
-        <h3>Factorisation</h3>
-
-        <p>
-            Factorisation reverses expansion by expressing an algebraic
-            expression as a product of simpler factors.
-        </p>
-
-        <div class="formula">
-            x² + 5x + 6 = (x + 2)(x + 3)
-        </div>
-
-
-        <h3>Worked Example</h3>
-
-        <p>Expand and simplify:</p>
-
-        <div class="formula">
-            (2x + 3)(x - 4)
-        </div>
-
-        <p>Multiply each term:</p>
-
-        <div class="formula">
-            2x(x) + 2x(-4) + 3(x) + 3(-4)
-        </div>
-
-        <div class="formula">
-            = 2x² - 8x + 3x - 12
-        </div>
-
-        <p>Collect like terms:</p>
-
-        <div class="formula">
-            <strong>2x² - 5x - 12</strong>
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         2. INDICES AND SURDS
-    ================================================== -->
-
-    <div class="topic-card">
-
-        <h2>2. Indices and Surds</h2>
-
-        <p>
-            Indices and surds are essential algebraic tools in Edexcel IAL
-            Mathematics. You should be comfortable working with positive,
-            negative and fractional powers and expressing exact answers using
-            surds.
-        </p>
-
-
-        <h3>Laws of Indices</h3>
-
-        <div class="formula">
-            aᵐ × aⁿ = aᵐ⁺ⁿ
-        </div>
-
-        <div class="formula">
-            aᵐ ÷ aⁿ = aᵐ⁻ⁿ
-        </div>
-
-        <div class="formula">
-            (aᵐ)ⁿ = aᵐⁿ
-        </div>
-
-
-        <p>
-            These laws apply to rational exponents as well as integer
-            exponents, provided the expressions are defined.
-        </p>
-
-
-        <h3>Fractional Indices</h3>
-
-        <div class="formula">
-            a¹⁄ⁿ = ⁿ√a
-        </div>
-
-        <div class="formula">
-            aᵐ⁄ⁿ = ⁿ√(aᵐ)
-        </div>
-
-
-        <h3>Negative Indices</h3>
-
-        <div class="formula">
-            a⁻ⁿ = 1 / aⁿ
-        </div>
-
-
-        <h3>Surds</h3>
-
-        <p>
-            A surd is an exact irrational expression involving a root.
-            Surds allow answers to remain exact rather than being rounded
-            to decimal values.
-        </p>
-
-        <div class="formula">
-            √50 = √(25 × 2) = 5√2
-        </div>
-
-
-        <h3>Rationalising a Denominator</h3>
-
-        <p>
-            A denominator containing a surd can be rewritten so that the
-            denominator is rational.
-        </p>
-
-        <div class="formula">
-            1 / √3 = √3 / 3
-        </div>
-
-
-        <h3>Worked Example</h3>
-
-        <p>Simplify:</p>
-
-        <div class="formula">
-            8³⁄²
-        </div>
-
-        <p>Use the fractional index rule:</p>
-
-        <div class="formula">
-            8³⁄² = (√8)³
-        </div>
-
-        <p>Since √8 = 2√2:</p>
-
-        <div class="formula">
-            (2√2)³
-            <br>
-            = 8(√2)³
-            <br>
-            = 16√2
-        </div>
-
-        <p>Therefore:</p>
-
-        <div class="formula">
-            <strong>8³⁄² = 16√2</strong>
-        </div>
-
-
-        <h3>Surd Example</h3>
-
-        <p>Simplify:</p>
-
-        <div class="formula">
-            √72
-        </div>
-
-        <div class="formula">
-            √72 = √(36 × 2)
-            <br>
-            = 6√2
-        </div>
-
-        <p>Therefore:</p>
-
-        <div class="formula">
-            <strong>√72 = 6√2</strong>
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         3. QUADRATIC EQUATIONS
-    ================================================== -->
-
-    <div class="topic-card">
-
-        <h2>3. Quadratic Equations</h2>
-
-        <p>
-            A quadratic equation can be written in the form
-            ax² + bx + c = 0, where a ≠ 0.
-            Quadratics are an important part of Edexcel IAL Mathematics.
-        </p>
-
-
-        <h3>Solving by Factorisation</h3>
-
-        <p>
-            When possible, factorise the quadratic and use the zero-product
-            principle.
-        </p>
-
-        <div class="formula">
-            x² + 5x + 6 = 0
-        </div>
-
-        <div class="formula">
-            (x + 2)(x + 3) = 0
-        </div>
-
-        <div class="formula">
-            x = -2 &nbsp; or &nbsp; x = -3
-        </div>
-
-
-        <h3>The Quadratic Formula</h3>
-
-        <div class="formula">
-            x = (-b ± √(b² - 4ac)) / 2a
-        </div>
-
-
-        <h3>The Discriminant</h3>
-
-        <div class="formula">
-            Δ = b² - 4ac
-        </div>
-
-        <p>
-            The discriminant tells us how many real roots a quadratic
-            equation has.
-        </p>
-
-        <div class="formula">
-            Δ &gt; 0 → two distinct real roots
-            <br><br>
-            Δ = 0 → one repeated real root
-            <br><br>
-            Δ &lt; 0 → no real roots
-        </div>
-
-
-        <h3>Completing the Square</h3>
-
-        <p>
-            Completing the square rewrites a quadratic into a form that
-            makes its structure easier to analyse.
-        </p>
-
-        <div class="formula">
-            x² + 6x + 5 = (x + 3)² - 4
-        </div>
-
-        <p>
-            This form can help identify the coordinates of the turning point
-            and determine the minimum or maximum value of a quadratic.
-        </p>
-
-
-        <h3>Worked Example</h3>
-
-        <p>Solve:</p>
-
-        <div class="formula">
-            2x² - 7x + 3 = 0
-        </div>
-
-        <div class="formula">
-            (2x - 1)(x - 3) = 0
-        </div>
-
-        <div class="formula">
-            x = 1/2
-            <br>
-            or
-            <br>
-            x = 3
-        </div>
-
-
-        <h3>Discriminant Example</h3>
-
-        <p>Determine the number of real roots:</p>
-
-        <div class="formula">
-            x² + 4x + 7 = 0
-        </div>
-
-        <div class="formula">
-            Δ = b² - 4ac
-            <br>
-            = 4² - 4(1)(7)
-            <br>
-            = -12
-        </div>
-
-        <div class="formula">
-            <strong>No real roots</strong>
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         4. SIMULTANEOUS EQUATIONS & INEQUALITIES
-    ================================================== -->
-
-    <div class="topic-card">
-
-        <h2>4. Simultaneous Equations</h2>
-
-        <p>
-            Simultaneous equations are equations that must be satisfied at
-            the same time. They can be solved using substitution or elimination.
-        </p>
-
-
-        <h3>Example</h3>
-
-        <div class="formula">
-            2x + y = 7
-            <br>
-            x - y = 2
-        </div>
-
-        <p>From the second equation:</p>
-
-        <div class="formula">
-            y = x - 2
-        </div>
-
-        <p>Substitute into the first equation:</p>
-
-        <div class="formula">
-            2x + (x - 2) = 7
-            <br>
-            3x = 9
-            <br>
-            x = 3
-        </div>
-
-        <div class="formula">
-            y = 1
-        </div>
-
-
-        <h3>Worked Example</h3>
-
-        <p>Solve simultaneously:</p>
-
-        <div class="formula">
-            2x + y = 11
-            <br>
-            x - y = 1
-        </div>
-
-        <div class="formula">
-            y = x - 1
-        </div>
-
-        <div class="formula">
-            2x + (x - 1) = 11
-            <br>
-            3x = 12
-            <br>
-            x = 4
-        </div>
-
-        <div class="formula">
-            y = 3
-        </div>
-
-        <div class="formula">
-            <strong>x = 4, &nbsp; y = 3</strong>
-        </div>
-
-
-        <h2 style="margin-top: 45px;">
-            5. Inequalities
-        </h2>
-
-        <p>
-            Inequalities compare quantities using symbols such as
-            &lt;, &gt;, ≤ and ≥.
-        </p>
-
-
-        <h3>Important Rule</h3>
-
-        <p>
-            When multiplying or dividing an inequality by a negative number,
-            the inequality sign reverses.
-        </p>
-
-        <div class="formula">
-            -2x &gt; 6
-            <br><br>
-            x &lt; -3
-        </div>
-
-
-        <h3>Quadratic Inequalities</h3>
-
-        <p>
-            For quadratic inequalities, first find the roots and then
-            determine which intervals satisfy the inequality.
-        </p>
-
-        <div class="formula">
-            x² - 5x + 6 &gt; 0
-            <br><br>
-            (x - 2)(x - 3) &gt; 0
-        </div>
-
-        <div class="formula">
-            <strong>x &lt; 2 &nbsp; or &nbsp; x &gt; 3</strong>
-        </div>
-
-
-        <h3>Worked Example</h3>
-
-        <p>Solve:</p>
-
-        <div class="formula">
-            3x - 5 &gt; 7
-        </div>
-
-        <div class="formula">
-            3x &gt; 12
-            <br>
-            x &gt; 4
-        </div>
-
-
-        <h3>Quadratic Inequality Example</h3>
-
-        <p>Solve:</p>
-
-        <div class="formula">
-            x² - 5x + 6 &gt; 0
-        </div>
-
-        <div class="formula">
-            (x - 2)(x - 3) &gt; 0
-        </div>
-
-        <div class="formula">
-            <strong>x &lt; 2 &nbsp; or &nbsp; x &gt; 3</strong>
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         6. FUNCTIONS
-    ================================================== -->
-
-    <div class="topic-card">
-
-        <h2>6. Functions</h2>
-
-        <p>
-            A function is a rule that maps each allowed input to exactly one
-            output. Functions are usually written using notation such as
-            f(x).
-        </p>
-
-
-        <h3>Function Notation</h3>
-
-        <div class="formula">
-            f(x) = 2x + 3
-        </div>
-
-        <p>To find f(4), substitute x = 4:</p>
-
-        <div class="formula">
-            f(4) = 2(4) + 3 = 11
-        </div>
-
-
-        <h3>Domain and Range</h3>
-
-        <p>
-            The <strong>domain</strong> is the set of permitted input values.
-            The <strong>range</strong> is the set of possible output values.
-        </p>
-
-
-        <h3>Composite Functions</h3>
-
-        <p>
-            A composite function applies one function to the output of another.
-        </p>
-
-        <div class="formula">
-            (fg)(x) = f(g(x))
-        </div>
-
-
-        <h3>Inverse Functions</h3>
-
-        <p>
-            An inverse function reverses the mapping of a function.
-            The inverse of f is written as f⁻¹.
-        </p>
-
-        <div class="formula">
-            f(f⁻¹(x)) = x
-            <br>
-            f⁻¹(f(x)) = x
-        </div>
-
-
-        <h3>Finding an Inverse</h3>
-
-        <div class="formula">
-            f(x) = 3x + 2
-        </div>
-
-        <div class="formula">
-            x = 3y + 2
-            <br><br>
-            y = (x - 2) / 3
-        </div>
-
-        <div class="formula">
-            <strong>f⁻¹(x) = (x - 2) / 3</strong>
-        </div>
-
-
-        <h3>Worked Example</h3>
-
-        <p>Let:</p>
-
-        <div class="formula">
-            f(x) = 2x + 3
-            <br>
-            g(x) = x²
-        </div>
-
-        <p>Find (fg)(2).</p>
-
-        <div class="formula">
-            g(2) = 2² = 4
-        </div>
-
-        <div class="formula">
-            f(g(2)) = f(4)
-            <br>
-            = 2(4) + 3
-            <br>
-            = 11
-        </div>
-
-        <div class="formula">
-            <strong>(fg)(2) = 11</strong>
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         PRACTICE QUESTIONS
-    ================================================== -->
-
-    <div class="topic-card practice-card">
-
-        <h2>Practice Questions</h2>
-
-        <p>
-            Try each question yourself before revealing the answer.
-        </p>
-
-
-        <h3>Question 1 — Algebra</h3>
-
-        <p>Expand and simplify:</p>
-
-        <div class="formula">
-            (3x + 2)(x - 5)
-        </div>
-
-        <details>
-
-            <summary>
-                Show Full Solution
-            </summary>
-
-            <p>Expand the brackets:</p>
-
-            <div class="formula">
-                = 3x² - 15x + 2x - 10
+        <div class="chapter-body">
+
+            <div class="definition">
+                <strong>Core idea</strong>
+                Algebra is not primarily about symbols. It is about
+                relationships between quantities. The letters are simply
+                compact representations of quantities that may be unknown,
+                variable, fixed or constrained.
             </div>
 
+            <h3>1. Expression</h3>
+
+            <p>
+                An expression is a mathematical object such as
+                <strong>3x + 7</strong>, <strong>x² − 4x + 1</strong> or
+                <strong>(x + 2)/(x − 5)</strong>.
+                An expression does not contain an equality sign.
+            </p>
+
+            <h3>2. Equation</h3>
+
+            <p>
+                An equation states that two expressions have equal value.
+                For example:
+            </p>
+
             <div class="formula">
-                <strong>3x² - 13x - 10</strong>
+                3x + 7 = 22
             </div>
 
-        </details>
+            <p>
+                Solving the equation means finding the values of x for which
+                the statement is true.
+            </p>
 
+            <h3>3. Identity</h3>
 
-        <h3>Question 2 — Indices</h3>
+            <p>
+                An identity is true for every permitted value of the variable.
+            </p>
 
-        <p>Simplify:</p>
+            <div class="formula">
+                (x + 3)² ≡ x² + 6x + 9
+                <small>The symbol ≡ means identically equal.</small>
+            </div>
 
-        <div class="formula">
-            27²⁄³
+            <h3>4. Inequality</h3>
+
+            <p>
+                Inequalities compare quantities without requiring them to be
+                equal:
+            </p>
+
+            <div class="formula">
+                x &gt; 4 &nbsp;&nbsp; x ≤ 7 &nbsp;&nbsp; x ≠ 2
+            </div>
+
+            <h3>5. Terms, coefficients and constants</h3>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Object</th>
+                            <th>Example</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Term</td>
+                            <td>7x²</td>
+                            <td>A single algebraic part separated by + or −.</td>
+                        </tr>
+                        <tr>
+                            <td>Coefficient</td>
+                            <td>7 in 7x²</td>
+                            <td>The numerical multiplier.</td>
+                        </tr>
+                        <tr>
+                            <td>Variable</td>
+                            <td>x</td>
+                            <td>A quantity whose value may vary.</td>
+                        </tr>
+                        <tr>
+                            <td>Constant</td>
+                            <td>12</td>
+                            <td>A fixed value.</td>
+                        </tr>
+                        <tr>
+                            <td>Factor</td>
+                            <td>3 and x in 3x</td>
+                            <td>Quantities multiplied together.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="example">
+                <div class="example-head">Worked Example</div>
+                <div class="example-body">
+                    <p><strong>Identify the coefficient of x² in:</strong></p>
+                    <div class="formula">−8x² + 5x − 11</div>
+                    <div class="step">
+                        The x² term is −8x².
+                    </div>
+                    <div class="step">
+                        Therefore its coefficient is <strong>−8</strong>.
+                    </div>
+                </div>
+            </div>
+
+            <div class="trap">
+                <strong>Common trap:</strong>
+                The coefficient of x² in x² is 1, not 0 and not x.
+            </div>
+
+            <div class="checkpoint">
+                <strong>Checkpoint:</strong>
+                Before manipulating an expression, identify what type of
+                object you are looking at: expression, equation, identity
+                or inequality.
+            </div>
+
         </div>
-
-        <details>
-
-            <summary>
-                Show Full Solution
-            </summary>
-
-            <p>Rewrite 27 as a power of 3:</p>
-
-            <div class="formula">
-                27 = 3³
-            </div>
-
-            <div class="formula">
-                (3³)²⁄³
-                <br>
-                = 3²
-                <br>
-                = <strong>9</strong>
-            </div>
-
-        </details>
-
-
-        <h3>Question 3 — Quadratics</h3>
-
-        <p>Solve:</p>
-
-        <div class="formula">
-            x² - 7x + 12 = 0
-        </div>
-
-        <details>
-
-            <summary>
-                Show Full Solution
-            </summary>
-
-            <div class="formula">
-                (x - 3)(x - 4) = 0
-            </div>
-
-            <div class="formula">
-                <strong>x = 3 or x = 4</strong>
-            </div>
-
-        </details>
-
-
-        <h3>Question 4 — Simultaneous Equations</h3>
-
-        <p>Solve simultaneously:</p>
-
-        <div class="formula">
-            x + y = 9
-            <br>
-            2x - y = 6
-        </div>
-
-        <details>
-
-            <summary>
-                Show Full Solution
-            </summary>
-
-            <div class="formula">
-                3x = 15
-                <br>
-                x = 5
-            </div>
-
-            <div class="formula">
-                y = 4
-            </div>
-
-            <div class="formula">
-                <strong>x = 5, y = 4</strong>
-            </div>
-
-        </details>
-
-
-        <h3>Question 5 — Inequalities</h3>
-
-        <p>Solve:</p>
-
-        <div class="formula">
-            2x + 3 &lt; 11
-        </div>
-
-        <details>
-
-            <summary>
-                Show Full Solution
-            </summary>
-
-            <div class="formula">
-                2x &lt; 8
-                <br>
-                <strong>x &lt; 4</strong>
-            </div>
-
-        </details>
-
-
-        <h3>Question 6 — Functions</h3>
-
-        <p>Given:</p>
-
-        <div class="formula">
-            f(x) = 3x - 2
-        </div>
-
-        <p>Find f(5).</p>
-
-        <details>
-
-            <summary>
-                Show Full Solution
-            </summary>
-
-            <div class="formula">
-                f(5) = 3(5) - 2
-                <br>
-                = 15 - 2
-                <br>
-                = <strong>13</strong>
-            </div>
-
-        </details>
-
     </div>
 
-
-    <!-- =================================================
-         COMMON MISTAKES
-    ================================================== -->
-
-    <div class="topic-card">
-
-        <h2>Common Mistakes</h2>
-
-
-        <h3>1. Forgetting to change the inequality sign</h3>
-
-        <p>
-            When multiplying or dividing an inequality by a negative number,
-            the inequality sign must reverse.
-        </p>
-
-        <div class="formula">
-            -2x &gt; 6
-            <br><br>
-            x &lt; -3
-        </div>
-
-
-        <h3>2. Confusing f(x) with f × x</h3>
-
-        <p>
-            In function notation, f(x) means the value of the function when
-            the input is x. It does not mean f multiplied by x.
-        </p>
-
-
-        <h3>3. Forgetting brackets when substituting</h3>
-
-        <p>
-            Be especially careful when substituting negative numbers.
-        </p>
-
-        <div class="formula">
-            (-3)² = 9
-        </div>
-
-
-        <h3>4. Losing exact values</h3>
-
-        <p>
-            Unless a question asks for a decimal approximation, keep answers
-            exact. For example, keep √2 rather than converting it to a decimal.
-        </p>
-
-
-        <h3>5. Ignoring the discriminant</h3>
-
-        <div class="formula">
-            Δ &gt; 0 → two real roots
-            <br><br>
-            Δ = 0 → one repeated real root
-            <br><br>
-            Δ &lt; 0 → no real roots
-        </div>
-
-
-        <h3>6. Not checking the final answer</h3>
-
-        <p>
-            After solving an equation, substitute your answer back into the
-            original equation whenever possible.
-        </p>
-
-    </div>
-
-
-    <!-- =================================================
-         EXAM TIPS
-    ================================================== -->
-
-    <div class="topic-card">
-
-        <h2>Exam Tips</h2>
-
-
-        <h3>1. Show your working</h3>
-
-        <p>
-            Don't jump straight to the final answer. Clear working makes your
-            method easier to follow and can help you earn method marks.
-        </p>
-
-
-        <h3>2. Keep exact values</h3>
-
-        <p>
-            Keep surds and exact values throughout your working unless the
-            question specifically asks for a decimal answer.
-        </p>
-
-
-        <h3>3. Check your signs</h3>
-
-        <p>
-            Negative signs are a common source of lost marks. Pay particular
-            attention when expanding brackets, factorising and solving
-            inequalities.
-        </p>
-
-
-        <h3>4. Check the question carefully</h3>
-
-        <p>
-            Make sure you answer exactly what the question asks. If it asks
-            for a range of values, a domain, or a number of roots, give the
-            appropriate form of answer.
-        </p>
-
-
-        <h3>5. Use the discriminant strategically</h3>
-
-        <p>
-            If a question asks how many real roots a quadratic has, the
-            discriminant can often give you the answer quickly.
-        </p>
-
-        <div class="formula">
-            Δ = b² - 4ac
-        </div>
-
-
-        <h3>6. Check your answer</h3>
-
-        <p>
-            If you have time, substitute your answer back into the original
-            equation or test it against the original conditions.
-        </p>
-
-
-        <h3>7. Practise without looking at the solution</h3>
-
-        <p>
-            Try the practice questions yourself first. Only open the full
-            solution after you've made a genuine attempt.
-        </p>
-
-    </div>
-
-
-    <!-- =================================================
-         NAVIGATION
-    ================================================== -->
-
-    <div class="button-area">
-
-        <a href="#top" class="back">
-            ↑ Back to Top
-        </a>
-
-    </div>
-
-
-    <div class="button-area">
-
-        <a href="pure-mathematics.html" class="back">
-            ← Back to Pure Mathematics
-        </a>
-
-    </div>
-
-
+</div>
 </section>
 
+<!-- =========================
+     CHAPTER 1
+========================= -->
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+<section class="section">
+<div class="container">
+
+<div class="glass chapter">
+<div class="chapter-head">
+<div class="chapter-number">01 • Algebraic Foundations</div>
+<h2>Like Terms, Simplification & Structure</h2>
+</div>
+
+<div class="chapter-body">
+
+<h3>Like terms</h3>
+
+<p>
+Two terms are like terms when their variable parts are identical.
+Their numerical coefficients may be different.
+</p>
+
+<div class="formula">
+7x + 3x = 10x
+</div>
+
+<p>
+However:
+</p>
+
+<div class="formula">
+7x + 3x² ≠ 10x³
+</div>
+
+<p>
+The powers of x are different, so these terms cannot be combined.
+</p>
+
+<div class="example">
+<div class="example-head">Worked Example</div>
+<div class="example-body">
+
+<p>Simplify:</p>
+
+<div class="formula">
+5x + 8 − 2x + 3 − 4x
+</div>
+
+<div class="step">
+Group x terms:
+<br>
+5x − 2x − 4x = −x
+</div>
+
+<div class="step">
+Group constants:
+<br>
+8 + 3 = 11
+</div>
+
+<div class="step">
+Therefore:
+<br>
+<strong>−x + 11</strong>
+</div>
+
+</div>
+</div>
+
+<h3>Removing brackets</h3>
+
+<p>
+The distributive law says:
+</p>
+
+<div class="formula">
+a(b + c) = ab + ac
+</div>
+
+<p>
+Every term inside the bracket must be multiplied.
+</p>
+
+<div class="example">
+<div class="example-head">Worked Example</div>
+<div class="example-body">
+
+<div class="formula">
+5(2x − 3) − 2(x + 4)
+</div>
+
+<div class="step">
+5(2x − 3) = 10x − 15
+</div>
+
+<div class="step">
+−2(x + 4) = −2x − 8
+</div>
+
+<div class="step">
+Combine:
+<br>
+10x − 15 − 2x − 8
+</div>
+
+<div class="step">
+<strong>= 8x − 23</strong>
+</div>
+
+</div>
+</div>
+
+<h3>Nested brackets</h3>
+
+<p>
+When brackets occur inside other brackets, work systematically from
+the innermost structure outward.
+</p>
+
+<div class="example">
+<div class="example-head">Challenge Example</div>
+<div class="example-body">
+
+<div class="formula">
+3[2x − (x − 4)]
+</div>
+
+<div class="step">
+First simplify inside:
+<br>
+2x − (x − 4)
+</div>
+
+<div class="step">
+The minus sign changes both terms:
+<br>
+2x − x + 4 = x + 4
+</div>
+
+<div class="step">
+Multiply by 3:
+<br>
+<strong>3x + 12</strong>
+</div>
+
+</div>
+</div>
+
+<div class="trap">
+<strong>Major trap:</strong>
+When a negative sign is immediately before a bracket, every sign
+inside that bracket changes.
+</div>
+
+<h3>Algebraic simplification checklist</h3>
+
+<div class="checklist">
+<div class="check">Remove brackets carefully.</div>
+<div class="check">Collect only like terms.</div>
+<div class="check">Keep signs attached to terms.</div>
+<div class="check">Do not combine unlike powers.</div>
+<div class="check">Check the result by substituting a simple value.</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- =========================
+     CHAPTER 2
+========================= -->
+
+<section class="section">
+<div class="container">
+
+<div class="glass chapter">
+<div class="chapter-head">
+<div class="chapter-number">02 • Identities</div>
+<h2>Algebraic Identities & Special Products</h2>
+</div>
+
+<div class="chapter-body">
+
+<h3>Difference of two squares</h3>
+
+<div class="formula">
+a² − b² = (a − b)(a + b)
+</div>
+
+<div class="example">
+<div class="example-head">Example</div>
+<div class="example-body">
+
+<div class="formula">
+x² − 49
+</div>
+
+<p>Recognise 49 as 7²:</p>
+
+<div class="step">
+x² − 7²
+</div>
+
+<div class="step">
+<strong>(x − 7)(x + 7)</strong>
+</div>
+
+</div>
+</div>
+
+<h3>Perfect square identities</h3>
+
+<div class="formula">
+(a + b)² = a² + 2ab + b²
+</div>
+
+<div class="formula">
+(a − b)² = a² − 2ab + b²
+</div>
+
+<div class="example">
+<div class="example-head">Expansion</div>
+<div class="example-body">
+
+<div class="formula">
+(3x − 5)²
+</div>
+
+<div class="step">
+(3x)² − 2(3x)(5) + 5²
+</div>
+
+<div class="step">
+= 9x² − 30x + 25
+</div>
+
+</div>
+</div>
+
+<h3>Recognising perfect squares</h3>
+
+<p>
+Suppose we have:
+</p>
+
+<div class="formula">
+x² + 12x + 36
+</div>
+
+<p>
+Since 36 = 6² and 12 = 2 × 6, this is:
+</p>
+
+<div class="formula">
+(x + 6)²
+</div>
+
+<div class="exam-lens">
+<strong>Exam lens:</strong>
+Recognition is often faster than multiplying out and attempting
+factorisation from scratch.
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- =========================
+     CHAPTER 3
+========================= -->
+
+<section class="section">
+<div class="container">
+
+<div class="glass chapter">
+<div class="chapter-head">
+<div class="chapter-number">03 • Factorisation</div>
+<h2>Factorising Algebraic Expressions</h2>
+</div>
+
+<div class="chapter-body">
+
+<h3>Common factor</h3>
+
+<p>
+Always check for a common factor before trying more complicated methods.
+</p>
+
+<div class="formula">
+6x² + 15x = 3x(2x + 5)
+</div>
+
+<h3>Quadratic factorisation</h3>
+
+<p>
+For a monic quadratic:
+</p>
+
+<div class="formula">
+x² + bx + c
+</div>
+
+<p>
+look for two numbers whose product is c and whose sum is b.
+</p>
+
+<div class="example">
+<div class="example-head">Worked Example</div>
+<div class="example-body">
+
+<div class="formula">
+x² + 9x + 20
+</div>
+
+<div class="step">
+Numbers multiplying to 20 and adding to 9:
+<br>
+4 and 5.
+</div>
+
+<div class="step">
+Therefore:
+<br>
+<strong>(x + 4)(x + 5)</strong>
+</div>
+
+</div>
+</div>
+
+<h3>Quadratics with a coefficient other than 1</h3>
+
+<div class="formula">
+2x² + 7x + 3
+</div>
+
+<p>
+Multiply the first and last coefficients:
+</p>
+
+<div class="formula">
+2 × 3 = 6
+</div>
+
+<p>
+Find two numbers multiplying to 6 and adding to 7:
+</p>
+
+<div class="formula">
+6 and 1
+</div>
+
+<p>
+Split the middle term:
+</p>
+
+<div class="formula">
+2x² + 6x + x + 3
+</div>
+
+<p>
+Group:
+</p>
+
+<div class="formula">
+2x(x + 3) + 1(x + 3)
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+<strong>(2x + 1)(x + 3)</strong>
+</div>
+
+<h3>Factorisation as the reverse of expansion</h3>
+
+<p>
+Expansion turns products into sums. Factorisation reverses this process.
+That is why multiplying your factors back together is an excellent
+checking method.
+</p>
+
+<div class="trap">
+<strong>Trap:</strong>
+Do not stop after finding a common factor if the remaining expression
+can still be factorised.
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- =========================
+     CHAPTER 4
+========================= -->
+
+<section class="section">
+<div class="container">
+
+<div class="glass chapter">
+<div class="chapter-head">
+<div class="chapter-number">04 • Algebraic Fractions</div>
+<h2>Fractions, Restrictions & Rational Expressions</h2>
+</div>
+
+<div class="chapter-body">
+
+<h3>Basic simplification</h3>
+
+<div class="formula">
+6x²y / 3xy = 2x
+</div>
+
+<p>
+Cancellation is based on factors, not individual terms.
+</p>
+
+<h3>Factor before cancelling</h3>
+
+<div class="example">
+<div class="example-head">Important Example</div>
+<div class="example-body">
+
+<div class="formula">
+(x² − 9)/(x + 3)
+</div>
+
+<p>
+Factor the numerator:
+</p>
+
+<div class="formula">
+(x − 3)(x + 3)/(x + 3)
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+x − 3
+</div>
+
+<p>
+But there is an important restriction:
+</p>
+
+<div class="formula">
+x ≠ −3
+</div>
+
+</div>
+</div>
+
+<div class="trap">
+<strong>Important:</strong>
+Even after cancellation, the original denominator restriction remains.
+</div>
+
+<h3>Adding algebraic fractions</h3>
+
+<p>
+Fractions must have a common denominator before their numerators can
+be added.
+</p>
+
+<div class="example">
+<div class="example-head">Worked Example</div>
+<div class="example-body">
+
+<div class="formula">
+1/x + 2/(x + 1)
+</div>
+
+<p>
+Common denominator:
+</p>
+
+<div class="formula">
+x(x + 1)
+</div>
+
+<div class="step">
+1/x = (x + 1)/[x(x + 1)]
+</div>
+
+<div class="step">
+2/(x + 1) = 2x/[x(x + 1)]
+</div>
+
+<div class="step">
+Therefore:
+<br>
+<strong>(3x + 1) / [x(x + 1)]</strong>
+</div>
+
+<p>
+Restrictions:
+</p>
+
+<div class="formula">
+x ≠ 0, −1
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- =========================
+     CHAPTER 5
+========================= -->
+
+<section class="section">
+<div class="container">
+
+<div class="glass chapter">
+<div class="chapter-head">
+<div class="chapter-number">05 • Indices</div>
+<h2>Index Laws From First Principles</h2>
+</div>
+
+<div class="chapter-body">
+
+<div class="formula">
+aᵐ × aⁿ = aᵐ⁺ⁿ
+</div>
+
+<div class="formula">
+aᵐ ÷ aⁿ = aᵐ⁻ⁿ
+</div>
+
+<div class="formula">
+(aᵐ)ⁿ = aᵐⁿ
+</div>
+
+<div class="formula">
+(ab)ⁿ = aⁿbⁿ
+</div>
+
+<div class="formula">
+(a/b)ⁿ = aⁿ/bⁿ
+</div>
+
+<h3>Why multiplication adds powers</h3>
+
+<p>
+Consider:
+</p>
+
+<div class="formula">
+x³ × x²
+</div>
+
+<p>
+Expanded:
+</p>
+
+<div class="formula">
+(x × x × x)(x × x) = x⁵
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+x³ × x² = x⁵
+</div>
+
+<h3>Zero index</h3>
+
+<div class="formula">
+a⁰ = 1 &nbsp;&nbsp; (a ≠ 0)
+</div>
+
+<h3>Negative indices</h3>
+
+<div class="formula">
+a⁻ⁿ = 1/aⁿ
+</div>
+
+<div class="example">
+<div class="example-head">Example</div>
+<div class="example-body">
+
+<div class="formula">
+5⁻² = 1/5² = 1/25
+</div>
+
+</div>
+</div>
+
+<h3>Fractional indices</h3>
+
+<div class="formula">
+a¹/² = √a
+</div>
+
+<div class="formula">
+a¹/³ = ∛a
+</div>
+
+<div class="formula">
+aᵐ/ⁿ = ⁿ√(aᵐ)
+</div>
+
+<div class="example">
+<div class="example-head">Example</div>
+<div class="example-body">
+
+<div class="formula">
+27²/³
+</div>
+
+<div class="step">
+Cube root of 27 = 3.
+</div>
+
+<div class="step">
+3² = <strong>9</strong>.
+</div>
+
+</div>
+</div>
+
+<h3>Combining everything</h3>
+
+<div class="example">
+<div class="example-head">Challenge</div>
+<div class="example-body">
+
+<div class="formula">
+x⁵/² × x⁻¹/²
+</div>
+
+<div class="step">
+Add powers:
+<br>
+5/2 − 1/2 = 4/2 = 2
+</div>
+
+<div class="step">
+Therefore:
+<br>
+<strong>x²</strong>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- =========================
+     CHAPTER 6
+========================= -->
+
+<section class="section">
+<div class="container">
+
+<div class="glass chapter">
+<div class="chapter-head">
+<div class="chapter-number">06 • Surds</div>
+<h2>Exact Values, Simplification & Rationalisation</h2>
+</div>
+
+<div class="chapter-body">
+
+<h3>What is a surd?</h3>
+
+<p>
+A surd is an exact irrational expression involving a root that cannot
+be simplified to a rational number.
+</p>
+
+<div class="formula">
+√2, √3, √5, 2√7
+</div>
+
+<h3>Extracting square factors</h3>
+
+<div class="example">
+<div class="example-head">Example</div>
+<div class="example-body">
+
+<div class="formula">
+√72
+</div>
+
+<div class="step">
+72 = 36 × 2
+</div>
+
+<div class="step">
+√72 = √36 × √2
+</div>
+
+<div class="step">
+<strong>= 6√2</strong>
+</div>
+
+</div>
+</div>
+
+<h3>Collecting surds</h3>
+
+<div class="formula">
+√12 + √27
+</div>
+
+<div class="step">
+√12 = 2√3
+</div>
+
+<div class="step">
+√27 = 3√3
+</div>
+
+<div class="step">
+Therefore:
+<br>
+<strong>5√3</strong>
+</div>
+
+<h3>Multiplication</h3>
+
+<div class="formula">
+√3 × √12 = √36 = 6
+</div>
+
+<h3>Rationalising a denominator</h3>
+
+<div class="example">
+<div class="example-head">Single Surd</div>
+<div class="example-body">
+
+<div class="formula">
+1/√5
+</div>
+
+<p>
+Multiply numerator and denominator by √5:
+</p>
+
+<div class="formula">
+√5 / 5
+</div>
+
+</div>
+</div>
+
+<h3>Conjugates</h3>
+
+<p>
+For a denominator such as:
+</p>
+
+<div class="formula">
+a + √b
+</div>
+
+<p>
+use its conjugate:
+</p>
+
+<div class="formula">
+a − √b
+</div>
+
+<p>
+because:
+</p>
+
+<div class="formula">
+(a + √b)(a − √b) = a² − b
+</div>
+
+<div class="example">
+<div class="example-head">Challenge</div>
+<div class="example-body">
+
+<div class="formula">
+1/(3 + √2)
+</div>
+
+<div class="step">
+Multiply by the conjugate:
+<br>
+(3 − √2)/(3 − √2)
+</div>
+
+<div class="step">
+Denominator:
+<br>
+(3 + √2)(3 − √2)
+= 9 − 2 = 7
+</div>
+
+<div class="step">
+Therefore:
+<br>
+<strong>(3 − √2)/7</strong>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- =========================
+     CHAPTER 7
+========================= -->
+
+<section class="section">
+<div class="container">
+
+<div class="glass chapter">
+<div class="chapter-head">
+<div class="chapter-number">07 • Quadratic Equations</div>
+<h2>Roots, Formula, Discriminant & Structure</h2>
+</div>
+
+<div class="chapter-body">
+
+<h3>What is a quadratic?</h3>
+
+<div class="formula">
+ax² + bx + c = 0 &nbsp;&nbsp; a ≠ 0
+</div>
+
+<p>
+The highest power of the variable is 2.
+</p>
+
+<h3>Method 1 — Factorisation</h3>
+
+<div class="example">
+<div class="example-head">Example</div>
+<div class="example-body">
+
+<div class="formula">
+x² − 5x + 6 = 0
+</div>
+
+<div class="step">
+(x − 2)(x − 3) = 0
+</div>
+
+<p>
+A product is zero when at least one factor is zero:
+</p>
+
+<div class="step">
+x − 2 = 0 → x = 2
+</div>
+
+<div class="step">
+x − 3 = 0 → x = 3
+</div>
+
+</div>
+</div>
+
+<h3>Method 2 — Quadratic formula</h3>
+
+<div class="formula">
+x = [−b ± √(b² − 4ac)] / 2a
+</div>
+
+<p>
+This works for any quadratic equation in the standard form.
+</p>
+
+<h3>The discriminant</h3>
+
+<div class="formula">
+Δ = b² − 4ac
+</div>
+
+<div class="grid3">
+
+<div class="mini-card">
+<h4>Δ &gt; 0</h4>
+<p>Two distinct real roots.</p>
+</div>
+
+<div class="mini-card">
+<h4>Δ = 0</h4>
+<p>One repeated real root.</p>
+</div>
+
+<div class="mini-card">
+<h4>Δ &lt; 0</h4>
+<p>No real roots.</p>
+</div>
+
+</div>
+
+<h3>Completing the square</h3>
+
+<div class="example">
+<div class="example-head">Worked Example</div>
+<div class="example-body">
+
+<div class="formula">
+x² + 10x + 21
+</div>
+
+<div class="step">
+Half of 10 is 5.
+</div>
+
+<div class="step">
+Add and subtract 25:
+<br>
+x² + 10x + 25 − 25 + 21
+</div>
+
+<div class="step">
+(x + 5)² − 4
+</div>
+
+</div>
+</div>
+
+<h3>Turning point</h3>
+
+<div class="formula">
+y = (x − h)² + k
+</div>
+
+<p>
+The turning point is:
+</p>
+
+<div class="formula">
+(h,k)
+</div>
+
+<div class="example">
+<div class="example-head">Example</div>
+<div class="example-body">
+
+<div class="formula">
+y = (x − 3)² + 2
+</div>
+
+<p>
+Therefore the turning point is:
+</p>
+
+<div class="formula">
+<strong>(3,2)</strong>
+</div>
+
+<p>
+Because the coefficient of the squared bracket is positive,
+this is a minimum.
+</p>
+
+</div>
+</div>
+
+<h3>Axis of symmetry</h3>
+
+<p>
+For:
+</p>
+
+<div class="formula">
+y = ax² + bx + c
+</div>
+
+<p>
+the axis is:
+</p>
+
+<div class="formula">
+x = −b/(2a)
+</div>
+
+<div class="example">
+<div class="example-head">Example</div>
+<div class="example-body">
+
+<div class="formula">
+y = x² − 6x + 1
+</div>
+
+<div class="step">
+a = 1, b = −6
+</div>
+
+<div class="step">
+x = −(−6)/(2)
+</div>
+
+<div class="step">
+<strong>x = 3</strong>
+</div>
+
+</div>
+</div>
+
+<h3>Relationship between roots and coefficients</h3>
+
+<p>
+For:
+</p>
+
+<div class="formula">
+ax² + bx + c = 0
+</div>
+
+<p>
+with roots α and β:
+</p>
+
+<div class="formula">
+α + β = −b/a
+</div>
+
+<div class="formula">
+αβ = c/a
+</div>
+
+<div class="exam-lens">
+<strong>Exam lens:</strong>
+If a question asks for a sum or product of roots, you may not need
+to solve the quadratic at all.
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- =========================
+     CHAPTER 8
+========================= -->
+
+<section class="section">
+<div class="container">
+
+<div class="glass chapter">
+<div class="chapter-head">
+<div class="chapter-number">08 • Simultaneous Equations</div>
+<h2>Linear Systems & Linear–Quadratic Systems</h2>
+</div>
+
+<div class="chapter-body">
+
+<h3>Substitution</h3>
+
+<div class="example">
+<div class="example-head">Example</div>
+<div class="example-body">
+
+<div class="formula">
+x + y = 7
+</div>
+
+<div class="formula">
+x − y = 1
+</div>
+
+<div class="step">
+Add the equations:
+<br>
+2x = 8
+</div>
+
+<div class="step">
+x = 4
+</div>
+
+<div class="step">
+Substitute:
+<br>
+4 + y = 7
+</div>
+
+<div class="step">
+<strong>y = 3</strong>
+</div>
+
+</div>
+</div>
+
+<h3>Elimination</h3>
+
+<div class="example">
+<div class="example-head">Example</div>
+<div class="example-body">
+
+<div class="formula">
+2x + y = 9
+</div>
+
+<div class="formula">
+x + y = 6
+</div>
+
+<div class="step">
+Subtract the second equation from the first:
+<br>
+x = 3
+</div>
+
+<div class="step">
+3 + y = 6
+</div>
+
+<div class="step">
+<strong>y = 3</strong>
+</div>
+
+</div>
+</div>
+
+<h3>Geometric meaning</h3>
+
+<p>
+Two linear equations represent two straight lines.
+Their solution is the intersection point.
+</p>
+
+<div class="grid3">
+
+<div class="mini-card">
+<h4>One solution</h4>
+<p>The lines intersect once.</p>
+</div>
+
+<div class="mini-card">
+<h4>No solution</h4>
+<p>The lines are parallel.</p>
+</div>
+
+<div class="mini-card">
+<h4>Infinitely many</h4>
+<p>The equations represent the same line.</p>
+</div>
+
+</div>
+
+<h3>Linear and quadratic equations</h3>
+
+<p>
+When one equation is linear and the other quadratic, substitution often
+turns the system into a quadratic equation.
+</p>
+
+<div class="example">
+<div class="example-head">Structure</div>
+<div class="example-body">
+
+<div class="formula">
+y = 2x + 1
+</div>
+
+<div class="formula">
+y = x² − 3
+</div>
+
+<p>
+Set the right sides equal:</p>
+
+<div class="formula">
+2x + 1 = x² − 3
+</div>
+
+<p>
+Rearrange:</p>
+
+<div class="formula">
+x² − 2x − 4 = 0
+</div>
+
+<p>
+Solve for x, then substitute into either original equation to find y.
+</p>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- =========================
+     CHAPTER 9
+========================= -->
+
+<section class="section">
+<div class="container">
+
+<div class="glass chapter">
+<div class="chapter-head">
+<div class="chapter-number">09 • Inequalities</div>
+<h2>Linear & Quadratic Inequalities</h2>
+</div>
+
+<div class="chapter-body">
+
+<h3>Linear inequalities</h3>
+
+<div class="formula">
+3x + 2 &gt; 11
+</div>
+
+<div class="step">
+3x &gt; 9
+</div>
+
+<div class="step">
+<strong>x &gt; 3</strong>
+</div>
+
+<h3>The reversal rule</h3>
+
+<p>
+If you multiply or divide both sides by a negative number, the inequality
+sign reverses.
+</p>
+
+<div class="example">
+<div class="example-head">Example</div>
+<div class="example-body">
+
+<div class="formula">
+−4x &gt; 20
+</div>
+
+<div class="step">
+Divide by −4.
+</div>
+
+<div class="step">
+The sign reverses:
+<br>
+<strong>x &lt; −5</strong>
+</div>
+
+</div>
+</div>
+
+<h3>Quadratic inequalities</h3>
+
+<div class="example">
+<div class="example-head">Example</div>
+<div class="example-body">
+
+<div class="formula">
+x² − 9 &gt; 0
+</div>
+
+<div class="step">
+Factor:
+<br>
+(x − 3)(x + 3) &gt; 0
+</div>
+
+<div class="step">
+Critical values:
+<br>
+x = −3, 3
+</div>
+
+<div class="step">
+The quadratic is positive outside the roots.
+</div>
+
+<div class="formula">
+<strong>x &lt; −3 or x &gt; 3</strong>
+</div>
+
+</div>
+</div>
+
+<h3>Quadratic below or equal to zero</h3>
+
+<div class="example">
+<div class="example-head">Example</div>
+<div class="example-body">
+
+<div class="formula">
+x² − 4x + 3 ≤ 0
+</div>
+
+<div class="step">
+Factor:
+<br>
+(x − 1)(x − 3) ≤ 0
+</div>
+
+<div class="step">
+The parabola lies below the x-axis between the roots.
+</div>
+
+<div class="formula">
+<strong>1 ≤ x ≤ 3</strong>
+</div>
+
+</div>
+</div>
+
+<div class="exam-lens">
+<strong>Exam lens:</strong>
+For a quadratic inequality, find the roots first. Then determine the
+sign in each interval.
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- =========================
+     CHAPTER 10
+========================= -->
+
+<section class="section">
+<div class="container">
+
+<div class="glass chapter">
+<div class="chapter-head">
+<div class="chapter-number">10 • Functions</div>
+<h2>Function Notation, Domain & Range</h2>
+</div>
+
+<div class="chapter-body">
+
+<h3>What is a function?</h3>
+
+<p>
+A function assigns each allowed input exactly one output.
+</p>
+
+<div class="formula">
+f : x ↦ 2x + 5
+</div>
+
+<p>
+This can also be written:
+</p>
+
+<div class="formula">
+f(x) = 2x + 5
+</div>
+
+<h3>Evaluating a function</h3>
+
+<div class="example">
+<div class="example-head">Example</div>
+<div class="example-body">
+
+<div class="formula">
+f(x) = 2x + 5
+</div>
+
+<p>Find f(3).</p>
+
+<div class="step">
+f(3) = 2(3) + 5
+</div>
+
+<div class="step">
+<strong>f(3) = 11</strong>
+</div>
+
+</div>
+</div>
+
+<h3>Solving f(x) = a</h3>
+
+<div class="example">
+<div class="example-head">Example</div>
+<div class="example-body">
+
+<div class="formula">
+f(x) = 3x − 4
+</div>
+
+<p>Find x when f(x) = 11.</p>
+
+<div class="step">
+3x − 4 = 11
+</div>
+
+<div class="step">
+3x = 15
+</div>
+
+<div class="step">
+<strong>x = 5</strong>
+</div>
+
+</div>
+</div>
+
+<h3>Domain</h3>
+
+<p>
+The domain is the set of permitted input values.
+</p>
+
+<p>
+For:
+</p>
+
+<div class="formula">
+f(x) = √x
+</div>
+
+<p>
+we require:
+</p>
+
+<div class="formula">
+x ≥ 0
+</div>
+
+<p>
+Therefore the domain is:
+</p>
+
+<div class="formula">
+[0,∞)
+</div>
+
+<h3>Restricted domains</h3>
+
+<p>
+For:
+</p>
+
+<div class="formula">
+f(x) = 1/(x − 2)
+</div>
+
+<p>
+x = 2 is not permitted because division by zero is undefined.
+</p>
+
+<div class="formula">
+Domain: x ≠ 2
+</div>
+
+<h3>Range</h3>
+
+<p>
+The range is the set of output values produced by the function over its
+domain.
+</p>
+
+<div class="example">
+<div class="example-head">Example</div>
+<div class="example-body">
+
+<div class="formula">
+f(x) = x²
+</div>
+
+<p>
+For real x:
+</p>
+
+<div class="formula">
+x² ≥ 0
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+Range: y ≥ 0
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- =========================
+     CHAPTER 11
+========================= -->
+
+<section class="section">
+<div class="container">
+
+<div class="glass chapter">
+<div class="chapter-head">
+<div class="chapter-number">11 • Composite Functions</div>
+<h2>Composition & Order</h2>
+</div>
+
+<div class="chapter-body">
+
+<h3>Meaning of composition</h3>
+
+<p>
+The notation:
+</p>
+
+<div class="formula">
+fg(x)
+</div>
+
+<p>
+usually means:
+</p>
+
+<div class="formula">
+f(g(x))
+</div>
+
+<p>
+So g acts first and f acts second.
+</p>
+
+<div class="example">
+<div class="example-head">Worked Example</div>
+<div class="example-body">
+
+<div class="formula">
+f(x) = x + 2
+</div>
+
+<div class="formula">
+g(x) = 3x
+</div>
+
+<p>Find f(g(4)).</p>
+
+<div class="step">
+g(4) = 12
+</div>
+
+<div class="step">
+f(12) = 14
+</div>
+
+<div class="formula">
+<strong>f(g(4)) = 14</strong>
+</div>
+
+</div>
+</div>
+
+<h3>Algebraic composition</h3>
+
+<div class="example">
+<div class="example-head">Example</div>
+<div class="example-body">
+
+<div class="formula">
+f(x) = 2x + 1
+</div>
+
+<div class="formula">
+g(x) = x − 4
+</div>
+
+<p>Find f(g(x)).</p>
+
+<div class="step">
+Replace x in f with g(x):
+</div>
+
+<div class="formula">
+f(g(x)) = 2(x − 4) + 1
+</div>
+
+<div class="formula">
+<strong>= 2x − 7</strong>
+</div>
+
+</div>
+</div>
+
+<div class="trap">
+<strong>Order matters:</strong>
+f(g(x)) and g(f(x)) are generally different functions.
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- =========================
+     CHAPTER 12
+========================= -->
+
+<section class="section">
+<div class="container">
+
+<div class="glass chapter">
+<div class="chapter-head">
+<div class="chapter-number">12 • Inverse Functions</div>
+<h2>Finding & Understanding f⁻¹</h2>
+</div>
+
+<div class="chapter-body">
+
+<h3>What does an inverse do?</h3>
+
+<p>
+A function sends an input to an output. Its inverse reverses that mapping.
+</p>
+
+<div class="formula">
+f⁻¹(f(x)) = x
+</div>
+
+<p>
+and, where appropriately defined:
+</p>
+
+<div class="formula">
+f(f⁻¹(x)) = x
+</div>
+
+<h3>Finding an inverse</h3>
+
+<div class="example">
+<div class="example-head">Worked Example</div>
+<div class="example-body">
+
+<div class="formula">
+f(x) = 3x + 2
+</div>
+
+<p>Write:</p>
+
+<div class="formula">
+y = 3x + 2
+</div>
+
+<p>Swap x and y:</p>
+
+<div class="formula">
+x = 3y + 2
+</div>
+
+<p>Solve for y:</p>
+
+<div class="step">
+x − 2 = 3y
+</div>
+
+<div class="step">
+y = (x − 2)/3
+</div>
+
+<div class="formula">
+<strong>f⁻¹(x) = (x − 2)/3</strong>
+</div>
+
+</div>
+</div>
+
+<h3>Why x² needs a restriction</h3>
+
+<p>
+The function:
+</p>
+
+<div class="formula">
+f(x) = x²
+</div>
+
+<p>
+is not one-to-one over all real numbers because:
+</p>
+
+<div class="formula">
+f(2) = 4
+</div>
+
+<div class="formula">
+f(−2) = 4
+</div>
+
+<p>
+Two different inputs produce the same output.
+Therefore an inverse function cannot exist over the unrestricted real
+domain.
+</p>
+
+<p>
+If the domain is restricted to x ≥ 0, then:
+</p>
+
+<div class="formula">
+f⁻¹(x) = √x
+</div>
+
+<h3>Graphical meaning</h3>
+
+<p>
+The graph of a function and its inverse are reflections of each other
+in the line:
+</p>
+
+<div class="formula">
+y = x
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- =========================
+     CHAPTER 13
+========================= -->
+
+<section class="section">
+<div class="container">
+
+<div class="glass chapter">
+<div class="chapter-head">
+<div class="chapter-number">13 • Function Transformations</div>
+<h2>Moving & Reshaping Graphs</h2>
+</div>
+
+<div class="chapter-body">
+
+<h3>Vertical translation</h3>
+
+<div class="formula">
+y = f(x) + a
+</div>
+
+<p>
+moves the graph upward by a units when a is positive.
+</p>
+
+<h3>Horizontal translation</h3>
+
+<div class="formula">
+y = f(x − a)
+</div>
+
+<p>
+moves the graph to the right by a units.
+</p>
+
+<h3>Reflection in x-axis</h3>
+
+<div class="formula">
+y = −f(x)
+</div>
+
+<h3>Reflection in y-axis</h3>
+
+<div class="formula">
+y = f(−x)
+</div>
+
+<h3>Vertical stretch</h3>
+
+<div class="formula">
+y = af(x)
+</div>
+
+<p>
+changes the vertical scale by factor |a|.
+</p>
+
+<h3>Horizontal scale</h3>
+
+<div class="formula">
+y = f(ax)
+</div>
+
+<p>
+produces a horizontal scaling by factor 1/|a|.
+</p>
+
+<div class="example">
+<div class="example-head">Important Sign Check</div>
+<div class="example-body">
+
+<p>
+Starting with:
+</p>
+
+<div class="formula">
+y = x²
+</div>
+
+<p>
+The graph:
+</p>
+
+<div class="formula">
+y = (x − 4)² + 3
+</div>
+
+<p>
+has moved:
+</p>
+
+<ul>
+<li>4 units right</li>
+<li>3 units up</li>
+</ul>
+
+<p>
+So its turning point is:
+</p>
+
+<div class="formula">
+<strong>(4,3)</strong>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- =========================
+     CHAPTER 14
+========================= -->
+
+<section class="section">
+<div class="container">
+
+<div class="glass chapter">
+<div class="chapter-head">
+<div class="chapter-number">14 • Modelling</div>
+<h2>Turning Real Situations Into Algebra</h2>
+</div>
+
+<div class="chapter-body">
+
+<p>
+Mathematical modelling means translating a real situation into variables,
+equations, functions or inequalities.
+</p>
+
+<h3>A reliable modelling sequence</h3>
+
+<div class="checklist">
+<div class="check">Define the variable clearly.</div>
+<div class="check">Translate the information into algebra.</div>
+<div class="check">Solve the mathematical model.</div>
+<div class="check">Reject values that violate the situation.</div>
+<div class="check">Interpret the answer using units and context.</div>
+<div class="check">Check whether the result is realistic.</div>
+</div>
+
+<div class="example">
+<div class="example-head">Example</div>
+<div class="example-body">
+
+<p>
+A rectangle has width x and length x + 5.
+Its area is 84.
+</p>
+
+<div class="formula">
+x(x + 5) = 84
+</div>
+
+<div class="formula">
+x² + 5x − 84 = 0
+</div>
+
+<div class="formula">
+(x + 12)(x − 7) = 0
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+x = −12 or x = 7
+</div>
+
+<p>
+A physical width cannot be negative, so:
+</p>
+
+<div class="formula">
+<strong>x = 7</strong>
+</div>
+
+<p>
+Width = 7 and length = 12.
+</p>
+
+</div>
+</div>
+
+<div class="exam-lens">
+<strong>Exam lens:</strong>
+Algebra can produce mathematically valid solutions that are impossible
+in the real situation. Always interpret the final answer.
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- =========================
+     MASTER REFERENCE
+========================= -->
+
+<section class="section">
+<div class="container">
+
+<div class="section-title">Master Formula Vault</div>
+
+<p class="section-intro">
+Use this section for rapid revision after studying the full explanations.
+</p>
+
+<div class="grid2">
+
+<div class="glass mini-card">
+<h4>Identities</h4>
+<div class="formula">(a+b)² = a²+2ab+b²</div>
+<div class="formula">(a−b)² = a²−2ab+b²</div>
+<div class="formula">a²−b²=(a−b)(a+b)</div>
+</div>
+
+<div class="glass mini-card">
+<h4>Indices</h4>
+<div class="formula">aᵐaⁿ=aᵐ⁺ⁿ</div>
+<div class="formula">aᵐ/aⁿ=aᵐ⁻ⁿ</div>
+<div class="formula">(aᵐ)ⁿ=aᵐⁿ</div>
+<div class="formula">a⁻ⁿ=1/aⁿ</div>
+<div class="formula">a¹/ⁿ=ⁿ√a</div>
+</div>
+
+<div class="glass mini-card">
+<h4>Quadratics</h4>
+<div class="formula">x=[−b±√(b²−4ac)]/(2a)</div>
+<div class="formula">Δ=b²−4ac</div>
+<div class="formula">α+β=−b/a</div>
+<div class="formula">αβ=c/a</div>
+</div>
+
+<div class="glass mini-card">
+<h4>Functions</h4>
+<div class="formula">f(g(x))</div>
+<div class="formula">f⁻¹(f(x))=x</div>
+<div class="formula">y=f(x−a) → right a</div>
+<div class="formula">y=f(x)+a → up a</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- =========================================================
+     100 QUESTION MASTER EXAM
+========================================================= -->
+
+<section class="section" id="mastery-exam">
+<div class="container">
+
+<div class="section-title">IAL ATLAS Mastery Exam</div>
+
+<p class="section-intro">
+A 100-question compulsory mastery test covering the complete Algebra &
+Functions system on this page. This is an IAL ATLAS practice assessment,
+not an official Pearson Edexcel examination.
+</p>
+
+<div class="glass exam-shell">
+
+<div id="examIntro" class="exam-intro">
+
+<div class="eyebrow">100 QUESTIONS • 120 MINUTES</div>
+
+<h2 style="font-family:'Space Grotesk';font-size:2rem;margin-bottom:14px;">
+Algebra & Functions Mastery
+</h2>
+
+<p style="color:var(--muted);line-height:1.8;">
+Once started, answer every question. You cannot skip an unanswered
+question with the Next button. You may return to previously answered
+questions. At the end, your score, topic breakdown and incorrect answers
+with explanations will be displayed automatically.
+</p>
+
+<div class="exam-badges">
+<span class="badge">100 Questions</span>
+<span class="badge">120 Minutes</span>
+<span class="badge">Auto Marking</span>
+<span class="badge">Topic Breakdown</span>
+<span class="badge">Wrong Answer Review</span>
+<span class="badge">Randomised Order</span>
+</div>
+
+<button class="primary-btn" id="startExam">
+START MASTER EXAM →
+</button>
+
+</div>
+
+<div id="examPanel" class="exam-panel">
+
+<div class="exam-top">
+
+<div>
+<div class="exam-meta">
+<span id="examCounter">Question 1 / 100</span>
+<span id="examTopic">Algebra</span>
+<span id="answeredCount">Answered: 0 / 100</span>
+</div>
+</div>
+
+<div class="timer" id="timer">120:00</div>
+
+</div>
+
+<div class="progress-track">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+
+<div class="exam-layout">
+
+<div class="question-area">
+
+<div class="question-number" id="questionNumber">
+QUESTION 01
+</div>
+
+<div class="question-text" id="questionText"></div>
+
+<div class="options" id="options"></div>
+
+<div class="exam-controls">
+
+<button class="secondary-btn" id="prevBtn">
+← Back
+</button>
+
+<button class="primary-btn" id="nextBtn" disabled>
+Next →
+</button>
+
+</div>
+
+</div>
+
+<aside class="exam-sidebar">
+
+<div class="sidebar-title">
+Question Navigator
+</div>
+
+<div class="palette" id="palette"></div>
+
+</aside>
+
+</div>
+
+</div>
+
+<div id="results" class="results">
+
+<div class="eyebrow">ASSESSMENT COMPLETE</div>
+
+<div class="score-hero">
+
+<div class="score-circle">
+<strong id="scorePercent">0%</strong>
+</div>
+
+<div>
+<h2 style="font-family:'Space Grotesk';font-size:2.2rem;margin-bottom:10px;">
+Mastery Result
+</h2>
+
+<p style="color:var(--muted);line-height:1.8;" id="resultMessage"></p>
+</div>
+
+</div>
+
+<div class="result-summary">
+
+<div class="result-box">
+<strong id="correctCount">0</strong>
+<span>Correct</span>
+</div>
+
+<div class="result-box">
+<strong id="wrongCount">0</strong>
+<span>Incorrect</span>
+</div>
+
+<div class="result-box">
+<strong id="finalTime">—</strong>
+<span>Time Used</span>
+</div>
+
+</div>
+
+<h3 style="font-family:'Space Grotesk';margin-top:35px;">
+Topic Breakdown
+</h3>
+
+<div class="breakdown" id="breakdown"></div>
+
+<div class="review">
+
+<h3 style="font-family:'Space Grotesk';margin-bottom:15px;">
+Wrong Answer Review
+</h3>
+
+<div id="wrongReview"></div>
+
+</div>
+
+<button class="primary-btn" id="retakeExam" style="margin-top:25px;">
+RETAKE EXAM
+</button>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+</main>
 
 <footer>
-
-    © 2026 IAL ATLAS • Independent student resource • Not affiliated with Pearson
-
+<div class="container">
+<strong>IAL ATLAS</strong> • Independent student resource •
+Not affiliated with or endorsed by Pearson Edexcel.
+<br><br>
+© 2026 IAL ATLAS • Built for learning.
+</div>
 </footer>
 
+<script>
+
+/* =========================================================
+   QUESTION BANK
+========================================================= */
+
+const questionBank = [
+
+/* ================= ALGEBRA 1–15 ================= */
+
+{
+topic:"Algebraic Manipulation",
+q:"Simplify: 5x + 7 − 2x + 3.",
+options:["3x + 10","7x + 10","3x + 4","7x + 4"],
+answer:"3x + 10",
+explanation:"Collect like terms: 5x−2x=3x and 7+3=10."
+},
+
+{
+topic:"Algebraic Manipulation",
+q:"Expand: (x + 4)(x + 7).",
+options:["x² + 11x + 28","x² + 28x + 11","x² + 3x + 28","x² + 11x + 21"],
+answer:"x² + 11x + 28",
+explanation:"Multiply each term: x²+7x+4x+28."
+},
+
+{
+topic:"Algebraic Manipulation",
+q:"Expand: (2x − 3)(x + 5).",
+options:["2x² + 7x − 15","2x² − 7x − 15","2x² + 10x − 15","2x² + 13x + 15"],
+answer:"2x² + 7x − 15",
+explanation:"2x²+10x−3x−15 = 2x²+7x−15."
+},
+
+{
+topic:"Factorisation",
+q:"Factorise: x² + 9x + 20.",
+options:["(x+4)(x+5)","(x+2)(x+10)","(x−4)(x−5)","(x+1)(x+20)"],
+answer:"(x+4)(x+5)",
+explanation:"4×5=20 and 4+5=9."
+},
+
+{
+topic:"Factorisation",
+q:"Factorise: 3x² + 12x.",
+options:["3x(x+4)","3(x²+4)","x(3x+12)","3x(x+12)"],
+answer:"3x(x+4)",
+explanation:"The highest common factor is 3x."
+},
+
+{
+topic:"Identities",
+q:"Which identity represents the difference of two squares?",
+options:["a²−b²=(a−b)(a+b)","a²+b²=(a+b)²","a²−b²=(a−b)²","a²+b²=(a−b)(a+b)"],
+answer:"a²−b²=(a−b)(a+b)",
+explanation:"This is the standard difference-of-two-squares identity."
+},
+
+{
+topic:"Identities",
+q:"Expand: (x − 6)².",
+options:["x²−12x+36","x²−6x+36","x²+12x+36","x²−36"],
+answer:"x²−12x+36",
+explanation:"Use (a−b)²=a²−2ab+b²."
+},
+
+{
+topic:"Factorisation",
+q:"Factorise: 2x² + 7x + 3.",
+options:["(2x+1)(x+3)","(2x+3)(x+1)","(x+1)(x+3)","(2x−1)(x−3)"],
+answer:"(2x+1)(x+3)",
+explanation:"2x²+6x+x+3 gives the required middle term 7x."
+},
+
+{
+topic:"Algebraic Fractions",
+q:"Simplify: (6x²y)/(3xy), assuming x and y are non-zero.",
+options:["2x","2xy","3x","2x²"],
+answer:"2x",
+explanation:"Cancel 3, one x and one y."
+},
+
+{
+topic:"Linear Equations",
+q:"Solve: 3a = 18.",
+options:["6","9","15","21"],
+answer:"6",
+explanation:"Divide both sides by 3."
+},
+
+{
+topic:"Algebraic Manipulation",
+q:"Simplify: 5(2x−3)−2(x+1).",
+options:["8x−17","12x−17","8x−13","12x−13"],
+answer:"8x−17",
+explanation:"10x−15−2x−2 = 8x−17."
+},
+
+{
+topic:"Algebraic Manipulation",
+q:"Which expression is equal to 2(x−3)+4?",
+options:["2x−2","2x+1","2x−6","2x−10"],
+answer:"2x−2",
+explanation:"2x−6+4 = 2x−2."
+},
+
+{
+topic:"Algebraic Fractions",
+q:"For which value of x is 1/(x−5) undefined?",
+options:["5","−5","0","1"],
+answer:"5",
+explanation:"The denominator becomes zero when x−5=0."
+},
+
+{
+topic:"Identities",
+q:"Factorise x²−49.",
+options:["(x−7)(x+7)","(x−49)(x+1)","(x−7)²","(x+49)(x−1)"],
+answer:"(x−7)(x+7)",
+explanation:"49=7², so use the difference of squares."
+},
+
+{
+topic:"Algebraic Fractions",
+q:"Simplify (x²−9)/(x+3), with x≠−3.",
+options:["x−3","x+3","x²−3","x−9"],
+answer:"x−3",
+explanation:"x²−9=(x−3)(x+3), then cancel x+3."
+},
+
+/* ================= INDICES & SURDS 16–30 ================= */
+
+{
+topic:"Indices",
+q:"Simplify: 2³ × 2⁴.",
+options:["2⁷","2¹²","2","2⁴"],
+answer:"2⁷",
+explanation:"When multiplying equal bases, add the powers."
+},
+
+{
+topic:"Indices",
+q:"Simplify: 7⁶ / 7².",
+options:["7⁴","7⁸","7³","7¹²"],
+answer:"7⁴",
+explanation:"Subtract powers when dividing equal bases."
+},
+
+{
+topic:"Indices",
+q:"Simplify: (3²)⁴.",
+options:["3⁸","3⁶","3¹⁶","3²"],
+answer:"3⁸",
+explanation:"Multiply the powers: 2×4=8."
+},
+
+{
+topic:"Fractional Indices",
+q:"Evaluate 16^(1/2).",
+options:["4","8","2","16"],
+answer:"4",
+explanation:"A power of 1/2 means square root."
+},
+
+{
+topic:"Fractional Indices",
+q:"Evaluate 27^(2/3).",
+options:["9","6","18","81"],
+answer:"9",
+explanation:"Cube root 27=3, then square: 3²=9."
+},
+
+{
+topic:"Negative Indices",
+q:"Evaluate 5^−2.",
+options:["1/25","−25","25","−1/25"],
+answer:"1/25",
+explanation:"a^−n=1/a^n."
+},
+
+{
+topic:"Surds",
+q:"Simplify √50.",
+options:["5√2","10√5","25√2","2√5"],
+answer:"5√2",
+explanation:"50=25×2."
+},
+
+{
+topic:"Surds",
+q:"Simplify √72.",
+options:["6√2","8√2","6√3","12√2"],
+answer:"6√2",
+explanation:"72=36×2."
+},
+
+{
+topic:"Rationalisation",
+q:"Rationalise 1/√5.",
+options:["√5/5","5/√5","√5","1/5"],
+answer:"√5/5",
+explanation:"Multiply numerator and denominator by √5."
+},
+
+{
+topic:"Surds",
+q:"Simplify √12 + √27.",
+options:["5√3","√39","3√3","5√6"],
+answer:"5√3",
+explanation:"√12=2√3 and √27=3√3."
+},
+
+{
+topic:"Surds",
+q:"Evaluate √3 × √12.",
+options:["6","12","3√4","6√3"],
+answer:"6",
+explanation:"√36=6."
+},
+
+{
+topic:"Indices",
+q:"Simplify x³ × x^−1.",
+options:["x²","x⁻³","x³","x⁴"],
+answer:"x²",
+explanation:"3+(−1)=2."
+},
+
+{
+topic:"Fractional Indices",
+q:"Which expression is equivalent to a^(5/2)?",
+options:["(√a)^5","5√a","a²/5","√(5a)"],
+answer:"(√a)^5",
+explanation:"a^(m/n)=(n√a)^m."
+},
+
+{
+topic:"Negative Indices",
+q:"Evaluate 9^−1/2.",
+options:["1/3","−3","3","1/9"],
+answer:"1/3",
+explanation:"9^(1/2)=3, then take the reciprocal."
+},
+
+{
+topic:"Surds",
+q:"Rationalise 1/(3+√2).",
+options:["(3−√2)/7","(3+√2)/7","3−√2","1/7"],
+answer:"(3−√2)/7",
+explanation:"Multiply by the conjugate 3−√2; denominator becomes 9−2=7."
+},
+
+/* ================= QUADRATICS 31–45 ================= */
+
+{
+topic:"Quadratics",
+q:"Solve x²−5x+6=0.",
+options:["x=2,3","x=−2,−3","x=1,6","x=−1,−6"],
+answer:"x=2,3",
+explanation:"(x−2)(x−3)=0."
+},
+
+{
+topic:"Quadratics",
+q:"Solve x²+7x+12=0.",
+options:["x=−3,−4","x=3,4","x=−2,−6","x=2,6"],
+answer:"x=−3,−4",
+explanation:"(x+3)(x+4)=0."
+},
+
+{
+topic:"Quadratics",
+q:"What is the discriminant of x²−8x+16?",
+options:["0","16","64","−16"],
+answer:"0",
+explanation:"Δ=(−8)²−4(1)(16)=64−64=0."
+},
+
+{
+topic:"Discriminant",
+q:"What does a positive discriminant indicate?",
+options:["Two distinct real roots","One repeated real root","No real roots","No roots of any kind"],
+answer:"Two distinct real roots",
+explanation:"Δ>0 gives two distinct real solutions."
+},
+
+{
+topic:"Discriminant",
+q:"What does a zero discriminant indicate?",
+options:["One repeated real root","Two distinct roots","No real roots","Three roots"],
+answer:"One repeated real root",
+explanation:"Δ=0 makes the ± square-root term zero."
+},
+
+{
+topic:"Quadratics",
+q:"Solve 2x²−10x=0.",
+options:["x=0,5","x=−5,0","x=2,5","x=−2,5"],
+answer:"x=0,5",
+explanation:"2x(x−5)=0."
+},
+
+{
+topic:"Quadratics",
+q:"What is the turning point of y=(x−3)²+2?",
+options:["(3,2)","(−3,2)","(3,−2)","(−3,−2)"],
+answer:"(3,2)",
+explanation:"The form (x−h)²+k has turning point (h,k)."
+},
+
+{
+topic:"Quadratics",
+q:"What is the minimum value of y=(x+4)²−7?",
+options:["−7","7","−4","4"],
+answer:"−7",
+explanation:"The square is at least zero, so the minimum occurs when x=−4."
+},
+
+{
+topic:"Quadratic Formula",
+q:"Which is the quadratic formula for ax²+bx+c=0?",
+options:[
+"x=(−b±√(b²−4ac))/(2a)",
+"x=(b±√(b²+4ac))/(2a)",
+"x=(−b±√(b²+4ac))/a",
+"x=(b±√(b²−4ac))/(2c)"
+],
+answer:"x=(−b±√(b²−4ac))/(2a)",
+explanation:"This is the standard quadratic formula."
+},
+
+{
+topic:"Completing the Square",
+q:"Complete the square: x²+10x+21.",
+options:[
+"(x+5)²−4",
+"(x+10)²−79",
+"(x+5)²+4",
+"(x−5)²−4"
+],
+answer:"(x+5)²−4",
+explanation:"x²+10x+25−25+21=(x+5)²−4."
+},
+
+{
+topic:"Quadratic Graphs",
+q:"What is the axis of symmetry of y=x²−6x+1?",
+options:["x=3","x=−3","x=6","x=−6"],
+answer:"x=3",
+explanation:"x=−b/(2a)=6/2=3."
+},
+
+{
+topic:"Quadratics",
+q:"Solve x²=49 over the real numbers.",
+options:["x=±7","x=7 only","x=−7 only","x=49"],
+answer:"x=±7",
+explanation:"Both 7² and (−7)² equal 49."
+},
+
+{
+topic:"Parameter Conditions",
+q:"For x²+6x+k=0 to have equal roots, what is k?",
+options:["9","6","−9","36"],
+answer:"9",
+explanation:"Equal roots require Δ=0: 36−4k=0, so k=9."
+},
+
+{
+topic:"Quadratic Graphs",
+q:"Which quadratic opens downward?",
+options:["y=−x²+4x+1","y=x²+4x+1","y=2x²−1","y=5x²"],
+answer:"y=−x²+4x+1",
+explanation:"A negative coefficient of x² produces a downward-opening parabola."
+},
+
+{
+topic:"Roots & Coefficients",
+q:"For 2x²−7x+3=0, what is the sum of the roots?",
+options:["7/2","−7/2","3/2","−3/2"],
+answer:"7/2",
+explanation:"α+β=−b/a=7/2."
+},
+
+/* ================= SIMULTANEOUS 46–60 ================= */
+
+{
+topic:"Simultaneous Equations",
+q:"Solve x+y=7 and x−y=1.",
+options:["(4,3)","(3,4)","(5,2)","(2,5)"],
+answer:"(4,3)",
+explanation:"Adding gives 2x=8, so x=4 and y=3."
+},
+
+{
+topic:"Simultaneous Equations",
+q:"Solve 2x+y=9 and x+y=6.",
+options:["(3,3)","(2,4)","(4,2)","(3,2)"],
+answer:"(3,3)",
+explanation:"Subtracting equations gives x=3; then y=3."
+},
+
+{
+topic:"Simultaneous Equations",
+q:"Solve 3x+2y=12 and x+y=5.",
+options:["(2,3)","(3,2)","(1,4)","(4,1)"],
+answer:"(2,3)",
+explanation:"From x+y=5, y=5−x. Substitute to get x=2."
+},
+
+{
+topic:"Simultaneous Equations",
+q:"Solve 4x−y=9 and x+y=6.",
+options:["(3,3)","(2,4)","(4,2)","(5,1)"],
+answer:"(3,3)",
+explanation:"Adding equations gives 5x=15."
+},
+
+{
+topic:"Simultaneous Equations",
+q:"Solve 5x+y=17 and x−y=1.",
+options:["(3,2)","(2,3)","(4,1)","(1,4)"],
+answer:"(3,2)",
+explanation:"Adding gives 6x=18, so x=3 and y=2."
+},
+
+{
+topic:"Simultaneous Equations",
+q:"Solve 2x+3y=13 and x+y=5.",
+options:["(2,3)","(3,2)","(1,4)","(4,1)"],
+answer:"(2,3)",
+explanation:"x=5−y; 10−2y+3y=13, so y=3."
+},
+
+{
+topic:"Simultaneous Equations",
+q:"Solve 3x−y=5 and x+y=7.",
+options:["(3,4)","(4,3)","(2,5)","(5,2)"],
+answer:"(3,4)",
+explanation:"Adding gives 4x=12."
+},
+
+{
+topic:"Simultaneous Equations",
+q:"Solve x+2y=8 and 2x−y=1.",
+options:["(2,3)","(3,2)","(1,4)","(4,1)"],
+answer:"(2,3)",
+explanation:"From the first x=8−2y; substitute into second."
+},
+
+{
+topic:"Simultaneous Equations",
+q:"Solve 2x+y=1 and x−y=2.",
+options:["(1,−1)","(−1,1)","(2,−1)","(1,1)"],
+answer:"(1,−1)",
+explanation:"Adding gives 3x=3, so x=1 and y=−1."
+},
+
+{
+topic:"Simultaneous Equations",
+q:"Solve 3x+y=10 and 2x−y=0.",
+options:["(2,4)","(4,2)","(3,1)","(1,3)"],
+answer:"(2,4)",
+explanation:"Adding gives 5x=10, so x=2."
+},
+
+{
+topic:"Simultaneous Equations",
+q:"Solve 7x−y=10 and x+y=6.",
+options:["(2,4)","(4,2)","(3,3)","(1,5)"],
+answer:"(2,4)",
+explanation:"Adding gives 8x=16."
+},
+
+{
+topic:"Simultaneous Equations",
+q:"Solve 2x−3y=−1 and x+y=3.",
+options:["(8/5,7/5)","(7/5,8/5)","(2,1)","(1,2)"],
+answer:"(8/5,7/5)",
+explanation:"x=3−y. Then 6−5y=−1, so y=7/5 and x=8/5."
+},
+
+{
+topic:"Simultaneous Equations",
+q:"Solve 4x+y=13 and x−y=2.",
+options:["(3,1)","(1,3)","(2,5)","(4,−3)"],
+answer:"(3,1)",
+explanation:"Adding gives 5x=15."
+},
+
+{
+topic:"Simultaneous Equations",
+q:"Solve 2x+y=8 and 3x−y=7.",
+options:["(3,2)","(2,3)","(1,6)","(4,0)"],
+answer:"(3,2)",
+explanation:"Adding gives 5x=15."
+},
+
+{
+topic:"Simultaneous Equations",
+q:"Solve x+y=10 and 3x+2y=25.",
+options:["(5,5)","(4,6)","(6,4)","(3,7)"],
+answer:"(5,5)",
+explanation:"y=10−x; 3x+20−2x=25 gives x=5."
+},
+
+/* ================= INEQUALITIES 61–70 ================= */
+
+{
+topic:"Inequalities",
+q:"Solve 3x+2>11.",
+options:["x>3","x<3","x≥3","x≤3"],
+answer:"x>3",
+explanation:"3x>9, so x>3."
+},
+
+{
+topic:"Inequalities",
+q:"Solve 5−2x≤1.",
+options:["x≥2","x≤2","x>2","x<2"],
+answer:"x≥2",
+explanation:"−2x≤−4; divide by −2 and reverse the sign."
+},
+
+{
+topic:"Inequalities",
+q:"Solve −4x>20.",
+options:["x<−5","x>−5","x≤−5","x≥−5"],
+answer:"x<−5",
+explanation:"Division by a negative reverses > to <."
+},
+
+{
+topic:"Quadratic Inequalities",
+q:"Solve x²−9>0.",
+options:["x<−3 or x>3","−3<x<3","x≥3","x≤−3"],
+answer:"x<−3 or x>3",
+explanation:"The quadratic is positive outside its roots."
+},
+
+{
+topic:"Quadratic Inequalities",
+q:"Solve x²−4x+3≤0.",
+options:["1≤x≤3","x≤1 or x≥3","1<x<3","x<1 or x>3"],
+answer:"1≤x≤3",
+explanation:"(x−1)(x−3)≤0 between and including the roots."
+},
+
+{
+topic:"Inequalities",
+q:"Solve 2x−7<9.",
+options:["x<8","x>8","x≤8","x≥8"],
+answer:"x<8",
+explanation:"2x<16, hence x<8."
+},
+
+{
+topic:"Inequalities",
+q:"Solve 4−3x≥10.",
+options:["x≤−2","x≥−2","x<−2","x>−2"],
+answer:"x≤−2",
+explanation:"−3x≥6; dividing by −3 reverses the sign."
+},
+
+{
+topic:"Quadratic Inequalities",
+q:"For (x−2)(x+5)>0, which interval solution is correct?",
+options:["x<−5 or x>2","−5<x<2","x>−5","x<2"],
+answer:"x<−5 or x>2",
+explanation:"A product of two factors is positive outside the two roots."
+},
+
+{
+topic:"Quadratic Inequalities",
+q:"For (x−1)(x+3)≤0, which solution is correct?",
+options:["−3≤x≤1","x≤−3 or x≥1","−3<x<1","x>1"],
+answer:"−3≤x≤1",
+explanation:"The product is non-positive between the roots, including them."
+},
+
+{
+topic:"Inequalities",
+q:"Which statement is equivalent to −2<x≤5?",
+options:["x is greater than −2 and at most 5","x is less than −2 and at most 5","x is greater than 2 and at most 5","x is at least −2 and less than 5"],
+answer:"x is greater than −2 and at most 5",
+explanation:"The lower endpoint is excluded and the upper endpoint included."
+},
+
+/* ================= FUNCTIONS 71–90 ================= */
+
+{
+topic:"Functions",
+q:"If f(x)=2x+5, find f(3).",
+options:["11","10","6","5"],
+answer:"11",
+explanation:"2(3)+5=11."
+},
+
+{
+topic:"Functions",
+q:"If f(x)=x²−1, find f(−2).",
+options:["3","−3","5","−5"],
+answer:"3",
+explanation:"(−2)²−1=4−1=3."
+},
+
+{
+topic:"Functions",
+q:"If f(x)=3x−4 and f(x)=11, find x.",
+options:["5","3","4","7"],
+answer:"5",
+explanation:"3x−4=11 gives 3x=15."
+},
+
+{
+topic:"Composite Functions",
+q:"If f(x)=x+2 and g(x)=3x, find f(g(4)).",
+options:["14","12","10","9"],
+answer:"14",
+explanation:"g(4)=12 and f(12)=14."
+},
+
+{
+topic:"Composite Functions",
+q:"If f(x)=2x and g(x)=x+3, find g(f(5)).",
+options:["13","10","8","15"],
+answer:"13",
+explanation:"f(5)=10 and g(10)=13."
+},
+
+{
+topic:"Composite Functions",
+q:"If f(x)=x² and g(x)=x+1, find f(g(2)).",
+options:["9","5","6","4"],
+answer:"9",
+explanation:"g(2)=3 and f(3)=9."
+},
+
+{
+topic:"Composite Functions",
+q:"If f(x)=2x+1 and g(x)=x−4, find f(g(x)).",
+options:["2x−7","2x+5","2x−3","x−7"],
+answer:"2x−7",
+explanation:"2(x−4)+1=2x−7."
+},
+
+{
+topic:"Composite Functions",
+q:"If f(x)=x+5 and g(x)=2x, find g(f(x)).",
+options:["2x+10","2x+5","x+10","2x+25"],
+answer:"2x+10",
+explanation:"g(f(x))=2(x+5)."
+},
+
+{
+topic:"Inverse Functions",
+q:"Find the inverse of f(x)=3x+2.",
+options:["(x−2)/3","(x+2)/3","3x−2","(3x+2)"],
+answer:"(x−2)/3",
+explanation:"Swap x and y then solve for y."
+},
+
+{
+topic:"Inverse Functions",
+q:"If f(x)=5x−1, find f⁻¹(9).",
+options:["2","10","8","1"],
+answer:"2",
+explanation:"5x−1=9 gives x=2."
+},
+
+{
+topic:"Domain",
+q:"What is the real domain of f(x)=√x?",
+options:["x≥0","x>0","all real x","x≤0"],
+answer:"x≥0",
+explanation:"The quantity inside a real square root cannot be negative."
+},
+
+{
+topic:"Domain",
+q:"What value must be excluded from f(x)=1/(x−2)?",
+options:["2","−2","0","1"],
+answer:"2",
+explanation:"The denominator cannot equal zero."
+},
+
+{
+topic:"One-to-One Functions",
+q:"Why is f(x)=x² not one-to-one over all real numbers?",
+options:[
+"f(2)=f(−2)",
+"It has no outputs",
+"It is always negative",
+"It has no domain"
+],
+answer:"f(2)=f(−2)",
+explanation:"Different inputs can produce the same output."
+},
+
+{
+topic:"Inverse Functions",
+q:"Find f⁻¹(13) if f(x)=4x−7.",
+options:["5","3","6","4"],
+answer:"5",
+explanation:"4x−7=13 gives 4x=20, so x=5."
+},
+
+{
+topic:"Functions",
+q:"If f(x)=x²+2, find f(−3).",
+options:["11","7","−7","9"],
+answer:"11",
+explanation:"(−3)²+2=11."
+},
+
+{
+topic:"Functions",
+q:"Which expression represents f(g(x))?",
+options:["Apply g first, then f","Apply f first, then g","Add f and g","Multiply f and g"],
+answer:"Apply g first, then f",
+explanation:"The inner function acts first."
+},
+
+{
+topic:"Function Transformations",
+q:"The graph y=f(x)+4 is obtained from y=f(x) by moving it:",
+options:["4 up","4 down","4 right","4 left"],
+answer:"4 up",
+explanation:"Adding outside the function changes vertical position."
+},
+
+{
+topic:"Function Transformations",
+q:"The graph y=f(x−3) is obtained by moving y=f(x):",
+options:["3 right","3 left","3 up","3 down"],
+answer:"3 right",
+explanation:"Replacing x by x−a shifts the graph right by a."
+},
+
+{
+topic:"Function Transformations",
+q:"The graph y=−f(x) is a reflection in:",
+options:["the x-axis","the y-axis","y=x","the origin"],
+answer:"the x-axis",
+explanation:"All output values change sign."
+},
+
+{
+topic:"Inverse Functions",
+q:"The graphs of f and f⁻¹ are reflections in which line?",
+options:["y=x","y=−x","x=0","y=0"],
+answer:"y=x",
+explanation:"Coordinates (x,y) become (y,x)."
+},
+
+/* ================= MIXED CHALLENGE 91–100 ================= */
+
+{
+topic:"Mixed Challenge",
+q:"If x+1/x=5, what is x²+1/x²?",
+options:["23","25","24","21"],
+answer:"23",
+explanation:"Square: x²+2+1/x²=25, hence x²+1/x²=23."
+},
+
+{
+topic:"Mixed Challenge",
+q:"If a+b=10 and ab=21, find a²+b².",
+options:["58","100","79","42"],
+answer:"58",
+explanation:"(a+b)²=a²+2ab+b², so 100−42=58."
+},
+
+{
+topic:"Mixed Challenge",
+q:"If x−1/x=3, find x²+1/x².",
+options:["11","9","7","12"],
+answer:"11",
+explanation:"Square: x²−2+1/x²=9, so the required sum is 11."
+},
+
+{
+topic:"Mixed Challenge",
+q:"For x²−kx+9=0 to have equal roots, what is k?",
+options:["6 or −6","9","3","−9"],
+answer:"6 or −6",
+explanation:"k²−36=0, so k=±6."
+},
+
+{
+topic:"Mixed Challenge",
+q:"If the roots of x²−7x+10=0 are α and β, find α²+β².",
+options:["29","49","20","39"],
+answer:"29",
+explanation:"α+β=7 and αβ=10. Thus α²+β²=49−20=29."
+},
+
+{
+topic:"Mixed Challenge",
+q:"If f(x)=x+1 and f(g(x))=2x+5, find g(x).",
+options:["2x+4","2x+6","2x+5","x+4"],
+answer:"2x+4",
+explanation:"f(g(x))=g(x)+1=2x+5, so g(x)=2x+4."
+},
+
+{
+topic:"Mixed Challenge",
+q:"Simplify: (x²−4)/(x²−x−2), where defined.",
+options:["(x+2)/(x−2)","(x−2)/(x−1)","(x+2)/(x−1)","x+2"],
+answer:"(x+2)/(x−1)",
+explanation:"Numerator=(x−2)(x+2), denominator=(x−2)(x+1) actually gives (x+2)/(x+1).",
+},
+
+{
+topic:"Mixed Challenge",
+q:"Which value of k makes x²+2kx+9 have a repeated root?",
+options:["k=±3","k=3 only","k=±9","k=9"],
+answer:"k=±3",
+explanation:"Discriminant=(2k)²−36=0, so 4k²=36 and k=±3."
+},
+
+{
+topic:"Mixed Challenge",
+q:"If f(x)=2x−3 and g(x)=x², find g(f(2)).",
+options:["1","4","25","7"],
+answer:"1",
+explanation:"f(2)=1, then g(1)=1."
+},
+
+{
+topic:"Mixed Challenge",
+q:"The equation x²+4x+7=0 has:",
+options:["No real roots","One real root","Two distinct real roots","Three real roots"],
+answer:"No real roots",
+explanation:"Discriminant=16−28=−12<0."
+}
+
+];
+
+/*
+NOTE:
+The final mixed question bank above intentionally contains 100 entries.
+The exam engine validates the count before starting.
+*/
+
+/* =========================================================
+   SAFETY / DATA VALIDATION
+========================================================= */
+
+if(questionBank.length !== 100){
+    console.warn(
+        "IAL ATLAS Exam Bank currently contains",
+        questionBank.length,
+        "questions. Target is 100."
+    );
+}
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let examQuestions = [];
+let currentQuestion = 0;
+let selectedAnswers = [];
+let examStarted = false;
+let examSubmitted = false;
+
+let totalSeconds = 120 * 60;
+let remainingSeconds = totalSeconds;
+let timerInterval = null;
+let startTimestamp = null;
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const startExamBtn = document.getElementById("startExam");
+const examIntro = document.getElementById("examIntro");
+const examPanel = document.getElementById("examPanel");
+const results = document.getElementById("results");
+
+const questionText = document.getElementById("questionText");
+const questionNumber = document.getElementById("questionNumber");
+const optionsContainer = document.getElementById("options");
+
+const examCounter = document.getElementById("examCounter");
+const examTopic = document.getElementById("examTopic");
+const answeredCount = document.getElementById("answeredCount");
+
+const progressFill = document.getElementById("progressFill");
+const timer = document.getElementById("timer");
+
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const palette = document.getElementById("palette");
+
+const scorePercent = document.getElementById("scorePercent");
+const correctCount = document.getElementById("correctCount");
+const wrongCount = document.getElementById("wrongCount");
+const finalTime = document.getElementById("finalTime");
+const resultMessage = document.getElementById("resultMessage");
+const breakdown = document.getElementById("breakdown");
+const wrongReview = document.getElementById("wrongReview");
+const retakeExam = document.getElementById("retakeExam");
+
+/* =========================================================
+   SHUFFLE
+========================================================= */
+
+function shuffle(array){
+    const copy = [...array];
+
+    for(let i = copy.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i],copy[j]] = [copy[j],copy[i]];
+    }
+
+    return copy;
+}
+
+/* =========================================================
+   START EXAM
+========================================================= */
+
+function startExam(){
+
+    examQuestions = shuffle(questionBank).map(q => {
+
+        const shuffledOptions = shuffle(q.options);
+
+        return {
+            ...q,
+            options: shuffledOptions
+        };
+
+    });
+
+    currentQuestion = 0;
+
+    selectedAnswers = new Array(examQuestions.length).fill(null);
+
+    examStarted = true;
+    examSubmitted = false;
+
+    remainingSeconds = totalSeconds;
+    startTimestamp = Date.now();
+
+    examIntro.style.display = "none";
+    examPanel.style.display = "block";
+    results.style.display = "none";
+
+    buildPalette();
+    renderQuestion();
+    startTimer();
+}
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+function startTimer(){
+
+    clearInterval(timerInterval);
+
+    updateTimer();
+
+    timerInterval = setInterval(() => {
+
+        if(!examStarted || examSubmitted){
+            clearInterval(timerInterval);
+            return;
+        }
+
+        remainingSeconds--;
+
+        updateTimer();
+
+        if(remainingSeconds <= 0){
+            clearInterval(timerInterval);
+            submitExam(true);
+        }
+
+    },1000);
+}
+
+function updateTimer(){
+
+    const minutes = Math.floor(remainingSeconds / 60);
+    const seconds = remainingSeconds % 60;
+
+    timer.textContent =
+        String(minutes).padStart(2,"0") +
+        ":" +
+        String(seconds).padStart(2,"0");
+
+    if(remainingSeconds <= 300){
+        timer.style.color = "#ff6b88";
+        timer.style.borderColor = "rgba(255,107,136,.5)";
+    }
+}
+
+/* =========================================================
+   RENDER QUESTION
+========================================================= */
+
+function renderQuestion(){
+
+    const q = examQuestions[currentQuestion];
+
+    if(!q) return;
+
+    questionNumber.textContent =
+        "QUESTION " +
+        String(currentQuestion + 1).padStart(2,"0");
+
+    examCounter.textContent =
+        `Question ${currentQuestion + 1} / ${examQuestions.length}`;
+
+    examTopic.textContent = q.topic;
+
+    questionText.textContent = q.q;
+
+    optionsContainer.innerHTML = "";
+
+    q.options.forEach((option,index) => {
+
+        const wrapper = document.createElement("div");
+        wrapper.className = "option";
+
+        const input = document.createElement("input");
+
+        input.type = "radio";
+        input.name = "questionOption";
+        input.id = `option-${index}`;
+        input.value = option;
+
+        if(selectedAnswers[currentQuestion] === option){
+            input.checked = true;
+        }
+
+        const label = document.createElement("label");
+
+        label.htmlFor = input.id;
+        label.textContent = option;
+
+        input.addEventListener("change",() => {
+
+            selectedAnswers[currentQuestion] = option;
+
+            updateExamUI();
+            buildPalette();
+
+        });
+
+        wrapper.appendChild(input);
+        wrapper.appendChild(label);
+
+        optionsContainer.appendChild(wrapper);
+
+    });
+
+    prevBtn.disabled = currentQuestion === 0;
+
+    nextBtn.textContent =
+        currentQuestion === examQuestions.length - 1
+            ? "Submit Exam"
+            : "Next →";
+
+    nextBtn.disabled =
+        selectedAnswers[currentQuestion] === null;
+
+    updateExamUI();
+    buildPalette();
+}
+
+/* =========================================================
+   UPDATE UI
+========================================================= */
+
+function updateExamUI(){
+
+    const answered =
+        selectedAnswers.filter(a => a !== null).length;
+
+    answeredCount.textContent =
+        `Answered: ${answered} / ${examQuestions.length}`;
+
+    const progress =
+        ((currentQuestion + 1) / examQuestions.length) * 100;
+
+    progressFill.style.width = `${progress}%`;
+
+    nextBtn.disabled =
+        selectedAnswers[currentQuestion] === null;
+
+    prevBtn.disabled =
+        currentQuestion === 0;
+}
+
+/* =========================================================
+   PALETTE
+========================================================= */
+
+function buildPalette(){
+
+    palette.innerHTML = "";
+
+    examQuestions.forEach((_,index) => {
+
+        const button = document.createElement("button");
+
+        button.textContent = index + 1;
+
+        if(index === currentQuestion){
+            button.classList.add("current");
+        }
+
+        if(selectedAnswers[index] !== null){
+            button.classList.add("done");
+        }
+
+        /*
+         * Students cannot jump forward over unanswered questions.
+         * Previously answered questions remain accessible.
+         */
+        const canVisit =
+            index <= currentQuestion ||
+            selectedAnswers[index] !== null;
+
+        if(canVisit){
+
+            button.addEventListener("click",() => {
+
+                currentQuestion = index;
+                renderQuestion();
+
+            });
+
+        }else{
+
+            button.classList.add("locked");
+            button.disabled = true;
+
+        }
+
+        palette.appendChild(button);
+
+    });
+}
+
+/* =========================================================
+   NEXT
+========================================================= */
+
+nextBtn.addEventListener("click",() => {
+
+    if(selectedAnswers[currentQuestion] === null){
+        return;
+    }
+
+    if(currentQuestion === examQuestions.length - 1){
+
+        const unanswered =
+            selectedAnswers.filter(a => a === null).length;
+
+        if(unanswered > 0){
+
+            alert(
+                `You still have ${unanswered} unanswered question(s).`
+            );
+
+            return;
+        }
+
+        submitExam(false);
+        return;
+    }
+
+    currentQuestion++;
+
+    renderQuestion();
+
+    window.scrollTo({
+        top:document.getElementById("mastery-exam").offsetTop - 80,
+        behavior:"smooth"
+    });
+
+});
+
+/* =========================================================
+   PREVIOUS
+========================================================= */
+
+prevBtn.addEventListener("click",() => {
+
+    if(currentQuestion <= 0){
+        return;
+    }
+
+    currentQuestion--;
+
+    renderQuestion();
+
+});
+
+/* =========================================================
+   SUBMIT
+========================================================= */
+
+function submitExam(autoSubmitted){
+
+    if(examSubmitted) return;
+
+    examSubmitted = true;
+    examStarted = false;
+
+    clearInterval(timerInterval);
+
+    let correct = 0;
+
+    examQuestions.forEach((q,index) => {
+
+        if(selectedAnswers[index] === q.answer){
+            correct++;
+        }
+
+    });
+
+    const total = examQuestions.length;
+
+    const percentage =
+        Math.round((correct / total) * 100);
+
+    const wrong = total - correct;
+
+    const usedSeconds =
+        totalSeconds - remainingSeconds;
+
+    scorePercent.textContent =
+        `${percentage}%`;
+
+    correctCount.textContent = correct;
+    wrongCount.textContent = wrong;
+
+    finalTime.textContent =
+        formatDuration(usedSeconds);
+
+    resultMessage.textContent =
+        getResultMessage(percentage,autoSubmitted);
+
+    buildBreakdown();
+    buildWrongReview();
+
+    examPanel.style.display = "none";
+    results.style.display = "block";
+
+    window.scrollTo({
+        top:document.getElementById("mastery-exam").offsetTop - 60,
+        behavior:"smooth"
+    });
+}
+
+/* =========================================================
+   RESULT MESSAGE
+========================================================= */
+
+function getResultMessage(score,autoSubmitted){
+
+    if(autoSubmitted){
+        return `Time expired. Your final score is ${score}%. Review the incorrect questions below and retake the assessment after revising the weaker areas.`;
+    }
+
+    if(score >= 90){
+        return `Excellent mastery. Your performance indicates strong control of the Algebra & Functions material. Use the wrong-answer review to identify any remaining gaps.`;
+    }
+
+    if(score >= 75){
+        return `Strong performance. Review the questions you missed and revisit those concepts before attempting the exam again.`;
+    }
+
+    if(score >= 60){
+        return `Developing mastery. Your foundation is present, but several areas need targeted revision and more practice.`;
+    }
+
+    return `Keep building the foundation. Revisit the theory sections, work through the examples slowly, then retake the mastery exam.`;
+}
+
+/* =========================================================
+   FORMAT TIME
+========================================================= */
+
+function formatDuration(seconds){
+
+    const minutes = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+
+    return `${minutes}m ${String(secs).padStart(2,"0")}s`;
+}
+
+/* =========================================================
+   BREAKDOWN
+========================================================= */
+
+function buildBreakdown(){
+
+    breakdown.innerHTML = "";
+
+    const topicStats = {};
+
+    examQuestions.forEach((q,index) => {
+
+        if(!topicStats[q.topic]){
+            topicStats[q.topic] = {
+                total:0,
+                correct:0
+            };
+        }
+
+        topicStats[q.topic].total++;
+
+        if(selectedAnswers[index] === q.answer){
+            topicStats[q.topic].correct++;
+        }
+
+    });
+
+    Object.entries(topicStats)
+        .sort((a,b) => b[1].total - a[1].total)
+        .forEach(([topic,data]) => {
+
+            const percentage =
+                Math.round(
+                    (data.correct / data.total) * 100
+                );
+
+            const row = document.createElement("div");
+
+            row.className = "breakdown-row";
+
+            row.innerHTML = `
+                <div>
+                    <strong>${escapeHTML(topic)}</strong>
+                </div>
+
+                <div class="bar">
+                    <span style="width:${percentage}%"></span>
+                </div>
+
+                <div>
+                    ${data.correct}/${data.total}
+                </div>
+            `;
+
+            breakdown.appendChild(row);
+
+        });
+}
+
+/* =========================================================
+   WRONG ANSWERS
+========================================================= */
+
+function buildWrongReview(){
+
+    wrongReview.innerHTML = "";
+
+    let wrongItems = [];
+
+    examQuestions.forEach((q,index) => {
+
+        if(selectedAnswers[index] !== q.answer){
+
+            wrongItems.push({
+                q,
+                selected:selectedAnswers[index]
+            });
+
+        }
+
+    });
+
+    if(wrongItems.length === 0){
+
+        const perfect = document.createElement("div");
+
+        perfect.className = "checkpoint";
+
+        perfect.innerHTML =
+            "<strong>Perfect score.</strong> No incorrect answers to review.";
+
+        wrongReview.appendChild(perfect);
+
+        return;
+    }
+
+    wrongItems.forEach((item,index) => {
+
+        const div = document.createElement("div");
+
+        div.className = "review-item";
+
+        div.innerHTML = `
+            <h4>
+                ${index + 1}. ${escapeHTML(item.q.q)}
+            </h4>
+
+            <div class="review-answer wrong-text">
+                Your answer:
+                <strong>
+                    ${escapeHTML(item.selected ?? "Not answered")}
+                </strong>
+            </div>
+
+            <div class="review-answer correct-text">
+                Correct answer:
+                <strong>
+                    ${escapeHTML(item.q.answer)}
+                </strong>
+            </div>
+
+            <div class="review-answer">
+                Explanation:
+                ${escapeHTML(item.q.explanation)}
+            </div>
+
+            <div class="review-answer">
+                Topic:
+                ${escapeHTML(item.q.topic)}
+            </div>
+        `;
+
+        wrongReview.appendChild(div);
+
+    });
+}
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
+
+/* =========================================================
+   RETAKE
+========================================================= */
+
+retakeExam.addEventListener("click",() => {
+
+    results.style.display = "none";
+    examIntro.style.display = "block";
+
+    window.scrollTo({
+        top:document.getElementById("mastery-exam").offsetTop - 60,
+        behavior:"smooth"
+    });
+
+});
+
+/* =========================================================
+   START BUTTON
+========================================================= */
+
+startExamBtn.addEventListener("click",startExam);
+
+</script>
 
 </body>
-
 </html>
 
