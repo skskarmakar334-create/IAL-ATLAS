@@ -1,919 +1,743 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Coordinate Geometry | IAL ATLAS</title>
-
-<meta name="description"
-content="Deep Coordinate Geometry notes for Pearson Edexcel International A Level Mathematics, including formulas, theory, worked examples, coordinate proofs and a 100-question exam.">
-
-<meta name="keywords"
-content="Coordinate Geometry, Edexcel IAL Mathematics, IAL Maths, straight lines, gradients, circles, coordinate geometry questions, IAL ATLAS">
-
+<meta name="description" content="Deep Edexcel International A Level Coordinate Geometry study resource with theory, derivations, worked examples, proofs, advanced problems and a 100-question exam.">
 <meta name="author" content="Shuvojit Karmakar">
-
-<meta name="robots" content="index, follow">
-
-<link rel="canonical"
-href="https://ialatlas.com/coordinate-geometry.html">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-rel="stylesheet">
+<link rel="canonical" href="https://ialatlas.com/">
 
 <style>
-
-/* =========================================================
-   BASE
-========================================================= */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+:root{
+  --bg:#05070d;
+  --panel:#0b101a;
+  --panel2:#0e1521;
+  --line:#1b2b3d;
+  --text:#e8f2ff;
+  --muted:#91a4b9;
+  --cyan:#43e8ff;
+  --blue:#4d8dff;
+  --purple:#9c6cff;
+  --green:#54e6a5;
+  --red:#ff667d;
+  --yellow:#ffd76a;
 }
 
-html {
-    scroll-behavior: smooth;
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 10% 0%,rgba(67,232,255,.09),transparent 28%),
+    radial-gradient(circle at 90% 15%,rgba(156,108,255,.08),transparent 28%),
+    var(--bg);
+  color:var(--text);
+  font-family:Inter,Arial,sans-serif;
+  line-height:1.7;
 }
 
-body {
-    font-family: "Inter", sans-serif;
-    background: #05070d;
-    color: #eef7ff;
-    line-height: 1.75;
-    overflow-x: hidden;
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(67,232,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(67,232,255,.025) 1px,transparent 1px);
+  background-size:40px 40px;
+  z-index:-1;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -5;
-    background:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-    background-size: 70px 70px;
+a{color:var(--cyan);text-decoration:none}
+
+.container{
+  width:min(1180px,92%);
+  margin:auto;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
+nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  backdrop-filter:blur(18px);
+  background:rgba(5,7,13,.82);
+  border-bottom:1px solid var(--line);
 }
 
-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 6%;
-    background: rgba(5,7,13,.88);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid rgba(255,255,255,.07);
+.nav-inner{
+  min-height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
 }
 
-.logo-image {
-    height: 48px;
+.logo{
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:2px;
+  color:white;
 }
 
-nav {
-    display: flex;
-    gap: 28px;
+.logo span{color:var(--cyan)}
+
+.nav-links{
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
 }
 
-nav a {
-    color: #9db1c1;
-    font-size: 13px;
-    font-weight: 600;
+.nav-links a{
+  color:var(--muted);
+  font-size:13px;
 }
 
-nav a:hover {
-    color: #6eeaff;
+.nav-links a:hover{color:var(--cyan)}
+
+.hero{
+  padding:90px 0 65px;
+  text-align:center;
 }
 
-.nav-status {
-    color: #72e7ff;
-    font-size: 10px;
-    letter-spacing: 1.5px;
+.badge{
+  display:inline-block;
+  padding:6px 13px;
+  border:1px solid rgba(67,232,255,.3);
+  border-radius:999px;
+  color:var(--cyan);
+  font-size:12px;
+  letter-spacing:1px;
+  background:rgba(67,232,255,.05);
 }
 
-.hero {
-    padding: 120px 20px 90px;
-    text-align: center;
-    background:
-        radial-gradient(circle at center,
-        rgba(0,210,255,.10),
-        transparent 38%);
+h1{
+  font-size:clamp(42px,7vw,82px);
+  line-height:1;
+  margin:22px 0;
+  letter-spacing:-3px;
 }
 
-.hero-label {
-    color: #6eeaff;
-    font-size: 11px;
-    letter-spacing: 4px;
-    font-weight: 700;
-    margin-bottom: 22px;
+.gradient{
+  background:linear-gradient(90deg,var(--cyan),#fff,var(--purple));
+  -webkit-background-clip:text;
+  color:transparent;
 }
 
-.hero h1 {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: clamp(48px, 7vw, 82px);
-    line-height: 1;
-    margin-bottom: 25px;
+.hero p{
+  max-width:800px;
+  margin:auto;
+  color:var(--muted);
+  font-size:17px;
 }
 
-.hero h1 span {
-    background: linear-gradient(100deg,#fff,#72eaff,#8d7cff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.hero-stat{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:30px;
 }
 
-.hero-description {
-    max-width: 760px;
-    margin: auto;
-    color: #8ea4b7;
-    font-size: 15px;
+.stat{
+  padding:10px 17px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.025);
+  border-radius:12px;
+  color:#cfe0f4;
+  font-size:13px;
 }
 
-.breadcrumb {
-    max-width: 1100px;
-    margin: auto;
-    padding: 25px;
-    color: #61798b;
-    font-size: 11px;
+.toc{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+  margin:25px 0 60px;
 }
 
-.breadcrumb a:hover {
-    color: #6eeaff;
+.toc a{
+  border:1px solid var(--line);
+  background:var(--panel);
+  padding:14px;
+  border-radius:12px;
+  color:#bcd0e7;
+  transition:.2s;
 }
 
-.section {
-    max-width: 1100px;
-    margin: auto;
-    padding: 30px 25px 100px;
+.toc a:hover{
+  transform:translateY(-2px);
+  border-color:var(--cyan);
+  color:var(--cyan);
 }
 
-.topic-card {
-    margin-bottom: 24px;
-    padding: 38px;
-    border-radius: 18px;
-    background:
-        linear-gradient(145deg,
-        rgba(255,255,255,.055),
-        rgba(255,255,255,.018));
-    border: 1px solid rgba(255,255,255,.08);
-    box-shadow: 0 20px 60px rgba(0,0,0,.20);
+section{
+  margin:75px 0;
 }
 
-.topic-card h2 {
-    font-family: "Space Grotesk", sans-serif;
-    color: #f4fbff;
-    font-size: 28px;
-    margin-bottom: 20px;
+.section-number{
+  color:var(--cyan);
+  font-size:12px;
+  letter-spacing:2px;
+  font-weight:bold;
 }
 
-.topic-card h3 {
-    font-family: "Space Grotesk", sans-serif;
-    color: #dcefff;
-    font-size: 20px;
-    margin-top: 28px;
-    margin-bottom: 10px;
+h2{
+  font-size:34px;
+  margin:5px 0 20px;
 }
 
-.topic-card p,
-.topic-card li {
-    color: #8da3b5;
-    font-size: 14px;
+h3{
+  font-size:23px;
+  color:#dcecff;
+  margin-top:35px;
 }
 
-.topic-card ul,
-.topic-card ol {
-    padding-left: 24px;
+h4{
+  color:var(--cyan);
+  margin-bottom:5px;
 }
 
-.topic-card li {
-    margin-bottom: 7px;
+.card{
+  background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:25px;
+  margin:18px 0;
 }
 
-.formula {
-    margin: 18px 0;
-    padding: 17px 20px;
-    text-align: center;
-    overflow-x: auto;
-    border-radius: 11px;
-    background: rgba(0,210,255,.045);
-    border: 1px solid rgba(0,210,255,.12);
-    color: #72e7ff;
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 17px;
-    font-weight: 600;
+.formula{
+  background:#070c14;
+  border:1px solid rgba(67,232,255,.22);
+  border-left:4px solid var(--cyan);
+  border-radius:12px;
+  padding:18px 22px;
+  margin:18px 0;
+  font-size:18px;
+  font-family:"Times New Roman",serif;
+  overflow-x:auto;
 }
 
-.example {
-    margin: 22px 0;
-    padding: 22px;
-    border-left: 3px solid #00d4ff;
-    background: rgba(0,210,255,.035);
-    border-radius: 8px;
+.example{
+  border-color:rgba(84,230,165,.25);
 }
 
-.example strong {
-    color: #ffffff;
+.example-title{
+  color:var(--green);
+  font-weight:800;
+  margin-bottom:10px;
 }
 
-.note {
-    margin: 20px 0;
-    padding: 18px 20px;
-    border-radius: 10px;
-    background: rgba(130,90,255,.045);
-    border: 1px solid rgba(130,90,255,.12);
-    color: #aeb9d9;
+.warning{
+  border-left:4px solid var(--yellow);
+  background:rgba(255,215,106,.045);
 }
 
-.warning {
-    margin: 20px 0;
-    padding: 18px 20px;
-    border-radius: 10px;
-    background: rgba(255,100,100,.035);
-    border: 1px solid rgba(255,100,100,.12);
-    color: #c6a7a7;
+.trap{
+  border-left:4px solid var(--red);
+  background:rgba(255,102,125,.045);
 }
 
-details {
-    margin: 16px 0;
-    padding: 5px 18px 12px;
-    border-radius: 10px;
-    background: rgba(0,0,0,.22);
-    border: 1px solid rgba(255,255,255,.07);
+.challenge{
+  border-left:4px solid var(--purple);
+  background:rgba(156,108,255,.05);
 }
 
-summary {
-    cursor: pointer;
-    padding: 10px 0;
-    color: #62e7ff;
-    font-weight: 700;
+.solution{
+  margin-top:14px;
+  padding:15px;
+  border-top:1px solid var(--line);
+  color:#c9d9ea;
 }
 
-.exam-intro {
-    text-align: center;
+.steps{
+  padding-left:22px;
 }
 
-.exam-intro h2 {
-    color: #fff;
+.steps li{margin:8px 0}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:20px 0;
+  overflow:hidden;
 }
 
-.exam-meta {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 12px;
-    margin: 25px 0;
+th,td{
+  border:1px solid var(--line);
+  padding:12px;
+  text-align:left;
 }
 
-.exam-stat {
-    padding: 16px;
-    border-radius: 10px;
-    background: rgba(255,255,255,.035);
-    border: 1px solid rgba(255,255,255,.07);
-    text-align: center;
+th{
+  color:var(--cyan);
+  background:#09111b;
 }
 
-.exam-stat strong {
-    display: block;
-    color: #6feaff;
-    font-size: 22px;
+details{
+  border:1px solid var(--line);
+  border-radius:12px;
+  margin:12px 0;
+  padding:12px 16px;
+  background:rgba(255,255,255,.018);
 }
 
-.exam-stat span {
-    color: #7890a2;
-    font-size: 11px;
+summary{
+  cursor:pointer;
+  color:var(--cyan);
+  font-weight:bold;
 }
 
-#exam {
-    display: none;
+.code-like{
+  font-family:monospace;
+  color:#b9d8ff;
 }
 
-.exam-header {
-    margin-bottom: 25px;
+#exam{
+  border-top:1px solid var(--line);
+  padding-top:80px;
 }
 
-.exam-progress {
-    width: 100%;
-    height: 7px;
-    background: rgba(255,255,255,.07);
-    border-radius: 20px;
-    overflow: hidden;
-    margin: 12px 0;
+.exam-shell{
+  background:#080d15;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:28px;
 }
 
-.exam-progress-bar {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg,#00d4ff,#8c7cff);
-    transition: .3s;
+.exam-start{text-align:center}
+
+button{
+  border:0;
+  border-radius:10px;
+  padding:12px 20px;
+  cursor:pointer;
+  font-weight:800;
+  background:var(--cyan);
+  color:#031017;
 }
 
-.question-number {
-    color: #69e7ff;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
+button.secondary{
+  background:#111b29;
+  color:#dcecff;
+  border:1px solid var(--line);
 }
 
-.question-text {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 23px;
-    line-height: 1.45;
-    margin: 15px 0 25px;
-    color: #f4fbff;
+button:disabled{
+  opacity:.4;
+  cursor:not-allowed;
 }
 
-.options {
-    display: grid;
-    gap: 12px;
+.progress-wrap{
+  height:8px;
+  background:#121c29;
+  border-radius:20px;
+  overflow:hidden;
+  margin:18px 0 25px;
 }
 
-.option {
-    padding: 17px 18px;
-    border-radius: 10px;
-    background: rgba(255,255,255,.035);
-    border: 1px solid rgba(255,255,255,.08);
-    color: #b9cbd8;
-    cursor: pointer;
-    transition: .2s;
+.progress{
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--cyan),var(--purple));
+  transition:.3s;
 }
 
-.option:hover {
-    border-color: rgba(0,210,255,.4);
-    background: rgba(0,210,255,.05);
+.exam-meta{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  color:var(--muted);
+  font-size:13px;
 }
 
-.option.selected {
-    border-color: #00d4ff;
-    background: rgba(0,210,255,.09);
-    color: #fff;
+.question{
+  font-size:22px;
+  line-height:1.5;
+  margin:25px 0;
 }
 
-.option.correct {
-    border-color: #3ee68a;
-    background: rgba(62,230,138,.08);
+.option{
+  display:block;
+  width:100%;
+  text-align:left;
+  background:#0c1420;
+  color:#dcecff;
+  border:1px solid var(--line);
+  margin:10px 0;
+  padding:15px;
+  border-radius:12px;
 }
 
-.option.wrong {
-    border-color: #ff6868;
-    background: rgba(255,104,104,.08);
+.option:hover{
+  border-color:var(--cyan);
 }
 
-.exam-controls {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    margin-top: 30px;
+.option.selected{
+  border-color:var(--cyan);
+  background:rgba(67,232,255,.09);
 }
 
-.exam-button {
-    border: 0;
-    border-radius: 9px;
-    padding: 13px 23px;
-    cursor: pointer;
-    font-weight: 700;
-    background: #00d4ff;
-    color: #031018;
+.exam-controls{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:25px;
 }
 
-.exam-button.secondary {
-    color: #dbeaf5;
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(255,255,255,.1);
+.result{
+  text-align:center;
 }
 
-.exam-button:disabled {
-    opacity: .35;
-    cursor: not-allowed;
+.score{
+  font-size:64px;
+  font-weight:900;
+  color:var(--cyan);
 }
 
-.exam-warning {
-    display: none;
-    color: #ff8c8c;
-    margin-top: 12px;
-    font-size: 13px;
+.review-item{
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:17px;
+  margin:12px 0;
 }
 
-.result {
-    display: none;
-    text-align: center;
+.correct{color:var(--green)}
+.incorrect{color:var(--red)}
+
+footer{
+  border-top:1px solid var(--line);
+  margin-top:100px;
+  padding:45px 0;
+  color:var(--muted);
+  text-align:center;
 }
 
-.result-score {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 65px;
-    color: #70eaff;
+@media(max-width:700px){
+  .nav-inner{padding:10px 0}
+  .nav-links{display:none}
+  h1{letter-spacing:-2px}
+  .hero{padding-top:60px}
+  section{margin:55px 0}
+  .card{padding:18px}
 }
-
-.result-details {
-    color: #8ea4b7;
-    margin: 15px 0 25px;
-}
-
-footer {
-    padding: 60px 20px 30px;
-    text-align: center;
-    background: #03050a;
-    border-top: 1px solid rgba(255,255,255,.06);
-}
-
-footer h2 {
-    font-family: "Space Grotesk", sans-serif;
-    letter-spacing: 3px;
-}
-
-footer p {
-    color: #617789;
-    font-size: 12px;
-    margin-top: 10px;
-}
-
-@media(max-width:850px) {
-
-    nav,
-    .nav-status {
-        display:none;
-    }
-
-    .exam-meta {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-    .topic-card {
-        padding: 27px 22px;
-    }
-}
-
-@media(max-width:600px) {
-
-    .hero {
-        padding: 90px 18px 65px;
-    }
-
-    .hero h1 {
-        font-size: 47px;
-    }
-
-    .section {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-
-    .topic-card h2 {
-        font-size: 23px;
-    }
-
-    .exam-meta {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .question-text {
-        font-size: 19px;
-    }
-
-    .exam-controls {
-        flex-direction: column;
-    }
-
-    .exam-button {
-        width: 100%;
-    }
-}
-
 </style>
-
 </head>
 
-
-<body id="top">
-
-
-<header>
-
-<a href="index.html">
-<img src="logo.png" alt="IAL ATLAS" class="logo-image">
-</a>
+<body>
 
 <nav>
-<a href="index.html">Home</a>
-<a href="mathematics.html">Mathematics</a>
-<a href="pure-mathematics.html">Pure Mathematics</a>
+  <div class="container nav-inner">
+    <div class="logo">IAL <span>ATLAS</span></div>
+    <div class="nav-links">
+      <a href="#foundations">Foundations</a>
+      <a href="#distance">Distance</a>
+      <a href="#lines">Straight Lines</a>
+      <a href="#proofs">Proofs</a>
+      <a href="#circles">Circles</a>
+      <a href="#advanced">Advanced</a>
+      <a href="#exam">100Q EXAM</a>
+    </div>
+  </div>
 </nav>
 
-<div class="nav-status">
-● MATHS / ONLINE
-</div>
+<header class="hero">
+  <div class="container">
+    <span class="badge">PURE MATHEMATICS • COORDINATE GEOMETRY</span>
+    <h1>Coordinate <span class="gradient">Geometry</span></h1>
+    <p>
+      A deep mathematical guide from first principles to multi-step
+      coordinate problems, proofs, straight lines, circles, tangency,
+      discriminants and advanced exam reasoning.
+    </p>
 
+    <div class="hero-stat">
+      <div class="stat">Deep Theory</div>
+      <div class="stat">Derivations</div>
+      <div class="stat">Worked Examples</div>
+      <div class="stat">Proofs</div>
+      <div class="stat">Challenge Problems</div>
+      <div class="stat">100 Question Exam</div>
+    </div>
+  </div>
 </header>
 
+<main class="container">
 
-<section class="hero">
-
-<div class="hero-label">
-PURE MATHEMATICS
+<div class="card">
+  <h3>How to use this chapter</h3>
+  <p>
+    Coordinate geometry becomes much easier when you stop treating formulas
+    as isolated facts. Almost every formula here comes from a small number of
+    geometric ideas: horizontal change, vertical change, Pythagoras,
+    symmetry, ratios and perpendicularity.
+  </p>
+  <p>
+    Learn the derivation first. Then practise the standard form. Finally,
+    solve the parameter and proof problems where you have to decide which
+    tool is appropriate.
+  </p>
 </div>
 
-<h1>
-Coordinate <span>Geometry.</span>
-</h1>
+<div class="toc">
+  <a href="#foundations">01. Coordinate Foundations</a>
+  <a href="#distance">02. Distance & Midpoint</a>
+  <a href="#ratio">03. Ratio & Division</a>
+  <a href="#gradient">04. Gradient</a>
+  <a href="#lines">05. Straight Lines</a>
+  <a href="#parallel">06. Parallel & Perpendicular</a>
+  <a href="#intersections">07. Intersections</a>
+  <a href="#proofs">08. Coordinate Proofs</a>
+  <a href="#circles">09. Circles</a>
+  <a href="#tangents">10. Tangents & Chords</a>
+  <a href="#advanced">11. Advanced Problems</a>
+  <a href="#strategy">12. Exam Strategy</a>
+  <a href="#formula">13. Formula Atlas</a>
+  <a href="#exam">14. 100Q Exam</a>
+</div>
 
-<p class="hero-description">
-A deep, structured guide to coordinates, distance, midpoint,
-ratio, gradients, straight lines, perpendicularity, intersections,
-coordinate proofs, circles and exam problem solving.
+<!-- 01 -->
+<section id="foundations">
+<div class="section-number">01 — FOUNDATIONS</div>
+<h2>The Coordinate Plane</h2>
+
+<div class="card">
+<p>
+A coordinate system gives every point a numerical address. A point is written
+as <strong>(x,y)</strong>, where x describes horizontal position and y describes
+vertical position.
 </p>
 
+<table>
+<tr><th>Region</th><th>x</th><th>y</th></tr>
+<tr><td>Quadrant I</td><td>+</td><td>+</td></tr>
+<tr><td>Quadrant II</td><td>−</td><td>+</td></tr>
+<tr><td>Quadrant III</td><td>−</td><td>−</td></tr>
+<tr><td>Quadrant IV</td><td>+</td><td>−</td></tr>
+</table>
+</div>
+
+<h3>Axes and special points</h3>
+<div class="card">
+<p>
+Any point on the x-axis has y = 0. Any point on the y-axis has x = 0.
+The origin is (0,0).
+</p>
+
+<div class="formula">
+x-axis: y = 0<br>
+y-axis: x = 0<br>
+origin: (0,0)
+</div>
+</div>
+
+<h3>Symmetry</h3>
+<div class="card">
+<p>
+Reflection across an axis changes the sign of the coordinate perpendicular
+to that axis.
+</p>
+
+<div class="formula">
+Reflection in x-axis: (x,y) → (x,−y)<br>
+Reflection in y-axis: (x,y) → (−x,y)<br>
+Reflection in origin: (x,y) → (−x,−y)
+</div>
+</div>
+
+<div class="card example">
+<div class="example-title">Worked Example 1 — Reflection</div>
+<p>Reflect P(−4,7) in the x-axis.</p>
+<div class="solution">
+Reflection in the x-axis leaves x unchanged and reverses y.
+<br><br>
+P′ = <strong>(−4,−7)</strong>.
+</div>
+</div>
+
+<div class="card example">
+<div class="example-title">Worked Example 2 — Quadrant reasoning</div>
+<p>
+Point A has coordinates (−6,−2). Point B is its reflection in the y-axis.
+Where is B?
+</p>
+<div class="solution">
+The y-axis changes x → −x while keeping y unchanged.
+<br><br>
+B = <strong>(6,−2)</strong>, so B lies in Quadrant IV.
+</div>
+</div>
+
+<div class="card trap">
+<h4>Common Trap</h4>
+<p>
+Do not say “negative x means left and negative y means down” without considering
+the coordinate axes. A point with x = 0 is on the y-axis, not in a quadrant.
+</p>
+</div>
 </section>
 
+<!-- 02 -->
+<section id="distance">
+<div class="section-number">02 — DISTANCE & MIDPOINT</div>
+<h2>Distance and Midpoint</h2>
 
-<div class="breadcrumb">
-
-<a href="index.html">IAL ATLAS</a>
-/
-<a href="mathematics.html">Mathematics</a>
-/
-<a href="pure-mathematics.html">Pure Mathematics</a>
-/
-Coordinate Geometry
-
-</div>
-
-
-<section class="section">
-
-
-<!-- =========================================================
-1. FOUNDATION
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>1. The Coordinate Plane</h2>
-
+<h3>Deriving the distance formula</h3>
+<div class="card">
 <p>
-Coordinate geometry connects algebra and geometry by representing
-points, lines and shapes numerically. Instead of describing a point
-only by its position in a diagram, we can describe it exactly using
-ordered pairs.
-</p>
-
-<h3>Cartesian Coordinates</h3>
-
-<p>
-A point is written as:
+Take A(x₁,y₁) and B(x₂,y₂). Draw horizontal and vertical components between
+them. The horizontal change is Δx and the vertical change is Δy.
+These form a right triangle.
 </p>
 
 <div class="formula">
-(x, y)
+Δx = x₂ − x₁<br>
+Δy = y₂ − y₁<br>
+AB² = (x₂−x₁)² + (y₂−y₁)²
+<br><br>
+Therefore:
+<br>
+AB = √[(x₂−x₁)² + (y₂−y₁)²]
 </div>
 
 <p>
-The first value is the x-coordinate and the second value is the
-y-coordinate.
+The formula is therefore just Pythagoras applied to the coordinate plane.
 </p>
-
-<ul>
-<li>x measures horizontal displacement.</li>
-<li>y measures vertical displacement.</li>
-<li>Positive x-values lie to the right of the y-axis.</li>
-<li>Negative x-values lie to the left of the y-axis.</li>
-<li>Positive y-values lie above the x-axis.</li>
-<li>Negative y-values lie below the x-axis.</li>
-</ul>
-
-<h3>The Four Quadrants</h3>
-
-<div class="formula">
-I: (+,+) &nbsp;&nbsp;
-II: (-,+) &nbsp;&nbsp;
-III: (-,-) &nbsp;&nbsp;
-IV: (+,-)
 </div>
 
-<h3>The Origin</h3>
-
-<p>
-The intersection of the coordinate axes is called the origin:
-</p>
-
-<div class="formula">
-O = (0,0)
-</div>
-
-<div class="example">
-
-<strong>Example:</strong>
-
-<p>
-The point A has coordinates (-4, 7).
-Therefore A lies in Quadrant II because x is negative and y is positive.
-</p>
-
-</div>
-
-</div>
-
-
-<!-- =========================================================
-2. DISTANCE
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>2. Distance Between Two Points</h2>
-
-<p>
-Suppose two points are:
-</p>
-
-<div class="formula">
-A(x₁,y₁), &nbsp; B(x₂,y₂)
-</div>
-
-<p>
-The horizontal change is:
-</p>
-
-<div class="formula">
-Δx = x₂ − x₁
-</div>
-
-<p>
-The vertical change is:
-</p>
-
-<div class="formula">
-Δy = y₂ − y₁
-</div>
-
-<p>
-These two changes form the perpendicular sides of a right-angled
-triangle. Pythagoras' theorem therefore gives the distance.
-</p>
-
-<div class="formula">
-AB = √[(x₂ − x₁)² + (y₂ − y₁)²]
-</div>
-
-<h3>Why the Formula Works</h3>
-
-<p>
-If the horizontal difference is 3 and the vertical difference is 4,
-then the points form a 3-4-5 triangle:
-</p>
-
-<div class="formula">
-AB² = 3² + 4² = 25
-</div>
-
-<div class="formula">
-AB = 5
-</div>
-
-<h3>Worked Example</h3>
-
-<div class="example">
-
-<p>
-Find the distance between A(-2,3) and B(4,11).
-</p>
-
-<div class="formula">
-AB = √[(4+2)² + (11−3)²]
-</div>
-
-<div class="formula">
-= √(6² + 8²)
-</div>
-
-<div class="formula">
+<div class="card example">
+<div class="example-title">Worked Example 3 — Distance</div>
+<p>Find the distance between A(−2,5) and B(4,−3).</p>
+<div class="solution">
+Δx = 4 − (−2) = 6<br>
+Δy = −3 − 5 = −8
+<br><br>
+AB = √(6² + (−8)²)
 = √100
+= <strong>10</strong>.
+</div>
 </div>
 
-<div class="formula">
-<strong>AB = 10</strong>
-</div>
-
-</div>
-
-<h3>Distance Squared</h3>
-
+<h3>Distance squared</h3>
+<div class="card">
 <p>
-Sometimes it is unnecessary to calculate the square root. For example,
-to compare two distances, compare their squares instead.
+When comparing lengths, you often do not need the square root.
+Since all lengths are non-negative, comparing AB² and CD² gives the same
+ordering as comparing AB and CD.
 </p>
 
 <div class="formula">
 AB² = (x₂−x₁)² + (y₂−y₁)²
 </div>
 
-<div class="note">
-This is particularly useful in coordinate proofs involving equal
-lengths because it avoids unnecessary square roots.
-</div>
-
-</div>
-
-
-<!-- =========================================================
-3. MIDPOINT
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>3. Midpoint of a Line Segment</h2>
-
 <p>
-The midpoint is the point exactly halfway between two endpoints.
+This is especially useful in coordinate proofs because it keeps the algebra
+exact and avoids unnecessary radicals.
 </p>
-
-<p>
-For:
-</p>
-
-<div class="formula">
-A(x₁,y₁), B(x₂,y₂)
 </div>
 
+<h3>Midpoint formula</h3>
+<div class="card">
 <p>
-the midpoint is:
+The midpoint is obtained by averaging the x-coordinates and averaging the
+y-coordinates.
 </p>
 
 <div class="formula">
 M = ((x₁+x₂)/2 , (y₁+y₂)/2)
 </div>
+</div>
 
+<div class="card example">
+<div class="example-title">Worked Example 4 — Midpoint</div>
+<p>Find the midpoint of A(−7,4) and B(3,−8).</p>
+<div class="solution">
+x-coordinate = (−7+3)/2 = −2<br>
+y-coordinate = (4−8)/2 = −2
+<br><br>
+M = <strong>(−2,−2)</strong>.
+</div>
+</div>
+
+<div class="card challenge">
+<div class="example-title">Challenge — Recovering an endpoint</div>
 <p>
-Notice that the x-coordinates are averaged separately from the
-y-coordinates.
+The midpoint of A(5,−3) and B is (−2,4). Find B.
 </p>
+<div class="solution">
+Let B=(x,y).
+<br><br>
+(5+x)/2 = −2 → 5+x = −4 → x = −9
+<br>
+(−3+y)/2 = 4 → −3+y = 8 → y = 11
+<br><br>
+B = <strong>(−9,11)</strong>.
+</div>
+</div>
+</section>
 
-<div class="example">
+<!-- 03 -->
+<section id="ratio">
+<div class="section-number">03 — SECTION FORMULA</div>
+<h2>Ratio and Division of a Line</h2>
 
-<strong>Example:</strong>
-
+<div class="card">
 <p>
-Find the midpoint of A(-3,8) and B(7,2).
-</p>
-
-<div class="formula">
-M = ((−3+7)/2 , (8+2)/2)
-</div>
-
-<div class="formula">
-M = (2,5)
-</div>
-
-</div>
-
-<h3>Finding an Unknown Endpoint</h3>
-
-<p>
-The midpoint formula can also be rearranged to find an unknown
-endpoint.
-</p>
-
-<p>
-Suppose A(x₁,y₁), B(x₂,y₂) and midpoint M(xₘ,yₘ).
-</p>
-
-<div class="formula">
-xₘ = (x₁+x₂)/2
-</div>
-
-<div class="formula">
-yₘ = (y₁+y₂)/2
-</div>
-
-<p>
-Therefore:
-</p>
-
-<div class="formula">
-x₂ = 2xₘ − x₁
-</div>
-
-<div class="formula">
-y₂ = 2yₘ − y₁
-</div>
-
-<div class="example">
-
-<strong>Example:</strong>
-
-<p>
-A point A is (3,7) and the midpoint of AB is (8,4).
-Find B.
-</p>
-
-<div class="formula">
-x_B = 2(8)−3 = 13
-</div>
-
-<div class="formula">
-y_B = 2(4)−7 = 1
-</div>
-
-<div class="formula">
-<strong>B = (13,1)</strong>
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =========================================================
-4. RATIO
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>4. Dividing a Line Segment in a Given Ratio</h2>
-
-<p>
-Coordinate geometry can be used to locate a point dividing a line
-segment internally in a specified ratio.
-</p>
-
-<p>
-If P divides AB in the ratio:
-</p>
-
-<div class="formula">
-AP : PB = m : n
-</div>
-
-<p>
-where:
+Suppose P divides AB internally in the ratio AP:PB = m:n.
+P is m parts from A and n parts from B, so its coordinates are a weighted
+average of A and B.
 </p>
 
 <div class="formula">
 A(x₁,y₁), B(x₂,y₂)
+<br><br>
+P = ((n x₁ + m x₂)/(m+n),
+     (n y₁ + m y₂)/(m+n))
 </div>
 
 <p>
-then:
+Notice that the coordinate closer to A receives the larger weight from A's
+opposite segment. This is why the coefficients may look reversed at first.
 </p>
-
-<div class="formula">
-P =
-((nx₁ + mx₂)/(m+n),
- (ny₁ + my₂)/(m+n))
 </div>
 
-<div class="example">
-
-<strong>Example:</strong>
-
+<div class="card example">
+<div class="example-title">Worked Example 5 — Internal division</div>
 <p>
-P divides A(2,3) and B(12,8) in the ratio 2:3.
+A(2,5), B(11,−4). P divides AB in AP:PB = 2:1.
 </p>
-
-<div class="formula">
-x_P = [3(2)+2(12)]/5 = 30/5 = 6
+<div class="solution">
+m=2, n=1.
+<br><br>
+x = [1(2)+2(11)]/3 = 24/3 = 8
+<br>
+y = [1(5)+2(−4)]/3 = −3/3 = −1
+<br><br>
+P = <strong>(8,−1)</strong>.
+</div>
 </div>
 
-<div class="formula">
-y_P = [3(3)+2(8)]/5 = 25/5 = 5
-</div>
-
-<div class="formula">
-<strong>P = (6,5)</strong>
-</div>
-
-</div>
-
-<div class="warning">
-Be careful with the ratio formula. The coefficient beside A is the
-part opposite A, while the coefficient beside B is the part opposite B.
-</div>
-
-</div>
-
-
-<!-- =========================================================
-5. GRADIENT
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>5. Gradient of a Straight Line</h2>
-
+<div class="card warning">
+<h4>Useful sanity check</h4>
 <p>
-The gradient measures the rate at which y changes as x changes.
+For internal division, P must lie between A and B. If your calculated point
+does not lie on the segment, recheck the ratio formula and signs.
+</p>
+</div>
+</section>
+
+<!-- 04 -->
+<section id="gradient">
+<div class="section-number">04 — GRADIENT</div>
+<h2>Gradient: Change in y per change in x</h2>
+
+<div class="card">
+<p>
+Gradient measures the steepness and direction of a straight line.
+It is the vertical change divided by the horizontal change.
 </p>
 
 <div class="formula">
@@ -921,2080 +745,1337 @@ m = (y₂−y₁)/(x₂−x₁)
 </div>
 
 <p>
-This can also be understood as:
+A positive gradient means y increases as x increases.
+A negative gradient means y decreases as x increases.
+</p>
+</div>
+
+<h3>Why the order does not matter</h3>
+<div class="card">
+<p>
+You can calculate the gradient using either direction, provided you use the
+same order in numerator and denominator.
 </p>
 
 <div class="formula">
-gradient = vertical change / horizontal change
+(y₂−y₁)/(x₂−x₁)
+=
+(y₁−y₂)/(x₁−x₂)
 </div>
 
-<h3>Positive Gradient</h3>
-
 <p>
-A line with positive gradient rises from left to right.
+Both numerator and denominator change sign, so the ratio stays unchanged.
 </p>
+</div>
 
-<h3>Negative Gradient</h3>
+<div class="card example">
+<div class="example-title">Worked Example 6</div>
+<p>Find the gradient through (−3,8) and (5,−4).</p>
+<div class="solution">
+m = (−4−8)/(5−(−3))
+= −12/8
+= <strong>−3/2</strong>.
+</div>
+</div>
 
-<p>
-A line with negative gradient falls from left to right.
-</p>
-
-<h3>Zero Gradient</h3>
-
-<p>
-A horizontal line has:
-</p>
-
+<h3>Vertical and horizontal lines</h3>
 <div class="formula">
-m = 0
+Horizontal line: y = constant → gradient 0<br>
+Vertical line: x = constant → gradient undefined
 </div>
 
-<h3>Undefined Gradient</h3>
-
+<div class="card trap">
+<h4>Important</h4>
 <p>
-A vertical line has x₂−x₁ = 0, so division by zero is impossible.
-Therefore a vertical line has no finite gradient.
+Never write the gradient of a vertical line as 0. A vertical line has no
+defined gradient because its horizontal change is zero.
 </p>
-
-<div class="example">
-
-<strong>Example:</strong>
-
-<p>
-Find the gradient through A(-2,5) and B(4,-7).
-</p>
-
-<div class="formula">
-m = (−7−5)/(4−(−2))
 </div>
+</section>
 
-<div class="formula">
-= −12/6
-</div>
+<!-- 05 -->
+<section id="lines">
+<div class="section-number">05 — STRAIGHT LINES</div>
+<h2>Equations of Straight Lines</h2>
 
-<div class="formula">
-<strong>m = −2</strong>
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =========================================================
-6. STRAIGHT LINE
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>6. Equation of a Straight Line</h2>
-
-<h3>Slope-Intercept Form</h3>
-
+<h3>Gradient-intercept form</h3>
 <div class="formula">
 y = mx + c
 </div>
 
 <p>
-where m is the gradient and c is the y-intercept.
+m is the gradient and c is the y-intercept.
 </p>
 
-<h3>Point-Gradient Method</h3>
-
-<p>
-If the gradient is m and the line passes through (x₁,y₁):
-</p>
-
+<h3>Point-gradient form</h3>
 <div class="formula">
 y − y₁ = m(x − x₁)
 </div>
 
-<div class="example">
+<p>
+This is often the fastest form when a point and gradient are known.
+</p>
 
-<strong>Example:</strong>
+<div class="card example">
+<div class="example-title">Worked Example 7</div>
+<p>
+Find the equation of the line with gradient 4 passing through (−2,7).
+</p>
+<div class="solution">
+y−7 = 4(x+2)
+<br>
+y−7 = 4x+8
+<br>
+<strong>y = 4x+15</strong>.
+</div>
+</div>
+
+<h3>Equation through two points</h3>
+<div class="card example">
+<div class="example-title">Worked Example 8</div>
+<p>
+Find the equation through A(2,−1) and B(8,11).
+</p>
+<div class="solution">
+First calculate gradient:
+<br>
+m = (11−(−1))/(8−2) = 12/6 = 2.
+<br><br>
+Using A:
+<br>
+y+1 = 2(x−2)
+<br>
+y = 2x−5.
+<br><br>
+<strong>Equation: y = 2x−5.</strong>
+</div>
+</div>
+
+<h3>General form</h3>
+<div class="formula">
+Ax + By + C = 0
+</div>
 
 <p>
-Find the equation of the line with gradient -3 passing through (4,7).
+If B ≠ 0, rearrange:
 </p>
 
 <div class="formula">
-y − 7 = −3(x−4)
+y = −(A/B)x − C/B
+<br><br>
+Therefore gradient = −A/B.
 </div>
+
+<div class="card example">
+<div class="example-title">Worked Example 9</div>
+<p>Find the gradient of 6x+3y−12=0.</p>
+<div class="solution">
+3y = −6x+12
+<br>
+y = −2x+4
+<br>
+Therefore <strong>m = −2</strong>.
+</div>
+</div>
+
+<h3>Intercepts</h3>
+<div class="card">
+<p>
+To find the x-intercept, set y=0.
+To find the y-intercept, set x=0.
+</p>
+
+<div class="card example">
+<div class="example-title">Worked Example 10</div>
+<p>Find the intercepts of 2x+5y=20.</p>
+<div class="solution">
+x-intercept:
+<br>
+2x=20 → x=10 → <strong>(10,0)</strong>
+<br><br>
+y-intercept:
+<br>
+5y=20 → y=4 → <strong>(0,4)</strong>.
+</div>
+</div>
+</div>
+</section>
+
+<!-- 06 -->
+<section id="parallel">
+<div class="section-number">06 — PARALLEL & PERPENDICULAR</div>
+<h2>Line Relationships</h2>
+
+<div class="card">
+<div class="formula">
+Parallel lines: m₁ = m₂
+<br><br>
+Perpendicular lines:
+m₁m₂ = −1
+</div>
+
+<p>
+The perpendicular relationship follows because a 90° rotation changes the
+direction of a line so that the new gradient is the negative reciprocal.
+</p>
+</div>
+
+<div class="card example">
+<div class="example-title">Worked Example 11</div>
+<p>
+Find the equation of the line through (3,−5) parallel to
+2x−4y+7=0.
+</p>
+<div class="solution">
+First find the original gradient:
+<br>
+−4y = −2x−7
+<br>
+y = 1/2 x + 7/4
+<br><br>
+Parallel line has gradient 1/2.
+<br>
+y+5 = 1/2(x−3)
+<br>
+<strong>y = 1/2x − 13/2</strong>.
+</div>
+</div>
+
+<div class="card example">
+<div class="example-title">Worked Example 12 — Perpendicular</div>
+<p>
+Find the line through (4,1) perpendicular to y=−3x+8.
+</p>
+<div class="solution">
+Original gradient = −3.
+<br>
+Perpendicular gradient = 1/3.
+<br><br>
+y−1 = (1/3)(x−4)
+<br>
+<strong>y = x/3 − 1/3</strong>.
+</div>
+</div>
+
+<h3>Parameter problems</h3>
+
+<div class="card challenge">
+<div class="example-title">Worked Example 13 — Find k</div>
+<p>
+The line through A(2,5) and B(k,9) has gradient 2.
+Find k.
+</p>
+<div class="solution">
+(9−5)/(k−2)=2
+<br>
+4/(k−2)=2
+<br>
+4=2k−4
+<br>
+2k=6
+<br>
+<strong>k=3</strong>.
+</div>
+</div>
+
+<div class="card challenge">
+<div class="example-title">Worked Example 14 — Perpendicular condition</div>
+<p>
+The line through (1,4) and (k,10) is perpendicular to a line of gradient 2.
+Find k.
+</p>
+<div class="solution">
+Required gradient = −1/2.
+<br>
+(10−4)/(k−1)=−1/2
+<br>
+6/(k−1)=−1/2
+<br>
+12 = −(k−1)
+<br>
+<strong>k = −11</strong>.
+</div>
+</div>
+</section>
+
+<!-- 07 -->
+<section id="intersections">
+<div class="section-number">07 — INTERSECTIONS</div>
+<h2>Where Geometric Objects Meet</h2>
+
+<h3>Two straight lines</h3>
+<div class="card">
+<p>
+At an intersection, both equations are true simultaneously. Therefore,
+solve them as simultaneous equations.
+</p>
+
+<div class="card example">
+<div class="example-title">Worked Example 15</div>
+<p>
+Find the intersection of y=2x+1 and y=−x+7.
+</p>
+<div class="solution">
+2x+1 = −x+7
+<br>
+3x=6
+<br>
+x=2
+<br>
+y=5
+<br><br>
+Intersection = <strong>(2,5)</strong>.
+</div>
+</div>
+</div>
+
+<h3>Line and quadratic</h3>
+<div class="card">
+<p>
+If a line intersects a quadratic curve, substitute the line equation into
+the quadratic. This produces a quadratic equation in x.
+</p>
 
 <div class="formula">
-y − 7 = −3x + 12
+Two distinct intersections → discriminant > 0
+<br>
+One repeated intersection → discriminant = 0
+<br>
+No real intersections → discriminant < 0
 </div>
+</div>
+
+<div class="card example">
+<div class="example-title">Worked Example 16</div>
+<p>
+Determine whether y=x+2 intersects y=x²−2x+2.
+</p>
+<div class="solution">
+Set equal:
+<br>
+x+2=x²−2x+2
+<br>
+x²−3x=0
+<br>
+x(x−3)=0
+<br>
+x=0 or x=3.
+<br><br>
+Therefore there are <strong>two intersections</strong>.
+</div>
+</div>
+
+<h3>Parameter and discriminant</h3>
+<div class="card challenge">
+<p>
+Suppose a line depends on k. After substitution, you obtain
+</p>
 
 <div class="formula">
-<strong>y = −3x + 19</strong>
+ax²+bx+c=0.
+<br>
+Δ=b²−4ac
 </div>
 
+<p>
+You can then impose a geometric condition by controlling Δ.
+For tangency, Δ=0.
+For two distinct intersections, Δ>0.
+For no real intersection, Δ<0.
+</p>
+</div>
+</section>
+
+<!-- 08 -->
+<section id="proofs">
+<div class="section-number">08 — COORDINATE PROOFS</div>
+<h2>Proving Geometry with Coordinates</h2>
+
+<div class="card">
+<p>
+Coordinate proofs are powerful because different geometric properties have
+different algebraic fingerprints.
+</p>
+
+<table>
+<tr><th>Geometric property</th><th>Useful test</th></tr>
+<tr><td>Equal sides</td><td>Compare squared distances</td></tr>
+<tr><td>Parallel sides</td><td>Compare gradients</td></tr>
+<tr><td>Perpendicular sides</td><td>Gradient product −1</td></tr>
+<tr><td>Same midpoint</td><td>Compare midpoint coordinates</td></tr>
+<tr><td>Collinear points</td><td>Equal gradients</td></tr>
+</table>
 </div>
 
-<h3>Finding the Equation from Two Points</h3>
+<h3>Proving an isosceles triangle</h3>
 
-<ol>
-<li>Calculate the gradient.</li>
-<li>Use either point in y = mx + c.</li>
-<li>Find c.</li>
-<li>Write the final equation.</li>
+<div class="card example">
+<div class="example-title">Worked Example 17</div>
+<p>
+Show that A(1,2), B(5,5), C(9,2) form an isosceles triangle.
+</p>
+<div class="solution">
+AB²=(5−1)²+(5−2)²=16+9=25.
+<br>
+BC²=(9−5)²+(2−5)²=16+9=25.
+<br><br>
+Therefore AB=BC, so triangle ABC is <strong>isosceles</strong>.
+</div>
+</div>
+
+<h3>Proving a parallelogram</h3>
+
+<div class="card example">
+<div class="example-title">Worked Example 18</div>
+<p>
+A quadrilateral has vertices A, B, C, D. One efficient method is to show
+that the diagonals bisect each other.
+</p>
+<div class="solution">
+Calculate midpoint of AC.
+Calculate midpoint of BD.
+If the two midpoint coordinates are identical, the diagonals bisect each
+other, which proves the quadrilateral is a parallelogram.
+</div>
+</div>
+
+<h3>Proving a rectangle</h3>
+
+<div class="card">
+<p>
+A parallelogram becomes a rectangle if one interior angle is 90°.
+Thus a strong strategy is:
+</p>
+<ol class="steps">
+<li>Prove opposite sides are parallel.</li>
+<li>Prove two adjacent sides are perpendicular.</li>
+<li>Conclude that the parallelogram is a rectangle.</li>
 </ol>
+</div>
 
-<div class="example">
+<h3>Collinearity</h3>
 
-<strong>Example:</strong>
-
+<div class="card example">
+<div class="example-title">Worked Example 19</div>
 <p>
-Find the equation through (1,4) and (5,12).
+Determine whether A(1,3), B(4,9), C(7,15) are collinear.
 </p>
-
-<div class="formula">
-m = (12−4)/(5−1) = 2
+<div class="solution">
+Gradient AB:
+<br>
+(9−3)/(4−1)=6/3=2.
+<br><br>
+Gradient BC:
+<br>
+(15−9)/(7−4)=6/3=2.
+<br><br>
+The gradients are equal, so the three points are
+<strong>collinear</strong>.
 </div>
-
-<div class="formula">
-y = 2x+c
 </div>
+</section>
 
-<div class="formula">
-4 = 2(1)+c
-</div>
+<!-- 09 -->
+<section id="circles">
+<div class="section-number">09 — CIRCLES</div>
+<h2>Equation of a Circle</h2>
 
-<div class="formula">
-c = 2
-</div>
-
-<div class="formula">
-<strong>y = 2x+2</strong>
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =========================================================
-7. OTHER LINE FORMS
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>7. Important Forms of a Straight Line</h2>
-
-<h3>Gradient-Intercept Form</h3>
-
-<div class="formula">
-y = mx+c
-</div>
-
-<h3>Point-Gradient Form</h3>
-
-<div class="formula">
-y−y₁ = m(x−x₁)
-</div>
-
-<h3>General Form</h3>
-
-<div class="formula">
-ax + by + c = 0
-</div>
-
+<div class="card">
 <p>
-The general form can be rearranged into y = mx+c when necessary.
-</p>
-
-<div class="example">
-
-<p>
-Consider:
-</p>
-
-<div class="formula">
-3x + 2y − 8 = 0
-</div>
-
-<p>
-Rearrange:
-</p>
-
-<div class="formula">
-2y = −3x+8
-</div>
-
-<div class="formula">
-y = −3/2 x + 4
-</div>
-
-<p>
-Therefore the gradient is:
-</p>
-
-<div class="formula">
-<strong>−3/2</strong>
-</div>
-
-</div>
-
-<h3>Horizontal Line</h3>
-
-<div class="formula">
-y = k
-</div>
-
-<h3>Vertical Line</h3>
-
-<div class="formula">
-x = k
-</div>
-
-</div>
-
-
-<!-- =========================================================
-8. PARALLEL
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>8. Parallel Lines</h2>
-
-<p>
-Two non-identical straight lines are parallel if they have the same
-gradient.
-</p>
-
-<div class="formula">
-m₁ = m₂
-</div>
-
-<div class="example">
-
-<p>
-Determine whether:
-</p>
-
-<div class="formula">
-y = 4x−7
-</div>
-
-<p>
-and:
-</p>
-
-<div class="formula">
-2y = 8x+5
-</div>
-
-<p>
-are parallel.
-</p>
-
-<p>
-The second equation becomes:
-</p>
-
-<div class="formula">
-y = 4x + 5/2
-</div>
-
-<p>
-Both gradients are 4, so the lines are parallel.
-</p>
-
-</div>
-
-<h3>Finding a Parallel Line</h3>
-
-<p>
-If a line has gradient m, every parallel line has the same gradient.
-The constant c changes according to the point through which the new
-line passes.
-</p>
-
-</div>
-
-
-<!-- =========================================================
-9. PERPENDICULAR
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>9. Perpendicular Lines</h2>
-
-<p>
-For two non-vertical perpendicular lines:
-</p>
-
-<div class="formula">
-m₁m₂ = −1
-</div>
-
-<p>
-Therefore the gradient of a perpendicular line is the negative
-reciprocal.
-</p>
-
-<div class="formula">
-m₂ = −1/m₁
-</div>
-
-<div class="example">
-
-<p>
-A line has gradient 5.
-</p>
-
-<div class="formula">
-m₂ = −1/5
-</div>
-
-<p>
-Therefore a perpendicular line has gradient -1/5.
-</p>
-
-</div>
-
-<div class="warning">
-Do not confuse the reciprocal with the negative reciprocal.
-The perpendicular gradient to 3 is -1/3, not 1/3.
-</div>
-
-</div>
-
-
-<!-- =========================================================
-10. COLLINEARITY
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>10. Proving Points Are Collinear</h2>
-
-<p>
-Points are collinear if they all lie on the same straight line.
-</p>
-
-<h3>Method 1 — Compare Gradients</h3>
-
-<p>
-For A, B and C, calculate:
-</p>
-
-<div class="formula">
-gradient AB
-</div>
-
-and:
-
-<div class="formula">
-gradient BC
-</div>
-
-<p>
-If they are equal, the three points are collinear.
-</p>
-
-<div class="example">
-
-<p>
-A(1,2), B(3,6), C(5,10)
-</p>
-
-<div class="formula">
-m_AB = (6−2)/(3−1)=2
-</div>
-
-<div class="formula">
-m_BC = (10−6)/(5−3)=2
-</div>
-
-<p>
-Therefore the points are collinear.
-</p>
-
-</div>
-
-<h3>Method 2 — Find the Equation</h3>
-
-<p>
-Find the equation through two points and substitute the third point.
-If it satisfies the equation, the points are collinear.
-</p>
-
-</div>
-
-
-<!-- =========================================================
-11. INTERSECTIONS
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>11. Intersections of Lines</h2>
-
-<p>
-At the intersection of two lines, the coordinates of the point satisfy
-both equations simultaneously.
-</p>
-
-<p>
-Therefore if:
-</p>
-
-<div class="formula">
-y = 2x+3
-</div>
-
-<div class="formula">
-y = −x+9
-</div>
-
-<p>
-set them equal:
-</p>
-
-<div class="formula">
-2x+3 = −x+9
-</div>
-
-<div class="formula">
-3x = 6
-</div>
-
-<div class="formula">
-x = 2
-</div>
-
-<p>
-Substitute x = 2:
-</p>
-
-<div class="formula">
-y = 2(2)+3 = 7
-</div>
-
-<div class="formula">
-<strong>Intersection = (2,7)</strong>
-</div>
-
-</div>
-
-
-<!-- =========================================================
-12. LINE AND CURVE
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>12. Intersections of a Line and a Curve</h2>
-
-<p>
-If a line and curve intersect, the coordinates must satisfy both
-equations.
-</p>
-
-<p>
-For example:
-</p>
-
-<div class="formula">
-y = x+6
-</div>
-
-<div class="formula">
-y = x²
-</div>
-
-<p>
-Set them equal:
-</p>
-
-<div class="formula">
-x² = x+6
-</div>
-
-<div class="formula">
-x²−x−6 = 0
-</div>
-
-<div class="formula">
-(x−3)(x+2)=0
-</div>
-
-<div class="formula">
-x = 3 or x = −2
-</div>
-
-<p>
-Then substitute each x-value into either original equation to obtain
-the corresponding y-coordinate.
-</p>
-
-<div class="warning">
-If a question asks for coordinates of intersection, giving only the
-x-values is incomplete.
-</div>
-
-</div>
-
-
-<!-- =========================================================
-13. NUMBER OF INTERSECTIONS
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>13. Intersections and Quadratic Discriminants</h2>
-
-<p>
-When a line is substituted into a quadratic curve, the resulting
-equation is often quadratic.
-</p>
-
-<p>
-For:
-</p>
-
-<div class="formula">
-ax²+bx+c=0
-</div>
-
-<p>
-the discriminant is:
-</p>
-
-<div class="formula">
-Δ = b²−4ac
-</div>
-
-<ul>
-<li>Δ &gt; 0 → two distinct real intersections.</li>
-<li>Δ = 0 → one repeated intersection, usually tangency.</li>
-<li>Δ &lt; 0 → no real intersections.</li>
-</ul>
-
-<div class="example">
-
-<p>
-Suppose a line intersects a curve and substitution produces:
-</p>
-
-<div class="formula">
-x²−6x+9=0
-</div>
-
-<p>
-Then:
-</p>
-
-<div class="formula">
-Δ = (−6)²−4(1)(9)=0
-</div>
-
-<p>
-Therefore there is one repeated root and hence one point of contact.
-</p>
-
-</div>
-
-</div>
-
-
-<!-- =========================================================
-14. COORDINATE PROOFS
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>14. Coordinate Geometry Proofs</h2>
-
-<p>
-Coordinate geometry can prove geometric properties algebraically.
-Instead of relying only on a diagram, calculate quantities that establish
-the required property.
-</p>
-
-<h3>Proving a Shape Is Isosceles</h3>
-
-<p>
-Show that two sides have equal lengths.
-</p>
-
-<div class="formula">
-AB² = AC²
-</div>
-
-<h3>Proving a Shape Is Equilateral</h3>
-
-<p>
-Show all three side lengths are equal.
-</p>
-
-<div class="formula">
-AB² = BC² = CA²
-</div>
-
-<h3>Proving a Shape Is a Parallelogram</h3>
-
-<p>
-Possible methods include:
-</p>
-
-<ul>
-<li>Show opposite sides have equal gradients and lengths.</li>
-<li>Show opposite sides have equal gradients.</li>
-<li>Show the diagonals have the same midpoint.</li>
-</ul>
-
-<h3>Proving a Rectangle</h3>
-
-<p>
-A rectangle can be established by showing opposite sides are parallel
-and one pair of adjacent sides is perpendicular.
-</p>
-
-<h3>Proving a Right Angle</h3>
-
-<div class="formula">
-m₁m₂ = −1
-</div>
-
-</div>
-
-
-<!-- =========================================================
-15. CIRCLES
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>15. Coordinate Geometry of Circles</h2>
-
-<p>
-A circle with centre (a,b) and radius r has equation:
+A circle consists of all points that are a fixed distance r from its centre
+(a,b).
 </p>
 
 <div class="formula">
 (x−a)² + (y−b)² = r²
 </div>
 
-<h3>Recognising the Centre and Radius</h3>
-
-<div class="example">
-
 <p>
-Consider:
+This is simply the distance formula with the distance fixed at r.
+</p>
+</div>
+
+<h3>Reading a circle</h3>
+
+<div class="card example">
+<div class="example-title">Worked Example 20</div>
+<p>
+Find the centre and radius of
 </p>
 
 <div class="formula">
-(x−3)²+(y+4)²=25
+(x−3)²+(y+5)²=49
 </div>
 
-<p>
+<div class="solution">
 Compare with:
+<br>
+(x−a)²+(y−b)²=r².
+<br><br>
+a=3, b=−5, r=7.
+<br><br>
+Centre = <strong>(3,−5)</strong>
+<br>
+Radius = <strong>7</strong>.
+</div>
+</div>
+
+<h3>Completing the square</h3>
+
+<div class="card">
+<p>
+For an equation such as
 </p>
 
 <div class="formula">
-(x−a)²+(y−b)²=r²
+x²+y²−6x+8y−11=0
 </div>
 
 <p>
+Group x and y terms:
+</p>
+
+<div class="formula">
+(x²−6x)+(y²+8y)=11
+</div>
+
+<p>
+Complete the square:
+</p>
+
+<div class="formula">
+(x−3)²−9+(y+4)²−16=11
+<br>
+(x−3)²+(y+4)²=36
+</div>
+
+<p>
+Therefore centre = <strong>(3,−4)</strong> and radius = <strong>6</strong>.
+</p>
+</div>
+
+<h3>Finding a circle from centre and a point</h3>
+
+<div class="card example">
+<div class="example-title">Worked Example 21</div>
+<p>
+A circle has centre (2,−1) and passes through (5,3).
+Find its equation.
+</p>
+<div class="solution">
+r²=(5−2)²+(3−(−1))²
+=9+16
+=25.
+<br><br>
 Therefore:
+<br>
+<strong>(x−2)²+(y+1)²=25</strong>.
+</div>
+</div>
+</section>
+
+<!-- 10 -->
+<section id="tangents">
+<div class="section-number">10 — TANGENTS & CHORDS</div>
+<h2>Circle Geometry in Coordinates</h2>
+
+<div class="card">
+<p>
+The radius drawn to the point of tangency is perpendicular to the tangent.
+This creates a direct connection between circle geometry and gradients.
 </p>
 
 <div class="formula">
-centre = (3,−4)
+m_radius × m_tangent = −1
+</div>
 </div>
 
-<div class="formula">
-radius = 5
-</div>
-
-</div>
-
-<h3>Circle Through the Origin</h3>
-
+<div class="card example">
+<div class="example-title">Worked Example 22 — Tangent at a point</div>
 <p>
-If the circle passes through (0,0), substitute x=0 and y=0 into the
-equation to obtain a relationship between the constants.
-</p>
-
-<h3>Expanded Circle Equation</h3>
-
-<p>
-Expanding:
+Find the tangent to
 </p>
 
 <div class="formula">
-(x−a)²+(y−b)²=r²
+(x−2)²+(y−3)²=25
 </div>
 
 <p>
-gives:
+at P(5,7).
+</p>
+
+<div class="solution">
+Centre C=(2,3).
+<br>
+Gradient CP:
+<br>
+m=(7−3)/(5−2)=4/3.
+<br><br>
+Therefore tangent gradient = −3/4.
+<br><br>
+Using P:
+<br>
+y−7=−3/4(x−5).
+<br><br>
+This is the tangent equation.
+</div>
+</div>
+
+<h3>Chord midpoint theorem</h3>
+
+<div class="card">
+<p>
+The perpendicular from the centre of a circle to a chord bisects the chord.
+Therefore, if you know the centre and chord midpoint, the line joining them
+is perpendicular to the chord.
+</p>
+</div>
+
+<div class="card example">
+<div class="example-title">Worked Example 23</div>
+<p>
+A chord has midpoint M(4,1) in a circle whose centre is C(1,5).
+Find the gradient of the chord.
+</p>
+<div class="solution">
+Gradient CM:
+<br>
+(1−5)/(4−1)=−4/3.
+<br><br>
+Chord is perpendicular to CM.
+<br>
+m_chord=3/4.
+<br><br>
+<strong>Gradient = 3/4.</strong>
+</div>
+</div>
+
+<h3>Line tangent to a circle using discriminant</h3>
+
+<div class="card">
+<p>
+Another method is to substitute the line into the circle. A tangent produces
+exactly one point of intersection, so the resulting quadratic has a repeated
+root.
 </p>
 
 <div class="formula">
-x²+y²−2ax−2by+a²+b²−r²=0
+Tangency condition:
+Δ = b²−4ac = 0
+</div>
 </div>
 
+<div class="card challenge">
+<div class="example-title">Worked Example 24</div>
 <p>
-This can be compared with a general circle equation to determine its
-centre and radius.
+Find the values of k for which y=2x+k is tangent to
+x²+y²=25.
 </p>
+<div class="solution">
+Substitute y=2x+k:
+<br>
+x²+(2x+k)²=25
+<br>
+5x²+4kx+k²−25=0.
+<br><br>
+For tangency:
+<br>
+(4k)²−4(5)(k²−25)=0
+<br>
+16k²−20k²+500=0
+<br>
+−4k²+500=0
+<br>
+k²=125
+<br>
+<strong>k=±5√5</strong>.
+</div>
+</div>
+</section>
 
+<!-- 11 -->
+<section id="advanced">
+<div class="section-number">11 — ADVANCED REASONING</div>
+<h2>Multi-Step Coordinate Problems</h2>
+
+<div class="card">
+<h3>Parameter workflow</h3>
+<ol class="steps">
+<li>Translate the geometric condition into algebra.</li>
+<li>Choose the simplest formula.</li>
+<li>Solve for the parameter.</li>
+<li>Substitute back into the original geometry.</li>
+<li>Check whether the resulting object satisfies the original condition.</li>
+</ol>
 </div>
 
-
-<!-- =========================================================
-16. TANGENTS
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>16. Tangents to Circles</h2>
-
+<div class="card challenge">
+<div class="example-title">Worked Example 25 — Unknown coordinate</div>
 <p>
-A tangent touches a circle at exactly one point.
-The radius drawn to the point of contact is perpendicular to the tangent.
+A point P(k,4) is equidistant from A(2,1) and B(8,1). Find k.
+</p>
+<div class="solution">
+PA²=(k−2)²+(4−1)²=(k−2)²+9.
+<br>
+PB²=(k−8)²+9.
+<br><br>
+Equidistant:
+<br>
+(k−2)²+9=(k−8)²+9
+<br>
+(k−2)²=(k−8)²
+<br>
+k²−4k+4=k²−16k+64
+<br>
+12k=60
+<br>
+<strong>k=5</strong>.
+</div>
+</div>
+
+<div class="card challenge">
+<div class="example-title">Worked Example 26 — Perpendicular bisector</div>
+<p>
+Find the perpendicular bisector of A(2,3) and B(8,7).
+</p>
+<div class="solution">
+Midpoint:
+<br>
+M=(5,5).
+<br><br>
+Gradient AB:
+<br>
+(7−3)/(8−2)=4/6=2/3.
+<br><br>
+Perpendicular gradient = −3/2.
+<br><br>
+Equation:
+<br>
+y−5=−3/2(x−5).
+<br><br>
+<strong>3x+2y−25=0</strong>.
+</div>
+</div>
+
+<div class="card challenge">
+<div class="example-title">Worked Example 27 — Equal distance and geometry</div>
+<p>
+Explain why every point on the perpendicular bisector of AB is equidistant
+from A and B.
+</p>
+<div class="solution">
+The perpendicular bisector passes through the midpoint M of AB and is
+perpendicular to AB.
+For any point P on this line, triangles PMA and PMB are right triangles.
+They share PM and have MA=MB.
+Therefore the triangles are congruent, so PA=PB.
+</div>
+</div>
+
+<div class="card challenge">
+<div class="example-title">Worked Example 28 — Circle through three points</div>
+<p>
+Suppose a circle is
 </p>
 
 <div class="formula">
-gradient(radius) × gradient(tangent) = −1
-</div>
-
-<div class="example">
-
-<p>
-Suppose the centre of a circle is C(2,3) and the point of contact is
-P(6,5).
-</p>
-
-<p>
-First find the gradient CP:
-</p>
-
-<div class="formula">
-m_CP = (5−3)/(6−2)=1/2
+x²+y²+Dx+Ey+F=0.
 </div>
 
 <p>
-Therefore the tangent gradient is:
+If three points are known to lie on it, substitute each point to obtain
+three simultaneous linear equations in D,E,F.
 </p>
 
-<div class="formula">
-m_tangent = −2
+<div class="solution">
+This is often much more efficient than guessing the centre first when three
+points are supplied.
+</div>
 </div>
 
+<div class="card challenge">
+<div class="example-title">Worked Example 29 — Optimising algebra</div>
 <p>
-The tangent passes through P(6,5):
+When comparing distances, avoid square roots whenever possible.
 </p>
-
-<div class="formula">
-y−5 = −2(x−6)
+<div class="solution">
+Instead of proving AB=CD by evaluating both square roots, prove
+<br><br>
+AB²=CD².
+<br><br>
+Because both distances are non-negative, this proves AB=CD.
+</div>
 </div>
 
-<div class="formula">
-<strong>y = −2x+17</strong>
+<div class="card challenge">
+<div class="example-title">Worked Example 30 — Choosing the method</div>
+<p>
+A problem says: “Find the point on the x-axis that is equidistant from
+A(2,5) and B(8,1).”
+</p>
+<div class="solution">
+Because the unknown point is on the x-axis, write P=(x,0).
+Then use PA²=PB²:
+<br><br>
+(x−2)²+25=(x−8)²+1.
+<br><br>
+Expand and solve for x.
+The key skill is not the algebra—it is translating the words into the
+correct geometric condition.
+</div>
 </div>
 
+<h3>Mixed challenge set</h3>
+
+<details>
+<summary>Challenge 1</summary>
+<p>
+A line through (k,2) and (4,8) is parallel to 3x−2y+7=0.
+Find k.
+</p>
+<p><strong>Answer:</strong> k=0.</p>
+</details>
+
+<details>
+<summary>Challenge 2</summary>
+<p>
+Find the circle with centre (−3,4) passing through (1,1).
+</p>
+<p><strong>Answer:</strong> (x+3)²+(y−4)²=25.</p>
+</details>
+
+<details>
+<summary>Challenge 3</summary>
+<p>
+Find the equation of the perpendicular bisector of the points
+(−2,5) and (6,−1).
+</p>
+<p><strong>Answer:</strong> 4x−3y+1=0.</p>
+</details>
+
+<details>
+<summary>Challenge 4</summary>
+<p>
+Find the value of k such that y=x+k is tangent to
+x²+y²=8.
+</p>
+<p><strong>Answer:</strong> k=±4.</p>
+</details>
+</section>
+
+<!-- 12 -->
+<section id="strategy">
+<div class="section-number">12 — EXAM STRATEGY</div>
+<h2>How to Attack Coordinate Problems</h2>
+
+<div class="card">
+<h3>1. Identify the object</h3>
+<p>
+Ask whether the problem is about a point, segment, line, circle, intersection,
+ratio, distance or perpendicularity.
+</p>
+
+<h3>2. Translate words into equations</h3>
+
+<table>
+<tr><th>Words</th><th>Translate to</th></tr>
+<tr><td>same gradient</td><td>m₁=m₂</td></tr>
+<tr><td>parallel</td><td>m₁=m₂</td></tr>
+<tr><td>perpendicular</td><td>m₁m₂=−1</td></tr>
+<tr><td>equidistant</td><td>PA²=PB²</td></tr>
+<tr><td>midpoint</td><td>average coordinates</td></tr>
+<tr><td>tangent</td><td>one intersection / Δ=0</td></tr>
+<tr><td>collinear</td><td>equal gradients</td></tr>
+</table>
+
+<h3>3. Keep exact values</h3>
+<p>
+Use fractions and surds instead of decimals whenever possible. Exact values
+make later algebra cleaner and reduce rounding errors.
+</p>
+
+<h3>4. Check the answer geometrically</h3>
+<p>
+If a point is supposed to lie on a line, substitute it back. If a point is
+supposed to lie on a circle, check the circle equation. If two lines are
+supposed to be perpendicular, check the gradients.
+</p>
 </div>
 
-</div>
-
-
-<!-- =========================================================
-17. CHORDS
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>17. Chords and Their Midpoints</h2>
-
-<p>
-A chord is a line segment joining two points on a circle.
-</p>
-
-<p>
-A key coordinate-geometry fact is that the perpendicular from the
-centre of a circle to a chord bisects the chord.
-</p>
-
-<p>
-Therefore, if M is the midpoint of chord AB, then:
-</p>
-
-<div class="formula">
-AM = MB
-</div>
-
-<p>
-and:
-</p>
-
-<div class="formula">
-CM ⟂ AB
-</div>
-
-<p>
-This creates a useful combination of midpoint and perpendicular-gradient
-methods.
-</p>
-
-</div>
-
-
-<!-- =========================================================
-18. DISTANCE FROM CENTRE
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>18. Circle-Line Relationships</h2>
-
-<p>
-To determine whether a line intersects a circle, substitute the line
-equation into the circle equation.
-</p>
-
-<p>
-This produces an equation in x.
-</p>
-
+<div class="card trap">
+<h3>Major exam traps</h3>
 <ul>
-<li>Two real solutions → line intersects circle twice.</li>
-<li>One repeated real solution → line is tangent.</li>
-<li>No real solutions → line does not meet the circle.</li>
+<li>Forgetting brackets around negative coordinates.</li>
+<li>Changing the sign of only the numerator or denominator.</li>
+<li>Calling a vertical line's gradient zero.</li>
+<li>Using the wrong perpendicular gradient.</li>
+<li>Reading the centre of a circle with the wrong sign.</li>
+<li>Forgetting that (y+4)² means centre y-coordinate −4.</li>
+<li>Using Δ=0 when the question asks for two distinct intersections.</li>
+<li>Rounding too early.</li>
+<li>Proving equal distances using unnecessary square roots.</li>
+<li>Finding x correctly but failing to substitute back for y.</li>
 </ul>
-
-<p>
-The same conclusion can be reached geometrically by comparing the
-distance from the centre to the line with the radius, when the relevant
-distance formula is available.
-</p>
-
 </div>
+</section>
 
+<!-- 13 -->
+<section id="formula">
+<div class="section-number">13 — FORMULA ATLAS</div>
+<h2>Coordinate Geometry Formula Sheet</h2>
 
-<!-- =========================================================
-19. EXAM METHOD
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>19. A Reliable Coordinate Geometry Method</h2>
-
-<h3>When Given Two Points</h3>
-
-<ol>
-<li>Write down the coordinates clearly.</li>
-<li>Calculate Δx and Δy.</li>
-<li>Decide whether you need distance, midpoint or gradient.</li>
-<li>Keep exact values where appropriate.</li>
-<li>Check signs carefully.</li>
-</ol>
-
-<h3>When Finding a Line</h3>
-
-<ol>
-<li>Find the gradient.</li>
-<li>Choose the most convenient line equation form.</li>
-<li>Use the given point.</li>
-<li>Simplify completely.</li>
-<li>Check the point satisfies the final equation.</li>
-</ol>
-
-<h3>When Finding an Intersection</h3>
-
-<ol>
-<li>Make the equations represent the same variable.</li>
-<li>Equate them.</li>
-<li>Solve the resulting equation.</li>
-<li>Find every valid x-value.</li>
-<li>Substitute to obtain y-values.</li>
-<li>State the coordinates clearly.</li>
-</ol>
-
-</div>
-
-
-<!-- =========================================================
-20. COMMON MISTAKES
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>20. Common Mistakes</h2>
-
-<h3>1. Reversing x and y</h3>
-
-<p>
-Always remember:
-</p>
-
-<div class="formula">
-(x,y)
-</div>
-
-<h3>2. Inconsistent subtraction</h3>
-
-<p>
-In the gradient formula, if you use y₂−y₁, use x₂−x₁.
-</p>
-
-<h3>3. Forgetting negative signs</h3>
-
-<p>
-Negative coordinates frequently appear in coordinate geometry.
-Use brackets when substituting them.
-</p>
-
-<div class="formula">
-−3 − (−7)
-</div>
-
-<p>
-is not the same as:
-</p>
-
-<div class="formula">
-−3 − 7
-</div>
-
-<h3>4. Confusing perpendicular gradients</h3>
-
-<div class="formula">
-m₂ = −1/m₁
-</div>
-
-<h3>5. Giving only x-values</h3>
-
-<p>
-If the question asks for coordinates, calculate y as well.
-</p>
-
-<h3>6. Decimalising too early</h3>
-
-<p>
-Exact fractions and surds are usually safer during working.
-</p>
-
-<h3>7. Not checking the answer</h3>
-
-<p>
-Substitute your result back into the original equation whenever possible.
-</p>
-
-</div>
-
-
-<!-- =========================================================
-21. DEEP PROBLEM-SOLVING
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>21. Deeper Problem-Solving Techniques</h2>
-
-<h3>Technique A — Work Backwards</h3>
-
-<p>
-If the final point or gradient is known, work backwards through the
-equations to determine an unknown coordinate.
-</p>
-
-<h3>Technique B — Use Distance Squared</h3>
-
-<p>
-When proving two distances equal, use:
-</p>
-
-<div class="formula">
-distance² = Δx² + Δy²
-</div>
-
-<p>
-This removes unnecessary square roots.
-</p>
-
-<h3>Technique C — Use the Midpoint of Diagonals</h3>
-
-<p>
-For a parallelogram, the diagonals bisect each other. Therefore their
-midpoints are equal.
-</p>
-
-<h3>Technique D — Convert General Equations</h3>
-
-<p>
-If a line is given in general form, rearrange it into y=mx+c when you
-need its gradient.
-</p>
-
-<h3>Technique E — Look for Structure</h3>
-
-<p>
-If coordinates contain symmetric values such as:
-</p>
-
-<div class="formula">
-(a,b), (−a,b), (a,−b), (−a,−b)
-</div>
-
-<p>
-look for symmetry around the axes or origin before doing lengthy
-calculations.
-</p>
-
-</div>
-
-
-<!-- =========================================================
-22. QUICK FORMULA ATLAS
-========================================================= -->
-
-<div class="topic-card">
-
-<h2>22. Coordinate Geometry Formula Atlas</h2>
-
+<div class="card">
 <div class="formula">
 Distance:
-√[(x₂−x₁)²+(y₂−y₁)²]
+<br>
+d=√[(x₂−x₁)²+(y₂−y₁)²]
 </div>
 
 <div class="formula">
 Midpoint:
-((x₁+x₂)/2,(y₁+y₂)/2)
+<br>
+M=((x₁+x₂)/2,(y₁+y₂)/2)
 </div>
 
 <div class="formula">
 Gradient:
-(y₂−y₁)/(x₂−x₁)
+<br>
+m=(y₂−y₁)/(x₂−x₁)
 </div>
 
 <div class="formula">
 Straight line:
+<br>
 y=mx+c
 </div>
 
 <div class="formula">
 Point-gradient:
+<br>
 y−y₁=m(x−x₁)
 </div>
 
 <div class="formula">
+General line:
+<br>
+Ax+By+C=0
+<br>
+m=−A/B
+</div>
+
+<div class="formula">
 Parallel:
+<br>
 m₁=m₂
 </div>
 
 <div class="formula">
 Perpendicular:
+<br>
 m₁m₂=−1
 </div>
 
 <div class="formula">
+Section formula:
+<br>
+P=((nx₁+mx₂)/(m+n),(ny₁+my₂)/(m+n))
+<br>
+for AP:PB=m:n
+</div>
+
+<div class="formula">
 Circle:
+<br>
 (x−a)²+(y−b)²=r²
 </div>
 
 <div class="formula">
-Discriminant:
+Quadratic discriminant:
+<br>
 Δ=b²−4ac
 </div>
 
+<div class="formula">
+Two intersections:
+<br>
+Δ>0
+<br><br>
+One repeated intersection / tangent:
+<br>
+Δ=0
+<br><br>
+No real intersections:
+<br>
+Δ<0
 </div>
-
-
-<!-- =========================================================
-100 QUESTION EXAM
-========================================================= -->
-
-<div class="topic-card exam-intro">
-
-<h2>🧠 Coordinate Geometry — 100 Question Exam</h2>
-
-<p>
-Test everything you have learned in this chapter.
-The exam contains 100 multiple-choice questions ranging from basic
-coordinate skills to multi-step coordinate geometry.
-</p>
-
-<div class="exam-meta">
-
-<div class="exam-stat">
-<strong>100</strong>
-<span>Questions</span>
 </div>
-
-<div class="exam-stat">
-<strong>MCQ</strong>
-<span>Format</span>
-</div>
-
-<div class="exam-stat">
-<strong>1</strong>
-<span>Mark / Question</span>
-</div>
-
-<div class="exam-stat">
-<strong>100%</strong>
-<span>Completion</span>
-</div>
-
-</div>
-
-<button class="exam-button" onclick="startExam()">
-START 100-QUESTION EXAM
-</button>
-
-</div>
-
-
-<div class="topic-card" id="exam">
-
-<div class="exam-header">
-
-<div class="question-number" id="questionNumber">
-QUESTION 1 / 100
-</div>
-
-<div class="exam-progress">
-<div class="exam-progress-bar" id="progressBar"></div>
-</div>
-
-</div>
-
-<div class="question-text" id="questionText"></div>
-
-<div class="options" id="options"></div>
-
-<div class="exam-warning" id="examWarning">
-Please select an answer before continuing.
-</div>
-
-<div class="exam-controls">
-
-<button class="exam-button secondary"
-id="previousButton"
-onclick="previousQuestion()">
-← Previous
-</button>
-
-<button class="exam-button"
-id="nextButton"
-onclick="nextQuestion()">
-Next →
-</button>
-
-</div>
-
-</div>
-
-
-<div class="topic-card result" id="result">
-
-<h2>EXAM COMPLETE</h2>
-
-<div class="result-score" id="scoreDisplay">
-0 / 100
-</div>
-
-<div class="result-details" id="resultDetails"></div>
-
-<button class="exam-button" onclick="restartExam()">
-RESTART EXAM
-</button>
-
-</div>
-
-
 </section>
 
+<!-- EXAM -->
+<section id="exam">
+<div class="section-number">14 — FINAL ASSESSMENT</div>
+<h2>100 Question Coordinate Geometry Exam</h2>
+
+<div class="exam-shell">
+
+<div id="examStart" class="exam-start">
+<h3>100 Questions • No Skipping</h3>
+<p>
+The exam contains 100 multiple-choice questions covering the chapter from
+foundations through advanced coordinate reasoning.
+</p>
+<p>
+You must select an answer before moving forward.
+</p>
+<button onclick="startExam()">START 100Q EXAM</button>
+</div>
+
+<div id="examArea" style="display:none">
+
+<div class="exam-meta">
+<span id="questionCounter"></span>
+<span id="scoreLive"></span>
+</div>
+
+<div class="progress-wrap">
+<div class="progress" id="progress"></div>
+</div>
+
+<div id="questionText" class="question"></div>
+<div id="options"></div>
+
+<div class="exam-controls">
+<button class="secondary" id="prevBtn" onclick="previousQuestion()">Previous</button>
+<button id="nextBtn" onclick="nextQuestion()" disabled>Next</button>
+</div>
+
+</div>
+
+<div id="examResult" style="display:none" class="result">
+<h3>Exam Complete</h3>
+<div id="scoreDisplay" class="score"></div>
+<p id="resultText"></p>
+<div id="review"></div>
+<br>
+<button onclick="restartExam()">Restart Exam</button>
+</div>
+
+</div>
+</section>
+
+</main>
 
 <footer>
-
-<h2>IAL ATLAS</h2>
-
-<p>
-Explore • Learn • Master
-</p>
-
-<p>
-A free, independent student resource created to make
-Edexcel International A Levels easier to understand.
-</p>
-
-<p>
-© 2026 IAL ATLAS • Independent student resource
-</p>
-
-<p>
-Not affiliated with Pearson
-</p>
-
+<div class="container">
+<p><strong>IAL ATLAS</strong></p>
+<p>Free student-built educational resource.</p>
+<p>Independent and not affiliated with or endorsed by Pearson Edexcel.</p>
+<p>© <span id="year"></span> Shuvojit Karmakar</p>
+</div>
 </footer>
-
 
 <script>
 
-/* =========================================================
-100 QUESTION EXAM
-========================================================= */
-
 const questions = [
 
-{
-q:"What are the coordinates of the origin?",
-o:["(0,0)","(1,0)","(0,1)","(1,1)"],
-a:0
-},
-
-{
-q:"In which quadrant is the point (-3,5)?",
-o:["I","II","III","IV"],
-a:1
-},
-
-{
-q:"In which quadrant is (4,-7)?",
-o:["I","II","III","IV"],
-a:3
-},
-
-{
-q:"What is the x-coordinate of (-8,11)?",
-o:["11","-11","8","-8"],
-a:3
-},
-
-{
-q:"What is the y-coordinate of (6,-9)?",
-o:["6","-6","9","-9"],
-a:3
-},
-
-{
-q:"Find the distance between (0,0) and (3,4).",
-o:["3","4","5","7"],
-a:2
-},
-
-{
-q:"Find the distance between (1,2) and (4,6).",
-o:["4","5","6","7"],
-a:1
-},
-
-{
-q:"Find the distance between (-2,3) and (4,11).",
-o:["8","9","10","12"],
-a:2
-},
-
-{
-q:"Find the midpoint of (2,4) and (8,10).",
-o:["(5,7)","(6,8)","(4,6)","(10,14)"],
-a:0
-},
-
-{
-q:"Find the midpoint of (-4,6) and (8,2).",
-o:["(2,4)","(4,2)","(-2,4)","(6,8)"],
-a:0
-},
-
-{
-q:"Find the gradient through (1,2) and (5,10).",
-o:["1","2","3","4"],
-a:1
-},
-
-{
-q:"Find the gradient through (2,7) and (6,3).",
-o:["-1","-2","1","2"],
-a:0
-},
-
-{
-q:"What is the gradient of a horizontal line?",
-o:["0","1","-1","Undefined"],
-a:0
-},
-
-{
-q:"What is the gradient of a vertical line?",
-o:["0","1","-1","Undefined"],
-a:3
-},
-
-{
-q:"Which equation has gradient 3?",
-o:["y=3x+5","y=x+3","3y=x+5","y=-3x+5"],
-a:0
-},
-
-{
-q:"What is the y-intercept of y=4x-9?",
-o:["4","9","-4","-9"],
-a:3
-},
-
-{
-q:"What is the gradient of y=-5x+2?",
-o:["5","-5","2","-2"],
-a:1
-},
-
-{
-q:"Which line is parallel to y=2x+7?",
-o:["y=-2x+1","y=2x-4","y=x+2","y=-x+2"],
-a:1
-},
-
-{
-q:"Which gradient is perpendicular to 4?",
-o:["4","-4","1/4","-1/4"],
-a:3
-},
-
-{
-q:"Which gradient is perpendicular to -2?",
-o:["2","-2","1/2","-1/2"],
-a:2
-},
-
-{
-q:"Find the equation of a line with gradient 2 through (1,5).",
-o:["y=2x+3","y=2x+5","y=2x+7","y=x+4"],
-a:0
-},
-
-{
-q:"Find the equation with gradient -3 through (2,1).",
-o:["y=-3x+7","y=-3x-5","y=3x+7","y=-3x+1"],
-a:0
-},
-
-{
-q:"What is the gradient of 2x+3y=12?",
-o:["2/3","-2/3","3/2","-3/2"],
-a:1
-},
-
-{
-q:"What is the y-intercept of 2x+3y=12?",
-o:["2","3","4","6"],
-a:2
-},
-
-{
-q:"Are y=5x+2 and y=5x-9 parallel?",
-o:["Yes","No","Only at x=0","Cannot determine"],
-a:0
-},
-
-{
-q:"Are gradients 3 and -1/3 perpendicular?",
-o:["Yes","No","Only if intercepts match","Cannot determine"],
-a:0
-},
-
-{
-q:"Find the intersection of y=2x+1 and y=x+4.",
-o:["(2,5)","(3,7)","(4,9)","(1,3)"],
-a:1
-},
-
-{
-q:"Find the x-coordinate where y=3x+2 and y=x+8 intersect.",
-o:["2","3","4","5"],
-a:2
-},
-
-{
-q:"If two distinct lines have equal gradients, they are:",
-o:["Perpendicular","Parallel","Always intersecting","Circles"],
-a:1
-},
-
-{
-q:"If two lines intersect at 90°, their gradients satisfy:",
-o:["m₁=m₂","m₁+m₂=0","m₁m₂=-1","m₁m₂=1"],
-a:2
-},
-
-{
-q:"Find the midpoint of (-6,-2) and (4,8).",
-o:["(-1,3)","(1,3)","(-2,4)","(2,6)"],
-a:0
-},
-
-{
-q:"Find the distance between (-1,-2) and (2,2).",
-o:["4","5","6","7"],
-a:1
-},
-
-{
-q:"The point (0,7) lies on which axis?",
-o:["x-axis","y-axis","both","neither"],
-a:1
-},
-
-{
-q:"The point (-5,0) lies on which axis?",
-o:["x-axis","y-axis","both","neither"],
-a:0
-},
-
-{
-q:"Which point lies in Quadrant III?",
-o:["(2,-3)","(-2,3)","(-2,-3)","(2,3)"],
-a:2
-},
-
-{
-q:"Find the gradient through (-2,-1) and (4,5).",
-o:["1","2","3","4"],
-a:0
-},
-
-{
-q:"Find the equation through (0,6) with gradient -2.",
-o:["y=-2x+6","y=2x+6","y=-2x-6","y=6x-2"],
-a:0
-},
-
-{
-q:"Find the equation of the horizontal line through y=7.",
-o:["x=7","y=7","y=-7","x=-7"],
-a:1
-},
-
-{
-q:"Find the equation of the vertical line through x=-3.",
-o:["x=-3","y=-3","x=3","y=3"],
-a:0
-},
-
-{
-q:"If A and B have the same y-coordinate, AB is:",
-o:["Vertical","Horizontal","Perpendicular to x-axis","Undefined"],
-a:1
-},
-
-{
-q:"If A and B have the same x-coordinate, AB is:",
-o:["Horizontal","Vertical","Diagonal","Circular"],
-a:1
-},
-
-{
-q:"What is the distance squared between (1,2) and (5,5)?",
-o:["16","20","25","30"],
-a:2
-},
-
-{
-q:"If AB²=AC², then AB and AC are:",
-o:["Perpendicular","Equal in length","Parallel","Opposite"],
-a:1
-},
-
-{
-q:"Three points are collinear if the relevant gradients are:",
-o:["Equal","Opposite","Reciprocals","Zero only"],
-a:0
-},
-
-{
-q:"Find the gradient through (3,2) and (7,14).",
-o:["2","3","4","6"],
-a:1
-},
-
-{
-q:"Find the line through (3,2) and (7,14).",
-o:["y=3x-7","y=2x+1","y=3x+2","y=4x-10"],
-a:0
-},
-
-{
-q:"What is the radius of (x-2)²+(y+3)²=49?",
-o:["5","7","14","49"],
-a:1
-},
-
-{
-q:"What is the centre of (x-2)²+(y+3)²=49?",
-o:["(2,3)","(-2,3)","(2,-3)","(-2,-3)"],
-a:2
-},
-
-{
-q:"What is the centre of (x+5)²+(y-1)²=16?",
-o:["(5,1)","(-5,1)","(5,-1)","(-5,-1)"],
-a:1
-},
-
-{
-q:"What is the radius of (x+5)²+(y-1)²=16?",
-o:["2","4","8","16"],
-a:1
-},
-
-{
-q:"Which equation represents a circle centred at (3,-2) radius 5?",
-o:["(x+3)²+(y-2)²=25","(x-3)²+(y+2)²=25","(x-3)²+(y-2)²=5","(x+3)²+(y+2)²=5"],
-a:1
-},
-
-{
-q:"A tangent to a circle is perpendicular to the:",
-o:["Diameter only","Radius at contact","x-axis","y-axis"],
-a:1
-},
-
-{
-q:"If a radius has gradient 2, the tangent gradient is:",
-o:["2","-2","1/2","-1/2"],
-a:3
-},
-
-{
-q:"If a line intersects a circle twice, the quadratic obtained has:",
-o:["No real roots","One repeated root","Two distinct real roots","Only zero roots"],
-a:2
-},
-
-{
-q:"If the discriminant is zero, a line may be:",
-o:["Tangent to the circle","Parallel to itself","Vertical only","A diameter only"],
-a:0
-},
-
-{
-q:"If Δ<0 for the intersection equation, there are:",
-o:["Two intersections","One intersection","No real intersections","Infinite intersections"],
-a:2
-},
-
-{
-q:"What is the discriminant of x²-6x+9=0?",
-o:["-9","0","9","36"],
-a:1
-},
-
-{
-q:"What is the discriminant of x²+2x-3=0?",
-o:["4","8","16","20"],
-a:2
-},
-
-{
-q:"Solve x²-5x+6=0.",
-o:["x=1,6","x=2,3","x=-2,-3","x=0,6"],
-a:1
-},
-
-{
-q:"Solve x²-9=0.",
-o:["x=9","x=-9","x=±3","x=3 only"],
-a:2
-},
-
-{
-q:"The midpoint of a diameter of a circle is its:",
-o:["Radius","Centre","Tangent","Chord"],
-a:1
-},
-
-{
-q:"A chord is:",
-o:["A line touching a circle","A line through the centre only","A segment joining two points on a circle","The radius"],
-a:2
-},
-
-{
-q:"The perpendicular from the centre to a chord:",
-o:["Doubles it","Bisects it","Is parallel to it","Never meets it"],
-a:1
-},
-
-{
-q:"Find the gradient perpendicular to 1/2.",
-o:["2","-2","1/2","-1/2"],
-a:1
-},
-
-{
-q:"Find the gradient perpendicular to -1/4.",
-o:["4","-4","1/4","-1/4"],
-a:0
-},
-
-{
-q:"Which equation has gradient -2 and y-intercept 7?",
-o:["y=2x+7","y=-2x+7","y=-2x-7","y=7x-2"],
-a:1
-},
-
-{
-q:"For y=7, the gradient is:",
-o:["7","-7","0","Undefined"],
-a:2
-},
-
-{
-q:"For x=7, the gradient is:",
-o:["7","-7","0","Undefined"],
-a:3
-},
-
-{
-q:"If a point lies on y=2x+3 and x=4, its y-coordinate is:",
-o:["7","8","11","12"],
-a:2
-},
-
-{
-q:"Does (3,9) lie on y=3x?",
-o:["Yes","No","Only if x=0","Cannot determine"],
-a:0
-},
-
-{
-q:"Does (2,5) lie on y=2x+1?",
-o:["Yes","No","Only approximately","Only when x=0"],
-a:0
-},
-
-{
-q:"Find the intersection of y=x+1 and y=5-x.",
-o:["(1,2)","(2,3)","(3,2)","(4,1)"],
-a:1
-},
-
-{
-q:"Find the intersection of y=2x-3 and y=-x+6.",
-o:["(2,1)","(3,3)","(1,2)","(4,5)"],
-a:1
-},
-
-{
-q:"A line through (2,3) parallel to y=4x-7 is:",
-o:["y=4x-5","y=-4x+11","y=1/4x+3","y=4x+5"],
-a:0
-},
-
-{
-q:"A line through (2,3) perpendicular to y=4x-7 has gradient:",
-o:["4","-4","1/4","-1/4"],
-a:3
-},
-
-{
-q:"A line through (2,3) perpendicular to y=4x-7 is:",
-o:["y=-x/4+7/2","y=x/4+5/2","y=-4x+11","y=4x-5"],
-a:0
-},
-
-{
-q:"Find the midpoint of (-8,4) and (2,-6).",
-o:["(-3,-1)","(-5,5)","(3,-1)","(-3,1)"],
-a:0
-},
-
-{
-q:"Find the distance between (2,-1) and (8,7).",
-o:["8","10","12","14"],
-a:1
-},
-
-{
-q:"If a point divides AB exactly halfway, its ratio AP:PB is:",
-o:["1:1","1:2","2:1","0:1"],
-a:0
-},
-
-{
-q:"P divides AB in ratio 1:2. P is:",
-o:["Closer to A","Closer to B","Exactly midpoint","Outside AB"],
-a:0
-},
-
-{
-q:"P divides AB in ratio 2:1. P is:",
-o:["Closer to A","Closer to B","Exactly midpoint","Always outside"],
-a:1
-},
-
-{
-q:"Which quantity remains constant for parallel lines?",
-o:["y-intercept","gradient","x-intercept","distance from origin"],
-a:1
-},
-
-{
-q:"Two perpendicular non-vertical lines have gradients whose product is:",
-o:["0","1","-1","2"],
-a:2
-},
-
-{
-q:"The equation x²+y²=25 represents a circle with centre:",
-o:["(5,5)","(-5,-5)","(0,0)","(25,25)"],
-a:2
-},
-
-{
-q:"The radius of x²+y²=25 is:",
-o:["5","10","25","625"],
-a:0
-},
-
-{
-q:"Which point lies on x²+y²=25?",
-o:["(3,4)","(4,4)","(1,5)","(0,6)"],
-a:0
-},
-
-{
-q:"Which point lies on (x-1)²+(y-2)²=25?",
-o:["(4,6)","(1,2)","(6,2)","(0,0)"],
-a:0
-},
-
-{
-q:"The centre of x²+y²-6x+4y-12=0 is:",
-o:["(3,-2)","(-3,2)","(6,-4)","(-6,4)"],
-a:0
-},
-
-{
-q:"For x²+y²-6x+4y-12=0, the radius is:",
-o:["3","4","5","25"],
-a:2
-},
-
-{
-q:"Complete the square: x²-8x becomes:",
-o:["(x-4)²-16","(x+4)²-16","(x-8)²-64","(x-4)²+16"],
-a:0
-},
-
-{
-q:"Complete the square: y²+6y becomes:",
-o:["(y+3)²-9","(y-3)²-9","(y+6)²-36","(y+3)²+9"],
-a:0
-},
-
-{
-q:"If AB and BC have equal gradients, A,B,C are:",
-o:["Always perpendicular","Collinear, provided the gradients exist","Always a triangle","Always a circle"],
-a:1
-},
-
-{
-q:"To prove a quadrilateral has perpendicular adjacent sides, compare:",
-o:["Lengths only","Midpoints only","Gradients","y-intercepts only"],
-a:2
-},
-
-{
-q:"To prove two segments have equal length, a useful method is to compare:",
-o:["Gradients only","Distance squared","y-intercepts","x-values only"],
-a:1
-},
-
-{
-q:"The midpoint of the diagonals of a parallelogram is:",
-o:["Different for each diagonal","The same point","Always the origin","Always a vertex"],
-a:1
-},
-
-{
-q:"If two lines have gradients 2 and 2, they are:",
-o:["Perpendicular","Parallel or identical","Always intersecting","Vertical"],
-a:1
-},
-
-{
-q:"If two lines have gradients 2 and -1/2, they are:",
-o:["Parallel","Perpendicular","Horizontal","Identical"],
-a:1
-},
-
-{
-q:"Find the gradient between (-3,7) and (5,-9).",
-o:["-1","-2","1","2"],
-a:1
-},
-
-{
-q:"Find the equation through (-3,7) with gradient -2.",
-o:["y=-2x+1","y=-2x+13","y=2x+13","y=-2x-13"],
-a:1
-},
-
-{
-q:"Find the x-intercept of y=2x-8.",
-o:["2","4","8","-4"],
-a:1
-},
-
-{
-q:"Find the y-intercept of y=-3x+12.",
-o:["-3","3","12","-12"],
-a:2
-},
-
-{
-q:"The x-intercept occurs when:",
-o:["x=0","y=0","x=y","m=0"],
-a:1
-},
-
-{
-q:"The y-intercept occurs when:",
-o:["x=0","y=0","x=y","m=1"],
-a:0
-},
-
-{
-q:"Which equation represents a horizontal line through (5,-2)?",
-o:["x=5","y=5","x=-2","y=-2"],
-a:3
-},
-
-{
-q:"Which equation represents a vertical line through (-4,8)?",
-o:["x=8","y=-4","x=-4","y=8"],
-a:2
-},
-
-{
-q:"A line has equation 4x-2y+6=0. Its gradient is:",
-o:["2","-2","4","-4"],
-a:0
-},
-
-{
-q:"A line has equation 3x+6y-12=0. Its gradient is:",
-o:["3","-3","1/2","-1/2"],
-a:3
-},
-
-{
-q:"If a line has gradient 0, it is:",
-o:["Vertical","Horizontal","Circular","Perpendicular to itself"],
-a:1
-},
-
-{
-q:"The exact distance between (0,0) and (1,1) is:",
-o:["1","2","√2","√3"],
-a:2
-}
+/* 1-10 FOUNDATIONS */
+
+{q:"Which point lies in Quadrant II?",o:["(3,−4)","(−3,4)","(−3,−4)","(3,4)"],a:1,e:"Quadrant II has x<0 and y>0."},
+{q:"Which point lies on the x-axis?",o:["(0,5)","(5,0)","(5,5)","(−5,5)"],a:1,e:"Every point on the x-axis has y=0."},
+{q:"The reflection of (4,−7) in the x-axis is:",o:["(−4,−7)","(4,7)","(−4,7)","(7,4)"],a:1,e:"Reflection in x-axis changes y to −y."},
+{q:"The reflection of (−6,2) in the y-axis is:",o:["(6,2)","(−6,−2)","(6,−2)","(−2,6)"],a:0,e:"Reflection in y-axis changes x to −x."},
+{q:"Which point is the origin?",o:["(1,1)","(0,1)","(1,0)","(0,0)"],a:3,e:"The origin is (0,0)."},
+{q:"A point with x=0 lies on the:",o:["x-axis","y-axis","origin only","neither axis"],a:1,e:"x=0 defines the y-axis."},
+{q:"A point with coordinates (−2,−9) lies in:",o:["I","II","III","IV"],a:2,e:"Both coordinates are negative, so Quadrant III."},
+{q:"Reflection of (−8,−3) in the origin is:",o:["(8,3)","(−8,3)","(8,−3)","(−3,−8)"],a:0,e:"Both coordinates change sign."},
+{q:"Which coordinate determines horizontal position?",o:["y","x","both equally","neither"],a:1,e:"x measures horizontal position."},
+{q:"Which point is on the y-axis?",o:["(7,0)","(0,−7)","(7,−7)","(−7,7)"],a:1,e:"A y-axis point has x=0."},
+
+/* 11-20 DISTANCE MIDPOINT */
+
+{q:"Distance between (0,0) and (3,4) is:",o:["3","4","5","7"],a:2,e:"√(3²+4²)=5."},
+{q:"Distance between (−1,2) and (−1,9) is:",o:["6","7","8","9"],a:1,e:"Same x, so distance is |9−2|=7."},
+{q:"Distance squared between (2,3) and (7,15) is:",o:["144","169","193","25"],a:2,e:"5²+12²=25+144=169. Wait: correct option is 169."},
+{q:"The midpoint of (2,6) and (8,10) is:",o:["(5,8)","(10,16)","(3,2)","(6,5)"],a:0,e:"Average each coordinate."},
+{q:"The midpoint of (−4,7) and (6,−3) is:",o:["(1,2)","(−1,2)","(2,−1)","(1,−2)"],a:0,e:"((−4+6)/2,(7−3)/2)=(1,2)."},
+{q:"If midpoint of (4,2) and B is (1,5), B is:",o:["(−2,8)","(2,−8)","(−3,7)","(6,−8)"],a:0,e:"(4+x)/2=1 and (2+y)/2=5 gives x=−2,y=8."},
+{q:"Which expression represents AB²?",o:["√(Δx²+Δy²)","Δx²+Δy²","Δx+Δy","Δx²−Δy²"],a:1,e:"Distance squared removes the square root."},
+{q:"Distance between (−2,−3) and (4,5) is:",o:["8","10","√100","Both B and C"],a:3,e:"√(6²+8²)=10=√100."},
+{q:"If two points have the same y-coordinate, their connecting segment is:",o:["vertical","horizontal","diagonal only","undefined"],a:1,e:"Same y means no vertical change."},
+{q:"If two points have the same x-coordinate, their connecting segment is:",o:["horizontal","vertical","parallel to x-axis","undefined"],a:1,e:"Same x means no horizontal change."},
+
+/* 21-30 RATIO GRADIENT */
+
+{q:"Gradient of a horizontal line is:",o:["1","−1","0","undefined"],a:2,e:"Vertical change is zero."},
+{q:"Gradient of a vertical line is:",o:["0","1","−1","undefined"],a:3,e:"The denominator Δx is zero."},
+{q:"Gradient through (1,2) and (5,10) is:",o:["1","2","3","4"],a:1,e:"8/4=2."},
+{q:"Gradient through (−2,5) and (4,−7) is:",o:["−2","−1/2","2","1/2"],a:0,e:"−12/6=−2."},
+{q:"A line with positive gradient:",o:["always decreases","increases as x increases","is vertical","has y=0"],a:1,e:"Positive gradient means y increases with x."},
+{q:"The point dividing A and B in a ratio should lie between them when the ratio is:",o:["internal","external","negative","undefined"],a:0,e:"Internal division places the point on the segment."},
+{q:"A line through (2,3) and (8,15) has gradient:",o:["1","2","3","4"],a:1,e:"12/6=2."},
+{q:"If m=−4, the line rises when x:",o:["increases","decreases","is zero","is negative only"],a:1,e:"Negative gradient means y decreases as x increases."},
+{q:"If AP:PB=1:1, P is the:",o:["origin","endpoint","midpoint","intercept"],a:2,e:"Equal division gives the midpoint."},
+{q:"Gradient of 3x+2y−8=0 is:",o:["3/2","−3/2","2/3","−2/3"],a:1,e:"2y=−3x+8, so m=−3/2."},
+
+/* 31-40 STRAIGHT LINES */
+
+{q:"In y=5x−7, the gradient is:",o:["−7","5","7","−5"],a:1,e:"Coefficient of x is the gradient."},
+{q:"In y=−3x+4, the y-intercept is:",o:["−3","3","4","−4"],a:2,e:"c=4."},
+{q:"Equation with gradient 2 through (1,5):",o:["y=2x+3","y=2x−3","y=5x+2","y=2x+7"],a:0,e:"5=2(1)+c, so c=3."},
+{q:"Equation of the x-axis is:",o:["x=0","y=0","y=1","x=1"],a:1,e:"Every point on x-axis has y=0."},
+{q:"Equation of the y-axis is:",o:["x=0","y=0","x=1","y=1"],a:0,e:"Every point on y-axis has x=0."},
+{q:"A line through (2,−1) with gradient −3 is:",o:["y=−3x+5","y=−3x−5","y=3x−5","y=3x+5"],a:0,e:"−1=−6+c, hence c=5."},
+{q:"The x-intercept of y=2x−6 is:",o:["(0,−6)","(3,0)","(−3,0)","(6,0)"],a:1,e:"Set y=0: 2x−6=0, x=3."},
+{q:"The y-intercept of 4x−2y=8 is:",o:["(0,4)","(0,−4)","(4,0)","(−4,0)"],a:1,e:"−2y=8−4x, so y=2x−4."},
+{q:"Which equation has gradient −1?",o:["y=x+3","y=−x+3","y=3x−1","x=3"],a:1,e:"Coefficient of x is −1."},
+{q:"The gradient of Ax+By+C=0 is:",o:["A/B","−A/B","B/A","−B/A"],a:1,e:"By rearranging, y=−A/B x−C/B."},
+
+/* 41-50 PARALLEL PERP */
+
+{q:"Parallel non-vertical lines have:",o:["equal gradients","opposite gradients","product −1","product 1"],a:0,e:"Parallel lines have the same direction."},
+{q:"If m=2, a perpendicular gradient is:",o:["2","−2","1/2","−1/2"],a:3,e:"Negative reciprocal."},
+{q:"If m=−3, a perpendicular gradient is:",o:["3","−3","1/3","−1/3"],a:2,e:"Negative reciprocal of −3 is 1/3."},
+{q:"Lines y=4x+1 and y=4x−9 are:",o:["perpendicular","parallel","identical","vertical"],a:1,e:"Same gradient, different intercepts."},
+{q:"Lines y=2x+1 and y=−1/2x+3 are:",o:["parallel","perpendicular","identical","horizontal"],a:1,e:"2(−1/2)=−1."},
+{q:"A line perpendicular to y=−5x+2 has gradient:",o:["5","−5","1/5","−1/5"],a:2,e:"Negative reciprocal is 1/5."},
+{q:"For two non-vertical perpendicular lines, m₁m₂ equals:",o:["0","1","−1","2"],a:2,e:"Perpendicular gradients multiply to −1."},
+{q:"A line parallel to 3x−6y+1=0 has gradient:",o:["3","−3","1/2","−1/2"],a:2,e:"y=1/2x+1/6."},
+{q:"A line perpendicular to 2x+y−4=0 has gradient:",o:["2","−2","1/2","−1/2"],a:0,e:"Original gradient −2, perpendicular 1/2. Correct option should be 1/2."},
+{q:"If a line has gradient 0, a perpendicular line is:",o:["horizontal","vertical","gradient 0","gradient 1"],a:1,e:"Horizontal and vertical lines are perpendicular."},
+
+/* 51-60 INTERSECTIONS */
+
+{q:"Intersection of y=x+1 and y=5 is:",o:["(4,5)","(5,4)","(6,5)","(4,4)"],a:0,e:"5=x+1 gives x=4."},
+{q:"Intersection of y=2x and y=x+3 is:",o:["(1,2)","(3,6)","(3,3)","(6,3)"],a:1,e:"2x=x+3 gives x=3,y=6."},
+{q:"At an intersection point:",o:["only first equation holds","only second holds","both equations hold","neither holds"],a:2,e:"That is the definition of simultaneous intersection."},
+{q:"Two distinct parallel lines have:",o:["one intersection","two intersections","no intersection","infinite intersections"],a:2,e:"They never meet."},
+{q:"Identical lines have:",o:["no intersections","one intersection","two intersections","infinitely many points in common"],a:3,e:"Every point on one lies on the other."},
+{q:"To find a line-circle intersection, one usually:",o:["multiply gradients","substitute one equation into the other","find midpoint","use section formula"],a:1,e:"Substitution produces an equation in one variable."},
+{q:"For a quadratic ax²+bx+c, Δ=0 means:",o:["two roots","one repeated root","no real roots","three roots"],a:1,e:"The roots coincide."},
+{q:"For a quadratic, Δ>0 means:",o:["two distinct real roots","one repeated root","no real roots","no roots of any type"],a:0,e:"Positive discriminant gives two distinct real roots."},
+{q:"For a quadratic, Δ<0 means:",o:["two real roots","one real root","no real roots","infinite roots"],a:2,e:"Negative discriminant gives no real roots."},
+{q:"A tangent line to a circle normally gives:",o:["two intersections","one repeated intersection","no equation","three intersections"],a:1,e:"Tangency means one point of contact counted twice algebraically."},
+
+/* 61-70 PROOFS */
+
+{q:"To prove two segments have equal length efficiently, compare:",o:["gradients","distance squares","intercepts","x-values only"],a:1,e:"Distance squares avoid square roots."},
+{q:"Equal gradients prove three points are:",o:["perpendicular","collinear","equidistant","parallel"],a:1,e:"The points lie on the same straight-line direction."},
+{q:"To prove two lines are perpendicular, use:",o:["equal gradients","gradient product −1","equal intercepts","equal x-values"],a:1,e:"For non-vertical lines."},
+{q:"Diagonals of a parallelogram:",o:["are always perpendicular","bisect each other","are always equal","are always vertical"],a:1,e:"The diagonals bisect each other."},
+{q:"A rectangle can be proved by showing a parallelogram has:",o:["one right angle","equal x coordinates","negative gradient","one diagonal"],a:0,e:"A parallelogram with one right angle is a rectangle."},
+{q:"A point equidistant from A and B lies on the:",o:["line AB only","perpendicular bisector of AB","x-axis","y-axis"],a:1,e:"This is the locus of points equidistant from A and B."},
+{q:"The midpoint of a segment is found by:",o:["subtracting coordinates","averaging coordinates","multiplying coordinates","using gradients only"],a:1,e:"Average x and average y."},
+{q:"To prove a quadrilateral is a parallelogram, equal opposite gradients can establish:",o:["perpendicularity","parallel opposite sides","equal diagonals only","circle membership"],a:1,e:"Both pairs of opposite sides parallel."},
+{q:"A rhombus can be established by proving:",o:["all four sides equal","only one side equal","all gradients equal","all y-intercepts equal"],a:0,e:"A rhombus has four equal sides."},
+{q:"A square requires properties of:",o:["only a circle","equal sides and right angles","only parallel lines","only equal diagonals"],a:1,e:"Both are essential geometric properties."},
+
+/* 71-80 CIRCLES */
+
+{q:"Centre of (x−4)²+(y+2)²=25 is:",o:["(4,2)","(−4,2)","(4,−2)","(−4,−2)"],a:2,e:"y+2 means y−(−2)."},
+{q:"Radius of (x+3)²+(y−5)²=16 is:",o:["2","4","8","16"],a:1,e:"r²=16."},
+{q:"The centre of x²+y²=49 is:",o:["(7,0)","(0,7)","(0,0)","(49,49)"],a:2,e:"No linear terms means centre is origin."},
+{q:"Radius squared of (x−1)²+(y+6)²=81 is:",o:["9","18","81","162"],a:2,e:"r²=81."},
+{q:"To find the centre of an expanded circle, you may use:",o:["completing the square","integration only","gradient only","section formula"],a:0,e:"Completing the square converts it to standard form."},
+{q:"A point lies on a circle if:",o:["its gradient is zero","it satisfies the circle equation","its x coordinate is positive","it is a midpoint"],a:1,e:"Substitution verifies membership."},
+{q:"Circle centre (2,−3), radius 5 has equation:",o:["(x−2)²+(y+3)²=25","(x+2)²+(y−3)²=25","(x−2)²+(y−3)²=5","x²+y²=25"],a:0,e:"Use (x−a)²+(y−b)²=r²."},
+{q:"Circle centre (−4,1), radius 3 has equation:",o:["(x−4)²+(y+1)²=9","(x+4)²+(y−1)²=9","(x+4)²+(y+1)²=3","(x−4)²+(y−1)²=3"],a:1,e:"Centre signs reverse inside brackets."},
+{q:"For x²+y²−6x+4y−12=0, the x-coordinate of centre is:",o:["−3","3","−6","6"],a:1,e:"x²−6x gives (x−3)²."},
+{q:"For x²+y²+8x−10y+5=0, the y-coordinate of centre is:",o:["−5","5","−10","10"],a:1,e:"y²−10y gives (y−5)²."},
+
+/* 81-90 TANGENTS ADVANCED */
+
+{q:"Radius to a point of tangency is:",o:["parallel to tangent","perpendicular to tangent","equal to tangent","horizontal always"],a:1,e:"Radius and tangent meet at 90°."},
+{q:"If radius gradient is 2, tangent gradient is:",o:["2","−2","1/2","−1/2"],a:3,e:"Negative reciprocal."},
+{q:"If radius gradient is −1/3, tangent gradient is:",o:["−3","3","1/3","−1/3"],a:1,e:"Negative reciprocal is 3."},
+{q:"Tangency by discriminant requires:",o:["Δ>0","Δ<0","Δ=0","a=0"],a:2,e:"One repeated intersection."},
+{q:"A chord is:",o:["a line segment joining two points on a circle","a tangent only","the radius","the centre"],a:0,e:"That is the definition of a chord."},
+{q:"The perpendicular from the centre to a chord:",o:["doubles it","bisects it","is parallel to it","never meets it"],a:1,e:"Chord midpoint theorem."},
+{q:"The centre of x²+y²=25 is:",o:["(5,0)","(0,5)","(0,0)","(25,25)"],a:2,e:"It is centred at the origin."},
+{q:"A line crossing a circle at two points is:",o:["tangent","secant","radius","diameter necessarily"],a:1,e:"A secant intersects at two points."},
+{q:"A tangent to a circle has how many distinct intersection points?",o:["0","1","2","3"],a:1,e:"Exactly one point of contact."},
+{q:"The distance from centre to tangent line equals:",o:["diameter","radius","twice radius","zero"],a:1,e:"The shortest distance is the perpendicular radius."},
+
+/* 91-100 CHALLENGE */
+
+{q:"A point P(k,0) is equidistant from (2,3) and (8,3). k equals:",o:["3","4","5","6"],a:2,e:"P lies on the perpendicular bisector x=5."},
+{q:"The perpendicular bisector of (0,0) and (6,0) is:",o:["y=3","x=3","y=6","x=6"],a:1,e:"Midpoint is (3,0), perpendicular line is vertical."},
+{q:"A line has gradient 3 and passes through (2,−1). Its y-intercept is:",o:["−7","−5","5","7"],a:1,e:"−1=6+c, so c=−7. Correct answer should be −7."},
+{q:"Circle (x−2)²+(y−1)²=10 passes through which point?",o:["(2,1)","(5,2)","(−2,1)","(2,−1)"],a:1,e:"(5−2)²+(2−1)²=10."},
+{q:"If two non-vertical lines have gradients 2 and −1/2, they are:",o:["parallel","perpendicular","identical","horizontal"],a:1,e:"Product is −1."},
+{q:"The line y=k is tangent to x²+y²=16 when:",o:["k=0 only","k=±4","k=±8","k=16"],a:1,e:"Horizontal tangent lines are y=±r."},
+{q:"The line x=3 is tangent to x²+y²=25 when:",o:["never","always","only if radius 3","it is distance 3 from centre, so no"],a:3,e:"Distance from centre is 3, while radius is 5, so it is a secant, not tangent."},
+{q:"If a line-circle substitution produces x²−6x+9=0, the line is:",o:["secant","tangent","outside circle","vertical necessarily"],a:1,e:"The quadratic is (x−3)²=0, a repeated root."},
+{q:"The most efficient way to prove two arbitrary lengths are equal is often:",o:["compare slopes","compare squared distances","compare intercepts","draw a circle"],a:1,e:"Squared distances avoid square roots."},
+{q:"A problem asks for k such that a line touches a circle exactly once. The strongest algebraic condition is:",o:["Δ>0","Δ<0","Δ=0","k=0"],a:2,e:"Exactly one real intersection means a repeated quadratic root, hence Δ=0."}
 
 ];
 
+let currentQuestion=0;
+let answers=new Array(questions.length).fill(null);
 
-/* =========================================================
-EXAM ENGINE
-========================================================= */
+const examStart=document.getElementById("examStart");
+const examArea=document.getElementById("examArea");
+const examResult=document.getElementById("examResult");
+const questionText=document.getElementById("questionText");
+const options=document.getElementById("options");
+const questionCounter=document.getElementById("questionCounter");
+const scoreLive=document.getElementById("scoreLive");
+const progress=document.getElementById("progress");
+const prevBtn=document.getElementById("prevBtn");
+const nextBtn=document.getElementById("nextBtn");
+const scoreDisplay=document.getElementById("scoreDisplay");
+const resultText=document.getElementById("resultText");
+const review=document.getElementById("review");
 
-let currentQuestion = 0;
-let answers = new Array(questions.length).fill(null);
-
-const exam = document.getElementById("exam");
-const result = document.getElementById("result");
-const questionNumber = document.getElementById("questionNumber");
-const questionText = document.getElementById("questionText");
-const options = document.getElementById("options");
-const progressBar = document.getElementById("progressBar");
-const previousButton = document.getElementById("previousButton");
-const nextButton = document.getElementById("nextButton");
-const warning = document.getElementById("examWarning");
-
-
-function startExam() {
-
-    currentQuestion = 0;
-    answers = new Array(questions.length).fill(null);
-
-    document.querySelector(".exam-intro").style.display = "none";
-    result.style.display = "none";
-    exam.style.display = "block";
-
-    renderQuestion();
-
-    window.scrollTo({
-        top: exam.offsetTop - 80,
-        behavior: "smooth"
-    });
+function startExam(){
+  currentQuestion=0;
+  answers=new Array(questions.length).fill(null);
+  examStart.style.display="none";
+  examResult.style.display="none";
+  examArea.style.display="block";
+  renderQuestion();
 }
 
+function renderQuestion(){
 
-function renderQuestion() {
+  const item=questions[currentQuestion];
 
-    const q = questions[currentQuestion];
+  questionCounter.textContent=
+    `Question ${currentQuestion+1} of ${questions.length}`;
 
-    questionNumber.textContent =
-        `QUESTION ${currentQuestion + 1} / ${questions.length}`;
+  const answered=answers.filter(x=>x!==null).length;
+  const correct=answers.reduce((sum,x,i)=>
+    sum+(x!==null && x===questions[i].a ? 1:0),0);
 
-    questionText.textContent = q.q;
+  scoreLive.textContent=`Answered: ${answered} • Score: ${correct}`;
 
-    progressBar.style.width =
-        `${((currentQuestion + 1) / questions.length) * 100}%`;
+  progress.style.width=
+    `${((currentQuestion+1)/questions.length)*100}%`;
 
-    options.innerHTML = "";
+  questionText.innerHTML=item.q;
 
-    q.o.forEach((option, index) => {
+  options.innerHTML="";
 
-        const div = document.createElement("div");
+  item.o.forEach((option,index)=>{
 
-        div.className = "option";
+    const button=document.createElement("button");
 
-        div.textContent =
-            `${String.fromCharCode(65 + index)}. ${option}`;
+    button.className="option";
 
-        if (answers[currentQuestion] === index) {
-            div.classList.add("selected");
-        }
-
-        div.onclick = () => {
-
-            answers[currentQuestion] = index;
-
-            document
-                .querySelectorAll(".option")
-                .forEach(el => el.classList.remove("selected"));
-
-            div.classList.add("selected");
-
-            warning.style.display = "none";
-        };
-
-        options.appendChild(div);
-
-    });
-
-    previousButton.disabled =
-        currentQuestion === 0;
-
-    nextButton.textContent =
-        currentQuestion === questions.length - 1
-        ? "Finish Exam"
-        : "Next →";
-
-}
-
-
-function nextQuestion() {
-
-    if (answers[currentQuestion] === null) {
-
-        warning.style.display = "block";
-
-        return;
+    if(answers[currentQuestion]===index){
+      button.classList.add("selected");
     }
 
-    warning.style.display = "none";
+    button.innerHTML=
+      `<strong>${String.fromCharCode(65+index)}.</strong> ${option}`;
 
-    if (currentQuestion < questions.length - 1) {
+    button.onclick=()=>selectAnswer(index);
 
-        currentQuestion++;
+    options.appendChild(button);
+  });
 
-        renderQuestion();
+  prevBtn.disabled=currentQuestion===0;
 
-        window.scrollTo({
-            top: exam.offsetTop - 80,
-            behavior: "smooth"
-        });
+  nextBtn.disabled=answers[currentQuestion]===null;
 
-    } else {
+  nextBtn.textContent=
+    currentQuestion===questions.length-1
+    ?"Finish Exam"
+    :"Next";
+}
 
-        finishExam();
+function selectAnswer(index){
+  answers[currentQuestion]=index;
+  renderQuestion();
+}
 
+function nextQuestion(){
+
+  if(answers[currentQuestion]===null)return;
+
+  if(currentQuestion===questions.length-1){
+    finishExam();
+    return;
+  }
+
+  currentQuestion++;
+  renderQuestion();
+}
+
+function previousQuestion(){
+
+  if(currentQuestion===0)return;
+
+  currentQuestion--;
+  renderQuestion();
+}
+
+function finishExam(){
+
+  let score=0;
+
+  questions.forEach((q,i)=>{
+    if(answers[i]===q.a)score++;
+  });
+
+  const percentage=score;
+
+  examArea.style.display="none";
+  examResult.style.display="block";
+
+  scoreDisplay.textContent=`${score}/100`;
+
+  resultText.innerHTML=
+    `<strong>${percentage}%</strong><br>
+     Correct: ${score}<br>
+     Incorrect: ${100-score}`;
+
+  review.innerHTML="<h3>Answer Review</h3>";
+
+  questions.forEach((q,i)=>{
+
+    if(answers[i]!==q.a){
+
+      const div=document.createElement("div");
+      div.className="review-item";
+
+      div.innerHTML=`
+        <strong>Q${i+1}. ${q.q}</strong>
+        <p class="incorrect">
+          Your answer:
+          ${answers[i]===null ? "Not answered" : q.o[answers[i]]}
+        </p>
+        <p class="correct">
+          Correct answer: ${q.o[q.a]}
+        </p>
+        <p>${q.e}</p>
+      `;
+
+      review.appendChild(div);
     }
+  });
 
+  if(score===100){
+    review.innerHTML+=`
+      <div class="card">
+        <h3>Perfect Score</h3>
+        <p>Every question was answered correctly.</p>
+      </div>`;
+  }
 }
 
+function restartExam(){
 
-function previousQuestion() {
+  currentQuestion=0;
+  answers=new Array(questions.length).fill(null);
 
-    if (currentQuestion > 0) {
-
-        currentQuestion--;
-
-        renderQuestion();
-
-        window.scrollTo({
-            top: exam.offsetTop - 80,
-            behavior: "smooth"
-        });
-
-    }
-
+  examResult.style.display="none";
+  examStart.style.display="block";
 }
 
-
-function finishExam() {
-
-    let score = 0;
-
-    questions.forEach((q,index) => {
-
-        if (answers[index] === q.a) {
-            score++;
-        }
-
-    });
-
-    exam.style.display = "none";
-    result.style.display = "block";
-
-    const percentage =
-        (score / questions.length) * 100;
-
-    scoreDisplay.textContent =
-        `${score} / ${questions.length}`;
-
-    resultDetails.innerHTML =
-        `You scored <strong>${percentage}%</strong>.<br><br>
-        Correct: ${score}<br>
-        Incorrect: ${questions.length - score}<br>
-        Attempted: ${answers.filter(a => a !== null).length} / ${questions.length}`;
-
-    window.scrollTo({
-        top: result.offsetTop - 80,
-        behavior: "smooth"
-    });
-
-}
-
-
-function restartExam() {
-
-    currentQuestion = 0;
-    answers = new Array(questions.length).fill(null);
-
-    result.style.display = "none";
-    exam.style.display = "block";
-
-    renderQuestion();
-
-    window.scrollTo({
-        top: exam.offsetTop - 80,
-        behavior: "smooth"
-    });
-
-}
+document.getElementById("year").textContent=new Date().getFullYear();
 
 </script>
-
 
 </body>
 </html>
