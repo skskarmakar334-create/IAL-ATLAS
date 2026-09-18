@@ -3,1878 +3,496 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- SEO -->
-    <title>Coordinate Geometry | IAL ATLAS</title>
+<title>Coordinate Geometry | IAL ATLAS</title>
 
-    <meta name="description"
-          content="Coordinate Geometry notes, formulas, worked examples and practice questions for Pearson Edexcel International A Level Mathematics.">
+<meta name="description"
+content="Deep Coordinate Geometry notes for Pearson Edexcel International A Level Mathematics, including formulas, theory, worked examples, coordinate proofs and a 100-question exam.">
 
-    <meta name="keywords"
-          content="Coordinate Geometry, Edexcel IAL Mathematics, IAL Mathematics, Coordinate Geometry notes, IAL ATLAS, Edexcel Maths">
+<meta name="keywords"
+content="Coordinate Geometry, Edexcel IAL Mathematics, IAL Maths, straight lines, gradients, circles, coordinate geometry questions, IAL ATLAS">
 
-    <meta name="author" content="Shuvojit Karmakar">
+<meta name="author" content="Shuvojit Karmakar">
 
-    <meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="index, follow">
 
-    <meta name="googlebot" content="index, follow">
+<link rel="canonical"
+href="https://ialatlas.com/coordinate-geometry.html">
 
-    <meta name="theme-color" content="#05070d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Canonical -->
-    <link rel="canonical"
-          href="https://skskarmakar334-create.github.io/ialatlas.github.io/coordinate-geometry.html">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+rel="stylesheet">
 
+<style>
 
-    <!-- Open Graph -->
+/* =========================================================
+   BASE
+========================================================= */
 
-    <meta property="og:title"
-          content="Coordinate Geometry | IAL ATLAS">
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    <meta property="og:description"
-          content="Coordinate Geometry notes, formulas, worked examples and practice questions for Edexcel International A Level Mathematics.">
+html {
+    scroll-behavior: smooth;
+}
 
-    <meta property="og:type"
-          content="article">
+body {
+    font-family: "Inter", sans-serif;
+    background: #05070d;
+    color: #eef7ff;
+    line-height: 1.75;
+    overflow-x: hidden;
+}
 
-    <meta property="og:url"
-          content="https://skskarmakar334-create.github.io/ialatlas.github.io/coordinate-geometry.html">
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -5;
+    background:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 70px 70px;
+}
 
-    <meta property="og:image"
-          content="https://skskarmakar334-create.github.io/ialatlas.github.io/logo.png">
+a {
+    color: inherit;
+    text-decoration: none;
+}
 
-    <meta property="og:image:alt"
-          content="IAL ATLAS logo">
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 6%;
+    background: rgba(5,7,13,.88);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255,255,255,.07);
+}
 
-    <meta property="og:site_name"
-          content="IAL ATLAS">
+.logo-image {
+    height: 48px;
+}
 
-    <meta property="og:locale"
-          content="en_US">
+nav {
+    display: flex;
+    gap: 28px;
+}
 
+nav a {
+    color: #9db1c1;
+    font-size: 13px;
+    font-weight: 600;
+}
 
-    <!-- Twitter / X -->
+nav a:hover {
+    color: #6eeaff;
+}
 
-    <meta name="twitter:card"
-          content="summary_large_image">
+.nav-status {
+    color: #72e7ff;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+}
 
-    <meta name="twitter:title"
-          content="Coordinate Geometry | IAL ATLAS">
+.hero {
+    padding: 120px 20px 90px;
+    text-align: center;
+    background:
+        radial-gradient(circle at center,
+        rgba(0,210,255,.10),
+        transparent 38%);
+}
 
-    <meta name="twitter:description"
-          content="Coordinate Geometry notes, formulas, worked examples and practice questions for Edexcel International A Level Mathematics.">
+.hero-label {
+    color: #6eeaff;
+    font-size: 11px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    margin-bottom: 22px;
+}
 
-    <meta name="twitter:image"
-          content="https://skskarmakar334-create.github.io/ialatlas.github.io/logo.png">
+.hero h1 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(48px, 7vw, 82px);
+    line-height: 1;
+    margin-bottom: 25px;
+}
 
+.hero h1 span {
+    background: linear-gradient(100deg,#fff,#72eaff,#8d7cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-    <!-- Structured Data -->
+.hero-description {
+    max-width: 760px;
+    margin: auto;
+    color: #8ea4b7;
+    font-size: 15px;
+}
 
-    <script type="application/ld+json">
+.breadcrumb {
+    max-width: 1100px;
+    margin: auto;
+    padding: 25px;
+    color: #61798b;
+    font-size: 11px;
+}
 
-    {
-        "@context": "https://schema.org",
-        "@type": "LearningResource",
-        "name": "Coordinate Geometry",
-        "description": "Coordinate Geometry notes, formulas, worked examples and practice questions for Pearson Edexcel International A Level Mathematics.",
-        "url": "https://skskarmakar334-create.github.io/ialatlas.github.io/coordinate-geometry.html",
-        "learningResourceType": "Study notes",
-        "educationalLevel": "International A Level",
-        "author": {
-            "@type": "Person",
-            "name": "Shuvojit Karmakar"
-        },
-        "isPartOf": {
-            "@type": "EducationalOrganization",
-            "name": "IAL ATLAS",
-            "url": "https://skskarmakar334-create.github.io/ialatlas.github.io/"
-        }
+.breadcrumb a:hover {
+    color: #6eeaff;
+}
+
+.section {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 25px 100px;
+}
+
+.topic-card {
+    margin-bottom: 24px;
+    padding: 38px;
+    border-radius: 18px;
+    background:
+        linear-gradient(145deg,
+        rgba(255,255,255,.055),
+        rgba(255,255,255,.018));
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow: 0 20px 60px rgba(0,0,0,.20);
+}
+
+.topic-card h2 {
+    font-family: "Space Grotesk", sans-serif;
+    color: #f4fbff;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.topic-card h3 {
+    font-family: "Space Grotesk", sans-serif;
+    color: #dcefff;
+    font-size: 20px;
+    margin-top: 28px;
+    margin-bottom: 10px;
+}
+
+.topic-card p,
+.topic-card li {
+    color: #8da3b5;
+    font-size: 14px;
+}
+
+.topic-card ul,
+.topic-card ol {
+    padding-left: 24px;
+}
+
+.topic-card li {
+    margin-bottom: 7px;
+}
+
+.formula {
+    margin: 18px 0;
+    padding: 17px 20px;
+    text-align: center;
+    overflow-x: auto;
+    border-radius: 11px;
+    background: rgba(0,210,255,.045);
+    border: 1px solid rgba(0,210,255,.12);
+    color: #72e7ff;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.example {
+    margin: 22px 0;
+    padding: 22px;
+    border-left: 3px solid #00d4ff;
+    background: rgba(0,210,255,.035);
+    border-radius: 8px;
+}
+
+.example strong {
+    color: #ffffff;
+}
+
+.note {
+    margin: 20px 0;
+    padding: 18px 20px;
+    border-radius: 10px;
+    background: rgba(130,90,255,.045);
+    border: 1px solid rgba(130,90,255,.12);
+    color: #aeb9d9;
+}
+
+.warning {
+    margin: 20px 0;
+    padding: 18px 20px;
+    border-radius: 10px;
+    background: rgba(255,100,100,.035);
+    border: 1px solid rgba(255,100,100,.12);
+    color: #c6a7a7;
+}
+
+details {
+    margin: 16px 0;
+    padding: 5px 18px 12px;
+    border-radius: 10px;
+    background: rgba(0,0,0,.22);
+    border: 1px solid rgba(255,255,255,.07);
+}
+
+summary {
+    cursor: pointer;
+    padding: 10px 0;
+    color: #62e7ff;
+    font-weight: 700;
+}
+
+.exam-intro {
+    text-align: center;
+}
+
+.exam-intro h2 {
+    color: #fff;
+}
+
+.exam-meta {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.exam-stat {
+    padding: 16px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.07);
+    text-align: center;
+}
+
+.exam-stat strong {
+    display: block;
+    color: #6feaff;
+    font-size: 22px;
+}
+
+.exam-stat span {
+    color: #7890a2;
+    font-size: 11px;
+}
+
+#exam {
+    display: none;
+}
+
+.exam-header {
+    margin-bottom: 25px;
+}
+
+.exam-progress {
+    width: 100%;
+    height: 7px;
+    background: rgba(255,255,255,.07);
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 12px 0;
+}
+
+.exam-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg,#00d4ff,#8c7cff);
+    transition: .3s;
+}
+
+.question-number {
+    color: #69e7ff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.question-text {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 23px;
+    line-height: 1.45;
+    margin: 15px 0 25px;
+    color: #f4fbff;
+}
+
+.options {
+    display: grid;
+    gap: 12px;
+}
+
+.option {
+    padding: 17px 18px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.08);
+    color: #b9cbd8;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.option:hover {
+    border-color: rgba(0,210,255,.4);
+    background: rgba(0,210,255,.05);
+}
+
+.option.selected {
+    border-color: #00d4ff;
+    background: rgba(0,210,255,.09);
+    color: #fff;
+}
+
+.option.correct {
+    border-color: #3ee68a;
+    background: rgba(62,230,138,.08);
+}
+
+.option.wrong {
+    border-color: #ff6868;
+    background: rgba(255,104,104,.08);
+}
+
+.exam-controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.exam-button {
+    border: 0;
+    border-radius: 9px;
+    padding: 13px 23px;
+    cursor: pointer;
+    font-weight: 700;
+    background: #00d4ff;
+    color: #031018;
+}
+
+.exam-button.secondary {
+    color: #dbeaf5;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+}
+
+.exam-button:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+}
+
+.exam-warning {
+    display: none;
+    color: #ff8c8c;
+    margin-top: 12px;
+    font-size: 13px;
+}
+
+.result {
+    display: none;
+    text-align: center;
+}
+
+.result-score {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 65px;
+    color: #70eaff;
+}
+
+.result-details {
+    color: #8ea4b7;
+    margin: 15px 0 25px;
+}
+
+footer {
+    padding: 60px 20px 30px;
+    text-align: center;
+    background: #03050a;
+    border-top: 1px solid rgba(255,255,255,.06);
+}
+
+footer h2 {
+    font-family: "Space Grotesk", sans-serif;
+    letter-spacing: 3px;
+}
+
+footer p {
+    color: #617789;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+@media(max-width:850px) {
+
+    nav,
+    .nav-status {
+        display:none;
     }
 
-    </script>
-
-
-    <!-- Google Fonts -->
-
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-          rel="stylesheet">
-
-
-    <style>
-
-
-        /* =========================================================
-           RESET
-        ========================================================= */
-
-        * {
-
-            margin: 0;
-
-            padding: 0;
-
-            box-sizing: border-box;
-
-        }
-
-
-        html {
-
-            scroll-behavior: smooth;
-
-        }
-
-
-        body {
-
-            font-family: "Inter", sans-serif;
-
-            background: #05070d;
-
-            color: #eef7ff;
-
-            overflow-x: hidden;
-
-            line-height: 1.7;
-
-        }
-
-
-        a {
-
-            color: inherit;
-
-            text-decoration: none;
-
-        }
-
-
-        /* =========================================================
-           FUTURISTIC BACKGROUND
-        ========================================================= */
-
-        body::before {
-
-            content: "";
-
-            position: fixed;
-
-            inset: 0;
-
-            background-image:
-
-                linear-gradient(
-                    rgba(255,255,255,0.025) 1px,
-                    transparent 1px
-                ),
-
-                linear-gradient(
-                    90deg,
-                    rgba(255,255,255,0.025) 1px,
-                    transparent 1px
-                );
-
-            background-size: 70px 70px;
-
-            mask-image:
-                linear-gradient(
-                    to bottom,
-                    black 0%,
-                    transparent 90%
-                );
-
-            -webkit-mask-image:
-                linear-gradient(
-                    to bottom,
-                    black 0%,
-                    transparent 90%
-                );
-
-            pointer-events: none;
-
-            z-index: -10;
-
-        }
-
-
-        body::after {
-
-            content: "";
-
-            position: fixed;
-
-            width: 700px;
-
-            height: 700px;
-
-            top: -300px;
-
-            right: -250px;
-
-            background:
-
-                radial-gradient(
-                    circle,
-                    rgba(0,212,255,0.13),
-                    transparent 65%
-                );
-
-            filter: blur(30px);
-
-            pointer-events: none;
-
-            z-index: -11;
-
-        }
-
-
-        /* =========================================================
-           SCROLLBAR
-        ========================================================= */
-
-        ::-webkit-scrollbar {
-
-            width: 8px;
-
-        }
-
-
-        ::-webkit-scrollbar-track {
-
-            background: #05070d;
-
-        }
-
-
-        ::-webkit-scrollbar-thumb {
-
-            background: #18344a;
-
-            border-radius: 20px;
-
-        }
-
-
-        ::-webkit-scrollbar-thumb:hover {
-
-            background: #00c8ff;
-
-        }
-
-
-        /* =========================================================
-           NAVBAR
-        ========================================================= */
-
-        header {
-
-            position: fixed;
-
-            top: 0;
-
-            left: 0;
-
-            width: 100%;
-
-            z-index: 1000;
-
-            padding: 18px 6%;
-
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            background:
-
-                rgba(5,7,13,0.68);
-
-            backdrop-filter: blur(18px);
-
-            -webkit-backdrop-filter: blur(18px);
-
-            border-bottom:
-                1px solid
-                rgba(255,255,255,0.07);
-
-        }
-
-
-        .logo-image {
-
-            height: 48px;
-
-            width: auto;
-
-            display: block;
-
-            filter:
-
-                drop-shadow(
-                    0 0 12px
-                    rgba(0,210,255,0.25)
-                );
-
-            transition: 0.3s ease;
-
-        }
-
-
-        .logo-image:hover {
-
-            filter:
-
-                drop-shadow(
-                    0 0 20px
-                    rgba(0,210,255,0.5)
-                );
-
-            transform: translateY(-1px);
-
-        }
-
-
-        nav {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 34px;
-
-        }
-
-
-        nav a {
-
-            position: relative;
-
-            color: #a9bacb;
-
-            font-size: 13px;
-
-            font-weight: 600;
-
-            letter-spacing: 0.5px;
-
-            transition: 0.3s ease;
-
-        }
-
-
-        nav a::after {
-
-            content: "";
-
-            position: absolute;
-
-            left: 0;
-
-            bottom: -8px;
-
-            width: 0;
-
-            height: 1px;
-
-            background: #00d4ff;
-
-            box-shadow:
-                0 0 10px #00d4ff;
-
-            transition: 0.3s ease;
-
-        }
-
-
-        nav a:hover {
-
-            color: #ffffff;
-
-        }
-
-
-        nav a:hover::after {
-
-            width: 100%;
-
-        }
-
-
-        .nav-status {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 8px;
-
-            padding: 8px 13px;
-
-            border:
-                1px solid
-                rgba(0,212,255,0.2);
-
-            background:
-                rgba(0,212,255,0.04);
-
-            border-radius: 50px;
-
-            color: #7eeaff;
-
-            font-size: 10px;
-
-            letter-spacing: 1.5px;
-
-            text-transform: uppercase;
-
-        }
-
-
-        .status-dot {
-
-            width: 6px;
-
-            height: 6px;
-
-            border-radius: 50%;
-
-            background: #00e5ff;
-
-            box-shadow:
-
-                0 0 8px #00e5ff,
-
-                0 0 16px
-                rgba(0,229,255,0.5);
-
-            animation: pulse 2s infinite;
-
-        }
-
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-
-                opacity: 1;
-
-            }
-
-            50% {
-
-                opacity: 0.35;
-
-            }
-
-        }
-
-
-        /* =========================================================
-           HERO
-        ========================================================= */
-
-        .hero {
-
-            min-height: 62vh;
-
-            position: relative;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            text-align: center;
-
-            padding:
-                150px 20px
-                90px;
-
-            overflow: hidden;
-
-            isolation: isolate;
-
-            background:
-
-                radial-gradient(
-                    circle at 50% 50%,
-                    rgba(0,180,255,0.10),
-                    transparent 32%
-                ),
-
-                radial-gradient(
-                    circle at 20% 30%,
-                    rgba(93,62,255,0.07),
-                    transparent 28%
-                );
-
-        }
-
-
-        /* =========================================================
-           HERO ORBITS
-        ========================================================= */
-
-        .hero-orbit-system {
-
-            position: absolute;
-
-            width: 650px;
-
-            height: 650px;
-
-            left: 50%;
-
-            top: 50%;
-
-            transform:
-                translate(-50%, -50%);
-
-            pointer-events: none;
-
-            z-index: -1;
-
-            opacity: 0.55;
-
-        }
-
-
-        .hero-orbit {
-
-            position: absolute;
-
-            left: 50%;
-
-            top: 50%;
-
-            transform:
-                translate(-50%, -50%);
-
-            border:
-                1px solid
-                rgba(0,210,255,0.08);
-
-            border-radius: 50%;
-
-        }
-
-
-        .hero-orbit:nth-child(1) {
-
-            width: 260px;
-
-            height: 260px;
-
-        }
-
-
-        .hero-orbit:nth-child(2) {
-
-            width: 430px;
-
-            height: 430px;
-
-            transform:
-                translate(-50%, -50%)
-                rotate(55deg);
-
-            border-color:
-                rgba(137,92,255,0.08);
-
-        }
-
-
-        .hero-orbit:nth-child(3) {
-
-            width: 600px;
-
-            height: 300px;
-
-            transform:
-                translate(-50%, -50%)
-                rotate(-25deg);
-
-        }
-
-
-        .hero-orbit::after {
-
-            content: "";
-
-            position: absolute;
-
-            width: 6px;
-
-            height: 6px;
-
-            top: -3px;
-
-            left: 50%;
-
-            border-radius: 50%;
-
-            background: #00d9ff;
-
-            box-shadow:
-
-                0 0 10px #00d9ff,
-
-                0 0 25px
-                rgba(0,217,255,0.6);
-
-        }
-
-
-        /* =========================================================
-           HERO GLOW
-        ========================================================= */
-
-        .hero::before {
-
-            content: "";
-
-            position: absolute;
-
-            width: 500px;
-
-            height: 500px;
-
-            left: 50%;
-
-            top: 50%;
-
-            transform:
-                translate(-50%, -50%);
-
-            border-radius: 50%;
-
-            background:
-                rgba(0,210,255,0.025);
-
-            box-shadow:
-
-                0 0 150px
-                rgba(0,210,255,0.08);
-
-            pointer-events: none;
-
-            z-index: -2;
-
-        }
-
-
-        /* =========================================================
-           HERO CONTENT
-        ========================================================= */
-
-        .hero-content {
-
-            max-width: 900px;
-
-            position: relative;
-
-            z-index: 5;
-
-        }
-
-
-        .hero-label {
-
-            display: inline-flex;
-
-            align-items: center;
-
-            gap: 10px;
-
-            color: #71e7ff;
-
-            font-size: 10px;
-
-            font-weight: 700;
-
-            letter-spacing: 4px;
-
-            margin-bottom: 25px;
-
-            text-transform: uppercase;
-
-        }
-
-
-        .hero-label::before,
-        .hero-label::after {
-
-            content: "";
-
-            width: 28px;
-
-            height: 1px;
-
-            background: #00cfff;
-
-            box-shadow:
-                0 0 8px #00cfff;
-
-        }
-
-
-        .hero h1 {
-
-            font-family:
-                "Space Grotesk",
-                sans-serif;
-
-            font-size:
-                clamp(48px, 7vw, 82px);
-
-            line-height: 1;
-
-            letter-spacing: -4px;
-
-            margin-bottom: 22px;
-
-            font-weight: 700;
-
-            color: #f4faff;
-
-            text-shadow:
-
-                0 0 40px
-                rgba(0,210,255,0.10);
-
-        }
-
-
-        .hero h1 span {
-
-            background:
-
-                linear-gradient(
-                    100deg,
-                    #ffffff 0%,
-                    #7beaff 48%,
-                    #8f7cff 100%
-                );
-
-            -webkit-background-clip: text;
-
-            background-clip: text;
-
-            -webkit-text-fill-color:
-                transparent;
-
-        }
-
-
-        .hero-description {
-
-            max-width: 680px;
-
-            margin: auto;
-
-            color: #8fa6ba;
-
-            font-size: 15px;
-
-            line-height: 1.8;
-
-        }
-
-
-        .hero-line {
-
-            width: 70px;
-
-            height: 1px;
-
-            margin: 28px auto 0;
-
-            background:
-
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    #00d9ff,
-                    transparent
-                );
-
-            box-shadow:
-
-                0 0 12px
-                rgba(0,217,255,0.6);
-
-        }
-
-
-        /* =========================================================
-           BREADCRUMB
-        ========================================================= */
-
-        .breadcrumb {
-
-            position: relative;
-
-            max-width: 1100px;
-
-            margin: auto;
-
-            padding:
-                25px 25px 0;
-
-            color: #50687a;
-
-            font-size: 11px;
-
-            letter-spacing: 0.5px;
-
-        }
-
-
-        .breadcrumb a {
-
-            color: #6e8da2;
-
-            transition: 0.3s ease;
-
-        }
-
-
-        .breadcrumb a:hover {
-
-            color: #62e7ff;
-
-        }
-
-
-        .breadcrumb span {
-
-            margin: 0 8px;
-
-            color: #334a5c;
-
-        }
-
-
-        /* =========================================================
-           MAIN
-        ========================================================= */
-
-        .section {
-
-            max-width: 1100px;
-
-            margin: auto;
-
-            padding:
-                65px 25px
-                110px;
-
-        }
-
-
-        /* =========================================================
-           TOPIC CARD
-        ========================================================= */
-
-        .topic-card {
-
-            position: relative;
-
-            padding:
-                38px 36px;
-
-            margin-bottom: 20px;
-
-            border-radius: 18px;
-
-            background:
-
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,0.055),
-                    rgba(255,255,255,0.018)
-                );
-
-            border:
-                1px solid
-                rgba(255,255,255,0.08);
-
-            overflow: hidden;
-
-            box-shadow:
-
-                0 20px 60px
-                rgba(0,0,0,0.18);
-
-            transition:
-
-                transform 0.35s ease,
-
-                border-color 0.35s ease,
-
-                box-shadow 0.35s ease;
-
-        }
-
-
-        .topic-card::before {
-
-            content: "";
-
-            position: absolute;
-
-            width: 220px;
-
-            height: 220px;
-
-            right: -100px;
-
-            top: -100px;
-
-            border-radius: 50%;
-
-            background:
-                rgba(0,210,255,0.055);
-
-            filter: blur(30px);
-
-            transition: 0.4s ease;
-
-            pointer-events: none;
-
-        }
-
-
-        .topic-card:hover {
-
-            transform:
-                translateY(-3px);
-
-            border-color:
-                rgba(0,210,255,0.20);
-
-            box-shadow:
-
-                0 25px 70px
-                rgba(0,0,0,0.30),
-
-                0 0 35px
-                rgba(0,210,255,0.035);
-
-        }
-
-
-        .topic-card:hover::before {
-
-            transform: scale(1.3);
-
-            background:
-                rgba(0,210,255,0.09);
-
-        }
-
-
-        /* =========================================================
-           TOPIC HEADINGS
-        ========================================================= */
-
-        .topic-card h2 {
-
-            position: relative;
-
-            z-index: 2;
-
-            font-family:
-                "Space Grotesk",
-                sans-serif;
-
-            font-size: 27px;
-
-            line-height: 1.2;
-
-            margin-bottom: 20px;
-
-            color: #f2f9ff;
-
-            letter-spacing: -0.5px;
-
-        }
-
-
-        .topic-card h2::before {
-
-            content: "";
-
-            display: inline-block;
-
-            width: 4px;
-
-            height: 23px;
-
-            margin-right: 13px;
-
-            vertical-align: -3px;
-
-            border-radius: 10px;
-
-            background:
-
-                linear-gradient(
-                    to bottom,
-                    #65edff,
-                    #7d75ff
-                );
-
-            box-shadow:
-
-                0 0 12px
-                rgba(0,210,255,0.35);
-
-        }
-
-
-        .topic-card h3 {
-
-            position: relative;
-
-            z-index: 2;
-
-            font-family:
-                "Space Grotesk",
-                sans-serif;
-
-            font-size: 19px;
-
-            margin-top: 30px;
-
-            margin-bottom: 10px;
-
-            color: #dceefa;
-
-        }
-
-
-        .topic-card p {
-
-            position: relative;
-
-            z-index: 2;
-
-            color: #8399ab;
-
-            font-size: 14px;
-
-            line-height: 1.8;
-
-            margin-bottom: 15px;
-
-        }
-
-
-        .topic-card ul {
-
-            position: relative;
-
-            z-index: 2;
-
-            color: #8399ab;
-
-            padding-left: 22px;
-
-        }
-
-
-        .topic-card li {
-
-            margin-bottom: 7px;
-
-        }
-
-
-        /* =========================================================
-           FORMULA BOX
-        ========================================================= */
-
-        .formula {
-
-            position: relative;
-
-            margin:
-                18px 0;
-
-            padding:
-                17px 20px;
-
-            border-radius: 11px;
-
-            text-align: center;
-
-            overflow-x: auto;
-
-            background:
-
-                linear-gradient(
-                    135deg,
-                    rgba(0,210,255,0.055),
-                    rgba(130,80,255,0.035)
-                );
-
-            border:
-                1px solid
-                rgba(0,210,255,0.12);
-
-            color: #72e7ff;
-
-            font-family:
-                "Space Grotesk",
-                sans-serif;
-
-            font-size: 17px;
-
-            font-weight: 600;
-
-            line-height: 1.8;
-
-            box-shadow:
-
-                inset 0 0 25px
-                rgba(0,210,255,0.025);
-
-        }
-
-
-        .formula strong {
-
-            color: #ffffff;
-
-        }
-
-
-        /* =========================================================
-           DETAILS / SOLUTIONS
-        ========================================================= */
-
-        details {
-
-            position: relative;
-
-            margin-top: 17px;
-
-            padding:
-                5px 18px
-                12px;
-
-            border-radius: 11px;
-
-            background:
-                rgba(3,8,18,0.55);
-
-            border:
-                1px solid
-                rgba(255,255,255,0.07);
-
-            transition: 0.3s ease;
-
-        }
-
-
-        details:hover {
-
-            border-color:
-                rgba(0,210,255,0.18);
-
-        }
-
-
-        details[open] {
-
-            background:
-                rgba(0,210,255,0.025);
-
-            border-color:
-                rgba(0,210,255,0.14);
-
-        }
-
-
-        summary {
-
-            cursor: pointer;
-
-            padding:
-                10px 0;
-
-            color: #62e7ff;
-
-            font-size: 13px;
-
-            font-weight: 700;
-
-            letter-spacing: 0.2px;
-
-            list-style: none;
-
-        }
-
-
-        summary::-webkit-details-marker {
-
-            display: none;
-
-        }
-
-
-        summary::before {
-
-            content: "+";
-
-            display: inline-flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            width: 20px;
-
-            height: 20px;
-
-            margin-right: 9px;
-
-            border:
-                1px solid
-                rgba(0,210,255,0.20);
-
-            border-radius: 5px;
-
-            color: #62e7ff;
-
-            transition: 0.3s ease;
-
-        }
-
-
-        details[open] summary::before {
-
-            content: "−";
-
-            background:
-                rgba(0,210,255,0.08);
-
-        }
-
-
-        summary:hover {
-
-            color: #ffffff;
-
-        }
-
-
-        /* =========================================================
-           NAVIGATION BUTTONS
-        ========================================================= */
-
-        .page-navigation {
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            gap: 14px;
-
-            flex-wrap: wrap;
-
-            margin-top: 50px;
-
-        }
-
-
-        .back {
-
-            position: relative;
-
-            display: inline-flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            padding:
-                13px 21px;
-
-            border-radius: 9px;
-
-            font-size: 12px;
-
-            font-weight: 700;
-
-            letter-spacing: 0.3px;
-
-            transition: 0.3s ease;
-
-        }
-
-
-        .back-primary {
-
-            color: #031018;
-
-            background:
-
-                linear-gradient(
-                    135deg,
-                    #73edff,
-                    #00c9ff
-                );
-
-            box-shadow:
-
-                0 0 25px
-                rgba(0,210,255,0.13);
-
-        }
-
-
-        .back-primary:hover {
-
-            transform:
-                translateY(-3px);
-
-            box-shadow:
-
-                0 0 35px
-                rgba(0,210,255,0.28);
-
-        }
-
-
-        .back-secondary {
-
-            color: #d9e9f7;
-
-            background:
-                rgba(255,255,255,0.04);
-
-            border:
-                1px solid
-                rgba(255,255,255,0.10);
-
-            backdrop-filter:
-                blur(10px);
-
-        }
-
-
-        .back-secondary:hover {
-
-            transform:
-                translateY(-3px);
-
-            border-color:
-                rgba(0,210,255,0.35);
-
-            background:
-                rgba(0,210,255,0.06);
-
-        }
-
-
-        /* =========================================================
-           BACK TO TOP
-        ========================================================= */
-
-        .top-button {
-
-            display: block;
-
-            width: fit-content;
-
-            margin:
-                0 auto 20px;
-
-            padding:
-                9px 15px;
-
-            border:
-                1px solid
-                rgba(255,255,255,0.07);
-
-            border-radius: 50px;
-
-            color: #698195;
-
-            background:
-                rgba(255,255,255,0.025);
-
-            font-size: 10px;
-
-            letter-spacing: 1px;
-
-            text-transform: uppercase;
-
-            transition: 0.3s ease;
-
-        }
-
-
-        .top-button:hover {
-
-            color: #67e8ff;
-
-            border-color:
-                rgba(0,210,255,0.22);
-
-            background:
-                rgba(0,210,255,0.045);
-
-            transform:
-                translateY(-2px);
-
-        }
-
-
-        /* =========================================================
-           FOOTER
-        ========================================================= */
-
-        footer {
-
-            position: relative;
-
-            background: #03050a;
-
-            border-top:
-                1px solid
-                rgba(255,255,255,0.06);
-
-            color: #617789;
-
-            text-align: center;
-
-            padding:
-                65px 20px
-                30px;
-
-            overflow: hidden;
-
-        }
-
-
-        footer::before {
-
-            content: "";
-
-            position: absolute;
-
-            width: 500px;
-
-            height: 200px;
-
-            left: 50%;
-
-            top: -100px;
-
-            transform:
-                translateX(-50%);
-
-            background:
-
-                radial-gradient(
-                    ellipse,
-                    rgba(0,210,255,0.09),
-                    transparent 70%
-                );
-
-            filter: blur(20px);
-
-        }
-
-
-        .footer-content {
-
-            position: relative;
-
-            max-width: 800px;
-
-            margin: auto;
-
-        }
-
-
-        .footer-content h2 {
-
-            font-family:
-                "Space Grotesk",
-                sans-serif;
-
-            color: white;
-
-            font-size: 31px;
-
-            letter-spacing: 3px;
-
-            margin-bottom: 10px;
-
-        }
-
-
-        .footer-tagline {
-
-            color: #55e5ff;
-
-            font-size: 10px;
-
-            letter-spacing: 4px;
-
-            text-transform: uppercase;
-
-            margin-bottom: 22px;
-
-        }
-
-
-        .footer-description {
-
-            max-width: 600px;
-
-            margin: auto;
-
-            color: #62798c;
-
-            line-height: 1.7;
-
-            font-size: 13px;
-
-        }
-
-
-        .footer-links {
-
-            display: flex;
-
-            justify-content: center;
-
-            gap: 28px;
-
-            margin-top: 32px;
-
-            flex-wrap: wrap;
-
-        }
-
-
-        .footer-links a {
-
-            color: #a8bac8;
-
-            font-size: 12px;
-
-            transition: 0.3s ease;
-
-        }
-
-
-        .footer-links a:hover {
-
-            color: #5de7ff;
-
-        }
-
-
-        .footer-line {
-
-            height: 1px;
-
-            background:
-
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    rgba(255,255,255,0.1),
-                    transparent
-                );
-
-            max-width: 650px;
-
-            margin:
-                38px auto 25px;
-
-        }
-
-
-        .footer-copy {
-
-            font-size: 11px;
-
-            color: #506576;
-
-            margin-bottom: 8px;
-
-        }
-
-
-        .footer-disclaimer {
-
-            font-size: 10px;
-
-            color: #3f5262;
-
-        }
-
-
-        /* =========================================================
-           RESPONSIVE
-        ========================================================= */
-
-        @media (max-width: 850px) {
-
-            nav {
-
-                display: none;
-
-            }
-
-
-            .nav-status {
-
-                display: none;
-
-            }
-
-
-            header {
-
-                padding:
-                    15px 20px;
-
-            }
-
-
-            .hero {
-
-                padding-top: 130px;
-
-            }
-
-
-            .hero-orbit-system {
-
-                width: 500px;
-
-                height: 500px;
-
-            }
-
-
-            .section {
-
-                padding:
-                    55px 18px
-                    90px;
-
-            }
-
-
-            .topic-card {
-
-                padding:
-                    30px 25px;
-
-            }
-
-        }
-
-
-        @media (max-width: 600px) {
-
-            .logo-image {
-
-                height: 42px;
-
-            }
-
-
-            .hero {
-
-                min-height: 55vh;
-
-                padding:
-                    125px 18px
-                    75px;
-
-            }
-
-
-            .hero-orbit-system {
-
-                width: 380px;
-
-                height: 380px;
-
-                opacity: 0.45;
-
-            }
-
-
-            .hero h1 {
-
-                font-size: 48px;
-
-                letter-spacing: -3px;
-
-            }
-
-
-            .hero-description {
-
-                font-size: 14px;
-
-            }
-
-
-            .hero-label {
-
-                font-size: 8px;
-
-                letter-spacing: 2.5px;
-
-            }
-
-
-            .hero-label::before,
-            .hero-label::after {
-
-                width: 16px;
-
-            }
-
-
-            .breadcrumb {
-
-                padding:
-                    20px 18px 0;
-
-                font-size: 10px;
-
-            }
-
-
-            .topic-card {
-
-                padding:
-                    27px 20px;
-
-                border-radius: 15px;
-
-            }
-
-
-            .topic-card h2 {
-
-                font-size: 23px;
-
-            }
-
-
-            .topic-card h2::before {
-
-                height: 20px;
-
-                margin-right: 9px;
-
-            }
-
-
-            .topic-card h3 {
-
-                font-size: 18px;
-
-            }
-
-
-            .topic-card p {
-
-                font-size: 13px;
-
-            }
-
-
-            .formula {
-
-                padding:
-                    14px 12px;
-
-                font-size: 15px;
-
-            }
-
-
-            .page-navigation {
-
-                flex-direction: column;
-
-            }
-
-
-            .back {
-
-                width: 100%;
-
-                max-width: 300px;
-
-            }
-
-
-            .footer-links {
-
-                gap: 18px;
-
-            }
-
-        }
-
-
-        /* =========================================================
-           ACCESSIBILITY
-        ========================================================= */
-
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-
-                animation-duration:
-                    0.01ms !important;
-
-                animation-iteration-count:
-                    1 !important;
-
-                scroll-behavior:
-                    auto !important;
-
-                transition-duration:
-                    0.01ms !important;
-
-            }
-
-        }
-
-    </style>
+    .exam-meta {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .topic-card {
+        padding: 27px 22px;
+    }
+}
+
+@media(max-width:600px) {
+
+    .hero {
+        padding: 90px 18px 65px;
+    }
+
+    .hero h1 {
+        font-size: 47px;
+    }
+
+    .section {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .topic-card h2 {
+        font-size: 23px;
+    }
+
+    .exam-meta {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .question-text {
+        font-size: 19px;
+    }
+
+    .exam-controls {
+        flex-direction: column;
+    }
+
+    .exam-button {
+        width: 100%;
+    }
+}
+
+</style>
 
 </head>
 
@@ -1882,1041 +500,2503 @@
 <body id="top">
 
 
-<!-- =========================================================
-     NAVIGATION
-========================================================= -->
-
 <header>
 
-    <a href="index.html">
+<a href="index.html">
+<img src="logo.png" alt="IAL ATLAS" class="logo-image">
+</a>
 
-        <img
-            src="logo.png"
-            alt="IAL ATLAS"
-            class="logo-image"
-        >
+<nav>
+<a href="index.html">Home</a>
+<a href="mathematics.html">Mathematics</a>
+<a href="pure-mathematics.html">Pure Mathematics</a>
+</nav>
 
-    </a>
-
-
-    <nav>
-
-        <a href="index.html">
-            Home
-        </a>
-
-        <a href="mathematics.html">
-            Mathematics
-        </a>
-
-        <a href="pure-mathematics.html">
-            Pure Mathematics
-        </a>
-
-    </nav>
-
-
-    <div class="nav-status">
-
-        <span class="status-dot"></span>
-
-        MATHS / ONLINE
-
-    </div>
+<div class="nav-status">
+● MATHS / ONLINE
+</div>
 
 </header>
 
 
-
-<!-- =========================================================
-     HERO
-========================================================= -->
-
 <section class="hero">
 
+<div class="hero-label">
+PURE MATHEMATICS
+</div>
 
-    <div class="hero-orbit-system">
+<h1>
+Coordinate <span>Geometry.</span>
+</h1>
 
-        <div class="hero-orbit"></div>
-
-        <div class="hero-orbit"></div>
-
-        <div class="hero-orbit"></div>
-
-    </div>
-
-
-    <div class="hero-content">
-
-
-        <p class="hero-label">
-
-            PURE MATHEMATICS
-
-        </p>
-
-
-        <h1>
-
-            Coordinate
-
-            <span>
-                Geometry.
-            </span>
-
-        </h1>
-
-
-        <p class="hero-description">
-
-            Master coordinates, gradients, straight lines,
-            perpendicular relationships and intersections
-            through clear explanations and worked examples.
-
-        </p>
-
-
-        <div class="hero-line"></div>
-
-
-    </div>
+<p class="hero-description">
+A deep, structured guide to coordinates, distance, midpoint,
+ratio, gradients, straight lines, perpendicularity, intersections,
+coordinate proofs, circles and exam problem solving.
+</p>
 
 </section>
 
 
-
-<!-- =========================================================
-     BREADCRUMB
-========================================================= -->
-
 <div class="breadcrumb">
 
-    <a href="index.html">
-        IAL ATLAS
-    </a>
-
-    <span> / </span>
-
-    <a href="mathematics.html">
-        Mathematics
-    </a>
-
-    <span> / </span>
-
-    <a href="pure-mathematics.html">
-        Pure Mathematics
-    </a>
-
-    <span> / </span>
-
-    Coordinate Geometry
+<a href="index.html">IAL ATLAS</a>
+/
+<a href="mathematics.html">Mathematics</a>
+/
+<a href="pure-mathematics.html">Pure Mathematics</a>
+/
+Coordinate Geometry
 
 </div>
 
 
-
-<!-- =========================================================
-     CONTENT
-========================================================= -->
-
 <section class="section">
 
 
-    <!-- =====================================================
-         1. COORDINATE BASICS
-    ====================================================== -->
+<!-- =========================================================
+1. FOUNDATION
+========================================================= -->
 
-    <div class="topic-card">
+<div class="topic-card">
 
-        <h2>
-            1. Coordinate Geometry Basics
-        </h2>
+<h2>1. The Coordinate Plane</h2>
 
-        <p>
-            Coordinate geometry allows us to describe geometric shapes
-            using algebra and coordinates.
-        </p>
+<p>
+Coordinate geometry connects algebra and geometry by representing
+points, lines and shapes numerically. Instead of describing a point
+only by its position in a diagram, we can describe it exactly using
+ordered pairs.
+</p>
 
+<h3>Cartesian Coordinates</h3>
 
-        <h3>
-            Coordinates
-        </h3>
+<p>
+A point is written as:
+</p>
 
-        <p>
-            A point is usually written as:
-        </p>
+<div class="formula">
+(x, y)
+</div>
 
+<p>
+The first value is the x-coordinate and the second value is the
+y-coordinate.
+</p>
 
-        <div class="formula">
-            (x, y)
-        </div>
+<ul>
+<li>x measures horizontal displacement.</li>
+<li>y measures vertical displacement.</li>
+<li>Positive x-values lie to the right of the y-axis.</li>
+<li>Negative x-values lie to the left of the y-axis.</li>
+<li>Positive y-values lie above the x-axis.</li>
+<li>Negative y-values lie below the x-axis.</li>
+</ul>
 
+<h3>The Four Quadrants</h3>
 
-        <p>
-            The x-coordinate describes the horizontal position, while
-            the y-coordinate describes the vertical position.
-        </p>
+<div class="formula">
+I: (+,+) &nbsp;&nbsp;
+II: (-,+) &nbsp;&nbsp;
+III: (-,-) &nbsp;&nbsp;
+IV: (+,-)
+</div>
 
+<h3>The Origin</h3>
 
-        <h3>
-            Distance Between Two Points
-        </h3>
+<p>
+The intersection of the coordinate axes is called the origin:
+</p>
 
-        <p>
-            For points (x₁, y₁) and (x₂, y₂), the distance is:
-        </p>
+<div class="formula">
+O = (0,0)
+</div>
 
+<div class="example">
 
-        <div class="formula">
-            d = √[(x₂ − x₁)² + (y₂ − y₁)²]
-        </div>
+<strong>Example:</strong>
 
+<p>
+The point A has coordinates (-4, 7).
+Therefore A lies in Quadrant II because x is negative and y is positive.
+</p>
 
-        <h3>
-            Midpoint
-        </h3>
+</div>
 
-        <p>
-            The midpoint of two points is found by averaging their
-            x-coordinates and y-coordinates.
-        </p>
+</div>
 
 
-        <div class="formula">
-            M = ((x₁ + x₂)/2, (y₁ + y₂)/2)
-        </div>
+<!-- =========================================================
+2. DISTANCE
+========================================================= -->
 
-    </div>
+<div class="topic-card">
 
+<h2>2. Distance Between Two Points</h2>
 
+<p>
+Suppose two points are:
+</p>
 
-    <!-- =====================================================
-         2. GRADIENT
-    ====================================================== -->
+<div class="formula">
+A(x₁,y₁), &nbsp; B(x₂,y₂)
+</div>
 
-    <div class="topic-card">
+<p>
+The horizontal change is:
+</p>
 
-        <h2>
-            2. Gradient of a Straight Line
-        </h2>
+<div class="formula">
+Δx = x₂ − x₁
+</div>
 
-        <p>
-            The gradient describes the steepness of a straight line.
-        </p>
+<p>
+The vertical change is:
+</p>
 
+<div class="formula">
+Δy = y₂ − y₁
+</div>
 
-        <div class="formula">
-            m = (y₂ − y₁) / (x₂ − x₁)
-        </div>
+<p>
+These two changes form the perpendicular sides of a right-angled
+triangle. Pythagoras' theorem therefore gives the distance.
+</p>
 
+<div class="formula">
+AB = √[(x₂ − x₁)² + (y₂ − y₁)²]
+</div>
 
-        <h3>
-            Equation of a Straight Line
-        </h3>
+<h3>Why the Formula Works</h3>
 
+<p>
+If the horizontal difference is 3 and the vertical difference is 4,
+then the points form a 3-4-5 triangle:
+</p>
 
-        <div class="formula">
-            y = mx + c
-        </div>
+<div class="formula">
+AB² = 3² + 4² = 25
+</div>
 
+<div class="formula">
+AB = 5
+</div>
 
-        <p>
-            Here, m is the gradient and c is the y-intercept.
-        </p>
+<h3>Worked Example</h3>
 
+<div class="example">
 
-        <h3>
-            Worked Example
-        </h3>
+<p>
+Find the distance between A(-2,3) and B(4,11).
+</p>
 
+<div class="formula">
+AB = √[(4+2)² + (11−3)²]
+</div>
 
-        <p>
-            Find the gradient of the line passing through
-            (2, 3) and (6, 11).
-        </p>
+<div class="formula">
+= √(6² + 8²)
+</div>
 
+<div class="formula">
+= √100
+</div>
 
-        <div class="formula">
+<div class="formula">
+<strong>AB = 10</strong>
+</div>
 
-            m = (11 − 3) / (6 − 2)
+</div>
 
-            <br>
+<h3>Distance Squared</h3>
 
-            = 8 / 4
+<p>
+Sometimes it is unnecessary to calculate the square root. For example,
+to compare two distances, compare their squares instead.
+</p>
 
-            <br>
+<div class="formula">
+AB² = (x₂−x₁)² + (y₂−y₁)²
+</div>
 
-            = <strong>2</strong>
+<div class="note">
+This is particularly useful in coordinate proofs involving equal
+lengths because it avoids unnecessary square roots.
+</div>
 
-        </div>
+</div>
 
 
-        <p>
-            Therefore, the gradient is 2.
-        </p>
+<!-- =========================================================
+3. MIDPOINT
+========================================================= -->
 
-    </div>
+<div class="topic-card">
 
+<h2>3. Midpoint of a Line Segment</h2>
 
+<p>
+The midpoint is the point exactly halfway between two endpoints.
+</p>
 
-    <!-- =====================================================
-         3. EQUATION OF A LINE
-    ====================================================== -->
+<p>
+For:
+</p>
 
-    <div class="topic-card">
+<div class="formula">
+A(x₁,y₁), B(x₂,y₂)
+</div>
 
-        <h2>
-            3. Equation of a Straight Line
-        </h2>
+<p>
+the midpoint is:
+</p>
 
-        <p>
-            A straight line can be written in the form:
-        </p>
+<div class="formula">
+M = ((x₁+x₂)/2 , (y₁+y₂)/2)
+</div>
 
+<p>
+Notice that the x-coordinates are averaged separately from the
+y-coordinates.
+</p>
 
-        <div class="formula">
-            y = mx + c
-        </div>
+<div class="example">
 
+<strong>Example:</strong>
 
-        <p>
-            If you know the gradient and one point on the line, you can
-            determine its equation.
-        </p>
+<p>
+Find the midpoint of A(-3,8) and B(7,2).
+</p>
 
+<div class="formula">
+M = ((−3+7)/2 , (8+2)/2)
+</div>
 
-        <h3>
-            Worked Example
-        </h3>
+<div class="formula">
+M = (2,5)
+</div>
 
+</div>
 
-        <p>
-            Find the equation of the line with gradient 3 passing through
-            (2, 7).
-        </p>
+<h3>Finding an Unknown Endpoint</h3>
 
+<p>
+The midpoint formula can also be rearranged to find an unknown
+endpoint.
+</p>
 
-        <p>
-            Start with:
-        </p>
+<p>
+Suppose A(x₁,y₁), B(x₂,y₂) and midpoint M(xₘ,yₘ).
+</p>
 
+<div class="formula">
+xₘ = (x₁+x₂)/2
+</div>
 
-        <div class="formula">
-            y = 3x + c
-        </div>
+<div class="formula">
+yₘ = (y₁+y₂)/2
+</div>
 
+<p>
+Therefore:
+</p>
 
-        <p>
-            Substitute the point (2, 7):
-        </p>
+<div class="formula">
+x₂ = 2xₘ − x₁
+</div>
 
+<div class="formula">
+y₂ = 2yₘ − y₁
+</div>
 
-        <div class="formula">
+<div class="example">
 
-            7 = 3(2) + c
+<strong>Example:</strong>
 
-            <br>
+<p>
+A point A is (3,7) and the midpoint of AB is (8,4).
+Find B.
+</p>
 
-            7 = 6 + c
+<div class="formula">
+x_B = 2(8)−3 = 13
+</div>
 
-            <br>
+<div class="formula">
+y_B = 2(4)−7 = 1
+</div>
 
-            c = 1
+<div class="formula">
+<strong>B = (13,1)</strong>
+</div>
 
-        </div>
+</div>
 
+</div>
 
-        <p>
-            Therefore:
-        </p>
 
+<!-- =========================================================
+4. RATIO
+========================================================= -->
 
-        <div class="formula">
+<div class="topic-card">
 
-            <strong>
-                y = 3x + 1
-            </strong>
+<h2>4. Dividing a Line Segment in a Given Ratio</h2>
 
-        </div>
+<p>
+Coordinate geometry can be used to locate a point dividing a line
+segment internally in a specified ratio.
+</p>
 
-    </div>
+<p>
+If P divides AB in the ratio:
+</p>
 
+<div class="formula">
+AP : PB = m : n
+</div>
 
+<p>
+where:
+</p>
 
-    <!-- =====================================================
-         4. PARALLEL AND PERPENDICULAR
-    ====================================================== -->
+<div class="formula">
+A(x₁,y₁), B(x₂,y₂)
+</div>
 
-    <div class="topic-card">
+<p>
+then:
+</p>
 
-        <h2>
-            4. Parallel and Perpendicular Lines
-        </h2>
+<div class="formula">
+P =
+((nx₁ + mx₂)/(m+n),
+ (ny₁ + my₂)/(m+n))
+</div>
 
+<div class="example">
 
-        <h3>
-            Parallel Lines
-        </h3>
+<strong>Example:</strong>
 
+<p>
+P divides A(2,3) and B(12,8) in the ratio 2:3.
+</p>
 
-        <p>
-            Parallel lines have the same gradient.
-        </p>
+<div class="formula">
+x_P = [3(2)+2(12)]/5 = 30/5 = 6
+</div>
 
+<div class="formula">
+y_P = [3(3)+2(8)]/5 = 25/5 = 5
+</div>
 
-        <div class="formula">
-            m₁ = m₂
-        </div>
+<div class="formula">
+<strong>P = (6,5)</strong>
+</div>
 
+</div>
 
-        <h3>
-            Perpendicular Lines
-        </h3>
+<div class="warning">
+Be careful with the ratio formula. The coefficient beside A is the
+part opposite A, while the coefficient beside B is the part opposite B.
+</div>
 
+</div>
 
-        <p>
-            For two non-vertical perpendicular lines, the product of their
-            gradients is -1.
-        </p>
 
+<!-- =========================================================
+5. GRADIENT
+========================================================= -->
 
-        <div class="formula">
-            m₁m₂ = -1
-        </div>
+<div class="topic-card">
 
+<h2>5. Gradient of a Straight Line</h2>
 
-        <h3>
-            Worked Example
-        </h3>
+<p>
+The gradient measures the rate at which y changes as x changes.
+</p>
 
+<div class="formula">
+m = (y₂−y₁)/(x₂−x₁)
+</div>
 
-        <p>
-            A line has gradient 2. Find the gradient of a perpendicular line.
-        </p>
+<p>
+This can also be understood as:
+</p>
 
+<div class="formula">
+gradient = vertical change / horizontal change
+</div>
 
-        <div class="formula">
+<h3>Positive Gradient</h3>
 
-            2m = -1
+<p>
+A line with positive gradient rises from left to right.
+</p>
 
-            <br>
+<h3>Negative Gradient</h3>
 
-            m = <strong>-1/2</strong>
+<p>
+A line with negative gradient falls from left to right.
+</p>
 
-        </div>
+<h3>Zero Gradient</h3>
 
-    </div>
+<p>
+A horizontal line has:
+</p>
 
+<div class="formula">
+m = 0
+</div>
 
+<h3>Undefined Gradient</h3>
 
-    <!-- =====================================================
-         5. EQUATIONS AND INTERSECTIONS
-    ====================================================== -->
+<p>
+A vertical line has x₂−x₁ = 0, so division by zero is impossible.
+Therefore a vertical line has no finite gradient.
+</p>
 
-    <div class="topic-card">
+<div class="example">
 
-        <h2>
-            5. Equations and Intersections
-        </h2>
+<strong>Example:</strong>
 
+<p>
+Find the gradient through A(-2,5) and B(4,-7).
+</p>
 
-        <p>
-            Coordinate geometry can be used to find where lines and curves
-            intersect.
-        </p>
+<div class="formula">
+m = (−7−5)/(4−(−2))
+</div>
 
+<div class="formula">
+= −12/6
+</div>
 
-        <h3>
-            Example
-        </h3>
+<div class="formula">
+<strong>m = −2</strong>
+</div>
 
+</div>
 
-        <p>
-            Consider the line:
-        </p>
+</div>
 
 
-        <div class="formula">
-            y = x + 2
-        </div>
+<!-- =========================================================
+6. STRAIGHT LINE
+========================================================= -->
 
+<div class="topic-card">
 
-        <p>
-            and the curve:
-        </p>
+<h2>6. Equation of a Straight Line</h2>
 
+<h3>Slope-Intercept Form</h3>
 
-        <div class="formula">
-            y = x²
-        </div>
+<div class="formula">
+y = mx + c
+</div>
 
+<p>
+where m is the gradient and c is the y-intercept.
+</p>
 
-        <p>
-            At an intersection, both equations have the same value of y.
-            Therefore:
-        </p>
+<h3>Point-Gradient Method</h3>
 
+<p>
+If the gradient is m and the line passes through (x₁,y₁):
+</p>
 
-        <div class="formula">
-            x² = x + 2
-        </div>
+<div class="formula">
+y − y₁ = m(x − x₁)
+</div>
 
+<div class="example">
 
-        <div class="formula">
+<strong>Example:</strong>
 
-            x² − x − 2 = 0
+<p>
+Find the equation of the line with gradient -3 passing through (4,7).
+</p>
 
-            <br>
+<div class="formula">
+y − 7 = −3(x−4)
+</div>
 
-            (x − 2)(x + 1) = 0
+<div class="formula">
+y − 7 = −3x + 12
+</div>
 
-        </div>
+<div class="formula">
+<strong>y = −3x + 19</strong>
+</div>
 
+</div>
 
-        <p>
-            Therefore:
-        </p>
+<h3>Finding the Equation from Two Points</h3>
 
+<ol>
+<li>Calculate the gradient.</li>
+<li>Use either point in y = mx + c.</li>
+<li>Find c.</li>
+<li>Write the final equation.</li>
+</ol>
 
-        <div class="formula">
-            x = 2 or x = -1
-        </div>
+<div class="example">
 
+<strong>Example:</strong>
 
-        <p>
-            Substitute these values into either original equation to find
-            the corresponding y-coordinates.
-        </p>
+<p>
+Find the equation through (1,4) and (5,12).
+</p>
 
-    </div>
+<div class="formula">
+m = (12−4)/(5−1) = 2
+</div>
 
+<div class="formula">
+y = 2x+c
+</div>
 
+<div class="formula">
+4 = 2(1)+c
+</div>
 
-    <!-- =====================================================
-         6. PRACTICE QUESTIONS
-    ====================================================== -->
+<div class="formula">
+c = 2
+</div>
 
-    <div class="topic-card">
+<div class="formula">
+<strong>y = 2x+2</strong>
+</div>
 
-        <h2>
-            🧠 Practice Questions
-        </h2>
+</div>
 
+</div>
 
-        <p>
-            Try each question yourself before revealing the solution.
-        </p>
 
+<!-- =========================================================
+7. OTHER LINE FORMS
+========================================================= -->
 
+<div class="topic-card">
 
-        <h3>
-            Question 1 — Distance
-        </h3>
+<h2>7. Important Forms of a Straight Line</h2>
 
+<h3>Gradient-Intercept Form</h3>
 
-        <p>
-            Find the distance between A(1, 2) and B(5, 5).
-        </p>
+<div class="formula">
+y = mx+c
+</div>
 
+<h3>Point-Gradient Form</h3>
 
-        <details>
+<div class="formula">
+y−y₁ = m(x−x₁)
+</div>
 
-            <summary>
-                Show Full Solution
-            </summary>
+<h3>General Form</h3>
 
+<div class="formula">
+ax + by + c = 0
+</div>
 
-            <p>
-                Use the distance formula:
-            </p>
+<p>
+The general form can be rearranged into y = mx+c when necessary.
+</p>
 
+<div class="example">
 
-            <div class="formula">
-                d = √[(5 − 1)² + (5 − 2)²]
-            </div>
+<p>
+Consider:
+</p>
 
+<div class="formula">
+3x + 2y − 8 = 0
+</div>
 
-            <div class="formula">
+<p>
+Rearrange:
+</p>
 
-                = √(16 + 9)
+<div class="formula">
+2y = −3x+8
+</div>
 
-                <br>
+<div class="formula">
+y = −3/2 x + 4
+</div>
 
-                = √25
+<p>
+Therefore the gradient is:
+</p>
 
-                <br>
+<div class="formula">
+<strong>−3/2</strong>
+</div>
 
-                = <strong>5</strong>
+</div>
 
-            </div>
+<h3>Horizontal Line</h3>
 
-        </details>
+<div class="formula">
+y = k
+</div>
 
+<h3>Vertical Line</h3>
 
+<div class="formula">
+x = k
+</div>
 
-        <h3>
-            Question 2 — Midpoint
-        </h3>
+</div>
 
 
-        <p>
-            Find the midpoint of A(2, 4) and B(8, 10).
-        </p>
+<!-- =========================================================
+8. PARALLEL
+========================================================= -->
 
+<div class="topic-card">
 
-        <details>
+<h2>8. Parallel Lines</h2>
 
-            <summary>
-                Show Full Solution
-            </summary>
+<p>
+Two non-identical straight lines are parallel if they have the same
+gradient.
+</p>
 
+<div class="formula">
+m₁ = m₂
+</div>
 
-            <div class="formula">
-                M = ((2 + 8)/2, (4 + 10)/2)
-            </div>
+<div class="example">
 
+<p>
+Determine whether:
+</p>
 
-            <div class="formula">
-                = <strong>(5, 7)</strong>
-            </div>
+<div class="formula">
+y = 4x−7
+</div>
 
-        </details>
+<p>
+and:
+</p>
 
+<div class="formula">
+2y = 8x+5
+</div>
 
+<p>
+are parallel.
+</p>
 
-        <h3>
-            Question 3 — Gradient
-        </h3>
+<p>
+The second equation becomes:
+</p>
 
+<div class="formula">
+y = 4x + 5/2
+</div>
 
-        <p>
-            Find the gradient of the line through (3, 2) and (7, 14).
-        </p>
+<p>
+Both gradients are 4, so the lines are parallel.
+</p>
 
+</div>
 
-        <details>
+<h3>Finding a Parallel Line</h3>
 
-            <summary>
-                Show Full Solution
-            </summary>
+<p>
+If a line has gradient m, every parallel line has the same gradient.
+The constant c changes according to the point through which the new
+line passes.
+</p>
 
+</div>
 
-            <div class="formula">
-                m = (14 − 2)/(7 − 3)
-            </div>
 
+<!-- =========================================================
+9. PERPENDICULAR
+========================================================= -->
 
-            <div class="formula">
+<div class="topic-card">
 
-                = 12/4
+<h2>9. Perpendicular Lines</h2>
 
-                <br>
+<p>
+For two non-vertical perpendicular lines:
+</p>
 
-                = <strong>3</strong>
+<div class="formula">
+m₁m₂ = −1
+</div>
 
-            </div>
+<p>
+Therefore the gradient of a perpendicular line is the negative
+reciprocal.
+</p>
 
-        </details>
+<div class="formula">
+m₂ = −1/m₁
+</div>
 
+<div class="example">
 
+<p>
+A line has gradient 5.
+</p>
 
-        <h3>
-            Question 4 — Equation of a Line
-        </h3>
+<div class="formula">
+m₂ = −1/5
+</div>
 
+<p>
+Therefore a perpendicular line has gradient -1/5.
+</p>
 
-        <p>
-            Find the equation of the line with gradient 4 passing through
-            (1, 6).
-        </p>
+</div>
 
+<div class="warning">
+Do not confuse the reciprocal with the negative reciprocal.
+The perpendicular gradient to 3 is -1/3, not 1/3.
+</div>
 
-        <details>
+</div>
 
-            <summary>
-                Show Full Solution
-            </summary>
 
+<!-- =========================================================
+10. COLLINEARITY
+========================================================= -->
 
-            <div class="formula">
-                y = 4x + c
-            </div>
+<div class="topic-card">
 
+<h2>10. Proving Points Are Collinear</h2>
 
-            <div class="formula">
+<p>
+Points are collinear if they all lie on the same straight line.
+</p>
 
-                6 = 4(1) + c
+<h3>Method 1 — Compare Gradients</h3>
 
-                <br>
+<p>
+For A, B and C, calculate:
+</p>
 
-                c = 2
+<div class="formula">
+gradient AB
+</div>
 
-            </div>
+and:
 
+<div class="formula">
+gradient BC
+</div>
 
-            <div class="formula">
+<p>
+If they are equal, the three points are collinear.
+</p>
 
-                <strong>
-                    y = 4x + 2
-                </strong>
+<div class="example">
 
-            </div>
+<p>
+A(1,2), B(3,6), C(5,10)
+</p>
 
-        </details>
+<div class="formula">
+m_AB = (6−2)/(3−1)=2
+</div>
 
+<div class="formula">
+m_BC = (10−6)/(5−3)=2
+</div>
 
+<p>
+Therefore the points are collinear.
+</p>
 
-        <h3>
-            Question 5 — Perpendicular Lines
-        </h3>
+</div>
 
+<h3>Method 2 — Find the Equation</h3>
 
-        <p>
-            Find the gradient of a line perpendicular to a line with
-            gradient 5.
-        </p>
+<p>
+Find the equation through two points and substitute the third point.
+If it satisfies the equation, the points are collinear.
+</p>
 
+</div>
 
-        <details>
 
-            <summary>
-                Show Full Solution
-            </summary>
+<!-- =========================================================
+11. INTERSECTIONS
+========================================================= -->
 
+<div class="topic-card">
 
-            <div class="formula">
-                5m = -1
-            </div>
+<h2>11. Intersections of Lines</h2>
 
+<p>
+At the intersection of two lines, the coordinates of the point satisfy
+both equations simultaneously.
+</p>
 
-            <div class="formula">
+<p>
+Therefore if:
+</p>
 
-                <strong>
-                    m = -1/5
-                </strong>
+<div class="formula">
+y = 2x+3
+</div>
 
-            </div>
+<div class="formula">
+y = −x+9
+</div>
 
-        </details>
+<p>
+set them equal:
+</p>
 
+<div class="formula">
+2x+3 = −x+9
+</div>
 
+<div class="formula">
+3x = 6
+</div>
 
-        <h3>
-            Question 6 — Intersection
-        </h3>
+<div class="formula">
+x = 2
+</div>
 
+<p>
+Substitute x = 2:
+</p>
 
-        <p>
-            Find the x-coordinates of the intersections of:
-        </p>
+<div class="formula">
+y = 2(2)+3 = 7
+</div>
 
+<div class="formula">
+<strong>Intersection = (2,7)</strong>
+</div>
 
-        <div class="formula">
+</div>
 
-            y = x + 2
 
-            <br>
+<!-- =========================================================
+12. LINE AND CURVE
+========================================================= -->
 
-            y = x²
+<div class="topic-card">
 
-        </div>
+<h2>12. Intersections of a Line and a Curve</h2>
 
+<p>
+If a line and curve intersect, the coordinates must satisfy both
+equations.
+</p>
 
-        <details>
+<p>
+For example:
+</p>
 
-            <summary>
-                Show Full Solution
-            </summary>
+<div class="formula">
+y = x+6
+</div>
 
+<div class="formula">
+y = x²
+</div>
 
-            <div class="formula">
-                x² = x + 2
-            </div>
+<p>
+Set them equal:
+</p>
 
+<div class="formula">
+x² = x+6
+</div>
 
-            <div class="formula">
+<div class="formula">
+x²−x−6 = 0
+</div>
 
-                x² − x − 2 = 0
+<div class="formula">
+(x−3)(x+2)=0
+</div>
 
-                <br>
+<div class="formula">
+x = 3 or x = −2
+</div>
 
-                (x − 2)(x + 1) = 0
+<p>
+Then substitute each x-value into either original equation to obtain
+the corresponding y-coordinate.
+</p>
 
-            </div>
+<div class="warning">
+If a question asks for coordinates of intersection, giving only the
+x-values is incomplete.
+</div>
 
+</div>
 
-            <div class="formula">
 
-                <strong>
-                    x = 2 or x = -1
-                </strong>
+<!-- =========================================================
+13. NUMBER OF INTERSECTIONS
+========================================================= -->
 
-            </div>
+<div class="topic-card">
 
-        </details>
+<h2>13. Intersections and Quadratic Discriminants</h2>
 
-    </div>
+<p>
+When a line is substituted into a quadratic curve, the resulting
+equation is often quadratic.
+</p>
 
+<p>
+For:
+</p>
 
+<div class="formula">
+ax²+bx+c=0
+</div>
 
-    <!-- =====================================================
-         7. COMMON MISTAKES
-    ====================================================== -->
+<p>
+the discriminant is:
+</p>
 
-    <div class="topic-card">
+<div class="formula">
+Δ = b²−4ac
+</div>
 
-        <h2>
-            ⚠️ Common Mistakes
-        </h2>
+<ul>
+<li>Δ &gt; 0 → two distinct real intersections.</li>
+<li>Δ = 0 → one repeated intersection, usually tangency.</li>
+<li>Δ &lt; 0 → no real intersections.</li>
+</ul>
 
+<div class="example">
 
-        <h3>
-            1. Mixing up x and y coordinates
-        </h3>
+<p>
+Suppose a line intersects a curve and substitution produces:
+</p>
 
+<div class="formula">
+x²−6x+9=0
+</div>
 
-        <p>
-            Remember that a coordinate is written as (x, y).
-            The x-coordinate comes first.
-        </p>
+<p>
+Then:
+</p>
 
+<div class="formula">
+Δ = (−6)²−4(1)(9)=0
+</div>
 
-        <h3>
-            2. Using the wrong order in the gradient formula
-        </h3>
+<p>
+Therefore there is one repeated root and hence one point of contact.
+</p>
 
+</div>
 
-        <p>
-            Keep the order consistent. If you subtract the y-values in one
-            order, subtract the x-values in the same order.
-        </p>
+</div>
 
 
-        <h3>
-            3. Forgetting the negative reciprocal
-        </h3>
+<!-- =========================================================
+14. COORDINATE PROOFS
+========================================================= -->
 
+<div class="topic-card">
 
-        <p>
-            The gradient of a perpendicular line is the negative reciprocal,
-            not simply the reciprocal.
-        </p>
+<h2>14. Coordinate Geometry Proofs</h2>
 
+<p>
+Coordinate geometry can prove geometric properties algebraically.
+Instead of relying only on a diagram, calculate quantities that establish
+the required property.
+</p>
 
-        <div class="formula">
+<h3>Proving a Shape Is Isosceles</h3>
 
-            m = 2
+<p>
+Show that two sides have equal lengths.
+</p>
 
-            <br>
+<div class="formula">
+AB² = AC²
+</div>
 
-            perpendicular gradient = -1/2
+<h3>Proving a Shape Is Equilateral</h3>
 
-        </div>
+<p>
+Show all three side lengths are equal.
+</p>
 
+<div class="formula">
+AB² = BC² = CA²
+</div>
 
-        <h3>
-            4. Forgetting to find both coordinates
-        </h3>
+<h3>Proving a Shape Is a Parallelogram</h3>
 
+<p>
+Possible methods include:
+</p>
 
-        <p>
-            When finding an intersection, finding x alone is usually not
-            enough if the question asks for the coordinates.
-        </p>
+<ul>
+<li>Show opposite sides have equal gradients and lengths.</li>
+<li>Show opposite sides have equal gradients.</li>
+<li>Show the diagonals have the same midpoint.</li>
+</ul>
 
-    </div>
+<h3>Proving a Rectangle</h3>
 
+<p>
+A rectangle can be established by showing opposite sides are parallel
+and one pair of adjacent sides is perpendicular.
+</p>
 
+<h3>Proving a Right Angle</h3>
 
-    <!-- =====================================================
-         8. EXAM TIPS
-    ====================================================== -->
+<div class="formula">
+m₁m₂ = −1
+</div>
 
-    <div class="topic-card">
+</div>
 
-        <h2>
-            🎯 Exam Tips
-        </h2>
 
+<!-- =========================================================
+15. CIRCLES
+========================================================= -->
 
-        <h3>
-            1. Write the formula first
-        </h3>
+<div class="topic-card">
 
+<h2>15. Coordinate Geometry of Circles</h2>
 
-        <p>
-            Writing the appropriate formula before substituting values can
-            reduce calculation errors.
-        </p>
+<p>
+A circle with centre (a,b) and radius r has equation:
+</p>
 
+<div class="formula">
+(x−a)² + (y−b)² = r²
+</div>
 
-        <h3>
-            2. Keep your working organised
-        </h3>
+<h3>Recognising the Centre and Radius</h3>
 
+<div class="example">
 
-        <p>
-            Coordinate geometry questions often involve several stages.
-            Keep each stage clearly separated.
-        </p>
+<p>
+Consider:
+</p>
 
+<div class="formula">
+(x−3)²+(y+4)²=25
+</div>
 
-        <h3>
-            3. Check gradients carefully
-        </h3>
+<p>
+Compare with:
+</p>
 
+<div class="formula">
+(x−a)²+(y−b)²=r²
+</div>
 
-        <p>
-            For perpendicular lines, remember:
-        </p>
+<p>
+Therefore:
+</p>
 
+<div class="formula">
+centre = (3,−4)
+</div>
 
-        <div class="formula">
-            m₁m₂ = -1
-        </div>
+<div class="formula">
+radius = 5
+</div>
 
+</div>
 
-        <h3>
-            4. Check your coordinates
-        </h3>
+<h3>Circle Through the Origin</h3>
 
+<p>
+If the circle passes through (0,0), substitute x=0 and y=0 into the
+equation to obtain a relationship between the constants.
+</p>
 
-        <p>
-            If you calculate a midpoint, distance or intersection, check
-            that the result makes sense from the original coordinates.
-        </p>
+<h3>Expanded Circle Equation</h3>
 
+<p>
+Expanding:
+</p>
 
-        <h3>
-            5. Give exact answers when appropriate
-        </h3>
+<div class="formula">
+(x−a)²+(y−b)²=r²
+</div>
 
+<p>
+gives:
+</p>
 
-        <p>
-            Keep exact values such as √5 unless the question specifically
-            asks for a decimal approximation.
-        </p>
+<div class="formula">
+x²+y²−2ax−2by+a²+b²−r²=0
+</div>
 
-    </div>
+<p>
+This can be compared with a general circle equation to determine its
+centre and radius.
+</p>
 
+</div>
 
 
-    <!-- =====================================================
-         PAGE NAVIGATION
-    ====================================================== -->
+<!-- =========================================================
+16. TANGENTS
+========================================================= -->
 
-    <a href="#top" class="top-button">
-        ↑ Back to Top
-    </a>
+<div class="topic-card">
 
+<h2>16. Tangents to Circles</h2>
 
-    <div class="page-navigation">
+<p>
+A tangent touches a circle at exactly one point.
+The radius drawn to the point of contact is perpendicular to the tangent.
+</p>
 
-        <a
-            href="pure-mathematics.html"
-            class="back back-secondary"
-        >
-            ← Back to Pure Mathematics
-        </a>
+<div class="formula">
+gradient(radius) × gradient(tangent) = −1
+</div>
 
+<div class="example">
 
-        <a
-            href="mathematics.html"
-            class="back back-secondary"
-        >
-            Mathematics Home
-        </a>
+<p>
+Suppose the centre of a circle is C(2,3) and the point of contact is
+P(6,5).
+</p>
 
+<p>
+First find the gradient CP:
+</p>
 
-        <a
-            href="index.html"
-            class="back back-primary"
-        >
-            Explore IAL ATLAS →
-        </a>
+<div class="formula">
+m_CP = (5−3)/(6−2)=1/2
+</div>
 
-    </div>
+<p>
+Therefore the tangent gradient is:
+</p>
+
+<div class="formula">
+m_tangent = −2
+</div>
+
+<p>
+The tangent passes through P(6,5):
+</p>
+
+<div class="formula">
+y−5 = −2(x−6)
+</div>
+
+<div class="formula">
+<strong>y = −2x+17</strong>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+17. CHORDS
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>17. Chords and Their Midpoints</h2>
+
+<p>
+A chord is a line segment joining two points on a circle.
+</p>
+
+<p>
+A key coordinate-geometry fact is that the perpendicular from the
+centre of a circle to a chord bisects the chord.
+</p>
+
+<p>
+Therefore, if M is the midpoint of chord AB, then:
+</p>
+
+<div class="formula">
+AM = MB
+</div>
+
+<p>
+and:
+</p>
+
+<div class="formula">
+CM ⟂ AB
+</div>
+
+<p>
+This creates a useful combination of midpoint and perpendicular-gradient
+methods.
+</p>
+
+</div>
+
+
+<!-- =========================================================
+18. DISTANCE FROM CENTRE
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>18. Circle-Line Relationships</h2>
+
+<p>
+To determine whether a line intersects a circle, substitute the line
+equation into the circle equation.
+</p>
+
+<p>
+This produces an equation in x.
+</p>
+
+<ul>
+<li>Two real solutions → line intersects circle twice.</li>
+<li>One repeated real solution → line is tangent.</li>
+<li>No real solutions → line does not meet the circle.</li>
+</ul>
+
+<p>
+The same conclusion can be reached geometrically by comparing the
+distance from the centre to the line with the radius, when the relevant
+distance formula is available.
+</p>
+
+</div>
+
+
+<!-- =========================================================
+19. EXAM METHOD
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>19. A Reliable Coordinate Geometry Method</h2>
+
+<h3>When Given Two Points</h3>
+
+<ol>
+<li>Write down the coordinates clearly.</li>
+<li>Calculate Δx and Δy.</li>
+<li>Decide whether you need distance, midpoint or gradient.</li>
+<li>Keep exact values where appropriate.</li>
+<li>Check signs carefully.</li>
+</ol>
+
+<h3>When Finding a Line</h3>
+
+<ol>
+<li>Find the gradient.</li>
+<li>Choose the most convenient line equation form.</li>
+<li>Use the given point.</li>
+<li>Simplify completely.</li>
+<li>Check the point satisfies the final equation.</li>
+</ol>
+
+<h3>When Finding an Intersection</h3>
+
+<ol>
+<li>Make the equations represent the same variable.</li>
+<li>Equate them.</li>
+<li>Solve the resulting equation.</li>
+<li>Find every valid x-value.</li>
+<li>Substitute to obtain y-values.</li>
+<li>State the coordinates clearly.</li>
+</ol>
+
+</div>
+
+
+<!-- =========================================================
+20. COMMON MISTAKES
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>20. Common Mistakes</h2>
+
+<h3>1. Reversing x and y</h3>
+
+<p>
+Always remember:
+</p>
+
+<div class="formula">
+(x,y)
+</div>
+
+<h3>2. Inconsistent subtraction</h3>
+
+<p>
+In the gradient formula, if you use y₂−y₁, use x₂−x₁.
+</p>
+
+<h3>3. Forgetting negative signs</h3>
+
+<p>
+Negative coordinates frequently appear in coordinate geometry.
+Use brackets when substituting them.
+</p>
+
+<div class="formula">
+−3 − (−7)
+</div>
+
+<p>
+is not the same as:
+</p>
+
+<div class="formula">
+−3 − 7
+</div>
+
+<h3>4. Confusing perpendicular gradients</h3>
+
+<div class="formula">
+m₂ = −1/m₁
+</div>
+
+<h3>5. Giving only x-values</h3>
+
+<p>
+If the question asks for coordinates, calculate y as well.
+</p>
+
+<h3>6. Decimalising too early</h3>
+
+<p>
+Exact fractions and surds are usually safer during working.
+</p>
+
+<h3>7. Not checking the answer</h3>
+
+<p>
+Substitute your result back into the original equation whenever possible.
+</p>
+
+</div>
+
+
+<!-- =========================================================
+21. DEEP PROBLEM-SOLVING
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>21. Deeper Problem-Solving Techniques</h2>
+
+<h3>Technique A — Work Backwards</h3>
+
+<p>
+If the final point or gradient is known, work backwards through the
+equations to determine an unknown coordinate.
+</p>
+
+<h3>Technique B — Use Distance Squared</h3>
+
+<p>
+When proving two distances equal, use:
+</p>
+
+<div class="formula">
+distance² = Δx² + Δy²
+</div>
+
+<p>
+This removes unnecessary square roots.
+</p>
+
+<h3>Technique C — Use the Midpoint of Diagonals</h3>
+
+<p>
+For a parallelogram, the diagonals bisect each other. Therefore their
+midpoints are equal.
+</p>
+
+<h3>Technique D — Convert General Equations</h3>
+
+<p>
+If a line is given in general form, rearrange it into y=mx+c when you
+need its gradient.
+</p>
+
+<h3>Technique E — Look for Structure</h3>
+
+<p>
+If coordinates contain symmetric values such as:
+</p>
+
+<div class="formula">
+(a,b), (−a,b), (a,−b), (−a,−b)
+</div>
+
+<p>
+look for symmetry around the axes or origin before doing lengthy
+calculations.
+</p>
+
+</div>
+
+
+<!-- =========================================================
+22. QUICK FORMULA ATLAS
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>22. Coordinate Geometry Formula Atlas</h2>
+
+<div class="formula">
+Distance:
+√[(x₂−x₁)²+(y₂−y₁)²]
+</div>
+
+<div class="formula">
+Midpoint:
+((x₁+x₂)/2,(y₁+y₂)/2)
+</div>
+
+<div class="formula">
+Gradient:
+(y₂−y₁)/(x₂−x₁)
+</div>
+
+<div class="formula">
+Straight line:
+y=mx+c
+</div>
+
+<div class="formula">
+Point-gradient:
+y−y₁=m(x−x₁)
+</div>
+
+<div class="formula">
+Parallel:
+m₁=m₂
+</div>
+
+<div class="formula">
+Perpendicular:
+m₁m₂=−1
+</div>
+
+<div class="formula">
+Circle:
+(x−a)²+(y−b)²=r²
+</div>
+
+<div class="formula">
+Discriminant:
+Δ=b²−4ac
+</div>
+
+</div>
+
+
+<!-- =========================================================
+100 QUESTION EXAM
+========================================================= -->
+
+<div class="topic-card exam-intro">
+
+<h2>🧠 Coordinate Geometry — 100 Question Exam</h2>
+
+<p>
+Test everything you have learned in this chapter.
+The exam contains 100 multiple-choice questions ranging from basic
+coordinate skills to multi-step coordinate geometry.
+</p>
+
+<div class="exam-meta">
+
+<div class="exam-stat">
+<strong>100</strong>
+<span>Questions</span>
+</div>
+
+<div class="exam-stat">
+<strong>MCQ</strong>
+<span>Format</span>
+</div>
+
+<div class="exam-stat">
+<strong>1</strong>
+<span>Mark / Question</span>
+</div>
+
+<div class="exam-stat">
+<strong>100%</strong>
+<span>Completion</span>
+</div>
+
+</div>
+
+<button class="exam-button" onclick="startExam()">
+START 100-QUESTION EXAM
+</button>
+
+</div>
+
+
+<div class="topic-card" id="exam">
+
+<div class="exam-header">
+
+<div class="question-number" id="questionNumber">
+QUESTION 1 / 100
+</div>
+
+<div class="exam-progress">
+<div class="exam-progress-bar" id="progressBar"></div>
+</div>
+
+</div>
+
+<div class="question-text" id="questionText"></div>
+
+<div class="options" id="options"></div>
+
+<div class="exam-warning" id="examWarning">
+Please select an answer before continuing.
+</div>
+
+<div class="exam-controls">
+
+<button class="exam-button secondary"
+id="previousButton"
+onclick="previousQuestion()">
+← Previous
+</button>
+
+<button class="exam-button"
+id="nextButton"
+onclick="nextQuestion()">
+Next →
+</button>
+
+</div>
+
+</div>
+
+
+<div class="topic-card result" id="result">
+
+<h2>EXAM COMPLETE</h2>
+
+<div class="result-score" id="scoreDisplay">
+0 / 100
+</div>
+
+<div class="result-details" id="resultDetails"></div>
+
+<button class="exam-button" onclick="restartExam()">
+RESTART EXAM
+</button>
+
+</div>
 
 
 </section>
 
 
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
 <footer>
 
+<h2>IAL ATLAS</h2>
 
-    <div class="footer-content">
+<p>
+Explore • Learn • Master
+</p>
 
+<p>
+A free, independent student resource created to make
+Edexcel International A Levels easier to understand.
+</p>
 
-        <h2>
-            IAL ATLAS
-        </h2>
+<p>
+© 2026 IAL ATLAS • Independent student resource
+</p>
 
-
-        <p class="footer-tagline">
-
-            Explore • Learn • Master
-
-        </p>
-
-
-        <p class="footer-description">
-
-            A free, independent student resource created
-            to make Edexcel International A Levels easier
-            to understand.
-
-        </p>
-
-
-        <div class="footer-links">
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="mathematics.html">
-                Mathematics
-            </a>
-
-            <a href="pure-mathematics.html">
-                Pure Mathematics
-            </a>
-
-            <a href="#top">
-                Back to top ↑
-            </a>
-
-        </div>
-
-
-        <div class="footer-line"></div>
-
-
-        <p class="footer-copy">
-
-            © 2026 IAL ATLAS • Independent student resource
-
-        </p>
-
-
-        <p class="footer-disclaimer">
-
-            Not affiliated with Pearson
-
-        </p>
-
-
-    </div>
+<p>
+Not affiliated with Pearson
+</p>
 
 </footer>
 
 
-</body>
+<script>
 
+/* =========================================================
+100 QUESTION EXAM
+========================================================= */
+
+const questions = [
+
+{
+q:"What are the coordinates of the origin?",
+o:["(0,0)","(1,0)","(0,1)","(1,1)"],
+a:0
+},
+
+{
+q:"In which quadrant is the point (-3,5)?",
+o:["I","II","III","IV"],
+a:1
+},
+
+{
+q:"In which quadrant is (4,-7)?",
+o:["I","II","III","IV"],
+a:3
+},
+
+{
+q:"What is the x-coordinate of (-8,11)?",
+o:["11","-11","8","-8"],
+a:3
+},
+
+{
+q:"What is the y-coordinate of (6,-9)?",
+o:["6","-6","9","-9"],
+a:3
+},
+
+{
+q:"Find the distance between (0,0) and (3,4).",
+o:["3","4","5","7"],
+a:2
+},
+
+{
+q:"Find the distance between (1,2) and (4,6).",
+o:["4","5","6","7"],
+a:1
+},
+
+{
+q:"Find the distance between (-2,3) and (4,11).",
+o:["8","9","10","12"],
+a:2
+},
+
+{
+q:"Find the midpoint of (2,4) and (8,10).",
+o:["(5,7)","(6,8)","(4,6)","(10,14)"],
+a:0
+},
+
+{
+q:"Find the midpoint of (-4,6) and (8,2).",
+o:["(2,4)","(4,2)","(-2,4)","(6,8)"],
+a:0
+},
+
+{
+q:"Find the gradient through (1,2) and (5,10).",
+o:["1","2","3","4"],
+a:1
+},
+
+{
+q:"Find the gradient through (2,7) and (6,3).",
+o:["-1","-2","1","2"],
+a:0
+},
+
+{
+q:"What is the gradient of a horizontal line?",
+o:["0","1","-1","Undefined"],
+a:0
+},
+
+{
+q:"What is the gradient of a vertical line?",
+o:["0","1","-1","Undefined"],
+a:3
+},
+
+{
+q:"Which equation has gradient 3?",
+o:["y=3x+5","y=x+3","3y=x+5","y=-3x+5"],
+a:0
+},
+
+{
+q:"What is the y-intercept of y=4x-9?",
+o:["4","9","-4","-9"],
+a:3
+},
+
+{
+q:"What is the gradient of y=-5x+2?",
+o:["5","-5","2","-2"],
+a:1
+},
+
+{
+q:"Which line is parallel to y=2x+7?",
+o:["y=-2x+1","y=2x-4","y=x+2","y=-x+2"],
+a:1
+},
+
+{
+q:"Which gradient is perpendicular to 4?",
+o:["4","-4","1/4","-1/4"],
+a:3
+},
+
+{
+q:"Which gradient is perpendicular to -2?",
+o:["2","-2","1/2","-1/2"],
+a:2
+},
+
+{
+q:"Find the equation of a line with gradient 2 through (1,5).",
+o:["y=2x+3","y=2x+5","y=2x+7","y=x+4"],
+a:0
+},
+
+{
+q:"Find the equation with gradient -3 through (2,1).",
+o:["y=-3x+7","y=-3x-5","y=3x+7","y=-3x+1"],
+a:0
+},
+
+{
+q:"What is the gradient of 2x+3y=12?",
+o:["2/3","-2/3","3/2","-3/2"],
+a:1
+},
+
+{
+q:"What is the y-intercept of 2x+3y=12?",
+o:["2","3","4","6"],
+a:2
+},
+
+{
+q:"Are y=5x+2 and y=5x-9 parallel?",
+o:["Yes","No","Only at x=0","Cannot determine"],
+a:0
+},
+
+{
+q:"Are gradients 3 and -1/3 perpendicular?",
+o:["Yes","No","Only if intercepts match","Cannot determine"],
+a:0
+},
+
+{
+q:"Find the intersection of y=2x+1 and y=x+4.",
+o:["(2,5)","(3,7)","(4,9)","(1,3)"],
+a:1
+},
+
+{
+q:"Find the x-coordinate where y=3x+2 and y=x+8 intersect.",
+o:["2","3","4","5"],
+a:2
+},
+
+{
+q:"If two distinct lines have equal gradients, they are:",
+o:["Perpendicular","Parallel","Always intersecting","Circles"],
+a:1
+},
+
+{
+q:"If two lines intersect at 90°, their gradients satisfy:",
+o:["m₁=m₂","m₁+m₂=0","m₁m₂=-1","m₁m₂=1"],
+a:2
+},
+
+{
+q:"Find the midpoint of (-6,-2) and (4,8).",
+o:["(-1,3)","(1,3)","(-2,4)","(2,6)"],
+a:0
+},
+
+{
+q:"Find the distance between (-1,-2) and (2,2).",
+o:["4","5","6","7"],
+a:1
+},
+
+{
+q:"The point (0,7) lies on which axis?",
+o:["x-axis","y-axis","both","neither"],
+a:1
+},
+
+{
+q:"The point (-5,0) lies on which axis?",
+o:["x-axis","y-axis","both","neither"],
+a:0
+},
+
+{
+q:"Which point lies in Quadrant III?",
+o:["(2,-3)","(-2,3)","(-2,-3)","(2,3)"],
+a:2
+},
+
+{
+q:"Find the gradient through (-2,-1) and (4,5).",
+o:["1","2","3","4"],
+a:0
+},
+
+{
+q:"Find the equation through (0,6) with gradient -2.",
+o:["y=-2x+6","y=2x+6","y=-2x-6","y=6x-2"],
+a:0
+},
+
+{
+q:"Find the equation of the horizontal line through y=7.",
+o:["x=7","y=7","y=-7","x=-7"],
+a:1
+},
+
+{
+q:"Find the equation of the vertical line through x=-3.",
+o:["x=-3","y=-3","x=3","y=3"],
+a:0
+},
+
+{
+q:"If A and B have the same y-coordinate, AB is:",
+o:["Vertical","Horizontal","Perpendicular to x-axis","Undefined"],
+a:1
+},
+
+{
+q:"If A and B have the same x-coordinate, AB is:",
+o:["Horizontal","Vertical","Diagonal","Circular"],
+a:1
+},
+
+{
+q:"What is the distance squared between (1,2) and (5,5)?",
+o:["16","20","25","30"],
+a:2
+},
+
+{
+q:"If AB²=AC², then AB and AC are:",
+o:["Perpendicular","Equal in length","Parallel","Opposite"],
+a:1
+},
+
+{
+q:"Three points are collinear if the relevant gradients are:",
+o:["Equal","Opposite","Reciprocals","Zero only"],
+a:0
+},
+
+{
+q:"Find the gradient through (3,2) and (7,14).",
+o:["2","3","4","6"],
+a:1
+},
+
+{
+q:"Find the line through (3,2) and (7,14).",
+o:["y=3x-7","y=2x+1","y=3x+2","y=4x-10"],
+a:0
+},
+
+{
+q:"What is the radius of (x-2)²+(y+3)²=49?",
+o:["5","7","14","49"],
+a:1
+},
+
+{
+q:"What is the centre of (x-2)²+(y+3)²=49?",
+o:["(2,3)","(-2,3)","(2,-3)","(-2,-3)"],
+a:2
+},
+
+{
+q:"What is the centre of (x+5)²+(y-1)²=16?",
+o:["(5,1)","(-5,1)","(5,-1)","(-5,-1)"],
+a:1
+},
+
+{
+q:"What is the radius of (x+5)²+(y-1)²=16?",
+o:["2","4","8","16"],
+a:1
+},
+
+{
+q:"Which equation represents a circle centred at (3,-2) radius 5?",
+o:["(x+3)²+(y-2)²=25","(x-3)²+(y+2)²=25","(x-3)²+(y-2)²=5","(x+3)²+(y+2)²=5"],
+a:1
+},
+
+{
+q:"A tangent to a circle is perpendicular to the:",
+o:["Diameter only","Radius at contact","x-axis","y-axis"],
+a:1
+},
+
+{
+q:"If a radius has gradient 2, the tangent gradient is:",
+o:["2","-2","1/2","-1/2"],
+a:3
+},
+
+{
+q:"If a line intersects a circle twice, the quadratic obtained has:",
+o:["No real roots","One repeated root","Two distinct real roots","Only zero roots"],
+a:2
+},
+
+{
+q:"If the discriminant is zero, a line may be:",
+o:["Tangent to the circle","Parallel to itself","Vertical only","A diameter only"],
+a:0
+},
+
+{
+q:"If Δ<0 for the intersection equation, there are:",
+o:["Two intersections","One intersection","No real intersections","Infinite intersections"],
+a:2
+},
+
+{
+q:"What is the discriminant of x²-6x+9=0?",
+o:["-9","0","9","36"],
+a:1
+},
+
+{
+q:"What is the discriminant of x²+2x-3=0?",
+o:["4","8","16","20"],
+a:2
+},
+
+{
+q:"Solve x²-5x+6=0.",
+o:["x=1,6","x=2,3","x=-2,-3","x=0,6"],
+a:1
+},
+
+{
+q:"Solve x²-9=0.",
+o:["x=9","x=-9","x=±3","x=3 only"],
+a:2
+},
+
+{
+q:"The midpoint of a diameter of a circle is its:",
+o:["Radius","Centre","Tangent","Chord"],
+a:1
+},
+
+{
+q:"A chord is:",
+o:["A line touching a circle","A line through the centre only","A segment joining two points on a circle","The radius"],
+a:2
+},
+
+{
+q:"The perpendicular from the centre to a chord:",
+o:["Doubles it","Bisects it","Is parallel to it","Never meets it"],
+a:1
+},
+
+{
+q:"Find the gradient perpendicular to 1/2.",
+o:["2","-2","1/2","-1/2"],
+a:1
+},
+
+{
+q:"Find the gradient perpendicular to -1/4.",
+o:["4","-4","1/4","-1/4"],
+a:0
+},
+
+{
+q:"Which equation has gradient -2 and y-intercept 7?",
+o:["y=2x+7","y=-2x+7","y=-2x-7","y=7x-2"],
+a:1
+},
+
+{
+q:"For y=7, the gradient is:",
+o:["7","-7","0","Undefined"],
+a:2
+},
+
+{
+q:"For x=7, the gradient is:",
+o:["7","-7","0","Undefined"],
+a:3
+},
+
+{
+q:"If a point lies on y=2x+3 and x=4, its y-coordinate is:",
+o:["7","8","11","12"],
+a:2
+},
+
+{
+q:"Does (3,9) lie on y=3x?",
+o:["Yes","No","Only if x=0","Cannot determine"],
+a:0
+},
+
+{
+q:"Does (2,5) lie on y=2x+1?",
+o:["Yes","No","Only approximately","Only when x=0"],
+a:0
+},
+
+{
+q:"Find the intersection of y=x+1 and y=5-x.",
+o:["(1,2)","(2,3)","(3,2)","(4,1)"],
+a:1
+},
+
+{
+q:"Find the intersection of y=2x-3 and y=-x+6.",
+o:["(2,1)","(3,3)","(1,2)","(4,5)"],
+a:1
+},
+
+{
+q:"A line through (2,3) parallel to y=4x-7 is:",
+o:["y=4x-5","y=-4x+11","y=1/4x+3","y=4x+5"],
+a:0
+},
+
+{
+q:"A line through (2,3) perpendicular to y=4x-7 has gradient:",
+o:["4","-4","1/4","-1/4"],
+a:3
+},
+
+{
+q:"A line through (2,3) perpendicular to y=4x-7 is:",
+o:["y=-x/4+7/2","y=x/4+5/2","y=-4x+11","y=4x-5"],
+a:0
+},
+
+{
+q:"Find the midpoint of (-8,4) and (2,-6).",
+o:["(-3,-1)","(-5,5)","(3,-1)","(-3,1)"],
+a:0
+},
+
+{
+q:"Find the distance between (2,-1) and (8,7).",
+o:["8","10","12","14"],
+a:1
+},
+
+{
+q:"If a point divides AB exactly halfway, its ratio AP:PB is:",
+o:["1:1","1:2","2:1","0:1"],
+a:0
+},
+
+{
+q:"P divides AB in ratio 1:2. P is:",
+o:["Closer to A","Closer to B","Exactly midpoint","Outside AB"],
+a:0
+},
+
+{
+q:"P divides AB in ratio 2:1. P is:",
+o:["Closer to A","Closer to B","Exactly midpoint","Always outside"],
+a:1
+},
+
+{
+q:"Which quantity remains constant for parallel lines?",
+o:["y-intercept","gradient","x-intercept","distance from origin"],
+a:1
+},
+
+{
+q:"Two perpendicular non-vertical lines have gradients whose product is:",
+o:["0","1","-1","2"],
+a:2
+},
+
+{
+q:"The equation x²+y²=25 represents a circle with centre:",
+o:["(5,5)","(-5,-5)","(0,0)","(25,25)"],
+a:2
+},
+
+{
+q:"The radius of x²+y²=25 is:",
+o:["5","10","25","625"],
+a:0
+},
+
+{
+q:"Which point lies on x²+y²=25?",
+o:["(3,4)","(4,4)","(1,5)","(0,6)"],
+a:0
+},
+
+{
+q:"Which point lies on (x-1)²+(y-2)²=25?",
+o:["(4,6)","(1,2)","(6,2)","(0,0)"],
+a:0
+},
+
+{
+q:"The centre of x²+y²-6x+4y-12=0 is:",
+o:["(3,-2)","(-3,2)","(6,-4)","(-6,4)"],
+a:0
+},
+
+{
+q:"For x²+y²-6x+4y-12=0, the radius is:",
+o:["3","4","5","25"],
+a:2
+},
+
+{
+q:"Complete the square: x²-8x becomes:",
+o:["(x-4)²-16","(x+4)²-16","(x-8)²-64","(x-4)²+16"],
+a:0
+},
+
+{
+q:"Complete the square: y²+6y becomes:",
+o:["(y+3)²-9","(y-3)²-9","(y+6)²-36","(y+3)²+9"],
+a:0
+},
+
+{
+q:"If AB and BC have equal gradients, A,B,C are:",
+o:["Always perpendicular","Collinear, provided the gradients exist","Always a triangle","Always a circle"],
+a:1
+},
+
+{
+q:"To prove a quadrilateral has perpendicular adjacent sides, compare:",
+o:["Lengths only","Midpoints only","Gradients","y-intercepts only"],
+a:2
+},
+
+{
+q:"To prove two segments have equal length, a useful method is to compare:",
+o:["Gradients only","Distance squared","y-intercepts","x-values only"],
+a:1
+},
+
+{
+q:"The midpoint of the diagonals of a parallelogram is:",
+o:["Different for each diagonal","The same point","Always the origin","Always a vertex"],
+a:1
+},
+
+{
+q:"If two lines have gradients 2 and 2, they are:",
+o:["Perpendicular","Parallel or identical","Always intersecting","Vertical"],
+a:1
+},
+
+{
+q:"If two lines have gradients 2 and -1/2, they are:",
+o:["Parallel","Perpendicular","Horizontal","Identical"],
+a:1
+},
+
+{
+q:"Find the gradient between (-3,7) and (5,-9).",
+o:["-1","-2","1","2"],
+a:1
+},
+
+{
+q:"Find the equation through (-3,7) with gradient -2.",
+o:["y=-2x+1","y=-2x+13","y=2x+13","y=-2x-13"],
+a:1
+},
+
+{
+q:"Find the x-intercept of y=2x-8.",
+o:["2","4","8","-4"],
+a:1
+},
+
+{
+q:"Find the y-intercept of y=-3x+12.",
+o:["-3","3","12","-12"],
+a:2
+},
+
+{
+q:"The x-intercept occurs when:",
+o:["x=0","y=0","x=y","m=0"],
+a:1
+},
+
+{
+q:"The y-intercept occurs when:",
+o:["x=0","y=0","x=y","m=1"],
+a:0
+},
+
+{
+q:"Which equation represents a horizontal line through (5,-2)?",
+o:["x=5","y=5","x=-2","y=-2"],
+a:3
+},
+
+{
+q:"Which equation represents a vertical line through (-4,8)?",
+o:["x=8","y=-4","x=-4","y=8"],
+a:2
+},
+
+{
+q:"A line has equation 4x-2y+6=0. Its gradient is:",
+o:["2","-2","4","-4"],
+a:0
+},
+
+{
+q:"A line has equation 3x+6y-12=0. Its gradient is:",
+o:["3","-3","1/2","-1/2"],
+a:3
+},
+
+{
+q:"If a line has gradient 0, it is:",
+o:["Vertical","Horizontal","Circular","Perpendicular to itself"],
+a:1
+},
+
+{
+q:"The exact distance between (0,0) and (1,1) is:",
+o:["1","2","√2","√3"],
+a:2
+}
+
+];
+
+
+/* =========================================================
+EXAM ENGINE
+========================================================= */
+
+let currentQuestion = 0;
+let answers = new Array(questions.length).fill(null);
+
+const exam = document.getElementById("exam");
+const result = document.getElementById("result");
+const questionNumber = document.getElementById("questionNumber");
+const questionText = document.getElementById("questionText");
+const options = document.getElementById("options");
+const progressBar = document.getElementById("progressBar");
+const previousButton = document.getElementById("previousButton");
+const nextButton = document.getElementById("nextButton");
+const warning = document.getElementById("examWarning");
+
+
+function startExam() {
+
+    currentQuestion = 0;
+    answers = new Array(questions.length).fill(null);
+
+    document.querySelector(".exam-intro").style.display = "none";
+    result.style.display = "none";
+    exam.style.display = "block";
+
+    renderQuestion();
+
+    window.scrollTo({
+        top: exam.offsetTop - 80,
+        behavior: "smooth"
+    });
+}
+
+
+function renderQuestion() {
+
+    const q = questions[currentQuestion];
+
+    questionNumber.textContent =
+        `QUESTION ${currentQuestion + 1} / ${questions.length}`;
+
+    questionText.textContent = q.q;
+
+    progressBar.style.width =
+        `${((currentQuestion + 1) / questions.length) * 100}%`;
+
+    options.innerHTML = "";
+
+    q.o.forEach((option, index) => {
+
+        const div = document.createElement("div");
+
+        div.className = "option";
+
+        div.textContent =
+            `${String.fromCharCode(65 + index)}. ${option}`;
+
+        if (answers[currentQuestion] === index) {
+            div.classList.add("selected");
+        }
+
+        div.onclick = () => {
+
+            answers[currentQuestion] = index;
+
+            document
+                .querySelectorAll(".option")
+                .forEach(el => el.classList.remove("selected"));
+
+            div.classList.add("selected");
+
+            warning.style.display = "none";
+        };
+
+        options.appendChild(div);
+
+    });
+
+    previousButton.disabled =
+        currentQuestion === 0;
+
+    nextButton.textContent =
+        currentQuestion === questions.length - 1
+        ? "Finish Exam"
+        : "Next →";
+
+}
+
+
+function nextQuestion() {
+
+    if (answers[currentQuestion] === null) {
+
+        warning.style.display = "block";
+
+        return;
+    }
+
+    warning.style.display = "none";
+
+    if (currentQuestion < questions.length - 1) {
+
+        currentQuestion++;
+
+        renderQuestion();
+
+        window.scrollTo({
+            top: exam.offsetTop - 80,
+            behavior: "smooth"
+        });
+
+    } else {
+
+        finishExam();
+
+    }
+
+}
+
+
+function previousQuestion() {
+
+    if (currentQuestion > 0) {
+
+        currentQuestion--;
+
+        renderQuestion();
+
+        window.scrollTo({
+            top: exam.offsetTop - 80,
+            behavior: "smooth"
+        });
+
+    }
+
+}
+
+
+function finishExam() {
+
+    let score = 0;
+
+    questions.forEach((q,index) => {
+
+        if (answers[index] === q.a) {
+            score++;
+        }
+
+    });
+
+    exam.style.display = "none";
+    result.style.display = "block";
+
+    const percentage =
+        (score / questions.length) * 100;
+
+    scoreDisplay.textContent =
+        `${score} / ${questions.length}`;
+
+    resultDetails.innerHTML =
+        `You scored <strong>${percentage}%</strong>.<br><br>
+        Correct: ${score}<br>
+        Incorrect: ${questions.length - score}<br>
+        Attempted: ${answers.filter(a => a !== null).length} / ${questions.length}`;
+
+    window.scrollTo({
+        top: result.offsetTop - 80,
+        behavior: "smooth"
+    });
+
+}
+
+
+function restartExam() {
+
+    currentQuestion = 0;
+    answers = new Array(questions.length).fill(null);
+
+    result.style.display = "none";
+    exam.style.display = "block";
+
+    renderQuestion();
+
+    window.scrollTo({
+        top: exam.offsetTop - 80,
+        behavior: "smooth"
+    });
+
+}
+
+</script>
+
+
+</body>
 </html>
+
 
