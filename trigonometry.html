@@ -9,7 +9,7 @@
     <title>Trigonometry | IAL ATLAS</title>
 
     <meta name="description"
-          content="Trigonometry notes and revision resources for Pearson Edexcel International A Level Mathematics.">
+          content="Deep Trigonometry notes, identities, equations, graphs, radians, compound angles, double angles, triangle geometry and exam practice for Pearson Edexcel International A Level Mathematics.">
 
     <style>
 
@@ -38,24 +38,16 @@
             overflow-x: hidden;
         }
 
-        /* =========================================================
-           HEADER
-        ========================================================= */
-
         header {
             position: sticky;
             top: 0;
             z-index: 1000;
-
             display: flex;
             justify-content: space-between;
             align-items: center;
-
             padding: 20px 7%;
-
             background: rgba(5, 11, 22, 0.82);
             border-bottom: 1px solid rgba(61, 180, 255, 0.15);
-
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
         }
@@ -66,9 +58,7 @@
             font-size: 27px;
             font-weight: 900;
             letter-spacing: 2px;
-
-            text-shadow:
-                0 0 12px rgba(45, 190, 255, 0.45);
+            text-shadow: 0 0 12px rgba(45, 190, 255, 0.45);
         }
 
         .nav-back {
@@ -76,12 +66,9 @@
             text-decoration: none;
             font-size: 14px;
             font-weight: 700;
-
             padding: 9px 15px;
-
             border: 1px solid rgba(70, 185, 255, 0.25);
             border-radius: 8px;
-
             transition: 0.25s ease;
         }
 
@@ -92,25 +79,16 @@
             box-shadow: 0 0 18px rgba(39, 178, 255, 0.18);
         }
 
-        /* =========================================================
-           HERO
-        ========================================================= */
-
         .hero {
             position: relative;
             min-height: 430px;
-
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-
             text-align: center;
-
             padding: 90px 20px;
-
             overflow: hidden;
-
             background:
                 radial-gradient(circle at center, rgba(20, 165, 255, 0.14), transparent 38%),
                 linear-gradient(
@@ -119,7 +97,6 @@
                     #081426 50%,
                     #07101f 100%
                 );
-
             border-bottom: 1px solid rgba(55, 186, 255, 0.12);
         }
 
@@ -127,13 +104,10 @@
             content: "";
             position: absolute;
             inset: 0;
-
             background-image:
                 linear-gradient(rgba(75, 190, 255, 0.035) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(75, 190, 255, 0.035) 1px, transparent 1px);
-
             background-size: 55px 55px;
-
             mask-image: linear-gradient(
                 to bottom,
                 transparent,
@@ -141,24 +115,19 @@
                 black 75%,
                 transparent
             );
-
             pointer-events: none;
         }
 
         .hero::after {
             content: "";
             position: absolute;
-
             width: 420px;
             height: 420px;
-
             border: 1px solid rgba(44, 190, 255, 0.12);
             border-radius: 50%;
-
             box-shadow:
                 0 0 60px rgba(44, 190, 255, 0.08),
                 inset 0 0 60px rgba(44, 190, 255, 0.04);
-
             animation: rotateOrb 22s linear infinite;
         }
 
@@ -183,19 +152,15 @@
 
         .hero-label {
             display: inline-block;
-
             margin-bottom: 18px;
             padding: 7px 14px;
-
             color: #67d2ff;
             font-size: 11px;
             font-weight: 800;
             letter-spacing: 2px;
             text-transform: uppercase;
-
             border: 1px solid rgba(67, 200, 255, 0.28);
             border-radius: 30px;
-
             background: rgba(36, 171, 255, 0.06);
         }
 
@@ -203,11 +168,8 @@
             font-size: clamp(48px, 8vw, 76px);
             line-height: 1.05;
             margin-bottom: 18px;
-
             color: #ffffff;
-
             letter-spacing: -2px;
-
             text-shadow:
                 0 0 15px rgba(54, 198, 255, 0.3),
                 0 0 50px rgba(54, 198, 255, 0.12);
@@ -216,12 +178,8 @@
         .hero p {
             color: #9db4cc;
             font-size: 17px;
-            max-width: 650px;
+            max-width: 720px;
         }
-
-        /* =========================================================
-           MAIN CONTENT
-        ========================================================= */
 
         .section {
             width: min(1050px, 92%);
@@ -229,32 +187,22 @@
             padding: 65px 0 90px;
         }
 
-        /* =========================================================
-           TOPIC CARDS
-        ========================================================= */
-
         .topic-card {
             position: relative;
-
             margin-bottom: 28px;
             padding: 34px;
-
             background:
                 linear-gradient(
                     145deg,
                     rgba(14, 29, 49, 0.94),
                     rgba(7, 17, 31, 0.96)
                 );
-
             border: 1px solid rgba(85, 177, 230, 0.13);
             border-radius: 18px;
-
             box-shadow:
                 0 18px 45px rgba(0, 0, 0, 0.25),
                 inset 0 1px rgba(255, 255, 255, 0.025);
-
             overflow: hidden;
-
             transition:
                 transform 0.3s ease,
                 border-color 0.3s ease,
@@ -263,29 +211,23 @@
 
         .topic-card::before {
             content: "";
-
             position: absolute;
             left: 0;
             top: 0;
             bottom: 0;
-
             width: 3px;
-
             background: linear-gradient(
                 to bottom,
                 #39c7ff,
                 #6a6cff,
                 transparent
             );
-
             opacity: 0.65;
         }
 
         .topic-card:hover {
             transform: translateY(-3px);
-
             border-color: rgba(57, 199, 255, 0.27);
-
             box-shadow:
                 0 22px 55px rgba(0, 0, 0, 0.34),
                 0 0 28px rgba(36, 176, 255, 0.05);
@@ -305,44 +247,54 @@
             margin-bottom: 10px;
         }
 
+        .topic-card h4 {
+            color: #71ceff;
+            font-size: 16px;
+            margin-top: 22px;
+            margin-bottom: 8px;
+        }
+
         .topic-card p {
             color: #9aadc1;
             margin-bottom: 15px;
         }
 
-        /* =========================================================
-           FORMULA BOX
-        ========================================================= */
+        .topic-card ul,
+        .topic-card ol {
+            color: #9aadc1;
+            padding-left: 24px;
+            margin-bottom: 17px;
+        }
+
+        .topic-card li {
+            margin-bottom: 7px;
+        }
+
+        .topic-card strong {
+            color: #dff5ff;
+        }
 
         .formula {
             margin: 17px 0;
             padding: 17px 20px;
-
             background:
                 linear-gradient(
                     135deg,
                     rgba(21, 117, 170, 0.13),
                     rgba(69, 69, 170, 0.08)
                 );
-
             border: 1px solid rgba(67, 190, 255, 0.16);
             border-radius: 11px;
-
             text-align: center;
-
             color: #dff5ff;
-
             font-family:
                 "Cambria Math",
                 "Times New Roman",
                 serif;
-
             font-size: 19px;
             font-weight: 600;
-
             box-shadow:
                 inset 0 0 20px rgba(43, 178, 255, 0.025);
-
             overflow-x: auto;
         }
 
@@ -350,30 +302,47 @@
             color: #65d5ff;
         }
 
-        /* =========================================================
-           DETAILS / SOLUTIONS
-        ========================================================= */
+        .definition {
+            padding: 16px 18px;
+            margin: 16px 0;
+            border-left: 3px solid #42c8ff;
+            background: rgba(45, 180, 255, 0.045);
+            color: #a8bfd3;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .warning {
+            padding: 16px 18px;
+            margin: 17px 0;
+            border-left: 3px solid #ffbd5c;
+            background: rgba(255, 189, 92, 0.045);
+            color: #b9c5d0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .success {
+            padding: 16px 18px;
+            margin: 17px 0;
+            border-left: 3px solid #56e0a0;
+            background: rgba(86, 224, 160, 0.04);
+            color: #b7d0c5;
+            border-radius: 0 10px 10px 0;
+        }
 
         details {
             margin-top: 17px;
-
             border: 1px solid rgba(91, 173, 222, 0.12);
             border-radius: 10px;
-
             background: rgba(4, 13, 24, 0.45);
-
             overflow: hidden;
         }
 
         summary {
             cursor: pointer;
-
             padding: 14px 17px;
-
             color: #63cbff;
             font-size: 14px;
             font-weight: 800;
-
             transition: 0.25s ease;
         }
 
@@ -382,15 +351,13 @@
             background: rgba(45, 181, 255, 0.06);
         }
 
+        details p,
         details .formula,
-        details p {
+        details ul,
+        details ol {
             margin-left: 17px;
             margin-right: 17px;
         }
-
-        /* =========================================================
-           NAVIGATION BUTTONS
-        ========================================================= */
 
         .navigation {
             text-align: center;
@@ -399,60 +366,42 @@
 
         .back {
             display: inline-block;
-
             margin: 8px;
             padding: 12px 21px;
-
             color: #ffffff;
             text-decoration: none;
-
             font-size: 14px;
             font-weight: 800;
-
             background:
                 linear-gradient(
                     135deg,
                     rgba(31, 166, 231, 0.18),
                     rgba(83, 89, 226, 0.14)
                 );
-
             border: 1px solid rgba(63, 194, 255, 0.25);
             border-radius: 9px;
-
             transition: 0.25s ease;
         }
 
         .back:hover {
             transform: translateY(-2px);
-
             border-color: #45c8ff;
-
             background:
                 linear-gradient(
                     135deg,
                     rgba(31, 166, 231, 0.28),
                     rgba(83, 89, 226, 0.23)
                 );
-
             box-shadow:
                 0 0 24px rgba(38, 183, 255, 0.12);
         }
 
-        /* =========================================================
-           FOOTER
-        ========================================================= */
-
         footer {
             padding: 28px 20px;
-
             background: #030812;
-
             border-top: 1px solid rgba(73, 172, 222, 0.12);
-
             color: #71859b;
-
             text-align: center;
-
             font-size: 13px;
         }
 
@@ -460,15 +409,10 @@
             color: #55c8fa;
         }
 
-        /* =========================================================
-           MOBILE
-        ========================================================= */
-
         @media (max-width: 750px) {
 
             header {
                 padding: 17px 5%;
-
                 flex-direction: column;
                 gap: 13px;
             }
@@ -521,7 +465,6 @@
                 font-size: 17px;
                 padding: 15px 12px;
             }
-
         }
 
     </style>
@@ -531,10 +474,6 @@
 
 <body id="top">
 
-
-<!-- =========================================================
-     HEADER
-========================================================= -->
 
 <header>
 
@@ -549,10 +488,6 @@
 </header>
 
 
-<!-- =========================================================
-     HERO
-========================================================= -->
-
 <section class="hero">
 
     <div class="hero-content">
@@ -564,860 +499,2774 @@
         <h1>Trigonometry</h1>
 
         <p>
-            Edexcel International A Level Mathematics
+            Edexcel International A Level Mathematics • Deep Theory •
+            Identities • Equations • Graphs • Radians • Triangle Geometry
         </p>
 
     </div>
 
 </section>
 
-
-<!-- =========================================================
-     CONTENT
-========================================================= -->
 
 <section class="section">
 
 
-    <!-- 1 -->
+<!-- =========================================================
+     1. FOUNDATIONS
+========================================================= -->
 
-    <div class="topic-card">
+<div class="topic-card">
 
-        <h2>1. Basic Trigonometric Ratios</h2>
+    <h2>1. Trigonometry — The Core Idea</h2>
 
-        <p>
-            In a right-angled triangle, the three main trigonometric
-            ratios are sine, cosine and tangent.
-        </p>
+    <p>
+        Trigonometry is the study of relationships between angles and
+        lengths. At its simplest level, it connects the sides of a
+        right-angled triangle. At A Level, the subject develops into a
+        much broader system involving functions, identities, equations,
+        graphs, radians and non-right-angled triangles.
+    </p>
 
-        <div class="formula">
-            sin θ = opposite / hypotenuse
-        </div>
-
-        <div class="formula">
-            cos θ = adjacent / hypotenuse
-        </div>
-
-        <div class="formula">
-            tan θ = opposite / adjacent
-        </div>
-
-        <p>
-            A useful memory aid is:
-        </p>
-
-        <div class="formula">
-            SOH — CAH — TOA
-        </div>
-
-        <h3>Worked Example</h3>
-
-        <p>
-            A right-angled triangle has opposite side 6 and hypotenuse 10.
-            Find θ.
-        </p>
-
-        <div class="formula">
-            sin θ = 6/10
-            <br>
-            sin θ = 0.6
-        </div>
-
-        <div class="formula">
-            θ = sin⁻¹(0.6)
-            <br>
-            <strong>θ ≈ 36.87°</strong>
-        </div>
-
+    <div class="definition">
+        <strong>Important distinction:</strong>
+        A trigonometric ratio is a relationship between sides of a
+        triangle, whereas a trigonometric function such as sin x is a
+        function defined for angles measured in degrees or radians.
     </div>
 
+    <h3>Angle notation</h3>
 
-    <!-- 2 -->
+    <p>
+        The usual convention is to use capital letters for angles and
+        lowercase letters for their opposite sides:
+    </p>
 
-    <div class="topic-card">
-
-        <h2>2. Exact Trigonometric Values</h2>
-
-        <p>
-            You should know the exact values of sine, cosine and tangent
-            for the standard angles.
-        </p>
-
-        <div class="formula">
-            sin 0° = 0
-            <br>
-            sin 30° = 1/2
-            <br>
-            sin 45° = √2/2
-            <br>
-            sin 60° = √3/2
-            <br>
-            sin 90° = 1
-        </div>
-
-        <div class="formula">
-            cos 0° = 1
-            <br>
-            cos 30° = √3/2
-            <br>
-            cos 45° = √2/2
-            <br>
-            cos 60° = 1/2
-            <br>
-            cos 90° = 0
-        </div>
-
-        <div class="formula">
-            tan 0° = 0
-            <br>
-            tan 30° = √3/3
-            <br>
-            tan 45° = 1
-            <br>
-            tan 60° = √3
-        </div>
-
+    <div class="formula">
+        a is opposite A
+        <br>
+        b is opposite B
+        <br>
+        c is opposite C
     </div>
 
+    <h3>Degrees and radians</h3>
 
-    <!-- 3 -->
+    <p>
+        Degrees divide a complete revolution into 360 equal parts.
+        Radians measure an angle using the arc length of a circle.
+    </p>
 
-    <div class="topic-card">
-
-        <h2>3. Trigonometric Identities</h2>
-
-        <p>
-            An identity is an equation that is true for all values for
-            which both sides are defined.
-        </p>
-
-        <h3>Fundamental Identity</h3>
-
-        <div class="formula">
-            sin²θ + cos²θ = 1
-        </div>
-
-        <h3>Other Useful Identities</h3>
-
-        <div class="formula">
-            tan θ = sin θ / cos θ
-        </div>
-
-        <div class="formula">
-            sec²θ = 1 + tan²θ
-        </div>
-
-        <div class="formula">
-            cosec²θ = 1 + cot²θ
-        </div>
-
-        <h3>Worked Example</h3>
-
-        <p>
-            Given sin θ = 3/5 and θ is acute, find cos θ.
-        </p>
-
-        <div class="formula">
-            sin²θ + cos²θ = 1
-        </div>
-
-        <div class="formula">
-            (3/5)² + cos²θ = 1
-        </div>
-
-        <div class="formula">
-            9/25 + cos²θ = 1
-            <br>
-            cos²θ = 16/25
-        </div>
-
-        <div class="formula">
-            <strong>cos θ = 4/5</strong>
-        </div>
-
+    <div class="formula">
+        180° = π radians
+        <br>
+        360° = 2π radians
     </div>
 
-
-    <!-- 4 -->
-
-    <div class="topic-card">
-
-        <h2>4. Trigonometric Equations</h2>
-
-        <p>
-            When solving trigonometric equations, always consider the
-            complete interval given in the question.
-        </p>
-
-        <h3>Worked Example</h3>
-
-        <p>
-            Solve:
-        </p>
-
-        <div class="formula">
-            sin θ = 1/2
-        </div>
-
-        <p>
-            for 0° ≤ θ ≤ 360°.
-        </p>
-
-        <div class="formula">
-            θ = 30°
-        </div>
-
-        <p>
-            Sine is also positive in the second quadrant.
-        </p>
-
-        <div class="formula">
-            θ = 180° − 30°
-            <br>
-            θ = 150°
-        </div>
-
-        <div class="formula">
-            <strong>θ = 30°, 150°</strong>
-        </div>
-
+    <div class="formula">
+        θ radians = θ × 180/π degrees
+        <br>
+        θ degrees = θ × π/180 radians
     </div>
 
+    <div class="warning">
+        <strong>Calculator warning:</strong>
+        If a question uses π, radians or an interval such as
+        0 ≤ x ≤ 2π, your calculator must normally be in RADIAN mode.
+        Degree questions require DEGREE mode.
+    </div>
 
-    <!-- 5 -->
+</div>
 
-    <div class="topic-card">
 
-        <h2>5. The Sine Rule</h2>
+<!-- =========================================================
+     2. RIGHT TRIANGLE RATIOS
+========================================================= -->
 
-        <p>
-            The sine rule is useful when you know a side and its opposite
-            angle, together with another side or angle.
-        </p>
+<div class="topic-card">
 
-        <div class="formula">
+    <h2>2. Basic Trigonometric Ratios</h2>
+
+    <p>
+        In a right-angled triangle, the three fundamental ratios are
+        sine, cosine and tangent.
+    </p>
+
+    <div class="formula">
+        sin θ = opposite / hypotenuse
+    </div>
+
+    <div class="formula">
+        cos θ = adjacent / hypotenuse
+    </div>
+
+    <div class="formula">
+        tan θ = opposite / adjacent
+    </div>
+
+    <div class="formula">
+        <strong>SOH — CAH — TOA</strong>
+    </div>
+
+    <h3>Finding a side</h3>
+
+    <p>
+        If the angle and another side are known, choose the ratio that
+        contains the required side and the known side.
+    </p>
+
+    <h3>Worked Example</h3>
+
+    <p>
+        A right-angled triangle has an angle of 37° and a hypotenuse of
+        12 cm. Find the side opposite the angle.
+    </p>
+
+    <div class="formula">
+        sin 37° = opposite / 12
+    </div>
+
+    <div class="formula">
+        opposite = 12 sin 37°
+    </div>
+
+    <div class="formula">
+        <strong>opposite ≈ 7.223 cm</strong>
+    </div>
+
+    <h3>Finding an angle</h3>
+
+    <p>
+        Use an inverse trigonometric function when a side ratio is known.
+    </p>
+
+    <div class="formula">
+        θ = sin⁻¹(value)
+        <br>
+        θ = cos⁻¹(value)
+        <br>
+        θ = tan⁻¹(value)
+    </div>
+
+    <div class="warning">
+        The notation sin⁻¹θ means the inverse function arcsin θ.
+        It does <strong>not</strong> mean 1/sin θ.
+        The reciprocal of sin θ is cosec θ.
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     3. EXACT VALUES
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>3. Exact Trigonometric Values</h2>
+
+    <p>
+        The standard angles 0°, 30°, 45°, 60° and 90° produce exact
+        values that are fundamental to A Level trigonometry.
+    </p>
+
+    <div class="formula">
+        <strong>Sine</strong>
+        <br><br>
+        sin 0° = 0
+        <br>
+        sin 30° = 1/2
+        <br>
+        sin 45° = √2/2
+        <br>
+        sin 60° = √3/2
+        <br>
+        sin 90° = 1
+    </div>
+
+    <div class="formula">
+        <strong>Cosine</strong>
+        <br><br>
+        cos 0° = 1
+        <br>
+        cos 30° = √3/2
+        <br>
+        cos 45° = √2/2
+        <br>
+        cos 60° = 1/2
+        <br>
+        cos 90° = 0
+    </div>
+
+    <div class="formula">
+        <strong>Tangent</strong>
+        <br><br>
+        tan 0° = 0
+        <br>
+        tan 30° = √3/3
+        <br>
+        tan 45° = 1
+        <br>
+        tan 60° = √3
+    </div>
+
+    <h3>Why do these values occur?</h3>
+
+    <p>
+        The values can be derived from special triangles rather than
+        memorised as isolated facts.
+    </p>
+
+    <h4>45°–45°–90° triangle</h4>
+
+    <p>
+        If the equal perpendicular sides have length 1, Pythagoras gives
+        a hypotenuse of √2.
+    </p>
+
+    <div class="formula">
+        sin 45° = 1/√2 = √2/2
+        <br>
+        cos 45° = 1/√2 = √2/2
+        <br>
+        tan 45° = 1
+    </div>
+
+    <h4>30°–60°–90° triangle</h4>
+
+    <p>
+        The side lengths can be represented as 1, √3 and 2.
+    </p>
+
+    <div class="formula">
+        sin 30° = 1/2
+        <br>
+        cos 30° = √3/2
+        <br>
+        tan 30° = 1/√3 = √3/3
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     4. UNIT CIRCLE
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>4. The Unit Circle and Trigonometric Signs</h2>
+
+    <p>
+        The unit circle gives a powerful way to understand trigonometric
+        functions for angles beyond the first quadrant.
+    </p>
+
+    <p>
+        A point on the unit circle corresponding to angle θ has
+        coordinates:
+    </p>
+
+    <div class="formula">
+        (cos θ, sin θ)
+    </div>
+
+    <p>
+        Therefore the x-coordinate represents cosine and the y-coordinate
+        represents sine.
+    </p>
+
+    <h3>Signs in the four quadrants</h3>
+
+    <div class="formula">
+        Quadrant I:
+        sin +, cos +, tan +
+        <br><br>
+        Quadrant II:
+        sin +, cos −, tan −
+        <br><br>
+        Quadrant III:
+        sin −, cos −, tan +
+        <br><br>
+        Quadrant IV:
+        sin −, cos +, tan −
+    </div>
+
+    <h3>CAST</h3>
+
+    <div class="formula">
+        A → All positive
+        <br>
+        S → Sine positive
+        <br>
+        T → Tangent positive
+        <br>
+        C → Cosine positive
+    </div>
+
+    <p>
+        CAST is a memory aid. The actual mathematics comes from the
+        signs of the coordinates and tan θ = sin θ / cos θ.
+    </p>
+
+</div>
+
+
+<!-- =========================================================
+     5. RECIPROCALS
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>5. Reciprocal Trigonometric Functions</h2>
+
+    <p>
+        The reciprocal functions are cosecant, secant and cotangent.
+    </p>
+
+    <div class="formula">
+        cosec θ = 1/sin θ
+        <br>
+        sec θ = 1/cos θ
+        <br>
+        cot θ = 1/tan θ = cos θ/sin θ
+    </div>
+
+    <h3>Important identities</h3>
+
+    <div class="formula">
+        sin²θ + cos²θ = 1
+    </div>
+
+    <div class="formula">
+        1 + tan²θ = sec²θ
+    </div>
+
+    <div class="formula">
+        1 + cot²θ = cosec²θ
+    </div>
+
+    <h3>Domain restrictions</h3>
+
+    <p>
+        Since a reciprocal cannot have zero as its denominator:
+    </p>
+
+    <div class="formula">
+        sec θ is undefined when cos θ = 0
+        <br>
+        cosec θ is undefined when sin θ = 0
+        <br>
+        cot θ is undefined when sin θ = 0
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     6. IDENTITIES
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>6. Trigonometric Identities</h2>
+
+    <p>
+        An identity is an equation that is true for every value for
+        which both sides are defined.
+    </p>
+
+    <div class="definition">
+        An equation is something you solve for particular values.
+        An identity is a relationship that remains true throughout its
+        entire valid domain.
+    </div>
+
+    <h3>The fundamental identity</h3>
+
+    <div class="formula">
+        <strong>sin²θ + cos²θ = 1</strong>
+    </div>
+
+    <h3>Deriving the tangent identity</h3>
+
+    <p>
+        Divide the fundamental identity by cos²θ:
+    </p>
+
+    <div class="formula">
+        sin²θ/cos²θ + cos²θ/cos²θ = 1/cos²θ
+    </div>
+
+    <div class="formula">
+        tan²θ + 1 = sec²θ
+    </div>
+
+    <h3>Deriving the cotangent identity</h3>
+
+    <p>
+        Dividing the fundamental identity by sin²θ gives:
+    </p>
+
+    <div class="formula">
+        cot²θ + 1 = cosec²θ
+    </div>
+
+    <h3>Identity manipulation strategy</h3>
+
+    <ol>
+        <li>Usually work on one side only.</li>
+        <li>Convert tan into sin/cos when useful.</li>
+        <li>Use sin²θ + cos²θ = 1.</li>
+        <li>Look for common denominators.</li>
+        <li>Factor where possible.</li>
+        <li>Do not divide by an expression without considering where it may be zero.</li>
+    </ol>
+
+    <h3>Worked Example</h3>
+
+    <p>Show that:</p>
+
+    <div class="formula">
+        (1 − cos²θ)/sin θ = sin θ
+    </div>
+
+    <div class="formula">
+        1 − cos²θ = sin²θ
+    </div>
+
+    <div class="formula">
+        sin²θ/sin θ = sin θ
+    </div>
+
+    <div class="formula">
+        <strong>Therefore the identity is proved.</strong>
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     7. TRIG EQUATIONS
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>7. Solving Trigonometric Equations</h2>
+
+    <p>
+        A trigonometric equation may have several solutions within a
+        specified interval. The principal inverse-trigonometric answer
+        is usually only the starting point.
+    </p>
+
+    <h3>Example 1 — sine</h3>
+
+    <div class="formula">
+        sin θ = 1/2
+        <br>
+        0° ≤ θ ≤ 360°
+    </div>
+
+    <p>
+        The reference angle is 30°. Sine is positive in Quadrants I and II.
+    </p>
+
+    <div class="formula">
+        θ = 30°, 150°
+    </div>
+
+    <h3>Example 2 — cosine</h3>
+
+    <div class="formula">
+        cos θ = −√3/2
+        <br>
+        0° ≤ θ ≤ 360°
+    </div>
+
+    <p>
+        The reference angle is 30°. Cosine is negative in Quadrants II
+        and III.
+    </p>
+
+    <div class="formula">
+        <strong>θ = 150°, 210°</strong>
+    </div>
+
+    <h3>Example 3 — tangent</h3>
+
+    <div class="formula">
+        tan θ = 1
+        <br>
+        0° ≤ θ ≤ 360°
+    </div>
+
+    <p>
+        The reference angle is 45°. Tangent is positive in Quadrants I
+        and III.
+    </p>
+
+    <div class="formula">
+        <strong>θ = 45°, 225°</strong>
+    </div>
+
+    <h3>Radian form</h3>
+
+    <div class="formula">
+        sin x = 1/2
+        <br>
+        0 ≤ x ≤ 2π
+        <br><br>
+        x = π/6, 5π/6
+    </div>
+
+    <div class="warning">
+        Always read the interval carefully. A correct trigonometric
+        solution outside the specified interval must not be included.
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     8. HARDER EQUATIONS
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>8. Quadratic Trigonometric Equations</h2>
+
+    <p>
+        Many harder trigonometric equations are actually algebraic
+        equations in disguise. Treat sin x, cos x or tan x as an
+        algebraic variable.
+    </p>
+
+    <h3>Worked Example</h3>
+
+    <p>Solve:</p>
+
+    <div class="formula">
+        2sin²x − 3sin x + 1 = 0
+        <br>
+        0° ≤ x ≤ 360°
+    </div>
+
+    <p>Factorise:</p>
+
+    <div class="formula">
+        (2sin x − 1)(sin x − 1) = 0
+    </div>
+
+    <p>Therefore:</p>
+
+    <div class="formula">
+        sin x = 1/2
+        <br>
+        or
+        <br>
+        sin x = 1
+    </div>
+
+    <p>
+        The first equation gives x = 30°, 150°.
+        The second gives x = 90°.
+    </p>
+
+    <div class="formula">
+        <strong>x = 30°, 90°, 150°</strong>
+    </div>
+
+    <h3>Key method</h3>
+
+    <ol>
+        <li>Rewrite the equation as a polynomial in one trig function.</li>
+        <li>Factorise or use the quadratic formula.</li>
+        <li>Solve each resulting trigonometric equation.</li>
+        <li>Check the complete interval.</li>
+    </ol>
+
+</div>
+
+
+<!-- =========================================================
+     9. EQUATIONS USING IDENTITIES
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>9. Transforming Trigonometric Equations</h2>
+
+    <p>
+        Some equations cannot be solved immediately because they contain
+        different trigonometric functions. Identities allow them to be
+        transformed into a solvable form.
+    </p>
+
+    <h3>Example</h3>
+
+    <div class="formula">
+        1 − 2sin²x = 0
+    </div>
+
+    <p>
+        Recognise the double-angle identity:
+    </p>
+
+    <div class="formula">
+        cos 2x = 1 − 2sin²x
+    </div>
+
+    <p>Therefore:</p>
+
+    <div class="formula">
+        cos 2x = 0
+    </div>
+
+    <p>
+        The important point is that solving for 2x requires careful
+        treatment of the interval. If:
+    </p>
+
+    <div class="formula">
+        0° ≤ x ≤ 180°
+    </div>
+
+    <p>then:</p>
+
+    <div class="formula">
+        0° ≤ 2x ≤ 360°
+    </div>
+
+    <p>
+        Hence:
+    </p>
+
+    <div class="formula">
+        2x = 90°, 270°
+        <br>
+        x = 45°, 135°
+    </div>
+
+    <div class="success">
+        <strong>Exam habit:</strong>
+        Whenever you substitute u = 2x, 3x or another multiple,
+        transform the interval too.
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     10. SINE RULE
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>10. The Sine Rule</h2>
+
+    <p>
+        The Sine Rule connects each side of a triangle with the sine of
+        its opposite angle.
+    </p>
+
+    <div class="formula">
+        <strong>
             a/sin A = b/sin B = c/sin C
-        </div>
-
-        <h3>Worked Example</h3>
-
-        <p>
-            Suppose:
-        </p>
-
-        <div class="formula">
-            A = 30°, B = 60°, a = 5
-        </div>
-
-        <p>
-            Find b.
-        </p>
-
-        <div class="formula">
-            5/sin30° = b/sin60°
-        </div>
-
-        <div class="formula">
-            b = 5(sin60°) / sin30°
-        </div>
-
-        <div class="formula">
-            <strong>b = 5√3</strong>
-        </div>
-
+        </strong>
     </div>
 
+    <h3>When is it useful?</h3>
 
-    <!-- 6 -->
+    <ul>
+        <li>A known side and its opposite angle are available.</li>
+        <li>You need another side when its opposite angle is known.</li>
+        <li>You need an angle when its opposite side is known.</li>
+        <li>It is particularly important in the ambiguous SSA case.</li>
+    </ul>
 
-    <div class="topic-card">
+    <h3>Worked Example</h3>
 
-        <h2>6. The Cosine Rule</h2>
+    <p>
+        A = 30°, B = 60°, a = 5. Find b.
+    </p>
 
-        <p>
-            The cosine rule can be used when two sides and the included
-            angle are known, or when all three sides are known.
-        </p>
+    <div class="formula">
+        5/sin 30° = b/sin 60°
+    </div>
 
-        <div class="formula">
+    <div class="formula">
+        b = 5sin60°/sin30°
+    </div>
+
+    <div class="formula">
+        b = 5(√3/2)/(1/2)
+    </div>
+
+    <div class="formula">
+        <strong>b = 5√3</strong>
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     11. AMBIGUOUS CASE
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>11. The Ambiguous Case of the Sine Rule</h2>
+
+    <p>
+        When two sides and a non-included angle are known, the Sine Rule
+        can produce two possible angles.
+    </p>
+
+    <p>
+        Suppose:
+    </p>
+
+    <div class="formula">
+        a/sin A = b/sin B
+    </div>
+
+    <p>
+        If you calculate B using sin⁻¹, remember:
+    </p>
+
+    <div class="formula">
+        sin B = sin(180° − B)
+    </div>
+
+    <p>
+        Therefore both B and 180° − B may need to be checked.
+    </p>
+
+    <h3>Example</h3>
+
+    <div class="formula">
+        a = 10, b = 12, A = 30°
+    </div>
+
+    <div class="formula">
+        10/sin30° = 12/sin B
+    </div>
+
+    <div class="formula">
+        sin B = 12sin30°/10
+        <br>
+        sin B = 0.6
+    </div>
+
+    <div class="formula">
+        B = 36.87°
+    </div>
+
+    <p>
+        But:
+    </p>
+
+    <div class="formula">
+        B = 180° − 36.87°
+        <br>
+        B = 143.13°
+    </div>
+
+    <p>
+        Both must be checked against the triangle condition
+        A + B + C = 180°.
+    </p>
+
+    <div class="warning">
+        Never automatically reject the second inverse-sine solution.
+        Check whether it produces a valid triangle.
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     12. COSINE RULE
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>12. The Cosine Rule</h2>
+
+    <p>
+        The Cosine Rule generalises Pythagoras to any triangle.
+    </p>
+
+    <div class="formula">
+        <strong>
             a² = b² + c² − 2bc cos A
-        </div>
-
-        <h3>Worked Example</h3>
-
-        <p>
-            If b = 5, c = 7 and A = 60°, find a.
-        </p>
-
-        <div class="formula">
-            a² = 5² + 7² − 2(5)(7)cos60°
-        </div>
-
-        <div class="formula">
-            a² = 25 + 49 − 35
-            <br>
-            a² = 39
-        </div>
-
-        <div class="formula">
-            <strong>a = √39</strong>
-        </div>
-
+        </strong>
     </div>
 
+    <p>
+        Cyclic versions are:
+    </p>
 
-    <!-- 7 -->
-
-    <div class="topic-card">
-
-        <h2>7. Area of a Triangle</h2>
-
-        <p>
-            When two sides and the included angle are known, the area can
-            be calculated using:
-        </p>
-
-        <div class="formula">
-            Area = 1/2 ab sin C
-        </div>
-
-        <h3>Worked Example</h3>
-
-        <p>
-            Find the area of a triangle with sides 8 and 5 and included
-            angle 30°.
-        </p>
-
-        <div class="formula">
-            Area = 1/2(8)(5)sin30°
-        </div>
-
-        <div class="formula">
-            = 20 × 1/2
-            <br>
-            <strong>= 10</strong>
-        </div>
-
+    <div class="formula">
+        b² = a² + c² − 2ac cos B
+        <br>
+        c² = a² + b² − 2ab cos C
     </div>
 
+    <h3>When to use it</h3>
 
-    <!-- 8 -->
+    <ul>
+        <li>Two sides and the included angle are known.</li>
+        <li>All three sides are known and an angle is required.</li>
+    </ul>
 
-    <div class="topic-card">
+    <h3>Worked Example</h3>
 
-        <h2>8. Reciprocal Trigonometric Functions</h2>
+    <p>
+        Let b = 5, c = 7 and A = 60°. Find a.
+    </p>
 
-        <p>
-            The reciprocal trigonometric functions are secant, cosecant
-            and cotangent.
-        </p>
-
-        <div class="formula">
-            sec θ = 1 / cos θ
-        </div>
-
-        <div class="formula">
-            cosec θ = 1 / sin θ
-        </div>
-
-        <div class="formula">
-            cot θ = 1 / tan θ
-        </div>
-
-        <h3>Useful Relationships</h3>
-
-        <div class="formula">
-            sec²θ = 1 + tan²θ
-        </div>
-
-        <div class="formula">
-            cosec²θ = 1 + cot²θ
-        </div>
-
+    <div class="formula">
+        a² = 5² + 7² − 2(5)(7)cos60°
     </div>
 
+    <div class="formula">
+        a² = 25 + 49 − 70(1/2)
+        <br>
+        a² = 39
+    </div>
 
-    <!-- 9 -->
+    <div class="formula">
+        <strong>a = √39</strong>
+    </div>
 
-    <div class="topic-card">
+    <h3>Finding an angle</h3>
 
-        <h2>9. CAST Diagram and Quadrants</h2>
+    <p>Rearrange:</p>
+
+    <div class="formula">
+        cos A = (b² + c² − a²)/(2bc)
+    </div>
+
+    <div class="formula">
+        A = cos⁻¹[(b² + c² − a²)/(2bc)]
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     13. AREA
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>13. Area of a Triangle</h2>
+
+    <p>
+        If two sides and the included angle are known, the area is:
+    </p>
+
+    <div class="formula">
+        <strong>Area = 1/2 ab sin C</strong>
+    </div>
+
+    <p>
+        The same relationship can be written cyclically:
+    </p>
+
+    <div class="formula">
+        Area = 1/2 bc sin A
+        <br>
+        Area = 1/2 ca sin B
+    </div>
+
+    <h3>Why does this work?</h3>
+
+    <p>
+        If side b is used as the base and side a is the sloping side,
+        the perpendicular height is a sin C.
+    </p>
+
+    <div class="formula">
+        Area = 1/2 × base × height
+        <br>
+        = 1/2 × b × a sin C
+        <br>
+        = 1/2 ab sin C
+    </div>
+
+    <h3>Worked Example</h3>
+
+    <p>
+        Find the area when a = 8, b = 5 and C = 30°.
+    </p>
+
+    <div class="formula">
+        Area = 1/2(8)(5)sin30°
+        <br>
+        = 20 × 1/2
+        <br>
+        <strong>= 10 square units</strong>
+    </div>
+
+    <div class="warning">
+        The angle must be the angle <strong>between</strong> the two
+        sides used in the formula.
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     14. COMPOUND ANGLES
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>14. Compound-Angle Identities</h2>
+
+    <p>
+        Compound-angle identities express trigonometric functions of
+        sums and differences in terms of the individual angles.
+    </p>
+
+    <div class="formula">
+        <strong>
+            sin(A + B) = sin A cos B + cos A sin B
+        </strong>
+    </div>
+
+    <div class="formula">
+        <strong>
+            sin(A − B) = sin A cos B − cos A sin B
+        </strong>
+    </div>
+
+    <div class="formula">
+        <strong>
+            cos(A + B) = cos A cos B − sin A sin B
+        </strong>
+    </div>
+
+    <div class="formula">
+        <strong>
+            cos(A − B) = cos A cos B + sin A sin B
+        </strong>
+    </div>
+
+    <div class="formula">
+        <strong>
+            tan(A + B)
+            =
+            (tan A + tan B)/(1 − tan A tan B)
+        </strong>
+    </div>
+
+    <div class="formula">
+        <strong>
+            tan(A − B)
+            =
+            (tan A − tan B)/(1 + tan A tan B)
+        </strong>
+    </div>
+
+    <h3>Memory pattern</h3>
+
+    <p>
+        For cosine, the sign between the two products is opposite to the
+        sign inside the original angle.
+    </p>
+
+    <div class="formula">
+        cos(A + B) → minus
+        <br>
+        cos(A − B) → plus
+    </div>
+
+    <h3>Worked Example</h3>
+
+    <p>
+        Find the exact value of sin 75°.
+    </p>
+
+    <p>
+        Write:
+    </p>
+
+    <div class="formula">
+        75° = 45° + 30°
+    </div>
+
+    <div class="formula">
+        sin75°
+        =
+        sin45°cos30° + cos45°sin30°
+    </div>
+
+    <div class="formula">
+        =
+        (√2/2)(√3/2)
+        +
+        (√2/2)(1/2)
+    </div>
+
+    <div class="formula">
+        <strong>
+            sin75° = (√6 + √2)/4
+        </strong>
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     15. DOUBLE ANGLES
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>15. Double-Angle Identities</h2>
+
+    <p>
+        Set A = B in the compound-angle identities.
+    </p>
+
+    <div class="formula">
+        <strong>sin 2A = 2sin A cos A</strong>
+    </div>
+
+    <div class="formula">
+        <strong>
+            cos 2A = cos²A − sin²A
+        </strong>
+    </div>
+
+    <div class="formula">
+        <strong>
+            cos 2A = 2cos²A − 1
+        </strong>
+    </div>
+
+    <div class="formula">
+        <strong>
+            cos 2A = 1 − 2sin²A
+        </strong>
+    </div>
+
+    <div class="formula">
+        <strong>
+            tan 2A = 2tan A/(1 − tan²A)
+        </strong>
+    </div>
+
+    <h3>Choosing the useful form</h3>
+
+    <p>
+        If the expression contains cos²A, use:
+    </p>
+
+    <div class="formula">
+        cos 2A = 2cos²A − 1
+    </div>
+
+    <p>
+        If it contains sin²A, use:
+    </p>
+
+    <div class="formula">
+        cos 2A = 1 − 2sin²A
+    </div>
+
+    <p>
+        If both sin²A and cos²A appear, the form
+        cos²A − sin²A is often most convenient.
+    </p>
+
+    <h3>Worked Example</h3>
+
+    <p>
+        Given sin A = 3/5 and cos A = 4/5, find sin 2A and cos 2A.
+    </p>
+
+    <div class="formula">
+        sin2A = 2(3/5)(4/5)
+        <br>
+        <strong>sin2A = 24/25</strong>
+    </div>
+
+    <div class="formula">
+        cos2A = (4/5)² − (3/5)²
+        <br>
+        = 16/25 − 9/25
+        <br>
+        <strong>cos2A = 7/25</strong>
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     16. TRIG GRAPHS
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>16. The Graphs of sin x, cos x and tan x</h2>
+
+    <h3>y = sin x</h3>
+
+    <div class="formula">
+        Domain: all real x
+        <br>
+        Range: −1 ≤ y ≤ 1
+        <br>
+        Period: 2π
+        <br>
+        Maximum: 1
+        <br>
+        Minimum: −1
+    </div>
+
+    <p>
+        Important points over one cycle:
+    </p>
+
+    <div class="formula">
+        x = 0 → sin x = 0
+        <br>
+        x = π/2 → sin x = 1
+        <br>
+        x = π → sin x = 0
+        <br>
+        x = 3π/2 → sin x = −1
+        <br>
+        x = 2π → sin x = 0
+    </div>
+
+    <h3>y = cos x</h3>
+
+    <div class="formula">
+        Domain: all real x
+        <br>
+        Range: −1 ≤ y ≤ 1
+        <br>
+        Period: 2π
+    </div>
+
+    <div class="formula">
+        x = 0 → cos x = 1
+        <br>
+        x = π/2 → cos x = 0
+        <br>
+        x = π → cos x = −1
+        <br>
+        x = 3π/2 → cos x = 0
+        <br>
+        x = 2π → cos x = 1
+    </div>
+
+    <h3>y = tan x</h3>
+
+    <div class="formula">
+        Domain:
+        x ≠ π/2 + nπ
+        <br>
+        Range: all real numbers
+        <br>
+        Period: π
+    </div>
+
+    <p>
+        Tangent has vertical asymptotes wherever cos x = 0.
+    </p>
+
+    <div class="formula">
+        x = π/2 + nπ
+        <br>
+        n ∈ ℤ
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     17. GRAPH TRANSFORMATIONS
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>17. Transformations of Trigonometric Graphs</h2>
+
+    <p>
+        The general sinusoidal form is:
+    </p>
+
+    <div class="formula">
+        y = a sin(bx + c) + d
+    </div>
+
+    <h3>Effect of a</h3>
+
+    <p>
+        The magnitude |a| controls the amplitude.
+    </p>
+
+    <div class="formula">
+        Amplitude = |a|
+    </div>
+
+    <p>
+        If a is negative, the graph is reflected in the x-axis.
+    </p>
+
+    <h3>Effect of b</h3>
+
+    <p>
+        The period becomes:
+    </p>
+
+    <div class="formula">
+        Period = 2π/|b|
+    </div>
+
+    <p>
+        In degrees:
+    </p>
+
+    <div class="formula">
+        Period = 360°/|b|
+    </div>
+
+    <h3>Effect of d</h3>
+
+    <p>
+        d moves the graph vertically.
+    </p>
+
+    <div class="formula">
+        Midline: y = d
+    </div>
+
+    <h3>Range</h3>
+
+    <div class="formula">
+        d − |a| ≤ y ≤ d + |a|
+    </div>
+
+    <h3>Worked Example</h3>
+
+    <div class="formula">
+        y = 3sin(2x) − 1
+    </div>
+
+    <ul>
+        <li>Amplitude = 3</li>
+        <li>Period = π</li>
+        <li>Midline = y = −1</li>
+        <li>Maximum = 2</li>
+        <li>Minimum = −4</li>
+        <li>Range: −4 ≤ y ≤ 2</li>
+    </ul>
+
+</div>
+
+
+<!-- =========================================================
+     18. PHASE SHIFT
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>18. Horizontal Translation and Phase</h2>
+
+    <p>
+        Expressions of the form:
+    </p>
+
+    <div class="formula">
+        y = a sin[b(x − h)] + d
+    </div>
+
+    <p>
+        have a horizontal shift of h.
+    </p>
+
+    <div class="formula">
+        y = a sin[b(x − h)] + d
+        <br>
+        → shift right by h
+    </div>
+
+    <div class="formula">
+        y = a sin[b(x + h)] + d
+        <br>
+        → shift left by h
+    </div>
+
+    <div class="warning">
+        The sign inside the bracket appears opposite to the direction
+        of the horizontal translation.
+    </div>
+
+    <h3>Example</h3>
+
+    <div class="formula">
+        y = 2cos[3(x − π/6)] + 1
+    </div>
+
+    <ul>
+        <li>Amplitude = 2</li>
+        <li>Period = 2π/3</li>
+        <li>Shift right by π/6</li>
+        <li>Midline = y = 1</li>
+        <li>Range = −1 to 3</li>
+    </ul>
+
+</div>
+
+
+<!-- =========================================================
+     19. TRIG IDENTITIES PROOF
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>19. Proving Trigonometric Identities</h2>
+
+    <p>
+        Proof questions test whether you can manipulate expressions
+        systematically rather than simply calculate numerical values.
+    </p>
+
+    <h3>Worked Proof</h3>
+
+    <p>Prove:</p>
+
+    <div class="formula">
+        tan θ + cot θ = sec θ cosec θ
+    </div>
+
+    <p>Start with the left-hand side:</p>
+
+    <div class="formula">
+        tan θ + cot θ
+        =
+        sin θ/cos θ + cos θ/sin θ
+    </div>
+
+    <p>Use a common denominator:</p>
+
+    <div class="formula">
+        =
+        (sin²θ + cos²θ)/(sin θ cos θ)
+    </div>
+
+    <p>Use the fundamental identity:</p>
+
+    <div class="formula">
+        =
+        1/(sin θ cos θ)
+    </div>
+
+    <p>Split the reciprocal:</p>
+
+    <div class="formula">
+        =
+        1/sin θ × 1/cos θ
+    </div>
+
+    <div class="formula">
+        <strong>
+            = cosec θ sec θ
+        </strong>
+    </div>
+
+    <div class="success">
+        <strong>Proof principle:</strong>
+        You do not need to make both sides look complicated. Choose the
+        side that can be transformed naturally into the other.
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     20. RADIANS IN DEPTH
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>20. Radians</h2>
+
+    <p>
+        A radian is defined using the relationship between arc length and
+        radius.
+    </p>
+
+    <div class="formula">
+        θ = s/r
+    </div>
+
+    <p>
+        where θ is measured in radians, s is the arc length and r is the
+        radius.
+    </p>
+
+    <h3>Arc length</h3>
+
+    <div class="formula">
+        <strong>s = rθ</strong>
+    </div>
+
+    <h3>Sector area</h3>
+
+    <div class="formula">
+        <strong>Area = 1/2 r²θ</strong>
+    </div>
+
+    <h3>Worked Example — Arc Length</h3>
+
+    <p>
+        A circle has radius 8 cm and central angle π/3 radians.
+    </p>
+
+    <div class="formula">
+        s = rθ
+        <br>
+        = 8(π/3)
+        <br>
+        <strong>s = 8π/3 cm</strong>
+    </div>
+
+    <h3>Worked Example — Sector Area</h3>
+
+    <div class="formula">
+        Area = 1/2(8²)(π/3)
+        <br>
+        <strong>= 32π/3 cm²</strong>
+    </div>
+
+    <div class="warning">
+        The formulas s = rθ and Area = 1/2r²θ require θ to be in radians.
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     21. SMALL ANGLE / ARC CONNECTION
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>21. Why Radians Matter</h2>
+
+    <p>
+        Radians are not merely an alternative angle unit. They make many
+        trigonometric relationships take their simplest mathematical form.
+    </p>
+
+    <p>
+        For example, when θ is small and measured in radians:
+    </p>
+
+    <div class="formula">
+        sin θ ≈ θ
+    </div>
+
+    <p>
+        This approximation is not generally valid when θ is measured in
+        degrees.
+    </p>
+
+    <p>
+        Similarly:
+    </p>
+
+    <div class="formula">
+        tan θ ≈ θ
+    </div>
+
+    <p>
+        for sufficiently small θ in radians.
+    </p>
+
+    <div class="definition">
+        This is an extension/advanced idea. The key Edexcel skill is to
+        understand that radians are the natural angle measure used in
+        calculus and circular geometry.
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     22. TRIG FUNCTIONS AND PERIODICITY
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>22. Periodicity and General Solutions</h2>
+
+    <p>
+        Trigonometric functions repeat their values periodically.
+    </p>
+
+    <div class="formula">
+        sin(x + 2π) = sin x
+        <br>
+        cos(x + 2π) = cos x
+        <br>
+        tan(x + π) = tan x
+    </div>
+
+    <h3>General sine solution</h3>
+
+    <p>
+        If sin x = sin α, the general solutions can be written:
+    </p>
+
+    <div class="formula">
+        x = α + 2nπ
+        <br>
+        or
+        <br>
+        x = π − α + 2nπ
+        <br>
+        n ∈ ℤ
+    </div>
+
+    <h3>General cosine solution</h3>
+
+    <div class="formula">
+        x = ±α + 2nπ
+        <br>
+        n ∈ ℤ
+    </div>
+
+    <h3>General tangent solution</h3>
+
+    <div class="formula">
+        x = α + nπ
+        <br>
+        n ∈ ℤ
+    </div>
+
+    <p>
+        In examination questions, the interval usually determines which
+        members of these infinite families are required.
+    </p>
+
+</div>
+
+
+<!-- =========================================================
+     23. R FORM
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>23. Expressing a sin x + b cos x in R Form</h2>
+
+    <div class="definition">
+        <strong>Extension / advanced technique:</strong>
+        This method is extremely useful for combining a sine term and a
+        cosine term into one sinusoidal function.
+    </div>
+
+    <p>
+        Consider:
+    </p>
+
+    <div class="formula">
+        a sin x + b cos x = R sin(x + α)
+    </div>
+
+    <p>
+        Expand the right-hand side:
+    </p>
+
+    <div class="formula">
+        R sin(x + α)
+        =
+        R sin x cos α + R cos x sin α
+    </div>
+
+    <p>
+        Compare coefficients:
+    </p>
+
+    <div class="formula">
+        R cos α = a
+        <br>
+        R sin α = b
+    </div>
+
+    <p>
+        Squaring and adding gives:
+    </p>
+
+    <div class="formula">
+        <strong>R = √(a² + b²)</strong>
+    </div>
+
+    <p>
+        Then:
+    </p>
+
+    <div class="formula">
+        tan α = b/a
+    </div>
+
+    <h3>Worked Example</h3>
+
+    <p>Express:</p>
+
+    <div class="formula">
+        3sin x + 4cos x
+    </div>
+
+    <p>in the form R sin(x + α).</p>
+
+    <div class="formula">
+        R = √(3² + 4²)
+        <br>
+        R = 5
+    </div>
+
+    <div class="formula">
+        cos α = 3/5
+        <br>
+        sin α = 4/5
+    </div>
+
+    <div class="formula">
+        α = tan⁻¹(4/3)
+    </div>
+
+    <div class="formula">
+        <strong>
+            3sin x + 4cos x = 5sin(x + α)
+        </strong>
+    </div>
+
+    <h3>Why R-form matters</h3>
+
+    <p>
+        Once an expression is written as R sin(x + α), its maximum and
+        minimum become immediately visible:
+    </p>
+
+    <div class="formula">
+        −R ≤ R sin(x + α) ≤ R
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     24. MAXIMUM AND MINIMUM
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>24. Maximum and Minimum Values</h2>
+
+    <p>
+        Since:
+    </p>
+
+    <div class="formula">
+        −1 ≤ sin x ≤ 1
+        <br>
+        −1 ≤ cos x ≤ 1
+    </div>
+
+    <p>
+        it follows that:
+    </p>
+
+    <div class="formula">
+        −R ≤ R sin(x + α) ≤ R
+    </div>
+
+    <h3>Example</h3>
+
+    <div class="formula">
+        y = 7 − 3cos x
+    </div>
+
+    <p>
+        Since −1 ≤ cos x ≤ 1:
+    </p>
+
+    <div class="formula">
+        −3 ≤ −3cos x ≤ 3
+    </div>
+
+    <div class="formula">
+        <strong>
+            4 ≤ y ≤ 10
+        </strong>
+    </div>
+
+    <p>
+        Therefore the minimum value is 4 and the maximum value is 10.
+    </p>
+
+</div>
+
+
+<!-- =========================================================
+     25. PARAMETER QUESTIONS
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>25. Parameter Problems</h2>
+
+    <p>
+        Trigonometric questions often introduce an unknown constant and
+        ask you to determine its possible values.
+    </p>
+
+    <h3>Example — range</h3>
+
+    <p>
+        Suppose:
+    </p>
+
+    <div class="formula">
+        y = k + 4sin x
+    </div>
+
+    <p>
+        The range is:
+    </p>
+
+    <div class="formula">
+        k − 4 ≤ y ≤ k + 4
+    </div>
+
+    <p>
+        If the question says the minimum value is 7:
+    </p>
+
+    <div class="formula">
+        k − 4 = 7
+        <br>
+        <strong>k = 11</strong>
+    </div>
+
+    <h3>Parameter + number of roots</h3>
+
+    <p>
+        Questions may ask how many solutions an equation has for a
+        particular interval. A graph or range analysis can be more
+        efficient than solving every equation directly.
+    </p>
+
+    <div class="success">
+        For parameter questions, first identify the possible range of the
+        trigonometric expression. Then compare that range with the
+        required value.
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     26. MIXED TRIANGLE REASONING
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>26. Choosing the Correct Triangle Method</h2>
+
+    <h3>Use SOHCAHTOA when:</h3>
+
+    <p>
+        The triangle is right-angled and the relevant sides/angle are
+        known.
+    </p>
+
+    <h3>Use the Sine Rule when:</h3>
+
+    <p>
+        You know an opposite side-angle pair and need another side or
+        angle.
+    </p>
+
+    <h3>Use the Cosine Rule when:</h3>
+
+    <p>
+        You know two sides and their included angle, or all three sides.
+    </p>
+
+    <h3>Use the area formula when:</h3>
+
+    <p>
+        Two sides and the included angle are known and the area is needed.
+    </p>
+
+    <div class="formula">
+        <strong>
+            Right triangle → SOHCAHTOA
+            <br>
+            Opposite side-angle pair → Sine Rule
+            <br>
+            SAS or SSS → Cosine Rule
+            <br>
+            Two sides + included angle + area → 1/2ab sin C
+        </strong>
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     27. TRIG EQUATION MASTER STRATEGY
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>27. Master Strategy for Trigonometric Equations</h2>
+
+    <ol>
+        <li>
+            <strong>Check the interval.</strong>
+            Write it down before calculating.
+        </li>
+
+        <li>
+            <strong>Check the calculator mode.</strong>
+            Determine whether the question uses degrees or radians.
+        </li>
+
+        <li>
+            <strong>Simplify first.</strong>
+            Factorise or use identities before pressing buttons.
+        </li>
+
+        <li>
+            <strong>Find the reference angle.</strong>
+            Use the positive principal value.
+        </li>
+
+        <li>
+            <strong>Use signs.</strong>
+            Determine the relevant quadrants using CAST or the unit circle.
+        </li>
+
+        <li>
+            <strong>Generate every solution.</strong>
+            Do not stop after inverse trig gives one answer.
+        </li>
+
+        <li>
+            <strong>Check the interval.</strong>
+            Remove values outside the required range.
+        </li>
+    </ol>
+
+    <div class="warning">
+        A common exam error is mathematically correct working followed by
+        an incomplete solution set.
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     28. COMMON MISTAKES
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>28. Common Trigonometry Mistakes</h2>
+
+    <h3>1. Degree/radian confusion</h3>
+
+    <p>
+        The calculator may return a completely different answer if it is
+        in the wrong mode.
+    </p>
+
+    <h3>2. Confusing sin⁻¹ with cosec</h3>
+
+    <p>
+        sin⁻¹x means inverse sine, whereas cosec x = 1/sin x.
+    </p>
+
+    <h3>3. Missing the second solution</h3>
+
+    <p>
+        Inverse trig functions return only a principal value.
+        The complete interval must still be considered.
+    </p>
+
+    <h3>4. Wrong CAST quadrant</h3>
+
+    <p>
+        Remember that tangent is positive in Quadrants I and III, not
+        Quadrants I and IV.
+    </p>
+
+    <h3>5. Wrong angle in the Sine Rule</h3>
+
+    <p>
+        Each side must correspond to its opposite angle.
+    </p>
+
+    <h3>6. Wrong angle in the area formula</h3>
+
+    <p>
+        1/2ab sin C requires C to be the included angle between a and b.
+    </p>
+
+    <h3>7. Using the Cosine Rule incorrectly</h3>
+
+    <p>
+        The angle must be opposite the side being squared in:
+    </p>
+
+    <div class="formula">
+        a² = b² + c² − 2bc cos A
+    </div>
+
+    <h3>8. Treating an identity as an equation</h3>
+
+    <p>
+        An identity is true for all valid values; it is not solved for a
+        small collection of answers.
+    </p>
+
+    <h3>9. Rounding too early</h3>
+
+    <p>
+        Keep exact values or calculator precision until the final step.
+    </p>
+
+    <h3>10. Forgetting transformed intervals</h3>
+
+    <p>
+        If you replace x with 2x, the interval for 2x changes as well.
+    </p>
+
+</div>
+
+
+<!-- =========================================================
+     29. EXAM CHECKLIST
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>29. Trigonometry Exam Checklist</h2>
+
+    <div class="success">
+        Before submitting a trigonometry answer, ask:
+    </div>
+
+    <ul>
+        <li>Is my calculator in the correct mode?</li>
+        <li>Did I use degrees or radians correctly?</li>
+        <li>Did I identify the correct trigonometric relationship?</li>
+        <li>Did I match sides with their opposite angles?</li>
+        <li>Did I use the included angle for the area formula?</li>
+        <li>Did I consider every quadrant?</li>
+        <li>Did I check the entire interval?</li>
+        <li>Did I preserve exact values when required?</li>
+        <li>Did I avoid premature rounding?</li>
+        <li>Does my answer make geometric sense?</li>
+    </ul>
+
+</div>
+
+
+<!-- =========================================================
+     30. FORMULA ATLAS
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>30. Trigonometry Formula Atlas</h2>
+
+    <h3>Basic ratios</h3>
+
+    <div class="formula">
+        sin θ = opposite/hypotenuse
+        <br>
+        cos θ = adjacent/hypotenuse
+        <br>
+        tan θ = opposite/adjacent
+    </div>
+
+    <h3>Fundamental identities</h3>
+
+    <div class="formula">
+        sin²θ + cos²θ = 1
+        <br>
+        1 + tan²θ = sec²θ
+        <br>
+        1 + cot²θ = cosec²θ
+    </div>
+
+    <h3>Reciprocals</h3>
+
+    <div class="formula">
+        sec θ = 1/cos θ
+        <br>
+        cosec θ = 1/sin θ
+        <br>
+        cot θ = cos θ/sin θ
+    </div>
+
+    <h3>Compound angles</h3>
+
+    <div class="formula">
+        sin(A ± B)
+        =
+        sin A cos B ± cos A sin B
+        <br><br>
+        cos(A ± B)
+        =
+        cos A cos B ∓ sin A sin B
+        <br><br>
+        tan(A ± B)
+        =
+        (tan A ± tan B)/(1 ∓ tan A tan B)
+    </div>
+
+    <h3>Double angles</h3>
+
+    <div class="formula">
+        sin2A = 2sinAcosA
+        <br>
+        cos2A = cos²A − sin²A
+        <br>
+        cos2A = 2cos²A − 1
+        <br>
+        cos2A = 1 − 2sin²A
+        <br>
+        tan2A = 2tanA/(1 − tan²A)
+    </div>
+
+    <h3>Triangle geometry</h3>
+
+    <div class="formula">
+        a/sinA = b/sinB = c/sinC
+        <br><br>
+        a² = b² + c² − 2bc cosA
+        <br><br>
+        Area = 1/2 ab sinC
+    </div>
+
+    <h3>Radians</h3>
+
+    <div class="formula">
+        s = rθ
+        <br>
+        Area of sector = 1/2r²θ
+        <br>
+        180° = π radians
+    </div>
+
+    <h3>Sinusoidal graphs</h3>
+
+    <div class="formula">
+        y = a sin(bx + c) + d
+        <br><br>
+        Amplitude = |a|
+        <br>
+        Period = 2π/|b|
+        <br>
+        Midline = y = d
+        <br>
+        Range = d − |a| to d + |a|
+    </div>
+
+    <h3>R-form</h3>
+
+    <div class="formula">
+        a sinx + b cosx
+        =
+        R sin(x + α)
+        <br><br>
+        R = √(a² + b²)
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     31. PRACTICE — FOUNDATION
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>31. Practice Questions — Foundation</h2>
+
+    <p>
+        Attempt each question before opening the solution.
+    </p>
+
+    <h3>Question 1 — Basic ratio</h3>
+
+    <p>
+        In a right-angled triangle, the opposite side is 8 cm and the
+        hypotenuse is 10 cm. Find θ.
+    </p>
+
+    <details>
+        <summary>Show Full Solution</summary>
+
+        <div class="formula">
+            sin θ = 8/10 = 0.8
+            <br>
+            θ = sin⁻¹(0.8)
+            <br>
+            <strong>θ ≈ 53.13°</strong>
+        </div>
+
+    </details>
+
+
+    <h3>Question 2 — Exact identity</h3>
+
+    <p>
+        Given sin θ = 5/13 and θ is acute, find cos θ.
+    </p>
+
+    <details>
+        <summary>Show Full Solution</summary>
+
+        <div class="formula">
+            sin²θ + cos²θ = 1
+            <br>
+            25/169 + cos²θ = 1
+            <br>
+            cos²θ = 144/169
+            <br>
+            <strong>cos θ = 12/13</strong>
+        </div>
+
+    </details>
+
+
+    <h3>Question 3 — Equation</h3>
+
+    <p>
+        Solve sin θ = √3/2 for 0° ≤ θ ≤ 360°.
+    </p>
+
+    <details>
+        <summary>Show Full Solution</summary>
+
+        <div class="formula">
+            Reference angle = 60°
+            <br>
+            Sine positive in QI and QII
+            <br>
+            <strong>θ = 60°, 120°</strong>
+        </div>
+
+    </details>
+
+
+    <h3>Question 4 — Cosine Rule</h3>
+
+    <p>
+        Two sides are 6 and 8 and the included angle is 60°. Find the
+        third side exactly.
+    </p>
+
+    <details>
+        <summary>Show Full Solution</summary>
+
+        <div class="formula">
+            a² = 6² + 8² − 2(6)(8)cos60°
+            <br>
+            = 36 + 64 − 48
+            <br>
+            = 52
+            <br>
+            <strong>a = 2√13</strong>
+        </div>
+
+    </details>
+
+
+    <h3>Question 5 — Area</h3>
+
+    <p>
+        Find the area of a triangle with sides 10 cm and 6 cm and included
+        angle 30°.
+    </p>
+
+    <details>
+        <summary>Show Full Solution</summary>
+
+        <div class="formula">
+            Area = 1/2(10)(6)sin30°
+            <br>
+            = 30(1/2)
+            <br>
+            <strong>= 15 cm²</strong>
+        </div>
+
+    </details>
+
+</div>
+
+
+<!-- =========================================================
+     32. PRACTICE — INTERMEDIATE
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>32. Practice Questions — Intermediate</h2>
+
+    <h3>Question 6 — Quadratic trig equation</h3>
+
+    <p>
+        Solve:
+        2sin²x − 3sinx + 1 = 0,
+        for 0° ≤ x ≤ 360°.
+    </p>
+
+    <details>
+        <summary>Show Full Solution</summary>
+
+        <div class="formula">
+            (2sinx − 1)(sinx − 1) = 0
+        </div>
+
+        <div class="formula">
+            sinx = 1/2
+            → x = 30°,150°
+            <br>
+            sinx = 1
+            → x = 90°
+        </div>
+
+        <div class="formula">
+            <strong>x = 30°, 90°, 150°</strong>
+        </div>
+
+    </details>
+
+
+    <h3>Question 7 — Compound angle</h3>
+
+    <p>
+        Find the exact value of cos 75°.
+    </p>
+
+    <details>
+        <summary>Show Full Solution</summary>
+
+        <div class="formula">
+            cos75° = cos(45° + 30°)
+        </div>
+
+        <div class="formula">
+            = cos45°cos30° − sin45°sin30°
+        </div>
+
+        <div class="formula">
+            =
+            (√2/2)(√3/2)
+            −
+            (√2/2)(1/2)
+        </div>
+
+        <div class="formula">
+            <strong>
+                cos75° = (√6 − √2)/4
+            </strong>
+        </div>
+
+    </details>
+
+
+    <h3>Question 8 — Double angle</h3>
+
+    <p>
+        Given cos θ = 5/13 and θ is acute, find cos 2θ.
+    </p>
+
+    <details>
+        <summary>Show Full Solution</summary>
+
+        <div class="formula">
+            cos2θ = 2cos²θ − 1
+            <br>
+            = 2(25/169) − 1
+            <br>
+            = 50/169 − 169/169
+            <br>
+            <strong>= −119/169</strong>
+        </div>
+
+    </details>
+
+
+    <h3>Question 9 — Radians</h3>
+
+    <p>
+        A sector has radius 9 cm and angle 2π/3 radians. Find its area.
+    </p>
+
+    <details>
+        <summary>Show Full Solution</summary>
+
+        <div class="formula">
+            Area = 1/2r²θ
+            <br>
+            = 1/2(81)(2π/3)
+            <br>
+            <strong>= 27π cm²</strong>
+        </div>
+
+    </details>
+
+
+    <h3>Question 10 — Graph range</h3>
+
+    <p>
+        Find the range of y = 4 − 3sin x.
+    </p>
+
+    <details>
+        <summary>Show Full Solution</summary>
+
+        <div class="formula">
+            −1 ≤ sinx ≤ 1
+        </div>
+
+        <div class="formula">
+            −3 ≤ −3sinx ≤ 3
+        </div>
+
+        <div class="formula">
+            <strong>
+                1 ≤ y ≤ 7
+            </strong>
+        </div>
+
+    </details>
+
+</div>
+
+
+<!-- =========================================================
+     33. PRACTICE — HARD
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>33. Practice Questions — Hard / Multi-Step</h2>
+
+    <h3>Question 11 — Identity + equation</h3>
+
+    <p>
+        Solve:
+        1 − 2sin²x = 0,
+        for 0° ≤ x ≤ 180°.
+    </p>
+
+    <details>
+        <summary>Show Full Solution</summary>
+
+        <div class="formula">
+            1 − 2sin²x = cos2x
+        </div>
+
+        <div class="formula">
+            cos2x = 0
+        </div>
+
+        <div class="formula">
+            0° ≤ 2x ≤ 360°
+        </div>
+
+        <div class="formula">
+            2x = 90°,270°
+        </div>
+
+        <div class="formula">
+            <strong>x = 45°,135°</strong>
+        </div>
+
+    </details>
+
+
+    <h3>Question 12 — R-form</h3>
+
+    <p>
+        Express 5sinx + 12cosx in the form R sin(x + α), where R &gt; 0
+        and 0 &lt; α &lt; 90°.
+    </p>
+
+    <details>
+        <summary>Show Full Solution</summary>
+
+        <div class="formula">
+            R = √(5² + 12²)
+            <br>
+            = 13
+        </div>
+
+        <div class="formula">
+            cosα = 5/13
+            <br>
+            sinα = 12/13
+        </div>
+
+        <div class="formula">
+            α = tan⁻¹(12/5)
+        </div>
+
+        <div class="formula">
+            <strong>
+                5sinx + 12cosx = 13sin(x + α)
+            </strong>
+        </div>
+
+    </details>
+
+
+    <h3>Question 13 — Maximum value</h3>
+
+    <p>
+        Find the maximum value of 8 + 6sin x − 8cos x.
+    </p>
+
+    <details>
+        <summary>Show Full Solution</summary>
+
+        <div class="formula">
+            6sinx − 8cosx
+            =
+            R sin(x + α)
+        </div>
+
+        <div class="formula">
+            R = √(6² + 8²)
+            = 10
+        </div>
+
+        <div class="formula">
+            −10 ≤ 6sinx − 8cosx ≤ 10
+        </div>
+
+        <div class="formula">
+            <strong>Maximum = 8 + 10 = 18</strong>
+        </div>
+
+    </details>
+
+
+    <h3>Question 14 — Identity proof</h3>
+
+    <p>
+        Prove:
+        (1 − cosx)/sinx = sinx/(1 + cosx).
+    </p>
+
+    <details>
+        <summary>Show Full Solution</summary>
 
         <p>
-            The CAST rule helps determine where sine, cosine and tangent
-            are positive.
+            Start with the left-hand side and multiply numerator and
+            denominator by 1 + cosx.
         </p>
 
         <div class="formula">
-            C — cosine positive
-            <br>
-            A — all positive
-            <br>
-            S — sine positive
-            <br>
-            T — tangent positive
+            (1 − cosx)/sinx
+            ×
+            (1 + cosx)/(1 + cosx)
+        </div>
+
+        <div class="formula">
+            =
+            (1 − cos²x)/(sinx(1 + cosx))
+        </div>
+
+        <div class="formula">
+            =
+            sin²x/(sinx(1 + cosx))
+        </div>
+
+        <div class="formula">
+            <strong>
+                = sinx/(1 + cosx)
+            </strong>
+        </div>
+
+    </details>
+
+
+    <h3>Question 15 — Mixed triangle reasoning</h3>
+
+    <p>
+        In triangle ABC, a = 7, b = 9 and C = 60°. Find the area exactly.
+    </p>
+
+    <details>
+        <summary>Show Full Solution</summary>
+
+        <div class="formula">
+            Area = 1/2ab sinC
+        </div>
+
+        <div class="formula">
+            = 1/2(7)(9)(√3/2)
+        </div>
+
+        <div class="formula">
+            <strong>
+                Area = 63√3/4
+            </strong>
+        </div>
+
+    </details>
+
+</div>
+
+
+<!-- =========================================================
+     34. DEEP REASONING QUESTIONS
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>34. Deep Reasoning — A Level Challenge</h2>
+
+    <h3>Challenge 1</h3>
+
+    <p>
+        Given:
+    </p>
+
+    <div class="formula">
+        sin θ + cos θ = √2
+    </div>
+
+    <p>
+        Find θ for 0° ≤ θ ≤ 360°.
+    </p>
+
+    <details>
+        <summary>Show Full Solution</summary>
+
+        <p>
+            Square both sides:
+        </p>
+
+        <div class="formula">
+            sin²θ + 2sinθcosθ + cos²θ = 2
+        </div>
+
+        <div class="formula">
+            1 + sin2θ = 2
+        </div>
+
+        <div class="formula">
+            sin2θ = 1
+        </div>
+
+        <div class="formula">
+            2θ = 90°,450°
         </div>
 
         <p>
+            Since 0° ≤ θ ≤ 360°, we have 0° ≤ 2θ ≤ 720°.
             Therefore:
         </p>
 
         <div class="formula">
-            Quadrant I → all positive
+            2θ = 90°,450°
             <br>
-            Quadrant II → sine positive
+            <strong>
+                θ = 45°,225°
+            </strong>
+        </div>
+
+    </details>
+
+
+    <h3>Challenge 2</h3>
+
+    <p>
+        Show that the maximum value of a sinx + b cosx is
+        √(a² + b²).
+    </p>
+
+    <details>
+        <summary>Show Full Solution</summary>
+
+        <p>
+            Write:
+        </p>
+
+        <div class="formula">
+            a sinx + b cosx = R sin(x + α)
+        </div>
+
+        <div class="formula">
+            R = √(a² + b²)
+        </div>
+
+        <p>
+            Since:
+        </p>
+
+        <div class="formula">
+            −1 ≤ sin(x + α) ≤ 1
+        </div>
+
+        <p>
+            we have:
+        </p>
+
+        <div class="formula">
+            −R ≤ Rsin(x + α) ≤ R
+        </div>
+
+        <div class="formula">
+            <strong>
+                Maximum = R = √(a² + b²)
+            </strong>
+        </div>
+
+    </details>
+
+
+    <h3>Challenge 3</h3>
+
+    <p>
+        Solve:
+        3cos²x − 2cosx − 1 = 0
+        for 0° ≤ x ≤ 360°.
+    </p>
+
+    <details>
+        <summary>Show Full Solution</summary>
+
+        <div class="formula">
+            (3cosx + 1)(cosx − 1) = 0
+        </div>
+
+        <div class="formula">
+            cosx = −1/3
             <br>
-            Quadrant III → tangent positive
+            or
             <br>
-            Quadrant IV → cosine positive
+            cosx = 1
         </div>
 
-        <h3>Example</h3>
-
         <p>
-            If cos θ = −1/2 for 0° ≤ θ ≤ 360°, cosine is negative in
-            Quadrants II and III.
+            For cosx = 1:
         </p>
 
         <div class="formula">
-            θ = 120°, 240°
+            x = 0°,360°
         </div>
 
+        <p>
+            For cosx = −1/3:
+        </p>
+
+        <div class="formula">
+            x ≈ 109.47°,250.53°
+        </div>
+
+        <div class="formula">
+            <strong>
+                x = 0°,109.47°,250.53°,360°
+            </strong>
+        </div>
+
+    </details>
+
+</div>
+
+
+<!-- =========================================================
+     35. FINAL MASTER CHECKLIST
+========================================================= -->
+
+<div class="topic-card">
+
+    <h2>35. Trigonometry Master Checklist</h2>
+
+    <p>
+        You should be able to confidently:
+    </p>
+
+    <ul>
+        <li>Use SOHCAHTOA in right-angled triangles.</li>
+        <li>Convert between degrees and radians.</li>
+        <li>Recall exact standard-angle values.</li>
+        <li>Use the unit-circle interpretation of sine and cosine.</li>
+        <li>Determine signs in all four quadrants.</li>
+        <li>Use reciprocal trigonometric functions.</li>
+        <li>Manipulate fundamental trigonometric identities.</li>
+        <li>Solve sine, cosine and tangent equations.</li>
+        <li>Solve quadratic trigonometric equations.</li>
+        <li>Use compound-angle identities.</li>
+        <li>Use double-angle identities.</li>
+        <li>Use the Sine Rule.</li>
+        <li>Handle the ambiguous Sine Rule case.</li>
+        <li>Use the Cosine Rule.</li>
+        <li>Find the area of a triangle using 1/2ab sinC.</li>
+        <li>Use radians for arc length and sector area.</li>
+        <li>Understand sine, cosine and tangent graphs.</li>
+        <li>Determine amplitude, period, range and midline.</li>
+        <li>Handle graph transformations.</li>
+        <li>Prove trigonometric identities.</li>
+        <li>Convert a sinx + b cosx into R-form.</li>
+        <li>Find maximum and minimum values.</li>
+        <li>Solve parameter-based trigonometric problems.</li>
+        <li>Handle multi-step examination problems.</li>
+    </ul>
+
+    <div class="success">
+        <strong>Final rule:</strong>
+        Do not treat trigonometry as a collection of unrelated formulas.
+        The major ideas are connected:
+        the unit circle explains the functions, identities connect the
+        functions, compound angles generate double angles, graphs show
+        periodic behaviour, and triangle rules apply the same
+        relationships geometrically.
     </div>
 
+</div>
 
-    <!-- 10 -->
 
-    <div class="topic-card">
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
 
-        <h2>10. Compound Angles</h2>
+<div class="navigation">
 
-        <p>
-            The compound-angle identities allow expressions involving
-            sums and differences of angles to be expanded.
-        </p>
+    <a href="#top" class="back">
+        ↑ Back to Top
+    </a>
 
-        <div class="formula">
-            sin(A ± B)
-            = sin A cos B ± cos A sin B
-        </div>
+    <a href="pure-mathematics.html" class="back">
+        ← Back to Pure Mathematics
+    </a>
 
-        <div class="formula">
-            cos(A ± B)
-            = cos A cos B ∓ sin A sin B
-        </div>
-
-        <div class="formula">
-            tan(A ± B)
-            = (tan A ± tan B) / (1 ∓ tan A tan B)
-        </div>
-
-        <h3>Worked Example</h3>
-
-        <p>
-            Expand sin(A + B).
-        </p>
-
-        <div class="formula">
-            <strong>sin(A + B) = sin A cos B + cos A sin B</strong>
-        </div>
-
-    </div>
-
-
-    <!-- 11 -->
-
-    <div class="topic-card">
-
-        <h2>11. Double-Angle Identities</h2>
-
-        <p>
-            Double-angle identities are obtained by setting A = B in the
-            compound-angle formulas.
-        </p>
-
-        <div class="formula">
-            sin 2A = 2 sin A cos A
-        </div>
-
-        <div class="formula">
-            cos 2A = cos²A − sin²A
-        </div>
-
-        <div class="formula">
-            cos 2A = 2cos²A − 1
-        </div>
-
-        <div class="formula">
-            cos 2A = 1 − 2sin²A
-        </div>
-
-        <div class="formula">
-            tan 2A = 2tan A / (1 − tan²A)
-        </div>
-
-    </div>
-
-
-    <!-- 12 -->
-
-    <div class="topic-card">
-
-        <h2>12. Trigonometric Graphs</h2>
-
-        <p>
-            The three basic trigonometric graphs are sine, cosine and
-            tangent.
-        </p>
-
-        <h3>y = sin x</h3>
-
-        <div class="formula">
-            Range: −1 ≤ sin x ≤ 1
-            <br>
-            Period: 360° or 2π radians
-        </div>
-
-        <h3>y = cos x</h3>
-
-        <div class="formula">
-            Range: −1 ≤ cos x ≤ 1
-            <br>
-            Period: 360° or 2π radians
-        </div>
-
-        <h3>y = tan x</h3>
-
-        <div class="formula">
-            Period: 180° or π radians
-        </div>
-
-        <p>
-            Tangent has vertical asymptotes where cos x = 0.
-        </p>
-
-    </div>
-
-
-    <!-- 13 -->
-
-    <div class="topic-card">
-
-        <h2>🧠 Practice Questions</h2>
-
-        <p>
-            Try each question yourself before revealing the solution.
-        </p>
-
-
-        <h3>Question 1 — Basic Trigonometry</h3>
-
-        <p>
-            In a right-angled triangle, the opposite side is 8 and the
-            hypotenuse is 10. Find θ.
-        </p>
-
-        <details>
-
-            <summary>Show Full Solution</summary>
-
-            <div class="formula">
-                sin θ = 8/10
-                <br>
-                = 0.8
-            </div>
-
-            <div class="formula">
-                θ = sin⁻¹(0.8)
-                <br>
-                <strong>θ ≈ 53.13°</strong>
-            </div>
-
-        </details>
-
-
-        <h3>Question 2 — Identity</h3>
-
-        <p>
-            Given sin θ = 5/13 and θ is acute, find cos θ.
-        </p>
-
-        <details>
-
-            <summary>Show Full Solution</summary>
-
-            <div class="formula">
-                sin²θ + cos²θ = 1
-            </div>
-
-            <div class="formula">
-                (5/13)² + cos²θ = 1
-            </div>
-
-            <div class="formula">
-                cos²θ = 144/169
-            </div>
-
-            <div class="formula">
-                <strong>cos θ = 12/13</strong>
-            </div>
-
-        </details>
-
-
-        <h3>Question 3 — Trigonometric Equation</h3>
-
-        <p>
-            Solve sin θ = √3/2 for 0° ≤ θ ≤ 360°.
-        </p>
-
-        <details>
-
-            <summary>Show Full Solution</summary>
-
-            <div class="formula">
-                θ = 60°
-            </div>
-
-            <div class="formula">
-                θ = 180° − 60°
-                <br>
-                = 120°
-            </div>
-
-            <div class="formula">
-                <strong>θ = 60°, 120°</strong>
-            </div>
-
-        </details>
-
-
-        <h3>Question 4 — Sine Rule</h3>
-
-        <p>
-            Given A = 30°, B = 45° and a = 6, find b.
-        </p>
-
-        <details>
-
-            <summary>Show Full Solution</summary>
-
-            <div class="formula">
-                6/sin30° = b/sin45°
-            </div>
-
-            <div class="formula">
-                b = 6(sin45°) / sin30°
-            </div>
-
-            <div class="formula">
-                <strong>b = 6√2</strong>
-            </div>
-
-        </details>
-
-
-        <h3>Question 5 — Cosine Rule</h3>
-
-        <p>
-            Find the third side of a triangle where two sides are 6 and 8
-            and the included angle is 60°.
-        </p>
-
-        <details>
-
-            <summary>Show Full Solution</summary>
-
-            <div class="formula">
-                a² = 6² + 8² − 2(6)(8)cos60°
-            </div>
-
-            <div class="formula">
-                a² = 36 + 64 − 48
-                <br>
-                = 52
-            </div>
-
-            <div class="formula">
-                <strong>a = √52 = 2√13</strong>
-            </div>
-
-        </details>
-
-
-        <h3>Question 6 — Area</h3>
-
-        <p>
-            Find the area of a triangle with sides 10 and 6 and included
-            angle 30°.
-        </p>
-
-        <details>
-
-            <summary>Show Full Solution</summary>
-
-            <div class="formula">
-                Area = 1/2(10)(6)sin30°
-            </div>
-
-            <div class="formula">
-                = 30 × 1/2
-                <br>
-                <strong>= 15</strong>
-            </div>
-
-        </details>
-
-
-        <h3>Question 7 — Double Angle</h3>
-
-        <p>
-            Given sin θ = 3/5 and cos θ = 4/5, find sin 2θ.
-        </p>
-
-        <details>
-
-            <summary>Show Full Solution</summary>
-
-            <div class="formula">
-                sin 2θ = 2sin θ cos θ
-            </div>
-
-            <div class="formula">
-                = 2(3/5)(4/5)
-                <br>
-                <strong>= 24/25</strong>
-            </div>
-
-        </details>
-
-    </div>
-
-
-    <!-- 14 -->
-
-    <div class="topic-card">
-
-        <h2>⚠️ Common Mistakes</h2>
-
-        <h3>1. Calculator in the wrong mode</h3>
-
-        <p>
-            Check whether your calculator is in degrees or radians before
-            solving the question.
-        </p>
-
-        <h3>2. Missing solutions</h3>
-
-        <p>
-            Always check every quadrant in the specified interval.
-        </p>
-
-        <h3>3. Choosing the wrong rule</h3>
-
-        <p>
-            Decide whether the Sine Rule, Cosine Rule or another
-            trigonometric relationship is appropriate before calculating.
-        </p>
-
-        <h3>4. Using the wrong angle in the area formula</h3>
-
-        <p>
-            The formula 1/2ab sin C requires the angle between the two
-            known sides.
-        </p>
-
-        <h3>5. Rounding too early</h3>
-
-        <p>
-            Keep accurate values throughout your working and round only
-            at the end when required.
-        </p>
-
-        <h3>6. Forgetting the CAST rule</h3>
-
-        <p>
-            When solving equations, identify the quadrants in which the
-            trigonometric function has the required sign.
-        </p>
-
-    </div>
-
-
-    <!-- 15 -->
-
-    <div class="topic-card">
-
-        <h2>🎯 Exam Tips</h2>
-
-        <h3>1. Check calculator mode</h3>
-
-        <p>
-            Make sure you are using degrees or radians according to the
-            question.
-        </p>
-
-        <h3>2. Write the formula first</h3>
-
-        <p>
-            Writing the correct relationship before substituting values
-            reduces errors.
-        </p>
-
-        <h3>3. Use the full interval</h3>
-
-        <p>
-            For trigonometric equations, do not stop after finding the
-            principal value.
-        </p>
-
-        <h3>4. Learn the exact values</h3>
-
-        <p>
-            Exact values are essential for many Edexcel questions and
-            often allow you to avoid unnecessary calculator work.
-        </p>
-
-        <h3>5. Keep exact answers</h3>
-
-        <p>
-            If an exact answer is required, leave surds and fractions in
-            exact form.
-        </p>
-
-        <h3>6. Draw a diagram when necessary</h3>
-
-        <p>
-            A clear triangle or sketch can make the correct relationship
-            much easier to identify.
-        </p>
-
-    </div>
-
-
-    <!-- =========================================================
-         NAVIGATION
-    ========================================================= -->
-
-    <div class="navigation">
-
-        <a href="#top" class="back">
-            ↑ Back to Top
-        </a>
-
-        <a href="pure-mathematics.html" class="back">
-            ← Back to Pure Mathematics
-        </a>
-
-    </div>
+</div>
 
 
 </section>
 
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
 
 <footer>
 
