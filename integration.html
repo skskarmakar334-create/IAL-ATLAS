@@ -3,1265 +3,3699 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Integration | IAL ATLAS</title>
-
-    <meta name="description"
-          content="Integration notes and revision resources for Pearson Edexcel International A Level Mathematics.">
-
-    <style>
-
-        /* =========================================================
-           IAL ATLAS — DARK FUTURISTIC DESIGN SYSTEM
-        ========================================================= */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background:
-                radial-gradient(circle at 15% 10%, rgba(0, 183, 255, 0.08), transparent 30%),
-                radial-gradient(circle at 85% 20%, rgba(91, 72, 255, 0.08), transparent 30%),
-                #050b16;
-            color: #eaf4ff;
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        /* =========================================================
-           HEADER
-        ========================================================= */
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            padding: 20px 7%;
-
-            background: rgba(5, 11, 22, 0.82);
-            border-bottom: 1px solid rgba(61, 180, 255, 0.15);
-
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-        }
-
-        .logo {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 27px;
-            font-weight: 900;
-            letter-spacing: 2px;
-
-            text-shadow:
-                0 0 12px rgba(45, 190, 255, 0.45);
-        }
-
-        .nav-back {
-            color: #9ccfff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 700;
-
-            padding: 9px 15px;
-
-            border: 1px solid rgba(70, 185, 255, 0.25);
-            border-radius: 8px;
-
-            transition: 0.25s ease;
-        }
-
-        .nav-back:hover {
-            color: #ffffff;
-            border-color: #39bfff;
-            background: rgba(39, 178, 255, 0.09);
-            box-shadow: 0 0 18px rgba(39, 178, 255, 0.18);
-        }
-
-        /* =========================================================
-           HERO
-        ========================================================= */
-
-        .hero {
-            position: relative;
-            min-height: 430px;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            text-align: center;
-
-            padding: 90px 20px;
-
-            overflow: hidden;
-
-            background:
-                radial-gradient(circle at center, rgba(20, 165, 255, 0.14), transparent 38%),
-                linear-gradient(
-                    135deg,
-                    #050b16 0%,
-                    #081426 50%,
-                    #07101f 100%
-                );
-
-            border-bottom: 1px solid rgba(55, 186, 255, 0.12);
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-
-            background-image:
-                linear-gradient(rgba(75, 190, 255, 0.035) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(75, 190, 255, 0.035) 1px, transparent 1px);
-
-            background-size: 55px 55px;
-
-            mask-image: linear-gradient(
-                to bottom,
-                transparent,
-                black 25%,
-                black 75%,
-                transparent
-            );
-
-            pointer-events: none;
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-
-            width: 420px;
-            height: 420px;
-
-            border: 1px solid rgba(44, 190, 255, 0.12);
-            border-radius: 50%;
-
-            box-shadow:
-                0 0 60px rgba(44, 190, 255, 0.08),
-                inset 0 0 60px rgba(44, 190, 255, 0.04);
-
-            animation: rotateOrb 22s linear infinite;
-        }
-
-        @keyframes rotateOrb {
-            from {
-                transform: rotate(0deg) scale(1);
-            }
-
-            50% {
-                transform: rotate(180deg) scale(1.04);
-            }
-
-            to {
-                transform: rotate(360deg) scale(1);
-            }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-label {
-            display: inline-block;
-
-            margin-bottom: 18px;
-            padding: 7px 14px;
-
-            color: #67d2ff;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-
-            border: 1px solid rgba(67, 200, 255, 0.28);
-            border-radius: 30px;
-
-            background: rgba(36, 171, 255, 0.06);
-        }
-
-        .hero h1 {
-            font-size: clamp(48px, 8vw, 76px);
-            line-height: 1.05;
-            margin-bottom: 18px;
-
-            color: #ffffff;
-
-            letter-spacing: -2px;
-
-            text-shadow:
-                0 0 15px rgba(54, 198, 255, 0.3),
-                0 0 50px rgba(54, 198, 255, 0.12);
-        }
-
-        .hero p {
-            color: #9db4cc;
-            font-size: 17px;
-            max-width: 650px;
-        }
-
-        /* =========================================================
-           MAIN CONTENT
-        ========================================================= */
-
-        .section {
-            width: min(1050px, 92%);
-            margin: auto;
-            padding: 65px 0 90px;
-        }
-
-        /* =========================================================
-           TOPIC CARDS
-        ========================================================= */
-
-        .topic-card {
-            position: relative;
-
-            margin-bottom: 28px;
-            padding: 34px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(14, 29, 49, 0.94),
-                    rgba(7, 17, 31, 0.96)
-                );
-
-            border: 1px solid rgba(85, 177, 230, 0.13);
-            border-radius: 18px;
-
-            box-shadow:
-                0 18px 45px rgba(0, 0, 0, 0.25),
-                inset 0 1px rgba(255, 255, 255, 0.025);
-
-            overflow: hidden;
-
-            transition:
-                transform 0.3s ease,
-                border-color 0.3s ease,
-                box-shadow 0.3s ease;
-        }
-
-        .topic-card::before {
-            content: "";
-
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-
-            width: 3px;
-
-            background: linear-gradient(
-                to bottom,
-                #39c7ff,
-                #6a6cff,
-                transparent
-            );
-
-            opacity: 0.65;
-        }
-
-        .topic-card:hover {
-            transform: translateY(-3px);
-
-            border-color: rgba(57, 199, 255, 0.27);
-
-            box-shadow:
-                0 22px 55px rgba(0, 0, 0, 0.34),
-                0 0 28px rgba(36, 176, 255, 0.05);
-        }
-
-        .topic-card h2 {
-            color: #ffffff;
-            font-size: 27px;
-            margin-bottom: 17px;
-            letter-spacing: -0.3px;
-        }
-
-        .topic-card h3 {
-            color: #a9d9ff;
-            font-size: 19px;
-            margin-top: 28px;
-            margin-bottom: 10px;
-        }
-
-        .topic-card p {
-            color: #9aadc1;
-            margin-bottom: 15px;
-        }
-
-        /* =========================================================
-           FORMULA BOX
-        ========================================================= */
-
-        .formula {
-            margin: 17px 0;
-            padding: 17px 20px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(21, 117, 170, 0.13),
-                    rgba(69, 69, 170, 0.08)
-                );
-
-            border: 1px solid rgba(67, 190, 255, 0.16);
-            border-radius: 11px;
-
-            text-align: center;
-
-            color: #dff5ff;
-
-            font-family:
-                "Cambria Math",
-                "Times New Roman",
-                serif;
-
-            font-size: 19px;
-            font-weight: 600;
-
-            box-shadow:
-                inset 0 0 20px rgba(43, 178, 255, 0.025);
-
-            overflow-x: auto;
-        }
-
-        .formula strong {
-            color: #65d5ff;
-        }
-
-        /* =========================================================
-           DETAILS / SOLUTIONS
-        ========================================================= */
-
-        details {
-            margin-top: 17px;
-
-            border: 1px solid rgba(91, 173, 222, 0.12);
-            border-radius: 10px;
-
-            background: rgba(4, 13, 24, 0.45);
-
-            overflow: hidden;
-        }
-
-        summary {
-            cursor: pointer;
-
-            padding: 14px 17px;
-
-            color: #63cbff;
-            font-size: 14px;
-            font-weight: 800;
-
-            transition: 0.25s ease;
-        }
-
-        summary:hover {
-            color: #ffffff;
-            background: rgba(45, 181, 255, 0.06);
-        }
-
-        details .formula,
-        details p {
-            margin-left: 17px;
-            margin-right: 17px;
-        }
-
-        /* =========================================================
-           NAVIGATION BUTTONS
-        ========================================================= */
-
-        .navigation {
-            text-align: center;
-            padding-top: 10px;
-        }
-
-        .back {
-            display: inline-block;
-
-            margin: 8px;
-            padding: 12px 21px;
-
-            color: #ffffff;
-            text-decoration: none;
-
-            font-size: 14px;
-            font-weight: 800;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(31, 166, 231, 0.18),
-                    rgba(83, 89, 226, 0.14)
-                );
-
-            border: 1px solid rgba(63, 194, 255, 0.25);
-            border-radius: 9px;
-
-            transition: 0.25s ease;
-        }
-
-        .back:hover {
-            transform: translateY(-2px);
-
-            border-color: #45c8ff;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(31, 166, 231, 0.28),
-                    rgba(83, 89, 226, 0.23)
-                );
-
-            box-shadow:
-                0 0 24px rgba(38, 183, 255, 0.12);
-        }
-
-        /* =========================================================
-           FOOTER
-        ========================================================= */
-
-        footer {
-            padding: 28px 20px;
-
-            background: #030812;
-
-            border-top: 1px solid rgba(73, 172, 222, 0.12);
-
-            color: #71859b;
-
-            text-align: center;
-
-            font-size: 13px;
-        }
-
-        footer span {
-            color: #55c8fa;
-        }
-
-        /* =========================================================
-           MOBILE
-        ========================================================= */
-
-        @media (max-width: 750px) {
-
-            header {
-                padding: 17px 5%;
-
-                flex-direction: column;
-                gap: 13px;
-            }
-
-            .logo {
-                font-size: 24px;
-            }
-
-            .nav-back {
-                font-size: 13px;
-            }
-
-            .hero {
-                min-height: 370px;
-                padding: 70px 18px;
-            }
-
-            .hero h1 {
-                font-size: 48px;
-            }
-
-            .hero p {
-                font-size: 15px;
-            }
-
-            .hero::after {
-                width: 280px;
-                height: 280px;
-            }
-
-            .section {
-                width: 94%;
-                padding-top: 40px;
-            }
-
-            .topic-card {
-                padding: 25px 21px;
-                border-radius: 15px;
-            }
-
-            .topic-card h2 {
-                font-size: 23px;
-            }
-
-            .topic-card h3 {
-                font-size: 18px;
-            }
-
-            .formula {
-                font-size: 17px;
-                padding: 15px 12px;
-            }
-
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Integration | IAL ATLAS</title>
+
+<meta name="description"
+content="Deep Integration notes, worked examples, formula atlas and 100-question practice exam for Pearson Edexcel International A Level Mathematics.">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:
+        radial-gradient(circle at 15% 10%,rgba(0,183,255,.08),transparent 30%),
+        radial-gradient(circle at 85% 20%,rgba(91,72,255,.08),transparent 30%),
+        #050b16;
+    color:#eaf4ff;
+    line-height:1.7;
+    overflow-x:hidden;
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 7%;
+    background:rgba(5,11,22,.82);
+    border-bottom:1px solid rgba(61,180,255,.15);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+}
+
+.logo{
+    color:#fff;
+    text-decoration:none;
+    font-size:27px;
+    font-weight:900;
+    letter-spacing:2px;
+    text-shadow:0 0 12px rgba(45,190,255,.45);
+}
+
+.nav-back{
+    color:#9ccfff;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:700;
+    padding:9px 15px;
+    border:1px solid rgba(70,185,255,.25);
+    border-radius:8px;
+    transition:.25s ease;
+}
+
+.nav-back:hover{
+    color:#fff;
+    border-color:#39bfff;
+    background:rgba(39,178,255,.09);
+    box-shadow:0 0 18px rgba(39,178,255,.18);
+}
+
+.hero{
+    position:relative;
+    min-height:430px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:90px 20px;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at center,rgba(20,165,255,.14),transparent 38%),
+        linear-gradient(135deg,#050b16 0%,#081426 50%,#07101f 100%);
+    border-bottom:1px solid rgba(55,186,255,.12);
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(75,190,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(75,190,255,.035) 1px,transparent 1px);
+    background-size:55px 55px;
+    mask-image:linear-gradient(to bottom,transparent,black 25%,black 75%,transparent);
+    pointer-events:none;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:420px;
+    height:420px;
+    border:1px solid rgba(44,190,255,.12);
+    border-radius:50%;
+    box-shadow:
+        0 0 60px rgba(44,190,255,.08),
+        inset 0 0 60px rgba(44,190,255,.04);
+    animation:rotateOrb 22s linear infinite;
+}
+
+@keyframes rotateOrb{
+    from{transform:rotate(0deg) scale(1)}
+    50%{transform:rotate(180deg) scale(1.04)}
+    to{transform:rotate(360deg) scale(1)}
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero-label{
+    display:inline-block;
+    margin-bottom:18px;
+    padding:7px 14px;
+    color:#67d2ff;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    border:1px solid rgba(67,200,255,.28);
+    border-radius:30px;
+    background:rgba(36,171,255,.06);
+}
+
+.hero h1{
+    font-size:clamp(48px,8vw,76px);
+    line-height:1.05;
+    margin-bottom:18px;
+    color:#fff;
+    letter-spacing:-2px;
+    text-shadow:
+        0 0 15px rgba(54,198,255,.3),
+        0 0 50px rgba(54,198,255,.12);
+}
+
+.hero p{
+    color:#9db4cc;
+    font-size:17px;
+    max-width:720px;
+}
+
+.section{
+    width:min(1050px,92%);
+    margin:auto;
+    padding:65px 0 90px;
+}
+
+.topic-card{
+    position:relative;
+    margin-bottom:28px;
+    padding:34px;
+    background:
+        linear-gradient(145deg,rgba(14,29,49,.94),rgba(7,17,31,.96));
+    border:1px solid rgba(85,177,230,.13);
+    border-radius:18px;
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.25),
+        inset 0 1px rgba(255,255,255,.025);
+    overflow:hidden;
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+.topic-card::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:3px;
+    background:linear-gradient(to bottom,#39c7ff,#6a6cff,transparent);
+    opacity:.65;
+}
+
+.topic-card:hover{
+    transform:translateY(-3px);
+    border-color:rgba(57,199,255,.27);
+    box-shadow:
+        0 22px 55px rgba(0,0,0,.34),
+        0 0 28px rgba(36,176,255,.05);
+}
+
+.topic-card h2{
+    color:#fff;
+    font-size:27px;
+    margin-bottom:17px;
+    letter-spacing:-.3px;
+}
+
+.topic-card h3{
+    color:#a9d9ff;
+    font-size:19px;
+    margin-top:28px;
+    margin-bottom:10px;
+}
+
+.topic-card h4{
+    color:#75d5ff;
+    font-size:16px;
+    margin-top:22px;
+    margin-bottom:8px;
+}
+
+.topic-card p{
+    color:#9aadc1;
+    margin-bottom:15px;
+}
+
+.topic-card ul,
+.topic-card ol{
+    margin:10px 0 18px 25px;
+    color:#9aadc1;
+}
+
+.topic-card li{
+    margin-bottom:7px;
+}
+
+.formula{
+    margin:17px 0;
+    padding:17px 20px;
+    background:
+        linear-gradient(135deg,rgba(21,117,170,.13),rgba(69,69,170,.08));
+    border:1px solid rgba(67,190,255,.16);
+    border-radius:11px;
+    text-align:center;
+    color:#dff5ff;
+    font-family:"Cambria Math","Times New Roman",serif;
+    font-size:19px;
+    font-weight:600;
+    box-shadow:inset 0 0 20px rgba(43,178,255,.025);
+    overflow-x:auto;
+}
+
+.formula strong{
+    color:#65d5ff;
+}
+
+.note{
+    margin:18px 0;
+    padding:17px 20px;
+    border-left:3px solid #45c8ff;
+    background:rgba(31,166,231,.055);
+    color:#9fb5c9;
+    border-radius:8px;
+}
+
+.warning{
+    margin:18px 0;
+    padding:17px 20px;
+    border-left:3px solid #ffbd5c;
+    background:rgba(255,180,70,.045);
+    color:#c0b39e;
+    border-radius:8px;
+}
+
+.challenge{
+    margin:18px 0;
+    padding:18px;
+    border:1px solid rgba(112,106,255,.18);
+    background:rgba(88,75,255,.045);
+    border-radius:10px;
+}
+
+.answer{
+    color:#74d9ff!important;
+}
+
+details{
+    margin-top:17px;
+    border:1px solid rgba(91,173,222,.12);
+    border-radius:10px;
+    background:rgba(4,13,24,.45);
+    overflow:hidden;
+}
+
+summary{
+    cursor:pointer;
+    padding:14px 17px;
+    color:#63cbff;
+    font-size:14px;
+    font-weight:800;
+    transition:.25s ease;
+}
+
+summary:hover{
+    color:#fff;
+    background:rgba(45,181,255,.06);
+}
+
+details .formula,
+details p,
+details ul{
+    margin-left:17px;
+    margin-right:17px;
+}
+
+.mini-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-top:18px;
+}
+
+.mini-box{
+    padding:18px;
+    border:1px solid rgba(79,177,230,.13);
+    border-radius:12px;
+    background:rgba(5,17,30,.55);
+}
+
+.mini-box strong{
+    color:#69d4ff;
+}
+
+.exam-box{
+    margin-top:30px;
+    padding:28px;
+    border:1px solid rgba(72,198,255,.18);
+    border-radius:18px;
+    background:
+        linear-gradient(145deg,rgba(12,31,51,.9),rgba(7,15,28,.96));
+}
+
+.exam-top{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:22px;
+}
+
+.exam-stat{
+    padding:10px 15px;
+    border-radius:9px;
+    border:1px solid rgba(69,190,255,.15);
+    background:rgba(28,146,210,.05);
+    color:#9fc9e5;
+}
+
+.exam-stat strong{
+    color:#62d4ff;
+}
+
+.progress-wrap{
+    width:100%;
+    height:8px;
+    background:#091321;
+    border-radius:20px;
+    overflow:hidden;
+    margin:18px 0 28px;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#32c5ff,#7070ff);
+    transition:.3s ease;
+}
+
+.exam-question{
+    color:#fff;
+    font-size:21px;
+    font-weight:700;
+    margin-bottom:22px;
+}
+
+.options{
+    display:grid;
+    gap:12px;
+}
+
+.option{
+    padding:15px 17px;
+    border:1px solid rgba(89,177,225,.15);
+    border-radius:10px;
+    background:rgba(4,14,25,.65);
+    color:#a9bacb;
+    cursor:pointer;
+    transition:.2s ease;
+}
+
+.option:hover{
+    border-color:#3ec7ff;
+    background:rgba(35,169,230,.07);
+    color:#fff;
+}
+
+.option.selected{
+    border-color:#49caff;
+    background:rgba(36,174,238,.13);
+    color:#fff;
+}
+
+.option.correct{
+    border-color:#5ce0a1;
+    background:rgba(65,210,139,.1);
+    color:#d7ffe9;
+}
+
+.option.wrong{
+    border-color:#ff7171;
+    background:rgba(255,75,75,.09);
+    color:#ffdada;
+}
+
+.exam-controls{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    margin-top:25px;
+}
+
+.exam-btn{
+    padding:12px 20px;
+    border-radius:9px;
+    border:1px solid rgba(62,194,255,.25);
+    background:rgba(31,166,231,.09);
+    color:#dff7ff;
+    cursor:pointer;
+    font-weight:800;
+    transition:.2s ease;
+}
+
+.exam-btn:hover:not(:disabled){
+    border-color:#49caff;
+    box-shadow:0 0 20px rgba(38,183,255,.1);
+}
+
+.exam-btn:disabled{
+    opacity:.35;
+    cursor:not-allowed;
+}
+
+.result{
+    display:none;
+    text-align:center;
+    padding:25px;
+}
+
+.result h2{
+    font-size:34px;
+    color:#fff;
+    margin-bottom:10px;
+}
+
+.score-big{
+    font-size:58px;
+    font-weight:900;
+    color:#65d5ff;
+    margin:15px 0;
+}
+
+.review{
+    margin-top:25px;
+    text-align:left;
+}
+
+.review-item{
+    padding:15px;
+    margin-bottom:10px;
+    border:1px solid rgba(255,100,100,.13);
+    background:rgba(100,30,30,.08);
+    border-radius:9px;
+}
+
+.review-item strong{
+    color:#fff;
+}
+
+.navigation{
+    text-align:center;
+    padding-top:10px;
+}
+
+.back{
+    display:inline-block;
+    margin:8px;
+    padding:12px 21px;
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:800;
+    background:
+        linear-gradient(135deg,rgba(31,166,231,.18),rgba(83,89,226,.14));
+    border:1px solid rgba(63,194,255,.25);
+    border-radius:9px;
+    transition:.25s ease;
+}
+
+.back:hover{
+    transform:translateY(-2px);
+    border-color:#45c8ff;
+    background:
+        linear-gradient(135deg,rgba(31,166,231,.28),rgba(83,89,226,.23));
+    box-shadow:0 0 24px rgba(38,183,255,.12);
+}
+
+footer{
+    padding:28px 20px;
+    background:#030812;
+    border-top:1px solid rgba(73,172,222,.12);
+    color:#71859b;
+    text-align:center;
+    font-size:13px;
+}
+
+footer span{
+    color:#55c8fa;
+}
+
+@media(max-width:750px){
+
+    header{
+        padding:17px 5%;
+        flex-direction:column;
+        gap:13px;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+
+    .hero{
+        min-height:370px;
+        padding:70px 18px;
+    }
+
+    .hero h1{
+        font-size:48px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .hero::after{
+        width:280px;
+        height:280px;
+    }
+
+    .section{
+        width:94%;
+        padding-top:40px;
+    }
+
+    .topic-card{
+        padding:25px 21px;
+        border-radius:15px;
+    }
+
+    .topic-card h2{
+        font-size:23px;
+    }
+
+    .topic-card h3{
+        font-size:18px;
+    }
+
+    .formula{
+        font-size:17px;
+        padding:15px 12px;
+    }
+
+    .mini-grid{
+        grid-template-columns:1fr;
+    }
+
+    .exam-question{
+        font-size:18px;
+    }
+
+    .exam-controls{
+        flex-direction:column;
+    }
+
+    .exam-btn{
+        width:100%;
+    }
+}
+
+</style>
 
 </head>
 
-
 <body id="top">
-
-
-<!-- =========================================================
-     HEADER
-========================================================= -->
 
 <header>
 
-    <a href="index.html" class="logo">
-        IAL ATLAS
-    </a>
+<a href="index.html" class="logo">IAL ATLAS</a>
 
-    <a href="pure-mathematics.html" class="nav-back">
-        ← Pure Mathematics
-    </a>
+<a href="pure-mathematics.html" class="nav-back">
+← Pure Mathematics
+</a>
 
 </header>
 
 
-<!-- =========================================================
-     HERO
-========================================================= -->
-
 <section class="hero">
 
-    <div class="hero-content">
+<div class="hero-content">
 
-        <div class="hero-label">
-            Pure Mathematics
-        </div>
+<div class="hero-label">Pure Mathematics</div>
 
-        <h1>Integration</h1>
+<h1>Integration</h1>
 
-        <p>
-            Edexcel International A Level Mathematics
-        </p>
+<p>
+A deep Edexcel International A Level guide to integration,
+techniques, definite integrals, areas, curves and exam problem solving.
+</p>
 
-    </div>
+</div>
 
 </section>
 
-
-<!-- =========================================================
-     CONTENT
-========================================================= -->
 
 <section class="section">
 
 
-    <!-- 1 -->
+<!-- =========================================================
+1. FOUNDATION
+========================================================= -->
 
-    <div class="topic-card">
+<div class="topic-card">
 
-        <h2>1. What Is Integration?</h2>
+<h2>1. Integration: The Big Idea</h2>
 
-        <p>
-            Integration is the reverse process of differentiation.
-        </p>
+<p>
+Integration is fundamentally the reverse operation of differentiation.
+If differentiation tells us the rate at which a quantity changes,
+integration allows us to reconstruct a function from its rate of change.
+</p>
 
-        <p>
-            If differentiation gives the gradient of a function,
-            integration can be used to recover the original function.
-        </p>
+<div class="formula">
+If F′(x) = f(x), then ∫f(x) dx = F(x) + C
+</div>
 
-        <div class="formula">
-            ∫ f(x) dx
-        </div>
+<p>
+The function F is called an <strong>antiderivative</strong> of f.
+There are infinitely many antiderivatives because any constant disappears
+when differentiated.
+</p>
 
-        <p>
-            The symbol ∫ represents integration, while dx indicates that
-            the integration is performed with respect to x.
-        </p>
+<div class="formula">
+d/dx (F(x) + C) = F′(x)
+</div>
 
-    </div>
+<h3>Why +C Exists</h3>
 
+<p>
+Suppose the derivative is 6x. Both 3x²+2 and 3x²−100 have derivative 6x.
+Therefore differentiation cannot tell us the original vertical position.
+The arbitrary constant restores that missing information.
+</p>
 
-    <!-- 2 -->
+<div class="formula">
+∫6x dx = 3x² + C
+</div>
 
-    <div class="topic-card">
+<div class="note">
+<strong>Core idea:</strong> integration is not merely a collection of
+rules. Every integration answer should make sense as a function whose
+derivative returns the original integrand.
+</div>
 
-        <h2>2. The Power Rule for Integration</h2>
+</div>
 
-        <p>
-            For powers of x, increase the power by 1 and divide by the
-            new power.
-        </p>
 
-        <div class="formula">
-            ∫ xⁿ dx = xⁿ⁺¹ / (n + 1) + C
-        </div>
+<!-- =========================================================
+2. POWER RULE
+========================================================= -->
 
-        <p>
-            This rule applies when n ≠ −1.
-        </p>
+<div class="topic-card">
 
-        <p>
-            C is the constant of integration.
-        </p>
+<h2>2. The Power Rule</h2>
 
-        <h3>Worked Example</h3>
+<p>
+For any real number n except −1:
+</p>
 
-        <p>
-            Integrate:
-        </p>
+<div class="formula">
+∫xⁿ dx = xⁿ⁺¹/(n+1) + C
+</div>
 
-        <div class="formula">
-            ∫ x³ dx
-        </div>
+<h3>Why Does It Work?</h3>
 
-        <div class="formula">
-            = x⁴ / 4 + C
-        </div>
+<p>
+Differentiate xⁿ⁺¹/(n+1):
+</p>
 
-        <div class="formula">
-            <strong>∫ x³ dx = x⁴ / 4 + C</strong>
-        </div>
+<div class="formula">
+d/dx [xⁿ⁺¹/(n+1)]
+= (n+1)xⁿ/(n+1)
+= xⁿ
+</div>
 
-    </div>
+<p>
+This derivation explains the rule rather than requiring it to be memorised
+without understanding.
+</p>
 
+<h3>Worked Examples</h3>
 
-    <!-- 3 -->
+<div class="formula">
+∫x⁵ dx = x⁶/6 + C
+</div>
 
-    <div class="topic-card">
+<div class="formula">
+∫7x⁴ dx = 7x⁵/5 + C
+</div>
 
-        <h2>3. Integrating Polynomial Functions</h2>
+<div class="formula">
+∫−3x² dx = −x³ + C
+</div>
 
-        <p>
-            Polynomial expressions can be integrated term by term.
-        </p>
+<div class="formula">
+∫x⁻³ dx = −1/(2x²) + C
+</div>
 
-        <h3>Worked Example</h3>
+<div class="warning">
+The power rule fails when n = −1 because division by n+1 would mean
+division by zero. That special case produces a logarithm.
+</div>
 
-        <p>
-            Integrate:
-        </p>
+</div>
 
-        <div class="formula">
-            ∫ (6x² + 4x − 5) dx
-        </div>
 
-        <div class="formula">
-            = 2x³ + 2x² − 5x + C
-        </div>
+<!-- =========================================================
+3. ALGEBRA BEFORE INTEGRATION
+========================================================= -->
 
-        <div class="formula">
-            <strong>Answer: 2x³ + 2x² − 5x + C</strong>
-        </div>
+<div class="topic-card">
 
-    </div>
+<h2>3. Rewrite the Function Before Integrating</h2>
 
+<p>
+Many difficult-looking integrations become straightforward after algebraic
+rearrangement.
+</p>
 
-    <!-- 4 -->
+<h3>Roots</h3>
 
-    <div class="topic-card">
+<div class="formula">
+√x = x¹ᐟ²
+</div>
 
-        <h2>4. Negative and Fractional Powers</h2>
+<h3>Reciprocals</h3>
 
-        <p>
-            Roots and fractions can be rewritten using indices before
-            integration.
-        </p>
+<div class="formula">
+1/x³ = x⁻³
+</div>
 
-        <div class="formula">
-            √x = x¹ᐟ²
-        </div>
+<h3>Example</h3>
 
-        <div class="formula">
-            1/x² = x⁻²
-        </div>
+<div class="formula">
+∫(4√x + 3/x² − 5)dx
+</div>
 
-        <h3>Worked Example</h3>
+<p>Rewrite:</p>
 
-        <p>
-            Integrate:
-        </p>
+<div class="formula">
+∫(4x¹ᐟ² + 3x⁻² − 5)dx
+</div>
 
-        <div class="formula">
-            ∫ √x dx
-        </div>
+<p>Integrate term by term:</p>
 
-        <div class="formula">
-            = ∫ x¹ᐟ² dx
-        </div>
+<div class="formula">
+= 4(2/3)x³ᐟ² + 3(−x⁻¹) − 5x + C
+</div>
 
-        <div class="formula">
-            = x³ᐟ² / (3/2) + C
-        </div>
+<div class="formula">
+<strong>
+= 8/3 x³ᐟ² − 3/x − 5x + C
+</strong>
+</div>
 
-        <div class="formula">
-            <strong>= 2/3 x³ᐟ² + C</strong>
-        </div>
+<h3>Important Limitation</h3>
 
-    </div>
+<p>
+Not every quotient should simply be converted into powers. For example,
+</p>
 
+<div class="formula">
+1/(x+2)
+</div>
 
-    <!-- 5 -->
+<p>
+cannot be treated as x⁻¹+2⁻¹. The entire denominator matters.
+</p>
 
-    <div class="topic-card">
+</div>
 
-        <h2>5. Integrating 1/x</h2>
 
-        <p>
-            The normal power rule cannot be used when the power is −1.
-        </p>
+<!-- =========================================================
+4. LOGARITHMS
+========================================================= -->
 
-        <div class="formula">
-            ∫ 1/x dx = ln|x| + C
-        </div>
+<div class="topic-card">
 
-        <h3>Worked Example</h3>
+<h2>4. Integration of 1/x and Logarithms</h2>
 
-        <p>
-            Integrate:
-        </p>
+<div class="formula">
+∫1/x dx = ln|x| + C
+</div>
 
-        <div class="formula">
-            ∫ 5/x dx
-        </div>
+<p>
+The absolute value is important because ln(x) is only defined for x&gt;0,
+while 1/x exists for both positive and negative x.
+</p>
 
-        <div class="formula">
-            <strong>= 5ln|x| + C</strong>
-        </div>
+<h3>Constant Multiple</h3>
 
-    </div>
+<div class="formula">
+∫k/x dx = k ln|x| + C
+</div>
 
+<h3>Linear Denominator</h3>
 
-    <!-- 6 -->
+<p>
+A particularly useful form is:
+</p>
 
-    <div class="topic-card">
+<div class="formula">
+∫1/(ax+b) dx = (1/a)ln|ax+b| + C
+</div>
 
-        <h2>6. Definite Integration</h2>
+<h3>Worked Example</h3>
 
-        <p>
-            A definite integral has an upper and lower limit.
-        </p>
+<div class="formula">
+∫ 5/(2x+3) dx
+</div>
 
-        <div class="formula">
-            ∫ₐᵇ f(x) dx
-        </div>
+<div class="formula">
+= 5/2 ln|2x+3| + C
+</div>
 
-        <p>
-            Find an antiderivative and then substitute the upper and lower
-            limits.
-        </p>
+<h3>Derivative Check</h3>
 
-        <div class="formula">
-            ∫ₐᵇ f(x) dx = F(b) − F(a)
-        </div>
+<div class="formula">
+d/dx [5/2 ln|2x+3|]
+= 5/2 × 2/(2x+3)
+= 5/(2x+3)
+</div>
 
-        <h3>Worked Example</h3>
+</div>
 
-        <p>
-            Evaluate:
-        </p>
 
-        <div class="formula">
-            ∫₀² x² dx
-        </div>
+<!-- =========================================================
+5. EXPONENTIALS
+========================================================= -->
 
-        <div class="formula">
-            ∫ x² dx = x³ / 3
-        </div>
+<div class="topic-card">
 
-        <div class="formula">
-            [x³ / 3]₀²
-        </div>
+<h2>5. Exponential Functions</h2>
 
-        <div class="formula">
-            = 8/3 − 0
-            <br>
-            <strong>= 8/3</strong>
-        </div>
+<p>
+Because the derivative of eˣ is eˣ itself:
+</p>
 
-    </div>
+<div class="formula">
+∫eˣ dx = eˣ + C
+</div>
 
+<p>
+For a linear exponent:
+</p>
 
-    <!-- 7 -->
+<div class="formula">
+∫eᵃˣ dx = (1/a)eᵃˣ + C
+</div>
 
-    <div class="topic-card">
+<h3>Worked Example</h3>
 
-        <h2>7. Area Under a Curve</h2>
+<div class="formula">
+∫3e⁵ˣ dx
+</div>
 
-        <p>
-            A definite integral can be used to find the area between a
-            curve and the x-axis when the curve remains above the axis.
-        </p>
+<div class="formula">
+= 3/5 e⁵ˣ + C
+</div>
 
-        <div class="formula">
-            Area = ∫ₐᵇ y dx
-        </div>
+<h3>General Linear Exponent</h3>
 
-        <h3>Worked Example</h3>
+<div class="formula">
+∫e^(ax+b) dx = e^(ax+b)/a + C
+</div>
 
-        <p>
-            Find the area under y = x² from x = 0 to x = 3.
-        </p>
+<div class="note">
+The denominator comes from differentiating the inside:
+d/dx(ax+b)=a.
+</div>
 
-        <div class="formula">
-            Area = ∫₀³ x² dx
-        </div>
+</div>
 
-        <div class="formula">
-            = [x³ / 3]₀³
-        </div>
 
-        <div class="formula">
-            = 27/3
-            <br>
-            <strong>= 9</strong>
-        </div>
+<!-- =========================================================
+6. TRIG INTEGRALS
+========================================================= -->
 
-    </div>
+<div class="topic-card">
 
+<h2>6. Basic Trigonometric Integrals</h2>
 
-    <!-- 8 -->
+<p>Know the derivative relationships in reverse.</p>
 
-    <div class="topic-card">
+<div class="formula">
+∫cos x dx = sin x + C
+</div>
 
-        <h2>8. Area Between Two Curves</h2>
+<div class="formula">
+∫sin x dx = −cos x + C
+</div>
 
-        <p>
-            When one curve lies above another, subtract the lower curve
-            from the upper curve.
-        </p>
+<div class="formula">
+∫sec²x dx = tan x + C
+</div>
 
-        <div class="formula">
-            Area = ∫ₐᵇ (upper curve − lower curve) dx
-        </div>
+<div class="formula">
+∫cosec²x dx = −cot x + C
+</div>
 
-        <h3>Worked Example</h3>
+<div class="formula">
+∫sec x tan x dx = sec x + C
+</div>
 
-        <p>
-            Find the area between:
-        </p>
+<div class="formula">
+∫cosec x cot x dx = −cosec x + C
+</div>
 
-        <div class="formula">
-            y = x
-            <br>
-            y = x²
-        </div>
+<h3>With a Linear Angle</h3>
 
-        <p>
-            between x = 0 and x = 1.
-        </p>
+<div class="formula">
+∫cos(3x)dx = 1/3 sin(3x) + C
+</div>
 
-        <div class="formula">
-            Area = ∫₀¹ (x − x²) dx
-        </div>
+<div class="formula">
+∫sin(4x)dx = −1/4 cos(4x) + C
+</div>
 
-        <div class="formula">
-            = [x²/2 − x³/3]₀¹
-        </div>
+<div class="formula">
+∫sec²(2x+1)dx = 1/2 tan(2x+1) + C
+</div>
 
-        <div class="formula">
-            = 1/2 − 1/3
-            <br>
-            <strong>= 1/6</strong>
-        </div>
+</div>
 
-    </div>
 
+<!-- =========================================================
+7. STANDARD INTEGRALS
+========================================================= -->
 
-    <!-- 9 -->
+<div class="topic-card">
 
-    <div class="topic-card">
+<h2>7. Standard Integral Atlas</h2>
 
-        <h2>9. The Constant of Integration</h2>
+<div class="mini-grid">
 
-        <p>
-            When integrating without limits, always include + C.
-        </p>
+<div class="mini-box">
+<strong>Power</strong>
+<p>∫xⁿdx = xⁿ⁺¹/(n+1)+C</p>
+</div>
 
-        <div class="formula">
-            ∫ 3x² dx = x³ + C
-        </div>
+<div class="mini-box">
+<strong>Logarithm</strong>
+<p>∫1/x dx = ln|x|+C</p>
+</div>
 
-        <p>
-            The constant is necessary because different functions can
-            have the same derivative.
-        </p>
+<div class="mini-box">
+<strong>Exponential</strong>
+<p>∫eˣdx = eˣ+C</p>
+</div>
 
-        <h3>Example</h3>
+<div class="mini-box">
+<strong>Sine</strong>
+<p>∫sin x dx = −cos x+C</p>
+</div>
 
-        <div class="formula">
-            dy/dx = 6x
-        </div>
+<div class="mini-box">
+<strong>Cosine</strong>
+<p>∫cos x dx = sin x+C</p>
+</div>
 
-        <div class="formula">
-            <strong>y = 3x² + C</strong>
-        </div>
+<div class="mini-box">
+<strong>Sec²</strong>
+<p>∫sec²x dx = tan x+C</p>
+</div>
 
-    </div>
+<div class="mini-box">
+<strong>Sec tan</strong>
+<p>∫sec x tan x dx = sec x+C</p>
+</div>
 
+<div class="mini-box">
+<strong>Cosec²</strong>
+<p>∫cosec²x dx = −cot x+C</p>
+</div>
 
-    <!-- 10 -->
+</div>
 
-    <div class="topic-card">
+</div>
 
-        <h2>10. Finding the Constant Using a Condition</h2>
 
-        <p>
-            If a point on the curve is known, it can be used to determine
-            the value of C.
-        </p>
+<!-- =========================================================
+8. CONSTANT MULTIPLE AND LINEARITY
+========================================================= -->
 
-        <h3>Worked Example</h3>
+<div class="topic-card">
 
-        <p>
-            Given:
-        </p>
+<h2>8. Linearity of Integration</h2>
 
-        <div class="formula">
-            dy/dx = 6x
-        </div>
+<p>
+Integration is linear. Constants can be taken outside, and sums can be
+integrated term by term.
+</p>
 
-        <p>
-            and the curve passes through (2, 5), find y.
-        </p>
+<div class="formula">
+∫[af(x)+bg(x)]dx
+=
+a∫f(x)dx+b∫g(x)dx
+</div>
 
-        <div class="formula">
-            y = 3x² + C
-        </div>
+<h3>Example</h3>
 
-        <div class="formula">
-            5 = 3(2²) + C
-        </div>
+<div class="formula">
+∫(4x³−7x+9)dx
+</div>
 
-        <div class="formula">
-            5 = 12 + C
-            <br>
-            C = −7
-        </div>
+<div class="formula">
+= x⁴ − 7x²/2 + 9x + C
+</div>
 
-        <div class="formula">
-            <strong>y = 3x² − 7</strong>
-        </div>
+<h3>Important Concept</h3>
 
-    </div>
+<p>
+You may split addition and subtraction:
+</p>
 
+<div class="formula">
+∫(f+g)dx = ∫f dx + ∫g dx
+</div>
 
-    <!-- 11 -->
+<p>
+but multiplication generally cannot be split:
+</p>
 
-    <div class="topic-card">
+<div class="warning">
+∫f(x)g(x)dx is NOT generally equal to
+(∫f(x)dx)(∫g(x)dx).
+</div>
 
-        <h2>🧠 Practice Questions</h2>
+</div>
 
-        <p>
-            Try each question yourself before revealing the solution.
-        </p>
 
+<!-- =========================================================
+9. DEFINITE INTEGRALS
+========================================================= -->
 
-        <h3>Question 1 — Basic Integration</h3>
+<div class="topic-card">
 
-        <p>
-            Integrate:
-        </p>
+<h2>9. Definite Integration</h2>
 
-        <div class="formula">
-            ∫ 4x³ dx
-        </div>
+<p>
+A definite integral has limits and therefore produces a number rather than
+a family of functions.
+</p>
 
-        <details>
+<div class="formula">
+∫ₐᵇf(x)dx = [F(x)]ₐᵇ = F(b)−F(a)
+</div>
 
-            <summary>Show Full Solution</summary>
+<h3>Example</h3>
 
-            <div class="formula">
-                <strong>x⁴ + C</strong>
-            </div>
+<div class="formula">
+∫₁⁴(2x+3)dx
+</div>
 
-        </details>
+<div class="formula">
+F(x)=x²+3x
+</div>
 
+<div class="formula">
+F(4)−F(1)
+=28−4
+=<strong>24</strong>
+</div>
 
-        <h3>Question 2 — Polynomial</h3>
+<h3>Why +C Is Not Needed</h3>
 
-        <p>
-            Integrate:
-        </p>
+<p>
+If we wrote F(x)+C at both limits:
+</p>
 
-        <div class="formula">
-            ∫ (6x² + 4x − 3) dx
-        </div>
+<div class="formula">
+[F(b)+C]−[F(a)+C]
+=F(b)−F(a)
+</div>
 
-        <details>
+<p>
+The constants cancel. Therefore +C is unnecessary in a definite integral.
+</p>
 
-            <summary>Show Full Solution</summary>
+</div>
 
-            <div class="formula">
-                <strong>2x³ + 2x² − 3x + C</strong>
-            </div>
 
-        </details>
+<!-- =========================================================
+10. PROPERTIES OF DEFINITE INTEGRALS
+========================================================= -->
 
+<div class="topic-card">
 
-        <h3>Question 3 — Fractional Power</h3>
+<h2>10. Properties of Definite Integrals</h2>
 
-        <p>
-            Integrate:
-        </p>
+<div class="formula">
+∫ₐᵇf(x)dx = −∫ᵇₐf(x)dx
+</div>
 
-        <div class="formula">
-            ∫ √x dx
-        </div>
+<div class="formula">
+∫ₐᵃf(x)dx = 0
+</div>
 
-        <details>
+<div class="formula">
+∫ₐᵇf(x)dx + ∫ᵇᶜf(x)dx
+=
+∫ₐᶜf(x)dx
+</div>
 
-            <summary>Show Full Solution</summary>
+<h3>Constant Multiple</h3>
 
-            <div class="formula">
-                ∫ x¹ᐟ² dx
-                <br>
-                = <strong>2/3 x³ᐟ² + C</strong>
-            </div>
+<div class="formula">
+∫ₐᵇkf(x)dx = k∫ₐᵇf(x)dx
+</div>
 
-        </details>
+<h3>Symmetry</h3>
 
+<p>
+For an odd function:
+</p>
 
-        <h3>Question 4 — Definite Integral</h3>
+<div class="formula">
+∫₋ₐᵃf(x)dx = 0
+</div>
 
-        <p>
-            Evaluate:
-        </p>
+<p>
+For an even function:
+</p>
 
-        <div class="formula">
-            ∫₁³ 2x dx
-        </div>
+<div class="formula">
+∫₋ₐᵃf(x)dx = 2∫₀ᵃf(x)dx
+</div>
 
-        <details>
+<h3>Example</h3>
 
-            <summary>Show Full Solution</summary>
+<div class="formula">
+∫₋²² x³ dx = 0
+</div>
 
-            <div class="formula">
-                ∫ 2x dx = x²
-            </div>
+<p>
+because x³ is odd.
+</p>
 
-            <div class="formula">
-                [x²]₁³
-                <br>
-                = 9 − 1
-                <br>
-                <strong>= 8</strong>
-            </div>
+</div>
 
-        </details>
 
+<!-- =========================================================
+11. SUBSTITUTION
+========================================================= -->
 
-        <h3>Question 5 — Area</h3>
+<div class="topic-card">
 
-        <p>
-            Find the area under y = x² between x = 1 and x = 3.
-        </p>
+<h2>11. Integration by Substitution</h2>
 
-        <details>
+<p>
+Substitution is the reverse of the chain rule. It is useful when part of
+the integrand resembles the derivative of another part.
+</p>
 
-            <summary>Show Full Solution</summary>
+<div class="formula">
+u = g(x)
+</div>
 
-            <div class="formula">
-                Area = ∫₁³ x² dx
-            </div>
+<div class="formula">
+du = g′(x)dx
+</div>
 
-            <div class="formula">
-                = [x³/3]₁³
-            </div>
+<p>
+The goal is to rewrite the entire integral in terms of u.
+</p>
 
-            <div class="formula">
-                = 27/3 − 1/3
-                <br>
-                <strong>= 26/3</strong>
-            </div>
+<h3>Worked Example</h3>
 
-        </details>
+<div class="formula">
+∫2x(x²+1)⁵dx
+</div>
 
+<p>Let:</p>
 
-        <h3>Question 6 — Find the Constant</h3>
+<div class="formula">
+u=x²+1
+</div>
 
-        <p>
-            Given dy/dx = 4x and the curve passes through (1, 7),
-            find the equation of the curve.
-        </p>
+<div class="formula">
+du=2x dx
+</div>
 
-        <details>
+<p>Therefore:</p>
 
-            <summary>Show Full Solution</summary>
+<div class="formula">
+∫u⁵du
+= u⁶/6+C
+</div>
 
-            <div class="formula">
-                y = 2x² + C
-            </div>
+<div class="formula">
+<strong>
+= (x²+1)⁶/6+C
+</strong>
+</div>
 
-            <div class="formula">
-                7 = 2(1²) + C
-                <br>
-                C = 5
-            </div>
+<h3>Recognition Pattern</h3>
 
-            <div class="formula">
-                <strong>y = 2x² + 5</strong>
-            </div>
+<div class="formula">
+∫g′(x)[g(x)]ⁿdx
+=
+[g(x)]ⁿ⁺¹/(n+1)+C
+</div>
 
-        </details>
+</div>
 
-    </div>
 
+<!-- =========================================================
+12. SUBSTITUTION EXAMPLES
+========================================================= -->
 
-    <!-- 12 -->
+<div class="topic-card">
 
-    <div class="topic-card">
+<h2>12. Advanced Substitution Recognition</h2>
 
-        <h2>⚠️ Common Mistakes</h2>
+<h3>Example A</h3>
 
-        <h3>1. Forgetting + C</h3>
+<div class="formula">
+∫ x/(x²+4) dx
+</div>
 
-        <p>
-            For indefinite integration, always include the constant of
-            integration.
-        </p>
+<p>
+Let u=x²+4, so du=2x dx.
+</p>
 
-        <h3>2. Dividing by the wrong number</h3>
+<div class="formula">
+=1/2∫1/u du
+</div>
 
-        <p>
-            Increase the power by 1, then divide by the new power.
-        </p>
+<div class="formula">
+<strong>
+=1/2 ln|x²+4|+C
+</strong>
+</div>
 
-        <div class="formula">
-            x⁴ → x⁵/5
-        </div>
+<h3>Example B</h3>
 
-        <h3>3. Using the power rule for 1/x</h3>
+<div class="formula">
+∫e^(3x−2)dx
+</div>
 
-        <div class="formula">
-            ∫ 1/x dx = ln|x| + C
-        </div>
+<div class="formula">
+u=3x−2
+<br>
+du=3dx
+</div>
 
-        <h3>4. Reversing the limits</h3>
+<div class="formula">
+<strong>
+=1/3e^(3x−2)+C
+</strong>
+</div>
 
-        <p>
-            For a definite integral, use:
-        </p>
+<h3>Example C</h3>
 
-        <div class="formula">
-            F(upper) − F(lower)
-        </div>
+<div class="formula">
+∫cos(5x+1)dx
+</div>
 
-        <h3>5. Confusing signed area with geometric area</h3>
+<div class="formula">
+<strong>
+=1/5 sin(5x+1)+C
+</strong>
+</div>
 
-        <p>
-            If a curve passes below the x-axis, the integral may be
-            negative. Total geometric area may require splitting the
-            interval.
-        </p>
+<div class="note">
+When using substitution, do not leave a mixture of x and u in the final
+integral. Convert everything consistently.
+</div>
 
-    </div>
+</div>
 
 
-    <!-- 13 -->
+<!-- =========================================================
+13. DEFINITE SUBSTITUTION
+========================================================= -->
 
-    <div class="topic-card">
+<div class="topic-card">
 
-        <h2>🎯 Exam Tips</h2>
+<h2>13. Substitution in Definite Integrals</h2>
 
-        <h3>1. Check whether limits are given</h3>
+<p>
+There are two clean methods. Either convert back to x before applying the
+limits, or transform the limits into u-values.
+</p>
 
-        <p>
-            No limits normally means an indefinite integral, so + C is
-            required.
-        </p>
+<h3>Example</h3>
 
-        <h3>2. Rewrite before integrating</h3>
+<div class="formula">
+∫₀² 2x(x²+1)³dx
+</div>
 
-        <p>
-            Convert roots and fractions into powers where appropriate.
-        </p>
+<p>Let u=x²+1.</p>
 
-        <h3>3. Differentiate your answer</h3>
+<div class="formula">
+du=2x dx
+</div>
 
-        <p>
-            Differentiating your result is a useful way to check an
-            integration answer.
-        </p>
+<p>Transform the limits:</p>
 
-        <h3>4. Keep exact values</h3>
+<div class="formula">
+x=0 → u=1
+<br>
+x=2 → u=5
+</div>
 
-        <p>
-            Avoid unnecessary decimal approximations unless the question
-            specifically requests them.
-        </p>
+<div class="formula">
+∫₁⁵u³du
+</div>
 
-        <h3>5. Identify the correct region</h3>
+<div class="formula">
+=[u⁴/4]₁⁵
+</div>
 
-        <p>
-            For the area between two curves, remember:
-        </p>
+<div class="formula">
+=(625−1)/4
+=<strong>156</strong>
+</div>
 
-        <div class="formula">
-            Upper − Lower
-        </div>
+<div class="warning">
+Once the variable becomes u, use u-limits. Do not substitute the original
+x-limits into a u-expression.
+</div>
 
-    </div>
+</div>
 
 
-    <!-- =========================================================
-         NAVIGATION
-    ========================================================= -->
+<!-- =========================================================
+14. INTEGRATION BY PARTS
+========================================================= -->
 
-    <div class="navigation">
+<div class="topic-card">
 
-        <a href="#top" class="back">
-            ↑ Back to Top
-        </a>
+<h2>14. Integration by Parts</h2>
 
-        <a href="pure-mathematics.html" class="back">
-            ← Back to Pure Mathematics
-        </a>
+<p>
+Integration by parts is the reverse of the product rule.
+</p>
 
-    </div>
+<div class="formula">
+∫u dv = uv − ∫v du
+</div>
 
+<p>
+It is especially useful for products such as:
+</p>
+
+<ul>
+<li>x eˣ</li>
+<li>x sin x</li>
+<li>x cos x</li>
+<li>x ln x</li>
+<li>polynomial × exponential</li>
+<li>polynomial × trigonometric function</li>
+</ul>
+
+<h3>Choosing u</h3>
+
+<p>
+A useful practical guideline is to choose as u the factor that becomes
+simpler when differentiated.
+</p>
+
+<h3>Worked Example</h3>
+
+<div class="formula">
+∫x eˣ dx
+</div>
+
+<div class="formula">
+u=x
+<br>
+dv=eˣdx
+</div>
+
+<div class="formula">
+du=dx
+<br>
+v=eˣ
+</div>
+
+<div class="formula">
+∫x eˣdx
+=
+xeˣ−∫eˣdx
+</div>
+
+<div class="formula">
+<strong>
+=eˣ(x−1)+C
+</strong>
+</div>
+
+<h3>Check</h3>
+
+<div class="formula">
+d/dx[eˣ(x−1)]
+=eˣ(x−1)+eˣ
+=xeˣ
+</div>
+
+</div>
+
+
+<!-- =========================================================
+15. BY PARTS MORE
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>15. Integration by Parts: Deeper Examples</h2>
+
+<h3>Example A — x sin x</h3>
+
+<div class="formula">
+∫x sin x dx
+</div>
+
+<div class="formula">
+u=x
+<br>
+dv=sin x dx
+<br>
+du=dx
+<br>
+v=−cos x
+</div>
+
+<div class="formula">
+=−x cos x + ∫cos x dx
+</div>
+
+<div class="formula">
+<strong>
+=−x cos x + sin x + C
+</strong>
+</div>
+
+<h3>Example B — ln x</h3>
+
+<p>
+There is no visible product, but write ln x as ln x × 1.
+</p>
+
+<div class="formula">
+∫ln x dx
+</div>
+
+<div class="formula">
+u=ln x
+<br>
+dv=dx
+</div>
+
+<div class="formula">
+du=1/x dx
+<br>
+v=x
+</div>
+
+<div class="formula">
+=x ln x−∫1 dx
+</div>
+
+<div class="formula">
+<strong>
+=x ln x−x+C
+</strong>
+</div>
+
+<h3>Example C — x²eˣ</h3>
+
+<p>
+Integration by parts must be repeated.
+</p>
+
+<div class="formula">
+∫x²eˣdx
+=
+x²eˣ−∫2xeˣdx
+</div>
+
+<p>Using parts again:</p>
+
+<div class="formula">
+∫xeˣdx=eˣ(x−1)
+</div>
+
+<div class="formula">
+<strong>
+∫x²eˣdx
+=
+eˣ(x²−2x+2)+C
+</strong>
+</div>
+
+</div>
+
+
+<!-- =========================================================
+16. PARTIAL FRACTIONS
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>16. Partial Fractions Before Integration</h2>
+
+<p>
+Rational functions may sometimes be decomposed into simpler fractions.
+This is particularly useful when the denominator factors into linear
+factors.
+</p>
+
+<h3>Basic Form</h3>
+
+<div class="formula">
+1/[(x+a)(x+b)]
+=
+A/(x+a)+B/(x+b)
+</div>
+
+<h3>Worked Example</h3>
+
+<div class="formula">
+∫ 1/[(x+1)(x+2)] dx
+</div>
+
+<p>Write:</p>
+
+<div class="formula">
+1/[(x+1)(x+2)]
+=
+A/(x+1)+B/(x+2)
+</div>
+
+<p>Therefore:</p>
+
+<div class="formula">
+1=A(x+2)+B(x+1)
+</div>
+
+<p>Put x=−1:</p>
+
+<div class="formula">
+1=A
+</div>
+
+<p>Put x=−2:</p>
+
+<div class="formula">
+1=−B
+</div>
+
+<div class="formula">
+A=1,\qquad B=−1
+</div>
+
+<p>So:</p>
+
+<div class="formula">
+∫[1/(x+1)−1/(x+2)]dx
+</div>
+
+<div class="formula">
+<strong>
+=ln|x+1|−ln|x+2|+C
+</strong>
+</div>
+
+</div>
+
+
+<!-- =========================================================
+17. REPEATED FACTORS
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>17. Partial Fractions with Repeated Factors</h2>
+
+<p>
+If a denominator contains a repeated linear factor, include every required
+power.
+</p>
+
+<div class="formula">
+1/[x(x+1)²]
+=
+A/x+B/(x+1)+C/(x+1)²
+</div>
+
+<p>
+Omitting the repeated-power term makes the decomposition incomplete.
+</p>
+
+<h3>Integration Result</h3>
+
+<div class="formula">
+∫C/(x+1)²dx
+=
+−C/(x+1)
+</div>
+
+<div class="warning">
+Always factor the denominator completely before deciding the partial
+fraction form.
+</div>
+
+</div>
+
+
+<!-- =========================================================
+18. QUADRATIC DENOMINATORS
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>18. Quadratic Denominators and Completing the Square</h2>
+
+<p>
+Some quadratic expressions are better handled by completing the square.
+</p>
+
+<div class="formula">
+x²+6x+13=(x+3)²+4
+</div>
+
+<p>
+This can reveal standard forms involving logarithms or inverse tangent
+depending on the numerator and structure.
+</p>
+
+<h3>Example</h3>
+
+<div class="formula">
+∫ dx/[(x+3)²+4]
+</div>
+
+<p>Use:</p>
+
+<div class="formula">
+∫du/(u²+a²)
+=
+1/a tan⁻¹(u/a)+C
+</div>
+
+<div class="formula">
+<strong>
+=1/2 tan⁻¹((x+3)/2)+C
+</strong>
+</div>
+
+</div>
+
+
+<!-- =========================================================
+19. AREA UNDER CURVE
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>19. Area Under a Curve</h2>
+
+<p>
+If y=f(x) is non-negative on [a,b], then the geometric area between the
+curve and x-axis is:
+</p>
+
+<div class="formula">
+Area=∫ₐᵇf(x)dx
+</div>
+
+<h3>Example</h3>
+
+<div class="formula">
+y=4−x²
+</div>
+
+<p>From x=0 to x=2:</p>
+
+<div class="formula">
+Area=∫₀²(4−x²)dx
+</div>
+
+<div class="formula">
+=[4x−x³/3]₀²
+</div>
+
+<div class="formula">
+=8−8/3
+=<strong>16/3</strong>
+</div>
+
+</div>
+
+
+<!-- =========================================================
+20. SIGNED AREA
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>20. Signed Area vs Geometric Area</h2>
+
+<p>
+A definite integral measures signed area. Region above the x-axis
+contributes positively, while region below contributes negatively.
+</p>
+
+<div class="formula">
+∫ₐᵇf(x)dx
+</div>
+
+<p>
+is therefore not automatically the total geometric area.
+</p>
+
+<h3>Example</h3>
+
+<div class="formula">
+y=x−2
+</div>
+
+<p>
+From x=0 to x=4, the curve crosses the x-axis at x=2.
+</p>
+
+<p>
+Therefore split the region:
+</p>
+
+<div class="formula">
+Area=−∫₀²(x−2)dx + ∫₂⁴(x−2)dx
+</div>
+
+<div class="formula">
+<strong>
+Area=4
+</strong>
+</div>
+
+<div class="warning">
+If the question says "total area", "area enclosed", or "geometrical area",
+you must account for regions below the axis rather than blindly accepting
+a negative integral.
+</div>
+
+</div>
+
+
+<!-- =========================================================
+21. AREA BETWEEN CURVES
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>21. Area Between Two Curves</h2>
+
+<p>
+When integrating with respect to x:
+</p>
+
+<div class="formula">
+Area=∫ₐᵇ(upper−lower)dx
+</div>
+
+<h3>Example</h3>
+
+<div class="formula">
+y=x
+<br>
+y=x²
+</div>
+
+<p>
+Between x=0 and x=1, x lies above x².
+</p>
+
+<div class="formula">
+Area=∫₀¹(x−x²)dx
+</div>
+
+<div class="formula">
+=[x²/2−x³/3]₀¹
+</div>
+
+<div class="formula">
+<strong>
+=1/6
+</strong>
+</div>
+
+<h3>Finding the Limits</h3>
+
+<p>
+If the limits are not given, solve the intersection equation:
+</p>
+
+<div class="formula">
+f(x)=g(x)
+</div>
+
+<p>
+Those x-values become the integration boundaries.
+</p>
+
+</div>
+
+
+<!-- =========================================================
+22. AREA WITH INTERSECTIONS
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>22. Area Problems Where the Curves Intersect</h2>
+
+<h3>Worked Example</h3>
+
+<p>
+Find the area enclosed by y=2x and y=x².
+</p>
+
+<p>First find intersections:</p>
+
+<div class="formula">
+2x=x²
+<br>
+x(x−2)=0
+<br>
+x=0,2
+</div>
+
+<p>
+Between 0 and 2, 2x is above x².
+</p>
+
+<div class="formula">
+Area=∫₀²(2x−x²)dx
+</div>
+
+<div class="formula">
+=[x²−x³/3]₀²
+</div>
+
+<div class="formula">
+=4−8/3
+=<strong>4/3</strong>
+</div>
+
+<div class="note">
+For every area-between-curves question, consciously identify:
+<strong>boundaries → upper curve → lower curve → integral → exact value.</strong>
+</div>
+
+</div>
+
+
+<!-- =========================================================
+23. PARAMETER AREA
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>23. Parameter and Unknown-Area Problems</h2>
+
+<p>
+Integration questions can ask you to determine an unknown constant from
+an area condition.
+</p>
+
+<h3>Example Structure</h3>
+
+<p>
+Suppose:
+</p>
+
+<div class="formula">
+y=k−x²
+</div>
+
+<p>
+The area between the curve and x-axis from x=−2 to x=2 is 16.
+Find k.
+</p>
+
+<div class="formula">
+∫₋²²(k−x²)dx=16
+</div>
+
+<p>Using symmetry:</p>
+
+<div class="formula">
+2∫₀²(k−x²)dx=16
+</div>
+
+<div class="formula">
+2[ kx−x³/3 ]₀²=16
+</div>
+
+<div class="formula">
+4k−16/3=16
+</div>
+
+<div class="formula">
+4k=64/3
+</div>
+
+<div class="formula">
+<strong>k=16/3</strong>
+</div>
+
+</div>
+
+
+<!-- =========================================================
+24. VOLUMES
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>24. Volumes of Revolution</h2>
+
+<p>
+When a region is rotated around the x-axis, the volume can be found using:
+</p>
+
+<div class="formula">
+V=π∫ₐᵇy²dx
+</div>
+
+<h3>Example</h3>
+
+<p>
+Rotate y=x from x=0 to x=2 about the x-axis.
+</p>
+
+<div class="formula">
+V=π∫₀²x²dx
+</div>
+
+<div class="formula">
+=π[x³/3]₀²
+</div>
+
+<div class="formula">
+<strong>
+V=8π/3
+</strong>
+</div>
+
+<div class="warning">
+The radius is y, so the cross-sectional area is πy², not πy.
+</div>
+
+</div>
+
+
+<!-- =========================================================
+25. AREA / VOLUME CHALLENGE
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>25. Multi-Step Integration Challenge</h2>
+
+<div class="challenge">
+
+<p>
+The curve is y=x(4−x), and the x-axis forms a bounded region with the
+curve.
+</p>
+
+<h3>Step 1 — Intersections</h3>
+
+<div class="formula">
+x(4−x)=0
+<br>
+x=0,4
+</div>
+
+<h3>Step 2 — Area</h3>
+
+<div class="formula">
+A=∫₀⁴(4x−x²)dx
+</div>
+
+<div class="formula">
+=[2x²−x³/3]₀⁴
+</div>
+
+<div class="formula">
+=32−64/3
+=<strong>32/3</strong>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+26. DIFFERENTIAL EQUATIONS CONNECTION
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>26. Integration in Differential Equations</h2>
+
+<p>
+Integration is frequently used to recover a quantity from its derivative.
+</p>
+
+<div class="formula">
+dv/dt = f(t)
+</div>
+
+<p>
+Integrating:</p>
+
+<div class="formula">
+v=∫f(t)dt
+</div>
+
+<p>
+A condition such as v=12 when t=0 can then determine C.
+</p>
+
+<h3>Example</h3>
+
+<div class="formula">
+dv/dt=6t+4
+</div>
+
+<div class="formula">
+v=3t²+4t+C
+</div>
+
+<p>
+If v=7 at t=0:
+</p>
+
+<div class="formula">
+7=C
+</div>
+
+<div class="formula">
+<strong>
+v=3t²+4t+7
+</strong>
+</div>
+
+</div>
+
+
+<!-- =========================================================
+27. FUNDAMENTAL THEOREM IDEA
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>27. Why Definite Integration Represents Accumulation</h2>
+
+<p>
+Imagine splitting an interval into many tiny strips of width Δx. Each strip
+has approximate area:
+</p>
+
+<div class="formula">
+f(x)Δx
+</div>
+
+<p>
+Adding all strips gives an approximation to the total accumulated quantity.
+As the strips become infinitely thin, the sum becomes an integral.
+</p>
+
+<div class="formula">
+∫ₐᵇf(x)dx
+</div>
+
+<p>
+This explains why integration appears in area, displacement, accumulated
+growth, work, volume and many other applications.
+</p>
+
+</div>
+
+
+<!-- =========================================================
+28. FUNCTION DEFINED BY AN INTEGRAL
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>28. Differentiating an Integral-Defined Function</h2>
+
+<p>
+If:
+</p>
+
+<div class="formula">
+F(x)=∫ₐˣf(t)dt
+</div>
+
+<p>
+then:
+</p>
+
+<div class="formula">
+F′(x)=f(x)
+</div>
+
+<p>
+The variable inside the integral can be called t, u, or another dummy
+variable. It is the upper limit x that changes.
+</p>
+
+<h3>Example</h3>
+
+<div class="formula">
+F(x)=∫₂ˣ(3t²+1)dt
+</div>
+
+<div class="formula">
+<strong>
+F′(x)=3x²+1
+</strong>
+</div>
+
+</div>
+
+
+<!-- =========================================================
+29. CHAIN RULE WITH INTEGRALS
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>29. Variable Upper Limits</h2>
+
+<p>
+If the upper limit itself is a function of x:
+</p>
+
+<div class="formula">
+F(x)=∫ₐ^{g(x)}f(t)dt
+</div>
+
+<p>
+then the chain rule gives:
+</p>
+
+<div class="formula">
+F′(x)=f(g(x))g′(x)
+</div>
+
+<h3>Example</h3>
+
+<div class="formula">
+F(x)=∫₁^{x²}sin(t)dt
+</div>
+
+<div class="formula">
+F′(x)=sin(x²)·2x
+</div>
+
+<div class="formula">
+<strong>
+F′(x)=2x sin(x²)
+</strong>
+</div>
+
+</div>
+
+
+<!-- =========================================================
+30. DIFFICULT RECOGNITION
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>30. Choosing the Correct Technique</h2>
+
+<p>
+A major part of integration is recognising the structure before doing
+algebra.
+</p>
+
+<div class="mini-grid">
+
+<div class="mini-box">
+<strong>Simple powers</strong>
+<p>Use power rule.</p>
+</div>
+
+<div class="mini-box">
+<strong>1/x</strong>
+<p>Use ln|x|.</p>
+</div>
+
+<div class="mini-box">
+<strong>Function × derivative of function</strong>
+<p>Try substitution.</p>
+</div>
+
+<div class="mini-box">
+<strong>Product such as xeˣ</strong>
+<p>Try integration by parts.</p>
+</div>
+
+<div class="mini-box">
+<strong>Rational expression with factorised denominator</strong>
+<p>Try partial fractions.</p>
+</div>
+
+<div class="mini-box">
+<strong>Quadratic + constant square</strong>
+<p>Complete the square / inverse tangent form.</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+31. HARD WORKED EXAMPLES
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>31. Hard Worked Examples</h2>
+
+<h3>Example 1</h3>
+
+<div class="formula">
+∫ x/(x²+9) dx
+</div>
+
+<div class="formula">
+u=x²+9
+<br>
+du=2x dx
+</div>
+
+<div class="formula">
+=1/2∫du/u
+</div>
+
+<div class="formula">
+<strong>
+=1/2ln(x²+9)+C
+</strong>
+</div>
+
+<h3>Example 2</h3>
+
+<div class="formula">
+∫x²ln x dx
+</div>
+
+<p>Use integration by parts:</p>
+
+<div class="formula">
+u=ln x
+<br>
+dv=x²dx
+</div>
+
+<div class="formula">
+du=1/x dx
+<br>
+v=x³/3
+</div>
+
+<div class="formula">
+=x³/3 ln x − 1/3∫x²dx
+</div>
+
+<div class="formula">
+<strong>
+=x³/3 ln x−x³/9+C
+</strong>
+</div>
+
+<h3>Example 3</h3>
+
+<div class="formula">
+∫(2x+3)/(x²+3x+5) dx
+</div>
+
+<p>
+Notice that the numerator is exactly the derivative of the denominator.
+</p>
+
+<div class="formula">
+u=x²+3x+5
+<br>
+du=(2x+3)dx
+</div>
+
+<div class="formula">
+<strong>
+=ln(x²+3x+5)+C
+</strong>
+</div>
+
+</div>
+
+
+<!-- =========================================================
+32. PARAMETER / UNKNOWN CHALLENGES
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>32. Parameter Questions</h2>
+
+<h3>Challenge A</h3>
+
+<p>
+The curve has gradient:
+</p>
+
+<div class="formula">
+dy/dx=3x²−4x+a
+</div>
+
+<p>
+and passes through (1,5). If its y-intercept is 2, find a.
+</p>
+
+<details>
+<summary>Show solution</summary>
+
+<div class="formula">
+y=x³−2x²+ax+C
+</div>
+
+<p>
+Since y(0)=2:
+</p>
+
+<div class="formula">
+C=2
+</div>
+
+<p>
+Using (1,5):
+</p>
+
+<div class="formula">
+5=1−2+a+2
+</div>
+
+<div class="formula">
+<strong>a=4</strong>
+</div>
+
+</details>
+
+<h3>Challenge B</h3>
+
+<p>
+Find k if:
+</p>
+
+<div class="formula">
+∫₀¹(kx²+2x)dx=3
+</div>
+
+<details>
+<summary>Show solution</summary>
+
+<div class="formula">
+k/3+1=3
+</div>
+
+<div class="formula">
+<strong>k=6</strong>
+</div>
+
+</details>
+
+</div>
+
+
+<!-- =========================================================
+33. COMMON TRAPS
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>33. Common Integration Traps</h2>
+
+<h3>Trap 1 — Forgetting +C</h3>
+
+<p>
+Indefinite integral → include +C.
+</p>
+
+<h3>Trap 2 — Wrong power denominator</h3>
+
+<div class="formula">
+∫x⁵dx=x⁶/6+C
+</div>
+
+<p>
+Not x⁶/5.
+</p>
+
+<h3>Trap 3 — Treating 1/x as x⁻¹ under the ordinary rule</h3>
+
+<div class="formula">
+∫x⁻¹dx=ln|x|+C
+</div>
+
+<h3>Trap 4 — Forgetting the inner derivative</h3>
+
+<div class="formula">
+∫cos(5x)dx=1/5sin(5x)+C
+</div>
+
+<h3>Trap 5 — Upper minus lower</h3>
+
+<div class="formula">
+[F(x)]ₐᵇ=F(b)−F(a)
+</div>
+
+<h3>Trap 6 — Signed area</h3>
+
+<p>
+An integral can be negative even though geometric area cannot.
+</p>
+
+<h3>Trap 7 — Wrong curve in area questions</h3>
+
+<p>
+Always determine which function is above the other over the interval.
+</p>
+
+<h3>Trap 8 — Mixing variables during substitution</h3>
+
+<p>
+Once you switch to u, complete the integral in u.
+</p>
+
+<h3>Trap 9 — Incorrect by-parts signs</h3>
+
+<div class="formula">
+∫u dv=uv−∫v du
+</div>
+
+<h3>Trap 10 — Incomplete partial fractions</h3>
+
+<p>
+Repeated factors require repeated-power terms.
+</p>
+
+</div>
+
+
+<!-- =========================================================
+34. EXAM METHOD
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>34. Edexcel Exam Strategy</h2>
+
+<ol>
+<li>Rewrite the integrand into a recognisable form.</li>
+<li>Look for a standard integral.</li>
+<li>Check whether substitution is possible.</li>
+<li>If there is a product, consider integration by parts.</li>
+<li>If there is a factorised rational expression, consider partial fractions.</li>
+<li>For definite integrals, write the limits clearly.</li>
+<li>For areas, find intersections before integrating if necessary.</li>
+<li>Keep exact values until the final step.</li>
+<li>Check signs carefully.</li>
+<li>Differentiate an indefinite answer whenever practical.</li>
+</ol>
+
+<div class="note">
+<strong>High-level habit:</strong> Before writing any algebra, spend a few
+seconds asking "What structure am I looking at?" Technique recognition
+often saves more time than faster calculation.
+</div>
+
+</div>
+
+
+<!-- =========================================================
+35. FORMULA ATLAS
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>35. Complete Integration Formula Atlas</h2>
+
+<div class="formula">
+∫xⁿdx=xⁿ⁺¹/(n+1)+C, n≠−1
+</div>
+
+<div class="formula">
+∫1/x dx=ln|x|+C
+</div>
+
+<div class="formula">
+∫eˣdx=eˣ+C
+</div>
+
+<div class="formula">
+∫eᵃˣdx=eᵃˣ/a+C
+</div>
+
+<div class="formula">
+∫sin x dx=−cos x+C
+</div>
+
+<div class="formula">
+∫cos x dx=sin x+C
+</div>
+
+<div class="formula">
+∫sec²x dx=tan x+C
+</div>
+
+<div class="formula">
+∫cosec²x dx=−cot x+C
+</div>
+
+<div class="formula">
+∫sec x tan x dx=sec x+C
+</div>
+
+<div class="formula">
+∫cosec x cot x dx=−cosec x+C
+</div>
+
+<div class="formula">
+∫u dv=uv−∫v du
+</div>
+
+<div class="formula">
+∫ₐᵇf(x)dx=F(b)−F(a)
+</div>
+
+<div class="formula">
+Area=∫ₐᵇ(upper−lower)dx
+</div>
+
+<div class="formula">
+V=π∫ₐᵇy²dx
+</div>
+
+<div class="formula">
+∫ₐᵃf(x)dx=0
+</div>
+
+<div class="formula">
+∫ₐᵇf(x)dx=−∫ᵇₐf(x)dx
+</div>
+
+<div class="formula">
+∫₋ₐᵃ odd function dx=0
+</div>
+
+<div class="formula">
+∫₋ₐᵃ even function dx=2∫₀ᵃf(x)dx
+</div>
+
+</div>
+
+
+<!-- =========================================================
+36. FINAL PRACTICE
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>36. Before You Start the 100-Question Exam</h2>
+
+<p>
+You should be able to recognise and execute the following without relying
+on trial-and-error:
+</p>
+
+<ul>
+<li>Power-rule integration</li>
+<li>Logarithmic integration</li>
+<li>Exponential integration</li>
+<li>Trigonometric integration</li>
+<li>Linear substitutions</li>
+<li>Non-trivial substitutions</li>
+<li>Definite substitution</li>
+<li>Integration by parts</li>
+<li>Repeated integration by parts</li>
+<li>Partial fractions</li>
+<li>Area under curves</li>
+<li>Area between curves</li>
+<li>Signed versus geometric area</li>
+<li>Volumes of revolution</li>
+<li>Parameter problems</li>
+<li>Integral-defined functions</li>
+<li>Derivative checking</li>
+<li>Exact-value manipulation</li>
+</ul>
+
+<div class="note">
+The exam below mixes straightforward, intermediate, difficult and
+multi-step questions. The objective is not merely to memorise formulas,
+but to recognise which integration method is appropriate.
+</div>
+
+</div>
+
+
+<!-- =========================================================
+100 QUESTION EXAM
+========================================================= -->
+
+<div class="topic-card">
+
+<h2>💯 Integration Mastery Exam — 100 Questions</h2>
+
+<p>
+One question at a time. You cannot skip a question. Select an answer to
+unlock the next question. Use Previous to revisit earlier questions.
+</p>
+
+<div class="exam-box">
+
+<div class="exam-top">
+
+<div class="exam-stat">
+Question <strong id="qNumber">1</strong>/100
+</div>
+
+<div class="exam-stat">
+Score: <strong id="liveScore">0</strong>
+</div>
+
+<div class="exam-stat">
+Answered: <strong id="answeredCount">0</strong>/100
+</div>
+
+</div>
+
+<div class="progress-wrap">
+<div class="progress" id="progressBar"></div>
+</div>
+
+<div id="questionArea">
+
+<div class="exam-question" id="questionText"></div>
+
+<div class="options" id="options"></div>
+
+</div>
+
+<div class="exam-controls">
+
+<button class="exam-btn" id="prevBtn" onclick="previousQuestion()" disabled>
+← Previous
+</button>
+
+<button class="exam-btn" id="nextBtn" onclick="nextQuestion()" disabled>
+Next →
+</button>
+
+</div>
+
+<div class="result" id="result">
+
+<h2>Integration Exam Complete</h2>
+
+<div class="score-big" id="finalScore"></div>
+
+<p id="resultMessage"></p>
+
+<div class="review" id="review"></div>
+
+<button class="exam-btn" onclick="restartExam()">
+Restart Exam
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="navigation">
+
+<a href="#top" class="back">↑ Back to Top</a>
+
+<a href="pure-mathematics.html" class="back">
+← Back to Pure Mathematics
+</a>
+
+</div>
 
 </section>
 
 
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
 <footer>
 
-    © 2026 <span>IAL ATLAS</span>
-    • Independent student resource
-    • Not affiliated with Pearson
+© 2026 <span>IAL ATLAS</span>
+• Independent student resource
+• Not affiliated with Pearson
 
 </footer>
 
 
-</body>
+<script>
 
+/* =========================================================
+   100 QUESTION DATABASE
+   answer = correct option index
+========================================================= */
+
+const questions = [
+
+{
+q:"∫x⁴ dx = ?",
+o:["x⁵/4+C","x⁵/5+C","4x⁵/5+C","x⁴/5+C"],
+a:1
+},
+
+{
+q:"∫6x² dx = ?",
+o:["2x³+C","6x³+C","3x²+C","x³+C"],
+a:0
+},
+
+{
+q:"∫1/x dx = ?",
+o:["x⁻¹+C","ln|x|+C","ln x²+C","1/2x²+C"],
+a:1
+},
+
+{
+q:"∫eˣ dx = ?",
+o:["xeˣ+C","eˣ+C","eˣ/x+C","ln(eˣ)+C"],
+a:1
+},
+
+{
+q:"∫cos x dx = ?",
+o:["−sin x+C","sin x+C","cos x+C","−cos x+C"],
+a:1
+},
+
+{
+q:"∫sin x dx = ?",
+o:["cos x+C","−cos x+C","sin x+C","−sin x+C"],
+a:1
+},
+
+{
+q:"∫3x⁵ dx = ?",
+o:["x⁶/2+C","3x⁶/6+C","x⁶/6+C","18x⁶+C"],
+a:1
+},
+
+{
+q:"∫x⁻² dx = ?",
+o:["−x⁻¹+C","x⁻¹+C","−2x⁻¹+C","x⁻³/−3+C"],
+a:0
+},
+
+{
+q:"∫4/x dx = ?",
+o:["4ln|x|+C","ln|4x|+C","4/x²+C","x⁴+C"],
+a:0
+},
+
+{
+q:"∫√x dx = ?",
+o:["x³/2+C","2x³ᐟ²/3+C","3x²/2+C","x¹ᐟ²/2+C"],
+a:1
+},
+
+{
+q:"∫(3x²+4x)dx = ?",
+o:["x³+2x²+C","3x³+2x²+C","x³+4x²+C","6x+4+C"],
+a:0
+},
+
+{
+q:"∫(5−2x)dx = ?",
+o:["5x−x²+C","5−x²+C","5x−2x²+C","5x²−x+C"],
+a:0
+},
+
+{
+q:"∫sec²x dx = ?",
+o:["sec x+C","tan x+C","cot x+C","−tan x+C"],
+a:1
+},
+
+{
+q:"∫sec x tan x dx = ?",
+o:["tan x+C","sec x+C","−sec x+C","ln|sec x|+C"],
+a:1
+},
+
+{
+q:"∫cosec²x dx = ?",
+o:["cot x+C","−cot x+C","cosec x+C","−cosec x+C"],
+a:1
+},
+
+{
+q:"∫e^(3x)dx = ?",
+o:["3e³ˣ+C","e³ˣ+C","e³ˣ/3+C","xe³ˣ+C"],
+a:2
+},
+
+{
+q:"∫cos(4x)dx = ?",
+o:["4sin(4x)+C","sin(4x)/4+C","−cos(4x)/4+C","sin x/4+C"],
+a:1
+},
+
+{
+q:"∫sin(2x)dx = ?",
+o:["2cos(2x)+C","−cos(2x)/2+C","cos(2x)/2+C","−2cos(2x)+C"],
+a:1
+},
+
+{
+q:"∫5e^(2x)dx = ?",
+o:["5e²ˣ+C","10e²ˣ+C","5e²ˣ/2+C","e²ˣ/5+C"],
+a:2
+},
+
+{
+q:"Which integral requires a logarithm?",
+o:["∫x²dx","∫eˣdx","∫1/x dx","∫sin x dx"],
+a:2
+},
+
+{
+q:"∫2x(x²+1)³dx = ?",
+o:["(x²+1)⁴+C","(x²+1)⁴/4+C","2(x²+1)⁴+C","(x²+1)³/3+C"],
+a:1
+},
+
+{
+q:"For u=x²+5, du equals:",
+o:["x dx","2x dx","5dx","(x²+5)dx"],
+a:1
+},
+
+{
+q:"∫x/(x²+1)dx = ?",
+o:["ln(x²+1)+C","1/2ln(x²+1)+C","2ln(x²+1)+C","x²ln(x²+1)+C"],
+a:1
+},
+
+{
+q:"∫e^(5x−1)dx = ?",
+o:["e^(5x−1)+C","5e^(5x−1)+C","e^(5x−1)/5+C","(5x−1)e^(5x−1)+C"],
+a:2
+},
+
+{
+q:"∫cos(3x+2)dx = ?",
+o:["sin(3x+2)+C","3sin(3x+2)+C","sin(3x+2)/3+C","−sin(3x+2)/3+C"],
+a:2
+},
+
+{
+q:"∫₀¹x²dx = ?",
+o:["1","1/2","1/3","2/3"],
+a:2
+},
+
+{
+q:"∫₁³2x dx = ?",
+o:["4","8","9","6"],
+a:1
+},
+
+{
+q:"∫₂⁵1 dx = ?",
+o:["2","3","5","7"],
+a:1
+},
+
+{
+q:"∫₀²(3x²)dx = ?",
+o:["4","6","8","12"],
+a:2
+},
+
+{
+q:"For ∫ₐᵇf(x)dx, the correct evaluation is:",
+o:["F(a)−F(b)","F(a)+F(b)","F(b)−F(a)","F(b)/F(a)"],
+a:2
+},
+
+{
+q:"∫ₐᵃf(x)dx equals:",
+o:["1","a","f(a)","0"],
+a:3
+},
+
+{
+q:"∫ₐᵇf(x)dx equals:",
+o:["−∫ᵇₐf(x)dx","∫ᵇₐf(x)dx","∫ₐᵇ−f(x)dx only","0"],
+a:0
+},
+
+{
+q:"An odd function integrated from −a to a gives:",
+o:["2","a","0","−2"],
+a:2
+},
+
+{
+q:"An even function satisfies:",
+o:["∫₋ₐᵃf=0","∫₋ₐᵃf=2∫₀ᵃf","∫₋ₐᵃf=∫₀ᵃf/2","No relationship"],
+a:1
+},
+
+{
+q:"∫x sin x dx is best approached using:",
+o:["Partial fractions","Integration by parts","Power rule","Long division"],
+a:1
+},
+
+{
+q:"In ∫u dv=uv−∫vdu, the sign before the second integral is:",
+o:["+","−","×","÷"],
+a:1
+},
+
+{
+q:"For ∫xeˣdx, a convenient choice is:",
+o:["u=eˣ, dv=x dx","u=x, dv=eˣdx","u=1, dv=xeˣdx","u=xeˣ, dv=dx"],
+a:1
+},
+
+{
+q:"∫xeˣdx equals:",
+o:["eˣ(x+1)+C","eˣ(x−1)+C","xeˣ+C","eˣ/x+C"],
+a:1
+},
+
+{
+q:"∫ln x dx equals:",
+o:["ln x+C","xln x−x+C","xln x+x+C","1/x+C"],
+a:1
+},
+
+{
+q:"Repeated integration by parts may be needed for:",
+o:["∫x²eˣdx","∫x dx","∫eˣdx","∫1/x dx"],
+a:0
+},
+
+{
+q:"The main purpose of partial fractions is to:",
+o:["Differentiate products","Rewrite a rational function as simpler fractions","Find limits","Solve trigonometric equations"],
+a:1
+},
+
+{
+q:"For 1/[(x+1)(x+2)], the correct structure is:",
+o:["A/(x+1)+B/(x+2)","A/x+B","Ax+B","A/(x+1)²+B/(x+2)² only"],
+a:0
+},
+
+{
+q:"∫1/[(x+1)(x+2)]dx equals:",
+o:["ln|x+1|+ln|x+2|+C","ln|x+1|−ln|x+2|+C","1/(x+1)(x+2)+C","x²+C"],
+a:1
+},
+
+{
+q:"A repeated factor (x+1)² requires:",
+o:["Only A/(x+1)","A/(x+1)+B/(x+1)²","Only A/(x+1)²","A(x+1)"],
+a:1
+},
+
+{
+q:"∫dx/(x²+4) equals:",
+o:["tan⁻¹(x/2)+C","1/2tan⁻¹(x/2)+C","2tan⁻¹(x/2)+C","ln(x²+4)+C"],
+a:1
+},
+
+{
+q:"For area under a positive curve y=f(x), use:",
+o:["∫f(x)dx","∫x/f(x)dx","∫f′(x)dx only","f(b)−f(a)"],
+a:0
+},
+
+{
+q:"For area between upper f and lower g:",
+o:["∫(g−f)dx","∫(f−g)dx","∫fg dx","∫f/g dx"],
+a:1
+},
+
+{
+q:"The intersections of y=f(x) and y=g(x) are found by:",
+o:["f′=g′","f=g","f+g=0 always","f/g=0"],
+a:1
+},
+
+{
+q:"The geometric area of a region below the x-axis should be:",
+o:["Negative","Positive","Always zero","Ignored"],
+a:1
+},
+
+{
+q:"y=x−2 crosses the x-axis at:",
+o:["x=0","x=1","x=2","x=−2"],
+a:2
+},
+
+{
+q:"The area under y=x² from 0 to 3 is:",
+o:["3","6","9","27"],
+a:2
+},
+
+{
+q:"The area between y=x and y=x² from 0 to 1 is:",
+o:["1/2","1/3","1/6","2/3"],
+a:2
+},
+
+{
+q:"The intersections of y=2x and y=x² are:",
+o:["0 and 1","0 and 2","1 and 2","−2 and 2"],
+a:1
+},
+
+{
+q:"The area enclosed by y=2x and y=x² is:",
+o:["2/3","1","4/3","8/3"],
+a:2
+},
+
+{
+q:"When rotating y=x about the x-axis, the cross-sectional area is:",
+o:["πx","2πx","πx²","x²"],
+a:2
+},
+
+{
+q:"Volume generated by y=x from 0 to 2 about x-axis is:",
+o:["2π","4π","8π/3","16π/3"],
+a:2
+},
+
+{
+q:"Which method is the reverse of the chain rule?",
+o:["Integration by parts","Substitution","Partial fractions","Long division"],
+a:1
+},
+
+{
+q:"Which method is the reverse of the product rule?",
+o:["Substitution","Integration by parts","Partial fractions","Power rule"],
+a:1
+},
+
+{
+q:"If F(x)=∫₂ˣf(t)dt, then F′(x)=:",
+o:["f(2)","f(t)","f(x)","0"],
+a:2
+},
+
+{
+q:"If F(x)=∫₁^{x²}f(t)dt, then F′(x)=:",
+o:["f(x²)","2xf(x²)","f(2x)","2f(x)"],
+a:1
+},
+
+{
+q:"Which is NOT a valid reason for +C?",
+o:["Different functions can have the same derivative","Constants disappear under differentiation","Indefinite integrals represent a family","Definite integrals always require +C"],
+a:3
+},
+
+{
+q:"∫(4x³−6x)dx equals:",
+o:["x⁴−3x²+C","4x⁴−3x²+C","x⁴−6x²+C","x⁴−3x+C"],
+a:0
+},
+
+{
+q:"∫(2/x+3eˣ)dx equals:",
+o:["2ln|x|+3eˣ+C","2/x+3eˣ+C","2ln x+3xeˣ+C","2x+3eˣ+C"],
+a:0
+},
+
+{
+q:"∫(x+1)²dx equals:",
+o:["(x+1)³+C","(x+1)³/3+C","2(x+1)+C","x³+1+C"],
+a:1
+},
+
+{
+q:"∫3x(x²+1)²dx equals:",
+o:["(x²+1)³+C","(x²+1)³/2+C","3(x²+1)³+C","x²(x²+1)²+C"],
+a:1
+},
+
+{
+q:"∫(2x+3)/(x²+3x+5)dx equals:",
+o:["ln(x²+3x+5)+C","2ln(x²+3x+5)+C","x²+3x+5+C","1/(x²+3x+5)+C"],
+a:0
+},
+
+{
+q:"Which expression has derivative 1/(2x+1)?",
+o:["ln|2x+1|","1/2ln|2x+1|","2ln|2x+1|","ln|x|"],
+a:1
+},
+
+{
+q:"∫5/(2x+1)dx equals:",
+o:["5ln|2x+1|+C","10ln|2x+1|+C","5/2ln|2x+1|+C","2/5ln|2x+1|+C"],
+a:2
+},
+
+{
+q:"∫x²ln x dx equals:",
+o:["x³ln x+C","x³/3 ln x−x³/9+C","x²ln x−x+C","ln(x³)+C"],
+a:1
+},
+
+{
+q:"For u=x²+4 in ∫x/(x²+4)dx, du is:",
+o:["x dx","2x dx","(x²+4)dx","4dx"],
+a:1
+},
+
+{
+q:"∫₀²2x(x²+1)³dx equals:",
+o:["64","100","156","256"],
+a:2
+},
+
+{
+q:"In the previous question, the transformed limits for u=x²+1 are:",
+o:["0 and 2","1 and 5","1 and 4","2 and 5"],
+a:1
+},
+
+{
+q:"If ∫₀¹kx²dx=2, k equals:",
+o:["2","3","6","9"],
+a:2
+},
+
+{
+q:"If ∫₀²(k−x)dx=6, k equals:",
+o:["3","4","5","6"],
+a:2
+},
+
+{
+q:"If ∫₀¹(3x²+k)dx=5, k equals:",
+o:["3","4","5","6"],
+a:1
+},
+
+{
+q:"If dy/dx=6x and y(2)=5, the equation is:",
+o:["y=3x²−7","y=6x²−19","y=3x²+7","y=x³−3"],
+a:0
+},
+
+{
+q:"If dy/dx=4x+2 and y(0)=3, then y is:",
+o:["2x²+2x+3","4x²+2x+3","2x²+x+3","2x²+2x"],
+a:0
+},
+
+{
+q:"∫₋²²x⁵dx equals:",
+o:["32","16","0","64"],
+a:2
+},
+
+{
+q:"∫₋²²x⁴dx equals:",
+o:["0","32/5","64/5","128/5"],
+a:2
+},
+
+{
+q:"If f is even, ∫₋³³f(x)dx equals:",
+o:["∫₀³f dx","2∫₀³f dx","0","3∫₀³f dx"],
+a:1
+},
+
+{
+q:"If ∫₀⁵f(x)dx=7, then ∫₅⁰f(x)dx equals:",
+o:["7","−7","0","35"],
+a:1
+},
+
+{
+q:"If ∫₀³f dx=5 and ∫₃⁷f dx=8, then ∫₀⁷f dx is:",
+o:["3","13","40","−13"],
+a:1
+},
+
+{
+q:"If ∫₁⁵f dx=12 and ∫₁³f dx=5, then ∫₃⁵f dx is:",
+o:["7","17","60","−7"],
+a:0
+},
+
+{
+q:"Which integral is most naturally solved by partial fractions?",
+o:["∫x²dx","∫eˣdx","∫1/[x(x+1)]dx","∫x sin x dx"],
+a:2
+},
+
+{
+q:"Which integral is most naturally solved by parts?",
+o:["∫x³dx","∫xeˣdx","∫1/x dx","∫2x dx"],
+a:1
+},
+
+{
+q:"Which integral is most naturally solved by substitution?",
+o:["∫2x(x²+3)⁵dx","∫xeˣdx","∫1/[x(x+1)]dx","∫x²dx"],
+a:0
+},
+
+{
+q:"For ∫₀⁴|x−2|dx, the interval should be split at:",
+o:["0","1","2","4"],
+a:2
+},
+
+{
+q:"The value of ∫₀²|x−1|dx is:",
+o:["1","2","1/2","4"],
+a:0
+},
+
+{
+q:"For area between curves, if the curves cross inside the interval:",
+o:["Ignore the crossing","Use one upper curve throughout","Split the integral at the crossing","Differentiate both"],
+a:2
+},
+
+{
+q:"If y=4−x², its x-axis intersections are:",
+o:["−4,4","−2,2","0,4","−2,4"],
+a:1
+},
+
+{
+q:"Area under y=4−x² from 0 to 2 is:",
+o:["4","16/3","8","32/3"],
+a:1
+},
+
+{
+q:"The volume generated by y=2x from 0 to 1 around x-axis is:",
+o:["2π","4π/3","8π/3","π"],
+a:1
+},
+
+{
+q:"∫1/(x²+9)dx equals:",
+o:["tan⁻¹(x/3)+C","1/3tan⁻¹(x/3)+C","3tan⁻¹(x/3)+C","ln(x²+9)+C"],
+a:1
+},
+
+{
+q:"Completing the square is useful for:",
+o:["x²+6x+13","x³+1","eˣ","sin x"],
+a:0
+},
+
+{
+q:"x²+6x+13 can be written as:",
+o:["(x+3)²+4","(x+6)²+13","(x+3)²−4","(x+6)²−23"],
+a:0
+},
+
+{
+q:"∫(x+3)/[(x+3)²+4]dx equals:",
+o:["ln((x+3)²+4)+C","1/2ln((x+3)²+4)+C","2ln((x+3)²+4)+C","tan⁻¹(x+3)+C"],
+a:1
+},
+
+{
+q:"If a curve has gradient 3x²−4x+2, then its general equation is:",
+o:["x³−2x²+2x+C","3x³−4x²+2x+C","x³−4x²+2x+C","3x²−2x+2+C"],
+a:0
+},
+
+{
+q:"If y=x³−2x²+4x+C passes through (1,5), C is:",
+o:["0","1","2","3"],
+a:1
+},
+
+{
+q:"If an indefinite integration answer is correct, differentiating it should:",
+o:["Give zero","Give the original integrand","Give the limits","Give C"],
+a:1
+},
+
+{
+q:"The best first step in a difficult integration question is usually:",
+o:["Immediately expand everything","Identify the structure and choose a method","Convert everything to decimals","Differentiate the question"],
+a:1
+},
+
+{
+q:"Which statement is correct?",
+o:["Every integral has an elementary antiderivative","Every product should be split","Definite integrals produce a single value","+C is always required"],
+a:2
+},
+
+{
+q:"If ∫₁⁴f(x)dx=10, then the average value of f over [1,4] is:",
+o:["10","3","10/3","40"],
+a:2
+},
+
+{
+q:"The average value of f on [a,b] is:",
+o:["∫ₐᵇf dx","1/(b−a)∫ₐᵇf dx","(b−a)∫f dx","f(b)−f(a)"],
+a:1
+},
+
+{
+q:"If F′(x)=2x+1 and F(0)=4, then F(x) is:",
+o:["x²+x+4","2x²+x+4","x²+1+4","x²+x"],
+a:0
+},
+
+{
+q:"Which statement about substitution is correct?",
+o:["The new variable may be left mixed with x","The differential must be transformed consistently","Limits never change","It only works for polynomials"],
+a:1
+},
+
+{
+q:"Which statement about integration by parts is correct?",
+o:["It comes from the quotient rule","It comes from the product rule","It comes from the power rule","It comes from partial fractions"],
+a:1
+},
+
+{
+q:"Which answer is an antiderivative of 6x+4?",
+o:["3x²+4x+C","6x²+4+C","3x²+2x+C","6x+4+C"],
+a:0
+},
+
+{
+q:"If the total signed integral is zero but the curve is not identically zero, what may have happened?",
+o:["Positive and negative areas cancelled","Integration is impossible","The function must be constant","The limits must be equal"],
+a:0
+},
+
+{
+q:"For a region rotated around the x-axis, radius equals:",
+o:["x","y","x+y","dy/dx"],
+a:1
+},
+
+{
+q:"The strongest final check for many indefinite integrals is:",
+o:["Approximate randomly","Differentiate the answer","Change the limits","Add another constant"],
+a:1
+},
+
+{
+q:"A complete integration solution should primarily demonstrate:",
+o:["Only the final answer","Method, algebra, reasoning and correct exact result","Only calculator output","Only a graph"],
+a:1
+}
+
+];
+
+
+/* =========================================================
+   EXAM ENGINE
+========================================================= */
+
+let currentQuestion=0;
+let answers=new Array(questions.length).fill(null);
+
+const qNumber=document.getElementById("qNumber");
+const liveScore=document.getElementById("liveScore");
+const answeredCount=document.getElementById("answeredCount");
+const progressBar=document.getElementById("progressBar");
+const questionText=document.getElementById("questionText");
+const options=document.getElementById("options");
+const prevBtn=document.getElementById("prevBtn");
+const nextBtn=document.getElementById("nextBtn");
+const questionArea=document.getElementById("questionArea");
+const result=document.getElementById("result");
+const finalScore=document.getElementById("finalScore");
+const resultMessage=document.getElementById("resultMessage");
+const review=document.getElementById("review");
+
+
+function renderQuestion(){
+
+    const item=questions[currentQuestion];
+
+    qNumber.textContent=currentQuestion+1;
+
+    questionText.textContent=item.q;
+
+    options.innerHTML="";
+
+    item.o.forEach((option,index)=>{
+
+        const div=document.createElement("div");
+
+        div.className="option";
+
+        div.textContent=
+            String.fromCharCode(65+index)+". "+option;
+
+        if(answers[currentQuestion]===index){
+
+            div.classList.add("selected");
+
+        }
+
+        div.addEventListener("click",()=>selectAnswer(index));
+
+        options.appendChild(div);
+
+    });
+
+    prevBtn.disabled=currentQuestion===0;
+
+    nextBtn.disabled=answers[currentQuestion]===null;
+
+    nextBtn.textContent=
+        currentQuestion===questions.length-1
+        ? "Finish Exam ✓"
+        : "Next →";
+
+    updateStats();
+
+}
+
+
+function selectAnswer(index){
+
+    answers[currentQuestion]=index;
+
+    renderQuestion();
+
+}
+
+
+function updateStats(){
+
+    const answered=
+        answers.filter(a=>a!==null).length;
+
+    const score=
+        answers.reduce((total,answer,index)=>{
+            return total+(answer===questions[index].a?1:0);
+        },0);
+
+    answeredCount.textContent=answered;
+
+    liveScore.textContent=score;
+
+    progressBar.style.width=
+        ((currentQuestion+1)/questions.length*100)+"%";
+
+}
+
+
+function previousQuestion(){
+
+    if(currentQuestion>0){
+
+        currentQuestion--;
+
+        renderQuestion();
+
+    }
+
+}
+
+
+function nextQuestion(){
+
+    if(answers[currentQuestion]===null) return;
+
+    if(currentQuestion<questions.length-1){
+
+        currentQuestion++;
+
+        renderQuestion();
+
+    }else{
+
+        finishExam();
+
+    }
+
+}
+
+
+function finishExam(){
+
+    questionArea.style.display="none";
+
+    prevBtn.style.display="none";
+
+    nextBtn.style.display="none";
+
+    result.style.display="block";
+
+    const score=
+        answers.reduce((total,answer,index)=>{
+            return total+(answer===questions[index].a?1:0);
+        },0);
+
+    finalScore.textContent=
+        score+" / "+questions.length;
+
+    const percentage=score;
+
+    if(percentage>=90){
+
+        resultMessage.textContent=
+            "Outstanding integration mastery. You have demonstrated very strong command of the topic.";
+
+    }else if(percentage>=80){
+
+        resultMessage.textContent=
+            "Excellent work. Your integration technique and exam recognition are strong.";
+
+    }else if(percentage>=70){
+
+        resultMessage.textContent=
+            "Strong performance. Review the questions you missed and reinforce the weaker techniques.";
+
+    }else if(percentage>=60){
+
+        resultMessage.textContent=
+            "Good foundation. More targeted practice with difficult techniques will improve consistency.";
+
+    }else{
+
+        resultMessage.textContent=
+            "Keep practising. Revisit the theory sections, then attempt the exam again.";
+
+    }
+
+    review.innerHTML="<h3>Wrong Answer Review</h3>";
+
+    let wrongCount=0;
+
+    questions.forEach((item,index)=>{
+
+        if(answers[index]!==item.a){
+
+            wrongCount++;
+
+            const div=document.createElement("div");
+
+            div.className="review-item";
+
+            const chosen=
+                answers[index]===null
+                ? "No answer"
+                : item.o[answers[index]];
+
+            div.innerHTML=`
+                <strong>Q${index+1}. ${item.q}</strong>
+                <p>Your answer:
+                <span style="color:#ff8f8f">
+                ${chosen}
+                </span>
+                </p>
+                <p>Correct answer:
+                <span style="color:#72e2a8">
+                ${item.o[item.a]}
+                </span>
+                </p>
+            `;
+
+            review.appendChild(div);
+
+        }
+
+    });
+
+    if(wrongCount===0){
+
+        review.innerHTML+=`
+            <div class="note">
+            Perfect score. Every answer was correct.
+            </div>
+        `;
+
+    }
+
+    window.scrollTo({
+        top:result.getBoundingClientRect().top+
+        window.scrollY-
+        100,
+        behavior:"smooth"
+    });
+
+}
+
+
+function restartExam(){
+
+    currentQuestion=0;
+
+    answers=new Array(questions.length).fill(null);
+
+    questionArea.style.display="block";
+
+    prevBtn.style.display="inline-block";
+
+    nextBtn.style.display="inline-block";
+
+    result.style.display="none";
+
+    renderQuestion();
+
+    window.scrollTo({
+        top:document.querySelector(".exam-box").offsetTop-100,
+        behavior:"smooth"
+    });
+
+}
+
+
+renderQuestion();
+
+</script>
+
+</body>
 </html>
 
