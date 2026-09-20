@@ -6,10 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sequences & Series | IAL ATLAS</title>
+    <title>Sequences &amp; Series | IAL ATLAS</title>
 
     <meta name="description"
-          content="Sequences and Series notes and revision resources for Pearson Edexcel International A Level Mathematics.">
+          content="Deep Sequences and Series notes, worked examples, formulas, exam strategy and practice for Pearson Edexcel International A Level Mathematics.">
 
     <style>
 
@@ -38,10 +38,6 @@
             overflow-x: hidden;
         }
 
-        /* =========================================================
-           BACKGROUND GRID
-           ========================================================= */
-
         body::before {
             content: "";
             position: fixed;
@@ -61,7 +57,6 @@
                 transparent 90%
             );
         }
-
 
         /* =========================================================
            HEADER
@@ -129,17 +124,11 @@
 
         header > a:last-child:hover {
             color: #ffffff;
-
             border-color: #31b8ff;
-
             background: rgba(25, 91, 140, 0.3);
-
-            box-shadow:
-                0 0 18px rgba(49, 184, 255, 0.18);
-
+            box-shadow: 0 0 18px rgba(49, 184, 255, 0.18);
             transform: translateY(-1px);
         }
-
 
         /* =========================================================
            HERO
@@ -148,7 +137,7 @@
         .hero {
             position: relative;
 
-            min-height: 390px;
+            min-height: 430px;
 
             display: flex;
             flex-direction: column;
@@ -256,6 +245,8 @@
             font-size: 18px;
 
             letter-spacing: 0.4px;
+
+            max-width: 760px;
         }
 
         .hero .tag {
@@ -283,19 +274,15 @@
             text-transform: uppercase;
         }
 
-
         /* =========================================================
            CONTENT
            ========================================================= */
 
         .section {
             width: min(1050px, 92%);
-
             margin: auto;
-
             padding: 30px 0 80px;
         }
-
 
         /* =========================================================
            TOPIC CARDS
@@ -381,7 +368,6 @@
                 0 0 25px rgba(20, 145, 220, 0.05);
         }
 
-
         /* =========================================================
            HEADINGS
            ========================================================= */
@@ -413,6 +399,12 @@
             margin-bottom: 11px;
         }
 
+        .topic-card h4 {
+            color: #65ccff;
+            font-size: 17px;
+            margin-top: 22px;
+            margin-bottom: 8px;
+        }
 
         /* =========================================================
            TEXT
@@ -430,6 +422,19 @@
             color: #ffffff;
         }
 
+        .topic-card ul,
+        .topic-card ol {
+            margin: 12px 0 18px 23px;
+            color: #9bb0c3;
+        }
+
+        .topic-card li {
+            margin-bottom: 8px;
+        }
+
+        .topic-card li strong {
+            color: #dcefff;
+        }
 
         /* =========================================================
            FORMULA BOXES
@@ -475,9 +480,63 @@
                 0 0 20px rgba(49, 184, 255, 0.06);
         }
 
+        .formula.small {
+            font-size: 16px;
+        }
+
+        .formula.left {
+            text-align: left;
+        }
 
         /* =========================================================
-           DETAILS / SOLUTIONS
+           INFO BOXES
+           ========================================================= */
+
+        .note,
+        .warning,
+        .challenge,
+        .extension,
+        .method {
+            border-radius: 12px;
+            padding: 17px 19px;
+            margin: 20px 0;
+        }
+
+        .note {
+            background: rgba(29, 116, 165, 0.10);
+            border-left: 3px solid #31b8ff;
+        }
+
+        .warning {
+            background: rgba(164, 106, 27, 0.09);
+            border-left: 3px solid #f1bd55;
+        }
+
+        .challenge {
+            background: rgba(116, 54, 177, 0.10);
+            border-left: 3px solid #b66cff;
+        }
+
+        .extension {
+            background: rgba(35, 139, 94, 0.09);
+            border-left: 3px solid #42d99b;
+        }
+
+        .method {
+            background: rgba(37, 81, 126, 0.12);
+            border-left: 3px solid #65baff;
+        }
+
+        .note strong,
+        .warning strong,
+        .challenge strong,
+        .extension strong,
+        .method strong {
+            color: #ffffff;
+        }
+
+        /* =========================================================
+           DETAILS
            ========================================================= */
 
         details {
@@ -531,14 +590,40 @@
             margin-right: 16px;
         }
 
+        /* =========================================================
+           TABLES
+           ========================================================= */
+
+        .table-wrap {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 650px;
+        }
+
+        th,
+        td {
+            padding: 12px 13px;
+            border: 1px solid rgba(82, 174, 230, 0.13);
+            text-align: left;
+            color: #a9bdcf;
+        }
+
+        th {
+            background: rgba(27, 100, 145, 0.18);
+            color: #e8f5ff;
+        }
 
         /* =========================================================
-           BUTTONS
+           NAVIGATION
            ========================================================= */
 
         .navigation {
             text-align: center;
-
             padding-top: 10px;
         }
 
@@ -586,7 +671,6 @@
                 );
         }
 
-
         /* =========================================================
            FOOTER
            ========================================================= */
@@ -611,7 +695,6 @@
             color: #36baff;
         }
 
-
         /* =========================================================
            SCROLLBAR
            ========================================================= */
@@ -626,7 +709,6 @@
 
         ::-webkit-scrollbar-thumb {
             background: #123b57;
-
             border-radius: 10px;
         }
 
@@ -634,17 +716,10 @@
             background: #1c668e;
         }
 
-
-        /* =========================================================
-           SELECTION
-           ========================================================= */
-
         ::selection {
             background: rgba(49, 184, 255, 0.3);
-
             color: white;
         }
-
 
         /* =========================================================
            MOBILE
@@ -654,9 +729,7 @@
 
             header {
                 padding: 17px 5%;
-
                 flex-direction: column;
-
                 gap: 13px;
             }
 
@@ -666,13 +739,11 @@
 
             header > a:last-child {
                 font-size: 13px;
-
                 padding: 8px 12px;
             }
 
             .hero {
                 min-height: 320px;
-
                 padding: 65px 20px;
             }
 
@@ -686,13 +757,11 @@
 
             .section {
                 width: 92%;
-
                 padding-top: 25px;
             }
 
             .topic-card {
                 padding: 24px 20px;
-
                 border-radius: 15px;
             }
 
@@ -710,18 +779,14 @@
 
             .formula {
                 font-size: 16px;
-
                 padding: 14px 12px;
-
                 overflow-x: auto;
             }
 
             .back {
                 width: 90%;
-
                 margin: 7px auto;
             }
-
         }
 
     </style>
@@ -731,10 +796,6 @@
 
 <body id="top">
 
-
-<!-- =========================================================
-     HEADER
-     ========================================================= -->
 
 <header>
 
@@ -749,10 +810,6 @@
 </header>
 
 
-<!-- =========================================================
-     HERO
-     ========================================================= -->
-
 <section class="hero">
 
     <div class="tag">
@@ -763,80 +820,237 @@
 
     <p>
         Edexcel International A Level Mathematics
+        <br>
+        From pattern recognition to algebraic reasoning, summation and advanced sequence problems.
     </p>
 
 </section>
 
 
-<!-- =========================================================
-     CONTENT
-     ========================================================= -->
-
 <section class="section">
 
 
-    <!-- =====================================================
-         1. SEQUENCES
-         ===================================================== -->
+    <!-- =========================================================
+         1. THE BIG IDEA
+         ========================================================= -->
 
     <div class="topic-card">
 
-        <h2>1. Sequences</h2>
+        <h2>1. The Big Idea — What Is a Sequence?</h2>
 
         <p>
-            A sequence is an ordered list of numbers that follows a
-            particular rule or pattern.
+            A <strong>sequence</strong> is an ordered list of numbers whose terms are generated
+            according to a rule. The order matters: changing the order can change the sequence.
         </p>
-
-        <h3>Example</h3>
 
         <div class="formula">
             3, 7, 11, 15, 19, ...
         </div>
 
         <p>
-            Each term increases by 4.
+            The first term is usually written as <strong>u₁</strong>, the second as
+            <strong>u₂</strong>, and the nth term as <strong>uₙ</strong>.
         </p>
 
+        <div class="formula">
+            u₁, u₂, u₃, ..., uₙ, ...
+        </div>
+
+        <h3>Sequence vs Series</h3>
+
         <p>
-            The number of a term in a sequence is represented by
-            <strong>n</strong>.
+            These two words are closely related but are not interchangeable.
+        </p>
+
+        <ul>
+            <li>
+                A <strong>sequence</strong> is a list:
+                <strong>2, 5, 8, 11, ...</strong>
+            </li>
+            <li>
+                A <strong>series</strong> is a sum of terms:
+                <strong>2 + 5 + 8 + 11 + ...</strong>
+            </li>
+        </ul>
+
+        <div class="note">
+            <strong>Core distinction:</strong>
+            A sequence tells you what the terms are. A series asks you to add terms together.
+        </div>
+
+        <h3>How Can a Sequence Be Defined?</h3>
+
+        <p>
+            A sequence can be described in several ways. In examination questions,
+            recognising which description you have been given is important.
+        </p>
+
+        <div class="table-wrap">
+            <table>
+
+                <tr>
+                    <th>Representation</th>
+                    <th>Example</th>
+                    <th>What it tells you</th>
+                </tr>
+
+                <tr>
+                    <td>List of terms</td>
+                    <td>4, 7, 10, 13, ...</td>
+                    <td>Shows the pattern directly.</td>
+                </tr>
+
+                <tr>
+                    <td>Explicit formula</td>
+                    <td>uₙ = 3n + 1</td>
+                    <td>Gives any term directly from n.</td>
+                </tr>
+
+                <tr>
+                    <td>Recurrence relation</td>
+                    <td>u₁ = 4, uₙ₊₁ = uₙ + 3</td>
+                    <td>Generates each term from the previous term.</td>
+                </tr>
+
+                <tr>
+                    <td>Summation notation</td>
+                    <td>Σ(n + 1)</td>
+                    <td>Describes a sum compactly.</td>
+                </tr>
+
+            </table>
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         2. TERM NUMBER AND PATTERNS
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>2. Finding Patterns and the nth Term</h2>
+
+        <p>
+            The most important idea is that the position of a term is represented by
+            <strong>n</strong>. If you can express the term in terms of n, you have found
+            an explicit formula for the sequence.
+        </p>
+
+        <div class="formula">
+            uₙ = f(n)
+        </div>
+
+        <h3>Linear Patterns</h3>
+
+        <p>
+            Consider:
+        </p>
+
+        <div class="formula">
+            6, 10, 14, 18, 22, ...
+        </div>
+
+        <p>
+            The difference between consecutive terms is constant:
+        </p>
+
+        <div class="formula">
+            +4, +4, +4, +4
+        </div>
+
+        <p>
+            This immediately suggests a linear nth-term formula.
+        </p>
+
+        <div class="formula">
+            uₙ = 4n + 2
+        </div>
+
+        <p>
+            Check:
+        </p>
+
+        <div class="formula">
+            n = 1 → 4(1) + 2 = 6
+            <br>
+            n = 2 → 4(2) + 2 = 10
+            <br>
+            n = 3 → 4(3) + 2 = 14
+        </div>
+
+        <div class="method">
+            <strong>Good habit:</strong>
+            Never stop after finding a formula. Test at least one or two values of n.
+            A formula that looks correct can still contain an algebraic mistake.
+        </div>
+
+        <h3>Not Every Pattern Is Arithmetic</h3>
+
+        <div class="formula">
+            2, 4, 8, 16, 32, ...
+        </div>
+
+        <p>
+            The differences are not constant:
+        </p>
+
+        <div class="formula">
+            +2, +4, +8, +16
+        </div>
+
+        <p>
+            But each term is multiplied by 2. This is therefore geometric rather than arithmetic.
         </p>
 
     </div>
 
 
-    <!-- =====================================================
-         2. ARITHMETIC SEQUENCES
-         ===================================================== -->
+    <!-- =========================================================
+         3. ARITHMETIC SEQUENCES
+         ========================================================= -->
 
     <div class="topic-card">
 
-        <h2>2. Arithmetic Sequences</h2>
+        <h2>3. Arithmetic Sequences</h2>
 
         <p>
-            An arithmetic sequence has a constant difference between
-            consecutive terms.
+            An <strong>arithmetic sequence</strong> has a constant difference between
+            consecutive terms. This constant difference is called the
+            <strong>common difference</strong>, written as <strong>d</strong>.
         </p>
 
         <div class="formula">
             a, a + d, a + 2d, a + 3d, ...
         </div>
 
-        <p>
-            The nth term is:
-        </p>
+        <h3>The nth-Term Formula</h3>
 
         <div class="formula">
             uₙ = a + (n − 1)d
         </div>
 
         <p>
-            where <strong>a</strong> is the first term and
-            <strong>d</strong> is the common difference.
+            Why is it n − 1 rather than n?
         </p>
 
-        <h3>Worked Example</h3>
+        <div class="formula">
+            u₁ = a
+            <br>
+            u₂ = a + d
+            <br>
+            u₃ = a + 2d
+            <br>
+            u₄ = a + 3d
+        </div>
+
+        <p>
+            The first term has had <strong>zero</strong> differences added to it.
+            Therefore the nth term has had d added exactly <strong>n − 1</strong> times.
+        </p>
+
+        <h3>Worked Example 1 — Basic</h3>
 
         <p>
             Find the nth term of:
@@ -846,89 +1060,304 @@
             5, 9, 13, 17, ...
         </div>
 
+        <div class="formula">
+            a = 5
+            <br>
+            d = 4
+        </div>
+
+        <div class="formula">
+            uₙ = 5 + (n − 1)(4)
+            <br>
+            = 5 + 4n − 4
+            <br>
+            = <strong>4n + 1</strong>
+        </div>
+
+        <h3>Worked Example 2 — Finding a Specific Term</h3>
+
         <p>
-            First term:
+            Find the 40th term of the arithmetic sequence:
         </p>
 
         <div class="formula">
-            a = 5
+            11, 8, 5, 2, ...
+        </div>
+
+        <div class="formula">
+            a = 11
+            <br>
+            d = −3
+        </div>
+
+        <div class="formula">
+            u₄₀ = 11 + 39(−3)
+            <br>
+            = 11 − 117
+            <br>
+            = <strong>−106</strong>
+        </div>
+
+        <h3>Worked Example 3 — Finding a and d from Two Terms</h3>
+
+        <p>
+            An arithmetic sequence has:
+        </p>
+
+        <div class="formula">
+            u₅ = 17
+            <br>
+            u₁₂ = 45
         </div>
 
         <p>
-            Common difference:
+            Since:
         </p>
 
         <div class="formula">
+            u₅ = a + 4d = 17
+            <br>
+            u₁₂ = a + 11d = 45
+        </div>
+
+        <p>
+            Subtract the equations:
+        </p>
+
+        <div class="formula">
+            7d = 28
+            <br>
             d = 4
         </div>
 
         <p>
-            Therefore:
+            Substitute into the first equation:
         </p>
 
         <div class="formula">
-            uₙ = 5 + (n − 1)4
+            a + 16 = 17
             <br>
-            = <strong>4n + 1</strong>
+            a = 1
+        </div>
+
+        <div class="formula">
+            <strong>uₙ = 1 + 4(n − 1) = 4n − 3</strong>
+        </div>
+
+        <div class="challenge">
+            <strong>Higher-level insight:</strong>
+            If two terms of an arithmetic sequence are known, their difference divided
+            by the difference in their term numbers gives d.
+        </div>
+
+        <div class="formula">
+            d =
+            (uₘ − uₙ) / (m − n)
         </div>
 
     </div>
 
 
-    <!-- =====================================================
-         3. GEOMETRIC SEQUENCES
-         ===================================================== -->
+    <!-- =========================================================
+         4. ARITHMETIC SEQUENCE REASONING
+         ========================================================= -->
 
     <div class="topic-card">
 
-        <h2>3. Geometric Sequences</h2>
+        <h2>4. Arithmetic Sequence Reasoning</h2>
+
+        <h3>Finding the Position of a Term</h3>
 
         <p>
-            A geometric sequence has a constant ratio between
-            consecutive terms.
+            Suppose:
+        </p>
+
+        <div class="formula">
+            uₙ = 7 + 3(n − 1)
+        </div>
+
+        <p>
+            Which term is 64?
+        </p>
+
+        <div class="formula">
+            64 = 7 + 3(n − 1)
+        </div>
+
+        <div class="formula">
+            64 = 3n + 4
+            <br>
+            3n = 60
+            <br>
+            n = <strong>20</strong>
+        </div>
+
+        <h3>Does a Number Occur in the Sequence?</h3>
+
+        <p>
+            The algebra may produce a non-integer value. If the resulting n is not a
+            positive integer, the number is not a term of the sequence.
+        </p>
+
+        <div class="formula">
+            uₙ = 5 + 4(n − 1) = 4n + 1
+        </div>
+
+        <p>
+            Test whether 100 occurs:
+        </p>
+
+        <div class="formula">
+            100 = 4n + 1
+            <br>
+            4n = 99
+            <br>
+            n = 24.75
+        </div>
+
+        <p>
+            Since 24.75 is not an integer, <strong>100 is not a term</strong>.
+        </p>
+
+        <h3>Arithmetic Mean</h3>
+
+        <p>
+            If b lies exactly halfway between a and c, then:
+        </p>
+
+        <div class="formula">
+            b = (a + c) / 2
+        </div>
+
+        <p>
+            In an arithmetic progression:
+        </p>
+
+        <div class="formula">
+            2b = a + c
+        </div>
+
+        <p>
+            This is often useful when a missing term must be inserted between known terms.
+        </p>
+
+    </div>
+
+
+    <!-- =========================================================
+         5. GEOMETRIC SEQUENCES
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>5. Geometric Sequences</h2>
+
+        <p>
+            A <strong>geometric sequence</strong> has a constant ratio between consecutive
+            non-zero terms. The common ratio is written as <strong>r</strong>.
         </p>
 
         <div class="formula">
             a, ar, ar², ar³, ...
         </div>
 
-        <p>
-            The nth term is:
-        </p>
-
         <div class="formula">
             uₙ = arⁿ⁻¹
         </div>
 
         <p>
-            where <strong>a</strong> is the first term and
-            <strong>r</strong> is the common ratio.
+            Here:
         </p>
 
-        <h3>Worked Example</h3>
+        <ul>
+            <li><strong>a</strong> = first term</li>
+            <li><strong>r</strong> = common ratio</li>
+            <li><strong>n</strong> = term number</li>
+        </ul>
 
-        <p>
-            Find the nth term of:
-        </p>
+        <h3>Worked Example 1</h3>
 
         <div class="formula">
             3, 6, 12, 24, ...
         </div>
 
-        <p>
-            First term:
-        </p>
-
         <div class="formula">
             a = 3
+            <br>
+            r = 2
+        </div>
+
+        <div class="formula">
+            <strong>uₙ = 3 × 2ⁿ⁻¹</strong>
+        </div>
+
+        <h3>Worked Example 2 — Fractional Ratio</h3>
+
+        <div class="formula">
+            81, 27, 9, 3, ...
+        </div>
+
+        <div class="formula">
+            r = 27/81 = 1/3
+        </div>
+
+        <div class="formula">
+            <strong>uₙ = 81(1/3)ⁿ⁻¹</strong>
+        </div>
+
+        <h3>Worked Example 3 — Negative Ratio</h3>
+
+        <div class="formula">
+            5, −10, 20, −40, ...
+        </div>
+
+        <div class="formula">
+            r = −2
+        </div>
+
+        <div class="formula">
+            <strong>uₙ = 5(−2)ⁿ⁻¹</strong>
         </div>
 
         <p>
-            Common ratio:
+            The negative ratio causes the signs to alternate.
+        </p>
+
+        <div class="note">
+            <strong>Pattern recognition:</strong>
+            A geometric sequence does not have to increase. It can decrease, alternate,
+            or approach zero.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         6. GEOMETRIC SEQUENCE REASONING
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>6. Geometric Sequence Reasoning</h2>
+
+        <h3>Finding r from Two Terms</h3>
+
+        <p>
+            Suppose:
         </p>
 
         <div class="formula">
-            r = 2
+            u₃ = ar²
+            <br>
+            u₇ = ar⁶
+        </div>
+
+        <p>
+            Dividing eliminates a:
+        </p>
+
+        <div class="formula">
+            u₇ / u₃ = r⁴
         </div>
 
         <p>
@@ -936,31 +1365,192 @@
         </p>
 
         <div class="formula">
-            <strong>uₙ = 3 × 2ⁿ⁻¹</strong>
+            r = fourth root of (u₇ / u₃)
+        </div>
+
+        <div class="warning">
+            <strong>Important:</strong>
+            When taking an even root, consider whether both positive and negative values
+            of r satisfy the original equation. Do not automatically discard the negative root.
+        </div>
+
+        <h3>Worked Example</h3>
+
+        <p>
+            A geometric sequence has:
+        </p>
+
+        <div class="formula">
+            u₂ = 12
+            <br>
+            u₅ = 96
+        </div>
+
+        <p>
+            Since:
+        </p>
+
+        <div class="formula">
+            u₅ / u₂ = r³
+        </div>
+
+        <div class="formula">
+            96 / 12 = r³
+            <br>
+            8 = r³
+            <br>
+            r = 2
+        </div>
+
+        <p>
+            Now:
+        </p>
+
+        <div class="formula">
+            u₂ = ar = 12
+            <br>
+            2a = 12
+            <br>
+            a = 6
+        </div>
+
+        <div class="formula">
+            <strong>uₙ = 6 × 2ⁿ⁻¹</strong>
+        </div>
+
+        <h3>Geometric Mean</h3>
+
+        <p>
+            If b is the geometric mean of positive numbers a and c, then:
+        </p>
+
+        <div class="formula">
+            b² = ac
+        </div>
+
+        <p>
+            Hence:
+        </p>
+
+        <div class="formula">
+            b = √(ac)
+        </div>
+
+        <p>
+            For example, the positive geometric mean of 4 and 25 is:
+        </p>
+
+        <div class="formula">
+            √(4 × 25) = √100 = <strong>10</strong>
         </div>
 
     </div>
 
 
-    <!-- =====================================================
-         4. SIGMA NOTATION
-         ===================================================== -->
+    <!-- =========================================================
+         7. RECURRENCE RELATIONS
+         ========================================================= -->
 
     <div class="topic-card">
 
-        <h2>4. Sigma Notation</h2>
+        <h2>7. Recurrence Relations</h2>
 
         <p>
-            Sigma notation provides a compact way of writing the sum
-            of several terms.
+            A recurrence relation defines a term using one or more earlier terms.
         </p>
 
         <div class="formula">
-            Σ
+            u₁ = 4
+            <br>
+            uₙ₊₁ = uₙ + 5
         </div>
 
         <p>
-            For example:
+            Starting from u₁:
+        </p>
+
+        <div class="formula">
+            u₁ = 4
+            <br>
+            u₂ = 9
+            <br>
+            u₃ = 14
+            <br>
+            u₄ = 19
+        </div>
+
+        <h3>Arithmetic Recurrence</h3>
+
+        <div class="formula">
+            u₁ = a
+            <br>
+            uₙ₊₁ = uₙ + d
+        </div>
+
+        <p>
+            This recurrence generates the arithmetic sequence:
+        </p>
+
+        <div class="formula">
+            uₙ = a + (n − 1)d
+        </div>
+
+        <h3>Geometric Recurrence</h3>
+
+        <div class="formula">
+            u₁ = a
+            <br>
+            uₙ₊₁ = ruₙ
+        </div>
+
+        <p>
+            This generates:
+        </p>
+
+        <div class="formula">
+            uₙ = arⁿ⁻¹
+        </div>
+
+        <h3>Iterating a Recurrence</h3>
+
+        <p>
+            Consider:
+        </p>
+
+        <div class="formula">
+            u₁ = 2
+            <br>
+            uₙ₊₁ = 3uₙ − 1
+        </div>
+
+        <div class="formula">
+            u₂ = 3(2) − 1 = 5
+            <br>
+            u₃ = 3(5) − 1 = 14
+            <br>
+            u₄ = 3(14) − 1 = 41
+        </div>
+
+        <div class="note">
+            <strong>Key idea:</strong>
+            A recurrence is sequential. You normally cannot jump directly to a distant term
+            unless you have transformed or solved the recurrence.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         8. SIGMA NOTATION
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>8. Sigma Notation</h2>
+
+        <p>
+            The Greek capital letter sigma, <strong>Σ</strong>, represents summation.
+            It provides a compact way of writing many terms.
         </p>
 
         <div class="formula">
@@ -975,19 +1565,159 @@
             1 + 2 + 3 + 4 + 5
         </div>
 
+        <h3>Understanding the Components</h3>
+
+        <div class="formula">
+            Σ⁸ₖ₌₃ (2k + 1)
+        </div>
+
+        <ul>
+            <li><strong>k</strong> is the index.</li>
+            <li><strong>3</strong> is the starting value.</li>
+            <li><strong>8</strong> is the final value.</li>
+            <li><strong>2k + 1</strong> is the term being added.</li>
+        </ul>
+
+        <p>
+            Therefore:
+        </p>
+
+        <div class="formula">
+            (2·3 + 1) + (2·4 + 1) + ... + (2·8 + 1)
+        </div>
+
+        <h3>Changing the Index Letter</h3>
+
+        <p>
+            The index letter is a dummy variable. For example:
+        </p>
+
+        <div class="formula">
+            Σ⁵ₙ₌₁ n² = Σ⁵ₖ₌₁ k²
+        </div>
+
+        <p>
+            The value does not change because only the name of the index has changed.
+        </p>
+
+        <h3>Splitting a Sigma</h3>
+
+        <div class="formula">
+            Σ(aₙ + bₙ) = Σaₙ + Σbₙ
+        </div>
+
+        <p>
+            Constants can also be taken outside:
+        </p>
+
+        <div class="formula">
+            Σ(caₙ) = cΣaₙ
+        </div>
+
     </div>
 
 
-    <!-- =====================================================
-         5. ARITHMETIC SERIES
-         ===================================================== -->
+    <!-- =========================================================
+         9. STANDARD SUMS
+         ========================================================= -->
 
     <div class="topic-card">
 
-        <h2>5. Arithmetic Series</h2>
+        <h2>9. Standard Summation Results</h2>
 
         <p>
-            The sum of the first n terms of an arithmetic sequence is:
+            These results are fundamental when evaluating sums involving powers of n.
+        </p>
+
+        <div class="formula">
+            Σₙ₌₁ᴺ 1 = N
+        </div>
+
+        <div class="formula">
+            Σₙ₌₁ᴺ n = N(N + 1)/2
+        </div>
+
+        <div class="formula">
+            Σₙ₌₁ᴺ n² = N(N + 1)(2N + 1)/6
+        </div>
+
+        <div class="formula">
+            Σₙ₌₁ᴺ n³ = [N(N + 1)/2]²
+        </div>
+
+        <h3>Worked Example</h3>
+
+        <p>
+            Evaluate:
+        </p>
+
+        <div class="formula">
+            Σₙ₌₁²⁰ (3n + 5)
+        </div>
+
+        <p>
+            Split the sum:
+        </p>
+
+        <div class="formula">
+            3Σₙ₌₁²⁰ n + 5Σₙ₌₁²⁰ 1
+        </div>
+
+        <div class="formula">
+            = 3[20(21)/2] + 5(20)
+            <br>
+            = 3(210) + 100
+            <br>
+            = <strong>730</strong>
+        </div>
+
+        <h3>Worked Example — Quadratic Expression</h3>
+
+        <div class="formula">
+            Σₙ₌₁¹⁰ (n² + 2n − 3)
+        </div>
+
+        <div class="formula">
+            Σn² + 2Σn − 3Σ1
+        </div>
+
+        <div class="formula">
+            = [10·11·21/6] + 2[10·11/2] − 3(10)
+        </div>
+
+        <div class="formula">
+            = 385 + 110 − 30
+            <br>
+            = <strong>465</strong>
+        </div>
+
+        <div class="method">
+            <strong>Exam method:</strong>
+            If the summand is a polynomial in n, expand or split it into standard sums
+            before substituting numbers.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         10. ARITHMETIC SERIES
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>10. Arithmetic Series</h2>
+
+        <p>
+            An arithmetic series is the sum of the terms of an arithmetic sequence.
+        </p>
+
+        <div class="formula">
+            a + (a+d) + (a+2d) + ... + [a+(n−1)d]
+        </div>
+
+        <p>
+            The sum of the first n terms is:
         </p>
 
         <div class="formula">
@@ -995,60 +1725,172 @@
         </div>
 
         <p>
-            An alternative form is:
+            If the final term is l:
         </p>
 
         <div class="formula">
-            Sₙ = n/2 (a + l)
+            Sₙ = n/2(a + l)
+        </div>
+
+        <h3>Why Does the Formula Work?</h3>
+
+        <p>
+            Write the series forwards:
+        </p>
+
+        <div class="formula">
+            S = a + (a+d) + (a+2d) + ... + l
         </div>
 
         <p>
-            where <strong>l</strong> is the final term.
+            Reverse it:
         </p>
+
+        <div class="formula">
+            S = l + (l−d) + (l−2d) + ... + a
+        </div>
+
+        <p>
+            Adding corresponding terms gives the same value every time:
+        </p>
+
+        <div class="formula">
+            2S = n(a+l)
+        </div>
+
+        <p>
+            Hence:
+        </p>
+
+        <div class="formula">
+            <strong>S = n/2(a+l)</strong>
+        </div>
 
         <h3>Worked Example</h3>
 
         <p>
-            Find the sum of the first 10 terms of:
+            Find the sum of the first 30 terms of:
         </p>
 
         <div class="formula">
-            2, 5, 8, 11, ...
-        </div>
-
-        <p>
-            Here:
-        </p>
-
-        <div class="formula">
-            a = 2
-            <br>
-            d = 3
-            <br>
-            n = 10
+            7, 11, 15, 19, ...
         </div>
 
         <div class="formula">
-            S₁₀ = 10/2 [2(2) + 9(3)]
+            a = 7
             <br>
-            = 5(4 + 27)
+            d = 4
             <br>
-            = <strong>155</strong>
+            n = 30
+        </div>
+
+        <div class="formula">
+            S₃₀ = 30/2 [2(7) + 29(4)]
+            <br>
+            = 15(14 + 116)
+            <br>
+            = 15(130)
+            <br>
+            = <strong>1950</strong>
         </div>
 
     </div>
 
 
-    <!-- =====================================================
-         6. GEOMETRIC SERIES
-         ===================================================== -->
+    <!-- =========================================================
+         11. ARITHMETIC SUM PROBLEMS
+         ========================================================= -->
 
     <div class="topic-card">
 
-        <h2>6. Geometric Series</h2>
+        <h2>11. Arithmetic Series — Finding Unknowns</h2>
+
+        <h3>Finding n from a Sum</h3>
 
         <p>
-            The sum of the first n terms of a geometric series is:
+            Suppose:
+        </p>
+
+        <div class="formula">
+            a = 3, d = 4, Sₙ = 465
+        </div>
+
+        <p>
+            Use:
+        </p>
+
+        <div class="formula">
+            465 = n/2 [6 + 4(n−1)]
+        </div>
+
+        <div class="formula">
+            465 = n/2(4n + 2)
+            <br>
+            465 = n(2n + 1)
+        </div>
+
+        <div class="formula">
+            2n² + n − 465 = 0
+        </div>
+
+        <p>
+            Factor:
+        </p>
+
+        <div class="formula">
+            (2n + 31)(n − 15) = 0
+        </div>
+
+        <div class="formula">
+            n = 15
+            <br>
+            or
+            <br>
+            n = −31/2
+        </div>
+
+        <p>
+            Since n represents the number of terms:
+        </p>
+
+        <div class="formula">
+            <strong>n = 15</strong>
+        </div>
+
+        <h3>Finding the First Term and Difference</h3>
+
+        <p>
+            If enough independent conditions are given, form simultaneous equations.
+            Do not assume that a sequence is determined from one condition alone.
+        </p>
+
+        <div class="challenge">
+            <strong>Problem-solving principle:</strong>
+            Count unknowns and count independent equations. This tells you whether the
+            information is sufficient to determine the sequence uniquely.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         12. GEOMETRIC SERIES
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>12. Geometric Series</h2>
+
+        <p>
+            A geometric series is the sum of terms of a geometric sequence.
+        </p>
+
+        <div class="formula">
+            a + ar + ar² + ... + arⁿ⁻¹
+        </div>
+
+        <p>
+            For r ≠ 1:
         </p>
 
         <div class="formula">
@@ -1056,17 +1898,55 @@
         </div>
 
         <p>
-            provided <strong>r ≠ 1</strong>.
-        </p>
-
-        <h3>Worked Example</h3>
-
-        <p>
-            Find the sum of the first 5 terms of:
+            An equivalent form is:
         </p>
 
         <div class="formula">
-            2 + 6 + 18 + 54 + ...
+            Sₙ = a(rⁿ − 1)/(r − 1)
+        </div>
+
+        <p>
+            Both formulas give the same result.
+        </p>
+
+        <h3>Deriving the Formula</h3>
+
+        <p>
+            Start with:
+        </p>
+
+        <div class="formula">
+            Sₙ = a + ar + ar² + ... + arⁿ⁻¹
+        </div>
+
+        <p>
+            Multiply by r:
+        </p>
+
+        <div class="formula">
+            rSₙ = ar + ar² + ... + arⁿ
+        </div>
+
+        <p>
+            Subtract:
+        </p>
+
+        <div class="formula">
+            Sₙ − rSₙ = a − arⁿ
+        </div>
+
+        <div class="formula">
+            Sₙ(1−r) = a(1−rⁿ)
+        </div>
+
+        <div class="formula">
+            <strong>Sₙ = a(1−rⁿ)/(1−r)</strong>
+        </div>
+
+        <h3>Worked Example</h3>
+
+        <div class="formula">
+            2 + 6 + 18 + 54 + 162
         </div>
 
         <div class="formula">
@@ -1078,7 +1958,9 @@
         </div>
 
         <div class="formula">
-            S₅ = 2(1 − 3⁵)/(1 − 3)
+            S₅ = 2(1−3⁵)/(1−3)
+            <br>
+            = 2(−242)/(−2)
             <br>
             = <strong>242</strong>
         </div>
@@ -1086,195 +1968,2136 @@
     </div>
 
 
-    <!-- =====================================================
-         7. PRACTICE QUESTIONS
-         ===================================================== -->
+    <!-- =========================================================
+         13. NEGATIVE AND FRACTIONAL GEOMETRIC SERIES
+         ========================================================= -->
 
     <div class="topic-card">
 
-        <h2>🧠 Practice Questions</h2>
+        <h2>13. Geometric Series with Negative or Fractional Ratios</h2>
+
+        <h3>Negative Ratio</h3>
+
+        <div class="formula">
+            10 − 5 + 2.5 − 1.25 + ...
+        </div>
+
+        <div class="formula">
+            a = 10
+            <br>
+            r = −1/2
+        </div>
 
         <p>
-            Try each question before opening the solution.
+            The terms alternate in sign because r is negative.
         </p>
 
-
-        <h3>Question 1 — Arithmetic Sequence</h3>
+        <h3>Fractional Ratio Greater Than 1 in Magnitude</h3>
 
         <p>
-            Find the nth term of:
+            If:
         </p>
 
         <div class="formula">
-            7, 11, 15, 19, ...
+            |r| &gt; 1
         </div>
 
+        <p>
+            then the magnitude of the terms grows as n increases.
+        </p>
+
+        <h3>Fractional Ratio Less Than 1 in Magnitude</h3>
+
+        <p>
+            If:
+        </p>
+
+        <div class="formula">
+            |r| &lt; 1
+        </div>
+
+        <p>
+            then the terms become progressively smaller in magnitude.
+            This condition becomes especially important when considering an infinite
+            geometric series.
+        </p>
+
+        <div class="warning">
+            <strong>Do not confuse:</strong>
+            a finite geometric sum can be calculated for any real r, including |r| ≥ 1.
+            The condition |r| &lt; 1 is specifically required for convergence of an
+            infinite geometric series.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         14. INFINITE GEOMETRIC SERIES
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>14. Infinite Geometric Series</h2>
+
+        <p>
+            Consider:
+        </p>
+
+        <div class="formula">
+            a + ar + ar² + ar³ + ...
+        </div>
+
+        <p>
+            If the magnitude of r is less than 1, the terms approach zero and the
+            partial sums approach a finite limit.
+        </p>
+
+        <div class="formula">
+            |r| &lt; 1
+        </div>
+
+        <p>
+            In this case:
+        </p>
+
+        <div class="formula">
+            S∞ = a/(1−r)
+        </div>
+
+        <h3>Why Does This Work?</h3>
+
+        <p>
+            Start with the finite formula:
+        </p>
+
+        <div class="formula">
+            Sₙ = a(1−rⁿ)/(1−r)
+        </div>
+
+        <p>
+            If |r| &lt; 1, then:
+        </p>
+
+        <div class="formula">
+            rⁿ → 0
+            as n → ∞
+        </div>
+
+        <p>
+            Therefore:
+        </p>
+
+        <div class="formula">
+            S∞ = a(1−0)/(1−r)
+            <br>
+            = <strong>a/(1−r)</strong>
+        </div>
+
+        <h3>Worked Example</h3>
+
+        <div class="formula">
+            12 + 6 + 3 + 1.5 + ...
+        </div>
+
+        <div class="formula">
+            a = 12
+            <br>
+            r = 1/2
+        </div>
+
+        <div class="formula">
+            S∞ = 12/(1−1/2)
+            <br>
+            = 12/(1/2)
+            <br>
+            = <strong>24</strong>
+        </div>
+
+        <h3>When Does an Infinite Geometric Series Not Converge?</h3>
+
+        <p>
+            If:
+        </p>
+
+        <div class="formula">
+            |r| ≥ 1
+        </div>
+
+        <p>
+            the infinite geometric series does not have a finite sum.
+        </p>
+
+        <div class="table-wrap">
+            <table>
+
+                <tr>
+                    <th>r</th>
+                    <th>Behaviour</th>
+                    <th>Finite S∞?</th>
+                </tr>
+
+                <tr>
+                    <td>0 &lt; r &lt; 1</td>
+                    <td>Positive terms shrink to zero.</td>
+                    <td>Yes</td>
+                </tr>
+
+                <tr>
+                    <td>−1 &lt; r &lt; 0</td>
+                    <td>Signs alternate and magnitudes shrink.</td>
+                    <td>Yes</td>
+                </tr>
+
+                <tr>
+                    <td>r = 1</td>
+                    <td>Terms remain constant.</td>
+                    <td>No</td>
+                </tr>
+
+                <tr>
+                    <td>r = −1</td>
+                    <td>Terms alternate without shrinking.</td>
+                    <td>No</td>
+                </tr>
+
+                <tr>
+                    <td>|r| &gt; 1</td>
+                    <td>Magnitudes grow.</td>
+                    <td>No</td>
+                </tr>
+
+            </table>
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         15. FINDING UNKNOWN R IN INFINITE SERIES
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>15. Infinite Series — Finding an Unknown Ratio</h2>
+
+        <p>
+            Suppose an infinite geometric series has first term 15 and sum 20.
+        </p>
+
+        <div class="formula">
+            S∞ = a/(1−r)
+        </div>
+
+        <div class="formula">
+            20 = 15/(1−r)
+        </div>
+
+        <div class="formula">
+            20(1−r) = 15
+            <br>
+            20 − 20r = 15
+            <br>
+            20r = 5
+            <br>
+            <strong>r = 1/4</strong>
+        </div>
+
+        <p>
+            The result satisfies |r| &lt; 1, so the infinite sum is valid.
+        </p>
+
+        <div class="method">
+            <strong>Always perform the convergence check.</strong>
+            Solving algebraically for r is not enough. An infinite geometric sum requires
+            |r| &lt; 1.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         16. SUM TO INFINITY APPLICATIONS
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>16. Applications of Geometric Series</h2>
+
+        <h3>Repeated Percentage Change</h3>
+
+        <p>
+            If a quantity is multiplied by a fixed factor each period, the resulting
+            values form a geometric sequence.
+        </p>
+
+        <p>
+            For example, a machine loses 20% of its value each year. Each year it retains:
+        </p>
+
+        <div class="formula">
+            80% = 0.8
+        </div>
+
+        <p>
+            If its initial value is V:
+        </p>
+
+        <div class="formula">
+            V, 0.8V, 0.8²V, 0.8³V, ...
+        </div>
+
+        <p>
+            This is geometric with:
+        </p>
+
+        <div class="formula">
+            a = V
+            <br>
+            r = 0.8
+        </div>
+
+        <p>
+            If an infinite total of such quantities is meaningful in the model:
+        </p>
+
+        <div class="formula">
+            S∞ = V/(1−0.8) = 5V
+        </div>
+
+        <div class="warning">
+            <strong>Model carefully:</strong>
+            Percentage decrease must be converted into a multiplier.
+            A 20% decrease means multiply by 0.8, not subtract 20.
+        </div>
+
+        <h3>Repeated Bounces</h3>
+
+        <p>
+            Suppose a ball is dropped from height H and rebounds to 60% of its previous
+            height each time.
+        </p>
+
+        <div class="formula">
+            H, 0.6H, 0.6²H, 0.6³H, ...
+        </div>
+
+        <p>
+            The bounce heights form a geometric sequence. Questions may ask for the total
+            upward distance, downward distance, or total distance travelled.
+        </p>
+
+    </div>
+
+
+    <!-- =========================================================
+         17. FINITE VS INFINITE
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>17. Finite vs Infinite Series</h2>
+
+        <div class="table-wrap">
+            <table>
+
+                <tr>
+                    <th>Feature</th>
+                    <th>Finite Geometric Series</th>
+                    <th>Infinite Geometric Series</th>
+                </tr>
+
+                <tr>
+                    <td>Number of terms</td>
+                    <td>n terms</td>
+                    <td>Infinitely many</td>
+                </tr>
+
+                <tr>
+                    <td>Formula</td>
+                    <td>Sₙ = a(1−rⁿ)/(1−r)</td>
+                    <td>S∞ = a/(1−r)</td>
+                </tr>
+
+                <tr>
+                    <td>Condition</td>
+                    <td>r ≠ 1 for the displayed formula</td>
+                    <td>|r| &lt; 1</td>
+                </tr>
+
+                <tr>
+                    <td>Can |r| ≥ 1?</td>
+                    <td>Yes</td>
+                    <td>No finite sum to infinity</td>
+                </tr>
+
+            </table>
+        </div>
+
+        <div class="note">
+            <strong>Exam trigger:</strong>
+            The words <em>“sum to infinity”</em> should immediately make you think
+            about the condition <strong>|r| &lt; 1</strong>.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         18. SIGMA + ARITHMETIC SERIES
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>18. Connecting Sigma Notation to Series</h2>
+
+        <p>
+            Sigma notation can describe an arithmetic series directly.
+        </p>
+
+        <div class="formula">
+            Σⁿₖ₌₁ [a + (k−1)d]
+        </div>
+
+        <p>
+            Expanding gives:
+        </p>
+
+        <div class="formula">
+            a + (a+d) + (a+2d) + ... + [a+(n−1)d]
+        </div>
+
+        <p>
+            Therefore:
+        </p>
+
+        <div class="formula">
+            Σⁿₖ₌₁ [a + (k−1)d]
+            =
+            n/2[2a+(n−1)d]
+        </div>
+
+        <h3>Worked Example</h3>
+
+        <div class="formula">
+            Σ¹⁵ₖ₌₁ (4k − 1)
+        </div>
+
+        <p>
+            The first term is:
+        </p>
+
+        <div class="formula">
+            4(1) − 1 = 3
+        </div>
+
+        <p>
+            The common difference is 4.
+        </p>
+
+        <div class="formula">
+            S₁₅ = 15/2[2(3)+14(4)]
+            <br>
+            = 15/2(62)
+            <br>
+            = <strong>465</strong>
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         19. SIGMA MANIPULATION
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>19. Manipulating Summations</h2>
+
+        <p>
+            Many difficult-looking sums become straightforward after separating constants
+            and powers.
+        </p>
+
+        <h3>Example</h3>
+
+        <div class="formula">
+            Σₖ₌₁²⁰ (5k² − 3k + 7)
+        </div>
+
+        <p>
+            Split:
+        </p>
+
+        <div class="formula">
+            5Σk² − 3Σk + 7Σ1
+        </div>
+
+        <p>
+            Use the standard formulas:
+        </p>
+
+        <div class="formula">
+            5[20·21·41/6]
+            − 3[20·21/2]
+            + 7(20)
+        </div>
+
+        <div class="formula">
+            = 5(2870)
+            − 630
+            + 140
+            <br>
+            = <strong>13860</strong>
+        </div>
+
+        <h3>Changing the Limits</h3>
+
+        <p>
+            Be careful when the lower limit is not 1.
+        </p>
+
+        <div class="formula">
+            Σ¹⁰ₖ₌₃ k
+            =
+            3 + 4 + 5 + ... + 10
+        </div>
+
+        <p>
+            One way to evaluate it is:
+        </p>
+
+        <div class="formula">
+            Σ¹⁰ₖ₌₁ k − Σ²ₖ₌₁ k
+            <br>
+            = 55 − 3
+            <br>
+            = <strong>52</strong>
+        </div>
+
+        <div class="warning">
+            <strong>Common error:</strong>
+            Σ¹⁰ₖ₌₃ k is not the same as Σ¹⁰ₖ₌₁ k.
+            Always respect the lower limit.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         20. SEQUENCE FROM A FORMULA
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>20. Working Backwards from an nth-Term Formula</h2>
+
+        <p>
+            Sometimes a sequence is given by a formula rather than its first few terms.
+        </p>
+
+        <div class="formula">
+            uₙ = n² + 2n
+        </div>
+
+        <p>
+            The first four terms are:
+        </p>
+
+        <div class="formula">
+            u₁ = 1² + 2(1) = 3
+            <br>
+            u₂ = 2² + 2(2) = 8
+            <br>
+            u₃ = 3² + 2(3) = 15
+            <br>
+            u₄ = 4² + 2(4) = 24
+        </div>
+
+        <div class="formula">
+            <strong>3, 8, 15, 24, ...</strong>
+        </div>
+
+        <p>
+            Notice that the differences are:
+        </p>
+
+        <div class="formula">
+            5, 7, 9, ...
+        </div>
+
+        <p>
+            The first differences are not constant, so this is not arithmetic.
+        </p>
+
+        <h3>Second Differences</h3>
+
+        <p>
+            For a quadratic nth-term formula:
+        </p>
+
+        <div class="formula">
+            uₙ = an² + bn + c
+        </div>
+
+        <p>
+            the second differences are constant.
+        </p>
+
+        <div class="formula">
+            3, 8, 15, 24
+            <br><br>
+            First differences:
+            5, 7, 9
+            <br>
+            Second differences:
+            2, 2
+        </div>
+
+        <div class="extension">
+            <strong>Extension / deeper pattern recognition:</strong>
+            Constant second differences indicate a quadratic sequence. This provides a
+            powerful method for reconstructing a quadratic nth-term formula from data.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         21. QUADRATIC SEQUENCES
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>21. Quadratic Sequences</h2>
+
+        <p>
+            Suppose:
+        </p>
+
+        <div class="formula">
+            4, 9, 16, 25, 36, ...
+        </div>
+
+        <p>
+            The first differences are:
+        </p>
+
+        <div class="formula">
+            5, 7, 9, 11
+        </div>
+
+        <p>
+            The second differences are:
+        </p>
+
+        <div class="formula">
+            2, 2, 2
+        </div>
+
+        <p>
+            Therefore try:
+        </p>
+
+        <div class="formula">
+            uₙ = An² + Bn + C
+        </div>
+
+        <p>
+            Since the second difference is 2A:
+        </p>
+
+        <div class="formula">
+            2A = 2
+            <br>
+            A = 1
+        </div>
+
+        <p>
+            Therefore:
+        </p>
+
+        <div class="formula">
+            uₙ = n² + Bn + C
+        </div>
+
+        <p>
+            Using n = 1:
+        </p>
+
+        <div class="formula">
+            1 + B + C = 4
+            <br>
+            B + C = 3
+        </div>
+
+        <p>
+            Using n = 2:
+        </p>
+
+        <div class="formula">
+            4 + 2B + C = 9
+            <br>
+            2B + C = 5
+        </div>
+
+        <p>
+            Subtract:
+        </p>
+
+        <div class="formula">
+            B = 2
+            <br>
+            C = 1
+        </div>
+
+        <div class="formula">
+            <strong>uₙ = n² + 2n + 1 = (n+1)²</strong>
+        </div>
+
+        <div class="method">
+            <strong>Structural insight:</strong>
+            Difference tables are not just a calculation trick. They reveal the degree
+            of the polynomial behind the sequence.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         22. FINDING UNKNOWN TERMS
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>22. Finding Unknown Terms from Conditions</h2>
+
+        <h3>Arithmetic Example</h3>
+
+        <p>
+            Three consecutive terms of an arithmetic sequence are:
+        </p>
+
+        <div class="formula">
+            x − 3, 2x + 1, 5x + 5
+        </div>
+
+        <p>
+            For consecutive arithmetic terms:
+        </p>
+
+        <div class="formula">
+            2(middle) = first + third
+        </div>
+
+        <div class="formula">
+            2(2x+1) = (x−3)+(5x+5)
+        </div>
+
+        <div class="formula">
+            4x + 2 = 6x + 2
+            <br>
+            x = <strong>0</strong>
+        </div>
+
+        <p>
+            The terms are therefore:
+        </p>
+
+        <div class="formula">
+            −3, 1, 5
+        </div>
+
+        <h3>Geometric Example</h3>
+
+        <p>
+            Three consecutive positive geometric terms are:
+        </p>
+
+        <div class="formula">
+            x, 6, 36/x
+        </div>
+
+        <p>
+            The middle term squared equals the product of the outer terms:
+        </p>
+
+        <div class="formula">
+            6² = x(36/x)
+        </div>
+
+        <div class="formula">
+            36 = 36
+        </div>
+
+        <p>
+            This condition is automatically satisfied for every non-zero x.
+            Therefore the information given does <strong>not</strong> uniquely determine x.
+        </p>
+
+        <div class="warning">
+            <strong>Important reasoning lesson:</strong>
+            An equation being true does not mean that it determines the unknown.
+            Always check whether the conditions provide enough independent information.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         23. MIXED SEQUENCE CONDITIONS
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>23. Mixed Conditions and Simultaneous Equations</h2>
+
+        <p>
+            More challenging questions may combine a term condition with a sum condition.
+        </p>
+
+        <h3>Worked Example</h3>
+
+        <p>
+            An arithmetic sequence has:
+        </p>
+
+        <div class="formula">
+            u₄ = 11
+            <br>
+            S₈ = 76
+        </div>
+
+        <p>
+            From u₄:
+        </p>
+
+        <div class="formula">
+            a + 3d = 11
+        </div>
+
+        <p>
+            From the sum:
+        </p>
+
+        <div class="formula">
+            76 = 8/2 [2a + 7d]
+        </div>
+
+        <div class="formula">
+            76 = 4(2a+7d)
+            <br>
+            19 = 2a + 7d
+        </div>
+
+        <p>
+            From:
+        </p>
+
+        <div class="formula">
+            a + 3d = 11
+        </div>
+
+        <p>
+            multiply by 2:
+        </p>
+
+        <div class="formula">
+            2a + 6d = 22
+        </div>
+
+        <p>
+            Subtract:
+        </p>
+
+        <div class="formula">
+            d = −3
+        </div>
+
+        <p>
+            Therefore:
+        </p>
+
+        <div class="formula">
+            a − 9 = 11
+            <br>
+            a = 20
+        </div>
+
+        <div class="formula">
+            <strong>uₙ = 20 − 3(n−1)</strong>
+        </div>
+
+        <div class="challenge">
+            <strong>Challenge habit:</strong>
+            Translate every piece of information into an equation before manipulating
+            anything. This prevents hidden assumptions.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         24. SUMS AND TERM RELATIONSHIPS
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>24. Relationships Between Terms and Sums</h2>
+
+        <p>
+            A useful identity for any sequence is:
+        </p>
+
+        <div class="formula">
+            Sₙ = u₁ + u₂ + ... + uₙ
+        </div>
+
+        <p>
+            Therefore:
+        </p>
+
+        <div class="formula">
+            uₙ = Sₙ − Sₙ₋₁
+        </div>
+
+        <p>
+            This means that if a question gives a formula for the sum of the first n terms,
+            you can recover the nth term by subtracting consecutive sums.
+        </p>
+
+        <h3>Worked Example</h3>
+
+        <p>
+            Suppose:
+        </p>
+
+        <div class="formula">
+            Sₙ = n² + 3n
+        </div>
+
+        <p>
+            Then:
+        </p>
+
+        <div class="formula">
+            uₙ = Sₙ − Sₙ₋₁
+        </div>
+
+        <div class="formula">
+            = (n²+3n) − [(n−1)² + 3(n−1)]
+        </div>
+
+        <div class="formula">
+            = n² + 3n − (n² − 2n + 1 + 3n − 3)
+        </div>
+
+        <div class="formula">
+            = n² + 3n − (n²+n−2)
+            <br>
+            = <strong>2n + 2</strong>
+        </div>
+
+        <p>
+            Therefore:
+        </p>
+
+        <div class="formula">
+            <strong>uₙ = 2n + 2</strong>
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         25. ADVANCED SUM RELATION
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>25. Finding a Sequence from Sₙ</h2>
+
+        <p>
+            The relationship:
+        </p>
+
+        <div class="formula">
+            uₙ = Sₙ − Sₙ₋₁
+        </div>
+
+        <p>
+            becomes particularly useful when the question provides a polynomial expression
+            for Sₙ.
+        </p>
+
+        <h3>Example</h3>
+
+        <div class="formula">
+            Sₙ = 2n² − n
+        </div>
+
+        <p>
+            First find:
+        </p>
+
+        <div class="formula">
+            Sₙ₋₁ = 2(n−1)² − (n−1)
+        </div>
+
+        <div class="formula">
+            = 2(n²−2n+1) − n + 1
+            <br>
+            = 2n² − 5n + 3
+        </div>
+
+        <p>
+            Therefore:
+        </p>
+
+        <div class="formula">
+            uₙ = (2n²−n) − (2n²−5n+3)
+            <br>
+            = <strong>4n − 3</strong>
+        </div>
+
+        <p>
+            Check n = 1:
+        </p>
+
+        <div class="formula">
+            u₁ = 1
+        </div>
+
+        <p>
+            Also:
+        </p>
+
+        <div class="formula">
+            S₁ = 2(1)² − 1 = 1
+        </div>
+
+        <p>
+            The result is consistent.
+        </p>
+
+    </div>
+
+
+    <!-- =========================================================
+         26. INEQUALITIES AND SEQUENCES
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>26. Sequences and Inequalities</h2>
+
+        <p>
+            Questions may ask for the first term exceeding or falling below a particular value.
+            The process is to translate the statement into an inequality.
+        </p>
+
+        <h3>Arithmetic Example</h3>
+
+        <p>
+            For:
+        </p>
+
+        <div class="formula">
+            uₙ = 3n + 4
+        </div>
+
+        <p>
+            Find the first term greater than 100.
+        </p>
+
+        <div class="formula">
+            3n + 4 &gt; 100
+            <br>
+            3n &gt; 96
+            <br>
+            n &gt; 32
+        </div>
+
+        <p>
+            Since n is a positive integer:
+        </p>
+
+        <div class="formula">
+            <strong>n = 33</strong>
+        </div>
+
+        <h3>Geometric Example</h3>
+
+        <p>
+            Consider:
+        </p>
+
+        <div class="formula">
+            uₙ = 200(0.8)ⁿ⁻¹
+        </div>
+
+        <p>
+            To find when the sequence falls below 50:
+        </p>
+
+        <div class="formula">
+            200(0.8)ⁿ⁻¹ &lt; 50
+        </div>
+
+        <div class="formula">
+            (0.8)ⁿ⁻¹ &lt; 0.25
+        </div>
+
+        <p>
+            This type of question may require logarithms if an exact term number is requested.
+        </p>
+
+        <div class="extension">
+            <strong>Extension connection:</strong>
+            Taking logarithms can convert an exponential inequality into a linear inequality
+            in n. Always consider the fact that ln(0.8) is negative when dividing an inequality.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         27. MONOTONIC BEHAVIOUR
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>27. Understanding the Behaviour of a Sequence</h2>
+
+        <h3>Arithmetic Sequence</h3>
+
+        <div class="formula">
+            uₙ = a + (n−1)d
+        </div>
+
+        <ul>
+            <li>If d &gt; 0, the sequence increases.</li>
+            <li>If d &lt; 0, the sequence decreases.</li>
+            <li>If d = 0, the sequence is constant.</li>
+        </ul>
+
+        <h3>Geometric Sequence</h3>
+
+        <div class="formula">
+            uₙ = arⁿ⁻¹
+        </div>
+
+        <p>
+            The behaviour depends strongly on both a and r.
+        </p>
+
+        <ul>
+            <li>0 &lt; r &lt; 1: magnitude tends to zero.</li>
+            <li>r &gt; 1: magnitude generally grows if a ≠ 0.</li>
+            <li>r &lt; 0: signs alternate.</li>
+            <li>r = 1: constant sequence.</li>
+            <li>r = 0: first term may be non-zero, followed by zeros.</li>
+        </ul>
+
+        <div class="warning">
+            <strong>Do not use |r| alone to describe whether a sequence increases.</strong>
+            For example, r = −2 gives alternating signs and is not an increasing sequence,
+            even though |r| &gt; 1.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         28. PARAMETER QUESTIONS
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>28. Parameter Questions</h2>
+
+        <p>
+            A parameter is an unknown constant whose value must be determined from conditions.
+        </p>
+
+        <h3>Worked Example</h3>
+
+        <p>
+            The first three terms of an arithmetic sequence are:
+        </p>
+
+        <div class="formula">
+            k + 2, 2k + 5, 5k + 8
+        </div>
+
+        <p>
+            Since the sequence is arithmetic:
+        </p>
+
+        <div class="formula">
+            2(2k+5) = (k+2) + (5k+8)
+        </div>
+
+        <div class="formula">
+            4k + 10 = 6k + 10
+            <br>
+            k = 0
+        </div>
+
+        <p>
+            Therefore the sequence is:
+        </p>
+
+        <div class="formula">
+            2, 5, 8, ...
+        </div>
+
+        <h3>Parameter + Sum</h3>
+
+        <p>
+            Harder questions may then use the value of k to determine a sum or another term.
+            The important thing is to solve the structural condition first, then continue.
+        </p>
+
+        <div class="challenge">
+            <strong>Do not substitute blindly.</strong>
+            First identify what mathematical property the wording imposes:
+            arithmetic → equal differences; geometric → equal ratios; infinite geometric sum
+            → |r| &lt; 1.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         29. PROOF AND SHOW-THAT REASONING
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>29. Show-That and Proof-Style Sequence Questions</h2>
+
+        <p>
+            In a show-that question, the goal is not merely to obtain a numerical answer.
+            Your algebra must establish the requested expression logically.
+        </p>
+
+        <h3>Example</h3>
+
+        <p>
+            Show that the sum of the first n odd positive integers is n².
+        </p>
+
+        <p>
+            The odd numbers form an arithmetic sequence:
+        </p>
+
+        <div class="formula">
+            1, 3, 5, ..., 2n−1
+        </div>
+
+        <p>
+            Here:
+        </p>
+
+        <div class="formula">
+            a = 1
+            <br>
+            d = 2
+            <br>
+            l = 2n−1
+        </div>
+
+        <p>
+            Therefore:
+        </p>
+
+        <div class="formula">
+            Sₙ = n/2[1 + (2n−1)]
+        </div>
+
+        <div class="formula">
+            = n/2(2n)
+            <br>
+            = <strong>n²</strong>
+        </div>
+
+        <div class="note">
+            <strong>Proof habit:</strong>
+            Do not write “obviously” where an algebraic step is required.
+            A show-that solution should make the chain from the given information to
+            the required result visible.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         30. ADVANCED GEOMETRIC REASONING
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>30. Advanced Geometric Reasoning</h2>
+
+        <h3>Three Consecutive Geometric Terms</h3>
+
+        <p>
+            Three positive consecutive geometric terms can be represented as:
+        </p>
+
+        <div class="formula">
+            a/r, a, ar
+        </div>
+
+        <p>
+            This representation is often more efficient than:
+        </p>
+
+        <div class="formula">
+            a, ar, ar²
+        </div>
+
+        <p>
+            because the middle term is exactly a and the terms are symmetrically arranged
+            around it.
+        </p>
+
+        <div class="formula">
+            a² = (a/r)(ar)
+        </div>
+
+        <h3>Example</h3>
+
+        <p>
+            Three positive consecutive geometric terms have sum 26 and product 216.
+            Let them be:
+        </p>
+
+        <div class="formula">
+            a/r, a, ar
+        </div>
+
+        <p>
+            Their product is:
+        </p>
+
+        <div class="formula">
+            (a/r)(a)(ar) = a³
+        </div>
+
+        <p>
+            Therefore:
+        </p>
+
+        <div class="formula">
+            a³ = 216
+            <br>
+            a = 6
+        </div>
+
+        <p>
+            The sum condition becomes:
+        </p>
+
+        <div class="formula">
+            6/r + 6 + 6r = 26
+        </div>
+
+        <p>
+            Divide by 2:
+        </p>
+
+        <div class="formula">
+            3/r + 3 + 3r = 13
+        </div>
+
+        <p>
+            Multiply by r:
+        </p>
+
+        <div class="formula">
+            3 + 3r + 3r² = 13r
+        </div>
+
+        <div class="formula">
+            3r² − 10r + 3 = 0
+        </div>
+
+        <div class="formula">
+            (3r−1)(r−3)=0
+        </div>
+
+        <div class="formula">
+            r = 1/3
+            <br>
+            or
+            <br>
+            r = 3
+        </div>
+
+        <p>
+            Both produce the same three terms in reverse order:
+        </p>
+
+        <div class="formula">
+            18, 6, 2
+            <br>
+            or
+            <br>
+            2, 6, 18
+        </div>
+
+        <div class="challenge">
+            <strong>Deep insight:</strong>
+            Reversing a geometric sequence replaces r by 1/r.
+            The same three terms may therefore correspond to two reciprocal ratios
+            depending on which direction the sequence is listed.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         31. SERIES AS A STRUCTURE
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>31. Choosing the Correct Tool</h2>
+
+        <p>
+            A major part of examination success is not memorising formulas independently,
+            but recognising which structure is present.
+        </p>
+
+        <div class="table-wrap">
+            <table>
+
+                <tr>
+                    <th>If you see...</th>
+                    <th>Think...</th>
+                </tr>
+
+                <tr>
+                    <td>Constant difference</td>
+                    <td>Arithmetic sequence</td>
+                </tr>
+
+                <tr>
+                    <td>Constant ratio</td>
+                    <td>Geometric sequence</td>
+                </tr>
+
+                <tr>
+                    <td>Sum of first n terms</td>
+                    <td>Series formula</td>
+                </tr>
+
+                <tr>
+                    <td>“Sum to infinity”</td>
+                    <td>S∞ and |r| &lt; 1</td>
+                </tr>
+
+                <tr>
+                    <td>Σ notation</td>
+                    <td>Expand, split, or use standard sums</td>
+                </tr>
+
+                <tr>
+                    <td>Two known terms</td>
+                    <td>Use their term positions to eliminate unknowns</td>
+                </tr>
+
+                <tr>
+                    <td>“First term greater than...”</td>
+                    <td>Solve an inequality in n</td>
+                </tr>
+
+                <tr>
+                    <td>Given Sₙ formula</td>
+                    <td>Use uₙ = Sₙ − Sₙ₋₁</td>
+                </tr>
+
+                <tr>
+                    <td>Constant second difference</td>
+                    <td>Quadratic sequence</td>
+                </tr>
+
+            </table>
+        </div>
+
+        <div class="method">
+            <strong>Decision rule:</strong>
+            Identify the mathematical structure before selecting a formula.
+            Formula recognition should come after structural recognition.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         32. COMMON TRAPS
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>32. Common Traps &amp; Misconceptions</h2>
+
+        <h3>Trap 1 — Using nd Instead of (n−1)d</h3>
+
+        <div class="formula">
+            Correct:
+            uₙ = a + (n−1)d
+        </div>
+
+        <p>
+            The nth term has n−1 jumps from the first term.
+        </p>
+
+        <h3>Trap 2 — Confusing Difference and Ratio</h3>
+
+        <p>
+            For:
+        </p>
+
+        <div class="formula">
+            4, 8, 16, 32, ...
+        </div>
+
+        <p>
+            the common difference is not 4. The common ratio is 2.
+        </p>
+
+        <h3>Trap 3 — Forgetting That n Is an Integer</h3>
+
+        <p>
+            A sequence term number cannot normally be 7.4 or −3.
+        </p>
+
+        <h3>Trap 4 — Applying S∞ Without Checking |r| &lt; 1</h3>
+
+        <p>
+            The formula:
+        </p>
+
+        <div class="formula">
+            a/(1−r)
+        </div>
+
+        <p>
+            is not a universal formula for every infinite geometric expression.
+        </p>
+
+        <h3>Trap 5 — Sign Errors with Negative r</h3>
+
+        <p>
+            If r = −2, then:
+        </p>
+
+        <div class="formula">
+            r² = 4
+            <br>
+            r³ = −8
+            <br>
+            r⁴ = 16
+        </div>
+
+        <p>
+            Keep brackets around negative ratios when calculating powers.
+        </p>
+
+        <h3>Trap 6 — Assuming a Pattern Is Unique</h3>
+
+        <p>
+            A finite list of terms can often be fitted by many different formulas.
+            In examination questions, the intended structure is normally signalled by
+            additional information such as “arithmetic”, “geometric”, or a recurrence relation.
+        </p>
+
+        <h3>Trap 7 — Not Checking the Answer in the Original Conditions</h3>
+
+        <p>
+            Especially in parameter questions, substitute your result back into the
+            condition that defined it.
+        </p>
+
+    </div>
+
+
+    <!-- =========================================================
+         33. EXAM STRATEGY
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>33. Edexcel-Style Exam Strategy</h2>
+
+        <h3>Step 1 — Identify the Object</h3>
+
+        <p>
+            Ask:
+        </p>
+
+        <ul>
+            <li>Is this a sequence or a series?</li>
+            <li>Is it arithmetic or geometric?</li>
+            <li>Is it finite or infinite?</li>
+            <li>Is sigma notation involved?</li>
+        </ul>
+
+        <h3>Step 2 — Extract the Parameters</h3>
+
+        <div class="formula">
+            Arithmetic → a, d, n, l
+            <br>
+            Geometric → a, r, n
+        </div>
+
+        <h3>Step 3 — Translate Words into Mathematics</h3>
+
+        <div class="table-wrap">
+            <table>
+
+                <tr>
+                    <th>Wording</th>
+                    <th>Mathematical translation</th>
+                </tr>
+
+                <tr>
+                    <td>nth term</td>
+                    <td>uₙ</td>
+                </tr>
+
+                <tr>
+                    <td>first n terms</td>
+                    <td>Sₙ</td>
+                </tr>
+
+                <tr>
+                    <td>sum to infinity</td>
+                    <td>S∞</td>
+                </tr>
+
+                <tr>
+                    <td>consecutive arithmetic terms</td>
+                    <td>equal differences</td>
+                </tr>
+
+                <tr>
+                    <td>consecutive geometric terms</td>
+                    <td>equal ratios</td>
+                </tr>
+
+                <tr>
+                    <td>first term exceeding X</td>
+                    <td>solve uₙ &gt; X</td>
+                </tr>
+
+            </table>
+        </div>
+
+        <h3>Step 4 — Check Restrictions</h3>
+
+        <ul>
+            <li>Is n a positive integer?</li>
+            <li>For S∞, is |r| &lt; 1?</li>
+            <li>Did a negative ratio require careful brackets?</li>
+            <li>Does the result satisfy every condition?</li>
+        </ul>
+
+        <h3>Step 5 — Check the Scale</h3>
+
+        <p>
+            If ten positive terms are each around 100, a sum of 20 is immediately suspicious.
+            Estimation can catch arithmetic mistakes before they cost marks.
+        </p>
+
+    </div>
+
+
+    <!-- =========================================================
+         34. FORMULA ATLAS
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>34. Complete Sequences &amp; Series Formula Atlas</h2>
+
+        <h3>Arithmetic Sequence</h3>
+
+        <div class="formula">
+            uₙ = a + (n−1)d
+        </div>
+
+        <h3>Arithmetic Series</h3>
+
+        <div class="formula">
+            Sₙ = n/2[2a+(n−1)d]
+        </div>
+
+        <div class="formula">
+            Sₙ = n/2(a+l)
+        </div>
+
+        <h3>Geometric Sequence</h3>
+
+        <div class="formula">
+            uₙ = arⁿ⁻¹
+        </div>
+
+        <h3>Finite Geometric Series</h3>
+
+        <div class="formula">
+            Sₙ = a(1−rⁿ)/(1−r)
+            &nbsp;&nbsp; r ≠ 1
+        </div>
+
+        <h3>Infinite Geometric Series</h3>
+
+        <div class="formula">
+            S∞ = a/(1−r)
+            &nbsp;&nbsp; |r| &lt; 1
+        </div>
+
+        <h3>Standard Sums</h3>
+
+        <div class="formula">
+            Σₙ₌₁ᴺ 1 = N
+        </div>
+
+        <div class="formula">
+            Σₙ₌₁ᴺ n = N(N+1)/2
+        </div>
+
+        <div class="formula">
+            Σₙ₌₁ᴺ n² = N(N+1)(2N+1)/6
+        </div>
+
+        <div class="formula">
+            Σₙ₌₁ᴺ n³ = [N(N+1)/2]²
+        </div>
+
+        <h3>Sum-to-Term Relationship</h3>
+
+        <div class="formula">
+            uₙ = Sₙ − Sₙ₋₁
+        </div>
+
+        <h3>Arithmetic Mean</h3>
+
+        <div class="formula">
+            2b = a+c
+        </div>
+
+        <h3>Geometric Mean</h3>
+
+        <div class="formula">
+            b² = ac
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         35. DEEP WORKED EXAMPLES
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>35. Deep Worked Examples</h2>
+
+        <h3>Example A — Two Conditions in an Arithmetic Sequence</h3>
+
+        <p>
+            The 7th term of an arithmetic sequence is 25 and the 15th term is 57.
+            Find the first term and common difference.
+        </p>
+
+        <div class="formula">
+            a + 6d = 25
+            <br>
+            a + 14d = 57
+        </div>
+
+        <div class="formula">
+            8d = 32
+            <br>
+            d = 4
+        </div>
+
+        <div class="formula">
+            a + 24 = 25
+            <br>
+            a = 1
+        </div>
+
+        <div class="formula">
+            <strong>uₙ = 1 + 4(n−1) = 4n−3</strong>
+        </div>
+
+        <h3>Example B — Geometric Sequence from Two Terms</h3>
+
+        <p>
+            A geometric sequence has u₃ = 20 and u₆ = 160. Find a and r,
+            assuming r is positive.
+        </p>
+
+        <div class="formula">
+            ar² = 20
+            <br>
+            ar⁵ = 160
+        </div>
+
+        <p>
+            Divide:
+        </p>
+
+        <div class="formula">
+            r³ = 160/20 = 8
+            <br>
+            r = 2
+        </div>
+
+        <div class="formula">
+            4a = 20
+            <br>
+            a = 5
+        </div>
+
+        <div class="formula">
+            <strong>uₙ = 5 × 2ⁿ⁻¹</strong>
+        </div>
+
+        <h3>Example C — Infinite Series with a Condition</h3>
+
+        <p>
+            An infinite geometric series has first term 12 and sum 15.
+            Find r.
+        </p>
+
+        <div class="formula">
+            15 = 12/(1−r)
+        </div>
+
+        <div class="formula">
+            15 − 15r = 12
+            <br>
+            15r = 3
+            <br>
+            r = <strong>1/5</strong>
+        </div>
+
+        <p>
+            Since:
+        </p>
+
+        <div class="formula">
+            |1/5| &lt; 1
+        </div>
+
+        <p>
+            the result is valid.
+        </p>
+
+        <h3>Example D — Find a Term from a Sum Formula</h3>
+
+        <p>
+            If:
+        </p>
+
+        <div class="formula">
+            Sₙ = 3n² + 2n
+        </div>
+
+        <p>
+            find uₙ.
+        </p>
+
+        <div class="formula">
+            Sₙ₋₁ = 3(n−1)² + 2(n−1)
+        </div>
+
+        <div class="formula">
+            = 3n² − 6n + 3 + 2n − 2
+            <br>
+            = 3n² − 4n + 1
+        </div>
+
+        <div class="formula">
+            uₙ = Sₙ − Sₙ₋₁
+        </div>
+
+        <div class="formula">
+            = (3n²+2n) − (3n²−4n+1)
+            <br>
+            = <strong>6n−1</strong>
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         36. VERY HARD REASONING
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>36. Very Hard Multi-Step Reasoning</h2>
+
+        <h3>Problem</h3>
+
+        <p>
+            The first term of a geometric sequence is positive. The sum of the first
+            three terms is 21 and the sum to infinity is 24. Find the first term and ratio.
+        </p>
+
+        <p>
+            Let the first term be a and ratio r.
+        </p>
+
+        <div class="formula">
+            a(1+r+r²) = 21
+        </div>
+
+        <p>
+            Also:
+        </p>
+
+        <div class="formula">
+            a/(1−r) = 24
+        </div>
+
+        <p>
+            Therefore:
+        </p>
+
+        <div class="formula">
+            a = 24(1−r)
+        </div>
+
+        <p>
+            Substitute:
+        </p>
+
+        <div class="formula">
+            24(1−r)(1+r+r²) = 21
+        </div>
+
+        <p>
+            Use:
+        </p>
+
+        <div class="formula">
+            (1−r)(1+r+r²) = 1−r³
+        </div>
+
+        <div class="formula">
+            24(1−r³) = 21
+            <br>
+            1−r³ = 7/8
+            <br>
+            r³ = 1/8
+            <br>
+            r = 1/2
+        </div>
+
+        <p>
+            Therefore:
+        </p>
+
+        <div class="formula">
+            a = 24(1−1/2)
+            <br>
+            = <strong>12</strong>
+        </div>
+
+        <p>
+            Check:
+        </p>
+
+        <div class="formula">
+            12 + 6 + 3 = 21
+        </div>
+
+        <div class="formula">
+            S∞ = 12/(1−1/2) = 24
+        </div>
+
+        <div class="challenge">
+            <strong>Why this is powerful:</strong>
+            The problem combines finite and infinite geometric sums.
+            The key is to express both conditions using the same unknowns and then exploit
+            the algebraic identity 1+r+r².
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         37. APPLICATIONS
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>37. Real-World Mathematical Models</h2>
+
+        <h3>Salary / Payment Pattern</h3>
+
+        <p>
+            If a payment increases by a fixed amount each period, use an arithmetic model.
+        </p>
+
+        <div class="formula">
+            Pₙ = P₁ + (n−1)d
+        </div>
+
+        <p>
+            If it increases by a fixed percentage, use a geometric model.
+        </p>
+
+        <div class="formula">
+            Pₙ = P₁rⁿ⁻¹
+        </div>
+
+        <h3>Population or Growth Model</h3>
+
+        <p>
+            A fixed percentage growth per period produces:
+        </p>
+
+        <div class="formula">
+            P, Pr, Pr², Pr³, ...
+        </div>
+
+        <h3>Depreciation</h3>
+
+        <p>
+            A fixed percentage decrease gives a ratio below 1.
+        </p>
+
+        <div class="formula">
+            r = 1 − percentage decrease
+        </div>
+
+        <h3>Repeated Physical Processes</h3>
+
+        <p>
+            Repeated rebounds, repeated reductions, repeated attenuation and similar
+            processes can generate geometric sequences and series.
+        </p>
+
+        <div class="note">
+            <strong>Modelling rule:</strong>
+            The mathematics depends on the wording. “Increase by 5 each year” is additive;
+            “increase by 5% each year” is multiplicative. These produce different sequences.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         38. PRACTICE SET
+         ========================================================= -->
+
+    <div class="topic-card">
+
+        <h2>38. Practice Set — Foundation to Advanced</h2>
+
+        <h3>Question 1 — Arithmetic</h3>
+
+        <p>Find the nth term of 8, 13, 18, 23, ...</p>
+
         <details>
-
-            <summary>Show Full Solution</summary>
-
-            <p>
-                The first term is:
-            </p>
+            <summary>Show Solution</summary>
 
             <div class="formula">
-                a = 7
-            </div>
-
-            <p>
-                The common difference is:
-            </p>
-
-            <div class="formula">
-                d = 4
-            </div>
-
-            <div class="formula">
-                uₙ = 7 + (n − 1)4
+                a = 8, d = 5
                 <br>
-                = <strong>4n + 3</strong>
+                uₙ = 8 + 5(n−1)
+                <br>
+                = <strong>5n+3</strong>
             </div>
 
         </details>
 
+        <h3>Question 2 — Geometric</h3>
 
-        <h3>Question 2 — Geometric Sequence</h3>
-
-        <p>
-            Find the nth term of:
-        </p>
-
-        <div class="formula">
-            5, 15, 45, 135, ...
-        </div>
+        <p>Find the nth term of 4, 12, 36, 108, ...</p>
 
         <details>
-
-            <summary>Show Full Solution</summary>
+            <summary>Show Solution</summary>
 
             <div class="formula">
-                a = 5
+                a = 4, r = 3
                 <br>
-                r = 3
-            </div>
-
-            <div class="formula">
-                <strong>uₙ = 5 × 3ⁿ⁻¹</strong>
+                <strong>uₙ = 4×3ⁿ⁻¹</strong>
             </div>
 
         </details>
 
+        <h3>Question 3 — Arithmetic Sum</h3>
 
-        <h3>Question 3 — Arithmetic Series</h3>
-
-        <p>
-            Find the sum of the first 20 terms of:
-        </p>
-
-        <div class="formula">
-            3, 7, 11, 15, ...
-        </div>
+        <p>Find the sum of the first 25 terms of 2, 6, 10, 14, ...</p>
 
         <details>
-
-            <summary>Show Full Solution</summary>
-
-            <div class="formula">
-                a = 3
-                <br>
-                d = 4
-                <br>
-                n = 20
-            </div>
+            <summary>Show Solution</summary>
 
             <div class="formula">
-                S₂₀ = 20/2 [2(3) + 19(4)]
-            </div>
-
-            <div class="formula">
-                = 10(6 + 76)
+                a = 2, d = 4, n = 25
                 <br>
-                = <strong>820</strong>
+                S₂₅ = 25/2[4+96]
+                <br>
+                = <strong>1250</strong>
             </div>
 
         </details>
 
+        <h3>Question 4 — Finite Geometric Sum</h3>
 
-        <h3>Question 4 — Geometric Series</h3>
-
-        <p>
-            Find the sum of the first 6 terms of:
-        </p>
-
-        <div class="formula">
-            2 + 4 + 8 + 16 + ...
-        </div>
+        <p>Find the sum of the first 7 terms of 3, 6, 12, ...</p>
 
         <details>
-
-            <summary>Show Full Solution</summary>
+            <summary>Show Solution</summary>
 
             <div class="formula">
-                a = 2
+                S₇ = 3(1−2⁷)/(1−2)
                 <br>
-                r = 2
-                <br>
-                n = 6
-            </div>
-
-            <div class="formula">
-                S₆ = 2(1 − 2⁶)/(1 − 2)
-            </div>
-
-            <div class="formula">
-                = <strong>126</strong>
+                = <strong>381</strong>
             </div>
 
         </details>
 
+        <h3>Question 5 — Infinite Sum</h3>
 
-        <h3>Question 5 — Find a Term</h3>
-
-        <p>
-            The nth term of a sequence is 3n + 2.
-            Find the 15th term.
-        </p>
+        <p>Find the sum to infinity of 18 + 9 + 4.5 + ...</p>
 
         <details>
-
-            <summary>Show Full Solution</summary>
-
-            <div class="formula">
-                u₁₅ = 3(15) + 2
-            </div>
+            <summary>Show Solution</summary>
 
             <div class="formula">
-                = <strong>47</strong>
+                a = 18, r = 1/2
+                <br>
+                S∞ = 18/(1−1/2)
+                <br>
+                = <strong>36</strong>
             </div>
 
         </details>
 
+        <h3>Question 6 — Sigma</h3>
 
-        <h3>Question 6 — Sigma Notation</h3>
-
-        <p>
-            Evaluate:
-        </p>
-
-        <div class="formula">
-            Σ⁵ₙ₌₁ n
-        </div>
+        <p>Evaluate Σ⁸ₙ₌₁(2n+1).</p>
 
         <details>
-
-            <summary>Show Full Solution</summary>
-
-            <div class="formula">
-                1 + 2 + 3 + 4 + 5
-            </div>
+            <summary>Show Solution</summary>
 
             <div class="formula">
-                = <strong>15</strong>
+                2Σn + Σ1
+                <br>
+                = 2(36) + 8
+                <br>
+                = <strong>80</strong>
             </div>
 
         </details>
@@ -1282,93 +4105,105 @@
     </div>
 
 
-    <!-- =====================================================
-         8. COMMON MISTAKES
-         ===================================================== -->
+    <!-- =========================================================
+         39. MASTER CHECKLIST
+         ========================================================= -->
 
     <div class="topic-card">
 
-        <h2>⚠️ Common Mistakes</h2>
+        <h2>39. Master Checklist Before the Exam</h2>
 
-        <h3>1. Confusing difference with ratio</h3>
+        <ul>
 
-        <p>
-            Arithmetic sequences use a common difference, while
-            geometric sequences use a common ratio.
-        </p>
+            <li>
+                I can distinguish a <strong>sequence</strong> from a <strong>series</strong>.
+            </li>
 
-        <h3>2. Forgetting n − 1</h3>
+            <li>
+                I can identify an <strong>arithmetic sequence</strong> from a constant difference.
+            </li>
 
-        <p>
-            The nth term of an arithmetic sequence is:
-        </p>
+            <li>
+                I can identify a <strong>geometric sequence</strong> from a constant ratio.
+            </li>
+
+            <li>
+                I can find the nth term of an arithmetic sequence.
+            </li>
+
+            <li>
+                I can find the nth term of a geometric sequence.
+            </li>
+
+            <li>
+                I can find unknown a and d from two arithmetic terms.
+            </li>
+
+            <li>
+                I can find unknown a and r from two geometric terms.
+            </li>
+
+            <li>
+                I can evaluate arithmetic sums.
+            </li>
+
+            <li>
+                I can evaluate finite geometric sums.
+            </li>
+
+            <li>
+                I can use the infinite geometric formula and check |r| &lt; 1.
+            </li>
+
+            <li>
+                I can manipulate sigma notation.
+            </li>
+
+            <li>
+                I know the standard sums for 1, n, n² and n³.
+            </li>
+
+            <li>
+                I can recover uₙ from Sₙ.
+            </li>
+
+            <li>
+                I can solve parameter problems.
+            </li>
+
+            <li>
+                I can handle negative and fractional common ratios.
+            </li>
+
+            <li>
+                I can solve term-number inequalities.
+            </li>
+
+            <li>
+                I can recognise quadratic sequences from second differences.
+            </li>
+
+            <li>
+                I check answers against the original conditions.
+            </li>
+
+        </ul>
 
         <div class="formula">
-            uₙ = a + (n − 1)d
+            <strong>Structure → Formula → Algebra → Check</strong>
         </div>
 
         <p>
-            Not <strong>a + nd</strong>.
-        </p>
-
-        <h3>3. Using the wrong formula</h3>
-
-        <p>
-            Make sure you identify whether the sequence is arithmetic
-            or geometric before choosing a formula.
-        </p>
-
-        <h3>4. Sign errors</h3>
-
-        <p>
-            Be especially careful when the common difference or ratio
-            is negative.
+            That four-stage process is the core workflow for solving sequences and series
+            problems reliably.
         </p>
 
     </div>
 
 
-    <!-- =====================================================
-         9. EXAM TIPS
-         ===================================================== -->
-
-    <div class="topic-card">
-
-        <h2>🎯 Exam Tips</h2>
-
-        <h3>1. Identify the sequence first</h3>
-
-        <p>
-            Check whether consecutive terms have a constant difference
-            or a constant ratio.
-        </p>
-
-        <h3>2. Write down a, d, r and n</h3>
-
-        <p>
-            Before using a formula, identify the values you need.
-        </p>
-
-        <h3>3. Check the first term</h3>
-
-        <p>
-            After finding an nth-term formula, substitute n = 1 to
-            make sure it gives the correct first term.
-        </p>
-
-        <h3>4. Check your final answer</h3>
-
-        <p>
-            For sums, estimate whether your answer is a sensible size
-            compared with the individual terms.
-        </p>
-
-    </div>
-
-
-    <!-- =====================================================
+    <!-- =========================================================
          NAVIGATION
-         ===================================================== -->
+         ========================================================= -->
 
     <div class="navigation">
 
@@ -1385,10 +4220,6 @@
 
 </section>
 
-
-<!-- =========================================================
-     FOOTER
-     ========================================================= -->
 
 <footer>
 
