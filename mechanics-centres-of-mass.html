@@ -3,1149 +3,1679 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Centres of Mass | IAL ATLAS</title>
-
-    <meta name="description"
-          content="Edexcel International A Level Mathematics Mechanics 2 Centres of Mass resources.">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-
-        :root {
-            --bg: #030914;
-            --bg-soft: #071322;
-            --panel: rgba(10, 24, 42, 0.74);
-            --panel-strong: rgba(7, 19, 34, 0.9);
-            --cyan: #59d7ff;
-            --blue: #328cff;
-            --text: #edf8ff;
-            --muted: #91a9bf;
-            --soft: #c9deee;
-            --line: rgba(89, 215, 255, 0.16);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "Inter", sans-serif;
-            background:
-                radial-gradient(circle at 50% -10%, rgba(38, 126, 255, 0.18), transparent 36%),
-                radial-gradient(circle at 90% 35%, rgba(0, 210, 255, 0.06), transparent 28%),
-                var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-            pointer-events: none;
-            background-image:
-                linear-gradient(rgba(83, 184, 255, 0.035) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(83, 184, 255, 0.035) 1px, transparent 1px);
-            background-size: 48px 48px;
-            mask-image: linear-gradient(to bottom, black, transparent 88%);
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: rgba(26, 133, 255, 0.055);
-            filter: blur(110px);
-            top: 12%;
-            left: 50%;
-            transform: translateX(-50%);
-            pointer-events: none;
-            z-index: -3;
-        }
-
-        a {
-            color: inherit;
-        }
-
-        /* HEADER */
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 18px 6%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(3, 9, 20, 0.74);
-            border-bottom: 1px solid rgba(89, 215, 255, 0.1);
-            backdrop-filter: blur(20px);
-        }
-
-        .logo {
-            text-decoration: none;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 23px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .logo::before {
-            content: "";
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            margin-right: 10px;
-            border-radius: 50%;
-            background: var(--cyan);
-            box-shadow: 0 0 16px var(--cyan);
-            animation: pulse 2s infinite;
-        }
-
-        .back-link {
-            text-decoration: none;
-            color: var(--soft);
-            font-size: 14px;
-            padding: 9px 15px;
-            border: 1px solid rgba(89, 215, 255, 0.18);
-            border-radius: 10px;
-            transition: 0.3s ease;
-        }
-
-        .back-link:hover {
-            color: white;
-            border-color: rgba(89, 215, 255, 0.55);
-            background: rgba(89, 215, 255, 0.07);
-            transform: translateY(-2px);
-        }
-
-        /* HERO */
-
-        .hero {
-            min-height: 730px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 100px 20px 90px;
-            overflow: hidden;
-            transition: transform 0.1s linear;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            width: 830px;
-            height: 830px;
-            border: 1px solid rgba(89, 215, 255, 0.075);
-            border-radius: 50%;
-            animation: rotateSlow 32s linear infinite;
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-            width: 590px;
-            height: 590px;
-            border: 1px dashed rgba(50, 140, 255, 0.12);
-            border-radius: 50%;
-            animation: rotateReverse 25s linear infinite;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 5;
-            width: 100%;
-            max-width: 930px;
-        }
-
-        .hero-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            color: var(--cyan);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            margin-bottom: 22px;
-        }
-
-        .hero-label::before {
-            content: "";
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--cyan);
-            box-shadow: 0 0 14px var(--cyan);
-        }
-
-        .hero h1 {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(48px, 8vw, 86px);
-            line-height: 0.98;
-            letter-spacing: -3px;
-            background: linear-gradient(
-                120deg,
-                #ffffff 15%,
-                #9be9ff 52%,
-                #65a9ff 90%
-            );
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .hero p {
-            max-width: 720px;
-            margin: 25px auto 0;
-            color: var(--muted);
-            font-size: 17px;
-        }
-
-        /* MASS DISTRIBUTION SYSTEM */
-
-        .mass-system {
-            position: relative;
-            width: min(850px, 94vw);
-            height: 285px;
-            margin: 55px auto 0;
-            border: 1px solid rgba(89, 215, 255, 0.16);
-            border-radius: 25px;
-            background: rgba(4, 15, 28, 0.58);
-            backdrop-filter: blur(16px);
-            overflow: hidden;
-            box-shadow:
-                inset 0 0 50px rgba(50, 140, 255, 0.04),
-                0 0 80px rgba(0, 150, 255, 0.05);
-        }
-
-        .mass-grid {
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(89, 215, 255, 0.055) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(89, 215, 255, 0.055) 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.55;
-        }
-
-        .mass-axis {
-            position: absolute;
-            left: 8%;
-            right: 8%;
-            top: 61%;
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(89, 215, 255, 0.7),
-                transparent
-            );
-        }
-
-        .mass-axis::before {
-            content: "x = 0";
-            position: absolute;
-            left: 0;
-            top: 13px;
-            font-size: 10px;
-            color: #65839c;
-        }
-
-        .mass-axis::after {
-            content: "POSITION →";
-            position: absolute;
-            right: 0;
-            top: -26px;
-            color: rgba(155, 233, 255, 0.5);
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 10px;
-            letter-spacing: 1.5px;
-        }
-
-        .beam {
-            position: absolute;
-            left: 13%;
-            right: 13%;
-            top: 60%;
-            height: 5px;
-            border-radius: 20px;
-            background: linear-gradient(
-                90deg,
-                rgba(89, 215, 255, 0.18),
-                rgba(89, 215, 255, 0.8),
-                rgba(89, 215, 255, 0.18)
-            );
-            box-shadow: 0 0 18px rgba(89, 215, 255, 0.18);
-        }
-
-        .support {
-            position: absolute;
-            left: 50%;
-            top: 61%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 23px solid transparent;
-            border-right: 23px solid transparent;
-            border-top: 43px solid rgba(89, 215, 255, 0.16);
-            filter: drop-shadow(0 0 10px rgba(89, 215, 255, 0.18));
-        }
-
-        .support::after {
-            content: "";
-            position: absolute;
-            width: 75px;
-            height: 2px;
-            background: rgba(89, 215, 255, 0.25);
-            left: -37px;
-            top: 42px;
-        }
-
-        .mass {
-            position: absolute;
-            border-radius: 50%;
-            background: white;
-            border: 3px solid var(--cyan);
-            box-shadow:
-                0 0 15px var(--cyan),
-                0 0 38px rgba(89, 215, 255, 0.65);
-        }
-
-        .mass-one {
-            width: 28px;
-            height: 28px;
-            left: 25%;
-            top: 55%;
-            animation: massFloat1 4s ease-in-out infinite;
-        }
-
-        .mass-two {
-            width: 43px;
-            height: 43px;
-            left: 69%;
-            top: 52%;
-            animation: massFloat2 4.5s ease-in-out infinite;
-        }
-
-        .mass-three {
-            width: 18px;
-            height: 18px;
-            left: 43%;
-            top: 57%;
-            animation: massFloat3 3.7s ease-in-out infinite;
-        }
-
-        .mass-label {
-            position: absolute;
-            color: #8cdfff;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 10px;
-            letter-spacing: 1px;
-        }
-
-        .label-one {
-            left: 23.5%;
-            top: 43%;
-        }
-
-        .label-two {
-            left: 68%;
-            top: 37%;
-        }
-
-        .label-three {
-            left: 40.5%;
-            top: 47%;
-        }
-
-        /* CENTRE OF MASS MARKER */
-
-        .com-marker {
-            position: absolute;
-            left: 50%;
-            top: 54%;
-            width: 31px;
-            height: 31px;
-            transform: translate(-50%, -50%);
-            border: 2px solid white;
-            border-radius: 50%;
-            background: rgba(89, 215, 255, 0.12);
-            box-shadow:
-                0 0 12px white,
-                0 0 30px var(--cyan),
-                0 0 70px rgba(89, 215, 255, 0.35);
-            animation: comPulse 2.5s ease-in-out infinite;
-        }
-
-        .com-marker::before,
-        .com-marker::after {
-            content: "";
-            position: absolute;
-            background: var(--cyan);
-        }
-
-        .com-marker::before {
-            width: 54px;
-            height: 1px;
-            left: -13px;
-            top: 13px;
-        }
-
-        .com-marker::after {
-            height: 54px;
-            width: 1px;
-            left: 13px;
-            top: -13px;
-        }
-
-        .com-label {
-            position: absolute;
-            left: 50%;
-            top: 34%;
-            transform: translateX(-50%);
-            color: white;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            white-space: nowrap;
-            text-shadow: 0 0 12px rgba(89, 215, 255, 0.7);
-        }
-
-        /* DATA STRIP */
-
-        .data-strip {
-            position: relative;
-            z-index: 10;
-            width: min(900px, 92%);
-            margin: -30px auto 70px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            border: 1px solid rgba(89, 215, 255, 0.15);
-            border-radius: 18px;
-            background: rgba(7, 18, 33, 0.8);
-            backdrop-filter: blur(18px);
-            overflow: hidden;
-            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.25);
-        }
-
-        .data-item {
-            padding: 20px 15px;
-            text-align: center;
-            border-right: 1px solid rgba(89, 215, 255, 0.1);
-        }
-
-        .data-item:last-child {
-            border-right: none;
-        }
-
-        .data-value {
-            display: block;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--cyan);
-        }
-
-        .data-label {
-            display: block;
-            margin-top: 3px;
-            font-size: 10px;
-            letter-spacing: 1.5px;
-            color: #718ca5;
-        }
-
-        /* CONTENT */
-
-        .container {
-            width: min(980px, 92%);
-            margin: auto;
-            padding-bottom: 30px;
-        }
-
-        .lesson {
-            position: relative;
-            padding: 38px;
-            margin-bottom: 28px;
-            border: 1px solid rgba(89, 215, 255, 0.13);
-            border-radius: 22px;
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(10, 27, 47, 0.78),
-                    rgba(5, 15, 28, 0.7)
-                );
-            backdrop-filter: blur(18px);
-            box-shadow:
-                0 18px 60px rgba(0, 0, 0, 0.18),
-                inset 0 1px 0 rgba(255,255,255,0.025);
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(35px);
-            transition:
-                opacity 0.8s ease,
-                transform 0.8s ease,
-                border-color 0.35s ease,
-                box-shadow 0.35s ease;
-        }
-
-        .lesson.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .lesson::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 65%;
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                var(--cyan),
-                transparent
-            );
-            animation: scan 6s linear infinite;
-        }
-
-        .lesson:hover {
-            border-color: rgba(89, 215, 255, 0.27);
-            box-shadow:
-                0 22px 70px rgba(0, 0, 0, 0.28),
-                0 0 45px rgba(50, 140, 255, 0.045);
-        }
-
-        .lesson-number {
-            color: var(--cyan);
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            margin-bottom: 9px;
-        }
-
-        .lesson h2 {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(25px, 4vw, 34px);
-            line-height: 1.2;
-            margin-bottom: 18px;
-            color: #f2fbff;
-        }
-
-        .lesson p {
-            color: var(--muted);
-            margin-bottom: 15px;
-        }
-
-        .lesson ul {
-            padding-left: 24px;
-            color: var(--muted);
-        }
-
-        .lesson li {
-            margin-bottom: 9px;
-        }
-
-        /* DEFINITION */
-
-        .definition {
-            position: relative;
-            margin: 22px 0 5px;
-            padding: 22px 24px;
-            border: 1px solid rgba(89, 215, 255, 0.12);
-            border-left: 3px solid var(--cyan);
-            border-radius: 14px;
-            background: rgba(89, 215, 255, 0.045);
-        }
-
-        .definition strong {
-            color: #dff7ff;
-        }
-
-        .definition p {
-            margin-top: 10px;
-            margin-bottom: 0;
-        }
-
-        /* FORMULAS */
-
-        .formula {
-            position: relative;
-            margin: 21px 0;
-            padding: 20px;
-            border: 1px solid rgba(89, 215, 255, 0.16);
-            border-radius: 14px;
-            background:
-                linear-gradient(
-                    100deg,
-                    rgba(17, 55, 86, 0.75),
-                    rgba(6, 21, 38, 0.9)
-                );
-            color: #eafaff;
-            text-align: center;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 0.4px;
-            overflow: hidden;
-            box-shadow: inset 0 0 30px rgba(89, 215, 255, 0.025);
-        }
-
-        .formula::before {
-            content: "";
-            position: absolute;
-            left: -25%;
-            top: 0;
-            width: 20%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255,255,255,0.08),
-                transparent
-            );
-            transform: skewX(-20deg);
-            animation: formulaSweep 5s infinite;
-        }
-
-        /* EXAMPLES */
-
-        .example {
-            position: relative;
-            margin-top: 24px;
-            padding: 26px;
-            border: 1px solid rgba(91, 190, 255, 0.13);
-            border-radius: 16px;
-            background: rgba(3, 12, 23, 0.48);
-        }
-
-        .example-title {
-            color: var(--cyan) !important;
-            font-family: "Space Grotesk", sans-serif;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 12px !important;
-        }
-
-        .solution {
-            margin-top: 20px;
-            padding: 20px;
-            border-radius: 13px;
-            border: 1px solid rgba(89, 215, 255, 0.1);
-            background: rgba(10, 25, 42, 0.72);
-        }
-
-        .solution p:last-child {
-            margin-bottom: 0;
-        }
-
-        .solution strong {
-            color: #e8fbff;
-        }
-
-        /* QUESTIONS */
-
-        .question {
-            padding: 22px 0;
-            border-bottom: 1px solid rgba(89, 215, 255, 0.1);
-            color: #d9e9f4;
-        }
-
-        .question:last-child {
-            border-bottom: none;
-        }
-
-        details {
-            margin-top: 12px;
-        }
-
-        summary {
-            display: inline-block;
-            cursor: pointer;
-            color: var(--cyan);
-            font-weight: 700;
-            font-size: 14px;
-            padding: 7px 0;
-        }
-
-        details p {
-            margin-top: 9px;
-        }
-
-        /* NAVIGATION */
-
-        .navigation {
-            width: min(980px, 92%);
-            margin: 25px auto 75px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 9px;
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 175px;
-            padding: 13px 20px;
-            border: 1px solid rgba(89, 215, 255, 0.18);
-            border-radius: 11px;
-            background: rgba(9, 28, 47, 0.72);
-            color: #dff7ff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 700;
-            backdrop-filter: blur(12px);
-            transition: 0.3s ease;
-        }
-
-        .button:hover {
-            transform: translateY(-3px);
-            border-color: rgba(89, 215, 255, 0.55);
-            background: rgba(89, 215, 255, 0.08);
-            box-shadow: 0 0 25px rgba(89, 215, 255, 0.08);
-        }
-
-        .button.primary {
-            border-color: rgba(89, 215, 255, 0.4);
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(50, 140, 255, 0.3),
-                    rgba(89, 215, 255, 0.12)
-                );
-        }
-
-        /* FOOTER */
-
-        footer {
-            border-top: 1px solid rgba(89, 215, 255, 0.1);
-            background: rgba(2, 7, 15, 0.9);
-            color: #71879c;
-            text-align: center;
-            padding: 30px 20px;
-            font-size: 13px;
-        }
-
-        /* PARTICLES */
-
-        .particles {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: -1;
-        }
-
-        .particle-bg {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            border-radius: 50%;
-            background: var(--cyan);
-            box-shadow: 0 0 8px var(--cyan);
-            opacity: 0.35;
-            animation: drift linear infinite;
-        }
-
-        .p1 { left: 6%; top: 25%; animation-duration: 16s; }
-        .p2 { left: 17%; top: 72%; animation-duration: 20s; animation-delay: -4s; }
-        .p3 { left: 29%; top: 42%; animation-duration: 22s; animation-delay: -8s; }
-        .p4 { left: 72%; top: 18%; animation-duration: 18s; animation-delay: -5s; }
-        .p5 { left: 84%; top: 65%; animation-duration: 21s; animation-delay: -11s; }
-        .p6 { left: 94%; top: 34%; animation-duration: 17s; animation-delay: -3s; }
-        .p7 { left: 51%; top: 77%; animation-duration: 24s; animation-delay: -7s; }
-
-        /* ANIMATIONS */
-
-        @keyframes pulse {
-
-            0%, 100% {
-                opacity: 0.55;
-                transform: scale(0.8);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scale(1.15);
-            }
-
-        }
-
-        @keyframes rotateSlow {
-
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-
-        }
-
-        @keyframes rotateReverse {
-
-            from {
-                transform: rotate(360deg);
-            }
-
-            to {
-                transform: rotate(0deg);
-            }
-
-        }
-
-        @keyframes massFloat1 {
-
-            0%, 100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-12px);
-            }
-
-        }
-
-        @keyframes massFloat2 {
-
-            0%, 100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(10px);
-            }
-
-        }
-
-        @keyframes massFloat3 {
-
-            0%, 100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-8px);
-            }
-
-        }
-
-        @keyframes comPulse {
-
-            0%, 100% {
-                transform: translate(-50%, -50%) scale(0.9);
-                opacity: 0.75;
-            }
-
-            50% {
-                transform: translate(-50%, -50%) scale(1.12);
-                opacity: 1;
-            }
-
-        }
-
-        @keyframes scan {
-
-            0% {
-                left: -100%;
-            }
-
-            100% {
-                left: 150%;
-            }
-
-        }
-
-        @keyframes formulaSweep {
-
-            0%, 55% {
-                left: -25%;
-            }
-
-            100% {
-                left: 130%;
-            }
-
-        }
-
-        @keyframes drift {
-
-            0% {
-                transform: translate3d(0, 0, 0);
-                opacity: 0.15;
-            }
-
-            50% {
-                transform: translate3d(15px, -35px, 0);
-                opacity: 0.5;
-            }
-
-            100% {
-                transform: translate3d(-10px, -70px, 0);
-                opacity: 0.05;
-            }
-
-        }
-
-        /* RESPONSIVE */
-
-        @media (max-width: 760px) {
-
-            header {
-                padding: 15px 5%;
-            }
-
-            .logo {
-                font-size: 19px;
-            }
-
-            .back-link {
-                font-size: 12px;
-                padding: 8px 11px;
-            }
-
-            .hero {
-                min-height: 680px;
-                padding-top: 80px;
-            }
-
-            .hero h1 {
-                letter-spacing: -2px;
-            }
-
-            .hero p {
-                font-size: 15px;
-            }
-
-            .mass-system {
-                height: 230px;
-                margin-top: 40px;
-            }
-
-            .data-strip {
-                grid-template-columns: repeat(2, 1fr);
-                margin-top: -20px;
-            }
-
-            .data-item:nth-child(2) {
-                border-right: none;
-            }
-
-            .data-item:nth-child(-n+2) {
-                border-bottom: 1px solid rgba(89, 215, 255, 0.1);
-            }
-
-            .lesson {
-                padding: 26px 22px;
-                border-radius: 18px;
-            }
-
-            .formula {
-                font-size: 17px;
-                padding: 17px 12px;
-            }
-
-            .example {
-                padding: 20px;
-            }
-
-            .navigation {
-                margin-bottom: 55px;
-            }
-
-            .button {
-                width: 100%;
-            }
-
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-
-            html {
-                scroll-behavior: auto;
-            }
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-
-            .lesson {
-                opacity: 1;
-                transform: none;
-            }
-
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Centres of Mass | IAL ATLAS</title>
+
+<meta name="description"
+content="Complete Edexcel International A Level Mathematics Mechanics 2 Centres of Mass notes, formulas, worked examples, composite laminae, equilibrium and exam practice.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+    --bg: #030914;
+    --bg-soft: #071322;
+    --panel: rgba(10,24,42,0.74);
+    --panel-strong: rgba(7,19,34,0.92);
+    --cyan: #59d7ff;
+    --blue: #328cff;
+    --text: #edf8ff;
+    --muted: #91a9bf;
+    --soft: #c9deee;
+    --line: rgba(89,215,255,0.16);
+    --green: #65ffd2;
+    --yellow: #ffe28a;
+    --red: #ff8f9f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background:
+        radial-gradient(circle at 50% -10%, rgba(38,126,255,0.18), transparent 36%),
+        radial-gradient(circle at 90% 35%, rgba(0,210,255,0.06), transparent 28%),
+        var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(rgba(83,184,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(83,184,255,0.035) 1px, transparent 1px);
+
+    background-size: 48px 48px;
+
+    mask-image: linear-gradient(to bottom, black, transparent 88%);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: rgba(26,133,255,0.055);
+    filter: blur(110px);
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: -3;
+}
+
+a {
+    color: inherit;
+}
+
+/* HEADER */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 18px 6%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(3,9,20,0.74);
+    border-bottom: 1px solid rgba(89,215,255,0.1);
+
+    backdrop-filter: blur(20px);
+}
+
+.logo {
+    text-decoration: none;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.logo::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 10px;
+    border-radius: 50%;
+
+    background: var(--cyan);
+    box-shadow: 0 0 16px var(--cyan);
+
+    animation: pulse 2s infinite;
+}
+
+.back-link {
+    text-decoration: none;
+    color: var(--soft);
+    font-size: 14px;
+
+    padding: 9px 15px;
+
+    border: 1px solid rgba(89,215,255,0.18);
+    border-radius: 10px;
+
+    transition: 0.3s ease;
+}
+
+.back-link:hover {
+    color: white;
+    border-color: rgba(89,215,255,0.55);
+    background: rgba(89,215,255,0.07);
+    transform: translateY(-2px);
+}
+
+/* HERO */
+
+.hero {
+    min-height: 730px;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 100px 20px 90px;
+
+    overflow: hidden;
+
+    transition: transform 0.1s linear;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+
+    width: 830px;
+    height: 830px;
+
+    border: 1px solid rgba(89,215,255,0.075);
+    border-radius: 50%;
+
+    animation: rotateSlow 32s linear infinite;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+
+    width: 590px;
+    height: 590px;
+
+    border: 1px dashed rgba(50,140,255,0.12);
+    border-radius: 50%;
+
+    animation: rotateReverse 25s linear infinite;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 5;
+
+    width: 100%;
+    max-width: 930px;
+}
+
+.hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    color: var(--cyan);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 22px;
+}
+
+.hero-label::before {
+    content: "";
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--cyan);
+    box-shadow: 0 0 14px var(--cyan);
+}
+
+.hero h1 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(48px,8vw,86px);
+
+    line-height: 0.98;
+
+    letter-spacing: -3px;
+
+    background:
+        linear-gradient(
+            120deg,
+            #ffffff 15%,
+            #9be9ff 52%,
+            #65a9ff 90%
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.hero p {
+    max-width: 750px;
+
+    margin: 25px auto 0;
+
+    color: var(--muted);
+
+    font-size: 17px;
+}
+
+/* MASS SYSTEM */
+
+.mass-system {
+    position: relative;
+
+    width: min(850px,94vw);
+    height: 285px;
+
+    margin: 55px auto 0;
+
+    border: 1px solid rgba(89,215,255,0.16);
+    border-radius: 25px;
+
+    background: rgba(4,15,28,0.58);
+
+    backdrop-filter: blur(16px);
+
+    overflow: hidden;
+
+    box-shadow:
+        inset 0 0 50px rgba(50,140,255,0.04),
+        0 0 80px rgba(0,150,255,0.05);
+}
+
+.mass-grid {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(rgba(89,215,255,0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(89,215,255,0.055) 1px, transparent 1px);
+
+    background-size: 40px 40px;
+
+    opacity: 0.55;
+}
+
+.mass-axis {
+    position: absolute;
+
+    left: 8%;
+    right: 8%;
+
+    top: 61%;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(89,215,255,0.7),
+            transparent
+        );
+}
+
+.mass-axis::before {
+    content: "x = 0";
+
+    position: absolute;
+
+    left: 0;
+    top: 13px;
+
+    font-size: 10px;
+    color: #65839c;
+}
+
+.mass-axis::after {
+    content: "POSITION →";
+
+    position: absolute;
+
+    right: 0;
+    top: -26px;
+
+    color: rgba(155,233,255,0.5);
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+}
+
+.beam {
+    position: absolute;
+
+    left: 13%;
+    right: 13%;
+
+    top: 60%;
+
+    height: 5px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(89,215,255,0.18),
+            rgba(89,215,255,0.8),
+            rgba(89,215,255,0.18)
+        );
+
+    box-shadow: 0 0 18px rgba(89,215,255,0.18);
+}
+
+.support {
+    position: absolute;
+
+    left: 50%;
+    top: 61%;
+
+    transform: translateX(-50%);
+
+    width: 0;
+    height: 0;
+
+    border-left: 23px solid transparent;
+    border-right: 23px solid transparent;
+    border-top: 43px solid rgba(89,215,255,0.16);
+
+    filter:
+        drop-shadow(
+            0 0 10px rgba(89,215,255,0.18)
+        );
+}
+
+.support::after {
+    content: "";
+
+    position: absolute;
+
+    width: 75px;
+    height: 2px;
+
+    background: rgba(89,215,255,0.25);
+
+    left: -37px;
+    top: 42px;
+}
+
+.mass {
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: white;
+
+    border: 3px solid var(--cyan);
+
+    box-shadow:
+        0 0 15px var(--cyan),
+        0 0 38px rgba(89,215,255,0.65);
+}
+
+.mass-one {
+    width: 28px;
+    height: 28px;
+
+    left: 25%;
+    top: 55%;
+
+    animation: massFloat1 4s ease-in-out infinite;
+}
+
+.mass-two {
+    width: 43px;
+    height: 43px;
+
+    left: 69%;
+    top: 52%;
+
+    animation: massFloat2 4.5s ease-in-out infinite;
+}
+
+.mass-three {
+    width: 18px;
+    height: 18px;
+
+    left: 43%;
+    top: 57%;
+
+    animation: massFloat3 3.7s ease-in-out infinite;
+}
+
+.mass-label {
+    position: absolute;
+
+    color: #8cdfff;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+.label-one {
+    left: 23.5%;
+    top: 43%;
+}
+
+.label-two {
+    left: 68%;
+    top: 37%;
+}
+
+.label-three {
+    left: 40.5%;
+    top: 47%;
+}
+
+.com-marker {
+    position: absolute;
+
+    left: 50%;
+    top: 54%;
+
+    width: 31px;
+    height: 31px;
+
+    transform: translate(-50%,-50%);
+
+    border: 2px solid white;
+    border-radius: 50%;
+
+    background: rgba(89,215,255,0.12);
+
+    box-shadow:
+        0 0 12px white,
+        0 0 30px var(--cyan),
+        0 0 70px rgba(89,215,255,0.35);
+
+    animation: comPulse 2.5s ease-in-out infinite;
+}
+
+.com-marker::before,
+.com-marker::after {
+    content: "";
+
+    position: absolute;
+
+    background: var(--cyan);
+}
+
+.com-marker::before {
+    width: 54px;
+    height: 1px;
+
+    left: -13px;
+    top: 13px;
+}
+
+.com-marker::after {
+    height: 54px;
+    width: 1px;
+
+    left: 13px;
+    top: -13px;
+}
+
+.com-label {
+    position: absolute;
+
+    left: 50%;
+    top: 34%;
+
+    transform: translateX(-50%);
+
+    color: white;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    white-space: nowrap;
+
+    text-shadow:
+        0 0 12px rgba(89,215,255,0.7);
+}
+
+/* DATA STRIP */
+
+.data-strip {
+    position: relative;
+    z-index: 10;
+
+    width: min(900px,92%);
+
+    margin: -30px auto 70px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    border: 1px solid rgba(89,215,255,0.15);
+    border-radius: 18px;
+
+    background: rgba(7,18,33,0.8);
+
+    backdrop-filter: blur(18px);
+
+    overflow: hidden;
+
+    box-shadow:
+        0 20px 70px rgba(0,0,0,0.25);
+}
+
+.data-item {
+    padding: 20px 15px;
+
+    text-align: center;
+
+    border-right:
+        1px solid rgba(89,215,255,0.1);
+}
+
+.data-item:last-child {
+    border-right: none;
+}
+
+.data-value {
+    display: block;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    color: var(--cyan);
+}
+
+.data-label {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+
+    color: #718ca5;
+}
+
+/* CONTENT */
+
+.container {
+    width: min(1000px,92%);
+
+    margin: auto;
+
+    padding-bottom: 30px;
+}
+
+.lesson {
+    position: relative;
+
+    padding: 40px;
+
+    margin-bottom: 28px;
+
+    border:
+        1px solid rgba(89,215,255,0.13);
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(10,27,47,0.78),
+            rgba(5,15,28,0.7)
+        );
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 18px 60px rgba(0,0,0,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.025);
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    transform: translateY(35px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
+
+.lesson.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.lesson::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 65%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--cyan),
+            transparent
+        );
+
+    animation: scan 6s linear infinite;
+}
+
+.lesson:hover {
+    border-color: rgba(89,215,255,0.27);
+
+    box-shadow:
+        0 22px 70px rgba(0,0,0,0.28),
+        0 0 45px rgba(50,140,255,0.045);
+}
+
+.lesson-number {
+    color: var(--cyan);
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 9px;
+}
+
+.lesson h2 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(25px,4vw,34px);
+
+    line-height: 1.2;
+
+    margin-bottom: 18px;
+
+    color: #f2fbff;
+}
+
+.lesson h3 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 21px;
+
+    margin:
+        28px 0 12px;
+
+    color: #e9faff;
+}
+
+.lesson p {
+    color: var(--muted);
+
+    margin-bottom: 15px;
+}
+
+.lesson ul,
+.lesson ol {
+    padding-left: 24px;
+
+    color: var(--muted);
+}
+
+.lesson li {
+    margin-bottom: 9px;
+}
+
+.lesson strong {
+    color: #e8fbff;
+}
+
+/* DEFINITION */
+
+.definition {
+    position: relative;
+
+    margin: 22px 0 8px;
+
+    padding: 23px 25px;
+
+    border:
+        1px solid rgba(89,215,255,0.12);
+
+    border-left:
+        3px solid var(--cyan);
+
+    border-radius: 14px;
+
+    background:
+        rgba(89,215,255,0.045);
+}
+
+.definition p {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+/* FORMULA */
+
+.formula {
+    position: relative;
+
+    margin: 22px 0;
+
+    padding: 20px;
+
+    border:
+        1px solid rgba(89,215,255,0.16);
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(17,55,86,0.75),
+            rgba(6,21,38,0.9)
+        );
+
+    color: #eafaff;
+
+    text-align: center;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 21px;
+    font-weight: 700;
+
+    letter-spacing: .4px;
+
+    overflow: hidden;
+
+    box-shadow:
+        inset 0 0 30px rgba(89,215,255,0.025);
+}
+
+.formula small {
+    display: block;
+
+    margin-top: 7px;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    color: #88a7bc;
+}
+
+.formula::before {
+    content: "";
+
+    position: absolute;
+
+    left: -25%;
+    top: 0;
+
+    width: 20%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.08),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    animation: formulaSweep 5s infinite;
+}
+
+/* EXAMPLE */
+
+.example {
+    position: relative;
+
+    margin-top: 24px;
+
+    padding: 27px;
+
+    border:
+        1px solid rgba(91,190,255,0.13);
+
+    border-radius: 16px;
+
+    background:
+        rgba(3,12,23,0.48);
+}
+
+.example-title {
+    color: var(--cyan) !important;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 12px !important;
+}
+
+.solution {
+    margin-top: 20px;
+
+    padding: 21px;
+
+    border-radius: 13px;
+
+    border:
+        1px solid rgba(89,215,255,0.1);
+
+    background:
+        rgba(10,25,42,0.72);
+}
+
+.solution p:last-child {
+    margin-bottom: 0;
+}
+
+/* METHOD BOX */
+
+.method {
+    margin: 22px 0;
+
+    padding: 22px 24px;
+
+    border:
+        1px solid rgba(101,255,210,0.16);
+
+    border-left:
+        3px solid var(--green);
+
+    border-radius: 14px;
+
+    background:
+        rgba(101,255,210,0.035);
+}
+
+.method-title {
+    color: var(--green);
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 10px;
+}
+
+/* WARNING */
+
+.warning {
+    margin: 22px 0;
+
+    padding: 22px 24px;
+
+    border:
+        1px solid rgba(255,226,138,0.15);
+
+    border-left:
+        3px solid var(--yellow);
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,226,138,0.035);
+}
+
+.warning-title {
+    color: var(--yellow);
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-weight: 700;
+
+    margin-bottom: 9px;
+}
+
+/* MISTAKE */
+
+.mistake {
+    margin: 22px 0;
+
+    padding: 22px 24px;
+
+    border:
+        1px solid rgba(255,143,159,0.15);
+
+    border-left:
+        3px solid var(--red);
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,143,159,0.035);
+}
+
+.mistake-title {
+    color: var(--red);
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-weight: 700;
+
+    margin-bottom: 9px;
+}
+
+/* TABLE */
+
+.table-wrap {
+    overflow-x: auto;
+
+    margin: 24px 0;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 650px;
+
+    background:
+        rgba(2,10,19,.42);
+
+    border:
+        1px solid rgba(89,215,255,.12);
+
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: 14px 16px;
+
+    text-align: left;
+
+    border-bottom:
+        1px solid rgba(89,215,255,.09);
+
+    color: var(--muted);
+}
+
+th {
+    color: #e8fbff;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    background:
+        rgba(89,215,255,.055);
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* QUESTIONS */
+
+.question {
+    padding: 22px 0;
+
+    border-bottom:
+        1px solid rgba(89,215,255,.1);
+
+    color: #d9e9f4;
+}
+
+.question:last-child {
+    border-bottom: none;
+}
+
+.question-number {
+    color: var(--cyan);
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 7px;
+}
+
+details {
+    margin-top: 12px;
+}
+
+summary {
+    display: inline-block;
+
+    cursor: pointer;
+
+    color: var(--cyan);
+
+    font-weight: 700;
+
+    font-size: 14px;
+
+    padding: 7px 0;
+}
+
+details p {
+    margin-top: 9px;
+}
+
+/* CHECKLIST */
+
+.checklist {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+.check {
+    padding: 15px 17px;
+
+    border:
+        1px solid rgba(89,215,255,.1);
+
+    border-radius: 12px;
+
+    background:
+        rgba(89,215,255,.035);
+
+    color: var(--muted);
+}
+
+.check::before {
+    content: "✓";
+
+    color: var(--green);
+
+    font-weight: 800;
+
+    margin-right: 9px;
+}
+
+/* NAVIGATION */
+
+.navigation {
+    width: min(1000px,92%);
+
+    margin: 25px auto 75px;
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+}
+
+.button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 175px;
+
+    padding: 13px 20px;
+
+    border:
+        1px solid rgba(89,215,255,.18);
+
+    border-radius: 11px;
+
+    background:
+        rgba(9,28,47,.72);
+
+    color: #dff7ff;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    backdrop-filter: blur(12px);
+
+    transition: .3s ease;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(89,215,255,.55);
+
+    background:
+        rgba(89,215,255,.08);
+
+    box-shadow:
+        0 0 25px rgba(89,215,255,.08);
+}
+
+.button.primary {
+    border-color:
+        rgba(89,215,255,.4);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(50,140,255,.3),
+            rgba(89,215,255,.12)
+        );
+}
+
+/* FOOTER */
+
+footer {
+    border-top:
+        1px solid rgba(89,215,255,.1);
+
+    background:
+        rgba(2,7,15,.9);
+
+    color: #71879c;
+
+    text-align: center;
+
+    padding: 30px 20px;
+
+    font-size: 13px;
+}
+
+/* PARTICLES */
+
+.particles {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: -1;
+}
+
+.particle-bg {
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: var(--cyan);
+
+    box-shadow:
+        0 0 8px var(--cyan);
+
+    opacity: .35;
+
+    animation: drift linear infinite;
+}
+
+.p1 {
+    left: 6%;
+    top: 25%;
+    animation-duration: 16s;
+}
+
+.p2 {
+    left: 17%;
+    top: 72%;
+    animation-duration: 20s;
+    animation-delay: -4s;
+}
+
+.p3 {
+    left: 29%;
+    top: 42%;
+    animation-duration: 22s;
+    animation-delay: -8s;
+}
+
+.p4 {
+    left: 72%;
+    top: 18%;
+    animation-duration: 18s;
+    animation-delay: -5s;
+}
+
+.p5 {
+    left: 84%;
+    top: 65%;
+    animation-duration: 21s;
+    animation-delay: -11s;
+}
+
+.p6 {
+    left: 94%;
+    top: 34%;
+    animation-duration: 17s;
+    animation-delay: -3s;
+}
+
+.p7 {
+    left: 51%;
+    top: 77%;
+    animation-duration: 24s;
+    animation-delay: -7s;
+}
+
+/* ANIMATIONS */
+
+@keyframes pulse {
+
+    0%,100% {
+        opacity: .55;
+        transform: scale(.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+
+}
+
+@keyframes rotateSlow {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+@keyframes rotateReverse {
+
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+
+}
+
+@keyframes massFloat1 {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+}
+
+@keyframes massFloat2 {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+
+}
+
+@keyframes massFloat3 {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+}
+
+@keyframes comPulse {
+
+    0%,100% {
+        transform:
+            translate(-50%,-50%)
+            scale(.9);
+
+        opacity: .75;
+    }
+
+    50% {
+        transform:
+            translate(-50%,-50%)
+            scale(1.12);
+
+        opacity: 1;
+    }
+
+}
+
+@keyframes scan {
+
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 150%;
+    }
+
+}
+
+@keyframes formulaSweep {
+
+    0%,55% {
+        left: -25%;
+    }
+
+    100% {
+        left: 130%;
+    }
+
+}
+
+@keyframes drift {
+
+    0% {
+        transform:
+            translate3d(0,0,0);
+
+        opacity: .15;
+    }
+
+    50% {
+        transform:
+            translate3d(15px,-35px,0);
+
+        opacity: .5;
+    }
+
+    100% {
+        transform:
+            translate3d(-10px,-70px,0);
+
+        opacity: .05;
+    }
+
+}
+
+/* RESPONSIVE */
+
+@media (max-width:760px) {
+
+    header {
+        padding: 15px 5%;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .back-link {
+        font-size: 12px;
+        padding: 8px 11px;
+    }
+
+    .hero {
+        min-height: 680px;
+        padding-top: 80px;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .mass-system {
+        height: 230px;
+        margin-top: 40px;
+    }
+
+    .data-strip {
+        grid-template-columns: repeat(2,1fr);
+        margin-top: -20px;
+    }
+
+    .data-item:nth-child(2) {
+        border-right: none;
+    }
+
+    .data-item:nth-child(-n+2) {
+        border-bottom:
+            1px solid rgba(89,215,255,.1);
+    }
+
+    .lesson {
+        padding: 27px 22px;
+        border-radius: 18px;
+    }
+
+    .formula {
+        font-size: 17px;
+        padding: 17px 12px;
+    }
+
+    .example {
+        padding: 20px;
+    }
+
+    .checklist {
+        grid-template-columns: 1fr;
+    }
+
+    .navigation {
+        margin-bottom: 55px;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+
+    .lesson {
+        opacity: 1;
+        transform: none;
+    }
+
+}
+
+</style>
 
 </head>
+
 
 <body>
 
 
 <div class="particles">
 
-    <span class="particle-bg p1"></span>
-    <span class="particle-bg p2"></span>
-    <span class="particle-bg p3"></span>
-    <span class="particle-bg p4"></span>
-    <span class="particle-bg p5"></span>
-    <span class="particle-bg p6"></span>
-    <span class="particle-bg p7"></span>
+<span class="particle-bg p1"></span>
+<span class="particle-bg p2"></span>
+<span class="particle-bg p3"></span>
+<span class="particle-bg p4"></span>
+<span class="particle-bg p5"></span>
+<span class="particle-bg p6"></span>
+<span class="particle-bg p7"></span>
 
 </div>
 
 
 <header>
 
-    <a href="index.html" class="logo">
-        IAL ATLAS
-    </a>
+<a href="index.html" class="logo">
+IAL ATLAS
+</a>
 
-    <a href="mechanics-2.html" class="back-link">
-        ← Mechanics 2
-    </a>
+<a href="mechanics-2.html" class="back-link">
+← Mechanics 2
+</a>
 
 </header>
 
 
 <section class="hero" id="hero">
 
-    <div class="hero-content">
+<div class="hero-content">
 
-        <p class="hero-label">
-            MECHANICS 2 • TOPIC 02 • MASS DISTRIBUTION LAB
-        </p>
+<p class="hero-label">
+MECHANICS 2 • CENTRES OF MASS • MASS DISTRIBUTION
+</p>
 
-        <h1>
-            Centres<br>of Mass
-        </h1>
+<h1>
+Centres<br>of Mass
+</h1>
 
-        <p>
-            Explore how mass and position combine to determine the
-            centre of mass of particles and systems.
-        </p>
+<p>
+A complete guide to centres of mass in Mechanics 2:
+particles, two-dimensional systems, uniform laminae,
+composite bodies, and equilibrium.
+</p>
 
 
-        <div class="mass-system">
+<div class="mass-system">
 
-            <div class="mass-grid"></div>
+<div class="mass-grid"></div>
 
-            <div class="mass-axis"></div>
+<div class="mass-axis"></div>
 
-            <div class="beam"></div>
+<div class="beam"></div>
 
-            <div class="support"></div>
+<div class="support"></div>
 
-            <div class="mass mass-one"></div>
-            <div class="mass mass-two"></div>
-            <div class="mass mass-three"></div>
+<div class="mass mass-one"></div>
+<div class="mass mass-two"></div>
+<div class="mass mass-three"></div>
 
-            <span class="mass-label label-one">
-                m₁
-            </span>
+<span class="mass-label label-one">m₁</span>
+<span class="mass-label label-two">m₂</span>
+<span class="mass-label label-three">m₃</span>
 
-            <span class="mass-label label-two">
-                m₂
-            </span>
+<div class="com-marker"></div>
 
-            <span class="mass-label label-three">
-                m₃
-            </span>
+<div class="com-label">
+CENTRE OF MASS
+</div>
 
-            <div class="com-marker"></div>
+</div>
 
-            <div class="com-label">
-                CENTRE OF MASS
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
 <div class="data-strip">
 
-    <div class="data-item">
+<div class="data-item">
 
-        <span class="data-value">
-            x̄
-        </span>
+<span class="data-value">
+x̄
+</span>
 
-        <span class="data-label">
-            CENTRE POSITION
-        </span>
+<span class="data-label">
+CENTRE POSITION
+</span>
 
-    </div>
-
-
-    <div class="data-item">
-
-        <span class="data-value">
-            Σ(mx)
-        </span>
-
-        <span class="data-label">
-            MASS × POSITION
-        </span>
-
-    </div>
+</div>
 
 
-    <div class="data-item">
+<div class="data-item">
 
-        <span class="data-value">
-            Σm
-        </span>
+<span class="data-value">
+Σmx
+</span>
 
-        <span class="data-label">
-            TOTAL MASS
-        </span>
+<span class="data-label">
+MOMENT OF MASS
+</span>
 
-    </div>
+</div>
 
 
-    <div class="data-item">
+<div class="data-item">
 
-        <span class="data-value">
-            M2
-        </span>
+<span class="data-value">
+Σm
+</span>
 
-        <span class="data-label">
-            ADVANCED MECHANICS
-        </span>
+<span class="data-label">
+TOTAL MASS
+</span>
 
-    </div>
+</div>
+
+
+<div class="data-item">
+
+<span class="data-value">
+M2
+</span>
+
+<span class="data-label">
+MECHANICS 2
+</span>
+
+</div>
 
 </div>
 
@@ -1153,331 +1683,2654 @@
 <main class="container">
 
 
-    <section class="lesson">
+<!-- LESSON 1 -->
 
-        <p class="lesson-number">
-            LESSON 01
-        </p>
+<section class="lesson">
 
-        <h2>
-            What is the Centre of Mass?
-        </h2>
+<p class="lesson-number">
+LESSON 01
+</p>
 
-        <p>
-            The centre of mass is the point at which the mass of a
-            system can be considered to be concentrated for many
-            mechanics calculations.
-        </p>
+<h2>
+What Is the Centre of Mass?
+</h2>
 
-        <div class="definition">
+<p>
+The <strong>centre of mass</strong> of a system is the point at which
+the entire mass of the system may be considered to be concentrated
+when considering its translational motion.
+</p>
 
-            <strong>
-                Key idea
-            </strong>
+<p>
+For a collection of particles, the centre of mass is determined by
+the masses of the particles and their positions. It is therefore not
+simply the geometrical centre of the arrangement.
+</p>
 
-            <p>
-                For particles arranged along a straight line,
-                the centre of mass depends on both the masses
-                and their positions.
-            </p>
+<div class="definition">
 
-        </div>
+<strong>Core idea</strong>
 
-    </section>
+<p>
+A heavier particle has a greater influence on the position of the
+centre of mass than a lighter particle. The centre of mass is therefore
+closer to the heavier mass.
+</p>
 
+</div>
 
-    <section class="lesson">
+<h3>
+Physical interpretation
+</h3>
 
-        <p class="lesson-number">
-            LESSON 02
-        </p>
+<p>
+Imagine a rigid object supported at exactly its centre of mass.
+The object can balance because the resultant effect of the weights
+acts through the support point.
+</p>
 
-        <h2>
-            Two Particles
-        </h2>
+<p>
+This idea becomes especially important when a lamina is suspended
+from a point or when its stability on an inclined plane is considered.
+</p>
 
-        <p>
-            Consider two particles of masses m₁ and m₂ at positions
-            x₁ and x₂ on a straight line.
-        </p>
+</section>
 
-        <div class="formula">
-            x̄ = (m₁x₁ + m₂x₂) / (m₁ + m₂)
-        </div>
 
-        <p>
-            The formula gives the position of the centre of mass
-            measured from the chosen origin.
-        </p>
+<!-- LESSON 2 -->
 
-    </section>
+<section class="lesson">
 
+<p class="lesson-number">
+LESSON 02
+</p>
 
-    <section class="lesson">
+<h2>
+Centre of Mass of Two Particles
+</h2>
 
-        <p class="lesson-number">
-            LESSON 03
-        </p>
+<p>
+Suppose two particles have masses m₁ and m₂ and are situated at
+positions x₁ and x₂ on the x-axis.
+</p>
 
-        <h2>
-            Example with Two Particles
-        </h2>
+<p>
+The centre of mass has coordinate x̄ given by the weighted mean
+of the particle positions.
+</p>
 
-        <div class="example">
+<div class="formula">
+x̄ = (m₁x₁ + m₂x₂) / (m₁ + m₂)
 
-            <p class="example-title">
-                Example
-            </p>
+<small>
+mass × position, divided by total mass
+</small>
 
-            <p>
-                A particle of mass 2 kg is at x = 0 m and a particle
-                of mass 3 kg is at x = 5 m. Find the position of the
-                centre of mass.
-            </p>
+</div>
 
-            <div class="solution">
+<p>
+The numerator represents the sum of the moments of the masses about
+the chosen origin. The denominator represents the total mass.
+</p>
 
-                <p>
-                    x̄ = (2 × 0 + 3 × 5) / (2 + 3)
-                </p>
+<div class="method">
 
-                <p>
-                    x̄ = 15 / 5
-                </p>
+<div class="method-title">
+EXAM METHOD
+</div>
 
-                <p>
-                    <strong>
-                        x̄ = 3 m
-                    </strong>
-                </p>
+<ol>
 
-            </div>
+<li>Choose a convenient origin.</li>
 
-        </div>
+<li>Write down every mass and its coordinate.</li>
 
-    </section>
+<li>Calculate each value of m × x.</li>
 
+<li>Add the mass-moments.</li>
 
-    <section class="lesson">
+<li>Divide by the total mass.</li>
 
-        <p class="lesson-number">
-            LESSON 04
-        </p>
+<li>Check that the answer lies between the extreme particle positions.</li>
 
-        <h2>
-            More Than Two Particles
-        </h2>
+</ol>
 
-        <p>
-            The same principle can be extended to any number of
-            particles.
-        </p>
+</div>
 
-        <div class="formula">
-            x̄ = Σ(mx) / Σm
-        </div>
+</section>
 
-        <p>
-            Multiply each mass by its position, add the results,
-            then divide by the total mass.
-        </p>
 
-    </section>
+<!-- LESSON 3 -->
 
+<section class="lesson">
 
-    <section class="lesson">
+<p class="lesson-number">
+LESSON 03
+</p>
 
-        <p class="lesson-number">
-            LESSON 05
-        </p>
+<h2>
+Why the Formula Works
+</h2>
 
-        <h2>
-            Centre of Mass in Two Dimensions
-        </h2>
+<p>
+Suppose the centre of mass is at x̄. By definition, the total moment
+of the system about the origin is equal to the moment produced by
+placing the total mass at x̄.
+</p>
 
-        <p>
-            For particles positioned in two dimensions, the centre
-            of mass can be found separately in the horizontal and
-            vertical directions.
-        </p>
+<p>
+Therefore:
+</p>
 
-        <div class="formula">
-            x̄ = Σ(mx) / Σm
-        </div>
+<div class="formula">
+Total moment about O = total mass × x̄
+</div>
 
-        <div class="formula">
-            ȳ = Σ(my) / Σm
-        </div>
+<p>
+For particles:
+</p>
 
-        <p>
-            This allows the coordinates of the centre of mass
-            to be determined.
-        </p>
+<div class="formula">
+m₁x₁ + m₂x₂ + m₃x₃ + ··· = (m₁ + m₂ + m₃ + ···)x̄
+</div>
 
-    </section>
+<p>
+Dividing by the total mass gives:
+</p>
 
+<div class="formula">
+x̄ = Σ(mx) / Σm
+</div>
 
-    <section class="lesson">
+<p>
+This is the central formula behind almost every particle centre-of-mass
+calculation.
+</p>
 
-        <p class="lesson-number">
-            WORKED EXAMPLE
-        </p>
+</section>
 
-        <h2>
-            Three Particles
-        </h2>
 
-        <div class="example">
+<!-- LESSON 4 -->
 
-            <p class="example-title">
-                Example
-            </p>
+<section class="lesson">
 
-            <p>
-                Three particles have masses 2 kg, 3 kg and 5 kg
-                at positions 1 m, 4 m and 7 m respectively.
-                Find the centre of mass.
-            </p>
+<p class="lesson-number">
+LESSON 04
+</p>
 
-            <div class="solution">
+<h2>
+Choosing the Origin
+</h2>
 
-                <p>
-                    Total mass = 2 + 3 + 5 = 10 kg
-                </p>
+<p>
+The coordinate of the centre of mass depends on the chosen origin,
+but its physical position does not.
+</p>
 
-                <p>
-                    Σ(mx) = (2 × 1) + (3 × 4) + (5 × 7)
-                </p>
+<p>
+A convenient origin usually makes the arithmetic simpler.
+For example, if particles lie along a line segment, placing the origin
+at one end of the segment may avoid unnecessary negative coordinates.
+</p>
 
-                <p>
-                    Σ(mx) = 2 + 12 + 35 = 49
-                </p>
+<div class="example">
 
-                <p>
-                    x̄ = 49 / 10
-                </p>
+<p class="example-title">
+WORKED EXAMPLE
+</p>
 
-                <p>
-                    <strong>
-                        x̄ = 4.9 m
-                    </strong>
-                </p>
+<p>
+Particles of masses 2 kg and 6 kg are positioned at x = 3 m and
+x = 7 m respectively. Find the centre of mass.
+</p>
 
-            </div>
+<div class="solution">
 
-        </div>
+<p>
+x̄ =
+[(2)(3) + (6)(7)] / (2 + 6)
+</p>
 
-    </section>
+<p>
+x̄ =
+(6 + 42) / 8
+</p>
 
+<p>
+x̄ = 48 / 8
+</p>
 
-    <section class="lesson">
+<p>
+<strong>
+x̄ = 6 m
+</strong>
+</p>
 
-        <p class="lesson-number">
-            PRACTICE
-        </p>
+</div>
 
-        <h2>
-            Test Yourself
-        </h2>
+</div>
 
+<p>
+Notice that 6 m is closer to the 6 kg mass at 7 m than to the 2 kg
+mass at 3 m.
+</p>
 
-        <div class="question">
+</section>
 
-            <strong>
-                1. What does the centre of mass represent?
-            </strong>
 
-            <details>
+<!-- LESSON 5 -->
 
-                <summary>
-                    Show answer
-                </summary>
+<section class="lesson">
 
-                <p>
-                    It is the point at which the mass of a system
-                    can be considered concentrated for many calculations.
-                </p>
+<p class="lesson-number">
+LESSON 05
+</p>
 
-            </details>
+<h2>
+Negative Coordinates
+</h2>
 
-        </div>
+<p>
+Particles do not have to lie on the positive side of the origin.
+If a particle lies to the left of the origin, its coordinate is negative.
+</p>
 
+<div class="example">
 
-        <div class="question">
+<p class="example-title">
+WORKED EXAMPLE
+</p>
 
-            <strong>
-                2. Two particles of masses 2 kg and 4 kg are at
-                x = 0 m and x = 6 m. Find the centre of mass.
-            </strong>
+<p>
+A particle of mass 4 kg is at x = −3 m and a particle of mass 2 kg
+is at x = 6 m. Find the centre of mass.
+</p>
 
-            <details>
+<div class="solution">
 
-                <summary>
-                    Show answer
-                </summary>
+<p>
+x̄ =
+[(4)(−3) + (2)(6)] / (4 + 2)
+</p>
 
-                <p>
-                    x̄ = (2 × 0 + 4 × 6) / (2 + 4)
-                </p>
+<p>
+x̄ =
+(−12 + 12) / 6
+</p>
 
-                <p>
-                    <strong>
-                        x̄ = 4 m
-                    </strong>
-                </p>
+<p>
+<strong>
+x̄ = 0 m
+</strong>
+</p>
 
-            </details>
+</div>
 
-        </div>
+</div>
 
+<div class="warning">
 
-        <div class="question">
+<div class="warning-title">
+IMPORTANT
+</div>
 
-            <strong>
-                3. What must be done to find the centre of mass
-                of several particles?
-            </strong>
+<p>
+Never replace a negative coordinate with its positive distance.
+The sign of a coordinate determines the direction of its moment.
+</p>
 
-            <details>
+</div>
 
-                <summary>
-                    Show answer
-                </summary>
+</section>
 
-                <p>
-                    Calculate Σ(mx) and divide by the total mass Σm.
-                </p>
 
-            </details>
+<!-- LESSON 6 -->
 
-        </div>
+<section class="lesson">
 
-    </section>
+<p class="lesson-number">
+LESSON 06
+</p>
 
+<h2>
+Several Particles
+</h2>
 
-    <section class="lesson">
+<p>
+For n particles with masses m₁, m₂, …, mₙ at positions
+x₁, x₂, …, xₙ:
+</p>
 
-        <p class="lesson-number">
-            QUICK REVIEW
-        </p>
+<div class="formula">
+x̄ = (m₁x₁ + m₂x₂ + ··· + mₙxₙ) /
+(m₁ + m₂ + ··· + mₙ)
+</div>
 
-        <h2>
-            Remember These
-        </h2>
+<p>
+Using sigma notation:
+</p>
 
-        <div class="formula">
-            x̄ = Σ(mx) / Σm
-        </div>
+<div class="formula">
+x̄ = Σ(mx) / Σm
+</div>
 
-        <div class="formula">
-            ȳ = Σ(my) / Σm
-        </div>
+<div class="example">
 
-        <div class="formula">
-            Centre of mass depends on mass and position
-        </div>
+<p class="example-title">
+FULL WORKED EXAMPLE
+</p>
 
-    </section>
+<p>
+Three particles have masses 2 kg, 3 kg and 5 kg at positions
+1 m, 4 m and 7 m respectively. Find the centre of mass.
+</p>
+
+<div class="solution">
+
+<p>
+Total mass:
+</p>
+
+<p>
+2 + 3 + 5 = 10 kg
+</p>
+
+<p>
+Calculate Σ(mx):
+</p>
+
+<p>
+(2)(1) + (3)(4) + (5)(7)
+</p>
+
+<p>
+= 2 + 12 + 35
+</p>
+
+<p>
+= 49
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+x̄ = 49 / 10
+</p>
+
+<p>
+<strong>
+x̄ = 4.9 m
+</strong>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 7 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 07
+</p>
+
+<h2>
+The Centre of Mass as a Weighted Mean
+</h2>
+
+<p>
+The centre of mass can be viewed as a <strong>weighted average</strong>
+of the coordinates.
+</p>
+
+<p>
+The weights in the average are the masses.
+</p>
+
+<div class="formula">
+x̄ =
+(m₁ / Σm)x₁ +
+(m₂ / Σm)x₂ +
+···
+</div>
+
+<p>
+This immediately explains why increasing one particle's mass pulls
+the centre of mass towards that particle.
+</p>
+
+<div class="method">
+
+<div class="method-title">
+USEFUL CHECK
+</div>
+
+<p>
+For positive masses, the centre of mass must lie between the smallest
+and largest particle coordinates.
+</p>
+
+<p>
+If your answer lies outside that interval, something has almost
+certainly gone wrong.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 8 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 08
+</p>
+
+<h2>
+Centre of Mass in Two Dimensions
+</h2>
+
+<p>
+For particles positioned in a plane, the centre of mass has two
+coordinates:
+</p>
+
+<div class="formula">
+( x̄ , ȳ )
+</div>
+
+<p>
+The x-coordinate is found independently using the x-coordinates of
+the particles:
+</p>
+
+<div class="formula">
+x̄ = Σ(mx) / Σm
+</div>
+
+<p>
+The y-coordinate is found independently using the y-coordinates:
+</p>
+
+<div class="formula">
+ȳ = Σ(my) / Σm
+</div>
+
+<p>
+The same total mass is used in both calculations.
+</p>
+
+<div class="example">
+
+<p class="example-title">
+WORKED EXAMPLE
+</p>
+
+<p>
+Three particles have the following masses and coordinates:
+</p>
+
+<div class="table-wrap">
+
+<table>
+
+<tr>
+<th>Particle</th>
+<th>Mass</th>
+<th>x</th>
+<th>y</th>
+</tr>
+
+<tr>
+<td>A</td>
+<td>2 kg</td>
+<td>1 m</td>
+<td>2 m</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>3 kg</td>
+<td>4 m</td>
+<td>1 m</td>
+</tr>
+
+<tr>
+<td>C</td>
+<td>5 kg</td>
+<td>7 m</td>
+<td>5 m</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="solution">
+
+<p>
+Total mass = 10 kg
+</p>
+
+<p>
+Σ(mx) = 2(1) + 3(4) + 5(7)
+</p>
+
+<p>
+= 49
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+x̄ = 49/10 = 4.9 m
+</p>
+
+<p>
+Now calculate Σ(my):
+</p>
+
+<p>
+Σ(my) = 2(2) + 3(1) + 5(5)
+</p>
+
+<p>
+= 4 + 3 + 25
+</p>
+
+<p>
+= 32
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+ȳ = 32/10 = 3.2 m
+</p>
+
+<p>
+<strong>
+Centre of mass = (4.9, 3.2) m
+</strong>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 9 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 09
+</p>
+
+<h2>
+Vector Form of the Centre of Mass
+</h2>
+
+<p>
+The same calculation can be written using position vectors.
+If particle i has position vector rᵢ and mass mᵢ, then:
+</p>
+
+<div class="formula">
+r̄ = Σ(mr) / Σm
+</div>
+
+<p>
+In two dimensions:
+</p>
+
+<div class="formula">
+r̄ =
+[ Σ(mx) / Σm ] i
++
+[ Σ(my) / Σm ] j
+</div>
+
+<p>
+This is particularly useful when the positions are supplied as
+vectors rather than coordinates in a diagram.
+</p>
+
+</section>
+
+
+<!-- LESSON 10 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 10
+</p>
+
+<h2>
+Uniform Laminae
+</h2>
+
+<p>
+A <strong>lamina</strong> is a thin flat object. When a lamina is
+uniform, its mass is distributed uniformly over its area.
+</p>
+
+<p>
+For a uniform lamina, the centre of mass coincides with its
+geometrical centre of mass, often called its centroid.
+</p>
+
+<p>
+The key standard results should be known and recognised quickly.
+</p>
+
+<div class="table-wrap">
+
+<table>
+
+<tr>
+<th>Shape</th>
+<th>Centre of Mass</th>
+</tr>
+
+<tr>
+<td>Rectangle</td>
+<td>At the intersection of its diagonals</td>
+</tr>
+
+<tr>
+<td>Square</td>
+<td>At the centre</td>
+</tr>
+
+<tr>
+<td>Circle</td>
+<td>At its centre</td>
+</tr>
+
+<tr>
+<td>Triangle</td>
+<td>At the intersection of its medians</td>
+</tr>
+
+<tr>
+<td>Semicircle</td>
+<td>On its axis of symmetry, at the standard centroid position</td>
+</tr>
+
+<tr>
+<td>Quarter circle</td>
+<td>On the symmetry axes, at the standard centroid position</td>
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 11 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 11
+</p>
+
+<h2>
+Symmetry and the Centre of Mass
+</h2>
+
+<p>
+Symmetry is one of the fastest ways to locate one coordinate of a
+centre of mass.
+</p>
+
+<p>
+If a uniform lamina is symmetrical about a straight line, its centre
+of mass must lie on that line.
+</p>
+
+<div class="definition">
+
+<strong>Symmetry principle</strong>
+
+<p>
+A uniform lamina with an axis of symmetry has its centre of mass
+somewhere on that axis.
+</p>
+
+</div>
+
+<p>
+For example, if a shape is symmetrical about the y-axis, then:
+</p>
+
+<div class="formula">
+x̄ = 0
+</div>
+
+<p>
+If it is symmetrical about the x-axis, then:
+</p>
+
+<div class="formula">
+ȳ = 0
+</div>
+
+<p>
+This can save a large amount of calculation in examination questions.
+</p>
+
+</section>
+
+
+<!-- LESSON 12 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 12
+</p>
+
+<h2>
+Composite Laminae
+</h2>
+
+<p>
+Many examination diagrams consist of several simple shapes joined
+together.
+</p>
+
+<p>
+Such a body can be divided into simple laminae whose centres of mass
+are already known.
+</p>
+
+<p>
+The centre of mass of the complete lamina can then be calculated by
+treating each component as a particle whose:
+</p>
+
+<ul>
+
+<li>mass is proportional to its area;</li>
+
+<li>position is the centre of mass of that component.</li>
+
+</ul>
+
+<p>
+For a uniform lamina:
+</p>
+
+<div class="formula">
+mass ∝ area
+</div>
+
+<p>
+Therefore, area can be used instead of mass in the weighted-average
+calculation.
+</p>
+
+<div class="formula">
+x̄ = Σ(Ax) / ΣA
+</div>
+
+<div class="formula">
+ȳ = Σ(Ay) / ΣA
+</div>
+
+</section>
+
+
+<!-- LESSON 13 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 13
+</p>
+
+<h2>
+Composite Lamina Method
+</h2>
+
+<div class="method">
+
+<div class="method-title">
+THE FOUR-STAGE METHOD
+</div>
+
+<ol>
+
+<li>
+Split the shape into simple standard shapes.
+</li>
+
+<li>
+Find the area and centre of mass of each component.
+</li>
+
+<li>
+Calculate Ax and Ay for every component.
+</li>
+
+<li>
+Use Σ(Ax)/ΣA and Σ(Ay)/ΣA.
+</li>
+
+</ol>
+
+</div>
+
+<p>
+The most important part is setting up the geometry correctly.
+The arithmetic is usually straightforward once the component areas
+and their centroid coordinates are correct.
+</p>
+
+<div class="warning">
+
+<div class="warning-title">
+EXAM TIP
+</div>
+
+<p>
+Always draw or identify the centre of mass of every component before
+starting the weighted-average calculation.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 14 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 14
+</p>
+
+<h2>
+Composite Rectangle Example
+</h2>
+
+<div class="example">
+
+<p class="example-title">
+WORKED EXAMPLE
+</p>
+
+<p>
+A uniform L-shaped lamina can be considered as the combination of
+two non-overlapping rectangles.
+</p>
+
+<p>
+Suppose rectangle A has area 20 cm² and its centre is at
+(2,5), while rectangle B has area 30 cm² and its centre is at
+(7,2).
+</p>
+
+<div class="solution">
+
+<p>
+Total area:
+</p>
+
+<p>
+A = 20 + 30 = 50 cm²
+</p>
+
+<p>
+For x:
+</p>
+
+<p>
+Σ(Ax)
+=
+20(2) + 30(7)
+</p>
+
+<p>
+= 40 + 210
+</p>
+
+<p>
+= 250
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+x̄ = 250/50
+</p>
+
+<p>
+<strong>
+x̄ = 5 cm
+</strong>
+</p>
+
+<p>
+For y:
+</p>
+
+<p>
+Σ(Ay)
+=
+20(5) + 30(2)
+</p>
+
+<p>
+= 100 + 60
+</p>
+
+<p>
+= 160
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+ȳ = 160/50
+</p>
+
+<p>
+<strong>
+ȳ = 3.2 cm
+</strong>
+</p>
+
+<p>
+Hence the centre of mass is:
+</p>
+
+<p>
+<strong>
+(5, 3.2) cm
+</strong>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 15 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 15
+</p>
+
+<h2>
+Shapes with a Missing Section
+</h2>
+
+<p>
+A particularly important composite-lamina technique is dealing with
+a hole or removed section.
+</p>
+
+<p>
+The removed part can be treated as having a <strong>negative area</strong>.
+</p>
+
+<div class="formula">
+x̄ = Σ(Ax) / ΣA
+</div>
+
+<p>
+For the missing region, use:
+</p>
+
+<div class="formula">
+A &lt; 0
+</div>
+
+<p>
+and therefore its contribution to Ax and Ay is also negative.
+</p>
+
+<div class="example">
+
+<p class="example-title">
+WORKED EXAMPLE
+</p>
+
+<p>
+A large uniform rectangle has area 100 cm² and centre
+(5,4). A circular hole of area 20 cm² has centre (7,3).
+Find the centre of mass of the remaining lamina.
+</p>
+
+<div class="solution">
+
+<p>
+Treat the hole as negative area.
+</p>
+
+<p>
+Total effective area:
+</p>
+
+<p>
+100 − 20 = 80 cm²
+</p>
+
+<p>
+x contribution:
+</p>
+
+<p>
+100(5) − 20(7)
+</p>
+
+<p>
+= 500 − 140
+</p>
+
+<p>
+= 360
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+x̄ = 360/80 = 4.5 cm
+</p>
+
+<p>
+y contribution:
+</p>
+
+<p>
+100(4) − 20(3)
+</p>
+
+<p>
+= 400 − 60
+</p>
+
+<p>
+= 340
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+ȳ = 340/80 = 4.25 cm
+</p>
+
+<p>
+<strong>
+Centre of mass = (4.5, 4.25) cm
+</strong>
+</p>
+
+</div>
+
+</div>
+
+<div class="mistake">
+
+<div class="mistake-title">
+COMMON MISTAKE
+</div>
+
+<p>
+Do not simply ignore the missing section. The hole changes both the
+total area and the first moments of area.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 16 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 16
+</p>
+
+<h2>
+Using Tables for Composite Laminae
+</h2>
+
+<p>
+A table is often the safest examination method because it prevents
+components from being missed.
+</p>
+
+<div class="table-wrap">
+
+<table>
+
+<tr>
+<th>Part</th>
+<th>Area A</th>
+<th>x</th>
+<th>y</th>
+<th>Ax</th>
+<th>Ay</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>A₁</td>
+<td>x₁</td>
+<td>y₁</td>
+<td>A₁x₁</td>
+<td>A₁y₁</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>A₂</td>
+<td>x₂</td>
+<td>y₂</td>
+<td>A₂x₂</td>
+<td>A₂y₂</td>
+</tr>
+
+<tr>
+<td>Hole</td>
+<td>−A₃</td>
+<td>x₃</td>
+<td>y₃</td>
+<td>−A₃x₃</td>
+<td>−A₃y₃</td>
+</tr>
+
+</table>
+
+</div>
+
+<p>
+Then:
+</p>
+
+<div class="formula">
+x̄ = Σ(Ax) / ΣA
+</div>
+
+<div class="formula">
+ȳ = Σ(Ay) / ΣA
+</div>
+
+</section>
+
+
+<!-- LESSON 17 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 17
+</p>
+
+<h2>
+Equilibrium of a Suspended Lamina
+</h2>
+
+<p>
+When a lamina is freely suspended from a point, its centre of mass
+lies vertically below the point of suspension when the lamina is in
+equilibrium.
+</p>
+
+<div class="definition">
+
+<strong>Key equilibrium fact</strong>
+
+<p>
+For a freely suspended lamina in equilibrium, the vertical line
+through the centre of mass passes through the suspension point.
+</p>
+
+</div>
+
+<p>
+This happens because the weight acts vertically downward through the
+centre of mass.
+</p>
+
+<p>
+If the line of action of the weight did not pass through the support,
+the weight would produce a turning moment and the lamina would rotate.
+</p>
+
+</section>
+
+
+<!-- LESSON 18 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 18
+</p>
+
+<h2>
+Finding a Centre of Mass from Suspension
+</h2>
+
+<p>
+Sometimes the position of the centre of mass is not given directly.
+Instead, the lamina is suspended from one or more points.
+</p>
+
+<p>
+For each suspension point, the centre of mass must lie somewhere
+on the vertical line through that point.
+</p>
+
+<p>
+If the lamina is suspended from two different points and allowed to
+settle in equilibrium, the centre of mass lies at the intersection
+of the corresponding vertical lines.
+</p>
+
+<div class="method">
+
+<div class="method-title">
+SUSPENSION METHOD
+</div>
+
+<ol>
+
+<li>Mark the suspension point.</li>
+
+<li>Draw the vertical line through it in the equilibrium position.</li>
+
+<li>Repeat for a second suspension point if available.</li>
+
+<li>The intersection gives the centre of mass.</li>
+
+</ol>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 19 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 19
+</p>
+
+<h2>
+Moments and Equilibrium
+</h2>
+
+<p>
+A body is in rotational equilibrium when the total clockwise moment
+about a point equals the total anticlockwise moment about that point.
+</p>
+
+<div class="formula">
+Σ clockwise moments = Σ anticlockwise moments
+</div>
+
+<p>
+For a lamina of mass M, its weight is:
+</p>
+
+<div class="formula">
+W = Mg
+</div>
+
+<p>
+The weight acts vertically downward through the centre of mass.
+</p>
+
+<p>
+The gravitational force therefore creates a moment about a point
+whenever its line of action does not pass through that point.
+</p>
+
+</section>
+
+
+<!-- LESSON 20 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 20
+</p>
+
+<h2>
+Lamina Rotating About a Horizontal Axis
+</h2>
+
+<p>
+When a lamina rotates about a fixed horizontal axis, the weight of
+the lamina acts through its centre of mass.
+</p>
+
+<p>
+If the lamina is in equilibrium, the resultant moment about the
+axis must be zero.
+</p>
+
+<p>
+This means the line of action of the weight and the reactions must
+produce balanced moments.
+</p>
+
+<div class="warning">
+
+<div class="warning-title">
+MOMENT ARM
+</div>
+
+<p>
+The perpendicular distance from the axis to the line of action of
+the force is the correct moment arm.
+</p>
+
+</div>
+
+<p>
+Do not automatically use the distance to the centre of mass itself.
+Only the perpendicular distance to the force's line of action is
+the moment arm.
+</p>
+
+</section>
+
+
+<!-- LESSON 21 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 21
+</p>
+
+<h2>
+Laminae on Inclined Planes
+</h2>
+
+<p>
+When a lamina rests on an inclined plane, its weight acts vertically
+downwards through its centre of mass.
+</p>
+
+<p>
+The weight can be resolved into components parallel and perpendicular
+to the plane.
+</p>
+
+<div class="formula">
+Component down the plane = Mg sin θ
+</div>
+
+<div class="formula">
+Component perpendicular to plane = Mg cos θ
+</div>
+
+<p>
+The reaction from the plane acts perpendicular to the surface if
+the contact is smooth.
+</p>
+
+<p>
+The position of the centre of mass determines whether the weight
+creates a turning tendency about the point or edge of contact.
+</p>
+
+</section>
+
+
+<!-- LESSON 22 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 22
+</p>
+
+<h2>
+Stability and the Line of Action
+</h2>
+
+<p>
+A useful physical principle is that a body remains supported only
+while the line of action of its weight is compatible with the
+supporting region.
+</p>
+
+<p>
+If the vertical line through the centre of mass passes outside the
+base of support, the weight produces a turning effect that can cause
+the body to topple.
+</p>
+
+<div class="definition">
+
+<strong>Stability principle</strong>
+
+<p>
+The lower the centre of mass and the wider the effective base of
+support, the more difficult it is for the body to topple.
+</p>
+
+</div>
+
+<p>
+In examination questions, focus on the geometry and moments rather
+than relying on a visual guess about whether something will topple.
+</p>
+
+</section>
+
+
+<!-- LESSON 23 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 23
+</p>
+
+<h2>
+A Complete Composite-Lamina Workflow
+</h2>
+
+<div class="method">
+
+<div class="method-title">
+FULL EXAMINATION ALGORITHM
+</div>
+
+<ol>
+
+<li>
+Choose coordinate axes and an origin.
+</li>
+
+<li>
+Split the lamina into simple standard shapes.
+</li>
+
+<li>
+Identify whether each component is added or removed.
+</li>
+
+<li>
+Calculate each component's area.
+</li>
+
+<li>
+Locate the centre of mass of each component.
+</li>
+
+<li>
+Write the coordinates carefully.
+</li>
+
+<li>
+Construct a table containing A, x, y, Ax and Ay.
+</li>
+
+<li>
+Use negative area for holes or removed regions.
+</li>
+
+<li>
+Calculate ΣA, ΣAx and ΣAy.
+</li>
+
+<li>
+Find x̄ and ȳ.</li>
+
+<li>
+Use symmetry as a check whenever possible.</li>
+
+<li>
+Check whether the final coordinates are physically reasonable.</li>
+
+</ol>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 24 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 24
+</p>
+
+<h2>
+Common Exam Traps
+</h2>
+
+<div class="mistake">
+
+<div class="mistake-title">
+TRAP 01 — USING DISTANCE INSTEAD OF COORDINATE
+</div>
+
+<p>
+If the origin is not at the end of the shape, use signed coordinates.
+A point to the left of the origin has a negative x-coordinate.
+</p>
+
+</div>
+
+<div class="mistake">
+
+<div class="mistake-title">
+TRAP 02 — FORGETTING TOTAL MASS
+</div>
+
+<p>
+The numerator is Σ(mx), but the denominator is the total mass Σm.
+Do not divide by the number of particles.
+</p>
+
+</div>
+
+<div class="mistake">
+
+<div class="mistake-title">
+TRAP 03 — USING LENGTH INSTEAD OF AREA
+</div>
+
+<p>
+For a uniform plane lamina, mass is proportional to area.
+Therefore composite-lamina calculations use areas, not just lengths.
+</p>
+
+</div>
+
+<div class="mistake">
+
+<div class="mistake-title">
+TRAP 04 — FORGETTING A HOLE
+</div>
+
+<p>
+A removed region must be represented by negative area.
+</p>
+
+</div>
+
+<div class="mistake">
+
+<div class="mistake-title">
+TRAP 05 — WRONG CENTROID
+</div>
+
+<p>
+Before calculating Σ(Ax) and Σ(Ay), make sure the centre of mass of
+each standard component has been located correctly.
+</p>
+
+</div>
+
+<div class="mistake">
+
+<div class="mistake-title">
+TRAP 06 — MOMENT ARM ERROR
+</div>
+
+<p>
+For moments, use the perpendicular distance from the point or axis
+to the line of action of the force.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 25 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 25
+</p>
+
+<h2>
+Worked Exam-Style Particle Problem
+</h2>
+
+<div class="example">
+
+<p class="example-title">
+QUESTION
+</p>
+
+<p>
+Particles of masses 3 kg, 4 kg and 5 kg are placed at
+x = −2 m, x = 3 m and x = 8 m respectively.
+Find the position of the centre of mass.
+</p>
+
+<div class="solution">
+
+<p>
+Total mass:
+</p>
+
+<p>
+M = 3 + 4 + 5 = 12 kg
+</p>
+
+<p>
+Calculate Σ(mx):
+</p>
+
+<p>
+3(−2) + 4(3) + 5(8)
+</p>
+
+<p>
+= −6 + 12 + 40
+</p>
+
+<p>
+= 46
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+x̄ = 46/12
+</p>
+
+<p>
+<strong>
+x̄ = 23/6 m
+</strong>
+</p>
+
+<p>
+≈ 3.83 m
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 26 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 26
+</p>
+
+<h2>
+Worked Exam-Style 2D Problem
+</h2>
+
+<div class="example">
+
+<p class="example-title">
+QUESTION
+</p>
+
+<p>
+Four particles are positioned as follows:
+</p>
+
+<div class="table-wrap">
+
+<table>
+
+<tr>
+<th>Mass</th>
+<th>x</th>
+<th>y</th>
+</tr>
+
+<tr>
+<td>2 kg</td>
+<td>0</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>3 kg</td>
+<td>6</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>4 kg</td>
+<td>6</td>
+<td>5</td>
+</tr>
+
+<tr>
+<td>1 kg</td>
+<td>0</td>
+<td>5</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="solution">
+
+<p>
+Total mass:
+</p>
+
+<p>
+M = 2 + 3 + 4 + 1 = 10 kg
+</p>
+
+<p>
+For x:
+</p>
+
+<p>
+Σ(mx)
+=
+2(0) + 3(6) + 4(6) + 1(0)
+</p>
+
+<p>
+= 18 + 24 = 42
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+x̄ = 42/10 = 4.2
+</p>
+
+<p>
+For y:
+</p>
+
+<p>
+Σ(my)
+=
+2(0) + 3(0) + 4(5) + 1(5)
+</p>
+
+<p>
+= 20 + 5 = 25
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+ȳ = 25/10 = 2.5
+</p>
+
+<p>
+<strong>
+Centre of mass = (4.2, 2.5)
+</strong>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 27 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 27
+</p>
+
+<h2>
+Advanced Composite-Lamina Example
+</h2>
+
+<div class="example">
+
+<p class="example-title">
+METHOD DEMONSTRATION
+</p>
+
+<p>
+Consider a uniform lamina consisting of a large rectangle with a
+smaller rectangular section removed.
+</p>
+
+<p>
+Suppose the original rectangle has area 120 cm² and centre
+(6,5). A rectangular hole has area 24 cm² and centre (8,3).
+</p>
+
+<div class="solution">
+
+<p>
+Treat the hole as negative area.
+</p>
+
+<p>
+Effective area:
+</p>
+
+<p>
+120 − 24 = 96 cm²
+</p>
+
+<p>
+x-moment:
+</p>
+
+<p>
+120(6) − 24(8)
+</p>
+
+<p>
+= 720 − 192
+</p>
+
+<p>
+= 528
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+x̄ = 528/96
+</p>
+
+<p>
+<strong>
+x̄ = 5.5 cm
+</strong>
+</p>
+
+<p>
+y-moment:
+</p>
+
+<p>
+120(5) − 24(3)
+</p>
+
+<p>
+= 600 − 72
+</p>
+
+<p>
+= 528
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+ȳ = 528/96
+</p>
+
+<p>
+<strong>
+ȳ = 5.5 cm
+</strong>
+</p>
+
+<p>
+Thus:
+</p>
+
+<p>
+<strong>
+Centre of mass = (5.5, 5.5) cm
+</strong>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LESSON 28 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 28
+</p>
+
+<h2>
+Exam Technique: What to Write
+</h2>
+
+<p>
+A strong solution should make the structure of the calculation easy
+for an examiner to follow.
+</p>
+
+<div class="method">
+
+<div class="method-title">
+GOOD PRESENTATION
+</div>
+
+<p>
+Write:
+</p>
+
+<p>
+<strong>
+Total area = ...
+</strong>
+</p>
+
+<p>
+<strong>
+Σ(Ax) = ...
+</strong>
+</p>
+
+<p>
+<strong>
+Σ(Ay) = ...
+</strong>
+</p>
+
+<p>
+Then:
+</p>
+
+<div class="formula">
+x̄ = Σ(Ax)/ΣA
+</div>
+
+<div class="formula">
+ȳ = Σ(Ay)/ΣA
+</div>
+
+<p>
+Finally state the coordinates clearly.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- PRACTICE -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+PRACTICE • FOUNDATION
+</p>
+
+<h2>
+Test Yourself
+</h2>
+
+
+<div class="question">
+
+<div class="question-number">
+QUESTION 01
+</div>
+
+<strong>
+What determines the position of the centre of mass of a system of
+particles?
+</strong>
+
+<details>
+
+<summary>
+Show answer
+</summary>
+
+<p>
+The masses of the particles and their positions relative to the
+chosen coordinate system.
+</p>
+
+</details>
+
+</div>
+
+
+<div class="question">
+
+<div class="question-number">
+QUESTION 02
+</div>
+
+<strong>
+Particles of masses 2 kg and 6 kg are at x = 1 m and x = 5 m.
+Find x̄.
+</strong>
+
+<details>
+
+<summary>
+Show answer
+</summary>
+
+<p>
+x̄ = [2(1) + 6(5)] / 8
+</p>
+
+<p>
+= 32/8
+</p>
+
+<p>
+<strong>
+x̄ = 4 m
+</strong>
+</p>
+
+</details>
+
+</div>
+
+
+<div class="question">
+
+<div class="question-number">
+QUESTION 03
+</div>
+
+<strong>
+Why is the centre of mass closer to a heavier particle?
+</strong>
+
+<details>
+
+<summary>
+Show answer
+</summary>
+
+<p>
+Because the position of the centre of mass is a mass-weighted average.
+A larger mass therefore has a greater influence on the result.
+</p>
+
+</details>
+
+</div>
+
+
+<div class="question">
+
+<div class="question-number">
+QUESTION 04
+</div>
+
+<strong>
+What happens to the centre of mass calculation if the origin is
+changed?
+</strong>
+
+<details>
+
+<summary>
+Show answer
+</summary>
+
+<p>
+The numerical coordinate changes, but the physical location of the
+centre of mass does not.
+</p>
+
+</details>
+
+</div>
+
+</section>
+
+
+<!-- PRACTICE 2 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+PRACTICE • INTERMEDIATE
+</p>
+
+<h2>
+Exam-Style Questions
+</h2>
+
+
+<div class="question">
+
+<div class="question-number">
+QUESTION 05
+</div>
+
+<strong>
+Particles of masses 2 kg, 5 kg and 7 kg are situated at
+x = −1 m, x = 2 m and x = 6 m. Find the centre of mass.
+</strong>
+
+<details>
+
+<summary>
+Show answer
+</summary>
+
+<p>
+Total mass = 14 kg.
+</p>
+
+<p>
+Σ(mx) = 2(−1) + 5(2) + 7(6)
+</p>
+
+<p>
+= −2 + 10 + 42
+</p>
+
+<p>
+= 50
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+<strong>
+x̄ = 50/14 = 25/7 m
+</strong>
+</p>
+
+</details>
+
+</div>
+
+
+<div class="question">
+
+<div class="question-number">
+QUESTION 06
+</div>
+
+<strong>
+Three particles have masses 1 kg, 2 kg and 3 kg at coordinates
+(2,1), (4,3) and (6,5). Find the centre of mass.
+</strong>
+
+<details>
+
+<summary>
+Show answer
+</summary>
+
+<p>
+Total mass = 6 kg.
+</p>
+
+<p>
+Σ(mx) = 1(2) + 2(4) + 3(6) = 28
+</p>
+
+<p>
+x̄ = 28/6 = 14/3
+</p>
+
+<p>
+Σ(my) = 1(1) + 2(3) + 3(5) = 22
+</p>
+
+<p>
+ȳ = 22/6 = 11/3
+</p>
+
+<p>
+<strong>
+Centre of mass = (14/3, 11/3)
+</strong>
+</p>
+
+</details>
+
+</div>
+
+
+<div class="question">
+
+<div class="question-number">
+QUESTION 07
+</div>
+
+<strong>
+A uniform lamina consists of two rectangles. Their areas are 18 cm²
+and 42 cm², with centres at (2,4) and (6,3). Find the centre of mass.
+</strong>
+
+<details>
+
+<summary>
+Show answer
+</summary>
+
+<p>
+Total area = 60 cm².
+</p>
+
+<p>
+Σ(Ax) = 18(2) + 42(6) = 288
+</p>
+
+<p>
+x̄ = 288/60 = 4.8 cm
+</p>
+
+<p>
+Σ(Ay) = 18(4) + 42(3) = 198
+</p>
+
+<p>
+ȳ = 198/60 = 3.3 cm
+</p>
+
+<p>
+<strong>
+Centre = (4.8,3.3) cm
+</strong>
+</p>
+
+</details>
+
+</div>
+
+</section>
+
+
+<!-- PRACTICE 3 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+PRACTICE • ADVANCED
+</p>
+
+<h2>
+Challenge Problems
+</h2>
+
+
+<div class="question">
+
+<div class="question-number">
+QUESTION 08
+</div>
+
+<strong>
+A uniform rectangular lamina has area 150 cm² and centre
+(5,6). A circular hole of area 30 cm² is removed. The centre of the
+hole is (7,4). Find the centre of mass of the remaining lamina.
+</strong>
+
+<details>
+
+<summary>
+Show answer
+</summary>
+
+<p>
+Effective area:
+</p>
+
+<p>
+150 − 30 = 120
+</p>
+
+<p>
+Σ(Ax) = 150(5) − 30(7)
+</p>
+
+<p>
+= 750 − 210 = 540
+</p>
+
+<p>
+x̄ = 540/120 = 4.5
+</p>
+
+<p>
+Σ(Ay) = 150(6) − 30(4)
+</p>
+
+<p>
+= 900 − 120 = 780
+</p>
+
+<p>
+ȳ = 780/120 = 6.5
+</p>
+
+<p>
+<strong>
+Centre = (4.5,6.5) cm
+</strong>
+</p>
+
+</details>
+
+</div>
+
+
+<div class="question">
+
+<div class="question-number">
+QUESTION 09
+</div>
+
+<strong>
+A lamina is made from three uniform components. Explain how you
+would calculate its centre of mass without calculating its mass
+directly.
+</strong>
+
+<details>
+
+<summary>
+Show answer
+</summary>
+
+<p>
+Because the lamina is uniform, mass is proportional to area.
+Therefore the areas can be used as weights:
+</p>
+
+<p>
+x̄ = Σ(Ax)/ΣA
+</p>
+
+<p>
+ȳ = Σ(Ay)/ΣA
+</p>
+
+</details>
+
+</div>
+
+
+<div class="question">
+
+<div class="question-number">
+QUESTION 10
+</div>
+
+<strong>
+A lamina is freely suspended from a point and settles in equilibrium.
+Where must its centre of mass lie relative to the suspension point?
+</strong>
+
+<details>
+
+<summary>
+Show answer
+</summary>
+
+<p>
+The centre of mass lies vertically below the suspension point.
+The line of action of the weight therefore passes through the
+suspension point and produces no turning moment about it.
+</p>
+
+</details>
+
+</div>
+
+</section>
+
+
+<!-- QUICK REVIEW -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+QUICK REVIEW
+</p>
+
+<h2>
+Essential Formula System
+</h2>
+
+<div class="formula">
+x̄ = Σ(mx) / Σm
+</div>
+
+<div class="formula">
+ȳ = Σ(my) / Σm
+</div>
+
+<div class="formula">
+r̄ = Σ(mr) / Σm
+</div>
+
+<div class="formula">
+x̄ = Σ(Ax) / ΣA
+</div>
+
+<div class="formula">
+ȳ = Σ(Ay) / ΣA
+</div>
+
+<div class="formula">
+Weight = Mg
+</div>
+
+<div class="formula">
+Moment = Force × perpendicular distance
+</div>
+
+<div class="formula">
+Σ clockwise moments = Σ anticlockwise moments
+</div>
+
+</section>
+
+
+<!-- FINAL CHECKLIST -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+M2 MASTERY CHECK
+</p>
+
+<h2>
+Can You Do All of These?
+</h2>
+
+<div class="checklist">
+
+<div class="check">
+Find the centre of mass of two particles.
+</div>
+
+<div class="check">
+Find the centre of mass of several particles.
+</div>
+
+<div class="check">
+Handle negative coordinates correctly.
+</div>
+
+<div class="check">
+Find x̄ and ȳ for a 2D system.
+</div>
+
+<div class="check">
+Use symmetry to simplify calculations.
+</div>
+
+<div class="check">
+Recognise standard lamina centroids.
+</div>
+
+<div class="check">
+Split a composite lamina into components.
+</div>
+
+<div class="check">
+Use area as the mass weighting for a uniform lamina.
+</div>
+
+<div class="check">
+Treat holes as negative areas.
+</div>
+
+<div class="check">
+Use a table of A, x, y, Ax and Ay.
+</div>
+
+<div class="check">
+Explain the equilibrium position of a suspended lamina.
+</div>
+
+<div class="check">
+Use moments about a point or axis.
+</div>
+
+<div class="check">
+Resolve weight on an inclined plane.
+</div>
+
+<div class="check">
+Explain stability using the line of action of weight.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FINAL SUMMARY -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+FINAL SUMMARY
+</p>
+
+<h2>
+Centres of Mass — The Big Picture
+</h2>
+
+<p>
+The entire topic is built around one central idea:
+<strong>mass distribution determines position</strong>.
+</p>
+
+<p>
+For particles, use mass as the weighting factor:
+</p>
+
+<div class="formula">
+x̄ = Σ(mx)/Σm
+</div>
+
+<p>
+For a uniform lamina, mass is proportional to area, so use:
+</p>
+
+<div class="formula">
+x̄ = Σ(Ax)/ΣA
+</div>
+
+<div class="formula">
+ȳ = Σ(Ay)/ΣA
+</div>
+
+<p>
+For composite shapes, divide the object into standard components.
+For holes, use negative areas.
+For symmetric shapes, exploit symmetry before calculating.
+</p>
+
+<p>
+When equilibrium is involved, remember that the weight acts vertically
+downwards through the centre of mass. The position of this line of
+action determines the turning effect and therefore the equilibrium
+of the lamina.
+</p>
+
+<div class="definition">
+
+<strong>
+THE CORE M2 IDEA
+</strong>
+
+<p>
+Find the correct centre of mass → identify the line of action of
+weight → calculate moments when necessary → apply equilibrium.
+</p>
+
+</div>
+
+</section>
 
 
 </main>
@@ -1485,155 +4338,224 @@
 
 <div class="navigation">
 
-    <a href="mechanics-2.html" class="button">
-        ← Back to Mechanics 2
-    </a>
+<a href="mechanics-2.html" class="button">
+← Back to Mechanics 2
+</a>
 
-    <a href="mechanics-work-and-energy.html" class="button primary">
-        Next Topic →
-    </a>
+<a href="mechanics-work-and-energy.html" class="button primary">
+Next Topic →
+</a>
 
-    <a href="mechanics.html" class="button">
-        Mechanics
-    </a>
+<a href="mechanics.html" class="button">
+Mechanics
+</a>
 
 </div>
 
 
 <footer>
 
-    © 2026 IAL ATLAS • Independent student resource • Not affiliated with Pearson
+© 2026 IAL ATLAS • Independent student resource • Not affiliated with Pearson Edexcel
 
 </footer>
 
 
 <script>
 
-    /* SCROLL REVEAL */
+/* SCROLL REVEAL */
 
-    const lessons = document.querySelectorAll(".lesson");
+const lessons =
+document.querySelectorAll(".lesson");
 
-    const observer = new IntersectionObserver(
-        entries => {
+const observer =
+new IntersectionObserver(
 
-            entries.forEach(entry => {
+entries => {
 
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                }
+entries.forEach(entry => {
 
-            });
+if (entry.isIntersecting) {
 
-        },
-        {
-            threshold: 0.12
-        }
-    );
+entry.target.classList.add("visible");
 
-    lessons.forEach(lesson => observer.observe(lesson));
+}
 
+});
 
-    /* HERO PARALLAX */
+},
 
-    const hero = document.getElementById("hero");
+{
+threshold: 0.08
+}
 
-    window.addEventListener("scroll", () => {
+);
 
-        const scrollY = window.scrollY;
-
-        if (scrollY < 900) {
-
-            hero.style.transform =
-                `translateY(${scrollY * 0.045}px)`;
-
-        }
-
-    });
+lessons.forEach(
+lesson => observer.observe(lesson)
+);
 
 
-    /* CARD LIGHT EFFECT */
+/* HERO PARALLAX */
 
-    lessons.forEach(card => {
+const hero =
+document.getElementById("hero");
 
-        card.addEventListener("mousemove", event => {
+window.addEventListener(
+"scroll",
+() => {
 
-            const rect = card.getBoundingClientRect();
+const scrollY =
+window.scrollY;
 
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
+if (scrollY < 900) {
 
-            card.style.background =
-                `radial-gradient(
-                    circle at ${x}px ${y}px,
-                    rgba(89, 215, 255, 0.09),
-                    rgba(10, 27, 47, 0.78) 34%,
-                    rgba(5, 15, 28, 0.7) 75%
-                )`;
+hero.style.transform =
+`translateY(${scrollY * 0.045}px)`;
 
-        });
+}
 
-
-        card.addEventListener("mouseleave", () => {
-
-            card.style.background =
-                "linear-gradient(145deg, rgba(10, 27, 47, 0.78), rgba(5, 15, 28, 0.7))";
-
-        });
-
-    });
+}
+);
 
 
-    /* CENTRE OF MASS DATA PULSE */
+/* CARD LIGHT EFFECT */
 
-    const dataValues =
-        document.querySelectorAll(".data-value");
+lessons.forEach(card => {
 
-    setInterval(() => {
+card.addEventListener(
+"mousemove",
+event => {
 
-        dataValues.forEach((value, index) => {
+const rect =
+card.getBoundingClientRect();
 
-            if (index === 0) {
+const x =
+event.clientX - rect.left;
 
-                value.style.textShadow =
-                    "0 0 18px rgba(89, 215, 255, 0.8)";
+const y =
+event.clientY - rect.top;
 
-                setTimeout(() => {
+card.style.background =
+`radial-gradient(
+circle at ${x}px ${y}px,
+rgba(89,215,255,0.09),
+rgba(10,27,47,0.78) 34%,
+rgba(5,15,28,0.7) 75%
+)`;
 
-                    value.style.textShadow = "none";
+}
+);
 
-                }, 600);
+card.addEventListener(
+"mouseleave",
+() => {
 
-            }
+card.style.background =
+"linear-gradient(145deg, rgba(10,27,47,0.78), rgba(5,15,28,0.7))";
 
-        });
+}
+);
 
-    }, 1900);
+});
 
 
-    /* MASS SYSTEM MICRO-MOVEMENT */
+/* DATA PULSE */
 
-    const massSystem =
-        document.querySelector(".mass-system");
+const dataValues =
+document.querySelectorAll(".data-value");
 
-    document.addEventListener("mousemove", event => {
+setInterval(
+() => {
 
-        const x =
-            (event.clientX / window.innerWidth - 0.5) * 2;
+dataValues.forEach(
+(value,index) => {
 
-        const y =
-            (event.clientY / window.innerHeight - 0.5) * 2;
+if (index === 0) {
 
-        massSystem.style.transform =
-            `perspective(700px) rotateY(${x * 2}deg) rotateX(${y * -1.5}deg)`;
+value.style.textShadow =
+"0 0 18px rgba(89,215,255,0.8)";
 
-    });
+setTimeout(
+() => {
 
-    document.addEventListener("mouseleave", () => {
+value.style.textShadow =
+"none";
 
-        massSystem.style.transform =
-            "perspective(700px) rotateY(0deg) rotateX(0deg)";
+},
+600
+);
 
-    });
+}
+
+}
+);
+
+},
+1900
+);
+
+
+/* MASS SYSTEM MICRO MOVEMENT */
+
+const massSystem =
+document.querySelector(".mass-system");
+
+document.addEventListener(
+"mousemove",
+event => {
+
+const x =
+(event.clientX /
+window.innerWidth - 0.5) * 2;
+
+const y =
+(event.clientY /
+window.innerHeight - 0.5) * 2;
+
+massSystem.style.transform =
+`perspective(700px)
+rotateY(${x * 2}deg)
+rotateX(${y * -1.5}deg)`;
+
+}
+);
+
+document.addEventListener(
+"mouseleave",
+() => {
+
+massSystem.style.transform =
+"perspective(700px) rotateY(0deg) rotateX(0deg)";
+
+}
+);
+
+
+/* KEYBOARD ACCESSIBILITY */
+
+document.querySelectorAll("summary")
+.forEach(summary => {
+
+summary.addEventListener(
+"keydown",
+event => {
+
+if (
+event.key === "Enter" ||
+event.key === " "
+) {
+
+event.preventDefault();
+
+summary.parentElement.open =
+!summary.parentElement.open;
+
+}
+
+}
+);
+
+});
 
 </script>
 
