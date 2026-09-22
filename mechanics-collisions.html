@@ -3,1249 +3,1443 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Collisions | IAL ATLAS</title>
-
-    <meta name="description"
-          content="Edexcel International A Level Mathematics Mechanics 2 Collisions resources.">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-          rel="stylesheet">
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg: #020712;
-            --panel: rgba(9, 24, 45, 0.72);
-            --line: rgba(88, 190, 255, 0.18);
-            --line-strong: rgba(88, 190, 255, 0.38);
-            --cyan: #54d7ff;
-            --blue: #3e8dff;
-            --text: #f2f8ff;
-            --muted: #9eb4ca;
-            --soft: #c9d9e8;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "Inter", sans-serif;
-            background:
-                radial-gradient(circle at 50% -10%, rgba(40, 126, 255, 0.18), transparent 35%),
-                radial-gradient(circle at 15% 45%, rgba(0, 210, 255, 0.06), transparent 28%),
-                var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            opacity: 0.34;
-            background-image:
-                linear-gradient(rgba(85, 170, 255, 0.055) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(85, 170, 255, 0.055) 1px, transparent 1px);
-            background-size: 52px 52px;
-            mask-image: linear-gradient(to bottom, black, transparent 82%);
-            z-index: -2;
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background:
-                radial-gradient(circle at center, transparent 25%, rgba(0, 0, 0, 0.52) 100%);
-            z-index: -1;
-        }
-
-        /* PARTICLES */
-
-        .particles {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            border-radius: 50%;
-            background: var(--cyan);
-            box-shadow: 0 0 12px var(--cyan);
-            opacity: 0.45;
-            animation: floatParticle linear infinite;
-        }
-
-        .particle:nth-child(1) {
-            left: 7%;
-            top: 21%;
-            animation-duration: 13s;
-        }
-
-        .particle:nth-child(2) {
-            left: 18%;
-            top: 72%;
-            animation-duration: 17s;
-        }
-
-        .particle:nth-child(3) {
-            left: 31%;
-            top: 13%;
-            animation-duration: 15s;
-        }
-
-        .particle:nth-child(4) {
-            left: 45%;
-            top: 78%;
-            animation-duration: 19s;
-        }
-
-        .particle:nth-child(5) {
-            left: 63%;
-            top: 25%;
-            animation-duration: 14s;
-        }
-
-        .particle:nth-child(6) {
-            left: 76%;
-            top: 63%;
-            animation-duration: 18s;
-        }
-
-        .particle:nth-child(7) {
-            left: 89%;
-            top: 18%;
-            animation-duration: 16s;
-        }
-
-        .particle:nth-child(8) {
-            left: 94%;
-            top: 82%;
-            animation-duration: 20s;
-        }
-
-        @keyframes floatParticle {
-
-            0% {
-                transform: translate3d(0, 0, 0);
-                opacity: 0.1;
-            }
-
-            50% {
-                opacity: 0.65;
-            }
-
-            100% {
-                transform: translate3d(0, -120px, 0);
-                opacity: 0.05;
-            }
-
-        }
-
-        /* HEADER */
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 7%;
-            background: rgba(2, 7, 18, 0.72);
-            border-bottom: 1px solid rgba(84, 215, 255, 0.12);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-
-        header a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .logo {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 25px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .logo::after {
-            content: "";
-            display: inline-block;
-            width: 7px;
-            height: 7px;
-            margin-left: 7px;
-            border-radius: 50%;
-            background: var(--cyan);
-            box-shadow: 0 0 14px var(--cyan);
-            animation: pulseDot 2s infinite;
-        }
-
-        @keyframes pulseDot {
-
-            0%, 100% {
-                transform: scale(0.8);
-                opacity: 0.5;
-            }
-
-            50% {
-                transform: scale(1.3);
-                opacity: 1;
-            }
-
-        }
-
-        .back-link {
-            color: #a9c6dd;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-
-        .back-link:hover {
-            color: var(--cyan);
-        }
-
-        /* HERO */
-
-        .hero {
-            position: relative;
-            min-height: 690px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 80px 20px;
-            overflow: hidden;
-            isolation: isolate;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            width: 760px;
-            height: 760px;
-            border-radius: 50%;
-            border: 1px solid rgba(84, 215, 255, 0.08);
-            box-shadow:
-                0 0 100px rgba(62, 141, 255, 0.08),
-                inset 0 0 100px rgba(62, 141, 255, 0.05);
-            animation: orbit 18s linear infinite;
-            z-index: -1;
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-            width: 430px;
-            height: 430px;
-            border-radius: 50%;
-            border: 1px dashed rgba(84, 215, 255, 0.12);
-            animation: orbitReverse 14s linear infinite;
-            z-index: -1;
-        }
-
-        @keyframes orbit {
-
-            to {
-                transform: rotate(360deg);
-            }
-
-        }
-
-        @keyframes orbitReverse {
-
-            to {
-                transform: rotate(-360deg);
-            }
-
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 5;
-            max-width: 900px;
-        }
-
-        .hero-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--cyan);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        .hero-label::before {
-            content: "";
-            width: 28px;
-            height: 1px;
-            background: var(--cyan);
-            box-shadow: 0 0 10px var(--cyan);
-        }
-
-        .hero h1 {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(54px, 9vw, 92px);
-            line-height: 1;
-            letter-spacing: -4px;
-            margin-bottom: 24px;
-            text-shadow: 0 0 35px rgba(84, 215, 255, 0.14);
-        }
-
-        .hero h1 span {
-            color: var(--cyan);
-        }
-
-        .hero p {
-            max-width: 720px;
-            margin: auto;
-            color: var(--muted);
-            font-size: 17px;
-        }
-
-        /* COLLISION SYSTEM */
-
-        .collision-system {
-            position: absolute;
-            width: 650px;
-            height: 340px;
-            left: 50%;
-            top: 53%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.82;
-        }
-
-        .collision-track {
-            position: absolute;
-            left: 6%;
-            right: 6%;
-            bottom: 48px;
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(84, 215, 255, 0.35),
-                rgba(84, 215, 255, 0.12),
-                rgba(84, 215, 255, 0.35),
-                transparent
-            );
-            box-shadow: 0 0 16px rgba(84, 215, 255, 0.22);
-        }
-
-        .collision-track::before,
-        .collision-track::after {
-            content: "";
-            position: absolute;
-            width: 7px;
-            height: 7px;
-            top: -3px;
-            border-radius: 50%;
-            background: var(--cyan);
-            box-shadow: 0 0 15px var(--cyan);
-        }
-
-        .collision-track::before {
-            left: 4%;
-        }
-
-        .collision-track::after {
-            right: 4%;
-        }
-
-        .particle-a,
-        .particle-b {
-            position: absolute;
-            bottom: 49px;
-            width: 62px;
-            height: 62px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            font-family: "Space Grotesk", sans-serif;
-            font-weight: 700;
-            font-size: 16px;
-            z-index: 4;
-        }
-
-        .particle-a {
-            left: 16%;
-            color: var(--cyan);
-            border: 1px solid rgba(84, 215, 255, 0.7);
-            background: rgba(84, 215, 255, 0.09);
-            box-shadow:
-                0 0 28px rgba(84, 215, 255, 0.2),
-                inset 0 0 20px rgba(84, 215, 255, 0.06);
-            animation: particleA 5s ease-in-out infinite;
-        }
-
-        .particle-b {
-            right: 16%;
-            color: #a9c9ff;
-            border: 1px solid rgba(62, 141, 255, 0.65);
-            background: rgba(62, 141, 255, 0.08);
-            box-shadow:
-                0 0 28px rgba(62, 141, 255, 0.2),
-                inset 0 0 20px rgba(62, 141, 255, 0.06);
-            animation: particleB 5s ease-in-out infinite;
-        }
-
-        @keyframes particleA {
-
-            0%, 25% {
-                transform: translateX(0);
-            }
-
-            45%, 55% {
-                transform: translateX(190px);
-            }
-
-            75%, 100% {
-                transform: translateX(0);
-            }
-
-        }
-
-        @keyframes particleB {
-
-            0%, 25% {
-                transform: translateX(0);
-            }
-
-            45%, 55% {
-                transform: translateX(-190px);
-            }
-
-            75%, 100% {
-                transform: translateX(0);
-            }
-
-        }
-
-        .velocity-a,
-        .velocity-b {
-            position: absolute;
-            height: 2px;
-            bottom: 80px;
-            box-shadow: 0 0 12px currentColor;
-        }
-
-        .velocity-a {
-            width: 115px;
-            left: 6%;
-            background: var(--cyan);
-            color: var(--cyan);
-            animation: velocityA 5s ease-in-out infinite;
-        }
-
-        .velocity-b {
-            width: 115px;
-            right: 6%;
-            background: var(--blue);
-            color: var(--blue);
-            animation: velocityB 5s ease-in-out infinite;
-        }
-
-        .velocity-a::after,
-        .velocity-b::after {
-            content: "";
-            position: absolute;
-            top: -5px;
-            width: 10px;
-            height: 10px;
-            border-top: 2px solid currentColor;
-            border-right: 2px solid currentColor;
-        }
-
-        .velocity-a::after {
-            right: 0;
-            transform: rotate(45deg);
-        }
-
-        .velocity-b::after {
-            left: 0;
-            transform: rotate(-135deg);
-        }
-
-        @keyframes velocityA {
-
-            0%, 25% {
-                transform: translateX(0);
-                opacity: 0.9;
-            }
-
-            45%, 55% {
-                transform: translateX(190px);
-                opacity: 0.25;
-            }
-
-            75%, 100% {
-                transform: translateX(0);
-                opacity: 0.9;
-            }
-
-        }
-
-        @keyframes velocityB {
-
-            0%, 25% {
-                transform: translateX(0);
-                opacity: 0.9;
-            }
-
-            45%, 55% {
-                transform: translateX(-190px);
-                opacity: 0.25;
-            }
-
-            75%, 100% {
-                transform: translateX(0);
-                opacity: 0.9;
-            }
-
-        }
-
-        .impact-ring {
-            position: absolute;
-            width: 28px;
-            height: 28px;
-            left: 50%;
-            bottom: 67px;
-            transform: translateX(-50%);
-            border: 1px solid var(--cyan);
-            border-radius: 50%;
-            opacity: 0;
-            box-shadow: 0 0 20px var(--cyan);
-            animation: impact 5s ease-in-out infinite;
-        }
-
-        .impact-ring::before,
-        .impact-ring::after {
-            content: "";
-            position: absolute;
-            inset: -15px;
-            border: 1px solid rgba(84, 215, 255, 0.3);
-            border-radius: 50%;
-        }
-
-        .impact-ring::after {
-            inset: -32px;
-            border-color: rgba(84, 215, 255, 0.13);
-        }
-
-        @keyframes impact {
-
-            0%, 39% {
-                opacity: 0;
-                transform: translateX(-50%) scale(0.5);
-            }
-
-            47% {
-                opacity: 1;
-                transform: translateX(-50%) scale(1);
-            }
-
-            60% {
-                opacity: 0;
-                transform: translateX(-50%) scale(3.5);
-            }
-
-            100% {
-                opacity: 0;
-            }
-
-        }
-
-        .momentum-label {
-            position: absolute;
-            top: 38px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: rgba(184, 222, 255, 0.7);
-            font-size: 10px;
-            letter-spacing: 3px;
-            white-space: nowrap;
-        }
-
-        .momentum-label::before,
-        .momentum-label::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            width: 75px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(84, 215, 255, 0.3));
-        }
-
-        .momentum-label::before {
-            right: calc(100% + 15px);
-        }
-
-        .momentum-label::after {
-            left: calc(100% + 15px);
-            transform: rotate(180deg);
-        }
-
-        /* DATA STRIP */
-
-        .data-strip {
-            max-width: 1050px;
-            margin: -28px auto 0;
-            padding: 0 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .data-inner {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            background: rgba(6, 19, 37, 0.8);
-            border: 1px solid var(--line);
-            border-radius: 18px;
-            overflow: hidden;
-            backdrop-filter: blur(18px);
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
-        }
-
-        .data-item {
-            padding: 20px;
-            text-align: center;
-            border-right: 1px solid var(--line);
-        }
-
-        .data-item:last-child {
-            border-right: none;
-        }
-
-        .data-value {
-            display: block;
-            color: var(--cyan);
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .data-label {
-            color: #718ba3;
-            font-size: 10px;
-            letter-spacing: 1.5px;
-        }
-
-        /* CONTENT */
-
-        .container {
-            max-width: 1050px;
-            margin: auto;
-            padding: 85px 20px 40px;
-        }
-
-        .lesson {
-            position: relative;
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(13, 34, 61, 0.78),
-                    rgba(4, 15, 29, 0.72)
-                );
-            border: 1px solid var(--line);
-            padding: 38px;
-            margin-bottom: 28px;
-            border-radius: 22px;
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.24),
-                inset 0 1px 0 rgba(255, 255, 255, 0.035);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(35px);
-            transition:
-                opacity 0.7s ease,
-                transform 0.7s ease,
-                border-color 0.35s ease,
-                box-shadow 0.35s ease;
-        }
-
-        .lesson.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .lesson:hover {
-            border-color: var(--line-strong);
-            box-shadow:
-                0 25px 75px rgba(0, 0, 0, 0.32),
-                0 0 35px rgba(84, 215, 255, 0.045);
-        }
-
-        .lesson::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -120%;
-            width: 70%;
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                var(--cyan),
-                transparent
-            );
-            box-shadow: 0 0 18px var(--cyan);
-            animation: scanLine 6s linear infinite;
-            opacity: 0.4;
-        }
-
-        @keyframes scanLine {
-
-            0% {
-                left: -120%;
-            }
-
-            100% {
-                left: 150%;
-            }
-
-        }
-
-        .lesson-number {
-            color: var(--cyan);
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            margin-bottom: 9px;
-        }
-
-        .lesson h2 {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 29px;
-            line-height: 1.25;
-            margin-bottom: 17px;
-            letter-spacing: -0.5px;
-        }
-
-        .lesson p {
-            color: var(--muted);
-            margin-bottom: 15px;
-        }
-
-        .lesson ul {
-            padding-left: 24px;
-            color: var(--muted);
-        }
-
-        .lesson li {
-            margin-bottom: 9px;
-        }
-
-        .definition {
-            position: relative;
-            background: rgba(49, 155, 215, 0.07);
-            border: 1px solid rgba(84, 215, 255, 0.14);
-            border-left: 3px solid var(--cyan);
-            padding: 20px 22px;
-            margin: 22px 0;
-            border-radius: 12px;
-        }
-
-        .definition strong {
-            color: var(--cyan);
-            font-family: "Space Grotesk", sans-serif;
-        }
-
-        .definition p {
-            margin: 8px 0 0;
-            color: var(--soft);
-        }
-
-        /* FORMULAS */
-
-        .formula {
-            position: relative;
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(2, 11, 25, 0.95),
-                    rgba(8, 30, 57, 0.92)
-                );
-            color: white;
-            padding: 20px;
-            margin: 22px 0;
-            border-radius: 13px;
-            text-align: center;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 0.4px;
-            border: 1px solid rgba(84, 215, 255, 0.2);
-            box-shadow:
-                inset 0 0 30px rgba(84, 215, 255, 0.025),
-                0 10px 30px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
-
-        .formula::after {
-            content: "";
-            position: absolute;
-            left: -20%;
-            top: 0;
-            width: 20%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(84, 215, 255, 0.16),
-                transparent
-            );
-            transform: skewX(-20deg);
-            animation: formulaScan 5s linear infinite;
-        }
-
-        @keyframes formulaScan {
-
-            0% {
-                left: -30%;
-            }
-
-            100% {
-                left: 130%;
-            }
-
-        }
-
-        /* EXAMPLES */
-
-        .example {
-            background: rgba(2, 12, 25, 0.55);
-            border: 1px solid rgba(84, 215, 255, 0.13);
-            padding: 25px;
-            margin-top: 20px;
-            border-radius: 15px;
-        }
-
-        .example-title {
-            color: var(--cyan);
-            font-family: "Space Grotesk", sans-serif;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-        }
-
-        .solution {
-            margin-top: 18px;
-            padding: 19px;
-            background: rgba(11, 30, 53, 0.68);
-            border: 1px solid rgba(84, 215, 255, 0.09);
-            border-radius: 10px;
-        }
-
-        .solution p:last-child {
-            margin-bottom: 0;
-        }
-
-        .solution strong {
-            color: var(--cyan);
-        }
-
-        /* QUESTIONS */
-
-        .question {
-            padding: 22px 0;
-            border-bottom: 1px solid rgba(84, 215, 255, 0.09);
-        }
-
-        .question:last-child {
-            border-bottom: none;
-        }
-
-        .question > strong {
-            color: #e6f2ff;
-        }
-
-        details {
-            margin-top: 13px;
-        }
-
-        summary {
-            cursor: pointer;
-            color: var(--cyan);
-            font-weight: 700;
-            transition: 0.25s;
-        }
-
-        summary:hover {
-            color: white;
-        }
-
-        details p {
-            margin-top: 10px;
-        }
-
-        /* NAVIGATION */
-
-        .navigation {
-            max-width: 1050px;
-            margin: 10px auto 70px;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 48px;
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(84, 215, 255, 0.12),
-                    rgba(62, 141, 255, 0.08)
-                );
-            color: #dff6ff;
-            text-decoration: none;
-            padding: 12px 22px;
-            border-radius: 11px;
-            font-weight: 700;
-            font-size: 13px;
-            border: 1px solid rgba(84, 215, 255, 0.2);
-            transition: 0.3s;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
-        }
-
-        .button:hover {
-            transform: translateY(-3px);
-            border-color: rgba(84, 215, 255, 0.55);
-            color: white;
-            box-shadow:
-                0 14px 35px rgba(0, 0, 0, 0.3),
-                0 0 25px rgba(84, 215, 255, 0.08);
-        }
-
-        .button.next {
-            margin-left: auto;
-        }
-
-        /* FOOTER */
-
-        footer {
-            background: rgba(2, 7, 18, 0.88);
-            color: #71869b;
-            text-align: center;
-            padding: 32px 20px;
-            border-top: 1px solid rgba(84, 215, 255, 0.1);
-            font-size: 13px;
-        }
-
-        /* RESPONSIVE */
-
-        @media (max-width: 800px) {
-
-            .hero {
-                min-height: 620px;
-            }
-
-            .collision-system {
-                width: 480px;
-                transform: translate(-50%, -45%) scale(0.9);
-            }
-
-            .data-inner {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .data-item:nth-child(2) {
-                border-right: none;
-            }
-
-            .data-item:nth-child(-n+2) {
-                border-bottom: 1px solid var(--line);
-            }
-
-            .lesson {
-                padding: 29px;
-            }
-
-            .navigation {
-                justify-content: center;
-            }
-
-            .button.next {
-                margin-left: 0;
-            }
-
-        }
-
-        @media (max-width: 560px) {
-
-            header {
-                padding: 16px 5%;
-            }
-
-            .logo {
-                font-size: 21px;
-            }
-
-            .back-link {
-                font-size: 12px;
-            }
-
-            .hero {
-                min-height: 570px;
-                padding: 60px 18px;
-            }
-
-            .hero h1 {
-                font-size: 51px;
-                letter-spacing: -2px;
-            }
-
-            .hero p {
-                font-size: 15px;
-            }
-
-            .collision-system {
-                width: 390px;
-                height: 270px;
-                top: 53%;
-                transform: translate(-50%, -42%) scale(0.76);
-            }
-
-            .data-inner {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .data-item {
-                padding: 15px 8px;
-            }
-
-            .data-value {
-                font-size: 15px;
-            }
-
-            .data-label {
-                font-size: 8px;
-            }
-
-            .container {
-                padding-top: 55px;
-            }
-
-            .lesson {
-                padding: 24px;
-                border-radius: 18px;
-            }
-
-            .lesson h2 {
-                font-size: 25px;
-            }
-
-            .formula {
-                font-size: 17px;
-                padding: 17px 12px;
-            }
-
-            .navigation {
-                flex-direction: column;
-            }
-
-            .button {
-                width: 100%;
-            }
-
-        }
-
-        /* REDUCED MOTION */
-
-        @media (prefers-reduced-motion: reduce) {
-
-            html {
-                scroll-behavior: auto;
-            }
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.001ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.001ms !important;
-            }
-
-            .lesson {
-                opacity: 1;
-                transform: none;
-            }
-
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Collisions | Mechanics 2 | IAL ATLAS</title>
+
+<meta name="description"
+content="Deep Edexcel International A Level Mathematics Mechanics 2 notes on collisions, momentum, impulse, direct impact, Newton's law of restitution, coefficient of restitution, elastic and inelastic collisions, collision conditions and exam methods.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+rel="stylesheet">
+
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#020712;
+    --panel:rgba(9,24,45,.72);
+    --line:rgba(88,190,255,.18);
+    --line-strong:rgba(88,190,255,.42);
+    --cyan:#54d7ff;
+    --blue:#3e8dff;
+    --text:#f2f8ff;
+    --muted:#9eb4ca;
+    --soft:#c9d9e8;
+    --green:#65e6bd;
+    --yellow:#ffd66b;
+    --red:#ff758c;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Inter",sans-serif;
+    background:
+        radial-gradient(circle at 50% -10%,rgba(40,126,255,.18),transparent 35%),
+        radial-gradient(circle at 15% 45%,rgba(0,210,255,.06),transparent 28%),
+        var(--bg);
+    color:var(--text);
+    line-height:1.75;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.34;
+    background-image:
+        linear-gradient(rgba(85,170,255,.055) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(85,170,255,.055) 1px,transparent 1px);
+    background-size:52px 52px;
+    mask-image:linear-gradient(to bottom,black,transparent 82%);
+    z-index:-2;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        radial-gradient(circle at center,transparent 25%,rgba(0,0,0,.52) 100%);
+    z-index:-1;
+}
+
+
+/* PARTICLES */
+
+.particles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+    overflow:hidden;
+}
+
+.particle{
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:var(--cyan);
+    box-shadow:0 0 12px var(--cyan);
+    opacity:.45;
+    animation:floatParticle linear infinite;
+}
+
+.particle:nth-child(1){left:7%;top:21%;animation-duration:13s;}
+.particle:nth-child(2){left:18%;top:72%;animation-duration:17s;}
+.particle:nth-child(3){left:31%;top:13%;animation-duration:15s;}
+.particle:nth-child(4){left:45%;top:78%;animation-duration:19s;}
+.particle:nth-child(5){left:63%;top:25%;animation-duration:14s;}
+.particle:nth-child(6){left:76%;top:63%;animation-duration:18s;}
+.particle:nth-child(7){left:89%;top:18%;animation-duration:16s;}
+.particle:nth-child(8){left:94%;top:82%;animation-duration:20s;}
+
+@keyframes floatParticle{
+    0%{
+        transform:translate3d(0,0,0);
+        opacity:.1;
+    }
+
+    50%{
+        opacity:.65;
+    }
+
+    100%{
+        transform:translate3d(0,-120px,0);
+        opacity:.05;
+    }
+}
+
+
+/* HEADER */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 7%;
+    background:rgba(2,7,18,.72);
+    border-bottom:1px solid rgba(84,215,255,.12);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+}
+
+header a{
+    color:white;
+    text-decoration:none;
+}
+
+.logo{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:25px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.logo::after{
+    content:"";
+    display:inline-block;
+    width:7px;
+    height:7px;
+    margin-left:7px;
+    border-radius:50%;
+    background:var(--cyan);
+    box-shadow:0 0 14px var(--cyan);
+    animation:pulseDot 2s infinite;
+}
+
+@keyframes pulseDot{
+    0%,100%{
+        transform:scale(.8);
+        opacity:.5;
+    }
+
+    50%{
+        transform:scale(1.3);
+        opacity:1;
+    }
+}
+
+.back-link{
+    color:#a9c6dd;
+    font-size:14px;
+    transition:.3s;
+}
+
+.back-link:hover{
+    color:var(--cyan);
+}
+
+
+/* HERO */
+
+.hero{
+    position:relative;
+    min-height:690px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:80px 20px;
+    overflow:hidden;
+    isolation:isolate;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:760px;
+    height:760px;
+    border-radius:50%;
+    border:1px solid rgba(84,215,255,.08);
+    box-shadow:
+        0 0 100px rgba(62,141,255,.08),
+        inset 0 0 100px rgba(62,141,255,.05);
+    animation:orbit 18s linear infinite;
+    z-index:-1;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:430px;
+    height:430px;
+    border-radius:50%;
+    border:1px dashed rgba(84,215,255,.12);
+    animation:orbitReverse 14s linear infinite;
+    z-index:-1;
+}
+
+@keyframes orbit{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes orbitReverse{
+    to{
+        transform:rotate(-360deg);
+    }
+}
+
+.hero-content{
+    position:relative;
+    z-index:5;
+    max-width:900px;
+}
+
+.hero-label{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    color:var(--cyan);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:3px;
+    margin-bottom:20px;
+    text-transform:uppercase;
+}
+
+.hero-label::before{
+    content:"";
+    width:28px;
+    height:1px;
+    background:var(--cyan);
+    box-shadow:0 0 10px var(--cyan);
+}
+
+.hero h1{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(54px,9vw,92px);
+    line-height:1;
+    letter-spacing:-4px;
+    margin-bottom:24px;
+    text-shadow:0 0 35px rgba(84,215,255,.14);
+}
+
+.hero h1 span{
+    color:var(--cyan);
+}
+
+.hero p{
+    max-width:760px;
+    margin:auto;
+    color:var(--muted);
+    font-size:17px;
+}
+
+
+/* COLLISION ANIMATION */
+
+.collision-system{
+    position:absolute;
+    width:650px;
+    height:340px;
+    left:50%;
+    top:53%;
+    transform:translate(-50%,-50%);
+    pointer-events:none;
+    z-index:1;
+    opacity:.82;
+}
+
+.collision-track{
+    position:absolute;
+    left:6%;
+    right:6%;
+    bottom:48px;
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(84,215,255,.35),
+        rgba(84,215,255,.12),
+        rgba(84,215,255,.35),
+        transparent
+    );
+    box-shadow:0 0 16px rgba(84,215,255,.22);
+}
+
+.collision-track::before,
+.collision-track::after{
+    content:"";
+    position:absolute;
+    width:7px;
+    height:7px;
+    top:-3px;
+    border-radius:50%;
+    background:var(--cyan);
+    box-shadow:0 0 15px var(--cyan);
+}
+
+.collision-track::before{
+    left:4%;
+}
+
+.collision-track::after{
+    right:4%;
+}
+
+.particle-a,
+.particle-b{
+    position:absolute;
+    bottom:49px;
+    width:62px;
+    height:62px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:700;
+    font-size:16px;
+    z-index:4;
+}
+
+.particle-a{
+    left:16%;
+    color:var(--cyan);
+    border:1px solid rgba(84,215,255,.7);
+    background:rgba(84,215,255,.09);
+    box-shadow:
+        0 0 28px rgba(84,215,255,.2),
+        inset 0 0 20px rgba(84,215,255,.06);
+    animation:particleA 5s ease-in-out infinite;
+}
+
+.particle-b{
+    right:16%;
+    color:#a9c9ff;
+    border:1px solid rgba(62,141,255,.65);
+    background:rgba(62,141,255,.08);
+    box-shadow:
+        0 0 28px rgba(62,141,255,.2),
+        inset 0 0 20px rgba(62,141,255,.06);
+    animation:particleB 5s ease-in-out infinite;
+}
+
+@keyframes particleA{
+    0%,25%{
+        transform:translateX(0);
+    }
+
+    45%,55%{
+        transform:translateX(190px);
+    }
+
+    75%,100%{
+        transform:translateX(0);
+    }
+}
+
+@keyframes particleB{
+    0%,25%{
+        transform:translateX(0);
+    }
+
+    45%,55%{
+        transform:translateX(-190px);
+    }
+
+    75%,100%{
+        transform:translateX(0);
+    }
+}
+
+.velocity-a,
+.velocity-b{
+    position:absolute;
+    height:2px;
+    bottom:80px;
+    box-shadow:0 0 12px currentColor;
+}
+
+.velocity-a{
+    width:115px;
+    left:6%;
+    background:var(--cyan);
+    color:var(--cyan);
+    animation:velocityA 5s ease-in-out infinite;
+}
+
+.velocity-b{
+    width:115px;
+    right:6%;
+    background:var(--blue);
+    color:var(--blue);
+    animation:velocityB 5s ease-in-out infinite;
+}
+
+.velocity-a::after,
+.velocity-b::after{
+    content:"";
+    position:absolute;
+    top:-5px;
+    width:10px;
+    height:10px;
+    border-top:2px solid currentColor;
+    border-right:2px solid currentColor;
+}
+
+.velocity-a::after{
+    right:0;
+    transform:rotate(45deg);
+}
+
+.velocity-b::after{
+    left:0;
+    transform:rotate(-135deg);
+}
+
+@keyframes velocityA{
+    0%,25%{
+        transform:translateX(0);
+        opacity:.9;
+    }
+
+    45%,55%{
+        transform:translateX(190px);
+        opacity:.25;
+    }
+
+    75%,100%{
+        transform:translateX(0);
+        opacity:.9;
+    }
+}
+
+@keyframes velocityB{
+    0%,25%{
+        transform:translateX(0);
+        opacity:.9;
+    }
+
+    45%,55%{
+        transform:translateX(-190px);
+        opacity:.25;
+    }
+
+    75%,100%{
+        transform:translateX(0);
+        opacity:.9;
+    }
+}
+
+.impact-ring{
+    position:absolute;
+    width:28px;
+    height:28px;
+    left:50%;
+    bottom:67px;
+    transform:translateX(-50%);
+    border:1px solid var(--cyan);
+    border-radius:50%;
+    opacity:0;
+    box-shadow:0 0 20px var(--cyan);
+    animation:impact 5s ease-in-out infinite;
+}
+
+.impact-ring::before,
+.impact-ring::after{
+    content:"";
+    position:absolute;
+    inset:-15px;
+    border:1px solid rgba(84,215,255,.3);
+    border-radius:50%;
+}
+
+.impact-ring::after{
+    inset:-32px;
+    border-color:rgba(84,215,255,.13);
+}
+
+@keyframes impact{
+    0%,39%{
+        opacity:0;
+        transform:translateX(-50%) scale(.5);
+    }
+
+    47%{
+        opacity:1;
+        transform:translateX(-50%) scale(1);
+    }
+
+    60%{
+        opacity:0;
+        transform:translateX(-50%) scale(3.5);
+    }
+
+    100%{
+        opacity:0;
+    }
+}
+
+.momentum-label{
+    position:absolute;
+    top:38px;
+    left:50%;
+    transform:translateX(-50%);
+    color:rgba(184,222,255,.7);
+    font-size:10px;
+    letter-spacing:3px;
+    white-space:nowrap;
+}
+
+
+/* DATA STRIP */
+
+.data-strip{
+    max-width:1100px;
+    margin:-28px auto 0;
+    padding:0 20px;
+    position:relative;
+    z-index:10;
+}
+
+.data-inner{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    background:rgba(6,19,37,.8);
+    border:1px solid var(--line);
+    border-radius:18px;
+    overflow:hidden;
+    backdrop-filter:blur(18px);
+    box-shadow:0 25px 70px rgba(0,0,0,.35);
+}
+
+.data-item{
+    padding:20px;
+    text-align:center;
+    border-right:1px solid var(--line);
+}
+
+.data-item:last-child{
+    border-right:none;
+}
+
+.data-value{
+    display:block;
+    color:var(--cyan);
+    font-family:"Space Grotesk",sans-serif;
+    font-size:18px;
+    font-weight:700;
+    margin-bottom:4px;
+}
+
+.data-label{
+    color:#718ba3;
+    font-size:10px;
+    letter-spacing:1.5px;
+}
+
+
+/* CONTENT */
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:85px 20px 40px;
+}
+
+.lesson{
+    position:relative;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(13,34,61,.78),
+            rgba(4,15,29,.72)
+        );
+    border:1px solid var(--line);
+    padding:42px;
+    margin-bottom:30px;
+    border-radius:22px;
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.24),
+        inset 0 1px 0 rgba(255,255,255,.035);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(35px);
+    transition:
+        opacity .7s ease,
+        transform .7s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
+
+.lesson.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.lesson:hover{
+    border-color:var(--line-strong);
+    box-shadow:
+        0 25px 75px rgba(0,0,0,.32),
+        0 0 35px rgba(84,215,255,.045);
+}
+
+.lesson::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:70%;
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        var(--cyan),
+        transparent
+    );
+    box-shadow:0 0 18px var(--cyan);
+    animation:scanLine 6s linear infinite;
+    opacity:.4;
+}
+
+@keyframes scanLine{
+    0%{
+        left:-120%;
+    }
+
+    100%{
+        left:150%;
+    }
+}
+
+.lesson-number{
+    color:var(--cyan);
+    font-family:"Space Grotesk",sans-serif;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:3px;
+    margin-bottom:9px;
+}
+
+.lesson h2{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:29px;
+    line-height:1.25;
+    margin-bottom:17px;
+    letter-spacing:-.5px;
+}
+
+.lesson h3{
+    font-family:"Space Grotesk",sans-serif;
+    color:#eaf7ff;
+    font-size:20px;
+    margin:30px 0 12px;
+}
+
+.lesson h4{
+    color:var(--cyan);
+    margin:22px 0 8px;
+}
+
+.lesson p{
+    color:var(--muted);
+    margin-bottom:15px;
+}
+
+.lesson ul,
+.lesson ol{
+    padding-left:25px;
+    color:var(--muted);
+}
+
+.lesson li{
+    margin-bottom:9px;
+}
+
+.lesson li strong{
+    color:var(--soft);
+}
+
+
+/* DEFINITIONS */
+
+.definition{
+    position:relative;
+    background:rgba(49,155,215,.07);
+    border:1px solid rgba(84,215,255,.14);
+    border-left:3px solid var(--cyan);
+    padding:20px 22px;
+    margin:22px 0;
+    border-radius:12px;
+}
+
+.definition strong{
+    color:var(--cyan);
+    font-family:"Space Grotesk",sans-serif;
+}
+
+.definition p{
+    margin:8px 0 0;
+    color:var(--soft);
+}
+
+
+/* IMPORTANT */
+
+.warning{
+    position:relative;
+    background:rgba(255,214,107,.055);
+    border:1px solid rgba(255,214,107,.18);
+    border-left:3px solid var(--yellow);
+    padding:20px 22px;
+    margin:22px 0;
+    border-radius:12px;
+}
+
+.warning strong{
+    color:var(--yellow);
+}
+
+.warning p{
+    color:#d9d4bd;
+    margin:7px 0 0;
+}
+
+.success{
+    position:relative;
+    background:rgba(101,230,189,.055);
+    border:1px solid rgba(101,230,189,.17);
+    border-left:3px solid var(--green);
+    padding:20px 22px;
+    margin:22px 0;
+    border-radius:12px;
+}
+
+.success strong{
+    color:var(--green);
+}
+
+.success p{
+    color:#c7e4db;
+    margin:7px 0 0;
+}
+
+.danger{
+    position:relative;
+    background:rgba(255,117,140,.055);
+    border:1px solid rgba(255,117,140,.17);
+    border-left:3px solid var(--red);
+    padding:20px 22px;
+    margin:22px 0;
+    border-radius:12px;
+}
+
+.danger strong{
+    color:var(--red);
+}
+
+.danger p{
+    color:#e7c9cf;
+    margin:7px 0 0;
+}
+
+
+/* FORMULAS */
+
+.formula{
+    position:relative;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(2,11,25,.95),
+            rgba(8,30,57,.92)
+        );
+    color:white;
+    padding:20px;
+    margin:22px 0;
+    border-radius:13px;
+    text-align:center;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:.4px;
+    border:1px solid rgba(84,215,255,.2);
+    box-shadow:
+        inset 0 0 30px rgba(84,215,255,.025),
+        0 10px 30px rgba(0,0,0,.2);
+    overflow:hidden;
+}
+
+.formula small{
+    display:block;
+    margin-top:8px;
+    font-family:"Inter",sans-serif;
+    font-size:12px;
+    color:var(--muted);
+    font-weight:500;
+}
+
+.formula::after{
+    content:"";
+    position:absolute;
+    left:-20%;
+    top:0;
+    width:20%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(84,215,255,.16),
+        transparent
+    );
+    transform:skewX(-20deg);
+    animation:formulaScan 5s linear infinite;
+}
+
+@keyframes formulaScan{
+    0%{
+        left:-30%;
+    }
+
+    100%{
+        left:130%;
+    }
+}
+
+
+/* SYMBOL TABLE */
+
+.symbol-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:25px 0;
+    overflow:hidden;
+    border-radius:12px;
+}
+
+.symbol-table th,
+.symbol-table td{
+    padding:14px 16px;
+    text-align:left;
+    border-bottom:1px solid rgba(84,215,255,.1);
+}
+
+.symbol-table th{
+    color:var(--cyan);
+    background:rgba(84,215,255,.06);
+    font-family:"Space Grotesk",sans-serif;
+}
+
+.symbol-table td{
+    color:var(--muted);
+    background:rgba(2,12,25,.35);
+}
+
+.symbol-table td:first-child{
+    color:#fff;
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:700;
+}
+
+
+/* EXAMPLES */
+
+.example{
+    background:rgba(2,12,25,.55);
+    border:1px solid rgba(84,215,255,.13);
+    padding:27px;
+    margin-top:20px;
+    border-radius:15px;
+}
+
+.example-title{
+    color:var(--cyan);
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:12px;
+}
+
+.solution{
+    margin-top:18px;
+    padding:21px;
+    background:rgba(11,30,53,.68);
+    border:1px solid rgba(84,215,255,.09);
+    border-radius:10px;
+}
+
+.solution p:last-child{
+    margin-bottom:0;
+}
+
+.solution strong{
+    color:var(--cyan);
+}
+
+
+/* STEPS */
+
+.steps{
+    display:grid;
+    gap:13px;
+    margin:20px 0;
+}
+
+.step{
+    display:grid;
+    grid-template-columns:42px 1fr;
+    gap:14px;
+    align-items:start;
+}
+
+.step-number{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    color:var(--cyan);
+    background:rgba(84,215,255,.07);
+    border:1px solid rgba(84,215,255,.2);
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:700;
+}
+
+.step-content{
+    padding-top:4px;
+    color:var(--muted);
+}
+
+.step-content strong{
+    color:#e8f6ff;
+}
+
+
+/* COMPARISON GRID */
+
+.compare-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+    margin:22px 0;
+}
+
+.compare-card{
+    padding:22px;
+    background:rgba(2,12,25,.48);
+    border:1px solid rgba(84,215,255,.12);
+    border-radius:14px;
+}
+
+.compare-card h3{
+    margin-top:0;
+    color:var(--cyan);
+}
+
+.compare-card p{
+    margin-bottom:9px;
+}
+
+
+/* QUESTION BANK */
+
+.question{
+    padding:23px 0;
+    border-bottom:1px solid rgba(84,215,255,.09);
+}
+
+.question:last-child{
+    border-bottom:none;
+}
+
+.question > strong{
+    color:#e6f2ff;
+}
+
+.question-meta{
+    display:inline-block;
+    margin-left:8px;
+    padding:3px 8px;
+    border-radius:20px;
+    background:rgba(84,215,255,.07);
+    border:1px solid rgba(84,215,255,.13);
+    color:var(--cyan);
+    font-size:10px;
+    letter-spacing:1px;
+}
+
+details{
+    margin-top:13px;
+}
+
+summary{
+    cursor:pointer;
+    color:var(--cyan);
+    font-weight:700;
+    transition:.25s;
+}
+
+summary:hover{
+    color:white;
+}
+
+details p{
+    margin-top:10px;
+}
+
+.exam-answer{
+    margin-top:12px;
+    padding:16px;
+    border-left:2px solid var(--green);
+    background:rgba(101,230,189,.045);
+    border-radius:8px;
+}
+
+
+/* QUICK FORMULA */
+
+.quick-formula{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.quick-card{
+    padding:20px;
+    background:rgba(2,12,25,.55);
+    border:1px solid rgba(84,215,255,.13);
+    border-radius:13px;
+}
+
+.quick-card span{
+    display:block;
+    color:#718ba3;
+    font-size:10px;
+    letter-spacing:1.4px;
+    margin-bottom:7px;
+}
+
+.quick-card strong{
+    color:#fff;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:18px;
+}
+
+
+/* NAVIGATION */
+
+.navigation{
+    max-width:1100px;
+    margin:10px auto 70px;
+    padding:0 20px;
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:48px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(84,215,255,.12),
+            rgba(62,141,255,.08)
+        );
+    color:#dff6ff;
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:11px;
+    font-weight:700;
+    font-size:13px;
+    border:1px solid rgba(84,215,255,.2);
+    transition:.3s;
+    box-shadow:0 10px 25px rgba(0,0,0,.18);
+}
+
+.button:hover{
+    transform:translateY(-3px);
+    border-color:rgba(84,215,255,.55);
+    color:white;
+    box-shadow:
+        0 14px 35px rgba(0,0,0,.3),
+        0 0 25px rgba(84,215,255,.08);
+}
+
+.button.next{
+    margin-left:auto;
+}
+
+
+/* FOOTER */
+
+footer{
+    background:rgba(2,7,18,.88);
+    color:#71869b;
+    text-align:center;
+    padding:32px 20px;
+    border-top:1px solid rgba(84,215,255,.1);
+    font-size:13px;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:800px){
+
+    .hero{
+        min-height:620px;
+    }
+
+    .collision-system{
+        width:480px;
+        transform:translate(-50%,-45%) scale(.9);
+    }
+
+    .data-inner{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .data-item:nth-child(2){
+        border-right:none;
+    }
+
+    .data-item:nth-child(-n+2){
+        border-bottom:1px solid var(--line);
+    }
+
+    .lesson{
+        padding:29px;
+    }
+
+    .compare-grid{
+        grid-template-columns:1fr;
+    }
+
+    .quick-formula{
+        grid-template-columns:1fr;
+    }
+
+    .navigation{
+        justify-content:center;
+    }
+
+    .button.next{
+        margin-left:0;
+    }
+
+}
+
+@media(max-width:560px){
+
+    header{
+        padding:16px 5%;
+    }
+
+    .logo{
+        font-size:21px;
+    }
+
+    .back-link{
+        font-size:12px;
+    }
+
+    .hero{
+        min-height:570px;
+        padding:60px 18px;
+    }
+
+    .hero h1{
+        font-size:51px;
+        letter-spacing:-2px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .collision-system{
+        width:390px;
+        height:270px;
+        top:53%;
+        transform:translate(-50%,-42%) scale(.76);
+    }
+
+    .data-inner{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .data-item{
+        padding:15px 8px;
+    }
+
+    .data-value{
+        font-size:15px;
+    }
+
+    .data-label{
+        font-size:8px;
+    }
+
+    .container{
+        padding-top:55px;
+    }
+
+    .lesson{
+        padding:24px;
+        border-radius:18px;
+    }
+
+    .lesson h2{
+        font-size:25px;
+    }
+
+    .formula{
+        font-size:17px;
+        padding:17px 12px;
+    }
+
+    .example{
+        padding:20px;
+    }
+
+    .symbol-table{
+        font-size:13px;
+    }
+
+    .symbol-table th,
+    .symbol-table td{
+        padding:10px;
+    }
+
+    .navigation{
+        flex-direction:column;
+    }
+
+    .button{
+        width:100%;
+    }
+
+}
+
+
+/* REDUCED MOTION */
+
+@media(prefers-reduced-motion:reduce){
+
+    html{
+        scroll-behavior:auto;
+    }
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.001ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.001ms!important;
+    }
+
+    .lesson{
+        opacity:1;
+        transform:none;
+    }
+
+}
+
+</style>
 
 </head>
+
 
 <body>
 
 
 <div class="particles">
 
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
+<span class="particle"></span>
+<span class="particle"></span>
+<span class="particle"></span>
+<span class="particle"></span>
+<span class="particle"></span>
+<span class="particle"></span>
+<span class="particle"></span>
+<span class="particle"></span>
 
 </div>
 
 
 <header>
 
-    <a href="index.html" class="logo">
-        IAL ATLAS
-    </a>
+<a href="index.html" class="logo">
+IAL ATLAS
+</a>
 
-    <a href="mechanics-2.html" class="back-link">
-        ← Mechanics 2
-    </a>
+<a href="mechanics-2.html" class="back-link">
+← Mechanics 2
+</a>
 
 </header>
 
 
 <section class="hero" id="hero">
 
-    <div class="collision-system">
+<div class="collision-system">
 
-        <div class="momentum-label">
-            MOMENTUM TRANSFER SYSTEM
-        </div>
+<div class="momentum-label">
+MOMENTUM TRANSFER SYSTEM
+</div>
 
-        <div class="velocity-a"></div>
+<div class="velocity-a"></div>
+<div class="velocity-b"></div>
 
-        <div class="velocity-b"></div>
+<div class="particle-a">
+m₁
+</div>
 
-        <div class="particle-a">
-            m₁
-        </div>
+<div class="particle-b">
+m₂
+</div>
 
-        <div class="particle-b">
-            m₂
-        </div>
+<div class="impact-ring"></div>
 
-        <div class="impact-ring"></div>
+<div class="collision-track"></div>
 
-        <div class="collision-track"></div>
-
-    </div>
+</div>
 
 
-    <div class="hero-content">
+<div class="hero-content">
 
-        <p class="hero-label">
-            MECHANICS 2 • TOPIC 04
-        </p>
+<p class="hero-label">
+MECHANICS 2 • COLLISIONS
+</p>
 
-        <h1>
-            <span>Collision</span>s
-        </h1>
+<h1>
+<span>Collision</span>s
+</h1>
 
-        <p>
-            Learn how momentum and impulse are used to analyse
-            collisions between particles.
-        </p>
+<p>
+A complete Mechanics 2 treatment of momentum, impulse,
+direct impact, Newton's law of restitution, coefficient of
+restitution, collision conditions and exam-style problem solving.
+</p>
 
-    </div>
+</div>
 
 </section>
 
 
 <section class="data-strip">
 
-    <div class="data-inner">
+<div class="data-inner">
 
-        <div class="data-item">
+<div class="data-item">
 
-            <span class="data-value">
-                p = mv
-            </span>
+<span class="data-value">
+p = mv
+</span>
 
-            <span class="data-label">
-                MOMENTUM
-            </span>
+<span class="data-label">
+MOMENTUM
+</span>
 
-        </div>
+</div>
 
+<div class="data-item">
 
-        <div class="data-item">
+<span class="data-value">
+Σp BEFORE = Σp AFTER
+</span>
 
-            <span class="data-value">
-                Σp BEFORE = Σp AFTER
-            </span>
+<span class="data-label">
+CONSERVATION
+</span>
 
-            <span class="data-label">
-                CONSERVATION
-            </span>
+</div>
 
-        </div>
+<div class="data-item">
 
+<span class="data-value">
+I = Δp
+</span>
 
-        <div class="data-item">
+<span class="data-label">
+IMPULSE
+</span>
 
-            <span class="data-value">
-                Δp
-            </span>
+</div>
 
-            <span class="data-label">
-                IMPULSE
-            </span>
+<div class="data-item">
 
-        </div>
+<span class="data-value">
+v<sub>sep</sub> = e v<sub>app</sub>
+</span>
 
+<span class="data-label">
+RESTITUTION
+</span>
 
-        <div class="data-item">
+</div>
 
-            <span class="data-value">
-                M2 / 04
-            </span>
-
-            <span class="data-label">
-                COLLISION SYSTEM
-            </span>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
@@ -1253,367 +1447,2350 @@
 <main class="container">
 
 
-    <section class="lesson reveal">
+<!-- 01 -->
 
-        <p class="lesson-number">
-            LESSON 01
-        </p>
+<section class="lesson reveal">
 
-        <h2>
-            Momentum
-        </h2>
+<p class="lesson-number">
+FOUNDATION 01
+</p>
 
-        <p>
-            Momentum is a vector quantity that describes the motion
-            of a particle.
-        </p>
+<h2>
+What Is Momentum?
+</h2>
 
-        <div class="formula">
-            p = mv
-        </div>
+<p>
+Momentum is a vector quantity associated with the motion of
+a particle. It depends on both the particle's mass and its
+velocity.
+</p>
 
-        <p>
-            Momentum has both magnitude and direction because
-            velocity is a vector.
-        </p>
+<div class="formula">
+p = mv
+<small>momentum = mass × velocity</small>
+</div>
 
-    </section>
+<p>
+Because velocity is a vector, momentum is also a vector.
+Therefore, the direction of momentum is the same as the
+direction of the particle's velocity.
+</p>
 
+<div class="symbol-table">
 
-    <section class="lesson reveal">
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+<th>SI unit</th>
+</tr>
 
-        <p class="lesson-number">
-            LESSON 02
-        </p>
+<tr>
+<td>p</td>
+<td>momentum</td>
+<td>kg m s<sup>−1</sup></td>
+</tr>
 
-        <h2>
-            Conservation of Momentum
-        </h2>
+<tr>
+<td>m</td>
+<td>mass</td>
+<td>kg</td>
+</tr>
 
-        <p>
-            In a collision where no external resultant force acts
-            on the system, total momentum is conserved.
-        </p>
+<tr>
+<td>v</td>
+<td>velocity</td>
+<td>m s<sup>−1</sup></td>
+</tr>
 
-        <div class="formula">
-            Total momentum before = Total momentum after
-        </div>
+</table>
 
-        <div class="definition">
+<div class="warning">
 
-            <strong>For two particles:</strong>
+<strong>Vector warning</strong>
 
-            <p>
-                m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂
-            </p>
+<p>
+Never treat velocities as positive simply because the particles
+are moving. You must choose a positive direction and assign
+negative signs to velocities in the opposite direction.
+</p>
 
-        </div>
+</div>
 
-    </section>
+</section>
 
 
-    <section class="lesson reveal">
+<!-- 02 -->
 
-        <p class="lesson-number">
-            LESSON 03
-        </p>
+<section class="lesson reveal">
 
-        <h2>
-            Impulse
-        </h2>
+<p class="lesson-number">
+FOUNDATION 02
+</p>
 
-        <p>
-            Impulse is the change in momentum of a particle.
-        </p>
+<h2>
+Choosing a Positive Direction
+</h2>
 
-        <div class="formula">
-            Impulse = Change in momentum
-        </div>
+<p>
+Most collision questions become much easier once a positive
+direction has been chosen.
+</p>
 
-        <div class="formula">
-            Impulse = mv − mu
-        </div>
+<p>
+For example, suppose particle A moves to the right and particle
+B moves to the left. We may choose right as positive.
+</p>
 
-        <p>
-            Impulse is measured in newton-seconds (N s).
-        </p>
+<div class="formula">
+RIGHT = + &nbsp;&nbsp;&nbsp;&nbsp; LEFT = −
+</div>
 
-    </section>
+<p>
+If A has velocity 8 m/s to the right, its velocity is
++8 m/s. If B has velocity 5 m/s to the left, its velocity
+is −5 m/s.
+</p>
 
+<div class="example">
 
-    <section class="lesson reveal">
+<p class="example-title">
+SIGN-CONVENTION EXAMPLE
+</p>
 
-        <p class="lesson-number">
-            LESSON 04
-        </p>
+<p>
+A particle of mass 3 kg travels at 6 m/s to the left.
+Take right as positive.
+</p>
 
-        <h2>
-            Coefficient of Restitution
-        </h2>
+<div class="solution">
 
-        <p>
-            The coefficient of restitution describes how elastic
-            a collision is.
-        </p>
+<p>
+Since left is negative:
+</p>
 
-        <div class="formula">
-            e = Relative speed of separation / Relative speed of approach
-        </div>
+<p>
+v = −6 m/s
+</p>
 
-        <div class="definition">
+<p>
+Therefore:
+</p>
 
-            <strong>Important:</strong>
+<p>
+p = mv = 3(−6)
+</p>
 
-            <p>
-                For ordinary collisions, 0 ≤ e ≤ 1.
-            </p>
+<p>
+<strong>p = −18 kg m s<sup>−1</sup></strong>
+</p>
 
-        </div>
+</div>
 
-    </section>
+</div>
 
+<div class="success">
 
-    <section class="lesson reveal">
+<strong>Exam habit</strong>
 
-        <p class="lesson-number">
-            LESSON 05
-        </p>
+<p>
+Write your chosen positive direction before starting a collision
+calculation. This prevents most sign errors.
+</p>
 
-        <h2>
-            Elastic and Inelastic Collisions
-        </h2>
+</div>
 
-        <p>
-            In an elastic collision, kinetic energy is conserved.
-            In an inelastic collision, kinetic energy is not conserved.
-        </p>
+</section>
 
-        <ul>
 
-            <li>Momentum is conserved in an isolated system.</li>
+<!-- 03 -->
 
-            <li>Kinetic energy may or may not be conserved.</li>
+<section class="lesson reveal">
 
-            <li>The coefficient of restitution helps describe the collision.</li>
+<p class="lesson-number">
+CORE THEORY 03
+</p>
 
-        </ul>
+<h2>
+Conservation of Momentum
+</h2>
 
-    </section>
+<p>
+When considering a system of particles, the total momentum remains
+constant if the resultant external force acting on the system is
+zero.
+</p>
 
+<div class="formula">
+Total momentum before = Total momentum after
+</div>
 
-    <section class="lesson reveal">
+<p>
+For two particles with masses m<sub>1</sub> and m<sub>2</sub>,
+initial velocities u<sub>1</sub> and u<sub>2</sub>, and final
+velocities v<sub>1</sub> and v<sub>2</sub>:
+</p>
 
-        <p class="lesson-number">
-            WORKED EXAMPLE
-        </p>
+<div class="formula">
+m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂
+</div>
 
-        <h2>
-            Conservation of Momentum
-        </h2>
+<p>
+This equation is one of the central tools for collision questions.
+It is a vector equation, so signs matter.
+</p>
 
-        <div class="example">
+<div class="definition">
 
-            <p class="example-title">
-                Example
-            </p>
+<strong>Why is momentum conserved?</strong>
 
-            <p>
-                A 2 kg particle moving at 6 m/s collides with a
-                stationary 3 kg particle. After the collision,
-                the 2 kg particle moves at 1 m/s in the same direction.
-                Find the velocity of the 3 kg particle.
-            </p>
+<p>
+Forces during a collision are internal forces within the chosen
+system. By Newton's third law, the forces the particles exert
+on each other are equal and opposite, so their impulses cancel
+when the whole system is considered.
+</p>
 
-            <div class="solution">
+</div>
 
-                <p>
-                    Momentum before = 2 × 6 = 12 kg m/s
-                </p>
+<h3>When can we use conservation of momentum?</h3>
 
-                <p>
-                    Momentum after = (2 × 1) + (3v)
-                </p>
+<ul>
 
-                <p>
-                    12 = 2 + 3v
-                </p>
+<li>
+The system must be clearly defined.
+</li>
 
-                <p>
-                    3v = 10
-                </p>
+<li>
+The resultant external impulse on the system must be negligible
+or zero over the time interval being considered.
+</li>
 
-                <p>
-                    <strong>v = 10/3 m/s</strong>
-                </p>
+<li>
+Internal forces between the particles do not destroy total
+momentum conservation.
+</li>
 
-            </div>
+</ul>
 
-        </div>
+</section>
 
-    </section>
 
+<!-- 04 -->
 
-    <section class="lesson reveal">
+<section class="lesson reveal">
 
-        <p class="lesson-number">
-            WORKED EXAMPLE
-        </p>
+<p class="lesson-number">
+CORE THEORY 04
+</p>
 
-        <h2>
-            Impulse
-        </h2>
+<h2>
+Impulse and Change in Momentum
+</h2>
 
-        <div class="example">
+<p>
+Impulse measures the effect of a force acting over a time interval.
+It is equal to the change in momentum.
+</p>
 
-            <p class="example-title">
-                Example
-            </p>
+<div class="formula">
+Impulse = Change in momentum
+</div>
 
-            <p>
-                A particle of mass 4 kg changes velocity from
-                3 m/s to 8 m/s in the same direction. Find the impulse.
-            </p>
+<div class="formula">
+I = mv − mu
+</div>
 
-            <div class="solution">
+<p>
+If the force is constant:
+</p>
 
-                <p>
-                    Impulse = mv − mu
-                </p>
+<div class="formula">
+I = Ft
+</div>
 
-                <p>
-                    = 4(8) − 4(3)
-                </p>
+<p>
+Therefore:
+</p>
 
-                <p>
-                    = 32 − 12
-                </p>
+<div class="formula">
+Ft = mv − mu
+</div>
 
-                <p>
-                    <strong>Impulse = 20 N s</strong>
-                </p>
+<table class="symbol-table">
 
-            </div>
+<tr>
+<th>Quantity</th>
+<th>Meaning</th>
+<th>Unit</th>
+</tr>
 
-        </div>
+<tr>
+<td>I</td>
+<td>Impulse</td>
+<td>N s</td>
+</tr>
 
-    </section>
+<tr>
+<td>F</td>
+<td>Force</td>
+<td>N</td>
+</tr>
 
+<tr>
+<td>t</td>
+<td>Time interval</td>
+<td>s</td>
+</tr>
 
-    <section class="lesson reveal">
+<tr>
+<td>mv − mu</td>
+<td>Change in momentum</td>
+<td>kg m s<sup>−1</sup></td>
+</tr>
 
-        <p class="lesson-number">
-            PRACTICE
-        </p>
+</table>
 
-        <h2>
-            Test Yourself
-        </h2>
+<div class="definition">
 
+<strong>Important unit equivalence</strong>
 
-        <div class="question">
+<p>
+1 N s = 1 kg m s<sup>−1</sup>.
+</p>
 
-            <strong>
-                1. Find the momentum of a 5 kg particle moving at
-                4 m/s.
-            </strong>
+</div>
 
-            <details>
+</section>
 
-                <summary>
-                    Show answer
-                </summary>
 
-                <p>
-                    p = mv = 5 × 4
-                </p>
+<!-- 05 -->
 
-                <p>
-                    <strong>p = 20 kg m/s</strong>
-                </p>
+<section class="lesson reveal">
 
-            </details>
+<p class="lesson-number">
+CORE THEORY 05
+</p>
 
-        </div>
+<h2>
+Direct Impact
+</h2>
 
+<p>
+A collision is called a <strong>direct impact</strong> when the
+particles move along the same straight line before and after
+the collision.
+</p>
 
-        <div class="question">
+<p>
+This is the standard collision model used throughout Mechanics 2.
+</p>
 
-            <strong>
-                2. What quantity is always conserved in an isolated
-                collision?
-            </strong>
+<div class="definition">
 
-            <details>
+<strong>Direct impact</strong>
 
-                <summary>
-                    Show answer
-                </summary>
+<p>
+The motion of both particles can be represented using one
+straight line, so their velocities can be treated using signed
+one-dimensional quantities.
+</p>
 
-                <p>
-                    <strong>Momentum.</strong>
-                </p>
+</div>
 
-            </details>
+<p>
+A typical problem gives the masses and velocities before impact
+and then asks for one or both velocities after impact.
+</p>
 
-        </div>
+<div class="steps">
 
+<div class="step">
 
-        <div class="question">
+<div class="step-number">1</div>
 
-            <strong>
-                3. A 2 kg particle changes velocity from 5 m/s to
-                9 m/s. Find the impulse.
-            </strong>
+<div class="step-content">
+<strong>Choose a positive direction.</strong>
+Record all velocities using signs.
+</div>
 
-            <details>
+</div>
 
-                <summary>
-                    Show answer
-                </summary>
+<div class="step">
 
-                <p>
-                    Impulse = 2(9) − 2(5)
-                </p>
+<div class="step-number">2</div>
 
-                <p>
-                    <strong>Impulse = 8 N s</strong>
-                </p>
+<div class="step-content">
+<strong>Apply conservation of momentum.</strong>
+</div>
 
-            </details>
+</div>
 
-        </div>
+<div class="step">
 
+<div class="step-number">3</div>
 
-    </section>
+<div class="step-content">
+<strong>Use Newton's law of restitution</strong>
+if the coefficient of restitution is given.
+</div>
 
+</div>
 
-    <section class="lesson reveal">
+<div class="step">
 
-        <p class="lesson-number">
-            QUICK REVIEW
-        </p>
+<div class="step-number">4</div>
 
-        <h2>
-            Remember These
-        </h2>
+<div class="step-content">
+<strong>Solve the simultaneous equations.</strong>
+</div>
 
-        <div class="formula">
-            p = mv
-        </div>
+</div>
 
-        <div class="formula">
-            Total momentum before = Total momentum after
-        </div>
+<div class="step">
 
-        <div class="formula">
-            Impulse = Change in momentum
-        </div>
+<div class="step-number">5</div>
 
-        <div class="formula">
-            e = Relative speed of separation / Relative speed of approach
-        </div>
+<div class="step-content">
+<strong>Interpret the signs</strong> of the final velocities.
+</div>
 
-    </section>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- 06 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+CORE THEORY 06
+</p>
+
+<h2>
+Newton's Law of Restitution
+</h2>
+
+<p>
+For two particles undergoing a direct collision, Newton's law
+of restitution relates the relative speed of separation to the
+relative speed of approach.
+</p>
+
+<div class="formula">
+e =
+(relative speed of separation)
+÷
+(relative speed of approach)
+</div>
+
+<p>
+The coefficient of restitution is normally denoted by e.
+For the usual collision model:
+</p>
+
+<div class="formula">
+0 ≤ e ≤ 1
+</div>
+
+<p>
+If particle 1 is initially moving faster than particle 2 and
+they are approaching one another, then:
+</p>
+
+<div class="formula">
+e =
+(v₂ − v₁)
+÷
+(u₁ − u₂)
+</div>
+
+<p>
+provided the chosen positive direction is such that particle 1
+is moving in the positive direction towards particle 2.
+</p>
+
+<div class="warning">
+
+<strong>Do not memorise the signs blindly.</strong>
+
+<p>
+The safest method is always to identify the actual relative
+speed of approach and relative speed of separation from the
+motion described in the question.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 07 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+CORE THEORY 07
+</p>
+
+<h2>
+Coefficient of Restitution: Physical Meaning
+</h2>
+
+<div class="compare-grid">
+
+<div class="compare-card">
+
+<h3>e = 1</h3>
+
+<p>
+The relative speed of separation equals the relative speed
+of approach.
+</p>
+
+<p>
+This corresponds to a perfectly elastic collision in the
+idealised model.
+</p>
+
+</div>
+
+<div class="compare-card">
+
+<h3>e = 0</h3>
+
+<p>
+The relative speed of separation is zero.
+</p>
+
+<p>
+The particles have the same velocity immediately after impact
+and therefore move together.
+</p>
+
+</div>
+
+</div>
+
+<div class="formula">
+v<sub>separation</sub> = e v<sub>approach</sub>
+</div>
+
+<p>
+For 0 &lt; e &lt; 1, some kinetic energy is lost during the
+collision, although momentum is still conserved for an isolated
+system.
+</p>
+
+<div class="danger">
+
+<strong>Critical distinction</strong>
+
+<p>
+Momentum conservation does NOT mean kinetic energy conservation.
+These are different physical principles.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 08 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+CORE THEORY 08
+</p>
+
+<h2>
+Elastic and Inelastic Collisions
+</h2>
+
+<p>
+The coefficient of restitution gives useful information about
+the nature of a collision.
+</p>
+
+<div class="compare-grid">
+
+<div class="compare-card">
+
+<h3>Elastic collision</h3>
+
+<p>
+Momentum is conserved.
+</p>
+
+<p>
+Kinetic energy is also conserved.
+</p>
+
+<p>
+For the ideal one-dimensional case:
+e = 1.
+</p>
+
+</div>
+
+<div class="compare-card">
+
+<h3>Inelastic collision</h3>
+
+<p>
+Momentum is conserved for an isolated system.
+</p>
+
+<p>
+Kinetic energy is not conserved.
+</p>
+
+<p>
+For 0 ≤ e &lt; 1, relative separation is reduced.
+</p>
+
+</div>
+
+</div>
+
+<div class="formula">
+KE = ½mv²
+</div>
+
+<p>
+The change in kinetic energy can be found by comparing the total
+kinetic energy before and after the collision.
+</p>
+
+<div class="warning">
+
+<strong>Exam warning</strong>
+
+<p>
+Do not automatically write a kinetic-energy equation in every
+collision question. Momentum is the conservation equation.
+Kinetic energy is only conserved when the collision is elastic
+or when the question explicitly gives enough information to use it.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 09 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+CORE THEORY 09
+</p>
+
+<h2>
+The Standard Collision System
+</h2>
+
+<p>
+Suppose two particles have masses m<sub>1</sub> and m<sub>2</sub>.
+Before impact their velocities are u<sub>1</sub> and u<sub>2</sub>,
+and after impact their velocities are v<sub>1</sub> and
+v<sub>2</sub>.
+</p>
+
+<div class="formula">
+m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂
+</div>
+
+<p>
+If the particles approach each other and then separate:
+</p>
+
+<div class="formula">
+e(via relative separation)
+=
+relative separation
+÷
+relative approach
+</div>
+
+<p>
+The two equations usually provide the two unknown final velocities.
+</p>
+
+<h3>Typical exam structure</h3>
+
+<div class="steps">
+
+<div class="step">
+
+<div class="step-number">1</div>
+
+<div class="step-content">
+Write the conservation of momentum equation.
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">2</div>
+
+<div class="step-content">
+Write Newton's law of restitution.
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">3</div>
+
+<div class="step-content">
+Substitute known values.
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">4</div>
+
+<div class="step-content">
+Solve the simultaneous equations.
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">5</div>
+
+<div class="step-content">
+Check whether the resulting directions make physical sense.
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- 10 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+WORKED EXAMPLE 01
+</p>
+
+<h2>
+Finding Both Velocities After Impact
+</h2>
+
+<div class="example">
+
+<p class="example-title">
+FULL EXAM-STYLE SOLUTION
+</p>
+
+<p>
+A particle A of mass 2 kg moves with velocity 6 m/s towards
+particle B, which has mass 3 kg and is initially at rest.
+The coefficient of restitution between the particles is 0.5.
+Find the velocities of A and B after the collision.
+</p>
+
+<div class="solution">
+
+<p>
+Take the direction of A's initial motion as positive.
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+u<sub>A</sub> = 6,
+u<sub>B</sub> = 0
+</p>
+
+<h4>Step 1 — Conservation of momentum</h4>
+
+<p>
+2(6) + 3(0) = 2v<sub>A</sub> + 3v<sub>B</sub>
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+<strong>12 = 2v<sub>A</sub> + 3v<sub>B</sub></strong>
+</p>
+
+<h4>Step 2 — Newton's law of restitution</h4>
+
+<p>
+Relative speed of approach:
+</p>
+
+<p>
+6 − 0 = 6
+</p>
+
+<p>
+Relative speed of separation:
+</p>
+
+<p>
+v<sub>B</sub> − v<sub>A</sub>
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+0.5 =
+(v<sub>B</sub> − v<sub>A</sub>) / 6
+</p>
+
+<p>
+So:
+</p>
+
+<p>
+<strong>v<sub>B</sub> − v<sub>A</sub> = 3</strong>
+</p>
+
+<h4>Step 3 — Solve simultaneously</h4>
+
+<p>
+v<sub>B</sub> = v<sub>A</sub> + 3
+</p>
+
+<p>
+Substitute into momentum:
+</p>
+
+<p>
+12 = 2v<sub>A</sub> + 3(v<sub>A</sub> + 3)
+</p>
+
+<p>
+12 = 5v<sub>A</sub> + 9
+</p>
+
+<p>
+3 = 5v<sub>A</sub>
+</p>
+
+<p>
+v<sub>A</sub> = 0.6
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+v<sub>B</sub> = 3.6
+</p>
+
+<p>
+<strong>
+A moves at 0.6 m/s and B moves at 3.6 m/s in the positive direction.
+</strong>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- 11 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+WORKED EXAMPLE 02
+</p>
+
+<h2>
+A Collision With Opposite Initial Directions
+</h2>
+
+<div class="example">
+
+<p class="example-title">
+SIGN CONVENTION MATTERS
+</p>
+
+<p>
+Particle A of mass 4 kg moves at 5 m/s to the right.
+Particle B of mass 2 kg moves at 3 m/s to the left.
+The coefficient of restitution is 0.5.
+Find their velocities after impact.
+</p>
+
+<div class="solution">
+
+<p>
+Take right as positive.
+</p>
+
+<p>
+u<sub>A</sub> = 5
+</p>
+
+<p>
+u<sub>B</sub> = −3
+</p>
+
+<h4>Momentum</h4>
+
+<p>
+4(5) + 2(−3)
+=
+4v<sub>A</sub> + 2v<sub>B</sub>
+</p>
+
+<p>
+20 − 6
+=
+4v<sub>A</sub> + 2v<sub>B</sub>
+</p>
+
+<p>
+<strong>
+14 = 4v<sub>A</sub> + 2v<sub>B</sub>
+</strong>
+</p>
+
+<h4>Restitution</h4>
+
+<p>
+Before impact, the particles approach each other at:
+</p>
+
+<p>
+5 − (−3) = 8 m/s
+</p>
+
+<p>
+So the separation speed is:
+</p>
+
+<p>
+0.5 × 8 = 4 m/s
+</p>
+
+<p>
+After impact A is expected to be moving to the left relative
+to B, so:
+</p>
+
+<p>
+v<sub>B</sub> − v<sub>A</sub> = 4
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+v<sub>B</sub> = v<sub>A</sub> + 4
+</p>
+
+<p>
+Substitute:
+</p>
+
+<p>
+14 =
+4v<sub>A</sub> + 2(v<sub>A</sub> + 4)
+</p>
+
+<p>
+14 = 6v<sub>A</sub> + 8
+</p>
+
+<p>
+6v<sub>A</sub> = 6
+</p>
+
+<p>
+v<sub>A</sub> = 1
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+v<sub>B</sub> = 5
+</p>
+
+<p>
+<strong>
+A moves at 1 m/s to the right and B moves at 5 m/s to the right.
+</strong>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- 12 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+WORKED EXAMPLE 03
+</p>
+
+<h2>
+Finding the Coefficient of Restitution
+</h2>
+
+<div class="example">
+
+<p class="example-title">
+FIND e
+</p>
+
+<p>
+Two particles approach each other with speeds 7 m/s and 2 m/s.
+After collision they separate with speeds 1 m/s and 3 m/s.
+Find the coefficient of restitution.
+</p>
+
+<div class="solution">
+
+<p>
+The relative speed of approach is:
+</p>
+
+<p>
+7 + 2 = 9 m/s
+</p>
+
+<p>
+The relative speed of separation is:
+</p>
+
+<p>
+3 + 1 = 4 m/s
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+e = 4 / 9
+</p>
+
+<p>
+<strong>e = 4/9</strong>
+</p>
+
+</div>
+
+</div>
+
+<div class="definition">
+
+<strong>Key idea</strong>
+
+<p>
+When two particles move towards each other, their relative speed
+of approach is usually the sum of their speeds if those speeds
+are stated as positive magnitudes.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 13 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+WORKED EXAMPLE 04
+</p>
+
+<h2>
+Impulse During a Collision
+</h2>
+
+<div class="example">
+
+<p class="example-title">
+MOMENTUM CHANGE
+</p>
+
+<p>
+A 3 kg particle moves at 8 m/s to the right before collision
+and at 2 m/s to the left after collision. Find the impulse
+acting on the particle.
+</p>
+
+<div class="solution">
+
+<p>
+Take right as positive.
+</p>
+
+<p>
+u = 8
+</p>
+
+<p>
+v = −2
+</p>
+
+<p>
+Impulse = mv − mu
+</p>
+
+<p>
+= 3(−2) − 3(8)
+</p>
+
+<p>
+= −6 − 24
+</p>
+
+<p>
+<strong>
+Impulse = −30 N s
+</strong>
+</p>
+
+<p>
+The negative sign means the impulse acts to the left.
+</p>
+
+</div>
+
+</div>
+
+<div class="warning">
+
+<strong>Do not use speed in the impulse formula.</strong>
+
+<p>
+Impulse depends on the change in velocity, so direction must
+be included.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 14 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+CORE THEORY 14
+</p>
+
+<h2>
+Collision and Kinetic Energy
+</h2>
+
+<p>
+Momentum is conserved in an isolated collision, but kinetic
+energy may decrease.
+</p>
+
+<div class="formula">
+Total KE before =
+½m₁u₁² + ½m₂u₂²
+</div>
+
+<div class="formula">
+Total KE after =
+½m₁v₁² + ½m₂v₂²
+</div>
+
+<p>
+For an elastic collision:
+</p>
+
+<div class="formula">
+½m₁u₁² + ½m₂u₂²
+=
+½m₁v₁² + ½m₂v₂²
+</div>
+
+<p>
+For an inelastic collision, the final kinetic energy is smaller
+than the initial kinetic energy.
+</p>
+
+<div class="definition">
+
+<strong>Where does the lost kinetic energy go?</strong>
+
+<p>
+It may be transformed into internal energy, deformation, sound,
+heat or other forms of energy. Total energy is still conserved;
+it is kinetic energy that is not necessarily conserved.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 15 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+CORE THEORY 15
+</p>
+
+<h2>
+Perfectly Inelastic Collision
+</h2>
+
+<p>
+A perfectly inelastic collision is the special case where the
+particles have zero relative speed of separation.
+</p>
+
+<div class="formula">
+e = 0
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+v₁ = v₂
+</div>
+
+<p>
+The particles move together immediately after impact.
+</p>
+
+<p>
+Conservation of momentum can then be used to find their common
+velocity.
+</p>
+
+<div class="example">
+
+<p class="example-title">
+EXAMPLE — PARTICLES STICK TOGETHER</p>
+
+<p>
+A 2 kg particle moving at 6 m/s collides with a stationary
+4 kg particle. They move together after collision. Find their
+common velocity.
+</p>
+
+<div class="solution">
+
+<p>
+Momentum before:
+</p>
+
+<p>
+2(6) + 4(0) = 12
+</p>
+
+<p>
+Momentum after:
+</p>
+
+<p>
+(2 + 4)v = 6v
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+12 = 6v
+</p>
+
+<p>
+<strong>v = 2 m/s</strong>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- 16 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+CORE THEORY 16
+</p>
+
+<h2>
+When Will Two Particles Actually Collide?
+</h2>
+
+<p>
+A collision can only occur if the particles are moving towards
+each other along the same line.
+</p>
+
+<p>
+For example, if particle A is behind particle B and both move
+in the same direction, A will catch B only if A has the greater
+speed.
+</p>
+
+<div class="formula">
+Catch-up condition:
+v<sub>A</sub> &gt; v<sub>B</sub>
+</div>
+
+<p>
+If A is initially a distance d behind B and their velocities
+remain constant, the time to collision is found using relative
+speed:
+</p>
+
+<div class="formula">
+time = distance ÷ relative speed
+</div>
+
+<div class="formula">
+t = d / (v<sub>A</sub> − v<sub>B</sub>)
+</div>
+
+<div class="warning">
+
+<strong>Collision condition</strong>
+
+<p>
+Do not automatically assume that two particles mentioned in the
+same question will collide. Check their relative positions and
+velocities.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 17 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+CORE THEORY 17
+</p>
+
+<h2>
+Repeated Collisions
+</h2>
+
+<p>
+Some Mechanics 2 problems involve a particle colliding with
+another particle, after which the particles move away and may
+later collide with other objects.
+</p>
+
+<p>
+The safest strategy is to treat each collision as a separate
+event.
+</p>
+
+<div class="steps">
+
+<div class="step">
+
+<div class="step-number">1</div>
+
+<div class="step-content">
+Determine the velocities immediately before the collision.
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">2</div>
+
+<div class="step-content">
+Apply momentum conservation to that collision.
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">3</div>
+
+<div class="step-content">
+Apply Newton's law of restitution.
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">4</div>
+
+<div class="step-content">
+Find the new velocities.
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">5</div>
+
+<div class="step-content">
+Use the new velocities to determine what happens next.
+</div>
+
+</div>
+
+</div>
+
+<div class="success">
+
+<strong>Think in events</strong>
+
+<p>
+Collision 1 → new velocities → motion → Collision 2 → new
+velocities. Never mix the equations from different collisions.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 18 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+EXAM METHOD 18
+</p>
+
+<h2>
+The Universal Collision Method
+</h2>
+
+<p>
+For most two-particle direct-impact questions, this procedure
+will keep your working organised.
+</p>
+
+<div class="steps">
+
+<div class="step">
+
+<div class="step-number">1</div>
+
+<div class="step-content">
+<strong>Draw or visualise the motion.</strong>
+Identify which particle is approaching from which direction.
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">2</div>
+
+<div class="step-content">
+<strong>Choose positive.</strong>
+Write the sign of every velocity.
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">3</div>
+
+<div class="step-content">
+<strong>Write momentum conservation.</strong>
+Keep all velocities signed.
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">4</div>
+
+<div class="step-content">
+<strong>Write restitution.</strong>
+Use relative separation divided by relative approach.
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">5</div>
+
+<div class="step-content">
+<strong>Solve simultaneously.</strong>
+Usually there are two equations in two unknown velocities.
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">6</div>
+
+<div class="step-content">
+<strong>Interpret the answer.</strong>
+A negative velocity means the particle moves opposite to
+your chosen positive direction.
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">7</div>
+
+<div class="step-content">
+<strong>Check the result.</strong>
+Ask whether the particles are separating after impact and
+whether the answer is physically reasonable.
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- 19 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+COMMON ERRORS 19
+</p>
+
+<h2>
+Mistakes That Cost Marks
+</h2>
+
+<h3>1. Ignoring direction</h3>
+
+<p>
+Momentum is a vector. Writing every velocity as positive can
+destroy the momentum equation.
+</p>
+
+<h3>2. Using speed instead of velocity</h3>
+
+<p>
+Restitution uses relative speeds, but momentum uses signed
+velocities.
+</p>
+
+<h3>3. Reversing approach and separation</h3>
+
+<p>
+Always identify what happens before and after impact.
+</p>
+
+<h3>4. Assuming kinetic energy is conserved</h3>
+
+<p>
+Momentum conservation is the standard principle. Kinetic energy
+requires an elastic collision.
+</p>
+
+<h3>5. Forgetting the mass</h3>
+
+<div class="formula">
+p = mv
+</div>
+
+<p>
+A heavier particle can have greater momentum even when moving
+more slowly.
+</p>
+
+<h3>6. Misinterpreting a negative answer</h3>
+
+<p>
+A negative velocity is not automatically a wrong answer.
+It indicates motion opposite to the chosen positive direction.
+</p>
+
+<h3>7. Using e incorrectly</h3>
+
+<p>
+The coefficient of restitution is a ratio of relative speeds,
+not simply the ratio of the two individual final speeds.
+</p>
+
+</section>
+
+
+<!-- 20 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+DEEPER CONNECTION 20
+</p>
+
+<h2>
+Momentum, Impulse and Force
+</h2>
+
+<p>
+Momentum and impulse are closely connected to Newton's laws.
+</p>
+
+<div class="formula">
+I = Δp
+</div>
+
+<p>
+If a force acts for a short time during a collision, the impulse
+is the area under a force-time graph.
+</p>
+
+<div class="formula">
+Impulse = area under an F–t graph
+</div>
+
+<p>
+For a constant force:
+</p>
+
+<div class="formula">
+I = Ft
+</div>
+
+<p>
+For a variable force, the area must be determined using the
+appropriate geometry or integration where applicable.
+</p>
+
+<div class="definition">
+
+<strong>Physical interpretation</strong>
+
+<p>
+A large force acting for a very short time can produce the same
+impulse as a smaller force acting for a longer time.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 21 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+DEEPER CONNECTION 21
+</p>
+
+<h2>
+Why Newton's Restitution Law Works
+</h2>
+
+<p>
+Newton's law of restitution does not say that the velocities
+after collision are simply a fixed percentage of the velocities
+before collision.
+</p>
+
+<p>
+Instead, it compares the motion of the two particles relative
+to one another.
+</p>
+
+<div class="formula">
+e =
+relative separation speed
+/
+relative approach speed
+</div>
+
+<p>
+This is important because a collision concerns the relative
+motion between the particles rather than the motion of either
+particle by itself.
+</p>
+
+<div class="success">
+
+<strong>Best conceptual interpretation</strong>
+
+<p>
+Momentum controls the overall motion of the system, while
+restitution controls how much relative motion is recovered
+after impact.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 22 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+WORKED EXAMPLE 05
+</p>
+
+<h2>
+Finding e From a Complete Collision
+</h2>
+
+<div class="example">
+
+<p class="example-title">
+MULTI-STAGE REASONING
+</p>
+
+<p>
+A particle A moves at 10 m/s towards a stationary particle B.
+After impact A moves at 2 m/s in the same direction and B moves
+at 6 m/s in the same direction. Find the coefficient of
+restitution.
+</p>
+
+<div class="solution">
+
+<p>
+Before impact, the relative speed of approach is:
+</p>
+
+<p>
+10 − 0 = 10 m/s
+</p>
+
+<p>
+After impact, the relative speed of separation is:
+</p>
+
+<p>
+6 − 2 = 4 m/s
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+e = 4/10
+</p>
+
+<p>
+<strong>e = 0.4</strong>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- 23 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+EXAM CHECK 23
+</p>
+
+<h2>
+How to Check Your Final Answer
+</h2>
+
+<p>
+Before moving to the next part of the question, perform a quick
+physical check.
+</p>
+
+<ul>
+
+<li>
+Does the momentum equation balance?
+</li>
+
+<li>
+Are the particles moving apart after the collision?
+</li>
+
+<li>
+Is the coefficient of restitution between 0 and 1 for the
+usual collision model?
+</li>
+
+<li>
+Have you interpreted negative velocities correctly?
+</li>
+
+<li>
+If the collision is elastic, is kinetic energy conserved?
+</li>
+
+<li>
+Are your units correct?
+</li>
+
+</ul>
+
+<div class="success">
+
+<strong>Fast sanity check</strong>
+
+<p>
+If your calculated coefficient of restitution is greater than 1,
+do not immediately accept it. Recheck your relative approach
+and separation speeds and your sign convention.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 24 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+PRACTICE 24
+</p>
+
+<h2>
+Collision Practice Bank
+</h2>
+
+
+<div class="question">
+
+<strong>
+1. A 5 kg particle moves at 4 m/s. Find its momentum.
+</strong>
+
+<span class="question-meta">FOUNDATION</span>
+
+<details>
+
+<summary>Show solution</summary>
+
+<div class="exam-answer">
+
+<p>
+p = mv
+</p>
+
+<p>
+= 5 × 4
+</p>
+
+<p>
+<strong>p = 20 kg m s<sup>−1</sup></strong>
+</p>
+
+</div>
+
+</details>
+
+</div>
+
+
+<div class="question">
+
+<strong>
+2. A 3 kg particle changes velocity from 5 m/s to 9 m/s
+in the same direction. Find its impulse.
+</strong>
+
+<span class="question-meta">FOUNDATION</span>
+
+<details>
+
+<summary>Show solution</summary>
+
+<div class="exam-answer">
+
+<p>
+I = m(v − u)
+</p>
+
+<p>
+= 3(9 − 5)
+</p>
+
+<p>
+<strong>I = 12 N s</strong>
+</p>
+
+</div>
+
+</details>
+
+</div>
+
+
+<div class="question">
+
+<strong>
+3. A 2 kg particle moving at 8 m/s collides with a stationary
+3 kg particle. If they move together, find their common velocity.
+</strong>
+
+<span class="question-meta">CORE</span>
+
+<details>
+
+<summary>Show solution</summary>
+
+<div class="exam-answer">
+
+<p>
+2(8) + 3(0) = (2 + 3)v
+</p>
+
+<p>
+16 = 5v
+</p>
+
+<p>
+<strong>v = 3.2 m/s</strong>
+</p>
+
+</div>
+
+</details>
+
+</div>
+
+
+<div class="question">
+
+<strong>
+4. Two particles approach each other at 9 m/s and 4 m/s.
+After collision they separate at 3 m/s and 2 m/s.
+Find e.
+</strong>
+
+<span class="question-meta">CORE</span>
+
+<details>
+
+<summary>Show solution</summary>
+
+<div class="exam-answer">
+
+<p>
+Approach speed = 9 + 4 = 13 m/s
+</p>
+
+<p>
+Separation speed = 3 + 2 = 5 m/s
+</p>
+
+<p>
+<strong>e = 5/13</strong>
+</p>
+
+</div>
+
+</details>
+
+</div>
+
+
+<div class="question">
+
+<strong>
+5. A 4 kg particle moving at 7 m/s collides with a stationary
+2 kg particle. The coefficient of restitution is 0.5.
+Find the velocities after impact.
+</strong>
+
+<span class="question-meta">EXAM</span>
+
+<details>
+
+<summary>Show solution</summary>
+
+<div class="exam-answer">
+
+<p>
+Momentum:
+</p>
+
+<p>
+4(7) = 4v<sub>1</sub> + 2v<sub>2</sub>
+</p>
+
+<p>
+28 = 4v<sub>1</sub> + 2v<sub>2</sub>
+</p>
+
+<p>
+Restitution:
+</p>
+
+<p>
+v<sub>2</sub> − v<sub>1</sub>
+= 0.5(7)
+</p>
+
+<p>
+v<sub>2</sub> − v<sub>1</sub> = 3.5
+</p>
+
+<p>
+v<sub>2</sub> = v<sub>1</sub> + 3.5
+</p>
+
+<p>
+28 = 4v<sub>1</sub> + 2(v<sub>1</sub> + 3.5)
+</p>
+
+<p>
+28 = 6v<sub>1</sub> + 7
+</p>
+
+<p>
+v<sub>1</sub> = 3.5
+</p>
+
+<p>
+v<sub>2</sub> = 7
+</p>
+
+<p>
+<strong>
+v<sub>1</sub> = 3.5 m/s,
+v<sub>2</sub> = 7 m/s
+</strong>
+</p>
+
+</div>
+
+</details>
+
+</div>
+
+
+<div class="question">
+
+<strong>
+6. A particle reverses direction during a collision.
+Explain why its impulse cannot be found by using only the
+difference between the two speeds.
+</strong>
+
+<span class="question-meta">CONCEPT</span>
+
+<details>
+
+<summary>Show solution</summary>
+
+<div class="exam-answer">
+
+<p>
+Impulse depends on the change in momentum, and momentum depends
+on velocity including direction. Therefore the final velocity
+must be assigned the correct sign before calculating
+mv − mu.
+</p>
+
+</div>
+
+</details>
+
+</div>
+
+
+<div class="question">
+
+<strong>
+7. Explain why momentum can be conserved while kinetic energy
+decreases during a collision.
+</strong>
+
+<span class="question-meta">THEORY</span>
+
+<details>
+
+<summary>Show solution</summary>
+
+<div class="exam-answer">
+
+<p>
+Momentum is conserved because the internal forces during the
+collision provide equal and opposite impulses. Kinetic energy,
+however, may be transformed into other forms such as heat,
+sound and deformation.
+</p>
+
+</div>
+
+</details>
+
+</div>
+
+
+<div class="question">
+
+<strong>
+8. A particle A is 12 m behind particle B. A travels at
+8 m/s and B travels at 5 m/s in the same direction.
+Find the time before A catches B.
+</strong>
+
+<span class="question-meta">RELATIVE MOTION</span>
+
+<details>
+
+<summary>Show solution</summary>
+
+<div class="exam-answer">
+
+<p>
+Relative speed = 8 − 5 = 3 m/s
+</p>
+
+<p>
+t = distance / relative speed
+</p>
+
+<p>
+t = 12/3
+</p>
+
+<p>
+<strong>t = 4 s</strong>
+</p>
+
+</div>
+
+</details>
+
+</div>
+
+
+</section>
+
+
+<!-- 25 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+MASTER SUMMARY 25
+</p>
+
+<h2>
+Collision Formula Atlas
+</h2>
+
+<div class="quick-formula">
+
+<div class="quick-card">
+
+<span>MOMENTUM</span>
+
+<strong>p = mv</strong>
+
+</div>
+
+<div class="quick-card">
+
+<span>CONSERVATION</span>
+
+<strong>Σp before = Σp after</strong>
+
+</div>
+
+<div class="quick-card">
+
+<span>IMPULSE</span>
+
+<strong>I = Δp</strong>
+
+</div>
+
+<div class="quick-card">
+
+<span>CONSTANT FORCE</span>
+
+<strong>I = Ft</strong>
+
+</div>
+
+<div class="quick-card">
+
+<span>RESTITUTION</span>
+
+<strong>e = separation / approach</strong>
+
+</div>
+
+<div class="quick-card">
+
+<span>RANGE</span>
+
+<strong>0 ≤ e ≤ 1</strong>
+
+</div>
+
+<div class="quick-card">
+
+<span>PERFECTLY INELASTIC</span>
+
+<strong>e = 0</strong>
+
+</div>
+
+<div class="quick-card">
+
+<span>PERFECTLY ELASTIC</span>
+
+<strong>e = 1</strong>
+
+</div>
+
+<div class="quick-card">
+
+<span>KINETIC ENERGY</span>
+
+<strong>KE = ½mv²</strong>
+
+</div>
+
+<div class="quick-card">
+
+<span>RELATIVE SPEED</span>
+
+<strong>distance / time</strong>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- 26 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+FINAL EXAM CHECKLIST 26
+</p>
+
+<h2>
+Before You Submit a Collision Question
+</h2>
+
+<ul>
+
+<li>
+Have I chosen a positive direction?
+</li>
+
+<li>
+Have I used signed velocities in the momentum equation?
+</li>
+
+<li>
+Have I written total momentum before and after impact?
+</li>
+
+<li>
+Have I correctly identified the relative speed of approach?
+</li>
+
+<li>
+Have I correctly identified the relative speed of separation?
+</li>
+
+<li>
+Have I used the coefficient of restitution in the correct direction?
+</li>
+
+<li>
+Have I solved the simultaneous equations accurately?
+</li>
+
+<li>
+Have I interpreted negative velocities correctly?
+</li>
+
+<li>
+If the collision is elastic, have I checked kinetic energy?
+</li>
+
+<li>
+Are all final quantities given with appropriate units?
+</li>
+
+<li>
+Does the physical situation make sense?
+</li>
+
+</ul>
+
+<div class="success">
+
+<strong>IAL ATLAS principle</strong>
+
+<p>
+Do not memorise collision equations as isolated formulas.
+Understand the physical story: momentum describes the total
+motion of the system, while restitution describes how the
+relative motion changes during impact.
+</p>
+
+</div>
+
+</section>
 
 
 </main>
@@ -1621,112 +3798,136 @@
 
 <div class="navigation">
 
-    <a href="mechanics-work-and-energy.html" class="button">
-        ← Work & Energy
-    </a>
+<a href="mechanics-work-and-energy.html" class="button">
+← Work & Energy
+</a>
 
-    <a href="mechanics-statics-rigid-bodies.html" class="button next">
-        Rigid Bodies →
-    </a>
+<a href="mechanics-statics-rigid-bodies.html" class="button next">
+Rigid Bodies →
+</a>
 
-    <a href="mechanics.html" class="button">
-        Mechanics
-    </a>
+<a href="mechanics.html" class="button">
+Mechanics
+</a>
 
 </div>
 
 
 <footer>
 
-    © 2026 IAL ATLAS • Independent student resource • Not affiliated with Pearson
+© 2026 IAL ATLAS • Independent student resource • Not affiliated with Pearson Edexcel
 
 </footer>
 
 
 <script>
 
-    /* SCROLL REVEAL */
+/* SCROLL REVEAL */
 
-    const revealItems = document.querySelectorAll(".reveal");
+const revealItems =
+document.querySelectorAll(".reveal");
 
-    const revealObserver = new IntersectionObserver(
-        (entries) => {
+const revealObserver =
+new IntersectionObserver(
+(entries) => {
 
-            entries.forEach((entry) => {
+entries.forEach((entry) => {
 
-                if (entry.isIntersecting) {
+if(entry.isIntersecting){
 
-                    entry.target.classList.add("visible");
+entry.target.classList.add("visible");
 
-                    revealObserver.unobserve(entry.target);
+revealObserver.unobserve(entry.target);
 
-                }
+}
 
-            });
+});
 
-        },
-        {
-            threshold: 0.12
-        }
-    );
+},
+{
+threshold:.12
+}
+);
 
-
-    revealItems.forEach((item) => {
-        revealObserver.observe(item);
-    });
-
-
-    /* HERO PARALLAX */
-
-    const collisionSystem =
-        document.querySelector(".collision-system");
-
-    window.addEventListener("scroll", () => {
-
-        const scrollY = window.scrollY;
-
-        if (scrollY < 850) {
-
-            collisionSystem.style.transform =
-                `translate(-50%, calc(-50% + ${scrollY * 0.08}px))`;
-
-        }
-
-    });
+revealItems.forEach((item) => {
+revealObserver.observe(item);
+});
 
 
-    /* MOUSE FOLLOW LIGHT */
+/* HERO PARALLAX */
 
-    const lessons = document.querySelectorAll(".lesson");
+const collisionSystem =
+document.querySelector(".collision-system");
 
-    lessons.forEach((lesson) => {
+window.addEventListener("scroll",() => {
 
-        lesson.addEventListener("mousemove", (event) => {
+const scrollY =
+window.scrollY;
 
-            const rect = lesson.getBoundingClientRect();
+if(scrollY < 850){
 
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
+collisionSystem.style.transform =
+`translate(-50%, calc(-50% + ${scrollY * .08}px))`;
 
-            lesson.style.background =
-                `radial-gradient(
-                    circle at ${x}px ${y}px,
-                    rgba(84,215,255,0.075),
-                    rgba(13,34,61,0.78) 32%,
-                    rgba(4,15,29,0.72) 75%
-                )`;
+}
 
-        });
+});
 
 
-        lesson.addEventListener("mouseleave", () => {
+/* MOUSE FOLLOW LIGHT */
 
-            lesson.style.background =
-                "linear-gradient(145deg, rgba(13,34,61,0.78), rgba(4,15,29,0.72))";
+const lessons =
+document.querySelectorAll(".lesson");
 
-        });
+lessons.forEach((lesson) => {
 
-    });
+lesson.addEventListener("mousemove",(event) => {
+
+const rect =
+lesson.getBoundingClientRect();
+
+const x =
+event.clientX - rect.left;
+
+const y =
+event.clientY - rect.top;
+
+lesson.style.background =
+`radial-gradient(
+circle at ${x}px ${y}px,
+rgba(84,215,255,.075),
+rgba(13,34,61,.78) 32%,
+rgba(4,15,29,.72) 75%
+)`;
+
+});
+
+
+lesson.addEventListener("mouseleave",() => {
+
+lesson.style.background =
+"linear-gradient(145deg, rgba(13,34,61,.78), rgba(4,15,29,.72))";
+
+});
+
+});
+
+
+/* TABLE ACCESSIBILITY FIX */
+
+document.querySelectorAll(".symbol-table").forEach((table) => {
+
+const rows = table.querySelectorAll("tr");
+
+rows.forEach((row,index) => {
+
+if(index === 0){
+row.parentElement.tagName === "TABLE";
+}
+
+});
+
+});
 
 </script>
 
@@ -1734,4 +3935,3 @@
 </body>
 
 </html>
-
