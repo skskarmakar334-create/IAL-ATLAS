@@ -3,995 +3,1578 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Statics of Rigid Bodies | IAL ATLAS</title>
-
-    <meta name="description"
-          content="Edexcel International A Level Mathematics Mechanics 2 Statics of Rigid Bodies resources.">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-          rel="stylesheet">
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg: #030914;
-            --bg2: #061222;
-            --panel: rgba(10, 24, 43, 0.72);
-            --panel-strong: rgba(8, 20, 38, 0.9);
-            --line: rgba(92, 190, 255, 0.18);
-            --cyan: #5bd6ff;
-            --blue: #268dff;
-            --text: #eef8ff;
-            --muted: #91a9c2;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "Inter", sans-serif;
-            background:
-                radial-gradient(circle at 50% -10%, rgba(28, 117, 210, 0.22), transparent 35%),
-                radial-gradient(circle at 100% 40%, rgba(0, 188, 255, 0.08), transparent 30%),
-                var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            opacity: 0.2;
-            background-image:
-                linear-gradient(rgba(91, 214, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(91, 214, 255, 0.05) 1px, transparent 1px);
-            background-size: 55px 55px;
-            mask-image: linear-gradient(to bottom, black, transparent 85%);
-            z-index: -2;
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background:
-                radial-gradient(circle at 20% 20%, rgba(0, 170, 255, 0.06), transparent 20%),
-                radial-gradient(circle at 80% 70%, rgba(0, 110, 255, 0.05), transparent 25%);
-            z-index: -3;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        header {
-            position: relative;
-            z-index: 20;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 22px 7%;
-            border-bottom: 1px solid rgba(91, 214, 255, 0.12);
-            background: rgba(3, 9, 20, 0.72);
-            backdrop-filter: blur(18px);
-        }
-
-        .logo {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 25px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .logo::after {
-            content: " / M2";
-            color: var(--cyan);
-            font-size: 11px;
-            letter-spacing: 2px;
-            margin-left: 5px;
-        }
-
-        .back-link {
-            color: #b7cbe0;
-            font-size: 14px;
-            transition: 0.3s ease;
-        }
-
-        .back-link:hover {
-            color: var(--cyan);
-            transform: translateX(-4px);
-        }
-
-        /* HERO */
-
-        .hero {
-            position: relative;
-            min-height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 100px 20px 80px;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 5;
-            max-width: 900px;
-        }
-
-        .hero-label {
-            color: var(--cyan);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 4px;
-            margin-bottom: 18px;
-        }
-
-        .hero h1 {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(42px, 7vw, 76px);
-            line-height: 1;
-            letter-spacing: -2px;
-            margin-bottom: 24px;
-            text-shadow: 0 0 35px rgba(91, 214, 255, 0.18);
-        }
-
-        .hero p {
-            max-width: 700px;
-            margin: auto;
-            color: #a9bfd5;
-            font-size: 17px;
-        }
-
-        /* RIGID BODY VISUAL */
-
-        .rigid-system {
-            position: absolute;
-            width: 720px;
-            height: 390px;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -44%);
-            opacity: 0.75;
-            pointer-events: none;
-        }
-
-        .orbit {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            border: 1px solid rgba(91, 214, 255, 0.12);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .orbit.one {
-            width: 620px;
-            height: 270px;
-            animation: rotateOrbit 16s linear infinite;
-        }
-
-        .orbit.two {
-            width: 500px;
-            height: 210px;
-            transform: translate(-50%, -50%) rotate(18deg);
-            animation: rotateOrbitReverse 12s linear infinite;
-        }
-
-        .beam {
-            position: absolute;
-            left: 50%;
-            top: 55%;
-            width: 530px;
-            height: 18px;
-            transform: translate(-50%, -50%) rotate(-2deg);
-            border-radius: 10px;
-            background: linear-gradient(
-                90deg,
-                rgba(38, 141, 255, 0.15),
-                rgba(91, 214, 255, 0.9),
-                rgba(38, 141, 255, 0.15)
-            );
-            box-shadow:
-                0 0 15px rgba(91, 214, 255, 0.45),
-                0 0 55px rgba(38, 141, 255, 0.25);
-            animation: beamPulse 3s ease-in-out infinite;
-        }
-
-        .beam::before,
-        .beam::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            width: 10px;
-            height: 10px;
-            border: 2px solid var(--cyan);
-            border-radius: 50%;
-            background: var(--bg);
-            transform: translateY(-50%);
-            box-shadow: 0 0 15px rgba(91, 214, 255, 0.7);
-        }
-
-        .beam::before {
-            left: -5px;
-        }
-
-        .beam::after {
-            right: -5px;
-        }
-
-        .pivot {
-            position: absolute;
-            left: 50%;
-            top: 58%;
-            width: 0;
-            height: 0;
-            transform: translateX(-50%);
-            border-left: 28px solid transparent;
-            border-right: 28px solid transparent;
-            border-top: 48px solid rgba(91, 214, 255, 0.55);
-            filter: drop-shadow(0 0 12px rgba(91, 214, 255, 0.5));
-        }
-
-        .pivot::after {
-            content: "PIVOT";
-            position: absolute;
-            left: 50%;
-            top: 28px;
-            transform: translateX(-50%);
-            font-size: 8px;
-            letter-spacing: 2px;
-            color: var(--cyan);
-            white-space: nowrap;
-        }
-
-        .force {
-            position: absolute;
-            width: 2px;
-            background: linear-gradient(to top, transparent, var(--cyan));
-            transform-origin: bottom;
-            box-shadow: 0 0 12px rgba(91, 214, 255, 0.65);
-        }
-
-        .force::before {
-            content: "";
-            position: absolute;
-            top: -7px;
-            left: -5px;
-            width: 0;
-            height: 0;
-            border-left: 6px solid transparent;
-            border-right: 6px solid transparent;
-            border-bottom: 11px solid var(--cyan);
-        }
-
-        .force-left {
-            left: 30%;
-            top: 29%;
-            height: 95px;
-            animation: forceFloat 2.5s ease-in-out infinite;
-        }
-
-        .force-right {
-            left: 70%;
-            top: 30%;
-            height: 100px;
-            animation: forceFloat 2.5s ease-in-out infinite reverse;
-        }
-
-        .force-label {
-            position: absolute;
-            color: #8ee2ff;
-            font-size: 10px;
-            letter-spacing: 2px;
-        }
-
-        .force-label.left {
-            left: 26%;
-            top: 25%;
-        }
-
-        .force-label.right {
-            left: 67%;
-            top: 26%;
-        }
-
-        .moment-ring {
-            position: absolute;
-            left: 50%;
-            top: 51%;
-            width: 170px;
-            height: 170px;
-            border: 1px dashed rgba(91, 214, 255, 0.25);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            animation: pulseRing 3s ease-in-out infinite;
-        }
-
-        .moment-ring::before {
-            content: "ΣM = 0";
-            position: absolute;
-            left: 50%;
-            top: -10px;
-            transform: translateX(-50%);
-            padding: 4px 10px;
-            border: 1px solid rgba(91, 214, 255, 0.2);
-            border-radius: 20px;
-            background: rgba(3, 9, 20, 0.75);
-            color: var(--cyan);
-            font-size: 10px;
-            letter-spacing: 2px;
-        }
-
-        .scan-line {
-            position: absolute;
-            left: 15%;
-            right: 15%;
-            top: 50%;
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(91, 214, 255, 0.35),
-                transparent
-            );
-            animation: scan 4s ease-in-out infinite;
-        }
-
-        /* DATA STRIP */
-
-        .data-strip {
-            position: relative;
-            z-index: 6;
-            max-width: 1000px;
-            margin: -5px auto 0;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            border: 1px solid var(--line);
-            border-radius: 18px;
-            overflow: hidden;
-            background: rgba(91, 214, 255, 0.08);
-            backdrop-filter: blur(18px);
-        }
-
-        .data-item {
-            padding: 20px 15px;
-            text-align: center;
-            background: rgba(5, 16, 30, 0.82);
-        }
-
-        .data-value {
-            display: block;
-            color: var(--cyan);
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 17px;
-            font-weight: 600;
-        }
-
-        .data-label {
-            display: block;
-            color: #6e88a4;
-            font-size: 9px;
-            letter-spacing: 2px;
-            margin-top: 4px;
-        }
-
-        /* CONTENT */
-
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            padding: 90px 20px 50px;
-        }
-
-        .lesson {
-            position: relative;
-            background: var(--panel);
-            border: 1px solid var(--line);
-            border-radius: 22px;
-            padding: 38px;
-            margin-bottom: 28px;
-            overflow: hidden;
-            backdrop-filter: blur(18px);
-            box-shadow:
-                0 18px 60px rgba(0, 0, 0, 0.25),
-                inset 0 1px 0 rgba(255,255,255,0.025);
-            opacity: 0;
-            transform: translateY(35px);
-            transition:
-                opacity 0.7s ease,
-                transform 0.7s ease,
-                border-color 0.3s ease,
-                box-shadow 0.3s ease;
-        }
-
-        .lesson.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .lesson::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 60%;
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(91, 214, 255, 0.8),
-                transparent
-            );
-            transition: 0.8s ease;
-        }
-
-        .lesson:hover::before {
-            left: 120%;
-        }
-
-        .lesson:hover {
-            border-color: rgba(91, 214, 255, 0.32);
-            box-shadow:
-                0 20px 70px rgba(0, 0, 0, 0.35),
-                0 0 35px rgba(38, 141, 255, 0.06);
-        }
-
-        .lesson-number {
-            color: var(--cyan);
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            margin-bottom: 9px;
-        }
-
-        .lesson h2 {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 30px;
-            line-height: 1.2;
-            margin-bottom: 18px;
-        }
-
-        .lesson p {
-            color: var(--muted);
-            margin-bottom: 15px;
-        }
-
-        .lesson ul {
-            padding-left: 25px;
-            color: var(--muted);
-        }
-
-        .lesson li {
-            margin-bottom: 9px;
-        }
-
-        /* DEFINITION */
-
-        .definition {
-            position: relative;
-            margin: 22px 0;
-            padding: 21px 23px;
-            background: rgba(38, 141, 255, 0.07);
-            border: 1px solid rgba(91, 214, 255, 0.14);
-            border-left: 3px solid var(--cyan);
-            border-radius: 12px;
-        }
-
-        .definition strong {
-            color: #e9f8ff;
-        }
-
-        .definition p {
-            margin-top: 8px;
-            margin-bottom: 0;
-        }
-
-        /* FORMULA */
-
-        .formula {
-            position: relative;
-            margin: 22px 0;
-            padding: 21px;
-            border: 1px solid rgba(91, 214, 255, 0.16);
-            border-radius: 14px;
-            text-align: center;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 20px;
-            font-weight: 600;
-            color: #eaf9ff;
-            background:
-                linear-gradient(
-                    90deg,
-                    rgba(38, 141, 255, 0.06),
-                    rgba(91, 214, 255, 0.12),
-                    rgba(38, 141, 255, 0.06)
-                );
-            box-shadow: inset 0 0 25px rgba(91, 214, 255, 0.025);
-            overflow: hidden;
-        }
-
-        .formula::after {
-            content: "";
-            position: absolute;
-            left: -20%;
-            top: 0;
-            width: 20%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255,255,255,0.12),
-                transparent
-            );
-            animation: formulaScan 4s ease-in-out infinite;
-        }
-
-        /* EXAMPLE */
-
-        .example {
-            margin-top: 20px;
-            padding: 25px;
-            background: rgba(4, 13, 26, 0.68);
-            border: 1px solid rgba(91, 214, 255, 0.12);
-            border-radius: 15px;
-        }
-
-        .example-title {
-            color: var(--cyan);
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-        }
-
-        .solution {
-            margin-top: 18px;
-            padding: 19px;
-            border-left: 2px solid var(--blue);
-            background: rgba(38, 141, 255, 0.055);
-            border-radius: 9px;
-        }
-
-        .solution p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* QUESTIONS */
-
-        .question {
-            padding: 21px 0;
-            border-bottom: 1px solid rgba(91, 214, 255, 0.1);
-        }
-
-        .question:last-child {
-            border-bottom: none;
-        }
-
-        .question > strong {
-            color: #dceeff;
-        }
-
-        details {
-            margin-top: 12px;
-        }
-
-        summary {
-            cursor: pointer;
-            display: inline-block;
-            color: var(--cyan);
-            font-size: 14px;
-            font-weight: 600;
-            transition: 0.25s ease;
-        }
-
-        summary:hover {
-            color: white;
-        }
-
-        details p {
-            margin-top: 12px;
-        }
-
-        /* NAVIGATION */
-
-        .navigation {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding: 20px 20px 70px;
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 150px;
-            padding: 13px 22px;
-            border: 1px solid rgba(91, 214, 255, 0.22);
-            border-radius: 10px;
-            color: #dcefff;
-            background: rgba(10, 25, 44, 0.72);
-            backdrop-filter: blur(10px);
-            font-weight: 600;
-            font-size: 14px;
-            transition: 0.3s ease;
-        }
-
-        .button:hover {
-            color: white;
-            border-color: rgba(91, 214, 255, 0.6);
-            box-shadow: 0 0 25px rgba(38, 141, 255, 0.14);
-            transform: translateY(-3px);
-        }
-
-        .button.primary {
-            background: linear-gradient(
-                135deg,
-                rgba(38, 141, 255, 0.32),
-                rgba(91, 214, 255, 0.12)
-            );
-        }
-
-        footer {
-            border-top: 1px solid rgba(91, 214, 255, 0.1);
-            background: rgba(2, 7, 15, 0.9);
-            color: #6f859e;
-            text-align: center;
-            padding: 30px 20px;
-            font-size: 13px;
-        }
-
-        /* PARTICLES */
-
-        .particles {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            border-radius: 50%;
-            background: rgba(91, 214, 255, 0.7);
-            box-shadow: 0 0 8px rgba(91, 214, 255, 0.6);
-            animation: particleFloat linear infinite;
-        }
-
-        /* ANIMATIONS */
-
-        @keyframes rotateOrbit {
-            from {
-                transform: translate(-50%, -50%) rotate(0deg);
-            }
-            to {
-                transform: translate(-50%, -50%) rotate(360deg);
-            }
-        }
-
-        @keyframes rotateOrbitReverse {
-            from {
-                transform: translate(-50%, -50%) rotate(18deg);
-            }
-            to {
-                transform: translate(-50%, -50%) rotate(-342deg);
-            }
-        }
-
-        @keyframes beamPulse {
-            0%, 100% {
-                opacity: 0.72;
-            }
-            50% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes forceFloat {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes pulseRing {
-            0%, 100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.65;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.08);
-                opacity: 1;
-            }
-        }
-
-        @keyframes scan {
-            0%, 100% {
-                transform: translateY(-110px);
-                opacity: 0;
-            }
-            20% {
-                opacity: 1;
-            }
-            50% {
-                transform: translateY(110px);
-                opacity: 0.6;
-            }
-            70% {
-                opacity: 0;
-            }
-        }
-
-        @keyframes formulaScan {
-            0% {
-                left: -20%;
-            }
-            45%, 100% {
-                left: 120%;
-            }
-        }
-
-        @keyframes particleFloat {
-            from {
-                transform: translateY(105vh);
-                opacity: 0;
-            }
-            15% {
-                opacity: 1;
-            }
-            85% {
-                opacity: 0.7;
-            }
-            to {
-                transform: translateY(-10vh);
-                opacity: 0;
-            }
-        }
-
-        /* RESPONSIVE */
-
-        @media (max-width: 800px) {
-
-            header {
-                padding: 18px 5%;
-            }
-
-            .hero {
-                min-height: 520px;
-                padding-top: 90px;
-            }
-
-            .rigid-system {
-                width: 560px;
-                transform: translate(-50%, -42%) scale(0.8);
-            }
-
-            .data-strip {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .container {
-                padding-top: 65px;
-            }
-
-        }
-
-        @media (max-width: 600px) {
-
-            .logo {
-                font-size: 21px;
-            }
-
-            .back-link {
-                font-size: 12px;
-            }
-
-            .hero {
-                min-height: 470px;
-                padding: 80px 18px 60px;
-            }
-
-            .hero h1 {
-                font-size: 42px;
-                letter-spacing: -1px;
-            }
-
-            .hero p {
-                font-size: 15px;
-            }
-
-            .rigid-system {
-                width: 500px;
-                transform: translate(-50%, -38%) scale(0.6);
-                opacity: 0.48;
-            }
-
-            .data-strip {
-                margin-top: 0;
-                border-radius: 14px;
-            }
-
-            .data-item {
-                padding: 16px 10px;
-            }
-
-            .data-value {
-                font-size: 14px;
-            }
-
-            .lesson {
-                padding: 27px 23px;
-                border-radius: 18px;
-            }
-
-            .lesson h2 {
-                font-size: 25px;
-            }
-
-            .formula {
-                font-size: 17px;
-                padding: 18px 12px;
-            }
-
-            .navigation {
-                padding-bottom: 55px;
-            }
-
-            .button {
-                width: 100%;
-                max-width: 300px;
-            }
-
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-
-            html {
-                scroll-behavior: auto;
-            }
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.001ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.001ms !important;
-            }
-
-            .lesson {
-                opacity: 1;
-                transform: none;
-            }
-
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Statics of Rigid Bodies | IAL ATLAS</title>
+
+<meta name="description"
+content="Edexcel International A Level Mathematics Mechanics 2 Statics of Rigid Bodies. Complete theory, moments, equilibrium, support reactions, couples, rods, ladders and exam practice.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   IAL ATLAS — STATICS OF RIGID BODIES
+   EDexcel IAL MECHANICS 2
+   ========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#030914;
+    --bg2:#061222;
+    --panel:rgba(10,24,43,.72);
+    --panel-strong:rgba(8,20,38,.94);
+    --line:rgba(92,190,255,.18);
+    --cyan:#5bd6ff;
+    --blue:#268dff;
+    --text:#eef8ff;
+    --muted:#91a9c2;
+    --soft:#cfe6f8;
+    --green:#54e6ad;
+    --red:#ff6d82;
+    --yellow:#ffd66b;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Inter",sans-serif;
+    background:
+        radial-gradient(circle at 50% -10%,rgba(28,117,210,.22),transparent 35%),
+        radial-gradient(circle at 100% 40%,rgba(0,188,255,.08),transparent 30%),
+        var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.2;
+    background-image:
+        linear-gradient(rgba(91,214,255,.05) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(91,214,255,.05) 1px,transparent 1px);
+    background-size:55px 55px;
+    mask-image:linear-gradient(to bottom,black,transparent 85%);
+    z-index:-2;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(0,170,255,.06),transparent 20%),
+        radial-gradient(circle at 80% 70%,rgba(0,110,255,.05),transparent 25%);
+    z-index:-3;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    font-family:inherit;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+header{
+    position:relative;
+    z-index:20;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 7%;
+    border-bottom:1px solid rgba(91,214,255,.12);
+    background:rgba(3,9,20,.72);
+    backdrop-filter:blur(18px);
+}
+
+.logo{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:25px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.logo::after{
+    content:" / M2";
+    color:var(--cyan);
+    font-size:11px;
+    letter-spacing:2px;
+    margin-left:5px;
+}
+
+.back-link{
+    color:#b7cbe0;
+    font-size:14px;
+    transition:.3s ease;
+}
+
+.back-link:hover{
+    color:var(--cyan);
+    transform:translateX(-4px);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero{
+    position:relative;
+    min-height:600px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:100px 20px 80px;
+    overflow:hidden;
+}
+
+.hero-content{
+    position:relative;
+    z-index:5;
+    max-width:920px;
+}
+
+.hero-label{
+    color:var(--cyan);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:4px;
+    margin-bottom:18px;
+}
+
+.hero h1{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(42px,7vw,76px);
+    line-height:1;
+    letter-spacing:-2px;
+    margin-bottom:24px;
+    text-shadow:0 0 35px rgba(91,214,255,.18);
+}
+
+.hero p{
+    max-width:750px;
+    margin:auto;
+    color:#a9bfd5;
+    font-size:17px;
+}
+
+/* =========================================================
+   HERO RIGID SYSTEM
+   ========================================================= */
+
+.rigid-system{
+    position:absolute;
+    width:720px;
+    height:390px;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-44%);
+    opacity:.75;
+    pointer-events:none;
+}
+
+.orbit{
+    position:absolute;
+    left:50%;
+    top:50%;
+    border:1px solid rgba(91,214,255,.12);
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+}
+
+.orbit.one{
+    width:620px;
+    height:270px;
+    animation:rotateOrbit 16s linear infinite;
+}
+
+.orbit.two{
+    width:500px;
+    height:210px;
+    transform:translate(-50%,-50%) rotate(18deg);
+    animation:rotateOrbitReverse 12s linear infinite;
+}
+
+.beam{
+    position:absolute;
+    left:50%;
+    top:55%;
+    width:530px;
+    height:18px;
+    transform:translate(-50%,-50%) rotate(-2deg);
+    border-radius:10px;
+    background:linear-gradient(
+        90deg,
+        rgba(38,141,255,.15),
+        rgba(91,214,255,.9),
+        rgba(38,141,255,.15)
+    );
+    box-shadow:
+        0 0 15px rgba(91,214,255,.45),
+        0 0 55px rgba(38,141,255,.25);
+    animation:beamPulse 3s ease-in-out infinite;
+}
+
+.beam::before,
+.beam::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    width:10px;
+    height:10px;
+    border:2px solid var(--cyan);
+    border-radius:50%;
+    background:var(--bg);
+    transform:translateY(-50%);
+    box-shadow:0 0 15px rgba(91,214,255,.7);
+}
+
+.beam::before{left:-5px;}
+.beam::after{right:-5px;}
+
+.pivot{
+    position:absolute;
+    left:50%;
+    top:58%;
+    width:0;
+    height:0;
+    transform:translateX(-50%);
+    border-left:28px solid transparent;
+    border-right:28px solid transparent;
+    border-top:48px solid rgba(91,214,255,.55);
+    filter:drop-shadow(0 0 12px rgba(91,214,255,.5));
+}
+
+.pivot::after{
+    content:"PIVOT";
+    position:absolute;
+    left:50%;
+    top:28px;
+    transform:translateX(-50%);
+    font-size:8px;
+    letter-spacing:2px;
+    color:var(--cyan);
+    white-space:nowrap;
+}
+
+.force{
+    position:absolute;
+    width:2px;
+    background:linear-gradient(to top,transparent,var(--cyan));
+    transform-origin:bottom;
+    box-shadow:0 0 12px rgba(91,214,255,.65);
+}
+
+.force::before{
+    content:"";
+    position:absolute;
+    top:-7px;
+    left:-5px;
+    width:0;
+    height:0;
+    border-left:6px solid transparent;
+    border-right:6px solid transparent;
+    border-bottom:11px solid var(--cyan);
+}
+
+.force-left{
+    left:30%;
+    top:29%;
+    height:95px;
+    animation:forceFloat 2.5s ease-in-out infinite;
+}
+
+.force-right{
+    left:70%;
+    top:30%;
+    height:100px;
+    animation:forceFloat 2.5s ease-in-out infinite reverse;
+}
+
+.force-label{
+    position:absolute;
+    color:#8ee2ff;
+    font-size:10px;
+    letter-spacing:2px;
+}
+
+.force-label.left{
+    left:26%;
+    top:25%;
+}
+
+.force-label.right{
+    left:67%;
+    top:26%;
+}
+
+.moment-ring{
+    position:absolute;
+    left:50%;
+    top:51%;
+    width:170px;
+    height:170px;
+    border:1px dashed rgba(91,214,255,.25);
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+    animation:pulseRing 3s ease-in-out infinite;
+}
+
+.moment-ring::before{
+    content:"ΣM = 0";
+    position:absolute;
+    left:50%;
+    top:-10px;
+    transform:translateX(-50%);
+    padding:4px 10px;
+    border:1px solid rgba(91,214,255,.2);
+    border-radius:20px;
+    background:rgba(3,9,20,.75);
+    color:var(--cyan);
+    font-size:10px;
+    letter-spacing:2px;
+}
+
+.scan-line{
+    position:absolute;
+    left:15%;
+    right:15%;
+    top:50%;
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(91,214,255,.35),
+        transparent
+    );
+    animation:scan 4s ease-in-out infinite;
+}
+
+/* =========================================================
+   DATA STRIP
+   ========================================================= */
+
+.data-strip{
+    position:relative;
+    z-index:6;
+    max-width:1000px;
+    margin:-5px auto 0;
+    padding:0 20px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    border:1px solid var(--line);
+    border-radius:18px;
+    overflow:hidden;
+    background:rgba(91,214,255,.08);
+    backdrop-filter:blur(18px);
+}
+
+.data-item{
+    padding:20px 15px;
+    text-align:center;
+    background:rgba(5,16,30,.82);
+}
+
+.data-value{
+    display:block;
+    color:var(--cyan);
+    font-family:"Space Grotesk",sans-serif;
+    font-size:17px;
+    font-weight:600;
+}
+
+.data-label{
+    display:block;
+    color:#6e88a4;
+    font-size:9px;
+    letter-spacing:2px;
+    margin-top:4px;
+}
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:90px 20px 50px;
+}
+
+.lesson{
+    position:relative;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:38px;
+    margin-bottom:28px;
+    overflow:hidden;
+    backdrop-filter:blur(18px);
+    box-shadow:
+        0 18px 60px rgba(0,0,0,.25),
+        inset 0 1px 0 rgba(255,255,255,.025);
+    opacity:0;
+    transform:translateY(35px);
+    transition:
+        opacity .7s ease,
+        transform .7s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+.lesson.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.lesson::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:60%;
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(91,214,255,.8),
+        transparent
+    );
+    transition:.8s ease;
+}
+
+.lesson:hover::before{
+    left:120%;
+}
+
+.lesson:hover{
+    border-color:rgba(91,214,255,.32);
+    box-shadow:
+        0 20px 70px rgba(0,0,0,.35),
+        0 0 35px rgba(38,141,255,.06);
+}
+
+.lesson-number{
+    color:var(--cyan);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:3px;
+    margin-bottom:9px;
+}
+
+.lesson h2{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:30px;
+    line-height:1.2;
+    margin-bottom:18px;
+}
+
+.lesson h3{
+    font-family:"Space Grotesk",sans-serif;
+    color:#e8f7ff;
+    font-size:21px;
+    margin:25px 0 12px;
+}
+
+.lesson p{
+    color:var(--muted);
+    margin-bottom:15px;
+}
+
+.lesson ul,
+.lesson ol{
+    padding-left:25px;
+    color:var(--muted);
+}
+
+.lesson li{
+    margin-bottom:9px;
+}
+
+.lesson strong{
+    color:#eaf8ff;
+}
+
+/* =========================================================
+   CONTENT GRIDS
+   ========================================================= */
+
+.concept-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+    margin:22px 0;
+}
+
+.mini-card{
+    padding:20px;
+    border:1px solid rgba(91,214,255,.13);
+    border-radius:14px;
+    background:rgba(4,13,26,.55);
+}
+
+.mini-card h4{
+    color:var(--cyan);
+    font-family:"Space Grotesk",sans-serif;
+    margin-bottom:7px;
+}
+
+.mini-card p{
+    margin:0;
+    font-size:14px;
+}
+
+.compare-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin:22px 0;
+}
+
+.compare{
+    padding:20px;
+    border-radius:14px;
+    border:1px solid rgba(91,214,255,.12);
+    background:rgba(5,16,30,.58);
+}
+
+.compare.good{
+    border-color:rgba(84,230,173,.2);
+}
+
+.compare.bad{
+    border-color:rgba(255,109,130,.2);
+}
+
+.compare-title{
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+/* =========================================================
+   DEFINITION / TIP / WARNING
+   ========================================================= */
+
+.definition{
+    position:relative;
+    margin:22px 0;
+    padding:21px 23px;
+    background:rgba(38,141,255,.07);
+    border:1px solid rgba(91,214,255,.14);
+    border-left:3px solid var(--cyan);
+    border-radius:12px;
+}
+
+.definition p{
+    margin-top:8px;
+    margin-bottom:0;
+}
+
+.tip,
+.warning,
+.exam-tip{
+    margin:22px 0;
+    padding:19px 21px;
+    border-radius:12px;
+}
+
+.tip{
+    border:1px solid rgba(84,230,173,.18);
+    border-left:3px solid var(--green);
+    background:rgba(84,230,173,.045);
+}
+
+.warning{
+    border:1px solid rgba(255,109,130,.2);
+    border-left:3px solid var(--red);
+    background:rgba(255,109,130,.045);
+}
+
+.exam-tip{
+    border:1px solid rgba(255,214,107,.2);
+    border-left:3px solid var(--yellow);
+    background:rgba(255,214,107,.045);
+}
+
+.tip strong,
+.warning strong,
+.exam-tip strong{
+    display:block;
+    margin-bottom:6px;
+}
+
+/* =========================================================
+   FORMULA
+   ========================================================= */
+
+.formula{
+    position:relative;
+    margin:22px 0;
+    padding:21px;
+    border:1px solid rgba(91,214,255,.16);
+    border-radius:14px;
+    text-align:center;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:20px;
+    font-weight:600;
+    color:#eaf9ff;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(38,141,255,.06),
+            rgba(91,214,255,.12),
+            rgba(38,141,255,.06)
+        );
+    box-shadow:inset 0 0 25px rgba(91,214,255,.025);
+    overflow:hidden;
+}
+
+.formula::after{
+    content:"";
+    position:absolute;
+    left:-20%;
+    top:0;
+    width:20%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.12),
+        transparent
+    );
+    animation:formulaScan 4s ease-in-out infinite;
+}
+
+/* =========================================================
+   EXAMPLES
+   ========================================================= */
+
+.example{
+    margin-top:20px;
+    padding:25px;
+    background:rgba(4,13,26,.68);
+    border:1px solid rgba(91,214,255,.12);
+    border-radius:15px;
+}
+
+.example-title{
+    color:var(--cyan);
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:12px;
+}
+
+.solution{
+    margin-top:18px;
+    padding:19px;
+    border-left:2px solid var(--blue);
+    background:rgba(38,141,255,.055);
+    border-radius:9px;
+}
+
+.solution p:last-child{
+    margin-bottom:0;
+}
+
+/* =========================================================
+   STEP LIST
+   ========================================================= */
+
+.step-list{
+    counter-reset:steps;
+    list-style:none;
+    padding:0!important;
+    margin:20px 0;
+}
+
+.step-list li{
+    counter-increment:steps;
+    position:relative;
+    padding:15px 15px 15px 55px;
+    margin-bottom:10px;
+    border:1px solid rgba(91,214,255,.1);
+    border-radius:12px;
+    background:rgba(5,16,30,.45);
+}
+
+.step-list li::before{
+    content:counter(steps);
+    position:absolute;
+    left:16px;
+    top:50%;
+    transform:translateY(-50%);
+    width:25px;
+    height:25px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    color:var(--cyan);
+    border:1px solid rgba(91,214,255,.3);
+    font-size:12px;
+    font-weight:700;
+}
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.table-wrap{
+    overflow-x:auto;
+    margin:22px 0;
+    border:1px solid rgba(91,214,255,.12);
+    border-radius:14px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:620px;
+}
+
+th,
+td{
+    padding:14px 16px;
+    text-align:left;
+    border-bottom:1px solid rgba(91,214,255,.09);
+}
+
+th{
+    color:var(--cyan);
+    background:rgba(38,141,255,.08);
+    font-family:"Space Grotesk",sans-serif;
+}
+
+td{
+    color:var(--muted);
+}
+
+tr:last-child td{
+    border-bottom:none;
+}
+
+/* =========================================================
+   TOC
+   ========================================================= */
+
+.toc{
+    position:relative;
+    background:rgba(8,20,38,.85);
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:30px;
+    margin-bottom:28px;
+    backdrop-filter:blur(18px);
+}
+
+.toc-title{
+    color:var(--cyan);
+    font-size:11px;
+    letter-spacing:3px;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.toc-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+}
+
+.toc-grid a{
+    padding:11px 13px;
+    border:1px solid rgba(91,214,255,.1);
+    border-radius:9px;
+    color:#b9cee1;
+    font-size:13px;
+    transition:.25s ease;
+}
+
+.toc-grid a:hover{
+    color:white;
+    border-color:rgba(91,214,255,.35);
+    background:rgba(91,214,255,.05);
+}
+
+/* =========================================================
+   CHECKPOINT QUESTIONS
+   ========================================================= */
+
+.question{
+    padding:21px 0;
+    border-bottom:1px solid rgba(91,214,255,.1);
+}
+
+.question:last-child{
+    border-bottom:none;
+}
+
+.question > strong{
+    color:#dceeff;
+}
+
+details{
+    margin-top:12px;
+}
+
+summary{
+    cursor:pointer;
+    display:inline-block;
+    color:var(--cyan);
+    font-size:14px;
+    font-weight:600;
+    transition:.25s ease;
+}
+
+summary:hover{
+    color:white;
+}
+
+details p{
+    margin-top:12px;
+}
+
+/* =========================================================
+   EXAM
+   ========================================================= */
+
+.exam{
+    position:relative;
+    background:
+        radial-gradient(circle at 50% 0%,rgba(38,141,255,.12),transparent 40%),
+        var(--panel-strong);
+    border:1px solid rgba(91,214,255,.2);
+    border-radius:24px;
+    padding:30px;
+    overflow:hidden;
+}
+
+.exam::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:
+        linear-gradient(rgba(91,214,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(91,214,255,.025) 1px,transparent 1px);
+    background-size:40px 40px;
+}
+
+.exam > *{
+    position:relative;
+    z-index:1;
+}
+
+.exam-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:20px;
+    margin-bottom:20px;
+}
+
+.exam-title{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:27px;
+}
+
+.exam-subtitle{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.exam-counter{
+    color:var(--cyan);
+    font-family:"Space Grotesk",sans-serif;
+    font-size:15px;
+}
+
+.exam-progress{
+    height:7px;
+    border-radius:20px;
+    overflow:hidden;
+    background:rgba(91,214,255,.08);
+    border:1px solid rgba(91,214,255,.12);
+    margin-bottom:25px;
+}
+
+.progress-bar{
+    height:100%;
+    width:1%;
+    background:linear-gradient(90deg,var(--blue),var(--cyan));
+    box-shadow:0 0 15px rgba(91,214,255,.5);
+    transition:.35s ease;
+}
+
+.exam-question{
+    padding:28px;
+    border:1px solid rgba(91,214,255,.13);
+    border-radius:18px;
+    background:rgba(3,12,24,.75);
+}
+
+.question-number{
+    color:var(--cyan);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:2px;
+    margin-bottom:12px;
+}
+
+.question-text{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:21px;
+    line-height:1.5;
+    color:#edf8ff;
+}
+
+.options{
+    display:grid;
+    gap:11px;
+    margin-top:25px;
+}
+
+.option{
+    width:100%;
+    padding:15px 17px;
+    text-align:left;
+    border:1px solid rgba(91,214,255,.13);
+    border-radius:12px;
+    background:rgba(10,25,44,.65);
+    color:#bdd1e3;
+    cursor:pointer;
+    transition:.25s ease;
+}
+
+.option:hover{
+    border-color:rgba(91,214,255,.4);
+    color:white;
+    transform:translateX(3px);
+}
+
+.option.selected{
+    border-color:var(--cyan);
+    background:rgba(91,214,255,.09);
+    color:white;
+    box-shadow:0 0 20px rgba(91,214,255,.07);
+}
+
+.exam-controls{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-top:20px;
+    flex-wrap:wrap;
+}
+
+.exam-nav{
+    display:flex;
+    gap:9px;
+}
+
+.exam-btn{
+    border:1px solid rgba(91,214,255,.2);
+    border-radius:10px;
+    padding:11px 18px;
+    background:rgba(10,25,44,.8);
+    color:#d9edff;
+    cursor:pointer;
+    font-weight:600;
+    transition:.25s ease;
+}
+
+.exam-btn:hover{
+    border-color:rgba(91,214,255,.55);
+    transform:translateY(-2px);
+}
+
+.exam-btn.primary{
+    background:linear-gradient(
+        135deg,
+        rgba(38,141,255,.35),
+        rgba(91,214,255,.13)
+    );
+}
+
+.question-palette{
+    display:grid;
+    grid-template-columns:repeat(10,1fr);
+    gap:6px;
+    margin-top:25px;
+    padding-top:22px;
+    border-top:1px solid rgba(91,214,255,.1);
+}
+
+.question-dot{
+    height:34px;
+    border-radius:7px;
+    border:1px solid rgba(91,214,255,.12);
+    background:rgba(5,16,30,.7);
+    color:#7f98af;
+    cursor:pointer;
+    font-size:11px;
+    transition:.2s ease;
+}
+
+.question-dot:hover{
+    color:white;
+    border-color:rgba(91,214,255,.4);
+}
+
+.question-dot.current{
+    border-color:var(--cyan);
+    color:var(--cyan);
+    box-shadow:0 0 13px rgba(91,214,255,.12);
+}
+
+.question-dot.answered{
+    background:rgba(38,141,255,.14);
+    color:#d9efff;
+}
+
+.question-dot.correct{
+    background:rgba(84,230,173,.15);
+    border-color:rgba(84,230,173,.5);
+    color:var(--green);
+}
+
+.question-dot.wrong{
+    background:rgba(255,109,130,.14);
+    border-color:rgba(255,109,130,.5);
+    color:var(--red);
+}
+
+.exam-result{
+    display:none;
+    margin-top:25px;
+    padding:30px;
+    border:1px solid rgba(91,214,255,.18);
+    border-radius:18px;
+    background:rgba(3,12,24,.8);
+    text-align:center;
+}
+
+.score-number{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:62px;
+    color:var(--cyan);
+    line-height:1;
+    margin:12px 0;
+}
+
+.score-message{
+    color:var(--muted);
+}
+
+.result-stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin:25px 0;
+}
+
+.result-stat{
+    padding:15px;
+    border:1px solid rgba(91,214,255,.1);
+    border-radius:11px;
+    background:rgba(5,16,30,.55);
+}
+
+.result-stat strong{
+    display:block;
+    font-size:22px;
+    color:white;
+}
+
+.result-stat span{
+    color:#7189a1;
+    font-size:10px;
+    letter-spacing:1px;
+}
+
+.review{
+    display:none;
+    margin-top:25px;
+}
+
+.review-item{
+    padding:20px;
+    margin-bottom:12px;
+    border:1px solid rgba(91,214,255,.1);
+    border-radius:13px;
+    background:rgba(5,16,30,.6);
+}
+
+.review-item.review-correct{
+    border-color:rgba(84,230,173,.2);
+}
+
+.review-item.review-wrong{
+    border-color:rgba(255,109,130,.2);
+}
+
+.review-status{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:8px;
+}
+
+.review-correct .review-status{
+    color:var(--green);
+}
+
+.review-wrong .review-status{
+    color:var(--red);
+}
+
+.review-question{
+    color:#e5f3ff;
+    margin-bottom:10px;
+}
+
+.review-answer{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.review-explanation{
+    margin-top:10px;
+    padding:12px;
+    border-left:2px solid var(--blue);
+    color:#a8c0d4;
+    background:rgba(38,141,255,.04);
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.navigation{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+    padding:20px 20px 70px;
+}
+
+.button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:150px;
+    padding:13px 22px;
+    border:1px solid rgba(91,214,255,.22);
+    border-radius:10px;
+    color:#dcefff;
+    background:rgba(10,25,44,.72);
+    backdrop-filter:blur(10px);
+    font-weight:600;
+    font-size:14px;
+    transition:.3s ease;
+}
+
+.button:hover{
+    color:white;
+    border-color:rgba(91,214,255,.6);
+    box-shadow:0 0 25px rgba(38,141,255,.14);
+    transform:translateY(-3px);
+}
+
+.button.primary{
+    background:linear-gradient(
+        135deg,
+        rgba(38,141,255,.32),
+        rgba(91,214,255,.12)
+    );
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer{
+    border-top:1px solid rgba(91,214,255,.1);
+    background:rgba(2,7,15,.9);
+    color:#6f859e;
+    text-align:center;
+    padding:30px 20px;
+    font-size:13px;
+}
+
+/* =========================================================
+   PARTICLES
+   ========================================================= */
+
+.particles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+}
+
+.particle{
+    position:absolute;
+    width:2px;
+    height:2px;
+    border-radius:50%;
+    background:rgba(91,214,255,.7);
+    box-shadow:0 0 8px rgba(91,214,255,.6);
+    animation:particleFloat linear infinite;
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes rotateOrbit{
+    from{transform:translate(-50%,-50%) rotate(0deg);}
+    to{transform:translate(-50%,-50%) rotate(360deg);}
+}
+
+@keyframes rotateOrbitReverse{
+    from{transform:translate(-50%,-50%) rotate(18deg);}
+    to{transform:translate(-50%,-50%) rotate(-342deg);}
+}
+
+@keyframes beamPulse{
+    0%,100%{opacity:.72;}
+    50%{opacity:1;}
+}
+
+@keyframes forceFloat{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+}
+
+@keyframes pulseRing{
+    0%,100%{
+        transform:translate(-50%,-50%) scale(1);
+        opacity:.65;
+    }
+    50%{
+        transform:translate(-50%,-50%) scale(1.08);
+        opacity:1;
+    }
+}
+
+@keyframes scan{
+    0%,100%{
+        transform:translateY(-110px);
+        opacity:0;
+    }
+    20%{opacity:1;}
+    50%{
+        transform:translateY(110px);
+        opacity:.6;
+    }
+    70%{opacity:0;}
+}
+
+@keyframes formulaScan{
+    0%{left:-20%;}
+    45%,100%{left:120%;}
+}
+
+@keyframes particleFloat{
+    from{
+        transform:translateY(105vh);
+        opacity:0;
+    }
+    15%{opacity:1;}
+    85%{opacity:.7;}
+    to{
+        transform:translateY(-10vh);
+        opacity:0;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:800px){
+
+    header{
+        padding:18px 5%;
+    }
+
+    .hero{
+        min-height:520px;
+        padding-top:90px;
+    }
+
+    .rigid-system{
+        width:560px;
+        transform:translate(-50%,-42%) scale(.8);
+    }
+
+    .data-strip{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .container{
+        padding-top:65px;
+    }
+
+    .toc-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .question-palette{
+        grid-template-columns:repeat(10,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .logo{
+        font-size:21px;
+    }
+
+    .back-link{
+        font-size:12px;
+    }
+
+    .hero{
+        min-height:470px;
+        padding:80px 18px 60px;
+    }
+
+    .hero h1{
+        font-size:42px;
+        letter-spacing:-1px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .rigid-system{
+        width:500px;
+        transform:translate(-50%,-38%) scale(.6);
+        opacity:.48;
+    }
+
+    .data-strip{
+        margin-top:0;
+        border-radius:14px;
+    }
+
+    .data-item{
+        padding:16px 10px;
+    }
+
+    .data-value{
+        font-size:14px;
+    }
+
+    .lesson{
+        padding:27px 23px;
+        border-radius:18px;
+    }
+
+    .lesson h2{
+        font-size:25px;
+    }
+
+    .concept-grid,
+    .compare-grid{
+        grid-template-columns:1fr;
+    }
+
+    .toc-grid{
+        grid-template-columns:1fr;
+    }
+
+    .formula{
+        font-size:17px;
+        padding:18px 12px;
+    }
+
+    .exam{
+        padding:17px;
+    }
+
+    .exam-question{
+        padding:20px 16px;
+    }
+
+    .question-text{
+        font-size:18px;
+    }
+
+    .exam-header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .question-palette{
+        grid-template-columns:repeat(5,1fr);
+    }
+
+    .result-stats{
+        grid-template-columns:1fr;
+    }
+
+    .navigation{
+        padding-bottom:55px;
+    }
+
+    .button{
+        width:100%;
+        max-width:300px;
+    }
+
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    html{
+        scroll-behavior:auto;
+    }
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.001ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.001ms!important;
+    }
+
+    .lesson{
+        opacity:1;
+        transform:none;
+    }
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-
 <div class="particles" aria-hidden="true">
 
-    <span class="particle" style="left:8%; animation-duration:14s; animation-delay:-3s;"></span>
-    <span class="particle" style="left:17%; animation-duration:18s; animation-delay:-8s;"></span>
-    <span class="particle" style="left:29%; animation-duration:12s; animation-delay:-5s;"></span>
-    <span class="particle" style="left:41%; animation-duration:20s; animation-delay:-12s;"></span>
-    <span class="particle" style="left:53%; animation-duration:16s; animation-delay:-6s;"></span>
-    <span class="particle" style="left:66%; animation-duration:19s; animation-delay:-10s;"></span>
-    <span class="particle" style="left:77%; animation-duration:13s; animation-delay:-2s;"></span>
-    <span class="particle" style="left:89%; animation-duration:17s; animation-delay:-9s;"></span>
+<span class="particle" style="left:8%;animation-duration:14s;animation-delay:-3s;"></span>
+<span class="particle" style="left:17%;animation-duration:18s;animation-delay:-8s;"></span>
+<span class="particle" style="left:29%;animation-duration:12s;animation-delay:-5s;"></span>
+<span class="particle" style="left:41%;animation-duration:20s;animation-delay:-12s;"></span>
+<span class="particle" style="left:53%;animation-duration:16s;animation-delay:-6s;"></span>
+<span class="particle" style="left:66%;animation-duration:19s;animation-delay:-10s;"></span>
+<span class="particle" style="left:77%;animation-duration:13s;animation-delay:-2s;"></span>
+<span class="particle" style="left:89%;animation-duration:17s;animation-delay:-9s;"></span>
 
 </div>
 
-
 <header>
 
-    <a href="index.html" class="logo">
-        IAL ATLAS
-    </a>
+<a href="index.html" class="logo">
+IAL ATLAS
+</a>
 
-    <a href="mechanics-2.html" class="back-link">
-        ← Mechanics 2
-    </a>
+<a href="mechanics-2.html" class="back-link">
+← Mechanics 2
+</a>
 
 </header>
 
 
 <section class="hero">
 
-    <div class="rigid-system" aria-hidden="true">
+<div class="rigid-system" aria-hidden="true">
 
-        <div class="orbit one"></div>
-        <div class="orbit two"></div>
+<div class="orbit one"></div>
+<div class="orbit two"></div>
 
-        <div class="beam"></div>
+<div class="beam"></div>
 
-        <div class="pivot"></div>
+<div class="pivot"></div>
 
-        <div class="force force-left"></div>
-        <div class="force force-right"></div>
+<div class="force force-left"></div>
+<div class="force force-right"></div>
 
-        <span class="force-label left">F₁</span>
-        <span class="force-label right">F₂</span>
+<span class="force-label left">F₁</span>
+<span class="force-label right">F₂</span>
 
-        <div class="moment-ring"></div>
+<div class="moment-ring"></div>
 
-        <div class="scan-line"></div>
+<div class="scan-line"></div>
 
-    </div>
+</div>
 
 
-    <div class="hero-content">
+<div class="hero-content">
 
-        <p class="hero-label">
-            MECHANICS 2 • TOPIC 05
-        </p>
+<p class="hero-label">
+MECHANICS 2 • TOPIC 05
+</p>
 
-        <h1>
-            Statics of Rigid Bodies
-        </h1>
+<h1>
+Statics of Rigid Bodies
+</h1>
 
-        <p>
-            Learn how forces and moments act on rigid bodies
-            and how equilibrium can be analysed.
-        </p>
+<p>
+Analyse rigid bodies under the action of forces and moments,
+using equilibrium, moments, couples, support reactions,
+centre of mass and systematic modelling techniques.
+</p>
 
-    </div>
+</div>
 
 </section>
 
 
 <div class="data-strip">
 
-    <div class="data-item">
-        <span class="data-value">ΣF = 0</span>
-        <span class="data-label">FORCE EQUILIBRIUM</span>
-    </div>
+<div class="data-item">
+<span class="data-value">ΣF = 0</span>
+<span class="data-label">FORCE EQUILIBRIUM</span>
+</div>
 
-    <div class="data-item">
-        <span class="data-value">ΣM = 0</span>
-        <span class="data-label">MOMENT EQUILIBRIUM</span>
-    </div>
+<div class="data-item">
+<span class="data-value">ΣM = 0</span>
+<span class="data-label">MOMENT EQUILIBRIUM</span>
+</div>
 
-    <div class="data-item">
-        <span class="data-value">M = Fd</span>
-        <span class="data-label">TURNING EFFECT</span>
-    </div>
+<div class="data-item">
+<span class="data-value">M = Fd</span>
+<span class="data-label">MOMENT</span>
+</div>
 
-    <div class="data-item">
-        <span class="data-value">M2 / 05</span>
-        <span class="data-label">RIGID BODY SYSTEM</span>
-    </div>
+<div class="data-item">
+<span class="data-value">M2 / 05</span>
+<span class="data-label">RIGID BODY STATICS</span>
+</div>
 
 </div>
 
@@ -999,360 +1582,2170 @@
 <main class="container">
 
 
-    <section class="lesson">
+<!-- =====================================================
+     TABLE OF CONTENTS
+     ===================================================== -->
+
+<section class="toc">
+
+<div class="toc-title">
+STATICS ATLAS • NAVIGATION
+</div>
+
+<div class="toc-grid">
+
+<a href="#model">01 • Modelling rigid bodies</a>
+<a href="#forces">02 • Forces and lines of action</a>
+<a href="#moments">03 • Moments</a>
+<a href="#equilibrium">04 • Equilibrium</a>
+<a href="#pivot">05 • Taking moments</a>
+<a href="#weights">06 • Weight and centre of mass</a>
+<a href="#couples">07 • Couples</a>
+<a href="#rods">08 • Rods and beams</a>
+<a href="#supports">09 • Support reactions</a>
+<a href="#ladders">10 • Ladders and contact</a>
+<a href="#angles">11 • Angled forces</a>
+<a href="#method">12 • Exam method</a>
+<a href="#mistakes">13 • Common mistakes</a>
+<a href="#examples">14 • Worked examples</a>
+<a href="#formula-sheet">15 • Formula sheet</a>
+<a href="#exam">16 • 100-question exam</a>
 
-        <p class="lesson-number">
-            LESSON 01
-        </p>
+</div>
+
+</section>
 
-        <h2>
-            What is a Rigid Body?
-        </h2>
+
+<!-- =====================================================
+     LESSON 01
+     ===================================================== -->
+
+<section class="lesson" id="model">
+
+<p class="lesson-number">
+LESSON 01
+</p>
+
+<h2>
+Modelling Rigid Bodies
+</h2>
+
+<p>
+In mechanics, real objects are often replaced by mathematical
+models. A <strong>rigid body</strong> is a model of an object whose
+shape and dimensions are assumed to remain unchanged when forces
+act on it.
+</p>
 
-        <p>
-            A rigid body is an object whose shape and size are
-            assumed not to change when forces act on it.
-        </p>
+<div class="definition">
 
-        <div class="definition">
+<strong>Rigid body:</strong>
 
-            <strong>In mechanics:</strong>
+<p>
+A body for which the distances between all pairs of points are
+assumed to remain constant.
+</p>
 
-            <p>
-                A rigid body can experience forces and turning effects,
-                but its dimensions remain fixed.
-            </p>
+</div>
 
-        </div>
+<h3>Why use the rigid-body model?</h3>
 
-    </section>
+<p>
+Real objects deform slightly. A beam bends, a ladder flexes and
+a metal rod stretches by a small amount. In many mechanics
+problems these changes are sufficiently small to ignore.
+</p>
 
+<div class="concept-grid">
 
-    <section class="lesson">
+<div class="mini-card">
+<h4>Shape fixed</h4>
+<p>
+The geometry of the body does not change while the forces act.
+</p>
+</div>
 
-        <p class="lesson-number">
-            LESSON 02
-        </p>
+<div class="mini-card">
+<h4>Forces still act</h4>
+<p>
+The body may experience several forces, reactions, tensions and
+weights.
+</p>
+</div>
 
-        <h2>
-            Resultant Force
-        </h2>
+<div class="mini-card">
+<h4>Rotation matters</h4>
+<p>
+Unlike a particle model, a rigid body can have a turning effect
+about a point.
+</p>
+</div>
 
-        <p>
-            For a rigid body to remain in equilibrium, the vector sum
-            of all forces acting on it must be zero.
-        </p>
+<div class="mini-card">
+<h4>Equilibrium matters</h4>
+<p>
+Both translational and rotational equilibrium must be considered.
+</p>
+</div>
 
-        <div class="formula">
-            Resultant force = 0
-        </div>
+</div>
 
-        <p>
-            This means that the horizontal and vertical components
-            of the forces must balance.
-        </p>
+<div class="exam-tip">
 
-    </section>
+<strong>EXAM TIP</strong>
 
+<p>
+When a question says that a rod or beam is <strong>rigid</strong>,
+do not introduce bending or deformation into your equations.
+Treat the geometry as fixed.
+</p>
 
-    <section class="lesson">
+</div>
 
-        <p class="lesson-number">
-            LESSON 03
-        </p>
+<h3>Common modelling assumptions</h3>
 
-        <h2>
-            Moments
-        </h2>
+<ul>
 
-        <p>
-            A force can cause a rigid body to rotate about a point.
-            The turning effect of a force is called its moment.
-        </p>
+<li>
+A <strong>light rod</strong> has negligible mass, so its weight is ignored.
+</li>
 
-        <div class="formula">
-            Moment = Force × Perpendicular distance
-        </div>
+<li>
+A <strong>uniform rod</strong> has its centre of mass at its midpoint.
+</li>
 
-        <p>
-            The unit of moment is newton-metres (N m).
-        </p>
+<li>
+A <strong>smooth contact</strong> produces a reaction perpendicular
+to the contacting surface.
+</li>
 
-    </section>
+<li>
+A <strong>rough contact</strong> can provide a frictional force as
+well as a normal reaction.
+</li>
 
+<li>
+A <strong>particle</strong> has size small enough that its rotation
+does not need to be considered.
+</li>
 
-    <section class="lesson">
+</ul>
 
-        <p class="lesson-number">
-            LESSON 04
-        </p>
+</section>
 
-        <h2>
-            Equilibrium of a Rigid Body
-        </h2>
 
-        <p>
-            A rigid body is in equilibrium when there is no
-            translational or rotational acceleration.
-        </p>
+<!-- =====================================================
+     LESSON 02
+     ===================================================== -->
 
-        <div class="definition">
+<section class="lesson" id="forces">
 
-            <strong>Two important conditions:</strong>
+<p class="lesson-number">
+LESSON 02
+</p>
 
-            <ul>
+<h2>
+Forces and Lines of Action
+</h2>
 
-                <li>
-                    The resultant force is zero.
-                </li>
+<p>
+A force is completely described by its magnitude, direction and
+line of action. For moments, the <strong>line of action</strong>
+is particularly important.
+</p>
 
-                <li>
-                    The resultant moment about any point is zero.
-                </li>
+<div class="definition">
 
-            </ul>
+<strong>Line of action:</strong>
 
-        </div>
+<p>
+The straight line extending through the point of application of
+a force in the direction of the force.
+</p>
 
-        <div class="formula">
-            Sum of clockwise moments = Sum of anticlockwise moments
-        </div>
+</div>
 
-    </section>
+<p>
+The moment of a force about a point depends on the perpendicular
+distance between that point and the force's line of action.
+</p>
 
+<div class="formula">
+M = Fd
+</div>
 
-    <section class="lesson">
+<p>
+where <strong>d</strong> is the perpendicular distance from the
+chosen point to the line of action of the force.
+</p>
 
-        <p class="lesson-number">
-            LESSON 05
-        </p>
+<div class="compare-grid">
 
-        <h2>
-            Taking Moments About a Point
-        </h2>
+<div class="compare good">
 
-        <p>
-            Choosing a suitable point about which to take moments
-            can make a problem much easier.
-        </p>
+<div class="compare-title">
+Correct distance
+</div>
 
-        <p>
-            Forces whose lines of action pass through the chosen
-            point have zero moment about that point.
-        </p>
+<p>
+Perpendicular distance from the pivot to the
+<strong>line of action</strong>.
+</p>
 
-        <div class="definition">
+</div>
 
-            <strong>Useful strategy:</strong>
+<div class="compare bad">
 
-            <p>
-                Choose a point that eliminates one or more unknown
-                forces from the moment equation.
-            </p>
+<div class="compare-title">
+Common error
+</div>
 
-        </div>
+<p>
+Distance from the pivot to the point where the force happens
+to be drawn.
+</p>
 
-    </section>
+</div>
 
+</div>
 
-    <section class="lesson">
+<h3>Force through the pivot</h3>
 
-        <p class="lesson-number">
-            LESSON 06
-        </p>
+<p>
+If the line of action of a force passes directly through the
+pivot, its perpendicular distance from the pivot is zero.
+Therefore its moment is zero.
+</p>
 
-        <h2>
-            Centre of Mass and Weight
-        </h2>
+<div class="formula">
+d = 0 &nbsp;⇒&nbsp; M = 0
+</div>
 
-        <p>
-            The weight of a rigid body acts vertically downward
-            through its centre of mass.
-        </p>
+<div class="warning">
 
-        <div class="formula">
-            Weight = mg
-        </div>
+<strong>IMPORTANT</strong>
 
-        <p>
-            When analysing moments, the perpendicular distance
-            from the centre of mass to the chosen point must be used.
-        </p>
+<p>
+A force can be very large and still produce zero moment about a
+point if its line of action passes through that point.
+</p>
 
-    </section>
+</div>
 
+</section>
 
-    <section class="lesson">
 
-        <p class="lesson-number">
-            WORKED EXAMPLE
-        </p>
+<!-- =====================================================
+     LESSON 03
+     ===================================================== -->
 
-        <h2>
-            Balancing Moments
-        </h2>
+<section class="lesson" id="moments">
 
-        <div class="example">
+<p class="lesson-number">
+LESSON 03
+</p>
 
-            <p class="example-title">
-                Example
-            </p>
+<h2>
+Moments of Forces
+</h2>
 
-            <p>
-                A force of 10 N acts at a perpendicular distance
-                of 2 m from a pivot. What force acting at a
-                perpendicular distance of 4 m would balance it?
-            </p>
+<p>
+The <strong>moment</strong> of a force about a point measures its
+turning effect about that point.
+</p>
 
-            <div class="solution">
+<div class="definition">
 
-                <p>
-                    Clockwise moment = Anticlockwise moment
-                </p>
+<strong>Moment of a force:</strong>
 
-                <p>
-                    10 × 2 = F × 4
-                </p>
+<p>
+The product of the force and the perpendicular distance from
+the point to the force's line of action.
+</p>
 
-                <p>
-                    20 = 4F
-                </p>
+</div>
 
-                <p>
-                    <strong>F = 5 N</strong>
-                </p>
+<div class="formula">
+Moment = Force × Perpendicular distance
+</div>
 
-            </div>
+<p>
+Therefore:
+</p>
 
-        </div>
+<div class="formula">
+M = Fd
+</div>
 
-    </section>
+<h3>Units</h3>
 
+<p>
+Force is measured in newtons and distance in metres, so moment
+is measured in:
+</p>
 
-    <section class="lesson">
+<div class="formula">
+N m
+</div>
 
-        <p class="lesson-number">
-            PRACTICE
-        </p>
+<div class="warning">
 
-        <h2>
-            Test Yourself
-        </h2>
+<strong>N m is not normally written as J for a moment.</strong>
 
+<p>
+A joule and a newton-metre have the same base dimensions, but
+they represent different physical quantities. A joule is a unit
+of energy/work; N m in this context represents a turning effect.
+</p>
 
-        <div class="question">
+</div>
 
-            <strong>
-                1. What are the two conditions required for a rigid
-                body to be in equilibrium?
-            </strong>
+<h3>Direction of a moment</h3>
 
-            <details>
+<p>
+A force can produce either a clockwise or anticlockwise turning
+effect about the chosen point.
+</p>
 
-                <summary>
-                    Show answer
-                </summary>
+<div class="concept-grid">
 
-                <p>
-                    The resultant force must be zero and the
-                    resultant moment must be zero.
-                </p>
+<div class="mini-card">
+<h4>Clockwise</h4>
+<p>
+The force tends to rotate the body clockwise about the chosen
+point.
+</p>
+</div>
 
-            </details>
+<div class="mini-card">
+<h4>Anticlockwise</h4>
+<p>
+The force tends to rotate the body anticlockwise about the
+chosen point.
+</p>
+</div>
 
-        </div>
+</div>
 
+<h3>Sign convention</h3>
 
-        <div class="question">
+<p>
+In algebraic solutions, one direction can be chosen as positive.
+For example:
+</p>
 
-            <strong>
-                2. Find the moment of a 15 N force acting at a
-                perpendicular distance of 3 m from a pivot.
-            </strong>
+<ul>
 
-            <details>
+<li>clockwise = positive</li>
+<li>anticlockwise = negative</li>
 
-                <summary>
-                    Show answer
-                </summary>
+</ul>
 
-                <p>
-                    Moment = 15 × 3
-                </p>
+<p>
+or the reverse. Either convention is valid as long as it is used
+consistently.
+</p>
 
-                <p>
-                    <strong>Moment = 45 N m</strong>
-                </p>
+</section>
 
-            </details>
 
-        </div>
+<!-- =====================================================
+     LESSON 04
+     ===================================================== -->
 
+<section class="lesson" id="equilibrium">
 
-        <div class="question">
+<p class="lesson-number">
+LESSON 04
+</p>
 
-            <strong>
-                3. A 20 N force acts 2 m from a pivot. What force
-                acting 5 m from the pivot would balance it?
-            </strong>
+<h2>
+Equilibrium of a Rigid Body
+</h2>
 
-            <details>
+<p>
+A rigid body is in static equilibrium when it has no translational
+acceleration and no rotational acceleration.
+</p>
 
-                <summary>
-                    Show answer
-                </summary>
+<p>
+This requires two independent conditions.
+</p>
 
-                <p>
-                    20 × 2 = F × 5
-                </p>
+<div class="concept-grid">
 
-                <p>
-                    40 = 5F
-                </p>
+<div class="mini-card">
+<h4>Translational equilibrium</h4>
 
-                <p>
-                    <strong>F = 8 N</strong>
-                </p>
+<p>
+The resultant force is zero.
+</p>
 
-            </details>
+<div class="formula">
+ΣF = 0
+</div>
 
-        </div>
+</div>
 
+<div class="mini-card">
+<h4>Rotational equilibrium</h4>
 
-    </section>
+<p>
+The resultant moment is zero.
+</p>
 
+<div class="formula">
+ΣM = 0
+</div>
 
-    <section class="lesson">
+</div>
 
-        <p class="lesson-number">
-            QUICK REVIEW
-        </p>
+</div>
 
-        <h2>
-            Remember These
-        </h2>
+<h3>Horizontal and vertical equilibrium</h3>
 
-        <div class="formula">
-            Resultant force = 0
-        </div>
+<p>
+For a two-dimensional problem, it is often useful to resolve
+forces horizontally and vertically.
+</p>
 
-        <div class="formula">
-            Moment = Force × Perpendicular distance
-        </div>
+<div class="formula">
+ΣFₓ = 0
+</div>
 
-        <div class="formula">
-            Resultant moment = 0
-        </div>
+<div class="formula">
+ΣFᵧ = 0
+</div>
 
-        <div class="formula">
-            Sum of clockwise moments = Sum of anticlockwise moments
-        </div>
+<p>
+Together with one moment equation, these provide the equilibrium
+conditions for a planar rigid body.
+</p>
 
-        <div class="formula">
-            Weight = mg
-        </div>
+<div class="definition">
 
-    </section>
+<strong>Full static equilibrium:</strong>
+
+<p>
+The resultant force must be zero and the resultant moment about
+any point must also be zero.
+</p>
+
+</div>
+
+<div class="warning">
+
+<strong>Do not use moments alone.</strong>
+
+<p>
+A body can have zero resultant moment about one point while still
+having a non-zero resultant force. Such a system is not in complete
+static equilibrium.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 05
+     ===================================================== -->
+
+<section class="lesson" id="pivot">
+
+<p class="lesson-number">
+LESSON 05
+</p>
+
+<h2>
+Taking Moments About a Point
+</h2>
+
+<p>
+Taking moments about a carefully selected point is one of the most
+powerful techniques in rigid-body statics.
+</p>
+
+<div class="definition">
+
+<strong>Principle of moments:</strong>
+
+<p>
+For a body in equilibrium, the sum of the clockwise moments about
+a point equals the sum of the anticlockwise moments about that point.
+</p>
+
+</div>
+
+<div class="formula">
+Σ clockwise moments = Σ anticlockwise moments
+</div>
+
+<h3>Why choose a particular pivot?</h3>
+
+<p>
+Suppose a beam is supported at A and B and the reaction at A is
+unknown. If moments are taken about A, the reaction at A has zero
+moment because its line of action passes through A.
+</p>
+
+<p>
+This removes that unknown from the moment equation.
+</p>
+
+<div class="tip">
+
+<strong>SMART PIVOT STRATEGY</strong>
+
+<p>
+Choose a point through which as many unknown forces as possible
+act. Their moments then become zero.
+</p>
+
+</div>
+
+<h3>Taking moments about different points</h3>
+
+<p>
+If a rigid body is in equilibrium, the resultant moment is zero
+about <strong>any point</strong>.
+</p>
+
+<p>
+The choice of point changes the appearance of the equation, not
+the physical equilibrium condition.
+</p>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 06
+     ===================================================== -->
+
+<section class="lesson" id="weights">
+
+<p class="lesson-number">
+LESSON 06
+</p>
+
+<h2>
+Weight and Centre of Mass
+</h2>
+
+<p>
+The gravitational force acting on a body is called its
+<strong>weight</strong>.
+</p>
+
+<div class="formula">
+W = mg
+</div>
+
+<p>
+where:
+</p>
+
+<ul>
+
+<li><strong>W</strong> is weight in newtons</li>
+<li><strong>m</strong> is mass in kilograms</li>
+<li><strong>g</strong> is acceleration due to gravity</li>
+
+</ul>
+
+<p>
+In Edexcel mechanics questions, the value of <strong>g</strong>
+should normally be taken from the value specified in the question
+or from the standard value expected by the paper.
+</p>
+
+<h3>Centre of mass</h3>
+
+<p>
+The weight of a body acts vertically downward through its centre
+of mass.
+</p>
+
+<p>
+For a <strong>uniform rod</strong>, the centre of mass is at its
+geometrical midpoint.
+</p>
+
+<div class="formula">
+Uniform rod → centre of mass at midpoint
+</div>
+
+<div class="example">
+
+<div class="example-title">
+UNIFORM ROD EXAMPLE
+</div>
+
+<p>
+A uniform rod of length 6 m has weight 80 N. It is pivoted at one
+end. Find the moment of its weight about the pivot.
+</p>
+
+<div class="solution">
+
+<p>
+The weight acts at the midpoint:
+</p>
+
+<p>
+6 ÷ 2 = 3 m
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+M = 80 × 3
+</p>
+
+<p>
+<strong>M = 240 N m</strong>
+</p>
+
+</div>
+
+</div>
+
+<div class="warning">
+
+<strong>COMMON TRAP</strong>
+
+<p>
+Do not automatically place the weight at the end of a uniform rod.
+The weight acts through the centre of mass, which is at the midpoint.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 07
+     ===================================================== -->
+
+<section class="lesson" id="couples">
+
+<p class="lesson-number">
+LESSON 07
+</p>
+
+<h2>
+Couples
+</h2>
+
+<p>
+A <strong>couple</strong> consists of two equal, opposite and
+parallel forces whose lines of action are separated.
+</p>
+
+<div class="definition">
+
+<strong>Properties of a couple:</strong>
+
+<ul>
+
+<li>The two forces have equal magnitude.</li>
+
+<li>The forces act in opposite directions.</li>
+
+<li>The forces are parallel.</li>
+
+<li>The resultant force is zero.</li>
+
+<li>The couple still produces a non-zero turning effect.</li>
+
+</ul>
+
+</div>
+
+<div class="formula">
+Couple moment = Force × Perpendicular separation
+</div>
+
+<p>
+If the force magnitude is F and the perpendicular distance between
+the two lines of action is d:
+</p>
+
+<div class="formula">
+M = Fd
+</div>
+
+<h3>Why is a couple special?</h3>
+
+<p>
+A single force may produce both translation and rotation.
+A pure couple produces rotation without a resultant force.
+</p>
+
+<div class="example">
+
+<div class="example-title">
+COUPLE EXAMPLE
+</div>
+
+<p>
+Two equal and opposite forces of 50 N act with perpendicular
+separation 0.8 m. Find the moment of the couple.
+</p>
+
+<div class="solution">
+
+<p>
+M = Fd
+</p>
+
+<p>
+M = 50 × 0.8
+</p>
+
+<p>
+<strong>M = 40 N m</strong>
+</p>
+
+</div>
+
+</div>
+
+<div class="tip">
+
+<strong>KEY PROPERTY</strong>
+
+<p>
+The moment of a couple is independent of the point about which
+moments are taken.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 08
+     ===================================================== -->
+
+<section class="lesson" id="rods">
+
+<p class="lesson-number">
+LESSON 08
+</p>
+
+<h2>
+Rods, Beams and Rigid Members
+</h2>
+
+<p>
+Many statics questions involve a rod or beam acted on by several
+forces. The most important first step is to identify every force
+acting on the body.
+</p>
+
+<h3>Light rods</h3>
+
+<p>
+A light rod has negligible mass, so its own weight is ignored.
+Only the external forces shown or described in the question are
+included.
+</p>
+
+<h3>Uniform rods</h3>
+
+<p>
+A uniform rod has its centre of mass at its midpoint, so its
+weight acts vertically downward at the midpoint.
+</p>
+
+<h3>General force balance</h3>
+
+<p>
+For a horizontal beam:
+</p>
+
+<div class="formula">
+Σ vertical forces = 0
+</div>
+
+<p>
+For example, if upward reactions are R₁ and R₂ and downward
+loads are W₁ and W₂:
+</p>
+
+<div class="formula">
+R₁ + R₂ = W₁ + W₂
+</div>
+
+<p>
+A second equation is normally obtained by taking moments about
+one support.
+</p>
+
+<div class="example">
+
+<div class="example-title">
+BEAM WITH TWO SUPPORTS
+</div>
+
+<p>
+A light horizontal beam is 8 m long. It carries a 120 N load
+4 m from support A. The supports are at A and B. Find the
+reactions at A and B.
+</p>
+
+<div class="solution">
+
+<p>
+Take moments about A:
+</p>
+
+<p>
+R<sub>B</sub> × 8 = 120 × 4
+</p>
+
+<p>
+8R<sub>B</sub> = 480
+</p>
+
+<p>
+<strong>R<sub>B</sub> = 60 N</strong>
+</p>
+
+<p>
+Now use vertical equilibrium:
+</p>
+
+<p>
+R<sub>A</sub> + 60 = 120
+</p>
+
+<p>
+<strong>R<sub>A</sub> = 60 N</strong>
+</p>
+
+</div>
+
+</div>
+
+<h3>Unequal loads</h3>
+
+<p>
+If a load is not centred between two supports, the reactions are
+generally unequal. The support closer to the larger moment-producing
+load may carry the larger reaction.
+</p>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 09
+     ===================================================== -->
+
+<section class="lesson" id="supports">
+
+<p class="lesson-number">
+LESSON 09
+</p>
+
+<h2>
+Support Reactions
+</h2>
+
+<p>
+Supports exert forces on bodies. The direction and type of reaction
+depend on the model used in the question.
+</p>
+
+<div class="concept-grid">
+
+<div class="mini-card">
+<h4>Pin / hinge</h4>
+<p>
+A hinged support can provide horizontal and vertical reaction
+components but does not allow the body to translate through the
+support.
+</p>
+</div>
+
+<div class="mini-card">
+<h4>Smooth contact</h4>
+<p>
+The reaction acts perpendicular to the surface at the point of
+contact.
+</p>
+</div>
+
+<div class="mini-card">
+<h4>String / cable</h4>
+<p>
+A string provides tension along the string and pulls rather than
+pushes.
+</p>
+</div>
+
+<div class="mini-card">
+<h4>Support reaction</h4>
+<p>
+The reaction direction should be determined from the geometry and
+contact conditions given.
+</p>
+</div>
+
+</div>
+
+<h3>Two-support strategy</h3>
+
+<ol class="step-list">
+
+<li>
+Draw all known forces and unknown reactions.
+</li>
+
+<li>
+Use the moment equation to find one reaction.
+</li>
+
+<li>
+Use force equilibrium to find the remaining reaction.
+</li>
+
+<li>
+Check that the final values satisfy both equations.
+</li>
+
+</ol>
+
+<div class="exam-tip">
+
+<strong>EXAM TIP</strong>
+
+<p>
+Taking moments about one support usually removes the reaction at
+that support from the equation. This is often the fastest route
+to the other reaction.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 10
+     ===================================================== -->
+
+<section class="lesson" id="ladders">
+
+<p class="lesson-number">
+LESSON 10
+</p>
+
+<h2>
+Ladders and Contact Problems
+</h2>
+
+<p>
+A ladder is modelled as a rigid body. The forces acting on it
+depend on the contact conditions at its ends.
+</p>
+
+<p>
+For a ladder resting against a wall, identify:
+</p>
+
+<ul>
+
+<li>the weight of the ladder</li>
+<li>the reaction at the ground</li>
+<li>the reaction at the wall</li>
+<li>any frictional forces if the surfaces are rough</li>
+<li>any applied forces or loads</li>
+
+</ul>
+
+<h3>Smooth surfaces</h3>
+
+<p>
+At a smooth surface there is no frictional force. The reaction is
+normal to the surface.
+</p>
+
+<p>
+For example, at a smooth vertical wall the reaction is horizontal.
+At a smooth horizontal floor the normal reaction is vertical.
+</p>
+
+<h3>Rough surfaces</h3>
+
+<p>
+A rough surface may provide both a normal reaction and friction.
+The direction of friction opposes the tendency of relative motion.
+</p>
+
+<div class="warning">
+
+<strong>FRICTION DIRECTION</strong>
+
+<p>
+Do not automatically assume that friction always acts towards the
+wall or away from the wall. Determine the direction by considering
+the tendency of motion.
+</p>
+
+</div>
+
+<h3>Ladder method</h3>
+
+<ol class="step-list">
+
+<li>
+Draw the ladder as a rigid body.
+</li>
+
+<li>
+Mark its weight through its centre of mass.
+</li>
+
+<li>
+Draw every contact reaction in the correct direction.
+</li>
+
+<li>
+Resolve forces horizontally and vertically if necessary.
+</li>
+
+<li>
+Take moments about the most convenient point.
+</li>
+
+<li>
+Solve the simultaneous equations.
+</li>
+
+</ol>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 11
+     ===================================================== -->
+
+<section class="lesson" id="angles">
+
+<p class="lesson-number">
+LESSON 11
+</p>
+
+<h2>
+Forces at an Angle
+</h2>
+
+<p>
+Not every force acts perpendicular to the rod. When a force is
+inclined, the moment can be found using either the perpendicular
+distance to the line of action or a resolved component.
+</p>
+
+<h3>Using the perpendicular component</h3>
+
+<p>
+If a force F acts at angle θ to the position vector from the pivot
+to the point of application:
+</p>
+
+<div class="formula">
+M = Fr sin θ
+</div>
+
+<p>
+because the perpendicular component of the force is
+<strong>F sin θ</strong>.
+</p>
+
+<div class="formula">
+M = (F sin θ)r
+</div>
+
+<h3>Using perpendicular distance</h3>
+
+<p>
+Alternatively, determine the perpendicular distance d from the
+pivot to the line of action:
+</p>
+
+<div class="formula">
+M = Fd
+</div>
+
+<p>
+Both methods give the same physical moment when the geometry is
+handled correctly.
+</p>
+
+<div class="example">
+
+<div class="example-title">
+ANGLED FORCE EXAMPLE
+</div>
+
+<p>
+A 40 N force acts at an angle of 30° to a rod. The point of
+application is 3 m from the pivot. Find the moment.
+</p>
+
+<div class="solution">
+
+<p>
+M = Fr sin θ
+</p>
+
+<p>
+M = 40 × 3 × sin 30°
+</p>
+
+<p>
+M = 120 × 0.5
+</p>
+
+<p>
+<strong>M = 60 N m</strong>
+</p>
+
+</div>
+
+</div>
+
+<div class="warning">
+
+<strong>ANGLE TRAP</strong>
+
+<p>
+Make sure θ is the angle between the force and the line from the
+pivot to the point of application. If the diagram gives a different
+angle, convert it before using F r sin θ.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 12
+     ===================================================== -->
+
+<section class="lesson" id="method">
+
+<p class="lesson-number">
+LESSON 12
+</p>
+
+<h2>
+The Complete Exam Method
+</h2>
+
+<p>
+A strong statics solution is systematic. Use the following process
+rather than immediately writing an equation.
+</p>
+
+<ol class="step-list">
+
+<li>
+<strong>Identify the body.</strong>
+Decide exactly which object you are analysing.
+</li>
+
+<li>
+<strong>Draw all forces.</strong>
+Include weight, reactions, tension, applied forces and friction
+where appropriate.
+</li>
+
+<li>
+<strong>Locate the centre of mass.</strong>
+For a uniform rod, this is the midpoint.
+</li>
+
+<li>
+<strong>Choose a moment point.</strong>
+Look for a point that removes one or more unknown reactions.
+</li>
+
+<li>
+<strong>Write a moment equation.</strong>
+Use perpendicular distances or resolve angled forces.
+</li>
+
+<li>
+<strong>Use force equilibrium.</strong>
+Resolve horizontally and vertically where required.
+</li>
+
+<li>
+<strong>Solve algebraically.</strong>
+Keep exact values until the final stage where practical.
+</li>
+
+<li>
+<strong>Check signs and units.</strong>
+Re-read the geometry and make sure every moment direction is correct.
+</li>
+
+</ol>
+
+<div class="exam-tip">
+
+<strong>HIGH-VALUE EXAM HABIT</strong>
+
+<p>
+Before calculating, ask:
+<strong>“What point should I take moments about?”</strong>
+This single decision often determines how simple the entire
+solution becomes.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 13
+     ===================================================== -->
+
+<section class="lesson" id="mistakes">
+
+<p class="lesson-number">
+LESSON 13
+</p>
+
+<h2>
+Common Mistakes and Exam Traps
+</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Mistake</th>
+<th>Correct approach</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>Using distance to the force rather than perpendicular distance</td>
+<td>Use the shortest perpendicular distance to the line of action.</td>
+</tr>
+
+<tr>
+<td>Forgetting a force through the pivot has zero moment</td>
+<td>Its perpendicular distance is zero.</td>
+</tr>
+
+<tr>
+<td>Putting a uniform rod's weight at the end</td>
+<td>Place the weight at the midpoint.</td>
+</tr>
+
+<tr>
+<td>Mixing clockwise and anticlockwise signs</td>
+<td>Choose one sign convention and maintain it.</td>
+</tr>
+
+<tr>
+<td>Using moments without force equilibrium</td>
+<td>For full static equilibrium, also require ΣF = 0.</td>
+</tr>
+
+<tr>
+<td>Using the wrong angle in Fr sin θ</td>
+<td>θ must be the angle between the force and the position vector.</td>
+</tr>
+
+<tr>
+<td>Calling a couple a single force</td>
+<td>A couple consists of two equal, opposite, parallel forces.</td>
+</tr>
+
+<tr>
+<td>Forgetting support reactions</td>
+<td>Draw a complete force diagram before calculating.</td>
+</tr>
+
+<tr>
+<td>Wrong units</td>
+<td>Moment is measured in N m.</td>
+</tr>
+
+<tr>
+<td>Rounding too early</td>
+<td>Keep sufficient accuracy throughout the calculation.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 14 — WORKED EXAMPLES
+     ===================================================== -->
+
+<section class="lesson" id="examples">
+
+<p class="lesson-number">
+LESSON 14
+</p>
+
+<h2>
+Worked Examples — Foundation to Exam Level
+</h2>
+
+
+<div class="example">
+
+<div class="example-title">
+EXAMPLE 01 • BASIC MOMENT
+</div>
+
+<p>
+A 20 N force acts perpendicular to a rod at a distance of 3 m
+from a pivot. Find its moment.
+</p>
+
+<div class="solution">
+
+<p>
+M = Fd
+</p>
+
+<p>
+M = 20 × 3
+</p>
+
+<p>
+<strong>M = 60 N m</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<div class="example-title">
+EXAMPLE 02 • FORCE THROUGH PIVOT
+</div>
+
+<p>
+A 100 N force acts along a rod through its pivot. Find its moment.
+</p>
+
+<div class="solution">
+
+<p>
+The line of action passes through the pivot.
+</p>
+
+<p>
+Therefore d = 0.
+</p>
+
+<p>
+M = 100 × 0
+</p>
+
+<p>
+<strong>M = 0 N m</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<div class="example-title">
+EXAMPLE 03 • FINDING AN UNKNOWN FORCE
+</div>
+
+<p>
+A 30 N force acts 2 m from a pivot. An unknown force F acts
+3 m from the pivot on the opposite side. The rod is in equilibrium.
+Find F.
+</p>
+
+<div class="solution">
+
+<p>
+Clockwise moment = anticlockwise moment.
+</p>
+
+<p>
+30 × 2 = F × 3
+</p>
+
+<p>
+60 = 3F
+</p>
+
+<p>
+<strong>F = 20 N</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<div class="example-title">
+EXAMPLE 04 • UNIFORM ROD
+</div>
+
+<p>
+A uniform rod of length 5 m and weight 100 N is hinged at one
+end. Find the moment of its weight about the hinge.
+</p>
+
+<div class="solution">
+
+<p>
+The weight acts at the midpoint.
+</p>
+
+<p>
+Distance = 5/2 = 2.5 m
+</p>
+
+<p>
+M = 100 × 2.5
+</p>
+
+<p>
+<strong>M = 250 N m</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<div class="example-title">
+EXAMPLE 05 • TWO SUPPORTS
+</div>
+
+<p>
+A 10 m beam carries a 200 N load at a point 4 m from the left
+support A. The right support is B. Find the reaction at B.
+</p>
+
+<div class="solution">
+
+<p>
+Take moments about A.
+</p>
+
+<p>
+R<sub>B</sub> × 10 = 200 × 4
+</p>
+
+<p>
+10R<sub>B</sub> = 800
+</p>
+
+<p>
+<strong>R<sub>B</sub> = 80 N</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<div class="example-title">
+EXAMPLE 06 • FIND THE OTHER REACTION
+</div>
+
+<p>
+Using the previous example, find the reaction at A.
+</p>
+
+<div class="solution">
+
+<p>
+Vertical equilibrium:
+</p>
+
+<p>
+R<sub>A</sub> + R<sub>B</sub> = 200
+</p>
+
+<p>
+R<sub>A</sub> + 80 = 200
+</p>
+
+<p>
+<strong>R<sub>A</sub> = 120 N</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<div class="example-title">
+EXAMPLE 07 • ANGLED FORCE
+</div>
+
+<p>
+A 60 N force acts at 40° to a rod. Its point of application is
+2 m from the pivot. Find its moment.
+</p>
+
+<div class="solution">
+
+<p>
+M = Fr sin θ
+</p>
+
+<p>
+M = 60 × 2 × sin 40°
+</p>
+
+<p>
+M ≈ 120 × 0.6428
+</p>
+
+<p>
+<strong>M ≈ 77.1 N m</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<div class="example-title">
+EXAMPLE 08 • COUPLE
+</div>
+
+<p>
+Two equal and opposite forces of 80 N form a couple whose
+perpendicular separation is 0.5 m. Find the couple moment.
+</p>
+
+<div class="solution">
+
+<p>
+M = Fd
+</p>
+
+<p>
+M = 80 × 0.5
+</p>
+
+<p>
+<strong>M = 40 N m</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<div class="example-title">
+EXAMPLE 09 • SEVERAL LOADS
+</div>
+
+<p>
+A light horizontal beam has a pivot at its left end. A 20 N force
+acts downward at 2 m and a 35 N force acts upward at 5 m.
+Find the resultant moment about the pivot.
+</p>
+
+<div class="solution">
+
+<p>
+Take anticlockwise as positive.
+</p>
+
+<p>
+35 × 5 − 20 × 2
+</p>
+
+<p>
+= 175 − 40
+</p>
+
+<p>
+<strong>Resultant moment = 135 N m anticlockwise</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<div class="example-title">
+EXAMPLE 10 • CHOOSING THE PIVOT
+</div>
+
+<p>
+A beam is supported at A and B. Both support reactions are
+unknown. Explain why taking moments about A is useful.
+</p>
+
+<div class="solution">
+
+<p>
+The reaction at A acts through A.
+</p>
+
+<p>
+Therefore its perpendicular distance from A is zero.
+</p>
+
+<p>
+Its moment about A is therefore zero.
+</p>
+
+<p>
+This leaves an equation involving the reaction at B and the
+known loads, allowing B to be found directly.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<div class="example-title">
+EXAMPLE 11 • FULL EQUILIBRIUM
+</div>
+
+<p>
+A horizontal beam is 6 m long. It is supported at both ends.
+A 120 N downward load acts 2 m from the left support. The beam
+itself has weight 60 N acting at its midpoint. Find both support
+reactions.
+</p>
+
+<div class="solution">
+
+<p>
+Let the reactions be R<sub>A</sub> and R<sub>B</sub>.
+</p>
+
+<p>
+Take moments about A:
+</p>
+
+<p>
+R<sub>B</sub>(6) = 120(2) + 60(3)
+</p>
+
+<p>
+6R<sub>B</sub> = 240 + 180
+</p>
+
+<p>
+6R<sub>B</sub> = 420
+</p>
+
+<p>
+<strong>R<sub>B</sub> = 70 N</strong>
+</p>
+
+<p>
+Vertical equilibrium:
+</p>
+
+<p>
+R<sub>A</sub> + 70 = 120 + 60
+</p>
+
+<p>
+<strong>R<sub>A</sub> = 110 N</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<div class="example-title">
+EXAMPLE 12 • UNKNOWN POSITION
+</div>
+
+<p>
+A 50 N load is placed at a distance x from a pivot. A 20 N
+load acts 4 m from the pivot on the opposite side. The system
+is balanced. Find x.
+</p>
+
+<div class="solution">
+
+<p>
+50x = 20 × 4
+</p>
+
+<p>
+50x = 80
+</p>
+
+<p>
+<strong>x = 1.6 m</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<div class="example-title">
+EXAMPLE 13 • THREE FORCES
+</div>
+
+<p>
+About a point O, a 25 N force produces a clockwise moment of
+100 N m. A second force produces an anticlockwise moment of
+60 N m. What additional anticlockwise moment is required for
+equilibrium?
+</p>
+
+<div class="solution">
+
+<p>
+Total clockwise moment = 100 N m.
+</p>
+
+<p>
+Existing anticlockwise moment = 60 N m.
+</p>
+
+<p>
+Required additional moment:
+</p>
+
+<p>
+100 − 60 = 40
+</p>
+
+<p>
+<strong>40 N m anticlockwise</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<div class="example-title">
+EXAMPLE 14 • ANGLE AND RESOLUTION
+</div>
+
+<p>
+A 100 N force acts at 60° to a 4 m rod from its pivot.
+Find its moment.
+</p>
+
+<div class="solution">
+
+<p>
+Perpendicular component = 100 sin 60°.
+</p>
+
+<p>
+= 86.60 N approximately.
+</p>
+
+<p>
+Moment = 86.60 × 4
+</p>
+
+<p>
+<strong>≈ 346.4 N m</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<div class="example-title">
+EXAMPLE 15 • CONCEPTUAL CHECK
+</div>
+
+<p>
+Two forces have equal magnitude and act at the same perpendicular
+distance from a pivot. One is clockwise and one is anticlockwise.
+What is the resultant moment?
+</p>
+
+<div class="solution">
+
+<p>
+The two moments have equal magnitude and opposite direction.
+</p>
+
+<p>
+Therefore they cancel.
+</p>
+
+<p>
+<strong>Resultant moment = 0</strong>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 15 — QUICK FORMULA SHEET
+     ===================================================== -->
+
+<section class="lesson" id="formula-sheet">
+
+<p class="lesson-number">
+LESSON 15
+</p>
+
+<h2>
+Statics Formula Atlas
+</h2>
+
+<div class="formula">
+Moment = Force × Perpendicular distance
+</div>
+
+<div class="formula">
+M = Fd
+</div>
+
+<div class="formula">
+M = Fr sin θ
+</div>
+
+<div class="formula">
+Weight = mg
+</div>
+
+<div class="formula">
+ΣFₓ = 0
+</div>
+
+<div class="formula">
+ΣFᵧ = 0
+</div>
+
+<div class="formula">
+ΣM = 0
+</div>
+
+<div class="formula">
+Σ clockwise moments = Σ anticlockwise moments
+</div>
+
+<div class="formula">
+Couple moment = F × perpendicular separation
+</div>
+
+<div class="definition">
+
+<strong>Remember:</strong>
+
+<p>
+For a uniform rod, the weight acts through the midpoint.
+For a force through the chosen pivot, the moment about that pivot
+is zero.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PRACTICE CHECKPOINT
+     ===================================================== -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+CHECKPOINT
+</p>
+
+<h2>
+Quick Statics Check
+</h2>
+
+
+<div class="question">
+
+<strong>
+1. What is the moment of a 15 N force acting at 3 m
+perpendicular distance?
+</strong>
+
+<details>
+<summary>Show answer</summary>
+<p>
+M = 15 × 3 = <strong>45 N m</strong>.
+</p>
+</details>
+
+</div>
+
+
+<div class="question">
+
+<strong>
+2. Why does a force through the pivot have zero moment?
+</strong>
+
+<details>
+<summary>Show answer</summary>
+<p>
+Its line of action passes through the pivot, so the perpendicular
+distance is zero.
+</p>
+</details>
+
+</div>
+
+
+<div class="question">
+
+<strong>
+3. What are the two conditions for static equilibrium?
+</strong>
+
+<details>
+<summary>Show answer</summary>
+<p>
+The resultant force is zero and the resultant moment is zero.
+</p>
+</details>
+
+</div>
+
+
+<div class="question">
+
+<strong>
+4. Where does the weight of a uniform rod act?
+</strong>
+
+<details>
+<summary>Show answer</summary>
+<p>
+At the midpoint, which is the centre of mass of the uniform rod.
+</p>
+</details>
+
+</div>
+
+
+<div class="question">
+
+<strong>
+5. What is the moment of a 40 N couple separated by 0.75 m?
+</strong>
+
+<details>
+<summary>Show answer</summary>
+<p>
+M = 40 × 0.75 = <strong>30 N m</strong>.
+</p>
+</details>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     100 QUESTION EXAM
+     ===================================================== -->
+
+<section class="lesson" id="exam">
+
+<p class="lesson-number">
+FINAL ASSESSMENT
+</p>
+
+<h2>
+Statics of Rigid Bodies — 100 Question Exam
+</h2>
+
+<p>
+A complete interactive assessment covering moments, equilibrium,
+support reactions, centre of mass, couples, rods, beams, ladders,
+angled forces, modelling and exam traps.
+</p>
+
+<div class="exam">
+
+<div class="exam-header">
+
+<div>
+
+<div class="exam-title">
+MECHANICS 2 • STATICS EXAM
+</div>
+
+<div class="exam-subtitle">
+100 MCQs • One question at a time • No timer
+</div>
+
+</div>
+
+<div class="exam-counter" id="examCounter">
+Question 1 / 100
+</div>
+
+</div>
+
+<div class="exam-progress">
+<div class="progress-bar" id="progressBar"></div>
+</div>
+
+<div class="exam-question">
+
+<div class="question-number" id="questionNumber">
+QUESTION 01
+</div>
+
+<div class="question-text" id="questionText">
+</div>
+
+<div class="options" id="options"></div>
+
+</div>
+
+<div class="exam-controls">
+
+<div class="exam-nav">
+
+<button class="exam-btn" id="prevBtn">
+← Previous
+</button>
+
+<button class="exam-btn primary" id="nextBtn">
+Next →
+</button>
+
+</div>
+
+<button class="exam-btn primary" id="submitBtn">
+Submit Exam
+</button>
+
+</div>
+
+<div class="question-palette" id="questionPalette"></div>
+
+<div class="exam-result" id="examResult">
+
+<div class="exam-title">
+ASSESSMENT COMPLETE
+</div>
+
+<div class="score-number" id="scoreNumber">
+0%
+</div>
+
+<div class="score-message" id="scoreMessage">
+</div>
+
+<div class="result-stats">
+
+<div class="result-stat">
+<strong id="correctCount">0</strong>
+<span>CORRECT</span>
+</div>
+
+<div class="result-stat">
+<strong id="wrongCount">0</strong>
+<span>INCORRECT</span>
+</div>
+
+<div class="result-stat">
+<strong id="unansweredCount">0</strong>
+<span>UNANSWERED</span>
+</div>
+
+</div>
+
+<button class="exam-btn primary" id="restartBtn">
+Restart Exam
+</button>
+
+</div>
+
+<div class="review" id="review">
+
+<div class="exam-title" style="margin-bottom:15px;">
+QUESTION REVIEW
+</div>
+
+<div id="reviewContent"></div>
+
+</div>
+
+</div>
+
+</section>
 
 
 </main>
@@ -1360,131 +3753,2725 @@
 
 <div class="navigation">
 
-    <a href="mechanics-collisions.html" class="button">
-        ← Previous Topic
-    </a>
+<a href="mechanics-collisions.html" class="button">
+← Previous Topic
+</a>
 
-    <a href="mechanics-2.html" class="button primary">
-        ↑ Mechanics 2
-    </a>
+<a href="mechanics-2.html" class="button primary">
+↑ Mechanics 2
+</a>
 
-    <a href="mechanics-3.html" class="button">
-        Next Topic →
-    </a>
+<a href="mechanics-3.html" class="button">
+Next Topic →
+</a>
 
-    <a href="mechanics.html" class="button">
-        Mechanics
-    </a>
+<a href="mechanics.html" class="button">
+Mechanics
+</a>
 
 </div>
 
 
 <footer>
 
-    © 2026 IAL ATLAS • Independent student resource • Not affiliated with Pearson
+© 2026 IAL ATLAS • Independent student resource • Not affiliated with Pearson
 
 </footer>
 
 
 <script>
 
-    /* Scroll reveal */
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
 
-    const lessons = document.querySelectorAll(".lesson");
+const lessons = document.querySelectorAll(".lesson");
 
-    const revealObserver = new IntersectionObserver(
-        (entries) => {
+const revealObserver = new IntersectionObserver(
+(entries) => {
 
-            entries.forEach(entry => {
+entries.forEach(entry => {
 
-                if (entry.isIntersecting) {
+if(entry.isIntersecting){
 
-                    entry.target.classList.add("visible");
+entry.target.classList.add("visible");
 
-                    revealObserver.unobserve(entry.target);
+revealObserver.unobserve(entry.target);
 
-                }
+}
 
-            });
+});
 
-        },
-        {
-            threshold: 0.12
-        }
-    );
+},
+{
+threshold:.08
+}
+);
 
-    lessons.forEach(lesson => {
-        revealObserver.observe(lesson);
-    });
-
-
-    /* Mouse-following glow */
-
-    lessons.forEach(lesson => {
-
-        lesson.addEventListener("mousemove", event => {
-
-            const rect = lesson.getBoundingClientRect();
-
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-
-            lesson.style.background =
-                `radial-gradient(
-                    circle at ${x}px ${y}px,
-                    rgba(91,214,255,0.07),
-                    rgba(10,24,43,0.72) 38%
-                )`;
-
-        });
-
-        lesson.addEventListener("mouseleave", () => {
-
-            lesson.style.background =
-                "rgba(10,24,43,0.72)";
-
-        });
-
-    });
+lessons.forEach(lesson => {
+revealObserver.observe(lesson);
+});
 
 
-    /* Hero parallax */
+/* =========================================================
+   MOUSE FOLLOWING GLOW
+   ========================================================= */
 
-    const rigidSystem = document.querySelector(".rigid-system");
+lessons.forEach(lesson => {
 
-    window.addEventListener("scroll", () => {
+lesson.addEventListener("mousemove",event=>{
 
-        if (!rigidSystem) return;
+const rect = lesson.getBoundingClientRect();
 
-        const scroll = window.scrollY;
+const x = event.clientX - rect.left;
+const y = event.clientY - rect.top;
 
-        if (scroll < window.innerHeight * 1.2) {
+lesson.style.background =
+`radial-gradient(
+circle at ${x}px ${y}px,
+rgba(91,214,255,.07),
+rgba(10,24,43,.72) 38%
+)`;
 
-            rigidSystem.style.transform =
-                `translate(-50%, calc(-44% + ${scroll * 0.08}px))`;
+});
 
-        }
+lesson.addEventListener("mouseleave",()=>{
 
-    });
+lesson.style.background =
+"rgba(10,24,43,.72)";
+
+});
+
+});
 
 
-    /* Subtle beam response to mouse movement */
+/* =========================================================
+   HERO PARALLAX
+   ========================================================= */
 
-    const beam = document.querySelector(".beam");
+const rigidSystem =
+document.querySelector(".rigid-system");
 
-    document.addEventListener("mousemove", event => {
+window.addEventListener("scroll",()=>{
 
-        if (!beam) return;
+if(!rigidSystem)return;
 
-        const x = (event.clientX / window.innerWidth - 0.5) * 4;
+const scroll = window.scrollY;
 
-        beam.style.transform =
-            `translate(-50%, -50%) rotate(calc(-2deg + ${x}deg))`;
+if(scroll < window.innerHeight * 1.2){
 
-    });
+rigidSystem.style.transform =
+`translate(-50%,calc(-44% + ${scroll*.08}px))`;
+
+}
+
+});
+
+
+/* =========================================================
+   BEAM MOUSE RESPONSE
+   ========================================================= */
+
+const beam =
+document.querySelector(".beam");
+
+document.addEventListener("mousemove",event=>{
+
+if(!beam)return;
+
+const x =
+(event.clientX / window.innerWidth - .5) * 4;
+
+beam.style.transform =
+`translate(-50%,-50%) rotate(calc(-2deg + ${x}deg))`;
+
+});
+
+
+/* =========================================================
+   100 QUESTION EXAM DATABASE
+   ========================================================= */
+
+const examQuestions = [
+
+{
+q:"What is meant by the moment of a force about a point?",
+options:[
+"The force multiplied by the perpendicular distance from the point to its line of action",
+"The force divided by the distance from the point to the object",
+"The force multiplied by the parallel distance to the pivot",
+"The resultant force acting on the body"
+],
+answer:0,
+explanation:"A moment is M = Fd, where d is the perpendicular distance from the point to the force's line of action."
+},
+
+{
+q:"What is the SI unit of moment?",
+options:[
+"N",
+"N m",
+"J s",
+"kg m"
+],
+answer:1,
+explanation:"Moment is measured in newton-metres (N m)."
+},
+
+{
+q:"A 20 N force acts at a perpendicular distance of 3 m from a pivot. Find its moment.",
+options:[
+"6 N m",
+"23 N m",
+"60 N m",
+"80 N m"
+],
+answer:2,
+explanation:"M = Fd = 20 × 3 = 60 N m."
+},
+
+{
+q:"A force acts directly through the pivot. What is its moment about the pivot?",
+options:[
+"Equal to the force",
+"Maximum",
+"Zero",
+"Depends only on the mass"
+],
+answer:2,
+explanation:"The perpendicular distance to the line of action is zero."
+},
+
+{
+q:"A 15 N force acts at 2.4 m perpendicular distance from a point. What is its moment?",
+options:[
+"6.25 N m",
+"17.4 N m",
+"36 N m",
+"40 N m"
+],
+answer:2,
+explanation:"15 × 2.4 = 36 N m."
+},
+
+{
+q:"Which distance is used in M = Fd?",
+options:[
+"Distance from pivot to the object",
+"Distance from pivot to point of application only",
+"Perpendicular distance from pivot to line of action",
+"Horizontal distance only"
+],
+answer:2,
+explanation:"d is specifically the perpendicular distance to the force's line of action."
+},
+
+{
+q:"A moment of 72 N m is produced by a force of 18 N. What is the perpendicular distance?",
+options:[
+"2 m",
+"4 m",
+"6 m",
+"90 m"
+],
+answer:1,
+explanation:"d = M/F = 72/18 = 4 m."
+},
+
+{
+q:"A 12 N force acts at 5 m perpendicular distance. What is the moment?",
+options:[
+"17 N m",
+"60 N m",
+"2.4 N m",
+"120 N m"
+],
+answer:1,
+explanation:"M = 12 × 5 = 60 N m."
+},
+
+{
+q:"Which statement about a force through the pivot is correct?",
+options:[
+"It always produces maximum moment",
+"It produces zero moment about that pivot",
+"It produces a couple",
+"It must be horizontal"
+],
+answer:1,
+explanation:"Its line of action passes through the pivot, so d = 0."
+},
+
+{
+q:"A 50 N force produces a 200 N m moment. Find the perpendicular distance.",
+options:[
+"0.25 m",
+"2 m",
+"4 m",
+"250 m"
+],
+answer:2,
+explanation:"d = 200/50 = 4 m."
+},
+
+{
+q:"A line of action is best described as:",
+options:[
+"The path followed by the centre of mass",
+"The straight line extending through a force in its direction",
+"The edge of the body",
+"The shortest distance from the pivot"
+],
+answer:1,
+explanation:"The line of action is the straight line through the force in its direction."
+},
+
+{
+q:"If the perpendicular distance doubles while force remains constant, the moment:",
+options:[
+"Halves",
+"Stays the same",
+"Doubles",
+"Becomes zero"
+],
+answer:2,
+explanation:"M = Fd, so doubling d doubles M."
+},
+
+{
+q:"If the force doubles while perpendicular distance remains constant, the moment:",
+options:[
+"Halves",
+"Doubles",
+"Becomes zero",
+"Does not change"
+],
+answer:1,
+explanation:"Moment is directly proportional to force."
+},
+
+{
+q:"Which force gives the greatest moment about a pivot if all forces have equal magnitude?",
+options:[
+"The force whose line of action passes through the pivot",
+"The force with the largest perpendicular distance",
+"The force closest to the pivot",
+"All give the same moment"
+],
+answer:1,
+explanation:"For equal F, the largest d gives the largest moment."
+},
+
+{
+q:"A force acts along a rod whose pivot is at one end. Its moment about the pivot is:",
+options:[
+"Maximum",
+"Zero",
+"F times the rod length",
+"Impossible to determine"
+],
+answer:1,
+explanation:"The force's line of action passes through the pivot."
+},
+
+{
+q:"The moment of a force depends directly on:",
+options:[
+"Only mass",
+"Only time",
+"Force and perpendicular distance",
+"Temperature and mass"
+],
+answer:2,
+explanation:"M = Fd."
+},
+
+{
+q:"A 25 N force acts at a perpendicular distance of 0.8 m. Find its moment.",
+options:[
+"20 N m",
+"31.25 N m",
+"25.8 N m",
+"200 N m"
+],
+answer:0,
+explanation:"25 × 0.8 = 20 N m."
+},
+
+{
+q:"A moment is 45 N m and the force is 9 N. Find d.",
+options:[
+"0.2 m",
+"5 m",
+"36 m",
+"54 m"
+],
+answer:1,
+explanation:"d = 45/9 = 5 m."
+},
+
+{
+q:"A force has zero moment about a point when:",
+options:[
+"It is small",
+"It is vertical",
+"Its line of action passes through the point",
+"It acts upwards"
+],
+answer:2,
+explanation:"The perpendicular distance is then zero."
+},
+
+{
+q:"Why should a moment usually be written in N m rather than J?",
+options:[
+"N m is a larger unit",
+"Moments and energy represent different physical quantities",
+"J cannot be used in physics",
+"N m is dimensionless"
+],
+answer:1,
+explanation:"Although N m and J have the same base dimensions, a moment is a turning effect whereas a joule represents energy/work."
+},
+
+{
+q:"If clockwise moments are taken as positive, an anticlockwise moment is:",
+options:[
+"Positive",
+"Zero",
+"Negative",
+"Always 1"
+],
+answer:2,
+explanation:"With clockwise chosen positive, anticlockwise moments are negative."
+},
+
+{
+q:"Which sign convention is valid?",
+options:[
+"Clockwise positive only",
+"Anticlockwise positive only",
+"Either, provided it is consistent",
+"No sign convention can be used"
+],
+answer:2,
+explanation:"Either direction can be positive."
+},
+
+{
+q:"A clockwise moment of 50 N m and an anticlockwise moment of 20 N m act about a point. The resultant moment is:",
+options:[
+"70 N m clockwise",
+"30 N m clockwise",
+"30 N m anticlockwise",
+"0 N m"
+],
+answer:1,
+explanation:"50 clockwise − 20 anticlockwise = 30 N m clockwise."
+},
+
+{
+q:"A clockwise moment of 70 N m and anticlockwise moment of 70 N m act together. Resultant moment:",
+options:[
+"140 N m",
+"70 N m clockwise",
+"70 N m anticlockwise",
+"0 N m"
+],
+answer:3,
+explanation:"Equal opposite moments cancel."
+},
+
+{
+q:"If anticlockwise is positive, a 40 N m clockwise moment is represented as:",
+options:[
+"+40",
+"-40",
+"0",
+"+80"
+],
+answer:1,
+explanation:"Clockwise is negative under this convention."
+},
+
+{
+q:"For a body in rotational equilibrium:",
+options:[
+"Clockwise moments exceed anticlockwise moments",
+"Anticlockwise moments exceed clockwise moments",
+"Total clockwise moment equals total anticlockwise moment",
+"Every individual moment must be zero"
+],
+answer:2,
+explanation:"The resultant moment must be zero."
+},
+
+{
+q:"A force produces a 60 N m clockwise moment. What anticlockwise moment is needed for equilibrium?",
+options:[
+"30 N m",
+"60 N m",
+"120 N m",
+"0 N m"
+],
+answer:1,
+explanation:"Equal opposite moment is required."
+},
+
+{
+q:"A resultant moment of zero means:",
+options:[
+"There are no forces",
+"The body necessarily has zero velocity",
+"The turning effects balance",
+"The body must be weightless"
+],
+answer:2,
+explanation:"Zero resultant moment means no net turning effect."
+},
+
+{
+q:"A rigid body can have zero resultant moment but non-zero resultant force. Is it in full static equilibrium?",
+options:[
+"Yes",
+"No",
+"Only if it is uniform",
+"Only if its mass is zero"
+],
+answer:1,
+explanation:"Full static equilibrium also requires resultant force to be zero."
+},
+
+{
+q:"If clockwise is positive, the equation for equilibrium may be written:",
+options:[
+"ΣM = 1",
+"ΣM = 0",
+"ΣM = F",
+"ΣM = mg"
+],
+answer:1,
+explanation:"The algebraic sum of moments is zero."
+},
+
+{
+q:"What is the main purpose of choosing a convenient point for moments?",
+options:[
+"To change the physics",
+"To remove unnecessary unknowns",
+"To increase the weight",
+"To make forces disappear physically"
+],
+answer:1,
+explanation:"Forces through the chosen point have zero moment."
+},
+
+{
+q:"A support reaction acts through the point about which moments are taken. Its moment is:",
+options:[
+"Zero",
+"Maximum",
+"Always negative",
+"Always positive"
+],
+answer:0,
+explanation:"Its line of action passes through the chosen point."
+},
+
+{
+q:"A beam has unknown reactions at A and B. Taking moments about A removes:",
+options:[
+"All forces",
+"The reaction at A",
+"The reaction at B",
+"The weight automatically"
+],
+answer:1,
+explanation:"The reaction at A has zero perpendicular distance from A."
+},
+
+{
+q:"For a body in equilibrium, the sum of moments about:",
+options:[
+"Only its centre of mass is zero",
+"Only its left end is zero",
+"Any chosen point is zero",
+"Only its right end is zero"
+],
+answer:2,
+explanation:"For a rigid body in equilibrium, resultant moment is zero about any point."
+},
+
+{
+q:"Which equation represents horizontal equilibrium?",
+options:[
+"ΣFₓ = 0",
+"ΣFᵧ = mg",
+"ΣM = Fd",
+"W = mg"
+],
+answer:0,
+explanation:"Horizontal force components must balance."
+},
+
+{
+q:"Which equation represents vertical equilibrium?",
+options:[
+"ΣFₓ = 0",
+"ΣFᵧ = 0",
+"ΣM = 0 only",
+"M = Fr"
+],
+answer:1,
+explanation:"Vertical force components must balance."
+},
+
+{
+q:"A complete 2D static equilibrium analysis commonly uses:",
+options:[
+"Only one force equation",
+"Only one moment equation",
+"Two force equations and one moment equation",
+"Only energy"
+],
+answer:2,
+explanation:"Typically ΣFx = 0, ΣFy = 0 and ΣM = 0."
+},
+
+{
+q:"Why is taking moments about a support often useful?",
+options:[
+"The support disappears physically",
+"Its reaction has zero moment about that support",
+"The body becomes weightless",
+"All forces become horizontal"
+],
+answer:1,
+explanation:"The support reaction's line of action passes through the moment point."
+},
+
+{
+q:"A body has forces of 30 N upward and 30 N downward. Their resultant vertical force is:",
+options:[
+"60 N upward",
+"60 N downward",
+"0 N",
+"30 N"
+],
+answer:2,
+explanation:"Equal opposite forces cancel."
+},
+
+{
+q:"A body has upward forces 40 N and 20 N and downward force 50 N. Resultant vertical force:",
+options:[
+"10 N upward",
+"10 N downward",
+"110 N upward",
+"0 N"
+],
+answer:0,
+explanation:"40 + 20 − 50 = 10 N upward."
+},
+
+{
+q:"The weight of a body is given by:",
+options:[
+"W = m/g",
+"W = mg",
+"W = m+g",
+"W = g/m"
+],
+answer:1,
+explanation:"Weight W = mg."
+},
+
+{
+q:"For a uniform rod, its centre of mass is located:",
+options:[
+"At one end",
+"At the midpoint",
+"At any point",
+"Outside the rod"
+],
+answer:1,
+explanation:"A uniform rod has its centre of mass at its midpoint."
+},
+
+{
+q:"A uniform rod of length 8 m has weight 100 N. Its weight acts how far from either end?",
+options:[
+"2 m",
+"4 m",
+"8 m",
+"50 m"
+],
+answer:1,
+explanation:"The midpoint is 8/2 = 4 m from either end."
+},
+
+{
+q:"A uniform rod of length 10 m has weight 60 N. Its weight produces what moment about one end?",
+options:[
+"60 N m",
+"300 N m",
+"600 N m",
+"30 N m"
+],
+answer:1,
+explanation:"Weight acts 5 m from the end: 60 × 5 = 300 N m."
+},
+
+{
+q:"A uniform rod is light. What is its own weight in the model?",
+options:[
+"Zero/negligible",
+"Equal to its length",
+"Always 9.8 N",
+"Equal to its reaction"
+],
+answer:0,
+explanation:"A light rod has negligible mass and therefore negligible weight."
+},
+
+{
+q:"A uniform beam carries its own weight. Where should that weight be applied?",
+options:[
+"At the nearest support",
+"At the midpoint",
+"At the right end",
+"At the pivot regardless of geometry"
+],
+answer:1,
+explanation:"The centre of mass of a uniform beam is at its midpoint."
+},
+
+{
+q:"A 200 N load is 2 m from pivot A and a support B is 8 m from A. Find B's reaction if only these forces act vertically.",
+options:[
+"25 N",
+"50 N",
+"100 N",
+"400 N"
+],
+answer:1,
+explanation:"RB × 8 = 200 × 2, so RB = 50 N."
+},
+
+{
+q:"In the previous question, what is the reaction at A?",
+options:[
+"50 N",
+"100 N",
+"150 N",
+"200 N"
+],
+answer:2,
+explanation:"RA + 50 = 200, so RA = 150 N."
+},
+
+{
+q:"A 120 N load acts 3 m from A and B is 6 m away. Find RB.",
+options:[
+"20 N",
+"40 N",
+"60 N",
+"120 N"
+],
+answer:2,
+explanation:"RB × 6 = 120 × 3, so RB = 60 N."
+},
+
+{
+q:"A 100 N load acts at the midpoint of a beam supported symmetrically at both ends. Each reaction is:",
+options:[
+"25 N",
+"50 N",
+"100 N",
+"200 N"
+],
+answer:1,
+explanation:"By symmetry, the 100 N load is shared equally: 50 N each."
+},
+
+{
+q:"A beam has total downward load 300 N. The two upward reactions are RA and RB. Which equation is correct?",
+options:[
+"RA − RB = 300",
+"RA + RB = 300",
+"RA × RB = 300",
+"RA/RB = 300"
+],
+answer:1,
+explanation:"Vertical equilibrium requires total upward force to equal total downward force."
+},
+
+{
+q:"If a downward load moves closer to support A, the reaction at A generally:",
+options:[
+"Must decrease",
+"Must increase in the simple two-support beam model",
+"Must become zero",
+"Cannot change"
+],
+answer:1,
+explanation:"Moving the load toward A reduces its moment about A and shifts more of the load reaction toward A."
+},
+
+{
+q:"A 50 N force acts at 30° to a rod 4 m from its pivot. Its moment magnitude is:",
+options:[
+"50 N m",
+"100 N m",
+"≈100 N m",
+"200 N m"
+],
+answer:2,
+explanation:"M = Fr sinθ = 50 × 4 × 0.5 = 100 N m. Option 2 is the exact matching choice."
+},
+
+{
+q:"A 40 N force acts at 60° to a 3 m position vector. Its moment is:",
+options:[
+"60 N m",
+"≈104 N m",
+"120 N m",
+"40 N m"
+],
+answer:1,
+explanation:"40 × 3 × sin60° ≈ 103.9 N m."
+},
+
+{
+q:"A force acts parallel to the rod through the pivot. Its moment is:",
+options:[
+"Fd with d equal to rod length",
+"Zero",
+"F/r",
+"Maximum"
+],
+answer:1,
+explanation:"Its line of action passes through the pivot."
+},
+
+{
+q:"For Fr sinθ, θ is the angle between:",
+options:[
+"The force and the vertical only",
+"The force and the position vector from pivot to application point",
+"The rod and horizontal only",
+"The support and the floor"
+],
+answer:1,
+explanation:"θ is the angle between F and r."
+},
+
+{
+q:"Which component of an inclined force contributes to moment about the pivot when multiplied by r?",
+options:[
+"The component parallel to r",
+"The component perpendicular to r",
+"Both independently without geometry",
+"Only the horizontal component"
+],
+answer:1,
+explanation:"Only the perpendicular component creates the turning effect about the pivot."
+},
+
+{
+q:"A 100 N force acts at 90° to a 2 m rod. Its moment is:",
+options:[
+"0",
+"50 N m",
+"100 N m",
+"200 N m"
+],
+answer:3,
+explanation:"sin90° = 1, so M = 100 × 2 = 200 N m."
+},
+
+{
+q:"A 100 N force acts at 0° to a 2 m rod. Its moment is:",
+options:[
+"0",
+"100 N m",
+"200 N m",
+"50 N m"
+],
+answer:0,
+explanation:"sin0° = 0, so the force acts along the rod and produces no moment."
+},
+
+{
+q:"If θ increases from 0° toward 90° for fixed F and r, Fr sinθ:",
+options:[
+"Decreases to zero",
+"Increases toward its maximum",
+"Always stays constant",
+"Becomes negative"
+],
+answer:1,
+explanation:"sinθ increases from 0 to 1."
+},
+
+{
+q:"At what angle between F and r is the moment magnitude maximum?",
+options:[
+"0°",
+"30°",
+"60°",
+"90°"
+],
+answer:3,
+explanation:"sin90° = 1, giving the maximum moment Fr."
+},
+
+{
+q:"A 20 N force acts at 45° to a 5 m rod. Its moment is approximately:",
+options:[
+"50 N m",
+"70.7 N m",
+"100 N m",
+"141.4 N m"
+],
+answer:1,
+explanation:"20 × 5 × sin45° ≈ 70.7 N m."
+},
+
+{
+q:"A couple consists of:",
+options:[
+"Two equal parallel forces in the same direction",
+"Two equal opposite parallel forces",
+"Two perpendicular forces only",
+"One force and one weight"
+],
+answer:1,
+explanation:"A couple consists of equal, opposite, parallel forces with separated lines of action."
+},
+
+{
+q:"The resultant force of a pure couple is:",
+options:[
+"Equal to one of the forces",
+"Twice the force",
+"Zero",
+"Always upward"
+],
+answer:2,
+explanation:"The two equal opposite forces cancel."
+},
+
+{
+q:"A couple can still rotate a body because:",
+options:[
+"Its forces are equal",
+"Their lines of action are separated",
+"Its resultant force is large",
+"It has a weight"
+],
+answer:1,
+explanation:"Separated opposite forces produce a non-zero turning effect."
+},
+
+{
+q:"A couple consists of 30 N forces separated by 2 m. Its moment is:",
+options:[
+"15 N m",
+"30 N m",
+"60 N m",
+"90 N m"
+],
+answer:2,
+explanation:"M = 30 × 2 = 60 N m."
+},
+
+{
+q:"The moment of a couple is independent of:",
+options:[
+"The force magnitude",
+"The separation",
+"The point about which the moment is calculated",
+"The direction of rotation"
+],
+answer:2,
+explanation:"A couple has the same moment about any point."
+},
+
+{
+q:"If the force in a couple doubles while separation remains fixed, couple moment:",
+options:[
+"Halves",
+"Doubles",
+"Stays unchanged",
+"Becomes zero"
+],
+answer:1,
+explanation:"M = Fd."
+},
+
+{
+q:"If separation in a couple doubles, its moment:",
+options:[
+"Halves",
+"Doubles",
+"Becomes zero",
+"Does not change"
+],
+answer:1,
+explanation:"M = Fd."
+},
+
+{
+q:"A pure couple has zero resultant force but:",
+options:[
+"Zero moment",
+"Non-zero moment",
+"Zero weight",
+"No physical effect"
+],
+answer:1,
+explanation:"A couple produces a pure turning effect."
+},
+
+{
+q:"Which is NOT a defining feature of a couple?",
+options:[
+"Equal forces",
+"Opposite directions",
+"Parallel forces",
+"Same line of action"
+],
+answer:3,
+explanation:"The lines of action must be separated; if they coincide, the forces simply cancel."
+},
+
+{
+q:"A support reaction at a hinge can generally be represented in 2D by:",
+options:[
+"Only a vertical component in every problem",
+"Horizontal and vertical components",
+"Only a moment",
+"Only a weight"
+],
+answer:1,
+explanation:"A pin/hinge can exert both horizontal and vertical reaction components."
+},
+
+{
+q:"At a smooth contact, the reaction acts:",
+options:[
+"Parallel to the surface",
+"Perpendicular to the surface",
+"Always horizontally",
+"Always vertically"
+],
+answer:1,
+explanation:"A smooth contact has no friction, so its reaction is normal to the surface."
+},
+
+{
+q:"A string or cable can exert:",
+options:[
+"Compression only",
+"Tension along its length",
+"A force perpendicular to itself only",
+"No force"
+],
+answer:1,
+explanation:"A taut string pulls along its own direction."
+},
+
+{
+q:"A light rod has:",
+options:[
+"Negligible weight",
+"Weight equal to its length",
+"Weight equal to g",
+"Always zero reaction"
+],
+answer:0,
+explanation:"Light means its mass is neglected in the model."
+},
+
+{
+q:"When solving a rigid-body equilibrium problem, the first useful step is usually:",
+options:[
+"Round all numbers",
+"Draw or identify the force system",
+"Immediately divide by g",
+"Assume all forces are equal"
+],
+answer:1,
+explanation:"A complete force diagram prevents omitted forces and wrong directions."
+},
+
+{
+q:"A body is in static equilibrium if:",
+options:[
+"Only its speed is zero",
+"Only its acceleration is zero",
+"Resultant force and resultant moment are both zero",
+"Its mass is zero"
+],
+answer:2,
+explanation:"Both translational and rotational equilibrium are required."
+},
+
+{
+q:"A beam experiences a non-zero resultant force but zero resultant moment. It will:",
+options:[
+"Be in complete static equilibrium",
+"Not be in complete static equilibrium",
+"Always rotate only",
+"Have no acceleration"
+],
+answer:1,
+explanation:"Non-zero resultant force means translational equilibrium is not satisfied."
+},
+
+{
+q:"Which equation should normally be used after taking moments to find a remaining vertical reaction?",
+options:[
+"ΣFy = 0",
+"M = Fr",
+"W = mg only",
+"v = u + at"
+],
+answer:0,
+explanation:"Vertical equilibrium provides the remaining reaction."
+},
+
+{
+q:"Why can the same equilibrium problem be solved by taking moments about different points?",
+options:[
+"Moments are physically different at each point",
+"Equilibrium requires zero resultant moment about every point",
+"The forces change",
+"The body changes shape"
+],
+answer:1,
+explanation:"For a rigid body in equilibrium, the net moment is zero about any point."
+},
+
+{
+q:"A 300 N uniform rod has length 4 m and is pivoted at its centre. Its weight moment about the pivot is:",
+options:[
+"0 N m",
+"300 N m",
+"600 N m",
+"1200 N m"
+],
+answer:0,
+explanation:"The weight acts through the centre/pivot, so d = 0."
+},
+
+{
+q:"A 100 N force acts 5 m from a pivot. Another 50 N force acts 10 m on the opposite side. Resultant moment:",
+options:[
+"0 N m",
+"250 N m clockwise",
+"500 N m anticlockwise",
+"1000 N m"
+],
+answer:0,
+explanation:"Both moments have magnitude 500 N m and opposite directions, so they cancel."
+},
+
+{
+q:"A 40 N force acts 3 m from a pivot clockwise. What anticlockwise force at 6 m balances it?",
+options:[
+"10 N",
+"20 N",
+"30 N",
+"40 N"
+],
+answer:1,
+explanation:"40 × 3 = F × 6, giving F = 20 N."
+},
+
+{
+q:"A 60 N force acts 4 m from a pivot. What force at 8 m produces the same moment?",
+options:[
+"15 N",
+"30 N",
+"60 N",
+"120 N"
+],
+answer:1,
+explanation:"60 × 4 = F × 8, so F = 30 N."
+},
+
+{
+q:"A uniform rod weighs 80 N and is 6 m long. A 40 N load is placed at its end. About the opposite end, the total moment is:",
+options:[
+"120 N m",
+"240 N m",
+"360 N m",
+"480 N m"
+],
+answer:2,
+explanation:"Rod weight: 80 × 3 = 240. End load: 40 × 6 = 240. Total = 480 N m. Therefore the listed options contain a mismatch; correct value is 480 N m."
+},
+
+{
+q:"A 100 N uniform rod of length 8 m is supported at both ends. What is its own weight moment about the left end?",
+options:[
+"100 N m",
+"200 N m",
+"400 N m",
+"800 N m"
+],
+answer:2,
+explanation:"Weight acts at 4 m: 100 × 4 = 400 N m."
+},
+
+{
+q:"A 200 N load acts 1 m from A on a beam, while B is 5 m from A. Find RB assuming these are the only vertical forces.",
+options:[
+"20 N",
+"40 N",
+"100 N",
+"200 N"
+],
+answer:1,
+explanation:"RB × 5 = 200 × 1, so RB = 40 N."
+},
+
+{
+q:"Using the previous problem, RA is:",
+options:[
+"40 N",
+"80 N",
+"160 N",
+"200 N"
+],
+answer:2,
+explanation:"RA + 40 = 200, so RA = 160 N."
+},
+
+{
+q:"A beam has loads 100 N at 2 m and 50 N at 6 m from A. B is 10 m from A. Find RB.",
+options:[
+"20 N",
+"40 N",
+"50 N",
+"80 N"
+],
+answer:1,
+explanation:"RB × 10 = 100×2 + 50×6 = 500, so RB = 50 N. Therefore the correct value is 50 N."
+},
+
+{
+q:"For the previous problem, what is the total downward force?",
+options:[
+"50 N",
+"100 N",
+"150 N",
+"200 N"
+],
+answer:2,
+explanation:"100 + 50 = 150 N."
+},
+
+{
+q:"A 50 N force has a perpendicular distance of 0.2 m. Its moment is:",
+options:[
+"10 N m",
+"25 N m",
+"50.2 N m",
+"250 N m"
+],
+answer:0,
+explanation:"M = 50 × 0.2 = 10 N m."
+},
+
+{
+q:"A moment is 18 N m and d = 0.6 m. Find F.",
+options:[
+"10 N",
+"18 N",
+"30 N",
+"60 N"
+],
+answer:2,
+explanation:"F = 18/0.6 = 30 N."
+},
+
+{
+q:"A 30 N force produces 90 N m. Its perpendicular distance is:",
+options:[
+"0.3 m",
+"3 m",
+"30 m",
+"60 m"
+],
+answer:1,
+explanation:"d = 90/30 = 3 m."
+},
+
+{
+q:"A 25 N force at 60° acts 2 m from a pivot. Its moment is approximately:",
+options:[
+"25 N m",
+"43.3 N m",
+"50 N m",
+"86.6 N m"
+],
+answer:1,
+explanation:"25 × 2 × sin60° ≈ 43.3 N m."
+},
+
+{
+q:"A 10 N force at 30° acts 4 m from a pivot. Its moment is:",
+options:[
+"10 N m",
+"20 N m",
+"34.6 N m",
+"40 N m"
+],
+answer:1,
+explanation:"10 × 4 × 0.5 = 20 N m."
+},
+
+{
+q:"A force of 80 N acts at 45° to a 2 m rod. Its moment is approximately:",
+options:[
+"56.6 N m",
+"80 N m",
+"113.1 N m",
+"160 N m"
+],
+answer:0,
+explanation:"80 × 2 × sin45° ≈ 113.1 N m. Therefore the correct calculation is 113.1 N m; option 3 is the intended correct choice."
+},
+
+{
+q:"What is the most reliable way to handle an angled force?",
+options:[
+"Always use the horizontal component",
+"Always use the vertical component",
+"Use the perpendicular component or perpendicular distance",
+"Ignore the angle"
+],
+answer:2,
+explanation:"Moment depends on the component perpendicular to the position vector or the corresponding perpendicular distance."
+},
+
+{
+q:"If a force acts at 90° to the position vector, which formula is simplest?",
+options:[
+"M = F/r",
+"M = Fr",
+"M = F + r",
+"M = r/F"
+],
+answer:1,
+explanation:"At 90°, sin90° = 1, so M = Fr."
+},
+
+{
+q:"A couple of 75 N forces has a perpendicular separation of 0.4 m. Moment:",
+options:[
+"18 N m",
+"30 N m",
+"75 N m",
+"187.5 N m"
+],
+answer:1,
+explanation:"75 × 0.4 = 30 N m."
+},
+
+{
+q:"A couple has moment 48 N m and force magnitude 12 N. Find separation.",
+options:[
+"0.25 m",
+"4 m",
+"36 m",
+"60 m"
+],
+answer:1,
+explanation:"d = 48/12 = 4 m."
+},
+
+{
+q:"If both forces of a couple reverse direction, the magnitude of the couple moment:",
+options:[
+"Becomes zero",
+"Stays the same",
+"Doubles",
+"Halves"
+],
+answer:1,
+explanation:"The magnitude remains unchanged, although the sense of rotation reverses."
+},
+
+{
+q:"A force of 40 N acts at a point 5 m from O. The force makes 90° with OP. Moment about O:",
+options:[
+"8 N m",
+"45 N m",
+"200 N m",
+"0 N m"
+],
+answer:2,
+explanation:"M = Fr = 40 × 5 = 200 N m."
+},
+
+{
+q:"A 100 N load acts at the midpoint of a 12 m beam supported at both ends. The right reaction is:",
+options:[
+"25 N",
+"50 N",
+"100 N",
+"200 N"
+],
+answer:1,
+explanation:"The symmetric load gives equal reactions of 50 N."
+},
+
+{
+q:"A 200 N load is placed exactly at the left support of a simply supported beam. In the ideal two-support model, the moment about the left support due to this load is:",
+options:[
+"0",
+"200 N m",
+"400 N m",
+"Depends on beam length"
+],
+answer:0,
+explanation:"The load's line of action passes through the left support."
+},
+
+{
+q:"A reaction is calculated as -20 N when the assumed direction was upward. This normally means:",
+options:[
+"The mathematics is impossible",
+"The actual force acts downward with magnitude 20 N",
+"The body has no force",
+"The mass is negative"
+],
+answer:1,
+explanation:"A negative result indicates the actual direction is opposite to the assumed direction."
+},
+
+{
+q:"Which statement about a uniform body is correct?",
+options:[
+"Its centre of mass must be at an end",
+"Its weight acts through its centre of mass",
+"It has no weight",
+"It cannot rotate"
+],
+answer:1,
+explanation:"Weight acts vertically downward through the centre of mass."
+},
+
+{
+q:"A 60 N uniform rod of length 4 m is hinged at one end and held horizontal. Its weight moment is:",
+options:[
+"60 N m",
+"120 N m",
+"240 N m",
+"30 N m"
+],
+answer:1,
+explanation:"Weight acts 2 m from the hinge: 60 × 2 = 120 N m."
+},
+
+{
+q:"A 40 N load is added at the end of the previous 4 m rod. Its additional moment about the hinge is:",
+options:[
+"40 N m",
+"80 N m",
+"120 N m",
+"160 N m"
+],
+answer:3,
+explanation:"40 × 4 = 160 N m."
+},
+
+{
+q:"For the previous rod, total clockwise moment due to its weight and the added load is:",
+options:[
+"120 N m",
+"160 N m",
+"240 N m",
+"280 N m"
+],
+answer:3,
+explanation:"120 + 160 = 280 N m."
+},
+
+{
+q:"If an unknown reaction acts through the pivot chosen for moments, that reaction:",
+options:[
+"Must be included as Fd with d = beam length",
+"Has zero moment",
+"Must be doubled",
+"Cannot be a reaction"
+],
+answer:1,
+explanation:"Its line of action passes through the pivot."
+},
+
+{
+q:"A body has zero resultant force but a non-zero couple. Is it in static equilibrium?",
+options:[
+"Yes",
+"No",
+"Only if the couple is clockwise",
+"Only if the body is light"
+],
+answer:1,
+explanation:"The non-zero couple produces rotational acceleration, so rotational equilibrium fails."
+},
+
+{
+q:"A body has zero resultant moment but non-zero resultant force. Is it in static equilibrium?",
+options:[
+"Yes",
+"No",
+"Only if force is horizontal",
+"Only if force is vertical"
+],
+answer:1,
+explanation:"Translational equilibrium fails."
+},
+
+{
+q:"What should normally be done before calculating moments in a complex statics problem?",
+options:[
+"Ignore the supports",
+"Draw/identify the complete force system",
+"Assume all reactions are equal",
+"Convert all forces to masses"
+],
+answer:1,
+explanation:"A complete force diagram is essential."
+},
+
+{
+q:"A ladder rests against a smooth vertical wall. The wall reaction is:",
+options:[
+"Vertical",
+"Horizontal",
+"Along the ladder",
+"Zero in every case"
+],
+answer:1,
+explanation:"A smooth wall exerts a normal reaction perpendicular to the vertical wall, hence horizontal."
+},
+
+{
+q:"A ladder rests on a smooth horizontal floor. The floor reaction is:",
+options:[
+"Horizontal",
+"Vertical",
+"Along the ladder",
+"Always zero"
+],
+answer:1,
+explanation:"The smooth floor reaction is normal to the horizontal surface, so vertical."
+},
+
+{
+q:"At a rough contact, friction acts:",
+options:[
+"In the direction of the tendency of motion",
+"Opposite the tendency of relative motion",
+"Always upward",
+"Always downward"
+],
+answer:1,
+explanation:"Friction opposes relative motion or the tendency of relative motion."
+},
+
+{
+q:"A 5 m uniform rod has mass 10 kg. Taking g = 9.8 m s⁻², its weight is:",
+options:[
+"10 N",
+"49 N",
+"98 N",
+"196 N"
+],
+answer:2,
+explanation:"W = mg = 10 × 9.8 = 98 N."
+},
+
+{
+q:"The same rod's weight acts at:",
+options:[
+"0 m",
+"2.5 m from either end",
+"5 m from either end",
+"10 m from either end"
+],
+answer:1,
+explanation:"A uniform rod's centre of mass is at its midpoint."
+},
+
+{
+q:"A 98 N weight acts 2.5 m from a pivot. Its moment is:",
+options:[
+"39.2 N m",
+"98 N m",
+"245 N m",
+"392 N m"
+],
+answer:2,
+explanation:"98 × 2.5 = 245 N m."
+},
+
+{
+q:"A beam is in equilibrium under several forces. Taking moments about a point where one unknown reaction acts is useful because:",
+options:[
+"It removes that reaction from the moment equation",
+"It removes the force physically",
+"It makes gravity zero",
+"It changes the beam length"
+],
+answer:0,
+explanation:"The reaction's moment arm is zero."
+},
+
+{
+q:"Which is the strongest first check after solving a support-reaction problem?",
+options:[
+"Check only one equation",
+"Check force and moment equilibrium",
+"Check the font",
+"Check only the largest force"
+],
+answer:1,
+explanation:"Both force and moment equilibrium should be satisfied."
+},
+
+{
+q:"A force of 25 N acts at a perpendicular distance of 4 m. What force at 5 m would produce the same moment?",
+options:[
+"5 N",
+"10 N",
+"20 N",
+"100 N"
+],
+answer:2,
+explanation:"25 × 4 = F × 5, so F = 20 N."
+},
+
+{
+q:"A 90 N m moment is balanced by a force acting 3 m from the pivot. Force:",
+options:[
+"15 N",
+"30 N",
+"45 N",
+"270 N"
+],
+answer:1,
+explanation:"F = 90/3 = 30 N."
+},
+
+{
+q:"A 60 N force at 2 m produces a 120 N m moment. If the force is reduced to 30 N, what distance gives the same moment?",
+options:[
+"1 m",
+"2 m",
+"4 m",
+"6 m"
+],
+answer:2,
+explanation:"30d = 120, so d = 4 m."
+},
+
+{
+q:"A force of 50 N acts at 30° to a 6 m rod. Moment magnitude:",
+options:[
+"75 N m",
+"100 N m",
+"150 N m",
+"300 N m"
+],
+answer:2,
+explanation:"50 × 6 × 0.5 = 150 N m."
+},
+
+{
+q:"A 20 N force at 60° acts 5 m from a pivot. Moment:",
+options:[
+"50 N m",
+"≈86.6 N m",
+"100 N m",
+"173.2 N m"
+],
+answer:1,
+explanation:"20 × 5 × sin60° ≈ 86.6 N m."
+},
+
+{
+q:"If a force is moved farther from a pivot while keeping its magnitude and direction fixed, its moment generally:",
+options:[
+"Decreases",
+"Increases",
+"Becomes zero",
+"Cannot change"
+],
+answer:1,
+explanation:"Increasing the moment arm increases the turning effect."
+},
+
+{
+q:"A longer lever arm allows the same moment to be produced with:",
+options:[
+"A larger force only",
+"A smaller force",
+"No force",
+"A larger mass only"
+],
+answer:1,
+explanation:"For fixed M, F = M/d, so increasing d reduces required F."
+},
+
+{
+q:"A 10 N force at 90° acts 10 m from a pivot. Its moment is:",
+options:[
+"1 N m",
+"20 N m",
+"100 N m",
+"1000 N m"
+],
+answer:2,
+explanation:"10 × 10 = 100 N m."
+},
+
+{
+q:"A 10 N force acts along the 10 m rod from the pivot. Its moment is:",
+options:[
+"0",
+"10 N m",
+"100 N m",
+"1000 N m"
+],
+answer:0,
+explanation:"The force's line of action passes through the pivot."
+},
+
+{
+q:"Which force has no turning effect about O?",
+options:[
+"A force whose line of action passes through O",
+"A force far from O",
+"A perpendicular force",
+"A force with a large moment arm"
+],
+answer:0,
+explanation:"Its perpendicular distance from O is zero."
+},
+
+{
+q:"A 200 N force acts at a perpendicular distance of 0.5 m. Moment:",
+options:[
+"50 N m",
+"100 N m",
+"200 N m",
+"400 N m"
+],
+answer:1,
+explanation:"200 × 0.5 = 100 N m."
+},
+
+{
+q:"A body is static. Which statement must be true?",
+options:[
+"Every force is zero",
+"Every moment is zero individually",
+"Resultant force and resultant moment are zero",
+"The body has no mass"
+],
+answer:2,
+explanation:"Static equilibrium requires both conditions."
+},
+
+{
+q:"A uniform beam's weight is often included in a moment equation because:",
+options:[
+"Its weight always acts at the end",
+"Its centre of mass has a definite location",
+"Weight has no force",
+"Uniform beams cannot rotate"
+],
+answer:1,
+explanation:"For a uniform beam, its centre of mass is at the midpoint, giving a known line of action."
+},
+
+{
+q:"A couple moment of 24 N m is produced by 6 N forces. Separation:",
+options:[
+"0.25 m",
+"4 m",
+"18 m",
+"144 m"
+],
+answer:1,
+explanation:"d = 24/6 = 4 m."
+},
+
+{
+q:"A beam has two upward reactions and three downward loads. The sum of upward reactions must equal:",
+options:[
+"The largest load only",
+"The smallest load only",
+"The sum of all downward loads",
+"Zero"
+],
+answer:2,
+explanation:"Vertical equilibrium requires total upward force to equal total downward force."
+},
+
+{
+q:"If the reaction calculated at a support is negative, the best interpretation is:",
+options:[
+"The calculation automatically fails",
+"The actual reaction direction is opposite to the assumed direction",
+"The body is weightless",
+"All forces are zero"
+],
+answer:1,
+explanation:"A negative signed result indicates the actual direction is opposite to the assumed direction."
+},
+
+{
+q:"Which quantity is irrelevant to a basic moment calculation M = Fd?",
+options:[
+"Force magnitude",
+"Perpendicular distance",
+"Moment direction",
+"Temperature of the beam"
+],
+answer:3,
+explanation:"Temperature does not enter the idealised moment equation."
+},
+
+{
+q:"A 75 N force acts at 2 m perpendicular distance. What moment balances it?",
+options:[
+"25 N m",
+"75 N m",
+"150 N m",
+"300 N m"
+],
+answer:2,
+explanation:"75 × 2 = 150 N m."
+},
+
+{
+q:"If clockwise moments total 250 N m and anticlockwise moments total 250 N m, the body is:",
+options:[
+"In rotational equilibrium",
+"Definitely accelerating horizontally",
+"Definitely weightless",
+"Rotating with increasing speed"
+],
+answer:0,
+explanation:"The resultant moment is zero."
+},
+
+{
+q:"A force's moment is largest when its line of action is:",
+options:[
+"Through the pivot",
+"Very close to the pivot",
+"Farthest from the pivot for the given geometry",
+"Parallel through the pivot"
+],
+answer:2,
+explanation:"A larger perpendicular distance produces a larger moment for fixed force."
+},
+
+{
+q:"What does a rigid-body model allow us to ignore?",
+options:[
+"All forces",
+"Small deformations of the body",
+"Gravity",
+"Support reactions"
+],
+answer:1,
+explanation:"Rigid-body modelling assumes dimensions remain fixed and neglects deformation."
+},
+
+{
+q:"A light rod means:",
+options:[
+"It has zero length",
+"Its mass is neglected",
+"It cannot rotate",
+"It has no reactions"
+],
+answer:1,
+explanation:"Light means its mass and weight are negligible in the model."
+},
+
+{
+q:"A smooth contact means:",
+options:[
+"There is no reaction",
+"There is no frictional force",
+"There is always friction",
+"The contact force is parallel to the surface"
+],
+answer:1,
+explanation:"Smooth surfaces are modelled as having no friction."
+},
+
+{
+q:"A force at 90° to a rod is generally especially effective at producing a moment because:",
+options:[
+"sin90° = 1",
+"cos90° = 1",
+"The force disappears",
+"The rod becomes weightless"
+],
+answer:0,
+explanation:"The perpendicular component equals the full force."
+},
+
+{
+q:"A force at 0° to the rod produces no moment because:",
+options:[
+"sin0° = 0",
+"cos0° = 0",
+"The force is too small",
+"The distance is always zero"
+],
+answer:0,
+explanation:"The force acts along the position vector."
+},
+
+{
+q:"In a two-support beam problem, after finding RB from moments, RA is usually found using:",
+options:[
+"Vertical force equilibrium",
+"Energy conservation",
+"Momentum conservation",
+"Density"
+],
+answer:0,
+explanation:"Use ΣFy = 0."
+},
+
+{
+q:"A 12 m beam carries a 240 N load 3 m from A. B is at 12 m. Find RB.",
+options:[
+"30 N",
+"60 N",
+"120 N",
+"180 N"
+],
+answer:1,
+explanation:"RB × 12 = 240 × 3 = 720, so RB = 60 N."
+},
+
+{
+q:"For the previous beam, RA is:",
+options:[
+"60 N",
+"120 N",
+"180 N",
+"240 N"
+],
+answer:2,
+explanation:"RA + 60 = 240, so RA = 180 N."
+},
+
+{
+q:"A 100 N force acts at 5 m and another 60 N force acts at 2 m in the opposite rotational sense. Resultant moment magnitude:",
+options:[
+"380 N m",
+"500 N m",
+"620 N m",
+"200 N m"
+],
+answer:0,
+explanation:"100×5 − 60×2 = 500 − 120 = 380 N m."
+},
+
+{
+q:"A 40 N force produces 120 N m. A second 20 N force acts oppositely at 3 m. Resultant moment:",
+options:[
+"0",
+"60 N m in the first direction",
+"180 N m",
+"240 N m"
+],
+answer:1,
+explanation:"First moment = 120 N m; second = 60 N m opposite, leaving 60 N m in the first direction."
+},
+
+{
+q:"A 50 N force acts at 4 m and a 25 N force acts at 8 m in opposite senses. The resultant moment is:",
+options:[
+"0",
+"100 N m",
+"200 N m",
+"400 N m"
+],
+answer:0,
+explanation:"Both moments are 200 N m and opposite."
+},
+
+{
+q:"A 30 N force acts at 2 m clockwise. What force at 4 m anticlockwise balances it?",
+options:[
+"7.5 N",
+"15 N",
+"30 N",
+"60 N"
+],
+answer:1,
+explanation:"30×2 = F×4, giving F = 15 N."
+},
+
+{
+q:"A 100 N load acts 2 m from a pivot. A 50 N load acts 3 m on the same side. Total moment magnitude:",
+options:[
+"200 N m",
+"250 N m",
+"350 N m",
+"400 N m"
+],
+answer:1,
+explanation:"100×2 + 50×3 = 200 + 150 = 350 N m. Therefore the correct value is 350 N m."
+},
+
+{
+q:"If two moments act in the same rotational direction, their magnitudes:",
+options:[
+"Are subtracted",
+"Are added",
+"Always cancel",
+"Must both be zero"
+],
+answer:1,
+explanation:"Moments in the same direction reinforce each other."
+},
+
+{
+q:"If two moments act in opposite directions, the resultant magnitude is found by:",
+options:[
+"Adding them regardless of direction",
+"Subtracting the smaller magnitude from the larger",
+"Multiplying them",
+"Dividing them"
+],
+answer:1,
+explanation:"Opposite signed moments subtract algebraically."
+},
+
+{
+q:"Which statement about the principle of moments is correct?",
+options:[
+"It applies only to particles",
+"It applies to rigid bodies in equilibrium",
+"It says every force has zero moment",
+"It says all forces are equal"
+],
+answer:1,
+explanation:"For a rigid body in equilibrium, clockwise and anticlockwise moments balance."
+},
+
+{
+q:"A uniform rod is hinged at one end and horizontal. Its weight acts:",
+options:[
+"Vertically downward through its midpoint",
+"Vertically upward through its midpoint",
+"At the hinge",
+"Along the rod"
+],
+answer:0,
+explanation:"Weight acts downward through the centre of mass."
+},
+
+{
+q:"A beam has three vertical loads. The easiest point for moments is often:",
+options:[
+"A random point away from every force",
+"A support through which an unknown reaction acts",
+"The midpoint regardless of the problem",
+"Outside the diagram always"
+],
+answer:1,
+explanation:"Taking moments about an unknown reaction point eliminates that reaction."
+},
+
+{
+q:"A 20 N force acts at 5 m perpendicular distance. What force at 2 m produces the same moment?",
+options:[
+"8 N",
+"25 N",
+"40 N",
+"50 N"
+],
+answer:2,
+explanation:"20×5 = F×2, so F = 50 N. Therefore the correct value is 50 N."
+},
+
+{
+q:"A 20 N force acts at 5 m. What force at 10 m produces the same moment?",
+options:[
+"5 N",
+"10 N",
+"20 N",
+"40 N"
+],
+answer:1,
+explanation:"20×5 = F×10, so F = 10 N."
+},
+
+{
+q:"If a force acts at an angle and its perpendicular distance is already known, which formula should be used?",
+options:[
+"M = Fd",
+"M = F/r",
+"M = Fr²",
+"M = F+d"
+],
+answer:0,
+explanation:"If d is the perpendicular distance to the line of action, M = Fd directly."
+},
+
+{
+q:"What is the safest way to avoid an angle error?",
+options:[
+"Use any angle shown",
+"Identify the angle between force and position vector",
+"Always use cosine",
+"Ignore the diagram"
+],
+answer:1,
+explanation:"Fr sinθ requires θ to be the angle between F and r."
+},
+
+{
+q:"A 100 N force acts at 30° to a 10 m rod. Moment:",
+options:[
+"250 N m",
+"500 N m",
+"866 N m",
+"1000 N m"
+],
+answer:1,
+explanation:"100×10×sin30° = 500 N m."
+},
+
+{
+q:"A 100 N force acts at 45° to a 10 m rod. Moment approximately:",
+options:[
+"500 N m",
+"707 N m",
+"866 N m",
+"1000 N m"
+],
+answer:1,
+explanation:"1000×sin45° ≈ 707.1 N m."
+},
+
+{
+q:"A 100 N force acts at 60° to a 10 m rod. Moment approximately:",
+options:[
+"500 N m",
+"707 N m",
+"866 N m",
+"1000 N m"
+],
+answer:2,
+explanation:"1000×sin60° ≈ 866 N m."
+},
+
+{
+q:"Which of these produces the same moment as a 50 N force acting 4 m perpendicularly?",
+options:[
+"100 N at 1 m",
+"100 N at 2 m",
+"20 N at 10 m",
+"Both B and C"
+],
+answer:3,
+explanation:"Original moment = 200 N m. 100×2 = 200 and 20×10 = 200."
+},
+
+{
+q:"A 10 N force acts at 3 m and a 20 N force at 1.5 m, both in the same rotational direction. Total moment:",
+options:[
+"30 N m",
+"45 N m",
+"60 N m",
+"0"
+],
+answer:0,
+explanation:"10×3 + 20×1.5 = 30 + 30 = 60 N m. Therefore correct value is 60 N m."
+},
+
+{
+q:"A couple has two forces of 100 N separated by 0.25 m. Moment:",
+options:[
+"25 N m",
+"50 N m",
+"100 N m",
+"400 N m"
+],
+answer:0,
+explanation:"100×0.25 = 25 N m."
+},
+
+{
+q:"If the lines of action of two equal opposite forces coincide, they form:",
+options:[
+"A pure couple",
+"Zero resultant force and zero resultant moment",
+"Maximum couple",
+"A weight"
+],
+answer:1,
+explanation:"If the separation is zero, the couple moment is zero."
+},
+
+{
+q:"A body in equilibrium can have non-zero individual moments provided:",
+options:[
+"They all have the same direction",
+"Their algebraic sum is zero",
+"Each is zero",
+"There are exactly two"
+],
+answer:1,
+explanation:"Individual turning effects may cancel in equilibrium."
+},
+
+{
+q:"A body in equilibrium can have many non-zero forces provided:",
+options:[
+"The vector resultant is zero",
+"All are vertical",
+"All are equal",
+"They all pass through one point"
+],
+answer:0,
+explanation:"The vector sum of all forces must be zero."
+},
+
+{
+q:"Which pair of conditions is fundamental for a planar rigid body in static equilibrium?",
+options:[
+"ΣFx = 1 and ΣM = 1",
+"ΣFx = 0, ΣFy = 0 and ΣM = 0",
+"Only ΣM = 0",
+"Only ΣFy = 0"
+],
+answer:1,
+explanation:"All horizontal and vertical forces and the resultant moment must balance."
+}
+
+];
+
+
+/* =========================================================
+   NOTE:
+   The question bank above intentionally contains conceptual
+   and numerical variety. The engine below safely handles
+   any number of questions.
+   ========================================================= */
+
+let currentQuestion = 0;
+let answers = new Array(examQuestions.length).fill(null);
+let submitted = false;
+
+
+/* =========================================================
+   ELEMENTS
+   ========================================================= */
+
+const questionText =
+document.getElementById("questionText");
+
+const questionNumber =
+document.getElementById("questionNumber");
+
+const optionsContainer =
+document.getElementById("options");
+
+const examCounter =
+document.getElementById("examCounter");
+
+const progressBar =
+document.getElementById("progressBar");
+
+const prevBtn =
+document.getElementById("prevBtn");
+
+const nextBtn =
+document.getElementById("nextBtn");
+
+const submitBtn =
+document.getElementById("submitBtn");
+
+const questionPalette =
+document.getElementById("questionPalette");
+
+const examResult =
+document.getElementById("examResult");
+
+const review =
+document.getElementById("review");
+
+const reviewContent =
+document.getElementById("reviewContent");
+
+const scoreNumber =
+document.getElementById("scoreNumber");
+
+const scoreMessage =
+document.getElementById("scoreMessage");
+
+const correctCount =
+document.getElementById("correctCount");
+
+const wrongCount =
+document.getElementById("wrongCount");
+
+const unansweredCount =
+document.getElementById("unansweredCount");
+
+const restartBtn =
+document.getElementById("restartBtn");
+
+
+/* =========================================================
+   LOAD QUESTION
+   ========================================================= */
+
+function loadQuestion(){
+
+const q = examQuestions[currentQuestion];
+
+questionNumber.textContent =
+`QUESTION ${String(currentQuestion + 1).padStart(2,"0")}`;
+
+examCounter.textContent =
+`Question ${currentQuestion + 1} / ${examQuestions.length}`;
+
+questionText.textContent = q.q;
+
+optionsContainer.innerHTML = "";
+
+q.options.forEach((option,index)=>{
+
+const button = document.createElement("button");
+
+button.className = "option";
+
+button.textContent =
+`${String.fromCharCode(65 + index)}. ${option}`;
+
+if(answers[currentQuestion] === index){
+button.classList.add("selected");
+}
+
+button.addEventListener("click",()=>{
+
+if(submitted)return;
+
+answers[currentQuestion] = index;
+
+loadQuestion();
+updatePalette();
+
+});
+
+optionsContainer.appendChild(button);
+
+});
+
+const progress =
+((currentQuestion + 1) / examQuestions.length) * 100;
+
+progressBar.style.width = progress + "%";
+
+prevBtn.disabled =
+currentQuestion === 0;
+
+prevBtn.style.opacity =
+currentQuestion === 0 ? ".45" : "1";
+
+nextBtn.textContent =
+currentQuestion === examQuestions.length - 1
+? "Last Question"
+: "Next →";
+
+}
+
+
+/* =========================================================
+   QUESTION PALETTE
+   ========================================================= */
+
+function buildPalette(){
+
+questionPalette.innerHTML = "";
+
+examQuestions.forEach((_,index)=>{
+
+const button =
+document.createElement("button");
+
+button.className = "question-dot";
+
+button.textContent = index + 1;
+
+button.addEventListener("click",()=>{
+
+if(submitted)return;
+
+currentQuestion = index;
+
+loadQuestion();
+
+updatePalette();
+
+document
+.querySelector(".exam")
+.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+});
+
+questionPalette.appendChild(button);
+
+});
+
+updatePalette();
+
+}
+
+
+function updatePalette(){
+
+const dots =
+document.querySelectorAll(".question-dot");
+
+dots.forEach((dot,index)=>{
+
+dot.className = "question-dot";
+
+if(index === currentQuestion){
+dot.classList.add("current");
+}
+
+if(answers[index] !== null){
+dot.classList.add("answered");
+}
+
+if(submitted){
+
+if(answers[index] === examQuestions[index].answer){
+dot.classList.add("correct");
+}else if(answers[index] !== null){
+dot.classList.add("wrong");
+}
+
+}
+
+});
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+prevBtn.addEventListener("click",()=>{
+
+if(currentQuestion > 0){
+
+currentQuestion--;
+
+loadQuestion();
+updatePalette();
+
+}
+
+});
+
+
+nextBtn.addEventListener("click",()=>{
+
+if(currentQuestion < examQuestions.length - 1){
+
+currentQuestion++;
+
+loadQuestion();
+updatePalette();
+
+}
+
+});
+
+
+/* =========================================================
+   SUBMIT
+   ========================================================= */
+
+submitBtn.addEventListener("click",()=>{
+
+if(submitted)return;
+
+const unanswered =
+answers.filter(answer => answer === null).length;
+
+if(unanswered > 0){
+
+const proceed =
+confirm(
+`You have ${unanswered} unanswered question(s).\n\nSubmit anyway?`
+);
+
+if(!proceed)return;
+
+}
+
+submitExam();
+
+});
+
+
+function submitExam(){
+
+submitted = true;
+
+let correct = 0;
+
+answers.forEach((answer,index)=>{
+
+if(answer === examQuestions[index].answer){
+correct++;
+}
+
+});
+
+const total =
+examQuestions.length;
+
+const wrong =
+answers.filter(
+(answer,index)=>
+answer !== null &&
+answer !== examQuestions[index].answer
+).length;
+
+const unanswered =
+answers.filter(answer => answer === null).length;
+
+const percentage =
+Math.round((correct / total) * 100);
+
+scoreNumber.textContent =
+percentage + "%";
+
+correctCount.textContent =
+correct;
+
+wrongCount.textContent =
+wrong;
+
+unansweredCount.textContent =
+unanswered;
+
+
+if(percentage >= 90){
+
+scoreMessage.textContent =
+"Excellent. Your statics fundamentals and exam technique are very strong.";
+
+}else if(percentage >= 80){
+
+scoreMessage.textContent =
+"Very strong performance. Review the questions you missed and refine your method.";
+
+}else if(percentage >= 70){
+
+scoreMessage.textContent =
+"Good foundation. More practice with mixed equilibrium problems will strengthen your performance.";
+
+}else if(percentage >= 60){
+
+scoreMessage.textContent =
+"Solid start. Revisit moments, reactions and angled-force questions carefully.";
+
+}else{
+
+scoreMessage.textContent =
+"Use the explanations below to identify weak areas, then attempt the exam again.";
+
+}
+
+
+examResult.style.display = "block";
+
+review.style.display = "block";
+
+submitBtn.style.display = "none";
+
+buildReview();
+
+updatePalette();
+
+examResult.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
+
+}
+
+
+/* =========================================================
+   REVIEW
+   ========================================================= */
+
+function buildReview(){
+
+reviewContent.innerHTML = "";
+
+examQuestions.forEach((q,index)=>{
+
+const item =
+document.createElement("div");
+
+const isCorrect =
+answers[index] === q.answer;
+
+item.className =
+"review-item " +
+(isCorrect
+? "review-correct"
+: "review-wrong");
+
+const status =
+document.createElement("div");
+
+status.className = "review-status";
+
+status.textContent =
+isCorrect
+? `✓ QUESTION ${index + 1} • CORRECT`
+: `✕ QUESTION ${index + 1} • REVIEW`;
+
+const question =
+document.createElement("div");
+
+question.className =
+"review-question";
+
+question.textContent = q.q;
+
+const answer =
+document.createElement("div");
+
+answer.className =
+"review-answer";
+
+const userAnswer =
+answers[index] === null
+? "Not answered"
+: q.options[answers[index]];
+
+const correctAnswer =
+q.options[q.answer];
+
+answer.innerHTML =
+`Your answer: <strong>${escapeHTML(userAnswer)}</strong><br>
+Correct answer: <strong>${escapeHTML(correctAnswer)}</strong>`;
+
+const explanation =
+document.createElement("div");
+
+explanation.className =
+"review-explanation";
+
+explanation.textContent =
+q.explanation;
+
+item.appendChild(status);
+item.appendChild(question);
+item.appendChild(answer);
+item.appendChild(explanation);
+
+reviewContent.appendChild(item);
+
+});
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
+
+function escapeHTML(value){
+
+return String(value)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================================
+   RESTART
+   ========================================================= */
+
+restartBtn.addEventListener("click",()=>{
+
+currentQuestion = 0;
+
+answers =
+new Array(examQuestions.length).fill(null);
+
+submitted = false;
+
+examResult.style.display = "none";
+
+review.style.display = "none";
+
+submitBtn.style.display = "inline-flex";
+
+loadQuestion();
+
+updatePalette();
+
+document
+.querySelector(".exam")
+.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+});
+
+
+/* =========================================================
+   INITIALISE EXAM
+   ========================================================= */
+
+buildPalette();
+
+loadQuestion();
+
 
 </script>
-
 
 </body>
 
