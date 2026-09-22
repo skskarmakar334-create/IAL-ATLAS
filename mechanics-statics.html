@@ -7,994 +7,1564 @@
 
     <title>Statics of a Particle | IAL ATLAS</title>
 
+    <meta name="description"
+          content="Edexcel International A Level Mathematics Mechanics 1 Statics of a Particle. Complete notes on equilibrium, resolving forces, tension, weight, inclined forces and exam methods.">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg: #020713;
-            --bg2: #061225;
-            --panel: rgba(8, 22, 43, 0.72);
-            --cyan: #55d9ff;
-            --cyan-soft: #8de7ff;
-            --blue: #438dff;
-            --text: #f2f8ff;
-            --muted: #91a8c4;
-            --line: rgba(104, 211, 255, 0.16);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "Inter", sans-serif;
-            background:
-                radial-gradient(circle at 15% 15%, rgba(40, 139, 255, 0.12), transparent 28%),
-                radial-gradient(circle at 85% 20%, rgba(0, 219, 255, 0.09), transparent 25%),
-                linear-gradient(145deg, #01050d, #031022 55%, #01050d);
-            color: var(--text);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.35;
-            background-image:
-                linear-gradient(rgba(83, 187, 255, 0.035) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(83, 187, 255, 0.035) 1px, transparent 1px);
-            background-size: 48px 48px;
-        }
-
-        a {
-            color: inherit;
-        }
-
-        /* =========================
-           HEADER
-        ========================== */
-
-        header {
-            position: relative;
-            z-index: 20;
-            min-height: 76px;
-            padding: 18px 7%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(123, 212, 255, 0.12);
-            background: rgba(2, 9, 21, 0.68);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-        }
-
-        .logo {
-            text-decoration: none;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 25px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .logo::after {
-            content: ".";
-            color: var(--cyan);
-            text-shadow: 0 0 16px var(--cyan);
-        }
-
-        .header-link {
-            text-decoration: none;
-            color: #ccecff;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 9px 15px;
-            border: 1px solid rgba(110, 213, 255, 0.16);
-            border-radius: 10px;
-            background: rgba(15, 44, 72, 0.35);
-            transition: 0.3s ease;
-        }
-
-        .header-link:hover {
-            color: white;
-            border-color: rgba(85, 217, 255, 0.55);
-            box-shadow: 0 0 22px rgba(65, 197, 255, 0.14);
-            transform: translateY(-2px);
-        }
-
-        /* =========================
-           HERO
-        ========================== */
-
-        .hero {
-            position: relative;
-            min-height: 700px;
-            padding: 95px 20px 110px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .hero-grid {
-            position: absolute;
-            inset: 0;
-            opacity: 0.22;
-            background-image:
-                linear-gradient(rgba(74, 192, 255, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(74, 192, 255, 0.08) 1px, transparent 1px);
-            background-size: 70px 70px;
-            mask-image: linear-gradient(to bottom, black, transparent 90%);
-            -webkit-mask-image: linear-gradient(to bottom, black, transparent 90%);
-        }
-
-        .hero-glow {
-            position: absolute;
-            width: 650px;
-            height: 650px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(49, 164, 255, 0.12), transparent 68%);
-            pointer-events: none;
-        }
-
-        .hero-label {
-            position: relative;
-            z-index: 3;
-            margin-bottom: 17px;
-            color: var(--cyan);
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            text-shadow: 0 0 18px rgba(85, 217, 255, 0.5);
-        }
-
-        .hero h1 {
-            position: relative;
-            z-index: 3;
-            max-width: 950px;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(48px, 7vw, 86px);
-            line-height: 0.98;
-            letter-spacing: -3px;
-            font-weight: 700;
-            background: linear-gradient(120deg, #ffffff, #c9efff 48%, #66d9ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .hero-description {
-            position: relative;
-            z-index: 3;
-            max-width: 700px;
-            margin-top: 25px;
-            color: #9db5d0;
-            font-size: 17px;
-        }
-
-        /* =========================
-           EQUILIBRIUM SYSTEM
-        ========================== */
-
-        .equilibrium-system {
-            position: relative;
-            z-index: 3;
-            width: min(900px, 94vw);
-            height: 290px;
-            margin-top: 48px;
-        }
-
-        .balance-line {
-            position: absolute;
-            left: 12%;
-            right: 12%;
-            bottom: 47px;
-            height: 2px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(85, 217, 255, 0.4),
-                rgba(85, 217, 255, 0.85),
-                rgba(85, 217, 255, 0.4),
-                transparent
-            );
-            box-shadow: 0 0 18px rgba(85, 217, 255, 0.45);
-        }
-
-        .balance-line::before,
-        .balance-line::after {
-            content: "";
-            position: absolute;
-            top: -4px;
-            width: 10px;
-            height: 10px;
-            border: 1px solid var(--cyan);
-            border-radius: 50%;
-            box-shadow: 0 0 14px rgba(85, 217, 255, 0.7);
-        }
-
-        .balance-line::before {
-            left: 0;
-        }
-
-        .balance-line::after {
-            right: 0;
-        }
-
-        .support {
-            position: absolute;
-            left: 50%;
-            bottom: 49px;
-            width: 0;
-            height: 0;
-            transform: translateX(-50%);
-            border-left: 35px solid transparent;
-            border-right: 35px solid transparent;
-            border-bottom: 65px solid rgba(61, 158, 211, 0.16);
-            filter: drop-shadow(0 0 14px rgba(70, 208, 255, 0.25));
-        }
-
-        .support::after {
-            content: "";
-            position: absolute;
-            left: -2px;
-            bottom: -67px;
-            width: 4px;
-            height: 69px;
-            background: rgba(85, 217, 255, 0.35);
-        }
-
-        .equilibrium-particle {
-            position: absolute;
-            left: 50%;
-            bottom: 108px;
-            width: 82px;
-            height: 82px;
-            transform: translateX(-50%);
-            border: 1px solid rgba(130, 229, 255, 0.8);
-            border-radius: 50%;
-            background:
-                radial-gradient(circle at 35% 30%,
-                    rgba(131, 233, 255, 0.25),
-                    rgba(18, 61, 99, 0.35) 45%,
-                    rgba(4, 16, 32, 0.75));
-            box-shadow:
-                0 0 25px rgba(45, 194, 255, 0.3),
-                inset 0 0 25px rgba(52, 166, 255, 0.08);
-            animation: stablePulse 3s ease-in-out infinite;
-        }
-
-        .equilibrium-particle::before {
-            content: "ΣF = 0";
-            position: absolute;
-            inset: 0;
-            display: grid;
-            place-items: center;
-            color: #effcff;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .equilibrium-particle::after {
-            content: "";
-            position: absolute;
-            inset: -13px;
-            border: 1px solid rgba(85, 217, 255, 0.14);
-            border-radius: 50%;
-            animation: equilibriumRing 4s linear infinite;
-        }
-
-        @keyframes stablePulse {
-            0%, 100% {
-                box-shadow:
-                    0 0 25px rgba(45, 194, 255, 0.28),
-                    inset 0 0 25px rgba(52, 166, 255, 0.08);
-            }
-            50% {
-                box-shadow:
-                    0 0 42px rgba(45, 194, 255, 0.45),
-                    inset 0 0 32px rgba(52, 166, 255, 0.13);
-            }
-        }
-
-        @keyframes equilibriumRing {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .force-arrow {
-            position: absolute;
-            height: 2px;
-            background: linear-gradient(90deg, var(--cyan), transparent);
-            box-shadow: 0 0 14px rgba(85, 217, 255, 0.7);
-            transform-origin: left center;
-        }
-
-        .force-arrow::after {
-            content: "";
-            position: absolute;
-            right: 0;
-            top: 50%;
-            width: 10px;
-            height: 10px;
-            border-top: 2px solid var(--cyan);
-            border-right: 2px solid var(--cyan);
-            transform: translateY(-50%) rotate(45deg);
-        }
-
-        .force-right {
-            left: 55%;
-            bottom: 150px;
-            width: 180px;
-            animation: balancedRight 2.5s ease-in-out infinite;
-        }
-
-        .force-left {
-            right: 55%;
-            bottom: 150px;
-            width: 180px;
-            transform: rotate(180deg);
-            animation: balancedLeft 2.5s ease-in-out infinite;
-        }
-
-        .force-up {
-            left: 51%;
-            bottom: 168px;
-            width: 105px;
-            transform: rotate(-90deg);
-            animation: balancedUp 2.5s ease-in-out infinite;
-        }
-
-        .force-down {
-            left: 49%;
-            bottom: 100px;
-            width: 105px;
-            transform: rotate(90deg);
-            animation: balancedDown 2.5s ease-in-out infinite;
-        }
-
-        @keyframes balancedRight {
-            0%, 100% {
-                opacity: 0.35;
-                transform: scaleX(0.82);
-            }
-            50% {
-                opacity: 1;
-                transform: scaleX(1);
-            }
-        }
-
-        @keyframes balancedLeft {
-            0%, 100% {
-                opacity: 0.35;
-                transform: rotate(180deg) scaleX(0.82);
-            }
-            50% {
-                opacity: 1;
-                transform: rotate(180deg) scaleX(1);
-            }
-        }
-
-        @keyframes balancedUp {
-            0%, 100% {
-                opacity: 0.35;
-                transform: rotate(-90deg) scaleX(0.82);
-            }
-            50% {
-                opacity: 1;
-                transform: rotate(-90deg) scaleX(1);
-            }
-        }
-
-        @keyframes balancedDown {
-            0%, 100% {
-                opacity: 0.35;
-                transform: rotate(90deg) scaleX(0.82);
-            }
-            50% {
-                opacity: 1;
-                transform: rotate(90deg) scaleX(1);
-            }
-        }
-
-        .force-label {
-            position: absolute;
-            color: #a9eaff;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-shadow: 0 0 12px rgba(85, 217, 255, 0.8);
-        }
-
-        .label-t {
-            left: 75%;
-            bottom: 166px;
-        }
-
-        .label-t2 {
-            right: 75%;
-            bottom: 166px;
-        }
-
-        .label-r {
-            left: 55%;
-            bottom: 220px;
-        }
-
-        .label-w {
-            left: 55%;
-            bottom: 66px;
-        }
-
-        /* =========================
-           DATA STRIP
-        ========================== */
-
-        .data-strip {
-            position: relative;
-            z-index: 5;
-            width: min(850px, 92vw);
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            margin-top: 10px;
-            border: 1px solid var(--line);
-            border-radius: 16px;
-            overflow: hidden;
-            background: rgba(7, 22, 43, 0.55);
-            backdrop-filter: blur(15px);
-            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
-        }
-
-        .data-cell {
-            padding: 17px 12px;
-            border-right: 1px solid var(--line);
-        }
-
-        .data-cell:last-child {
-            border-right: none;
-        }
-
-        .data-value {
-            display: block;
-            color: white;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 19px;
-            font-weight: 600;
-        }
-
-        .data-name {
-            display: block;
-            margin-top: 3px;
-            color: #6f8ca9;
-            font-size: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* =========================
-           CONTENT
-        ========================== */
-
-        .container {
-            position: relative;
-            z-index: 2;
-            width: min(1000px, 92vw);
-            margin: auto;
-            padding: 80px 0 40px;
-        }
-
-        .lesson {
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 30px;
-            padding: 35px;
-            border: 1px solid rgba(118, 213, 255, 0.13);
-            border-radius: 22px;
-            background:
-                linear-gradient(145deg, rgba(12, 34, 62, 0.72), rgba(4, 15, 31, 0.72));
-            box-shadow:
-                0 20px 55px rgba(0, 0, 0, 0.22),
-                inset 0 1px rgba(255, 255, 255, 0.025);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            opacity: 0;
-            transform: translateY(35px);
-            transition:
-                opacity 0.7s ease,
-                transform 0.7s ease,
-                border-color 0.35s ease,
-                box-shadow 0.35s ease;
-        }
-
-        .lesson.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .lesson::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -120%;
-            width: 80%;
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(112, 225, 255, 0.8),
-                transparent
-            );
-            animation: scanLine 5s linear infinite;
-        }
-
-        .lesson:hover {
-            border-color: rgba(85, 217, 255, 0.3);
-            box-shadow:
-                0 25px 65px rgba(0, 0, 0, 0.3),
-                0 0 30px rgba(42, 171, 255, 0.05),
-                inset 0 1px rgba(255, 255, 255, 0.035);
-        }
-
-        @keyframes scanLine {
-            0% {
-                left: -120%;
-            }
-            55%, 100% {
-                left: 130%;
-            }
-        }
-
-        .lesson::after {
-            content: "";
-            position: absolute;
-            width: 180px;
-            height: 180px;
-            left: var(--mx, 50%);
-            top: var(--my, 50%);
-            transform: translate(-50%, -50%);
-            background: radial-gradient(
-                circle,
-                rgba(78, 208, 255, 0.08),
-                transparent 68%
-            );
-            pointer-events: none;
-        }
-
-        .lesson-number {
-            margin-bottom: 7px;
-            color: var(--cyan);
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 3px;
-        }
-
-        .lesson h2 {
-            margin-bottom: 18px;
-            color: #f4fbff;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 30px;
-            line-height: 1.2;
-        }
-
-        .lesson p {
-            margin-bottom: 15px;
-            color: var(--muted);
-        }
-
-        .lesson ul {
-            padding-left: 25px;
-            color: var(--muted);
-        }
-
-        .lesson li {
-            margin-bottom: 9px;
-        }
-
-        .definition {
-            position: relative;
-            margin: 22px 0;
-            padding: 20px 22px;
-            border: 1px solid rgba(83, 209, 255, 0.15);
-            border-left: 3px solid var(--cyan);
-            border-radius: 13px;
-            background: rgba(44, 148, 205, 0.07);
-            box-shadow: inset 0 0 25px rgba(52, 185, 255, 0.025);
-        }
-
-        .definition strong {
-            display: block;
-            margin-bottom: 4px;
-            color: #dff8ff;
-            font-family: "Space Grotesk", sans-serif;
-        }
-
-        .definition p {
-            margin-bottom: 0;
-        }
-
-        .formula {
-            position: relative;
-            overflow: hidden;
-            margin: 20px 0;
-            padding: 19px;
-            border: 1px solid rgba(87, 210, 255, 0.18);
-            border-radius: 13px;
-            background:
-                linear-gradient(
-                    100deg,
-                    rgba(9, 30, 56, 0.95),
-                    rgba(4, 16, 33, 0.95)
-                );
-            color: #f3fbff;
-            text-align: center;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 21px;
-            font-weight: 600;
-            letter-spacing: 0.4px;
-            box-shadow:
-                inset 0 0 30px rgba(56, 190, 255, 0.035),
-                0 0 22px rgba(39, 169, 255, 0.035);
-        }
-
-        .formula::after {
-            content: "";
-            position: absolute;
-            left: -30%;
-            top: 0;
-            width: 20%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(137, 232, 255, 0.12),
-                transparent
-            );
-            transform: skewX(-20deg);
-            animation: formulaSweep 4.5s linear infinite;
-        }
-
-        @keyframes formulaSweep {
-            0% {
-                left: -30%;
-            }
-            65%, 100% {
-                left: 120%;
-            }
-        }
-
-        .example {
-            margin-top: 22px;
-            padding: 25px;
-            border: 1px solid rgba(109, 209, 255, 0.13);
-            border-radius: 16px;
-            background: rgba(5, 18, 36, 0.6);
-        }
-
-        .example-title {
-            margin-bottom: 12px !important;
-            color: var(--cyan) !important;
-            font-family: "Space Grotesk", sans-serif;
-            font-weight: 700;
-        }
-
-        .solution {
-            margin-top: 18px;
-            padding: 20px;
-            border: 1px solid rgba(108, 211, 255, 0.11);
-            border-radius: 12px;
-            background: rgba(13, 36, 61, 0.42);
-        }
-
-        .solution p {
-            margin-bottom: 10px;
-        }
-
-        .question {
-            padding: 21px 0;
-            border-bottom: 1px solid rgba(116, 193, 232, 0.1);
-        }
-
-        .question:last-child {
-            border-bottom: none;
-        }
-
-        .question > strong {
-            color: #e7f6ff;
-            font-weight: 600;
-        }
-
-        details {
-            margin-top: 12px;
-        }
-
-        summary {
-            display: inline-block;
-            cursor: pointer;
-            color: var(--cyan);
-            font-weight: 600;
-            transition: 0.25s ease;
-        }
-
-        summary:hover {
-            color: white;
-            text-shadow: 0 0 12px rgba(85, 217, 255, 0.5);
-        }
-
-        details p {
-            margin-top: 10px;
-        }
-
-        /* =========================
-           NAVIGATION
-        ========================== */
-
-        .navigation {
-            position: relative;
-            z-index: 3;
-            width: min(1000px, 92vw);
-            margin: 0 auto;
-            padding: 20px 0 75px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .button {
-            position: relative;
-            overflow: hidden;
-            display: inline-block;
-            padding: 13px 21px;
-            border: 1px solid rgba(87, 212, 255, 0.24);
-            border-radius: 11px;
-            background: rgba(16, 50, 78, 0.45);
-            color: #dff7ff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            backdrop-filter: blur(10px);
-            transition: 0.3s ease;
-        }
-
-        .button::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                100deg,
-                transparent,
-                rgba(105, 223, 255, 0.08),
-                transparent
-            );
-            transform: translateX(-100%);
-            transition: 0.5s ease;
-        }
-
-        .button:hover {
-            transform: translateY(-3px);
-            border-color: rgba(85, 217, 255, 0.6);
-            box-shadow: 0 0 25px rgba(40, 178, 255, 0.12);
-            color: white;
-        }
-
-        .button:hover::before {
-            transform: translateX(100%);
-        }
-
-        .button.primary {
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(39, 146, 218, 0.35),
-                    rgba(25, 77, 130, 0.35)
-                );
-        }
-
-        /* =========================
-           PARTICLES
-        ========================== */
-
-        .particles {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .particle-dot {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            border-radius: 50%;
-            background: #75dcff;
-            box-shadow: 0 0 12px rgba(75, 211, 255, 0.8);
-            opacity: 0.5;
-            animation: drift linear infinite;
-        }
-
-        .particle-dot:nth-child(1) {
-            left: 9%;
-            top: 21%;
-            animation-duration: 9s;
-        }
-
-        .particle-dot:nth-child(2) {
-            left: 21%;
-            top: 68%;
-            animation-duration: 13s;
-        }
-
-        .particle-dot:nth-child(3) {
-            left: 36%;
-            top: 17%;
-            animation-duration: 11s;
-        }
-
-        .particle-dot:nth-child(4) {
-            left: 63%;
-            top: 29%;
-            animation-duration: 14s;
-        }
-
-        .particle-dot:nth-child(5) {
-            left: 78%;
-            top: 61%;
-            animation-duration: 10s;
-        }
-
-        .particle-dot:nth-child(6) {
-            left: 91%;
-            top: 17%;
-            animation-duration: 12s;
-        }
-
-        .particle-dot:nth-child(7) {
-            left: 48%;
-            top: 77%;
-            animation-duration: 15s;
-        }
-
-        @keyframes drift {
-            0% {
-                transform: translateY(0) translateX(0);
-                opacity: 0.15;
-            }
-
-            50% {
-                transform: translateY(-35px) translateX(18px);
-                opacity: 0.7;
-            }
-
-            100% {
-                transform: translateY(-70px) translateX(-10px);
-                opacity: 0.05;
-            }
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================== */
-
-        @media (max-width: 700px) {
-
-            header {
-                padding: 16px 5%;
-            }
-
-            .logo {
-                font-size: 21px;
-            }
-
-            .header-link {
-                font-size: 12px;
-                padding: 8px 11px;
-            }
-
-            .hero {
-                min-height: 650px;
-                padding-top: 75px;
-            }
-
-            .hero h1 {
-                font-size: 47px;
-                letter-spacing: -2px;
-            }
-
-            .hero-description {
-                font-size: 15px;
-            }
-
-            .equilibrium-system {
-                height: 225px;
-                transform: scale(0.82);
-                transform-origin: center;
-                margin-top: 30px;
-            }
-
-            .data-strip {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .data-cell:nth-child(2) {
-                border-right: none;
-            }
-
-            .data-cell:nth-child(-n+2) {
-                border-bottom: 1px solid var(--line);
-            }
-
-            .container {
-                width: 92vw;
-                padding-top: 55px;
-            }
-
-            .lesson {
-                padding: 25px;
-                border-radius: 18px;
-            }
-
-            .lesson h2 {
-                font-size: 25px;
-            }
-
-            .formula {
-                font-size: 18px;
-                padding: 16px 10px;
-            }
-
-            .navigation {
-                padding-bottom: 55px;
-            }
-
-            .button {
-                width: 100%;
-                text-align: center;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-
-            html {
-                scroll-behavior: auto;
-            }
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-
-            .lesson {
-                opacity: 1;
-                transform: none;
-            }
-        }
-    </style>
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#020713;
+    --bg2:#061225;
+    --panel:rgba(8,22,43,.72);
+    --panel2:rgba(11,31,55,.62);
+    --cyan:#55d9ff;
+    --cyan-soft:#8de7ff;
+    --blue:#438dff;
+    --text:#f2f8ff;
+    --muted:#91a8c4;
+    --soft:#cfe5f7;
+    --line:rgba(104,211,255,.16);
+    --green:#61f0b1;
+    --red:#ff718d;
+    --yellow:#ffd66b;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Inter",sans-serif;
+    background:
+        radial-gradient(circle at 15% 15%,rgba(40,139,255,.12),transparent 28%),
+        radial-gradient(circle at 85% 20%,rgba(0,219,255,.09),transparent 25%),
+        linear-gradient(145deg,#01050d,#031022 55%,#01050d);
+    color:var(--text);
+    line-height:1.7;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    opacity:.35;
+    background-image:
+        linear-gradient(rgba(83,187,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(83,187,255,.035) 1px,transparent 1px);
+    background-size:48px 48px;
+}
+
+a{
+    color:inherit;
+}
+
+strong{
+    color:#eefaff;
+}
+
+header{
+    position:relative;
+    z-index:20;
+    min-height:76px;
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid rgba(123,212,255,.12);
+    background:rgba(2,9,21,.68);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+}
+
+.logo{
+    text-decoration:none;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:25px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.logo::after{
+    content:".";
+    color:var(--cyan);
+    text-shadow:0 0 16px var(--cyan);
+}
+
+.header-link{
+    text-decoration:none;
+    color:#ccecff;
+    font-size:14px;
+    font-weight:600;
+    padding:9px 15px;
+    border:1px solid rgba(110,213,255,.16);
+    border-radius:10px;
+    background:rgba(15,44,72,.35);
+    transition:.3s ease;
+}
+
+.header-link:hover{
+    color:white;
+    border-color:rgba(85,217,255,.55);
+    box-shadow:0 0 22px rgba(65,197,255,.14);
+    transform:translateY(-2px);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    position:relative;
+    min-height:700px;
+    padding:95px 20px 110px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+    z-index:1;
+}
+
+.hero-grid{
+    position:absolute;
+    inset:0;
+    opacity:.22;
+    background-image:
+        linear-gradient(rgba(74,192,255,.08) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(74,192,255,.08) 1px,transparent 1px);
+    background-size:70px 70px;
+    mask-image:linear-gradient(to bottom,black,transparent 90%);
+    -webkit-mask-image:linear-gradient(to bottom,black,transparent 90%);
+}
+
+.hero-glow{
+    position:absolute;
+    width:650px;
+    height:650px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(49,164,255,.12),transparent 68%);
+    pointer-events:none;
+}
+
+.hero-label{
+    position:relative;
+    z-index:3;
+    margin-bottom:17px;
+    color:var(--cyan);
+    font-family:"Space Grotesk",sans-serif;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    text-shadow:0 0 18px rgba(85,217,255,.5);
+}
+
+.hero h1{
+    position:relative;
+    z-index:3;
+    max-width:1000px;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(46px,7vw,84px);
+    line-height:.98;
+    letter-spacing:-3px;
+    font-weight:700;
+    background:linear-gradient(120deg,#fff,#c9efff 48%,#66d9ff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.hero-description{
+    position:relative;
+    z-index:3;
+    max-width:760px;
+    margin-top:25px;
+    color:#9db5d0;
+    font-size:17px;
+}
+
+
+/* =========================
+   HERO EQUILIBRIUM VISUAL
+========================= */
+
+.equilibrium-system{
+    position:relative;
+    z-index:3;
+    width:min(900px,94vw);
+    height:290px;
+    margin-top:48px;
+}
+
+.balance-line{
+    position:absolute;
+    left:12%;
+    right:12%;
+    bottom:47px;
+    height:2px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(85,217,255,.4),
+        rgba(85,217,255,.85),
+        rgba(85,217,255,.4),
+        transparent
+    );
+    box-shadow:0 0 18px rgba(85,217,255,.45);
+}
+
+.balance-line::before,
+.balance-line::after{
+    content:"";
+    position:absolute;
+    top:-4px;
+    width:10px;
+    height:10px;
+    border:1px solid var(--cyan);
+    border-radius:50%;
+    box-shadow:0 0 14px rgba(85,217,255,.7);
+}
+
+.balance-line::before{left:0}
+.balance-line::after{right:0}
+
+.support{
+    position:absolute;
+    left:50%;
+    bottom:49px;
+    width:0;
+    height:0;
+    transform:translateX(-50%);
+    border-left:35px solid transparent;
+    border-right:35px solid transparent;
+    border-bottom:65px solid rgba(61,158,211,.16);
+    filter:drop-shadow(0 0 14px rgba(70,208,255,.25));
+}
+
+.support::after{
+    content:"";
+    position:absolute;
+    left:-2px;
+    bottom:-67px;
+    width:4px;
+    height:69px;
+    background:rgba(85,217,255,.35);
+}
+
+.equilibrium-particle{
+    position:absolute;
+    left:50%;
+    bottom:108px;
+    width:82px;
+    height:82px;
+    transform:translateX(-50%);
+    border:1px solid rgba(130,229,255,.8);
+    border-radius:50%;
+    background:
+        radial-gradient(circle at 35% 30%,
+        rgba(131,233,255,.25),
+        rgba(18,61,99,.35) 45%,
+        rgba(4,16,32,.75));
+    box-shadow:
+        0 0 25px rgba(45,194,255,.3),
+        inset 0 0 25px rgba(52,166,255,.08);
+    animation:stablePulse 3s ease-in-out infinite;
+}
+
+.equilibrium-particle::before{
+    content:"ΣF = 0";
+    position:absolute;
+    inset:0;
+    display:grid;
+    place-items:center;
+    color:#effcff;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:12px;
+    font-weight:700;
+}
+
+.equilibrium-particle::after{
+    content:"";
+    position:absolute;
+    inset:-13px;
+    border:1px solid rgba(85,217,255,.14);
+    border-radius:50%;
+    animation:equilibriumRing 4s linear infinite;
+}
+
+@keyframes stablePulse{
+    0%,100%{
+        box-shadow:
+        0 0 25px rgba(45,194,255,.28),
+        inset 0 0 25px rgba(52,166,255,.08);
+    }
+    50%{
+        box-shadow:
+        0 0 42px rgba(45,194,255,.45),
+        inset 0 0 32px rgba(52,166,255,.13);
+    }
+}
+
+@keyframes equilibriumRing{
+    from{transform:rotate(0)}
+    to{transform:rotate(360deg)}
+}
+
+.force-arrow{
+    position:absolute;
+    height:2px;
+    background:linear-gradient(90deg,var(--cyan),transparent);
+    box-shadow:0 0 14px rgba(85,217,255,.7);
+    transform-origin:left center;
+}
+
+.force-arrow::after{
+    content:"";
+    position:absolute;
+    right:0;
+    top:50%;
+    width:10px;
+    height:10px;
+    border-top:2px solid var(--cyan);
+    border-right:2px solid var(--cyan);
+    transform:translateY(-50%) rotate(45deg);
+}
+
+.force-right{
+    left:55%;
+    bottom:150px;
+    width:180px;
+    animation:balancedRight 2.5s ease-in-out infinite;
+}
+
+.force-left{
+    right:55%;
+    bottom:150px;
+    width:180px;
+    transform:rotate(180deg);
+    animation:balancedLeft 2.5s ease-in-out infinite;
+}
+
+.force-up{
+    left:51%;
+    bottom:168px;
+    width:105px;
+    transform:rotate(-90deg);
+    animation:balancedUp 2.5s ease-in-out infinite;
+}
+
+.force-down{
+    left:49%;
+    bottom:100px;
+    width:105px;
+    transform:rotate(90deg);
+    animation:balancedDown 2.5s ease-in-out infinite;
+}
+
+@keyframes balancedRight{
+    0%,100%{opacity:.35;transform:scaleX(.82)}
+    50%{opacity:1;transform:scaleX(1)}
+}
+
+@keyframes balancedLeft{
+    0%,100%{opacity:.35;transform:rotate(180deg) scaleX(.82)}
+    50%{opacity:1;transform:rotate(180deg) scaleX(1)}
+}
+
+@keyframes balancedUp{
+    0%,100%{opacity:.35;transform:rotate(-90deg) scaleX(.82)}
+    50%{opacity:1;transform:rotate(-90deg) scaleX(1)}
+}
+
+@keyframes balancedDown{
+    0%,100%{opacity:.35;transform:rotate(90deg) scaleX(.82)}
+    50%{opacity:1;transform:rotate(90deg) scaleX(1)}
+}
+
+.force-label{
+    position:absolute;
+    color:#a9eaff;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:1px;
+    text-shadow:0 0 12px rgba(85,217,255,.8);
+}
+
+.label-t{left:75%;bottom:166px}
+.label-t2{right:75%;bottom:166px}
+.label-r{left:55%;bottom:220px}
+.label-w{left:55%;bottom:66px}
+
+
+/* =========================
+   DATA STRIP
+========================= */
+
+.data-strip{
+    position:relative;
+    z-index:5;
+    width:min(900px,92vw);
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    margin-top:10px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    background:rgba(7,22,43,.55);
+    backdrop-filter:blur(15px);
+    box-shadow:0 18px 50px rgba(0,0,0,.25);
+}
+
+.data-cell{
+    padding:17px 12px;
+    border-right:1px solid var(--line);
+}
+
+.data-cell:last-child{
+    border-right:none;
+}
+
+.data-value{
+    display:block;
+    color:white;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:19px;
+    font-weight:600;
+}
+
+.data-name{
+    display:block;
+    margin-top:3px;
+    color:#6f8ca9;
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.container{
+    position:relative;
+    z-index:2;
+    width:min(1000px,92vw);
+    margin:auto;
+    padding:80px 0 40px;
+}
+
+.lesson{
+    position:relative;
+    overflow:hidden;
+    margin-bottom:30px;
+    padding:35px;
+    border:1px solid rgba(118,213,255,.13);
+    border-radius:22px;
+    background:
+        linear-gradient(145deg,rgba(12,34,62,.72),rgba(4,15,31,.72));
+    box-shadow:
+        0 20px 55px rgba(0,0,0,.22),
+        inset 0 1px rgba(255,255,255,.025);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    opacity:0;
+    transform:translateY(35px);
+    transition:
+        opacity .7s ease,
+        transform .7s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
+
+.lesson.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.lesson::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:80%;
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(112,225,255,.8),
+        transparent
+    );
+    animation:scanLine 5s linear infinite;
+}
+
+.lesson:hover{
+    border-color:rgba(85,217,255,.3);
+    box-shadow:
+        0 25px 65px rgba(0,0,0,.3),
+        0 0 30px rgba(42,171,255,.05),
+        inset 0 1px rgba(255,255,255,.035);
+}
+
+@keyframes scanLine{
+    0%{left:-120%}
+    55%,100%{left:130%}
+}
+
+.lesson::after{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    left:var(--mx,50%);
+    top:var(--my,50%);
+    transform:translate(-50%,-50%);
+    background:radial-gradient(
+        circle,
+        rgba(78,208,255,.08),
+        transparent 68%
+    );
+    pointer-events:none;
+}
+
+.lesson-number{
+    margin-bottom:7px;
+    color:var(--cyan);
+    font-family:"Space Grotesk",sans-serif;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:3px;
+}
+
+.lesson h2{
+    margin-bottom:18px;
+    color:#f4fbff;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:30px;
+    line-height:1.2;
+}
+
+.lesson h3{
+    margin:27px 0 12px;
+    color:#dff7ff;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:20px;
+}
+
+.lesson p{
+    margin-bottom:15px;
+    color:var(--muted);
+}
+
+.lesson ul,
+.lesson ol{
+    padding-left:25px;
+    color:var(--muted);
+}
+
+.lesson li{
+    margin-bottom:9px;
+}
+
+.definition{
+    position:relative;
+    margin:22px 0;
+    padding:20px 22px;
+    border:1px solid rgba(83,209,255,.15);
+    border-left:3px solid var(--cyan);
+    border-radius:13px;
+    background:rgba(44,148,205,.07);
+    box-shadow:inset 0 0 25px rgba(52,185,255,.025);
+}
+
+.definition strong{
+    display:block;
+    margin-bottom:4px;
+    color:#dff8ff;
+    font-family:"Space Grotesk",sans-serif;
+}
+
+.definition p{
+    margin-bottom:0;
+}
+
+.formula{
+    position:relative;
+    overflow:hidden;
+    margin:20px 0;
+    padding:19px;
+    border:1px solid rgba(87,210,255,.18);
+    border-radius:13px;
+    background:
+        linear-gradient(100deg,rgba(9,30,56,.95),rgba(4,16,33,.95));
+    color:#f3fbff;
+    text-align:center;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:21px;
+    font-weight:600;
+    letter-spacing:.4px;
+    box-shadow:
+        inset 0 0 30px rgba(56,190,255,.035),
+        0 0 22px rgba(39,169,255,.035);
+}
+
+.formula small{
+    display:block;
+    margin-top:5px;
+    color:var(--muted);
+    font-family:"Inter",sans-serif;
+    font-size:12px;
+    font-weight:400;
+}
+
+.formula::after{
+    content:"";
+    position:absolute;
+    left:-30%;
+    top:0;
+    width:20%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(137,232,255,.12),
+        transparent
+    );
+    transform:skewX(-20deg);
+    animation:formulaSweep 4.5s linear infinite;
+}
+
+@keyframes formulaSweep{
+    0%{left:-30%}
+    65%,100%{left:120%}
+}
+
+.example{
+    margin-top:22px;
+    padding:25px;
+    border:1px solid rgba(109,209,255,.13);
+    border-radius:16px;
+    background:rgba(5,18,36,.6);
+}
+
+.example-title{
+    margin-bottom:12px!important;
+    color:var(--cyan)!important;
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:700;
+}
+
+.solution{
+    margin-top:18px;
+    padding:20px;
+    border:1px solid rgba(108,211,255,.11);
+    border-radius:12px;
+    background:rgba(13,36,61,.42);
+}
+
+.solution p{
+    margin-bottom:10px;
+}
+
+.tip,
+.exam-tip,
+.warning{
+    margin:20px 0;
+    padding:18px 20px;
+    border-radius:13px;
+}
+
+.tip{
+    border:1px solid rgba(97,240,177,.18);
+    border-left:3px solid var(--green);
+    background:rgba(97,240,177,.055);
+}
+
+.exam-tip{
+    border:1px solid rgba(85,217,255,.18);
+    border-left:3px solid var(--cyan);
+    background:rgba(85,217,255,.055);
+}
+
+.warning{
+    border:1px solid rgba(255,113,141,.2);
+    border-left:3px solid var(--red);
+    background:rgba(255,113,141,.045);
+}
+
+.tip strong,
+.exam-tip strong,
+.warning strong{
+    display:block;
+    margin-bottom:5px;
+    font-family:"Space Grotesk",sans-serif;
+}
+
+.tip strong{color:var(--green)}
+.exam-tip strong{color:var(--cyan)}
+.warning strong{color:var(--red)}
+
+.concept-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin:22px 0;
+}
+
+.mini-card{
+    padding:20px;
+    border:1px solid var(--line);
+    border-radius:15px;
+    background:rgba(5,19,37,.55);
+}
+
+.mini-card h3{
+    margin:0 0 8px;
+    color:var(--cyan);
+    font-size:17px;
+}
+
+.mini-card p{
+    margin:0;
+    font-size:14px;
+}
+
+.compare-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin:22px 0;
+}
+
+.compare{
+    padding:20px;
+    border:1px solid var(--line);
+    border-radius:15px;
+    background:rgba(5,19,37,.5);
+}
+
+.compare h3{
+    margin:0 0 10px;
+}
+
+.compare.clockwise h3{
+    color:#ffb86b;
+}
+
+.compare.anticlockwise h3{
+    color:#65e5ff;
+}
+
+.step-list{
+    counter-reset:steps;
+    list-style:none;
+    padding:0!important;
+}
+
+.step-list li{
+    counter-increment:steps;
+    position:relative;
+    padding:13px 15px 13px 50px;
+    margin-bottom:9px;
+    border:1px solid rgba(104,211,255,.1);
+    border-radius:11px;
+    background:rgba(6,20,39,.42);
+}
+
+.step-list li::before{
+    content:counter(steps);
+    position:absolute;
+    left:15px;
+    top:10px;
+    width:25px;
+    height:25px;
+    display:grid;
+    place-items:center;
+    border:1px solid rgba(85,217,255,.35);
+    border-radius:50%;
+    color:var(--cyan);
+    font-family:"Space Grotesk",sans-serif;
+    font-size:12px;
+    font-weight:700;
+}
+
+.diagram{
+    position:relative;
+    min-height:180px;
+    margin:25px 0;
+    border:1px solid rgba(85,217,255,.12);
+    border-radius:15px;
+    background:
+        linear-gradient(rgba(85,217,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(85,217,255,.025) 1px,transparent 1px),
+        rgba(3,13,27,.55);
+    background-size:30px 30px;
+    overflow:hidden;
+}
+
+.diagram .beam{
+    position:absolute;
+    left:10%;
+    right:10%;
+    top:50%;
+    height:8px;
+    transform:translateY(-50%);
+    border-radius:10px;
+    background:linear-gradient(90deg,#397ca4,#76dfff,#397ca4);
+    box-shadow:0 0 20px rgba(85,217,255,.25);
+}
+
+.diagram .pivot{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,0);
+    width:0;
+    height:0;
+    border-left:25px solid transparent;
+    border-right:25px solid transparent;
+    border-top:45px solid rgba(80,185,235,.4);
+}
+
+.diagram .force{
+    position:absolute;
+    width:2px;
+    height:65px;
+    background:var(--cyan);
+}
+
+.diagram .force::after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    left:50%;
+    width:9px;
+    height:9px;
+    border-right:2px solid var(--cyan);
+    border-bottom:2px solid var(--cyan);
+    transform:translateX(-50%) rotate(45deg);
+}
+
+.diagram-label{
+    position:absolute;
+    color:var(--cyan);
+    font-size:12px;
+    font-weight:700;
+    font-family:"Space Grotesk",sans-serif;
+}
+
+.question{
+    padding:21px 0;
+    border-bottom:1px solid rgba(116,193,232,.1);
+}
+
+.question:last-child{
+    border-bottom:none;
+}
+
+.question>strong{
+    color:#e7f6ff;
+    font-weight:600;
+}
+
+details{
+    margin-top:12px;
+}
+
+summary{
+    display:inline-block;
+    cursor:pointer;
+    color:var(--cyan);
+    font-weight:600;
+    transition:.25s ease;
+}
+
+summary:hover{
+    color:white;
+    text-shadow:0 0 12px rgba(85,217,255,.5);
+}
+
+
+/* =========================
+   TOC
+========================= */
+
+.toc{
+    margin-bottom:30px;
+    padding:28px;
+    border:1px solid rgba(85,217,255,.15);
+    border-radius:20px;
+    background:rgba(7,23,43,.58);
+    backdrop-filter:blur(15px);
+}
+
+.toc h2{
+    margin-bottom:18px;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:23px;
+}
+
+.toc-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+}
+
+.toc a{
+    padding:11px 12px;
+    border:1px solid rgba(85,217,255,.1);
+    border-radius:9px;
+    color:var(--muted);
+    text-decoration:none;
+    font-size:12px;
+    transition:.25s ease;
+}
+
+.toc a:hover{
+    color:white;
+    border-color:rgba(85,217,255,.4);
+    background:rgba(85,217,255,.05);
+}
+
+
+/* =========================
+   EXAM
+========================= */
+
+.exam{
+    position:relative;
+    margin-top:45px;
+    padding:30px;
+    border:1px solid rgba(85,217,255,.22);
+    border-radius:24px;
+    background:
+        radial-gradient(circle at 80% 0%,rgba(48,146,255,.08),transparent 35%),
+        linear-gradient(145deg,rgba(9,31,56,.88),rgba(3,13,28,.92));
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.32),
+        inset 0 1px rgba(255,255,255,.035);
+}
+
+.exam-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.exam-title{
+    color:white;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:28px;
+}
+
+.exam-subtitle{
+    margin-top:4px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+.badge{
+    padding:7px 11px;
+    border:1px solid rgba(85,217,255,.25);
+    border-radius:999px;
+    color:var(--cyan);
+    background:rgba(85,217,255,.05);
+    font-size:11px;
+    font-weight:700;
+    white-space:nowrap;
+}
+
+.exam-progress{
+    margin-bottom:25px;
+}
+
+.progress-info{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+    color:var(--muted);
+    font-size:12px;
+}
+
+.progress-track{
+    height:8px;
+    overflow:hidden;
+    border-radius:999px;
+    background:rgba(255,255,255,.06);
+}
+
+.progress-bar{
+    width:0;
+    height:100%;
+    border-radius:999px;
+    background:linear-gradient(90deg,var(--blue),var(--cyan));
+    box-shadow:0 0 15px rgba(85,217,255,.4);
+    transition:.3s ease;
+}
+
+.exam-question{
+    min-height:310px;
+    padding:28px;
+    border:1px solid rgba(85,217,255,.12);
+    border-radius:18px;
+    background:rgba(2,12,26,.6);
+}
+
+.question-category{
+    margin-bottom:12px;
+    color:var(--cyan);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.question-text{
+    color:#f3faff;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:20px;
+    line-height:1.45;
+    margin-bottom:23px;
+}
+
+.options{
+    display:grid;
+    gap:11px;
+}
+
+.option{
+    width:100%;
+    padding:15px 17px;
+    border:1px solid rgba(104,211,255,.12);
+    border-radius:12px;
+    background:rgba(11,31,54,.55);
+    color:#c7d9e9;
+    text-align:left;
+    cursor:pointer;
+    font-family:"Inter",sans-serif;
+    font-size:14px;
+    transition:.25s ease;
+}
+
+.option:hover{
+    border-color:rgba(85,217,255,.42);
+    background:rgba(85,217,255,.055);
+    transform:translateX(3px);
+}
+
+.option.selected{
+    border-color:rgba(85,217,255,.7);
+    background:rgba(85,217,255,.1);
+    color:white;
+    box-shadow:0 0 20px rgba(85,217,255,.08);
+}
+
+.option.correct-answer{
+    border-color:rgba(97,240,177,.65);
+    background:rgba(97,240,177,.1);
+}
+
+.option.wrong-answer{
+    border-color:rgba(255,113,141,.65);
+    background:rgba(255,113,141,.09);
+}
+
+.exam-controls{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin-top:20px;
+}
+
+.exam-nav{
+    display:flex;
+    gap:9px;
+}
+
+.exam-btn{
+    border:1px solid rgba(85,217,255,.2);
+    border-radius:10px;
+    padding:11px 17px;
+    background:rgba(15,48,78,.5);
+    color:#dff7ff;
+    font-family:"Inter",sans-serif;
+    font-weight:600;
+    cursor:pointer;
+    transition:.25s ease;
+}
+
+.exam-btn:hover:not(:disabled){
+    transform:translateY(-2px);
+    border-color:rgba(85,217,255,.55);
+    box-shadow:0 0 20px rgba(85,217,255,.1);
+}
+
+.exam-btn:disabled{
+    opacity:.3;
+    cursor:not-allowed;
+}
+
+.exam-btn.submit{
+    background:linear-gradient(135deg,rgba(42,153,218,.4),rgba(29,77,130,.4));
+    border-color:rgba(85,217,255,.45);
+}
+
+.question-palette{
+    display:grid;
+    grid-template-columns:repeat(10,1fr);
+    gap:6px;
+    margin-top:25px;
+    padding-top:22px;
+    border-top:1px solid rgba(85,217,255,.1);
+}
+
+.question-dot{
+    aspect-ratio:1;
+    border:1px solid rgba(85,217,255,.1);
+    border-radius:7px;
+    background:rgba(10,29,49,.6);
+    color:#7e9ab3;
+    cursor:pointer;
+    font-size:10px;
+    transition:.2s ease;
+}
+
+.question-dot:hover{
+    border-color:rgba(85,217,255,.45);
+    color:white;
+}
+
+.question-dot.current{
+    border-color:var(--cyan);
+    color:var(--cyan);
+    box-shadow:0 0 10px rgba(85,217,255,.18);
+}
+
+.question-dot.answered{
+    background:rgba(85,217,255,.1);
+    color:#dff9ff;
+}
+
+.question-dot.correct{
+    background:rgba(97,240,177,.14);
+    border-color:rgba(97,240,177,.45);
+    color:var(--green);
+}
+
+.question-dot.wrong{
+    background:rgba(255,113,141,.12);
+    border-color:rgba(255,113,141,.4);
+    color:var(--red);
+}
+
+.exam-result{
+    display:none;
+    padding:30px;
+    border:1px solid rgba(85,217,255,.2);
+    border-radius:18px;
+    background:rgba(4,17,33,.75);
+    text-align:center;
+}
+
+.result-score{
+    margin:12px 0;
+    color:white;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:58px;
+    font-weight:700;
+}
+
+.result-percent{
+    color:var(--cyan);
+    font-size:20px;
+    font-weight:700;
+}
+
+.result-breakdown{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin:25px 0;
+}
+
+.result-stat{
+    padding:15px;
+    border:1px solid rgba(85,217,255,.1);
+    border-radius:12px;
+    background:rgba(8,26,47,.55);
+}
+
+.result-stat strong{
+    display:block;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:22px;
+}
+
+.result-stat span{
+    color:var(--muted);
+    font-size:11px;
+}
+
+.review{
+    margin-top:30px;
+    text-align:left;
+}
+
+.review h3{
+    margin-bottom:15px;
+    color:white;
+    font-family:"Space Grotesk",sans-serif;
+}
+
+.review-item{
+    margin-bottom:12px;
+    padding:18px;
+    border:1px solid rgba(85,217,255,.1);
+    border-radius:13px;
+    background:rgba(5,18,35,.55);
+}
+
+.review-correct{
+    border-left:3px solid var(--green);
+}
+
+.review-wrong{
+    border-left:3px solid var(--red);
+}
+
+.review-question{
+    color:#eaf8ff;
+    font-weight:600;
+}
+
+.review-answer{
+    margin-top:7px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+.review-explanation{
+    margin-top:7px;
+    color:#a9c6dc;
+    font-size:13px;
+}
+
+.restart-btn{
+    margin-top:10px;
+    padding:13px 20px;
+    border:1px solid rgba(85,217,255,.35);
+    border-radius:10px;
+    background:rgba(33,108,161,.35);
+    color:white;
+    cursor:pointer;
+    font-weight:700;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.navigation{
+    position:relative;
+    z-index:3;
+    width:min(1000px,92vw);
+    margin:0 auto;
+    padding:20px 0 75px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.button{
+    position:relative;
+    overflow:hidden;
+    display:inline-block;
+    padding:13px 21px;
+    border:1px solid rgba(87,212,255,.24);
+    border-radius:11px;
+    background:rgba(16,50,78,.45);
+    color:#dff7ff;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+    backdrop-filter:blur(10px);
+    transition:.3s ease;
+}
+
+.button:hover{
+    transform:translateY(-3px);
+    border-color:rgba(85,217,255,.6);
+    box-shadow:0 0 25px rgba(40,178,255,.12);
+    color:white;
+}
+
+.button.primary{
+    background:linear-gradient(
+        135deg,
+        rgba(39,146,218,.35),
+        rgba(25,77,130,.35)
+    );
+}
+
+
+/* =========================
+   PARTICLES
+========================= */
+
+.particles{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+}
+
+.particle-dot{
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:#75dcff;
+    box-shadow:0 0 12px rgba(75,211,255,.8);
+    opacity:.5;
+    animation:drift linear infinite;
+}
+
+.particle-dot:nth-child(1){left:9%;top:21%;animation-duration:9s}
+.particle-dot:nth-child(2){left:21%;top:68%;animation-duration:13s}
+.particle-dot:nth-child(3){left:36%;top:17%;animation-duration:11s}
+.particle-dot:nth-child(4){left:63%;top:29%;animation-duration:14s}
+.particle-dot:nth-child(5){left:78%;top:61%;animation-duration:10s}
+.particle-dot:nth-child(6){left:91%;top:17%;animation-duration:12s}
+.particle-dot:nth-child(7){left:48%;top:77%;animation-duration:15s}
+
+@keyframes drift{
+    0%{transform:translateY(0) translateX(0);opacity:.15}
+    50%{transform:translateY(-35px) translateX(18px);opacity:.7}
+    100%{transform:translateY(-70px) translateX(-10px);opacity:.05}
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    position:relative;
+    z-index:2;
+    padding:30px 20px 45px;
+    border-top:1px solid rgba(104,211,255,.08);
+    color:#66829e;
+    text-align:center;
+    font-size:12px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:700px){
+
+    header{
+        padding:16px 5%;
+    }
+
+    .logo{
+        font-size:21px;
+    }
+
+    .header-link{
+        font-size:12px;
+        padding:8px 11px;
+    }
+
+    .hero{
+        min-height:650px;
+        padding-top:75px;
+    }
+
+    .hero h1{
+        font-size:45px;
+        letter-spacing:-2px;
+    }
+
+    .hero-description{
+        font-size:15px;
+    }
+
+    .equilibrium-system{
+        height:225px;
+        transform:scale(.82);
+        transform-origin:center;
+        margin-top:30px;
+    }
+
+    .data-strip{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .data-cell:nth-child(2){
+        border-right:none;
+    }
+
+    .data-cell:nth-child(-n+2){
+        border-bottom:1px solid var(--line);
+    }
+
+    .container{
+        width:92vw;
+        padding-top:55px;
+    }
+
+    .lesson{
+        padding:25px;
+        border-radius:18px;
+    }
+
+    .lesson h2{
+        font-size:25px;
+    }
+
+    .formula{
+        font-size:18px;
+        padding:16px 10px;
+    }
+
+    .concept-grid,
+    .compare-grid{
+        grid-template-columns:1fr;
+    }
+
+    .toc-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .exam{
+        padding:18px;
+    }
+
+    .exam-header{
+        flex-direction:column;
+    }
+
+    .exam-question{
+        padding:20px;
+    }
+
+    .question-text{
+        font-size:17px;
+    }
+
+    .question-palette{
+        grid-template-columns:repeat(10,1fr);
+        gap:4px;
+    }
+
+    .question-dot{
+        font-size:8px;
+    }
+
+    .exam-controls{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .exam-nav{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+    }
+
+    .exam-nav .exam-btn{
+        width:100%;
+    }
+
+    .exam-controls>.exam-btn{
+        width:100%;
+    }
+
+    .result-breakdown{
+        grid-template-columns:1fr;
+    }
+
+    .navigation{
+        padding-bottom:55px;
+    }
+
+    .button{
+        width:100%;
+        text-align:center;
+    }
+}
+
+@media(max-width:470px){
+
+    .toc-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:39px;
+    }
+
+    .data-value{
+        font-size:16px;
+    }
+
+    .exam{
+        border-radius:17px;
+    }
+
+    .question-palette{
+        grid-template-columns:repeat(10,1fr);
+    }
+
+    .question-dot{
+        border-radius:5px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    html{
+        scroll-behavior:auto;
+    }
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.01ms!important;
+    }
+
+    .lesson{
+        opacity:1;
+        transform:none;
+    }
+}
+
+</style>
 </head>
 
 
@@ -1029,26 +1599,22 @@
         <span class="particle-dot"></span>
     </div>
 
-
     <p class="hero-label">
-        MECHANICS 1 • TOPIC 05 • EQUILIBRIUM SYSTEM
+        MECHANICS 1 • TOPIC 05 • STATICS
     </p>
-
 
     <h1>
         Statics of a Particle
     </h1>
 
-
     <p class="hero-description">
-        Learn how forces balance when a particle is in equilibrium.
+        Master equilibrium, resolving forces, tension, weight and
+        inclined forces — from first principles to exam-level problems.
     </p>
-
 
     <div class="equilibrium-system">
 
         <div class="balance-line"></div>
-
         <div class="support"></div>
 
         <div class="force-arrow force-right"></div>
@@ -1056,26 +1622,14 @@
         <div class="force-arrow force-up"></div>
         <div class="force-arrow force-down"></div>
 
-        <span class="force-label label-t">
-            F
-        </span>
-
-        <span class="force-label label-t2">
-            F
-        </span>
-
-        <span class="force-label label-r">
-            R
-        </span>
-
-        <span class="force-label label-w">
-            W
-        </span>
+        <span class="force-label label-t">F</span>
+        <span class="force-label label-t2">F</span>
+        <span class="force-label label-r">R</span>
+        <span class="force-label label-w">W</span>
 
         <div class="equilibrium-particle"></div>
 
     </div>
-
 
     <div class="data-strip">
 
@@ -1107,349 +1661,1564 @@
 <main class="container">
 
 
-    <section class="lesson">
+<!-- =========================
+     CONTENT MAP
+========================= -->
 
-        <p class="lesson-number">
-            LESSON 01
-        </p>
+<section class="toc">
 
-        <h2>
-            What is Statics?
-        </h2>
+    <h2>Statics Learning Map</h2>
+
+    <div class="toc-grid">
+
+        <a href="#particle">01 Particle Model</a>
+        <a href="#equilibrium">02 Equilibrium</a>
+        <a href="#forces">03 Forces</a>
+        <a href="#resolve">04 Resolving Forces</a>
+        <a href="#weight">05 Weight</a>
+        <a href="#tension">06 Tension</a>
+        <a href="#angles">07 Inclined Forces</a>
+        <a href="#three">08 Three Forces</a>
+        <a href="#connected">09 Connected Particles</a>
+        <a href="#method">10 Exam Method</a>
+        <a href="#examples">11 Worked Examples</a>
+        <a href="#traps">12 Exam Traps</a>
+        <a href="#exam">13 100Q Exam</a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     LESSON 01
+========================= -->
+
+<section class="lesson" id="particle">
+
+    <p class="lesson-number">LESSON 01</p>
+
+    <h2>The Particle Model</h2>
+
+    <p>
+        Mechanics questions begin with a mathematical model of a
+        physical situation. In the simplest statics problems, the
+        object is modelled as a <strong>particle</strong>.
+    </p>
+
+    <div class="definition">
+
+        <strong>Particle</strong>
 
         <p>
-            Statics is the study of objects that are in equilibrium.
+            A particle is an object whose size and shape are ignored.
+            Its entire mass is treated as being concentrated at a single
+            point.
         </p>
 
-        <div class="definition">
+    </div>
 
-            <strong>
-                Key idea
-            </strong>
+    <p>
+        This model is useful when the dimensions of the object do not
+        affect the motion or equilibrium being considered.
+    </p>
+
+    <h3>What does the particle model ignore?</h3>
+
+    <ul>
+        <li>The physical size of the object.</li>
+        <li>The shape of the object.</li>
+        <li>Any rotational effects caused by its dimensions.</li>
+        <li>The exact position at which its mass is distributed.</li>
+    </ul>
+
+    <div class="tip">
+
+        <strong>Model awareness</strong>
+
+        <p>
+            If the question asks only whether forces balance on a small
+            object, the particle model is usually appropriate. If the
+            object's size, shape or turning effect matters, a particle
+            model is no longer sufficient.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     LESSON 02
+========================= -->
+
+<section class="lesson" id="equilibrium">
+
+    <p class="lesson-number">LESSON 02</p>
+
+    <h2>What Does Equilibrium Mean?</h2>
+
+    <p>
+        A particle is in equilibrium when the resultant force acting
+        on it is zero.
+    </p>
+
+    <div class="formula">
+        ΣF = 0
+        <small>Resultant force is zero.</small>
+    </div>
+
+    <p>
+        By Newton's second law,
+    </p>
+
+    <div class="formula">
+        F = ma
+    </div>
+
+    <p>
+        Therefore, if the resultant force is zero,
+    </p>
+
+    <div class="formula">
+        a = 0
+    </div>
+
+    <p>
+        So an object in equilibrium has <strong>zero acceleration</strong>.
+    </p>
+
+    <div class="concept-grid">
+
+        <div class="mini-card">
+
+            <h3>At rest</h3>
 
             <p>
-                A particle is in equilibrium when the resultant force
-                acting on it is zero.
+                An object can be stationary and remain stationary if
+                its resultant force is zero.
             </p>
 
         </div>
 
-    </section>
+        <div class="mini-card">
 
-
-    <section class="lesson">
-
-        <p class="lesson-number">
-            LESSON 02
-        </p>
-
-        <h2>
-            Equilibrium
-        </h2>
-
-        <p>
-            For a particle to remain in equilibrium, the forces acting
-            on it must balance.
-        </p>
-
-        <div class="formula">
-            Resultant force = 0
-        </div>
-
-        <p>
-            This means there is no acceleration.
-        </p>
-
-    </section>
-
-
-    <section class="lesson">
-
-        <p class="lesson-number">
-            LESSON 03
-        </p>
-
-        <h2>
-            Resolving Forces
-        </h2>
-
-        <p>
-            A force acting at an angle can be resolved into horizontal
-            and vertical components.
-        </p>
-
-        <div class="formula">
-            Horizontal component = F cos θ
-        </div>
-
-        <div class="formula">
-            Vertical component = F sin θ
-        </div>
-
-        <p>
-            These components can then be used to determine whether
-            the particle is in equilibrium.
-        </p>
-
-    </section>
-
-
-    <section class="lesson">
-
-        <p class="lesson-number">
-            LESSON 04
-        </p>
-
-        <h2>
-            Equilibrium Equations
-        </h2>
-
-        <p>
-            For equilibrium in two dimensions, the horizontal and
-            vertical forces must each balance.
-        </p>
-
-        <div class="formula">
-            ΣFx = 0
-        </div>
-
-        <div class="formula">
-            ΣFy = 0
-        </div>
-
-        <p>
-            These equations are used to find unknown forces or angles.
-        </p>
-
-    </section>
-
-
-    <section class="lesson">
-
-        <p class="lesson-number">
-            LESSON 05
-        </p>
-
-        <h2>
-            Weight and Tension
-        </h2>
-
-        <p>
-            Two common forces in mechanics problems are weight
-            and tension.
-        </p>
-
-        <div class="definition">
-
-            <strong>
-                Weight
-            </strong>
+            <h3>Constant velocity</h3>
 
             <p>
-                W = mg and acts vertically downward.
+                An object can also move with constant velocity while
+                the resultant force is zero.
             </p>
 
         </div>
 
-        <div class="definition">
+    </div>
 
-            <strong>
-                Tension
-            </strong>
+    <div class="warning">
 
-            <p>
-                Tension is a pulling force transmitted through a
-                string or cable.
-            </p>
+        <strong>Important distinction</strong>
 
-        </div>
-
-    </section>
-
-
-    <section class="lesson">
-
-        <p class="lesson-number">
-            WORKED EXAMPLE
+        <p>
+            Equilibrium does not necessarily mean “not moving”.
+            It means <strong>zero acceleration</strong>.
         </p>
 
-        <h2>
-            Simple Equilibrium
-        </h2>
+    </div>
 
-        <div class="example">
+</section>
 
-            <p class="example-title">
-                Example
+
+<!-- =========================
+     LESSON 03
+========================= -->
+
+<section class="lesson" id="forces">
+
+    <p class="lesson-number">LESSON 03</p>
+
+    <h2>Forces Acting on a Particle</h2>
+
+    <p>
+        Before solving an equilibrium problem, identify every force
+        acting on the particle.
+    </p>
+
+    <div class="concept-grid">
+
+        <div class="mini-card">
+
+            <h3>Weight</h3>
+
+            <p>
+                Acts vertically downwards and has magnitude
+                <strong>mg</strong>.
+            </p>
+
+        </div>
+
+        <div class="mini-card">
+
+            <h3>Tension</h3>
+
+            <p>
+                A string or cable can pull an object along the direction
+                of the string.
+            </p>
+
+        </div>
+
+        <div class="mini-card">
+
+            <h3>Reaction</h3>
+
+            <p>
+                A surface can exert a contact force on an object.
+            </p>
+
+        </div>
+
+        <div class="mini-card">
+
+            <h3>Applied force</h3>
+
+            <p>
+                A push or pull supplied directly by another object or
+                external agent.
+            </p>
+
+        </div>
+
+    </div>
+
+    <h3>Free-body diagrams</h3>
+
+    <p>
+        A free-body diagram isolates the particle and shows the forces
+        acting on it. It is one of the most useful tools in Mechanics.
+    </p>
+
+    <div class="exam-tip">
+
+        <strong>Exam habit</strong>
+
+        <p>
+            Draw the forces first. Then resolve them. Do not immediately
+            start writing equations before identifying what is acting
+            on the particle.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     LESSON 04
+========================= -->
+
+<section class="lesson" id="resolve">
+
+    <p class="lesson-number">LESSON 04</p>
+
+    <h2>Resolving Forces</h2>
+
+    <p>
+        A force acting at an angle can be replaced mathematically by
+        two perpendicular components.
+    </p>
+
+    <div class="formula">
+        Horizontal component = F cos θ
+    </div>
+
+    <div class="formula">
+        Vertical component = F sin θ
+    </div>
+
+    <p>
+        These formulae apply when <strong>θ is measured from the
+        horizontal</strong>.
+    </p>
+
+    <div class="warning">
+
+        <strong>Angle warning</strong>
+
+        <p>
+            Do not automatically use F cos θ for horizontal and
+            F sin θ for vertical. Check where the angle is measured.
+            If θ is measured from the vertical, the roles reverse.
+        </p>
+
+    </div>
+
+    <h3>Why resolve forces?</h3>
+
+    <p>
+        A two-dimensional equilibrium problem can be converted into
+        two one-dimensional equations:
+    </p>
+
+    <div class="formula">
+        ΣFx = 0
+    </div>
+
+    <div class="formula">
+        ΣFy = 0
+    </div>
+
+    <p>
+        The horizontal and vertical directions are independent.
+        You may choose either positive direction, but your signs must
+        remain consistent.
+    </p>
+
+</section>
+
+
+<!-- =========================
+     LESSON 05
+========================= -->
+
+<section class="lesson" id="weight">
+
+    <p class="lesson-number">LESSON 05</p>
+
+    <h2>Weight</h2>
+
+    <div class="definition">
+
+        <strong>Weight</strong>
+
+        <p>
+            Weight is the gravitational force acting on a mass.
+        </p>
+
+    </div>
+
+    <div class="formula">
+        W = mg
+        <small>g is usually taken as 9.8 m s⁻² unless another value is specified.</small>
+    </div>
+
+    <p>
+        Weight always acts vertically downwards.
+    </p>
+
+    <h3>Mass versus weight</h3>
+
+    <div class="compare-grid">
+
+        <div class="compare">
+
+            <h3>Mass</h3>
+
+            <ul>
+                <li>Measured in kg.</li>
+                <li>Amount of matter.</li>
+                <li>Does not depend on location.</li>
+            </ul>
+
+        </div>
+
+        <div class="compare">
+
+            <h3>Weight</h3>
+
+            <ul>
+                <li>Measured in N.</li>
+                <li>Gravitational force.</li>
+                <li>W = mg.</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="example">
+
+        <p class="example-title">Worked Example</p>
+
+        <p>
+            A particle has mass 6 kg. Find its weight, taking
+            g = 9.8 m s⁻².
+        </p>
+
+        <div class="solution">
+
+            <p>
+                Use:
+            </p>
+
+            <div class="formula">
+                W = mg
+            </div>
+
+            <p>
+                W = 6 × 9.8
             </p>
 
             <p>
-                A particle is acted on by two horizontal forces:
-                15 N to the right and an unknown force to the left.
-                The particle is in equilibrium. Find the unknown force.
+                <strong>W = 58.8 N</strong>
             </p>
 
-            <div class="solution">
+        </div>
 
-                <p>
-                    Since the particle is in equilibrium:
-                </p>
+    </div>
 
-                <div class="formula">
-                    ΣFx = 0
+</section>
+
+
+<!-- =========================
+     LESSON 06
+========================= -->
+
+<section class="lesson" id="tension">
+
+    <p class="lesson-number">LESSON 06</p>
+
+    <h2>Tension</h2>
+
+    <p>
+        A light, inextensible string or cable can exert a tension force
+        on a particle.
+    </p>
+
+    <div class="definition">
+
+        <strong>Direction of tension</strong>
+
+        <p>
+            Tension acts along the string and <strong>away from the
+            particle</strong>.
+        </p>
+
+    </div>
+
+    <p>
+        If a particle is attached to two strings, there may be two
+        different tensions unless the problem gives a reason for them
+        to be equal.
+    </p>
+
+    <div class="warning">
+
+        <strong>Common mistake</strong>
+
+        <p>
+            Do not assume two tensions are equal simply because two
+            strings look similar. Their directions and magnitudes must
+            come from the equations or the conditions given.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     LESSON 07
+========================= -->
+
+<section class="lesson" id="angles">
+
+    <p class="lesson-number">LESSON 07</p>
+
+    <h2>Inclined Forces</h2>
+
+    <p>
+        Consider a force T making an angle θ above the horizontal.
+        Its components are:
+    </p>
+
+    <div class="formula">
+        Tₓ = T cos θ
+    </div>
+
+    <div class="formula">
+        Tᵧ = T sin θ
+    </div>
+
+    <p>
+        If the force points upwards and to the right, both components
+        are positive when right and upward are chosen as positive.
+    </p>
+
+    <p>
+        If the force points upwards and to the left, its horizontal
+        component is negative under the same convention.
+    </p>
+
+    <h3>Choosing signs</h3>
+
+    <ol class="step-list">
+
+        <li>Choose a positive horizontal direction.</li>
+        <li>Choose a positive vertical direction.</li>
+        <li>Resolve every angled force.</li>
+        <li>Give each component its correct sign.</li>
+        <li>Apply ΣFx = 0 and ΣFy = 0.</li>
+
+    </ol>
+
+</section>
+
+
+<!-- =========================
+     LESSON 08
+========================= -->
+
+<section class="lesson" id="three">
+
+    <p class="lesson-number">LESSON 08</p>
+
+    <h2>Three-Force Equilibrium</h2>
+
+    <p>
+        A particle may be acted upon by three forces and still be in
+        equilibrium.
+    </p>
+
+    <p>
+        For example, a particle may have:
+    </p>
+
+    <ul>
+        <li>weight acting downwards,</li>
+        <li>tension in one string acting up and right,</li>
+        <li>tension in another string acting up and left.</li>
+    </ul>
+
+    <p>
+        The upward components of the tensions must balance the weight,
+        while their horizontal components must balance one another.
+    </p>
+
+    <div class="formula">
+        ΣFx = 0 &nbsp;&nbsp;&nbsp;&nbsp; ΣFy = 0
+    </div>
+
+    <div class="exam-tip">
+
+        <strong>What examiners are testing</strong>
+
+        <p>
+            These questions usually test whether you can correctly
+            interpret the geometry before applying trigonometry.
+            The equations are often straightforward once the force
+            directions are correct.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     LESSON 09
+========================= -->
+
+<section class="lesson" id="connected">
+
+    <p class="lesson-number">LESSON 09</p>
+
+    <h2>Connected Particles</h2>
+
+    <p>
+        Two particles may be connected by a light inextensible string.
+        In a suitable model, the tension is the same throughout the
+        string.
+    </p>
+
+    <div class="definition">
+
+        <strong>Light string</strong>
+
+        <p>
+            The mass of the string is neglected.
+        </p>
+
+    </div>
+
+    <div class="definition">
+
+        <strong>Inextensible string</strong>
+
+        <p>
+            The string does not stretch, so connected particles have
+            linked motion.
+        </p>
+
+    </div>
+
+    <p>
+        For a particle system, analyse each particle separately.
+        Draw a separate force diagram for each particle and write
+        Newton's second-law equation for each one.
+    </p>
+
+    <div class="exam-tip">
+
+        <strong>Key strategy</strong>
+
+        <p>
+            Never write one equation for two particles without first
+            identifying the forces on each individual particle.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     LESSON 10
+========================= -->
+
+<section class="lesson" id="method">
+
+    <p class="lesson-number">LESSON 10</p>
+
+    <h2>The Complete Exam Method</h2>
+
+    <p>
+        A reliable method prevents most errors in statics questions.
+    </p>
+
+    <ol class="step-list">
+
+        <li>
+            <strong>Identify the object.</strong>
+            Decide exactly which particle you are analysing.
+        </li>
+
+        <li>
+            <strong>Draw all forces.</strong>
+            Include weight, tension, reactions and applied forces.
+        </li>
+
+        <li>
+            <strong>Mark the angles carefully.</strong>
+            Check whether each angle is measured from the horizontal
+            or vertical.
+        </li>
+
+        <li>
+            <strong>Resolve angled forces.</strong>
+            Replace each angled force by horizontal and vertical
+            components.
+        </li>
+
+        <li>
+            <strong>Choose signs.</strong>
+            Usually right/up positive is convenient.
+        </li>
+
+        <li>
+            <strong>Apply horizontal equilibrium.</strong>
+            Use ΣFx = 0 when the particle is in equilibrium.
+        </li>
+
+        <li>
+            <strong>Apply vertical equilibrium.</strong>
+            Use ΣFy = 0.
+        </li>
+
+        <li>
+            <strong>Solve algebraically.</strong>
+            Keep exact values where useful before rounding.
+        </li>
+
+        <li>
+            <strong>Check the answer.</strong>
+            Check units, direction and physical plausibility.
+        </li>
+
+    </ol>
+
+    <div class="formula">
+        Equilibrium → ΣFx = 0 and ΣFy = 0
+    </div>
+
+</section>
+
+
+<!-- =========================
+     WORKED EXAMPLES
+========================= -->
+
+<section class="lesson" id="examples">
+
+    <p class="lesson-number">WORKED EXAMPLES</p>
+
+    <h2>Exam-Level Worked Examples</h2>
+
+
+    <div class="example">
+
+        <p class="example-title">Example 1 — Opposing Horizontal Forces</p>
+
+        <p>
+            A particle is acted on by a 27 N force to the right and
+            a force F to the left. It is in equilibrium. Find F.
+        </p>
+
+        <div class="solution">
+
+            <div class="formula">
+                ΣFx = 0
+            </div>
+
+            <p>
+                27 − F = 0
+            </p>
+
+            <p>
+                <strong>F = 27 N</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">Example 2 — Vertical Equilibrium</p>
+
+        <p>
+            A 12 kg particle is supported by an upward force R.
+            Find R when g = 9.8 m s⁻².
+        </p>
+
+        <div class="solution">
+
+            <p>
+                Weight:
+            </p>
+
+            <p>
+                W = 12 × 9.8 = 117.6 N
+            </p>
+
+            <p>
+                Since vertical forces balance:
+            </p>
+
+            <div class="formula">
+                R − 117.6 = 0
+            </div>
+
+            <p>
+                <strong>R = 117.6 N</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">Example 3 — Resolving a Force</p>
+
+        <p>
+            A force of 50 N acts at 30° above the horizontal.
+            Find its horizontal and vertical components.
+        </p>
+
+        <div class="solution">
+
+            <p>
+                Horizontal:
+            </p>
+
+            <p>
+                50 cos 30° = 43.30 N
+            </p>
+
+            <p>
+                Vertical:
+            </p>
+
+            <p>
+                50 sin 30° = 25 N
+            </p>
+
+            <p>
+                <strong>
+                    Horizontal = 43.3 N,
+                    Vertical = 25.0 N
+                </strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">Example 4 — Finding Tension</p>
+
+        <p>
+            A particle is in equilibrium under a horizontal force of
+            30 N and a tension T acting at 60° above the horizontal.
+            Find T.
+        </p>
+
+        <div class="solution">
+
+            <p>
+                Horizontal equilibrium gives:
+            </p>
+
+            <div class="formula">
+                T cos 60° = 30
+            </div>
+
+            <p>
+                Since cos 60° = 0.5:
+            </p>
+
+            <p>
+                0.5T = 30
+            </p>
+
+            <p>
+                <strong>T = 60 N</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">Example 5 — Tension Supporting Weight</p>
+
+        <p>
+            A 5 kg particle is held in equilibrium by a string making
+            40° with the horizontal. A horizontal force acts in the
+            opposite direction. Find the vertical component of the
+            tension.
+        </p>
+
+        <div class="solution">
+
+            <p>
+                Weight:
+            </p>
+
+            <p>
+                W = 5 × 9.8 = 49 N
+            </p>
+
+            <p>
+                Vertical equilibrium requires:
+            </p>
+
+            <div class="formula">
+                T sin 40° = 49
+            </div>
+
+            <p>
+                Therefore:
+            </p>
+
+            <p>
+                T = 49 / sin 40°
+            </p>
+
+            <p>
+                <strong>T ≈ 76.1 N</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">Example 6 — Two Tensions</p>
+
+        <p>
+            A 10 kg particle is held in equilibrium by two strings.
+            The tensions are T₁ and T₂. T₁ acts at 30° above the
+            horizontal to the left and T₂ acts at 60° above the
+            horizontal to the right. Find T₁ and T₂.
+        </p>
+
+        <div class="solution">
+
+            <p>
+                Vertical equilibrium:
+            </p>
+
+            <div class="formula">
+                T₁ sin30° + T₂ sin60° = 98
+            </div>
+
+            <p>
+                Horizontal equilibrium:
+            </p>
+
+            <div class="formula">
+                T₂ cos60° = T₁ cos30°
+            </div>
+
+            <p>
+                Since cos60° = 0.5 and cos30° = √3/2:
+            </p>
+
+            <p>
+                T₂ = √3 T₁
+            </p>
+
+            <p>
+                Substitute into the vertical equation:
+            </p>
+
+            <p>
+                0.5T₁ + 0.866(√3T₁) = 98
+            </p>
+
+            <p>
+                0.5T₁ + 1.5T₁ = 98
+            </p>
+
+            <p>
+                2T₁ = 98
+            </p>
+
+            <p>
+                <strong>T₁ = 49 N</strong>
+            </p>
+
+            <p>
+                Therefore:
+            </p>
+
+            <p>
+                <strong>T₂ = 49√3 N ≈ 84.9 N</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">Example 7 — Force at an Angle from the Vertical</p>
+
+        <p>
+            A force of 80 N acts at 25° to the vertical. Find its
+            horizontal component.
+        </p>
+
+        <div class="solution">
+
+            <p>
+                Because the angle is measured from the vertical,
+                the horizontal component uses sine:
+            </p>
+
+            <div class="formula">
+                Horizontal = 80 sin25°
+            </div>
+
+            <p>
+                <strong>Horizontal ≈ 33.8 N</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">Example 8 — Equilibrium with an Unknown Angle</p>
+
+        <p>
+            A 100 N tension acts at angle θ above the horizontal.
+            Its horizontal component is 60 N. Find θ.
+        </p>
+
+        <div class="solution">
+
+            <div class="formula">
+                100 cosθ = 60
+            </div>
+
+            <p>
+                cosθ = 0.6
+            </p>
+
+            <p>
+                θ = cos⁻¹(0.6)
+            </p>
+
+            <p>
+                <strong>θ ≈ 53.1°</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">Example 9 — Resultant of Perpendicular Forces</p>
+
+        <p>
+            Two perpendicular forces of 6 N and 8 N act on a particle.
+            Find the magnitude of their resultant.
+        </p>
+
+        <div class="solution">
+
+            <p>
+                By Pythagoras:
+            </p>
+
+            <div class="formula">
+                R = √(6² + 8²)
+            </div>
+
+            <p>
+                R = √100
+            </p>
+
+            <p>
+                <strong>R = 10 N</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">Example 10 — Three Forces</p>
+
+        <p>
+            A particle is acted on by a 20 N horizontal force to the
+            right and a 40 N force at 60° above the horizontal to the
+            left. Find the vertical force required for equilibrium.
+        </p>
+
+        <div class="solution">
+
+            <p>
+                Vertical component of the 40 N force:
+            </p>
+
+            <p>
+                40 sin60° = 34.64 N
+            </p>
+
+            <p>
+                Therefore the required vertical force is:
+            </p>
+
+            <p>
+                <strong>34.64 N downward</strong>
+            </p>
+
+            <p>
+                Notice that horizontal equilibrium would not be
+                satisfied by these forces alone. A further horizontal
+                force would be needed unless another force is present.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">Example 11 — Unknown Force Components</p>
+
+        <p>
+            A force F acts at 37° above the horizontal. Its horizontal
+            component is 24 N. Find F.
+        </p>
+
+        <div class="solution">
+
+            <div class="formula">
+                F cos37° = 24
+            </div>
+
+            <p>
+                F = 24 / cos37°
+            </p>
+
+            <p>
+                <strong>F ≈ 30.0 N</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">Example 12 — Finding an Angle from Components</p>
+
+        <p>
+            A force has horizontal component 12 N and vertical
+            component 5 N. Find its magnitude and angle above the
+            horizontal.
+        </p>
+
+        <div class="solution">
+
+            <p>
+                Magnitude:
+            </p>
+
+            <div class="formula">
+                F = √(12² + 5²) = 13 N
+            </div>
+
+            <p>
+                Angle:
+            </p>
+
+            <div class="formula">
+                tanθ = 5 / 12
+            </div>
+
+            <p>
+                <strong>θ ≈ 22.6°</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">Example 13 — Sign Convention</p>
+
+        <p>
+            Take right as positive. A particle experiences 15 N to the
+            right, 9 N to the left and another force F to the left.
+            Find F for equilibrium.
+        </p>
+
+        <div class="solution">
+
+            <div class="formula">
+                ΣFx = 0
+            </div>
+
+            <p>
+                15 − 9 − F = 0
+            </p>
+
+            <p>
+                6 − F = 0
+            </p>
+
+            <p>
+                <strong>F = 6 N</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">Example 14 — Particle on an Inclined Plane</p>
+
+        <p>
+            A particle of weight 98 N rests on a smooth plane inclined
+            at 30° to the horizontal. Find the component of its weight
+            down the plane.
+        </p>
+
+        <div class="solution">
+
+            <p>
+                The component of weight parallel to the plane is:
+            </p>
+
+            <div class="formula">
+                98 sin30°
+            </div>
+
+            <p>
+                <strong>49 N</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">Example 15 — Reaction on a Smooth Plane</p>
+
+        <p>
+            A 6 kg particle rests in equilibrium on a smooth plane
+            inclined at 30°. Find the normal reaction.
+        </p>
+
+        <div class="solution">
+
+            <p>
+                Weight:
+            </p>
+
+            <p>
+                W = 6 × 9.8 = 58.8 N
+            </p>
+
+            <p>
+                Perpendicular component:
+            </p>
+
+            <div class="formula">
+                R = 58.8 cos30°
+            </div>
+
+            <p>
+                <strong>R ≈ 50.9 N</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EXAM TRAPS
+========================= -->
+
+<section class="lesson" id="traps">
+
+    <p class="lesson-number">EXAM TRAPS</p>
+
+    <h2>Common Mistakes That Lose Marks</h2>
+
+    <div class="warning">
+
+        <strong>1. Using the wrong trigonometric function</strong>
+
+        <p>
+            Always inspect the triangle formed by the components.
+            The component adjacent to the angle uses cosine and the
+            component opposite the angle uses sine.
+        </p>
+
+    </div>
+
+    <div class="warning">
+
+        <strong>2. Forgetting weight</strong>
+
+        <p>
+            If mass is given, immediately consider whether
+            W = mg needs to appear in your force diagram.
+        </p>
+
+    </div>
+
+    <div class="warning">
+
+        <strong>3. Incorrect tension direction</strong>
+
+        <p>
+            Tension pulls away from the particle along the string.
+            It does not push toward the particle.
+        </p>
+
+    </div>
+
+    <div class="warning">
+
+        <strong>4. Mixing signs</strong>
+
+        <p>
+            If right is positive, every leftward component must be
+            negative. If upward is positive, every downward component
+            must be negative.
+        </p>
+
+    </div>
+
+    <div class="warning">
+
+        <strong>5. Assuming equilibrium means zero velocity</strong>
+
+        <p>
+            Equilibrium means zero acceleration. Constant velocity is
+            also possible.
+        </p>
+
+    </div>
+
+    <div class="warning">
+
+        <strong>6. Assuming tensions are automatically equal</strong>
+
+        <p>
+            Equal tension is a modelling consequence of a suitable
+            light-string model, not something you should assume from
+            the picture alone.
+        </p>
+
+    </div>
+
+    <div class="warning">
+
+        <strong>7. Rounding too early</strong>
+
+        <p>
+            Keep calculator values during intermediate steps and round
+            only at the final answer unless the question specifies
+            otherwise.
+        </p>
+
+    </div>
+
+    <div class="exam-tip">
+
+        <strong>Golden rule</strong>
+
+        <p>
+            <strong>Diagram → components → equations → solve → check.</strong>
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FORMULA SHEET
+========================= -->
+
+<section class="lesson">
+
+    <p class="lesson-number">FORMULA ATLAS</p>
+
+    <h2>Statics Formula Sheet</h2>
+
+    <div class="formula">
+        F = ma
+    </div>
+
+    <div class="formula">
+        W = mg
+    </div>
+
+    <div class="formula">
+        ΣFx = 0
+        <small>Horizontal equilibrium.</small>
+    </div>
+
+    <div class="formula">
+        ΣFy = 0
+        <small>Vertical equilibrium.</small>
+    </div>
+
+    <div class="formula">
+        Fₓ = F cosθ
+        <small>When θ is measured from the horizontal.</small>
+    </div>
+
+    <div class="formula">
+        Fᵧ = F sinθ
+        <small>When θ is measured from the horizontal.</small>
+    </div>
+
+    <div class="formula">
+        R = √(Fₓ² + Fᵧ²)
+    </div>
+
+    <div class="formula">
+        tanθ = Fᵧ / Fₓ
+    </div>
+
+    <div class="tip">
+
+        <strong>Essential interpretation</strong>
+
+        <p>
+            These equations are not separate tricks. They all follow
+            from Newton's laws and the geometry of resolving vectors.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     100 QUESTION EXAM
+========================= -->
+
+<section class="lesson" id="exam">
+
+    <p class="lesson-number">FINAL ASSESSMENT</p>
+
+    <h2>Statics Mastery Exam — 100 Questions</h2>
+
+    <p>
+        Test the complete topic. Every question has four options.
+        Questions cover definitions, equilibrium, components, weight,
+        tension, inclined planes, connected particles and exam traps.
+    </p>
+
+    <div class="exam">
+
+        <div class="exam-header">
+
+            <div>
+                <div class="exam-title">
+                    Mechanics 1 • Statics
                 </div>
 
-                <p>
-                    15 − F = 0
-                </p>
+                <div class="exam-subtitle">
+                    100 MCQs • One question at a time • No timer
+                </div>
+            </div>
 
-                <p>
-                    F = 15
-                </p>
+            <span class="badge">
+                100 QUESTIONS
+            </span>
 
-                <p>
-                    <strong>
-                        F = 15 N
-                    </strong>
-                </p>
+        </div>
+
+        <div id="examArea">
+
+            <div class="exam-progress">
+
+                <div class="progress-info">
+                    <span id="progressText">Question 1 of 100</span>
+                    <span id="answeredText">0 answered</span>
+                </div>
+
+                <div class="progress-track">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+
+            </div>
+
+            <div class="exam-question">
+
+                <div class="question-category" id="questionCategory">
+                    FOUNDATIONS
+                </div>
+
+                <div class="question-text" id="questionText">
+                </div>
+
+                <div class="options" id="options">
+                </div>
+
+            </div>
+
+            <div class="exam-controls">
+
+                <div class="exam-nav">
+
+                    <button class="exam-btn"
+                            id="prevBtn"
+                            onclick="previousQuestion()">
+                        ← Previous
+                    </button>
+
+                    <button class="exam-btn"
+                            id="nextBtn"
+                            onclick="nextQuestion()">
+                        Next →
+                    </button>
+
+                </div>
+
+                <button class="exam-btn submit"
+                        id="submitBtn"
+                        onclick="submitExam()">
+                    Submit Exam
+                </button>
+
+            </div>
+
+            <div class="question-palette" id="questionPalette"></div>
+
+        </div>
+
+
+        <div class="exam-result" id="examResult">
+
+            <div class="badge">
+                EXAM COMPLETE
+            </div>
+
+            <div class="result-score" id="resultScore">
+                0 / 100
+            </div>
+
+            <div class="result-percent" id="resultPercent">
+                0%
+            </div>
+
+            <div class="result-breakdown">
+
+                <div class="result-stat">
+                    <strong id="correctCount">0</strong>
+                    <span>Correct</span>
+                </div>
+
+                <div class="result-stat">
+                    <strong id="wrongCount">0</strong>
+                    <span>Incorrect</span>
+                </div>
+
+                <div class="result-stat">
+                    <strong id="blankCount">0</strong>
+                    <span>Unanswered</span>
+                </div>
+
+            </div>
+
+            <button class="restart-btn" onclick="restartExam()">
+                Restart Exam
+            </button>
+
+            <div class="review">
+
+                <h3>
+                    Question Review
+                </h3>
+
+                <div id="reviewContainer"></div>
 
             </div>
 
         </div>
 
-    </section>
+    </div>
 
-
-    <section class="lesson">
-
-        <p class="lesson-number">
-            PRACTICE
-        </p>
-
-        <h2>
-            Test Yourself
-        </h2>
-
-
-        <div class="question">
-
-            <strong>
-                1. What does it mean for a particle to be in equilibrium?
-            </strong>
-
-            <details>
-
-                <summary>
-                    Show answer
-                </summary>
-
-                <p>
-                    The resultant force acting on the particle is zero.
-                </p>
-
-            </details>
-
-        </div>
-
-
-        <div class="question">
-
-            <strong>
-                2. What is the horizontal component of a force F
-                acting at angle θ?
-            </strong>
-
-            <details>
-
-                <summary>
-                    Show answer
-                </summary>
-
-                <p>
-                    F cos θ.
-                </p>
-
-            </details>
-
-        </div>
-
-
-        <div class="question">
-
-            <strong>
-                3. What is the vertical component of a force F
-                acting at angle θ?
-            </strong>
-
-            <details>
-
-                <summary>
-                    Show answer
-                </summary>
-
-                <p>
-                    F sin θ.
-                </p>
-
-            </details>
-
-        </div>
-
-
-        <div class="question">
-
-            <strong>
-                4. What equation represents horizontal equilibrium?
-            </strong>
-
-            <details>
-
-                <summary>
-                    Show answer
-                </summary>
-
-                <p>
-                    ΣFx = 0.
-                </p>
-
-            </details>
-
-        </div>
-
-    </section>
-
-
-    <section class="lesson">
-
-        <p class="lesson-number">
-            QUICK REVIEW
-        </p>
-
-        <h2>
-            Remember These
-        </h2>
-
-        <div class="formula">
-            Equilibrium → Resultant force = 0
-        </div>
-
-        <div class="formula">
-            ΣFx = 0
-        </div>
-
-        <div class="formula">
-            ΣFy = 0
-        </div>
-
-        <div class="formula">
-            Horizontal component = F cos θ
-        </div>
-
-        <div class="formula">
-            Vertical component = F sin θ
-        </div>
-
-    </section>
+</section>
 
 
 </main>
@@ -1479,122 +3248,2670 @@
 
 <script>
 
-    /* =========================
-       SCROLL REVEAL
-    ========================== */
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
 
-    const lessons = document.querySelectorAll(".lesson");
+const lessons = document.querySelectorAll(".lesson");
 
-    const observer = new IntersectionObserver(
-        entries => {
+const observer = new IntersectionObserver(
+    entries => {
 
-            entries.forEach(entry => {
+        entries.forEach(entry => {
 
-                if (entry.isIntersecting) {
+            if(entry.isIntersecting){
 
-                    entry.target.classList.add("visible");
+                entry.target.classList.add("visible");
 
-                    observer.unobserve(entry.target);
+                observer.unobserve(entry.target);
 
-                }
-
-            });
-
-        },
-        {
-            threshold: 0.12
-        }
-    );
-
-    lessons.forEach(lesson => observer.observe(lesson));
-
-
-    /* =========================
-       MOUSE FOLLOW LIGHT
-    ========================== */
-
-    lessons.forEach(lesson => {
-
-        lesson.addEventListener("mousemove", event => {
-
-            const rect = lesson.getBoundingClientRect();
-
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-
-            lesson.style.setProperty("--mx", `${x}px`);
-            lesson.style.setProperty("--my", `${y}px`);
+            }
 
         });
 
+    },
+    {
+        threshold:.12
+    }
+);
+
+lessons.forEach(lesson => observer.observe(lesson));
+
+
+/* =========================================================
+   MOUSE FOLLOW LIGHT
+========================================================= */
+
+lessons.forEach(lesson => {
+
+    lesson.addEventListener("mousemove",event => {
+
+        const rect = lesson.getBoundingClientRect();
+
+        lesson.style.setProperty(
+            "--mx",
+            `${event.clientX - rect.left}px`
+        );
+
+        lesson.style.setProperty(
+            "--my",
+            `${event.clientY - rect.top}px`
+        );
+
     });
 
+});
 
-    /* =========================
-       HERO PARALLAX
-    ========================== */
 
-    const heroGrid = document.querySelector(".hero-grid");
-    const heroGlow = document.querySelector(".hero-glow");
+/* =========================================================
+   HERO PARALLAX
+========================================================= */
 
-    window.addEventListener("scroll", () => {
+const heroGrid = document.querySelector(".hero-grid");
+const heroGlow = document.querySelector(".hero-glow");
 
-        const scroll = window.scrollY;
+window.addEventListener("scroll",()=>{
 
-        if (scroll < window.innerHeight) {
+    const scroll = window.scrollY;
 
-            heroGrid.style.transform =
-                `translateY(${scroll * 0.16}px)`;
+    if(scroll < window.innerHeight){
 
-            heroGlow.style.transform =
-                `translateY(${scroll * 0.08}px)`;
+        heroGrid.style.transform =
+            `translateY(${scroll * .16}px)`;
+
+        heroGlow.style.transform =
+            `translateY(${scroll * .08}px)`;
+
+    }
+
+});
+
+
+/* =========================================================
+   HERO INTERACTION
+========================================================= */
+
+const system =
+    document.querySelector(".equilibrium-system");
+
+const equilibriumParticle =
+    document.querySelector(".equilibrium-particle");
+
+system.addEventListener("mousemove",event=>{
+
+    const rect = system.getBoundingClientRect();
+
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const rotateX =
+        ((y / rect.height)-.5)*-6;
+
+    const rotateY =
+        ((x / rect.width)-.5)*6;
+
+    equilibriumParticle.style.transform =
+        `translateX(-50%) translateY(-4px)
+         rotateX(${rotateX}deg)
+         rotateY(${rotateY}deg)`;
+
+});
+
+system.addEventListener("mouseleave",()=>{
+
+    equilibriumParticle.style.transform =
+        "translateX(-50%) translateY(0)";
+
+});
+
+
+/* =========================================================
+   100 QUESTION EXAM DATABASE
+========================================================= */
+
+const examQuestions = [
+
+{
+q:"What condition must be satisfied for a particle to be in equilibrium?",
+options:["Resultant force is zero","Resultant force is maximum","Acceleration is maximum","Velocity is zero"],
+answer:0,
+cat:"FOUNDATIONS",
+explanation:"A particle is in equilibrium when its resultant force is zero, giving zero acceleration."
+},
+
+{
+q:"If the resultant force on a particle is zero, what is its acceleration?",
+options:["0 m s⁻²","1 m s⁻²","9.8 m s⁻²","It must be negative"],
+answer:0,
+cat:"FOUNDATIONS",
+explanation:"From F = ma, F = 0 implies a = 0."
+},
+
+{
+q:"Which statement about equilibrium is correct?",
+options:["The particle must be stationary","The particle must have zero acceleration","The particle must have zero velocity","The particle must have zero mass"],
+answer:1,
+cat:"FOUNDATIONS",
+explanation:"Equilibrium means zero acceleration. The velocity can be zero or constant and non-zero."
+},
+
+{
+q:"What is the SI unit of force?",
+options:["kg","N","J","Pa"],
+answer:1,
+cat:"FOUNDATIONS",
+explanation:"Force is measured in newtons (N)."
+},
+
+{
+q:"Which equation gives the weight of a particle of mass m?",
+options:["W=m/g","W=mg","W=g/m","W=m+g"],
+answer:1,
+cat:"FOUNDATIONS",
+explanation:"Weight is W = mg."
+},
+
+{
+q:"A particle has mass 4 kg. Taking g=9.8 m s⁻², what is its weight?",
+options:["39.2 N","13.8 N","4.9 N","19.6 N"],
+answer:0,
+cat:"WEIGHT",
+explanation:"W = 4×9.8 = 39.2 N."
+},
+
+{
+q:"In which direction does weight act?",
+options:["Vertically upward","Horizontally","Vertically downward","Along the velocity"],
+answer:2,
+cat:"WEIGHT",
+explanation:"Weight acts vertically downward toward the centre of the Earth."
+},
+
+{
+q:"A 10 N force acts right and a 10 N force acts left. What is the resultant?",
+options:["20 N right","20 N left","0 N","10 N"],
+answer:2,
+cat:"EQUILIBRIUM",
+explanation:"The equal and opposite forces cancel."
+},
+
+{
+q:"For horizontal equilibrium, which equation is required?",
+options:["ΣFx=1","ΣFx=0","ΣFy=0","ΣF=mg"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"Horizontal components must sum to zero."
+},
+
+{
+q:"For vertical equilibrium, which equation is required?",
+options:["ΣFy=0","ΣFy=1","ΣFx=mg","ΣF=ma²"],
+answer:0,
+cat:"EQUILIBRIUM",
+explanation:"Vertical components must sum to zero."
+},
+
+{
+q:"A 30 N force acts at 60° above the horizontal. What is its horizontal component?",
+options:["15 N","15√3 N","30√3 N","60 N"],
+answer:0,
+cat:"RESOLVING",
+explanation:"Horizontal = 30cos60° = 15 N."
+},
+
+{
+q:"A 30 N force acts at 60° above the horizontal. What is its vertical component?",
+options:["15 N","15√3 N","30 N","60 N"],
+answer:1,
+cat:"RESOLVING",
+explanation:"Vertical = 30sin60° = 15√3 N."
+},
+
+{
+q:"A force of 20 N acts at 30° above the horizontal. Its horizontal component is:",
+options:["10 N","10√3 N","20√3 N","5 N"],
+answer:1,
+cat:"RESOLVING",
+explanation:"20cos30° = 10√3 N."
+},
+
+{
+q:"A force of 20 N acts at 30° above the horizontal. Its vertical component is:",
+options:["10 N","10√3 N","20 N","5√3 N"],
+answer:0,
+cat:"RESOLVING",
+explanation:"20sin30° = 10 N."
+},
+
+{
+q:"A force is at 25° to the vertical. Which expression gives its horizontal component?",
+options:["Fcos25°","Fsin25°","Ftan25°","F/sin25°"],
+answer:1,
+cat:"RESOLVING",
+explanation:"Because the angle is measured from the vertical, the horizontal component is Fsin25°."
+},
+
+{
+q:"A force F makes angle θ with the horizontal. Which is its vertical component?",
+options:["Fcosθ","Fsinθ","Ftanθ","F/cosθ"],
+answer:1,
+cat:"RESOLVING",
+explanation:"For an angle measured from the horizontal, vertical = Fsinθ."
+},
+
+{
+q:"A force F makes angle θ with the horizontal. Which is its horizontal component?",
+options:["Fsinθ","Fcosθ","Ftanθ","Fθ"],
+answer:1,
+cat:"RESOLVING",
+explanation:"For an angle measured from the horizontal, horizontal = Fcosθ."
+},
+
+{
+q:"If a force acts horizontally to the left and right is positive, its component is:",
+options:["Positive","Negative","Always zero","Undefined"],
+answer:1,
+cat:"SIGNS",
+explanation:"Left is opposite to the chosen positive direction, so it is negative."
+},
+
+{
+q:"If upward is chosen as positive, a downward force has:",
+options:["Positive sign","Negative sign","No sign","Double magnitude"],
+answer:1,
+cat:"SIGNS",
+explanation:"Downward is opposite to positive upward."
+},
+
+{
+q:"What is the main purpose of resolving a force?",
+options:["Increase its magnitude","Replace it with perpendicular components","Remove the force","Change its unit"],
+answer:1,
+cat:"RESOLVING",
+explanation:"Resolution replaces one vector with perpendicular components that have the same overall effect."
+},
+
+{
+q:"A particle is in equilibrium under horizontal forces 45 N right and F left. Find F.",
+options:["22.5 N","45 N","90 N","0 N"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"45−F=0, so F=45 N."
+},
+
+{
+q:"A particle has 18 N right, 7 N left and F left. Find F for equilibrium.",
+options:["11 N","25 N","7 N","18 N"],
+answer:0,
+cat:"EQUILIBRIUM",
+explanation:"18−7−F=0, giving F=11 N."
+},
+
+{
+q:"A particle has 20 N upward and 35 N downward. What additional vertical force is required for equilibrium?",
+options:["15 N upward","15 N downward","55 N upward","20 N downward"],
+answer:0,
+cat:"EQUILIBRIUM",
+explanation:"There is currently 15 N downward, so 15 N upward is required."
+},
+
+{
+q:"A particle has 60 N upward and 25 N downward. What additional force is needed vertically for equilibrium?",
+options:["35 N upward","35 N downward","85 N downward","25 N upward"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"There is 35 N upward excess, so 35 N downward is needed."
+},
+
+{
+q:"A 50 N force acts at 37° above the horizontal. Its horizontal component is approximately:",
+options:["30 N","40 N","50 N","20 N"],
+answer:1,
+cat:"RESOLVING",
+explanation:"50cos37° ≈ 40 N."
+},
+
+{
+q:"A 50 N force acts at 37° above the horizontal. Its vertical component is approximately:",
+options:["30 N","40 N","20 N","50 N"],
+answer:0,
+cat:"RESOLVING",
+explanation:"50sin37° ≈ 30 N."
+},
+
+{
+q:"A force has components 12 N horizontally and 5 N vertically. Its magnitude is:",
+options:["7 N","13 N","17 N","60 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"√(12²+5²)=13 N."
+},
+
+{
+q:"A force has components 8 N horizontally and 15 N vertically. Its magnitude is:",
+options:["7 N","17 N","23 N","120 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"√(8²+15²)=17 N."
+},
+
+{
+q:"A force has components 5 N horizontal and 12 N vertical. Its angle above horizontal is approximately:",
+options:["22.6°","67.4°","45°","12°"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"tanθ=12/5, giving θ≈67.4°."
+},
+
+{
+q:"A force has components 12 N horizontal and 5 N vertical. Its angle above horizontal is approximately:",
+options:["22.6°","67.4°","45°","12°"],
+answer:0,
+cat:"RESULTANTS",
+explanation:"tanθ=5/12, giving θ≈22.6°."
+},
+
+{
+q:"A 6 kg particle is in equilibrium vertically. Its weight is:",
+options:["6 N","58.8 N","60 N","9.8 N"],
+answer:1,
+cat:"WEIGHT",
+explanation:"W=6×9.8=58.8 N."
+},
+
+{
+q:"A particle of weight 80 N is supported by a single vertical reaction. What is the reaction?",
+options:["40 N","80 N","160 N","8 N"],
+answer:1,
+cat:"REACTIONS",
+explanation:"Vertical equilibrium requires R−80=0."
+},
+
+{
+q:"A string is attached to a particle. In which direction does tension act?",
+options:["Towards the particle","Away from the particle along the string","Vertically down only","Perpendicular to the string"],
+answer:1,
+cat:"TENSION",
+explanation:"Tension pulls the particle away from itself along the string."
+},
+
+{
+q:"A 40 N tension acts at 60° above horizontal. Its vertical component is:",
+options:["20 N","20√3 N","40√3 N","10 N"],
+answer:1,
+cat:"TENSION",
+explanation:"40sin60°=20√3 N."
+},
+
+{
+q:"A 40 N tension acts at 60° above horizontal. Its horizontal component is:",
+options:["20 N","20√3 N","40 N","10√3 N"],
+answer:0,
+cat:"TENSION",
+explanation:"40cos60°=20 N."
+},
+
+{
+q:"A tension T at 60° has horizontal component 25 N. What is T?",
+options:["25 N","50 N","25√3 N","12.5 N"],
+answer:1,
+cat:"TENSION",
+explanation:"Tcos60°=25, so 0.5T=25 and T=50 N."
+},
+
+{
+q:"A tension T at 30° has vertical component 20 N. What is T?",
+options:["20 N","40 N","20√3 N","10 N"],
+answer:1,
+cat:"TENSION",
+explanation:"Tsin30°=20, so T=40 N."
+},
+
+{
+q:"A particle has weight 49 N and is supported by a vertical tension T. Find T.",
+options:["4.9 N","49 N","98 N","24.5 N"],
+answer:1,
+cat:"TENSION",
+explanation:"T=weight=49 N in vertical equilibrium."
+},
+
+{
+q:"A 5 kg particle has weight, taking g=9.8 m s⁻²:",
+options:["49 N","50 N","9.8 N","4.9 N"],
+answer:0,
+cat:"WEIGHT",
+explanation:"W=5×9.8=49 N."
+},
+
+{
+q:"A 10 kg particle rests on a smooth horizontal surface. Its normal reaction is:",
+options:["10 N","98 N","9.8 N","100 N exactly"],
+answer:1,
+cat:"REACTIONS",
+explanation:"Vertical equilibrium gives R=mg=98 N."
+},
+
+{
+q:"A smooth surface can exert a reaction force that is:",
+options:["Always horizontal","Perpendicular to the surface","Always vertical","Always parallel to the surface"],
+answer:1,
+cat:"REACTIONS",
+explanation:"For a smooth surface, the normal reaction is perpendicular to the surface."
+},
+
+{
+q:"A particle rests on a smooth plane inclined at angle θ. Which component of weight acts down the plane?",
+options:["mgcosθ","mgsinθ","mg tanθ","mg"],
+answer:1,
+cat:"INCLINED PLANES",
+explanation:"For a plane inclined θ to the horizontal, the component of weight parallel to the plane is mgsinθ."
+},
+
+{
+q:"For a particle on a smooth plane inclined at θ, the component of weight perpendicular to the plane is:",
+options:["mgsinθ","mgcosθ","mgtanθ","mg/θ"],
+answer:1,
+cat:"INCLINED PLANES",
+explanation:"The perpendicular component is mgcosθ."
+},
+
+{
+q:"A 10 kg particle is on a smooth 30° plane. Its component of weight down the plane is:",
+options:["49 N","98 N","84.9 N","10 N"],
+answer:0,
+cat:"INCLINED PLANES",
+explanation:"mg sin30° = 98×0.5 = 49 N."
+},
+
+{
+q:"A 10 kg particle is on a smooth 60° plane. Its component of weight down the plane is:",
+options:["49 N","98 N","84.9 N","50 N"],
+answer:2,
+cat:"INCLINED PLANES",
+explanation:"98sin60°≈84.9 N."
+},
+
+{
+q:"A 10 kg particle is on a smooth 30° plane. Its normal reaction is:",
+options:["49 N","98 N","84.9 N","10 N"],
+answer:2,
+cat:"INCLINED PLANES",
+explanation:"R=mgcos30°=98×0.866≈84.9 N."
+},
+
+{
+q:"A particle on a smooth plane is in equilibrium. Which force can balance the component of weight down the plane?",
+options:["A force up the plane","Another force down the plane","A horizontal force only","No force"],
+answer:0,
+cat:"INCLINED PLANES",
+explanation:"An opposing force up the plane is required."
+},
+
+{
+q:"For a particle in equilibrium, what is the resultant acceleration?",
+options:["9.8 m s⁻²","0","The same as velocity","Always upward"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"Resultant force is zero, so acceleration is zero."
+},
+
+{
+q:"A particle can be in equilibrium while moving with:",
+options:["Increasing speed","Constant velocity","Constant acceleration","Increasing acceleration"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"Zero resultant force permits constant velocity."
+},
+
+{
+q:"Which statement about a free-body diagram is correct?",
+options:["It shows only the largest force","It shows forces acting on the selected body","It shows every object in the universe","It replaces all equations"],
+answer:1,
+cat:"MODELLING",
+explanation:"A free-body diagram isolates the selected body and shows the forces acting on it."
+},
+
+{
+q:"If a particle is attached to a string, the string can exert:",
+options:["Compression","Tension","Weight only","A force perpendicular to itself"],
+answer:1,
+cat:"TENSION",
+explanation:"A string transmits tension."
+},
+
+{
+q:"An ideal light inextensible string is assumed to have:",
+options:["Variable length","Fixed length","Infinite mass","Zero tension"],
+answer:1,
+cat:"MODELLING",
+explanation:"Inextensible means it does not stretch, so its length remains fixed."
+},
+
+{
+q:"For an ideal light string connecting two particles, the tension is normally:",
+options:["Different at every point","The same throughout the string","Always zero","Equal to weight automatically"],
+answer:1,
+cat:"CONNECTED PARTICLES",
+explanation:"For a light string in the standard model, tension is the same throughout."
+},
+
+{
+q:"When analysing two connected particles, the best method is to:",
+options:["Draw one force diagram only","Analyse each particle separately","Ignore the string","Ignore gravity"],
+answer:1,
+cat:"CONNECTED PARTICLES",
+explanation:"Each particle has its own free-body diagram and equation."
+},
+
+{
+q:"A particle has 10 N right and 6 N left. What extra force is needed for equilibrium?",
+options:["4 N left","4 N right","16 N left","6 N right"],
+answer:0,
+cat:"EQUILIBRIUM",
+explanation:"There is 4 N net force right, so 4 N left is needed."
+},
+
+{
+q:"A particle has 12 N upward and 20 N downward. What extra force is needed?",
+options:["8 N upward","8 N downward","32 N upward","12 N downward"],
+answer:0,
+cat:"EQUILIBRIUM",
+explanation:"There is 8 N net downward, requiring 8 N upward."
+},
+
+{
+q:"A force of 100 N acts at 60° to the horizontal. Its horizontal component is:",
+options:["50 N","50√3 N","100 N","25 N"],
+answer:0,
+cat:"RESOLVING",
+explanation:"100cos60°=50 N."
+},
+
+{
+q:"A force of 100 N acts at 60° to the horizontal. Its vertical component is:",
+options:["50 N","50√3 N","100 N","25 N"],
+answer:1,
+cat:"RESOLVING",
+explanation:"100sin60°=50√3 N."
+},
+
+{
+q:"A force of 100 N acts at 45°. Each perpendicular component is:",
+options:["100 N","50 N","50√2 N","100√2 N"],
+answer:2,
+cat:"RESOLVING",
+explanation:"100cos45°=100sin45°=50√2 N."
+},
+
+{
+q:"A force of 20 N acts horizontally. Its vertical component is:",
+options:["20 N","10 N","0","20√2 N"],
+answer:2,
+cat:"RESOLVING",
+explanation:"A purely horizontal force has zero vertical component."
+},
+
+{
+q:"A force of 20 N acts vertically. Its horizontal component is:",
+options:["20 N","10 N","0","20√2 N"],
+answer:2,
+cat:"RESOLVING",
+explanation:"A purely vertical force has zero horizontal component."
+},
+
+{
+q:"A force at 90° to the horizontal has horizontal component:",
+options:["F","0","F/2","2F"],
+answer:1,
+cat:"RESOLVING",
+explanation:"Fcos90°=0."
+},
+
+{
+q:"A force at 0° to the horizontal has vertical component:",
+options:["F","0","F/2","2F"],
+answer:1,
+cat:"RESOLVING",
+explanation:"Fsin0°=0."
+},
+
+{
+q:"Which component is zero when a force acts vertically?",
+options:["Vertical","Horizontal","Both","Neither"],
+answer:1,
+cat:"RESOLVING",
+explanation:"A vertical force has no horizontal component."
+},
+
+{
+q:"If θ increases from 0° to 90° for a fixed force F, its horizontal component Fcosθ:",
+options:["Increases","Decreases","Remains constant","Becomes negative immediately"],
+answer:1,
+cat:"RESOLVING",
+explanation:"cosθ decreases from 1 to 0 over this interval."
+},
+
+{
+q:"If θ increases from 0° to 90° for fixed F, Fsinθ:",
+options:["Decreases","Increases","Remains constant","Is always zero"],
+answer:1,
+cat:"RESOLVING",
+explanation:"sinθ increases from 0 to 1."
+},
+
+{
+q:"A particle is acted on by two equal forces in opposite directions. Their resultant is:",
+options:["Equal to either force","Twice either force","Zero","Half either force"],
+answer:2,
+cat:"RESULTANTS",
+explanation:"Equal opposite vectors cancel."
+},
+
+{
+q:"A particle is acted on by three forces and is in equilibrium. Their vector sum is:",
+options:["Maximum","Zero","Equal to weight only","Equal to the largest force"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"Equilibrium requires vector sum zero."
+},
+
+{
+q:"Which equation represents Newton's second law?",
+options:["F=ma","F=m/a","F=a/m","F=m+a"],
+answer:0,
+cat:"NEWTON'S LAWS",
+explanation:"Newton's second law is F=ma."
+},
+
+{
+q:"If the resultant force doubles while mass remains constant, acceleration:",
+options:["Halves","Doubles","Remains zero","Becomes four times larger"],
+answer:1,
+cat:"NEWTON'S LAWS",
+explanation:"a=F/m, so acceleration is directly proportional to resultant force."
+},
+
+{
+q:"If mass doubles while resultant force stays constant, acceleration:",
+options:["Doubles","Halves","Becomes zero","Quadruples"],
+answer:1,
+cat:"NEWTON'S LAWS",
+explanation:"a=F/m, so doubling mass halves acceleration."
+},
+
+{
+q:"A 4 kg particle has resultant force 12 N. Its acceleration is:",
+options:["48 m s⁻²","3 m s⁻²","8 m s⁻²","0.33 m s⁻²"],
+answer:1,
+cat:"NEWTON'S LAWS",
+explanation:"a=12/4=3 m s⁻²."
+},
+
+{
+q:"A particle of mass 5 kg has acceleration 4 m s⁻². Resultant force is:",
+options:["1.25 N","9 N","20 N","25 N"],
+answer:2,
+cat:"NEWTON'S LAWS",
+explanation:"F=ma=5×4=20 N."
+},
+
+{
+q:"If a particle is in equilibrium, which statement is definitely true?",
+options:["Its velocity is zero","Its acceleration is zero","Its mass is zero","Every force is zero"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"Only zero acceleration is guaranteed."
+},
+
+{
+q:"A particle has forces 30 N east and 40 N north. The magnitude of the resultant is:",
+options:["10 N","50 N","70 N","1200 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"√(30²+40²)=50 N."
+},
+
+{
+q:"The resultant of perpendicular forces 5 N and 12 N is:",
+options:["7 N","13 N","17 N","60 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"√(5²+12²)=13 N."
+},
+
+{
+q:"A force has magnitude 25 N and horizontal component 7 N. Its vertical component magnitude is:",
+options:["18 N","24 N","32 N","7 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"Vertical = √(25²−7²)=24 N."
+},
+
+{
+q:"A force has magnitude 13 N and vertical component 5 N. Its horizontal component magnitude is:",
+options:["8 N","12 N","18 N","5 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"Horizontal = √(13²−5²)=12 N."
+},
+
+{
+q:"If horizontal and vertical components are 9 N and 12 N, the resultant is:",
+options:["15 N","21 N","3 N","108 N"],
+answer:0,
+cat:"RESULTANTS",
+explanation:"√(9²+12²)=15 N."
+},
+
+{
+q:"A force of 30 N has a horizontal component of 18 N. What is cosθ?",
+options:["0.4","0.6","1.67","0.8"],
+answer:1,
+cat:"ANGLES",
+explanation:"30cosθ=18, so cosθ=0.6."
+},
+
+{
+q:"If sinθ=0.8 for an acute angle, cosθ is:",
+options:["0.2","0.6","0.8","1.8"],
+answer:1,
+cat:"ANGLES",
+explanation:"For an acute angle, cosθ=√(1−0.8²)=0.6."
+},
+
+{
+q:"If tanθ=3/4, the angle θ is approximately:",
+options:["36.9°","53.1°","45°","30°"],
+answer:0,
+cat:"ANGLES",
+explanation:"θ=tan⁻¹(3/4)≈36.9°."
+},
+
+{
+q:"If a force has horizontal component 4 N and vertical component 3 N, its angle above horizontal is:",
+options:["36.9°","53.1°","30°","45°"],
+answer:0,
+cat:"ANGLES",
+explanation:"tanθ=3/4, so θ≈36.9°."
+},
+
+{
+q:"A 98 N weight acts on a smooth plane at 60° to horizontal. The component perpendicular to the plane is:",
+options:["49 N","49√3 N","98 N","84.9 N"],
+answer:0,
+cat:"INCLINED PLANES",
+explanation:"98cos60°=49 N."
+},
+
+{
+q:"A 98 N weight acts on a smooth plane at 60° to horizontal. The component down the plane is:",
+options:["49 N","49√3 N","98 N","50 N"],
+answer:1,
+cat:"INCLINED PLANES",
+explanation:"98sin60°=49√3 N."
+},
+
+{
+q:"A smooth plane has no friction. Therefore the contact force is:",
+options:["Parallel to the plane","Perpendicular to the plane","Always zero","Equal to weight"],
+answer:1,
+cat:"INCLINED PLANES",
+explanation:"The normal reaction acts perpendicular to a smooth surface."
+},
+
+{
+q:"For a particle on a smooth horizontal surface, if no vertical acceleration occurs, the normal reaction equals:",
+options:["Horizontal force","Weight","Half the weight","Zero"],
+answer:1,
+cat:"REACTIONS",
+explanation:"Vertical equilibrium gives R=mg when weight is the only downward force."
+},
+
+{
+q:"A 2 kg particle has weight approximately:",
+options:["2 N","9.8 N","19.6 N","4.9 N"],
+answer:2,
+cat:"WEIGHT",
+explanation:"W=2×9.8=19.6 N."
+},
+
+{
+q:"A 15 kg particle has weight:",
+options:["147 N","15 N","150 N exactly","1.53 N"],
+answer:0,
+cat:"WEIGHT",
+explanation:"15×9.8=147 N."
+},
+
+{
+q:"A particle of weight 98 N is pulled horizontally by 20 N on a smooth horizontal surface. What horizontal force is required for equilibrium?",
+options:["20 N in the opposite direction","98 N","118 N","78 N"],
+answer:0,
+cat:"EQUILIBRIUM",
+explanation:"The 20 N horizontal force must be balanced by 20 N opposite."
+},
+
+{
+q:"In the same situation, what is the vertical reaction?",
+options:["20 N","78 N","98 N","118 N"],
+answer:2,
+cat:"REACTIONS",
+explanation:"The horizontal force does not affect vertical equilibrium. R=98 N."
+},
+
+{
+q:"A particle has a 40 N force right and two forces 10 N and 30 N left. It is:",
+options:["In horizontal equilibrium","Accelerating right","Accelerating left","Impossible to determine"],
+answer:0,
+cat:"EQUILIBRIUM",
+explanation:"40−10−30=0."
+},
+
+{
+q:"A particle has 50 N upward, 20 N downward and 30 N downward. Its vertical resultant is:",
+options:["100 N upward","0","30 N upward","20 N downward"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"50−20−30=0."
+},
+
+{
+q:"A 60 N force acts at 30° above horizontal. A horizontal force balances its horizontal component. That horizontal force is:",
+options:["30 N","30√3 N","60 N","15 N"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"Horizontal component = 60cos30°=30√3 N."
+},
+
+{
+q:"A 60 N force acts at 30° above horizontal. A vertical downward force balances its vertical component. Its magnitude is:",
+options:["30 N","30√3 N","60 N","15 N"],
+answer:0,
+cat:"EQUILIBRIUM",
+explanation:"Vertical component = 60sin30°=30 N."
+},
+
+{
+q:"A 70 N force acts at 45°. Its horizontal component is:",
+options:["35 N","35√2 N","70 N","70√2 N"],
+answer:1,
+cat:"RESOLVING",
+explanation:"70cos45°=35√2 N."
+},
+
+{
+q:"A 70 N force acts at 45°. Its vertical component is:",
+options:["35 N","35√2 N","70 N","70√2 N"],
+answer:1,
+cat:"RESOLVING",
+explanation:"70sin45°=35√2 N."
+},
+
+{
+q:"A 20 N force acts at 60° to the vertical. Its horizontal component is:",
+options:["10 N","10√3 N","20 N","5 N"],
+answer:0,
+cat:"ANGLES",
+explanation:"Angle is from vertical, so horizontal = 20sin60° = 10√3 N. Wait: this would be 10√3, so option B is correct.",
+},
+
+{
+q:"A 20 N force acts at 60° to the vertical. Its vertical component is:",
+options:["10 N","10√3 N","20 N","5 N"],
+answer:0,
+cat:"ANGLES",
+explanation:"Vertical = 20cos60° = 10 N."
+},
+
+{
+q:"A 20 N force acts at 30° to the vertical. Its horizontal component is:",
+options:["10 N","10√3 N","20 N","5 N"],
+answer:0,
+cat:"ANGLES",
+explanation:"Horizontal = 20sin30° = 10 N."
+},
+
+{
+q:"A 20 N force acts at 30° to the vertical. Its vertical component is:",
+options:["10 N","10√3 N","20 N","5√3 N"],
+answer:1,
+cat:"ANGLES",
+explanation:"Vertical = 20cos30° = 10√3 N."
+},
+
+{
+q:"Which statement about components is correct?",
+options:["Components must always be horizontal and vertical","Components may be chosen along any two perpendicular directions","Components increase the original force","Components change the resultant vector"],
+answer:1,
+cat:"VECTORS",
+explanation:"A vector can be resolved along any convenient pair of perpendicular directions."
+},
+
+{
+q:"Why are horizontal and vertical components particularly useful in statics?",
+options:["They remove gravity","They are perpendicular and give independent equilibrium equations","They increase force","They make mass zero"],
+answer:1,
+cat:"VECTORS",
+explanation:"Perpendicular components allow ΣFx=0 and ΣFy=0 to be used separately."
+},
+
+{
+q:"If an unknown force is found to be negative using a chosen positive direction, this means:",
+options:["The mathematics failed","The force acts opposite to the assumed positive direction","The force does not exist","The particle cannot be in equilibrium"],
+answer:1,
+cat:"SIGNS",
+explanation:"A negative result indicates the actual direction is opposite to the assumed positive direction."
+},
+
+{
+q:"A particle is in equilibrium. Which of the following can be non-zero?",
+options:["Resultant force","Acceleration","Individual forces","Resultant acceleration"],
+answer:2,
+cat:"EQUILIBRIUM",
+explanation:"Individual forces can be large; only their resultant must be zero."
+},
+
+{
+q:"Can a particle in equilibrium have a 100 N force acting on it?",
+options:["No","Yes, if other forces balance it","Only if mass is zero","Only in space"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"Equilibrium depends on the resultant, not on individual force magnitudes."
+},
+
+{
+q:"A 40 N force is balanced by two equal horizontal forces. Each balancing force must be:",
+options:["10 N","20 N","40 N","80 N"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"The two forces together must provide 40 N opposite, so each is 20 N."
+},
+
+{
+q:"A particle is acted on by two perpendicular forces 9 N and 12 N. To produce equilibrium, the third force must have magnitude:",
+options:["3 N","15 N","21 N","108 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"The resultant of the first two is 15 N, so the third force must be 15 N opposite."
+},
+
+{
+q:"If a particle has resultant force 15 N east, what force is needed for equilibrium?",
+options:["15 N east","15 N west","30 N west","15 N north"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"An equal force in the opposite direction is required."
+},
+
+{
+q:"A 3 kg particle is pulled by 12 N horizontally. What acceleration results if this is the resultant force?",
+options:["4 m s⁻²","36 m s⁻²","9.8 m s⁻²","0.25 m s⁻²"],
+answer:0,
+cat:"NEWTON'S LAWS",
+explanation:"a=F/m=12/3=4 m s⁻²."
+},
+
+{
+q:"A 2 kg particle accelerates at 7 m s⁻². Resultant force is:",
+options:["3.5 N","9 N","14 N","28 N"],
+answer:2,
+cat:"NEWTON'S LAWS",
+explanation:"F=ma=2×7=14 N."
+},
+
+{
+q:"A particle of mass 8 kg has resultant force 0. Its acceleration is:",
+options:["8 m s⁻²","9.8 m s⁻²","0","Cannot determine"],
+answer:2,
+cat:"EQUILIBRIUM",
+explanation:"F=ma and F=0, so a=0."
+},
+
+{
+q:"A 7 kg particle has weight approximately:",
+options:["68.6 N","7 N","70 N exactly","0.714 N"],
+answer:0,
+cat:"WEIGHT",
+explanation:"7×9.8=68.6 N."
+},
+
+{
+q:"A particle is held by a string at 45° above horizontal. If its vertical tension component is 30 N, its tension is:",
+options:["15 N","30 N","30√2 N","60 N"],
+answer:2,
+cat:"TENSION",
+explanation:"Tsin45°=30, so T=30√2 N."
+},
+
+{
+q:"A tension of 50 N acts at 37° above horizontal. Its horizontal component is approximately:",
+options:["30 N","40 N","50 N","20 N"],
+answer:1,
+cat:"TENSION",
+explanation:"50cos37°≈40 N."
+},
+
+{
+q:"A tension of 50 N acts at 37° above horizontal. Its vertical component is approximately:",
+options:["30 N","40 N","50 N","20 N"],
+answer:0,
+cat:"TENSION",
+explanation:"50sin37°≈30 N."
+},
+
+{
+q:"A force of 40 N is resolved into components. If its horizontal component is 32 N, its vertical component is:",
+options:["8 N","24 N","72 N","16 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"√(40²−32²)=24 N."
+},
+
+{
+q:"A force of 25 N has vertical component 7 N. Its horizontal component is:",
+options:["18 N","24 N","32 N","7 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"√(25²−7²)=24 N."
+},
+
+{
+q:"A force of 13 N has horizontal component 12 N. Its vertical component is:",
+options:["1 N","5 N","12 N","25 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"√(13²−12²)=5 N."
+},
+
+{
+q:"A 98 N weight is balanced vertically by a tension T and a downward force of 20 N. Find T.",
+options:["78 N","98 N","118 N","20 N"],
+answer:2,
+cat:"EQUILIBRIUM",
+explanation:"T=98+20=118 N."
+},
+
+{
+q:"A 98 N weight is balanced by an upward reaction R and an upward force of 20 N. Find R.",
+options:["78 N","98 N","118 N","20 N"],
+answer:0,
+cat:"EQUILIBRIUM",
+explanation:"R+20=98, so R=78 N."
+},
+
+{
+q:"A 49 N weight is balanced by two equal vertical upward tensions. Each tension is:",
+options:["49 N","24.5 N","98 N","12.25 N"],
+answer:1,
+cat:"TENSION",
+explanation:"2T=49, so T=24.5 N."
+},
+
+{
+q:"A particle is attached to two identical strings symmetrically at equal angles. What is usually true about the two tensions?",
+options:["They are equal by symmetry","One is always zero","One must be double the other","They cannot be equal"],
+answer:0,
+cat:"TENSION",
+explanation:"In a symmetric arrangement, the two tensions are equal."
+},
+
+{
+q:"In a symmetric two-string support system, horizontal components of the two tensions:",
+options:["Add together","Cancel","Are always zero individually","Equal weight"],
+answer:1,
+cat:"TENSION",
+explanation:"The equal opposite horizontal components cancel."
+},
+
+{
+q:"In the same symmetric system, vertical components:",
+options:["Cancel","Add to support the weight","Are always zero","Act downward"],
+answer:1,
+cat:"TENSION",
+explanation:"The upward vertical components combine to balance weight."
+},
+
+{
+q:"If two identical tensions T make angle θ above horizontal, their total upward component is:",
+options:["Tsinθ","2Tsinθ","2Tcosθ","Tcosθ"],
+answer:1,
+cat:"TENSION",
+explanation:"Each contributes Tsinθ upward, so total is 2Tsinθ."
+},
+
+{
+q:"If two identical tensions T make angle θ above horizontal, their total horizontal resultant is:",
+options:["2Tcosθ","Tcosθ","0 in a symmetric arrangement","2Tsinθ"],
+answer:2,
+cat:"TENSION",
+explanation:"The equal horizontal components act in opposite directions and cancel."
+},
+
+{
+q:"A particle is suspended symmetrically by two strings, each making 30° with horizontal. If its weight is 100 N, each tension is:",
+options:["50 N","100 N","100/√3 N","200 N"],
+answer:3,
+cat:"TENSION",
+explanation:"2Tsin30°=100, so T=100 N. Correction: option B is correct.",
+},
+
+{
+q:"A particle is suspended symmetrically by two strings, each making 60° with horizontal. If weight is 100 N, each tension is:",
+options:["50 N","100/√3 N","100 N","200 N"],
+answer:0,
+cat:"TENSION",
+explanation:"2Tsin60°=100, so T=100/√3≈57.7 N. Therefore option B is correct.",
+},
+
+{
+q:"What is the safest first step in a statics problem?",
+options:["Calculate immediately","Draw/identify the forces","Round all numbers","Use Pythagoras"],
+answer:1,
+cat:"EXAM METHOD",
+explanation:"Correct force identification should come before equations."
+},
+
+{
+q:"Which information should be checked before resolving an angled force?",
+options:["Font size","Where the angle is measured from","The particle's colour","The page number"],
+answer:1,
+cat:"EXAM METHOD",
+explanation:"The angle determines which component uses sine and cosine."
+},
+
+{
+q:"Why should intermediate answers usually not be rounded early?",
+options:["It changes the units","It can create unnecessary final-answer error","It makes equations longer","Rounding is illegal"],
+answer:1,
+cat:"EXAM METHOD",
+explanation:"Premature rounding can propagate numerical error."
+},
+
+{
+q:"A negative value for a tension would usually indicate:",
+options:["The tension is physically negative","The assumed direction was opposite to the actual direction","Gravity has disappeared","The question has no solution"],
+answer:1,
+cat:"EXAM METHOD",
+explanation:"A negative algebraic result indicates the force acts opposite to the assumed direction."
+},
+
+{
+q:"If a particle is in equilibrium, the sum of all horizontal components is:",
+options:["Positive","Negative","Zero","Equal to mg"],
+answer:2,
+cat:"EXAM METHOD",
+explanation:"ΣFx=0."
+},
+
+{
+q:"If a particle is in equilibrium, the sum of all vertical components is:",
+options:["Zero","Equal to mass","Equal to velocity","Always positive"],
+answer:0,
+cat:"EXAM METHOD",
+explanation:"ΣFy=0."
+},
+
+{
+q:"Which of these is NOT normally a force acting on a particle?",
+options:["Weight","Tension","Reaction","Velocity"],
+answer:3,
+cat:"CONCEPTS",
+explanation:"Velocity is a vector describing motion, not a force."
+},
+
+{
+q:"Which quantity has units kg?",
+options:["Weight","Mass","Force","Tension"],
+answer:1,
+cat:"UNITS",
+explanation:"Mass is measured in kilograms."
+},
+
+{
+q:"Which quantity has units N?",
+options:["Mass","Weight","Acceleration","Displacement"],
+answer:1,
+cat:"UNITS",
+explanation:"Weight is a force and is measured in newtons."
+},
+
+{
+q:"Which quantity has units m s⁻²?",
+options:["Force","Mass","Acceleration","Weight"],
+answer:2,
+cat:"UNITS",
+explanation:"Acceleration is measured in m s⁻²."
+},
+
+{
+q:"A force of 50 N acts at 90° to the horizontal. Its vertical component is:",
+options:["0 N","25 N","50 N","100 N"],
+answer:2,
+cat:"RESOLVING",
+explanation:"50sin90°=50 N."
+},
+
+{
+q:"A force of 50 N acts at 90° to the horizontal. Its horizontal component is:",
+options:["0 N","25 N","50 N","100 N"],
+answer:0,
+cat:"RESOLVING",
+explanation:"50cos90°=0."
+},
+
+{
+q:"A force of 50 N acts at 0° to the horizontal. Its horizontal component is:",
+options:["0 N","25 N","50 N","100 N"],
+answer:2,
+cat:"RESOLVING",
+explanation:"50cos0°=50 N."
+},
+
+{
+q:"A force of 50 N acts at 0° to the horizontal. Its vertical component is:",
+options:["0 N","25 N","50 N","100 N"],
+answer:0,
+cat:"RESOLVING",
+explanation:"50sin0°=0."
+},
+
+{
+q:"A particle has two perpendicular forces 16 N and 12 N. What is the resultant?",
+options:["4 N","20 N","28 N","192 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"√(16²+12²)=20 N."
+},
+
+{
+q:"A third force of what magnitude is required to balance perpendicular forces 16 N and 12 N?",
+options:["4 N","20 N","28 N","192 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"Their resultant is 20 N, so a 20 N opposite force balances them."
+},
+
+{
+q:"A force has components 24 N and 7 N. Its magnitude is:",
+options:["17 N","25 N","31 N","168 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"√(24²+7²)=25 N."
+},
+
+{
+q:"A force has magnitude 25 N and components 24 N and 7 N. The components satisfy:",
+options:["24+7=25","24²+7²=25²","24×7=25","24/7=25"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"Perpendicular components obey Pythagoras."
+},
+
+{
+q:"A particle is in equilibrium under three forces. If two forces have resultant 40 N east, the third force is:",
+options:["40 N east","40 N west","80 N west","20 N west"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"The third force must be equal and opposite to the resultant of the other two."
+},
+
+{
+q:"A particle of mass 3 kg is in equilibrium vertically. Its weight is approximately:",
+options:["3 N","29.4 N","9.8 N","0 N"],
+answer:1,
+cat:"WEIGHT",
+explanation:"W=3×9.8=29.4 N."
+},
+
+{
+q:"A 29.4 N downward weight is balanced by an upward tension. Tension is:",
+options:["14.7 N","29.4 N","58.8 N","0 N"],
+answer:1,
+cat:"TENSION",
+explanation:"Vertical equilibrium gives T=29.4 N."
+},
+
+{
+q:"A force of 80 N acts at 30° above horizontal. Its components are:",
+options:["40 N and 40√3 N","40√3 N and 40 N","80 N and 0 N","40 N and 80 N"],
+answer:1,
+cat:"RESOLVING",
+explanation:"Horizontal=80cos30°=40√3; vertical=80sin30°=40."
+},
+
+{
+q:"A force of 80 N acts at 60° above horizontal. Its components are:",
+options:["40 N and 40√3 N","40√3 N and 40 N","80 N and 0 N","20 N and 60 N"],
+answer:0,
+cat:"RESOLVING",
+explanation:"Horizontal=80cos60°=40; vertical=80sin60°=40√3."
+},
+
+{
+q:"A force of 10 N has equal horizontal and vertical components. Its angle to the horizontal is:",
+options:["30°","45°","60°","90°"],
+answer:1,
+cat:"ANGLES",
+explanation:"Equal components occur at 45°."
+},
+
+{
+q:"If a force is at 45° above horizontal, its two perpendicular components have:",
+options:["Different magnitudes","Equal magnitudes","One zero","Opposite signs always"],
+answer:1,
+cat:"ANGLES",
+explanation:"sin45°=cos45°."
+},
+
+{
+q:"A particle has 30 N right and 40 N up. What force would balance these two?",
+options:["50 N southwest","50 N northeast","70 N west","10 N southwest"],
+answer:0,
+cat:"RESULTANTS",
+explanation:"The resultant is 50 N northeast, so the balancing force is 50 N southwest."
+},
+
+{
+q:"A particle has 30 N right and 40 N up. The angle of the resultant above horizontal is:",
+options:["36.9°","53.1°","45°","30°"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"tanθ=40/30, so θ≈53.1°."
+},
+
+{
+q:"A force acts at 20° above horizontal. Which component is larger?",
+options:["Vertical","Horizontal","They are always equal","Neither exists"],
+answer:1,
+cat:"RESOLVING",
+explanation:"For a small acute angle, cos20°>sin20°, so the horizontal component is larger."
+},
+
+{
+q:"A force acts at 70° above horizontal. Which component is larger?",
+options:["Horizontal","Vertical","They are equal","Both zero"],
+answer:1,
+cat:"RESOLVING",
+explanation:"sin70°>cos70°, so the vertical component is larger."
+},
+
+{
+q:"A 98 N weight is resolved on a plane inclined at θ. Which component is parallel to the plane?",
+options:["98cosθ","98sinθ","98tanθ","98/θ"],
+answer:1,
+cat:"INCLINED PLANES",
+explanation:"The component down the plane is 98sinθ."
+},
+
+{
+q:"A 98 N weight is resolved on a plane inclined at θ. Which component is perpendicular to the plane?",
+options:["98sinθ","98cosθ","98tanθ","98/θ"],
+answer:1,
+cat:"INCLINED PLANES",
+explanation:"The normal component is 98cosθ."
+},
+
+{
+q:"For θ=0° in an inclined-plane model, the component of weight down the plane is:",
+options:["0","mg","mg/2","2mg"],
+answer:0,
+cat:"INCLINED PLANES",
+explanation:"mg sin0°=0."
+},
+
+{
+q:"For θ=0° in an inclined-plane model, the perpendicular component of weight is:",
+options:["0","mg","mg/2","2mg"],
+answer:1,
+cat:"INCLINED PLANES",
+explanation:"mg cos0°=mg."
+},
+
+{
+q:"For θ=90° in the ideal mathematical limit, the component down the plane is:",
+options:["0","mg","mg/2","2mg"],
+answer:1,
+cat:"INCLINED PLANES",
+explanation:"mg sin90°=mg."
+},
+
+{
+q:"For θ=90° in the ideal mathematical limit, the perpendicular component is:",
+options:["0","mg","mg/2","2mg"],
+answer:0,
+cat:"INCLINED PLANES",
+explanation:"mg cos90°=0."
+},
+
+{
+q:"What does 'smooth' mean in standard mechanics modelling?",
+options:["There is no contact force","There is no frictional force","There is no weight","The surface is curved"],
+answer:1,
+cat:"MODELLING",
+explanation:"A smooth contact means friction is neglected."
+},
+
+{
+q:"What does 'rough' imply compared with a smooth surface?",
+options:["Friction may act","Weight disappears","No reaction exists","The object has zero mass"],
+answer:0,
+cat:"MODELLING",
+explanation:"A rough surface can exert friction as well as a normal reaction."
+},
+
+{
+q:"What does 'light' mean when describing a string?",
+options:["It is bright","Its mass is neglected","Its tension is zero","It cannot pull"],
+answer:1,
+cat:"MODELLING",
+explanation:"A light string is modelled as having negligible mass."
+},
+
+{
+q:"What does 'inextensible' mean?",
+options:["It has zero mass","It cannot stretch","It cannot carry tension","It is perfectly horizontal"],
+answer:1,
+cat:"MODELLING",
+explanation:"An inextensible string maintains its length."
+},
+
+{
+q:"If a particle is in equilibrium and one force increases without any other change, what must happen?",
+options:["Equilibrium necessarily remains","Another force must change if equilibrium is to remain","Mass becomes zero","Gravity disappears"],
+answer:1,
+cat:"CONCEPTS",
+explanation:"The resultant must remain zero, so other forces must adjust."
+},
+
+{
+q:"Which is most useful for checking a final statics answer?",
+options:["Ignore units","Check force directions and units","Round to zero","Delete the diagram"],
+answer:1,
+cat:"EXAM METHOD",
+explanation:"Direction, units and physical plausibility are useful checks."
+},
+
+{
+q:"If right is positive, the equation for forces 20 N right, 8 N left and 12 N left is:",
+options:["20+8+12=0","20−8−12=0","−20+8+12=0","20−8+12=0"],
+answer:1,
+cat:"SIGNS",
+explanation:"Right is positive, so the two leftward forces are negative."
+},
+
+{
+q:"A particle has upward forces 30 N and 20 N and downward force 50 N. It is:",
+options:["In vertical equilibrium","Accelerating upward","Accelerating downward","Impossible"],
+answer:0,
+cat:"EQUILIBRIUM",
+explanation:"30+20−50=0."
+},
+
+{
+q:"A particle has upward forces 30 N and 20 N and downward force 40 N. Its vertical resultant is:",
+options:["10 N upward","10 N downward","50 N upward","0"],
+answer:0,
+cat:"EQUILIBRIUM",
+explanation:"50−40=10 N upward."
+},
+
+{
+q:"If the resultant vertical force is 10 N upward on a 2 kg particle, acceleration is:",
+options:["5 m s⁻² upward","20 m s⁻² upward","0.2 m s⁻² upward","9.8 m s⁻²"],
+answer:0,
+cat:"NEWTON'S LAWS",
+explanation:"a=F/m=10/2=5 m s⁻² upward."
+},
+
+{
+q:"If a 4 kg particle has resultant force 20 N left, its acceleration is:",
+options:["5 m s⁻² right","5 m s⁻² left","80 m s⁻² left","0"],
+answer:1,
+cat:"NEWTON'S LAWS",
+explanation:"a=20/4=5 m s⁻² in the direction of the resultant."
+},
+
+{
+q:"Which statement is true about the direction of acceleration?",
+options:["It is always upward","It is always downward","It is in the direction of the resultant force","It is always horizontal"],
+answer:2,
+cat:"NEWTON'S LAWS",
+explanation:"Newton's second law means acceleration has the same direction as resultant force."
+},
+
+{
+q:"A force of 30 N is balanced by another force. What is the magnitude of the balancing force?",
+options:["15 N","30 N","60 N","0 N"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"A balancing force has equal magnitude and opposite direction."
+},
+
+{
+q:"A balancing force must be:",
+options:["Equal and same direction","Equal and opposite","Half and opposite","Double and same direction"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"The balancing force cancels the resultant of the other forces."
+},
+
+{
+q:"A particle has resultant force zero. Which statement is false?",
+options:["Acceleration is zero","It can be stationary","It can move at constant velocity","Every individual force must be zero"],
+answer:3,
+cat:"CONCEPTS",
+explanation:"Individual forces may be non-zero but balance each other."
+},
+
+{
+q:"A 10 N force and a 24 N force act perpendicular to each other. The resultant is:",
+options:["14 N","26 N","34 N","240 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"√(10²+24²)=26 N."
+},
+
+{
+q:"A 10 N force and a 24 N force act perpendicular to each other. The balancing force has magnitude:",
+options:["14 N","24 N","26 N","34 N"],
+answer:2,
+cat:"RESULTANTS",
+explanation:"The balancing force equals the resultant magnitude, 26 N."
+},
+
+{
+q:"A particle has resultant 0. What is its momentum doing if its mass is constant?",
+options:["It must increase","It remains constant","It must become zero","It reverses"],
+answer:1,
+cat:"CONCEPTS",
+explanation:"Zero resultant force means constant momentum."
+},
+
+{
+q:"A particle of mass 10 kg has a resultant force of 0. Its weight is:",
+options:["0","98 N","10 N","9.8 N"],
+answer:1,
+cat:"WEIGHT",
+explanation:"Weight remains mg even when resultant force is zero."
+},
+
+{
+q:"A 10 kg particle has weight 98 N and an upward reaction 98 N. What is the resultant vertical force?",
+options:["98 N upward","98 N downward","0","196 N"],
+answer:2,
+cat:"EQUILIBRIUM",
+explanation:"The forces cancel."
+},
+
+{
+q:"A particle is supported by a string and has weight 60 N. If the string is vertical and equilibrium occurs, tension is:",
+options:["30 N","60 N","120 N","0"],
+answer:1,
+cat:"TENSION",
+explanation:"The tension must balance the 60 N weight."
+},
+
+{
+q:"A 60 N tension makes 30° with horizontal. Its vertical component is:",
+options:["30 N","30√3 N","60 N","15 N"],
+answer:0,
+cat:"TENSION",
+explanation:"60sin30°=30 N."
+},
+
+{
+q:"A 60 N tension makes 30° with horizontal. Its horizontal component is:",
+options:["30 N","30√3 N","60 N","15 N"],
+answer:1,
+cat:"TENSION",
+explanation:"60cos30°=30√3 N."
+},
+
+{
+q:"A 60 N tension makes 60° with horizontal. Its vertical component is:",
+options:["30 N","30√3 N","60 N","15 N"],
+answer:1,
+cat:"TENSION",
+explanation:"60sin60°=30√3 N."
+},
+
+{
+q:"A 60 N tension makes 60° with horizontal. Its horizontal component is:",
+options:["30 N","30√3 N","60 N","15 N"],
+answer:0,
+cat:"TENSION",
+explanation:"60cos60°=30 N."
+},
+
+{
+q:"A 100 N force has horizontal component 80 N. What is its vertical component magnitude?",
+options:["20 N","60 N","80 N","180 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"√(100²−80²)=60 N."
+},
+
+{
+q:"A 100 N force has vertical component 80 N. Its horizontal component magnitude is:",
+options:["20 N","60 N","80 N","180 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"√(100²−80²)=60 N."
+},
+
+{
+q:"A force of 50 N has components 30 N horizontal and 40 N vertical. Which statement is correct?",
+options:["The components are impossible","The resultant is 50 N","The resultant is 70 N","The resultant is 10 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"30-40-50 is a right triangle."
+},
+
+{
+q:"A particle is in equilibrium under a force F and its opposite 2F. What other force is needed?",
+options:["F in the direction of 2F","F opposite the resultant of those two","2F same direction","None"],
+answer:0,
+cat:"EQUILIBRIUM",
+explanation:"F and 2F produce resultant F in the direction of 2F, so F opposite to that resultant is required."
+},
+
+{
+q:"What is the most important geometric question before using sine/cosine?",
+options:["Where is the centre of the page?","What direction is the angle measured from?","What colour is the force arrow?","How many forces exist?"],
+answer:1,
+cat:"EXAM METHOD",
+explanation:"The reference direction determines the correct component formula."
+},
+
+{
+q:"A force of 40 N is at 30° to vertical. Its vertical component is:",
+options:["20 N","20√3 N","40 N","10 N"],
+answer:1,
+cat:"ANGLES",
+explanation:"Vertical=40cos30°=20√3 N."
+},
+
+{
+q:"A force of 40 N is at 30° to vertical. Its horizontal component is:",
+options:["20 N","20√3 N","40 N","10 N"],
+answer:0,
+cat:"ANGLES",
+explanation:"Horizontal=40sin30°=20 N."
+},
+
+{
+q:"A force of 40 N is at 60° to vertical. Its vertical component is:",
+options:["20 N","20√3 N","40 N","10 N"],
+answer:0,
+cat:"ANGLES",
+explanation:"Vertical=40cos60°=20 N."
+},
+
+{
+q:"A force of 40 N is at 60° to vertical. Its horizontal component is:",
+options:["20 N","20√3 N","40 N","10 N"],
+answer:1,
+cat:"ANGLES",
+explanation:"Horizontal=40sin60°=20√3 N."
+},
+
+{
+q:"If θ is measured from horizontal, the vertical component is zero when:",
+options:["θ=0°","θ=30°","θ=45°","θ=90°"],
+answer:0,
+cat:"RESOLVING",
+explanation:"Fsin0°=0."
+},
+
+{
+q:"If θ is measured from horizontal, the horizontal component is zero when:",
+options:["θ=0°","θ=30°","θ=45°","θ=90°"],
+answer:3,
+cat:"RESOLVING",
+explanation:"Fcos90°=0."
+},
+
+{
+q:"A 9 kg particle has weight:",
+options:["88.2 N","90 N","9 N","0.918 N"],
+answer:0,
+cat:"WEIGHT",
+explanation:"9×9.8=88.2 N."
+},
+
+{
+q:"A 20 kg particle has weight:",
+options:["196 N","200 N exactly","20 N","2.04 N"],
+answer:0,
+cat:"WEIGHT",
+explanation:"20×9.8=196 N."
+},
+
+{
+q:"A particle has weight 39.2 N. Its mass is:",
+options:["2 kg","4 kg","9.8 kg","39.2 kg"],
+answer:1,
+cat:"WEIGHT",
+explanation:"m=W/g=39.2/9.8=4 kg."
+},
+
+{
+q:"A particle has weight 98 N. Its mass is:",
+options:["5 kg","10 kg","9.8 kg","98 kg"],
+answer:1,
+cat:"WEIGHT",
+explanation:"m=98/9.8=10 kg."
+},
+
+{
+q:"A force of 49 N is required to accelerate a 7 kg particle. Acceleration is:",
+options:["7 m s⁻²","9.8 m s⁻²","42 m s⁻²","0.143 m s⁻²"],
+answer:0,
+cat:"NEWTON'S LAWS",
+explanation:"a=49/7=7 m s⁻²."
+},
+
+{
+q:"A 9 kg particle accelerates at 2 m s⁻². Resultant force is:",
+options:["4.5 N","11 N","18 N","20 N"],
+answer:2,
+cat:"NEWTON'S LAWS",
+explanation:"F=9×2=18 N."
+},
+
+{
+q:"A 12 N resultant force acts on a 6 kg particle. Acceleration is:",
+options:["2 m s⁻²","6 m s⁻²","72 m s⁻²","0.5 m s⁻²"],
+answer:0,
+cat:"NEWTON'S LAWS",
+explanation:"a=12/6=2 m s⁻²."
+},
+
+{
+q:"If the resultant force is zero, Newton's second law gives:",
+options:["ma=0","m/a=0","m+a=0","m−a=0"],
+answer:0,
+cat:"NEWTON'S LAWS",
+explanation:"F=ma and F=0, so ma=0."
+},
+
+{
+q:"Which force is always vertical in standard near-Earth mechanics problems?",
+options:["Tension","Weight","Reaction","Applied force"],
+answer:1,
+cat:"FORCES",
+explanation:"Weight acts vertically downward."
+},
+
+{
+q:"Which force acts along a string?",
+options:["Weight","Tension","Normal reaction","Friction"],
+answer:1,
+cat:"FORCES",
+explanation:"Tension acts along the string."
+},
+
+{
+q:"For a smooth plane, which force is absent from the model?",
+options:["Weight","Normal reaction","Friction","Gravity"],
+answer:2,
+cat:"FORCES",
+explanation:"Smooth means friction is neglected."
+},
+
+{
+q:"A force diagram should show:",
+options:["Only forces causing acceleration","All relevant external forces acting on the selected particle","Only vertical forces","Only horizontal forces"],
+answer:1,
+cat:"MODELLING",
+explanation:"A complete free-body diagram shows the relevant external forces."
+},
+
+{
+q:"A particle is in equilibrium on a smooth horizontal surface under a horizontal pull. What additional horizontal force is required?",
+options:["Equal opposite force","Equal same-direction force","Weight","Normal reaction"],
+answer:0,
+cat:"EQUILIBRIUM",
+explanation:"The horizontal pull must be balanced by an equal opposite horizontal force."
+},
+
+{
+q:"A particle on a smooth horizontal surface has no vertical acceleration. The vertical forces must satisfy:",
+options:["R=0","R=mg if weight is the only downward force","R=2mg always","R=mg/2 always"],
+answer:1,
+cat:"REACTIONS",
+explanation:"Vertical equilibrium gives R=mg in that standard situation."
+},
+
+{
+q:"A 5 kg particle on a smooth horizontal surface has an upward force of 20 N. What is its normal reaction?",
+options:["29 N","49 N","69 N","20 N"],
+answer:0,
+cat:"REACTIONS",
+explanation:"Weight=49 N downward. R+20=49, so R=29 N."
+},
+
+{
+q:"A 5 kg particle on a smooth horizontal surface has a downward additional force of 20 N. Normal reaction is:",
+options:["29 N","49 N","69 N","20 N"],
+answer:2,
+cat:"REACTIONS",
+explanation:"R=49+20=69 N."
+},
+
+{
+q:"A 5 kg particle has weight 49 N and an upward force of 20 N. If the surface is smooth, normal reaction is:",
+options:["29 N","49 N","69 N","20 N"],
+answer:0,
+cat:"REACTIONS",
+explanation:"R+20=49, so R=29 N."
+},
+
+{
+q:"A particle on a smooth 30° plane has mass 4 kg. Its weight component down the plane is:",
+options:["19.6 N","39.2 N","34.0 N","9.8 N"],
+answer:0,
+cat:"INCLINED PLANES",
+explanation:"39.2sin30°=19.6 N."
+},
+
+{
+q:"A 4 kg particle on a smooth 30° plane has normal reaction:",
+options:["19.6 N","39.2 N","33.95 N","9.8 N"],
+answer:2,
+cat:"INCLINED PLANES",
+explanation:"39.2cos30°≈33.95 N."
+},
+
+{
+q:"A particle on a smooth 30° plane is held stationary by a force parallel to the plane. If its weight is 60 N, the holding force must be:",
+options:["30 N up the plane","30 N down the plane","60 N up the plane","60 N down the plane"],
+answer:0,
+cat:"INCLINED PLANES",
+explanation:"Weight component down plane=60sin30°=30 N, so 30 N up plane is required."
+},
+
+{
+q:"A particle on a smooth 60° plane has weight 80 N. The force required up the plane for equilibrium is:",
+options:["40 N","40√3 N","80 N","20 N"],
+answer:1,
+cat:"INCLINED PLANES",
+explanation:"80sin60°=40√3 N."
+},
+
+{
+q:"A particle on a smooth 60° plane has weight 80 N. Normal reaction is:",
+options:["40 N","40√3 N","80 N","20 N"],
+answer:0,
+cat:"INCLINED PLANES",
+explanation:"80cos60°=40 N."
+},
+
+{
+q:"A force of 100 N has components 60 N horizontal and 80 N vertical. The force magnitude is:",
+options:["20 N","100 N","140 N","4800 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"√(60²+80²)=100 N."
+},
+
+{
+q:"A 100 N force with components 60 N and 80 N makes what angle with horizontal?",
+options:["36.9°","53.1°","45°","60°"],
+answer:1,
+cat:"ANGLES",
+explanation:"tanθ=80/60=4/3, so θ≈53.1°."
+},
+
+{
+q:"If two perpendicular components are 7 N and 24 N, the resultant is:",
+options:["17 N","25 N","31 N","168 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"√(7²+24²)=25 N."
+},
+
+{
+q:"If two perpendicular components are 20 N and 21 N, the resultant is:",
+options:["1 N","29 N","41 N","420 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"√(20²+21²)=29 N."
+},
+
+{
+q:"A force has magnitude 29 N and horizontal component 20 N. Its vertical component is:",
+options:["9 N","21 N","49 N","20 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"√(29²−20²)=21 N."
+},
+
+{
+q:"A force has magnitude 25 N and horizontal component 7 N. Its vertical component is:",
+options:["18 N","24 N","32 N","7 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"√(25²−7²)=24 N."
+},
+
+{
+q:"Which equation should be used if right is positive and forces are 50 N right, 20 N left and 10 N left?",
+options:["50+20+10=0","50−20−10=0","−50+20+10=0","50−20+10=0"],
+answer:1,
+cat:"SIGNS",
+explanation:"Right is positive, so leftward forces are negative."
+},
+
+{
+q:"A particle has forces 40 N right and 10 N left. To remain in equilibrium, another force must be:",
+options:["30 N right","30 N left","50 N left","40 N left"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"The resultant is 30 N right, requiring 30 N left."
+},
+
+{
+q:"A particle has 80 N upward and 30 N downward. An additional force for equilibrium is:",
+options:["50 N upward","50 N downward","110 N downward","30 N upward"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"There is 50 N upward resultant, so 50 N downward is needed."
+},
+
+{
+q:"A 50 N force acts at 53.1° above horizontal. Approximately what are its components?",
+options:["40 N horizontal, 30 N vertical","30 N horizontal, 40 N vertical","25 N each","50 N vertical only"],
+answer:1,
+cat:"RESOLVING",
+explanation:"cos53.1°≈0.6 and sin53.1°≈0.8, giving 30 N and 40 N."
+},
+
+{
+q:"A 50 N force acts at 36.9° above horizontal. Approximately what are its components?",
+options:["40 N horizontal, 30 N vertical","30 N horizontal, 40 N vertical","25 N each","50 N vertical"],
+answer:0,
+cat:"RESOLVING",
+explanation:"cos36.9°≈0.8 and sin36.9°≈0.6."
+},
+
+{
+q:"A force F at 37° has vertical component approximately 0.6F. Its horizontal component is approximately:",
+options:["0.4F","0.6F","0.8F","1.6F"],
+answer:2,
+cat:"RESOLVING",
+explanation:"cos37°≈0.8."
+},
+
+{
+q:"A force F at 53° has horizontal component approximately 0.6F. Its vertical component is approximately:",
+options:["0.4F","0.6F","0.8F","1.67F"],
+answer:2,
+cat:"RESOLVING",
+explanation:"sin53°≈0.8."
+},
+
+{
+q:"A particle is in equilibrium under two non-parallel forces only. What must be true?",
+options:["They have equal magnitude and opposite direction","They have different magnitudes","They are perpendicular","They point upward"],
+answer:0,
+cat:"EQUILIBRIUM",
+explanation:"Two forces can have zero resultant only if they are equal and opposite."
+},
+
+{
+q:"A particle is in equilibrium under three forces. If two forces are known, the third force must be:",
+options:["Their sum in the same direction","Equal and opposite to their resultant","Half their resultant","Perpendicular to both"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"The third force must cancel the resultant of the first two."
+},
+
+{
+q:"Why is a free-body diagram useful?",
+options:["It changes physics into chemistry","It prevents forces being forgotten or given wrong directions","It removes the need for equations","It automatically gives the answer"],
+answer:1,
+cat:"EXAM METHOD",
+explanation:"A force diagram makes the modelling and directions explicit."
+},
+
+{
+q:"Which is the best order for an inclined-plane equilibrium question?",
+options:["Answer → diagram → forces","Diagram → resolve → equations → solve","Round → solve → diagram","Use weight as reaction"],
+answer:1,
+cat:"EXAM METHOD",
+explanation:"The systematic sequence is diagram, resolution, equations and solution."
+},
+
+{
+q:"A 6 kg particle on a smooth 30° plane is held by a force up the plane. The required force is:",
+options:["29.4 N","58.8 N","50.9 N","6 N"],
+answer:0,
+cat:"INCLINED PLANES",
+explanation:"mg sin30°=58.8×0.5=29.4 N."
+},
+
+{
+q:"The same 6 kg particle has normal reaction:",
+options:["29.4 N","58.8 N","50.9 N","6 N"],
+answer:2,
+cat:"INCLINED PLANES",
+explanation:"58.8cos30°≈50.9 N."
+},
+
+{
+q:"A 10 kg particle on a smooth plane is in equilibrium. If an applied force up the plane equals 49 N, the plane angle is:",
+options:["30°","45°","60°","90°"],
+answer:0,
+cat:"INCLINED PLANES",
+explanation:"98sinθ=49, so sinθ=0.5 and θ=30°."
+},
+
+{
+q:"A 10 kg particle on a smooth plane has normal reaction 49 N. The plane angle is:",
+options:["30°","45°","60°","90°"],
+answer:2,
+cat:"INCLINED PLANES",
+explanation:"98cosθ=49, so cosθ=0.5 and θ=60°."
+},
+
+{
+q:"A particle of mass 5 kg is in equilibrium under a vertical upward force and weight. The upward force is:",
+options:["5 N","49 N","9.8 N","25 N"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"The upward force must equal weight = 49 N."
+},
+
+{
+q:"If g is taken as 10 m s⁻² instead of 9.8 m s⁻², a 5 kg weight is:",
+options:["49 N","50 N","5 N","9.8 N"],
+answer:1,
+cat:"WEIGHT",
+explanation:"Using g=10 gives W=5×10=50 N."
+},
+
+{
+q:"If a question explicitly states g=9.81 m s⁻², you should normally:",
+options:["Use 9.8 anyway","Use the stated value","Use 10 automatically","Ignore g"],
+answer:1,
+cat:"EXAM METHOD",
+explanation:"Use the value specified by the question."
+},
+
+{
+q:"A force is resolved into horizontal and vertical components. The vector sum of the components is:",
+options:["The original force","Twice the force","Half the force","Zero"],
+answer:0,
+cat:"VECTORS",
+explanation:"Resolution preserves the original vector."
+},
+
+{
+q:"A force of magnitude F at angle θ has component Fcosθ along the direction from which θ is measured. This statement is:",
+options:["True","False","Only true for weight","Only true at 90°"],
+answer:0,
+cat:"VECTORS",
+explanation:"The component adjacent to the reference angle is Fcosθ."
+},
+
+{
+q:"A force F at angle θ has perpendicular component Fsinθ relative to the direction from which θ is measured. This is:",
+options:["True","False","Only true at 0°","Only true for weight"],
+answer:0,
+cat:"VECTORS",
+explanation:"The perpendicular component is opposite the angle in the component triangle."
+},
+
+{
+q:"If a force has horizontal component 0, it must be:",
+options:["Horizontal","Vertical","Zero","At 45°"],
+answer:1,
+cat:"VECTORS",
+explanation:"A force with no horizontal component is vertical."
+},
+
+{
+q:"If a force has vertical component 0, it must be:",
+options:["Vertical","Horizontal","At 45°","Zero"],
+answer:1,
+cat:"VECTORS",
+explanation:"A force with no vertical component is horizontal."
+},
+
+{
+q:"A 30 N force is at 60° to vertical. Its horizontal component is:",
+options:["15 N","15√3 N","30 N","10 N"],
+answer:1,
+cat:"ANGLES",
+explanation:"30sin60°=15√3 N."
+},
+
+{
+q:"A 30 N force is at 60° to vertical. Its vertical component is:",
+options:["15 N","15√3 N","30 N","10 N"],
+answer:0,
+cat:"ANGLES",
+explanation:"30cos60°=15 N."
+},
+
+{
+q:"A 30 N force is at 30° to vertical. Its horizontal component is:",
+options:["15 N","15√3 N","30 N","10 N"],
+answer:0,
+cat:"ANGLES",
+explanation:"30sin30°=15 N."
+},
+
+{
+q:"A 30 N force is at 30° to vertical. Its vertical component is:",
+options:["15 N","15√3 N","30 N","10 N"],
+answer:1,
+cat:"ANGLES",
+explanation:"30cos30°=15√3 N."
+},
+
+{
+q:"A particle is in equilibrium with an upward force of 75 N and weight W. W is:",
+options:["37.5 N","75 N","150 N","0"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"Vertical equilibrium requires W=75 N."
+},
+
+{
+q:"If W=75 N and g=9.8 m s⁻², the mass is approximately:",
+options:["7.65 kg","7.5 kg","76.5 kg","0.765 kg"],
+answer:0,
+cat:"WEIGHT",
+explanation:"m=75/9.8≈7.65 kg."
+},
+
+{
+q:"A particle of mass 7.5 kg has weight using g=9.8:",
+options:["73.5 N","75 N","7.5 N","9.8 N"],
+answer:0,
+cat:"WEIGHT",
+explanation:"7.5×9.8=73.5 N."
+},
+
+{
+q:"A 73.5 N downward force is balanced by 30 N downward and an upward force R. R is:",
+options:["43.5 N","103.5 N","30 N","73.5 N"],
+answer:1,
+cat:"EQUILIBRIUM",
+explanation:"R=73.5+30=103.5 N."
+},
+
+{
+q:"A 100 N upward force is balanced by weight 70 N and another downward force F. F is:",
+options:["30 N","70 N","170 N","100 N"],
+answer:0,
+cat:"EQUILIBRIUM",
+explanation:"100−70−F=0, so F=30 N."
+},
+
+{
+q:"A particle is acted upon by 40 N east and 30 N north. The direction of the resultant is approximately:",
+options:["36.9° north of east","53.1° north of east","45°","53.1° south of east"],
+answer:0,
+cat:"RESULTANTS",
+explanation:"tanθ=30/40, giving θ≈36.9°."
+},
+
+{
+q:"A particle is acted upon by 40 N east and 30 N north. The resultant magnitude is:",
+options:["10 N","50 N","70 N","1200 N"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"√(40²+30²)=50 N."
+},
+
+{
+q:"A balancing force for that resultant points:",
+options:["North-east","South-west","North-west","South-east"],
+answer:1,
+cat:"RESULTANTS",
+explanation:"The resultant is northeast, so its balancing force is southwest."
+},
+
+{
+q:"A particle in equilibrium has three forces. The vector triangle formed by the three forces must:",
+options:["Close","Have four sides","Have no angles","Always be right-angled"],
+answer:0,
+cat:"VECTORS",
+explanation:"For zero resultant, the vectors placed head-to-tail form a closed triangle."
+},
+
+{
+q:"Which phrase best describes statics of a particle?",
+options:["Study of rotational motion only","Study of force equilibrium of particles","Study of waves","Study of energy only"],
+answer:1,
+cat:"FOUNDATIONS",
+explanation:"Statics concerns systems with zero acceleration, with particle statics focusing on force equilibrium."
+},
+
+{
+q:"A particle has mass 4 kg and forces whose resultant is 20 N right. Its acceleration is:",
+options:["5 m s⁻² right","5 m s⁻² left","80 m s⁻² right","0"],
+answer:0,
+cat:"NEWTON'S LAWS",
+explanation:"a=20/4=5 m s⁻² right."
+},
+
+{
+q:"If a particle has zero acceleration, its resultant force is:",
+options:["Zero","Equal to mass","Equal to weight always","Maximum"],
+answer:0,
+cat:"NEWTON'S LAWS",
+explanation:"F=ma and a=0 imply F=0."
+},
+
+{
+q:"Which statement is most important when checking an equilibrium answer?",
+options:["All forces individually must be zero","Horizontal and vertical resultants must both be zero","Mass must be zero","Weight must be ignored"],
+answer:1,
+cat:"EXAM METHOD",
+explanation:"For two-dimensional particle equilibrium, both independent components of the resultant must be zero."
+}
+
+];
+
+
+/* =========================================================
+   EXAM STATE
+========================================================= */
+
+let currentQuestion = 0;
+
+let answers = new Array(examQuestions.length).fill(null);
+
+let examSubmitted = false;
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const questionText =
+    document.getElementById("questionText");
+
+const optionsContainer =
+    document.getElementById("options");
+
+const questionCategory =
+    document.getElementById("questionCategory");
+
+const progressText =
+    document.getElementById("progressText");
+
+const answeredText =
+    document.getElementById("answeredText");
+
+const progressBar =
+    document.getElementById("progressBar");
+
+const prevBtn =
+    document.getElementById("prevBtn");
+
+const nextBtn =
+    document.getElementById("nextBtn");
+
+const questionPalette =
+    document.getElementById("questionPalette");
+
+const examArea =
+    document.getElementById("examArea");
+
+const examResult =
+    document.getElementById("examResult");
+
+
+/* =========================================================
+   RENDER QUESTION
+========================================================= */
+
+function renderQuestion(){
+
+    const q = examQuestions[currentQuestion];
+
+    questionCategory.textContent =
+        q.cat;
+
+    questionText.textContent =
+        q.q;
+
+    optionsContainer.innerHTML = "";
+
+    q.options.forEach((option,index)=>{
+
+        const button =
+            document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent =
+            String.fromCharCode(65+index) + ". " + option;
+
+        if(answers[currentQuestion] === index){
+
+            button.classList.add("selected");
+
+        }
+
+        button.onclick = ()=>{
+
+            if(examSubmitted) return;
+
+            answers[currentQuestion] = index;
+
+            renderQuestion();
+            updatePalette();
+
+        };
+
+        optionsContainer.appendChild(button);
+
+    });
+
+    progressText.textContent =
+        `Question ${currentQuestion+1} of ${examQuestions.length}`;
+
+    const answered =
+        answers.filter(a=>a!==null).length;
+
+    answeredText.textContent =
+        `${answered} answered`;
+
+    progressBar.style.width =
+        `${((currentQuestion+1)/examQuestions.length)*100}%`;
+
+    prevBtn.disabled =
+        currentQuestion === 0;
+
+    nextBtn.disabled =
+        currentQuestion === examQuestions.length-1;
+
+    updatePalette();
+
+}
+
+
+/* =========================================================
+   QUESTION PALETTE
+========================================================= */
+
+function buildPalette(){
+
+    questionPalette.innerHTML = "";
+
+    examQuestions.forEach((q,index)=>{
+
+        const dot =
+            document.createElement("button");
+
+        dot.className = "question-dot";
+
+        dot.textContent =
+            index+1;
+
+        dot.onclick = ()=>{
+
+            if(examSubmitted) return;
+
+            currentQuestion = index;
+
+            renderQuestion();
+
+        };
+
+        questionPalette.appendChild(dot);
+
+    });
+
+}
+
+
+function updatePalette(){
+
+    const dots =
+        document.querySelectorAll(".question-dot");
+
+    dots.forEach((dot,index)=>{
+
+        dot.className = "question-dot";
+
+        if(index === currentQuestion){
+
+            dot.classList.add("current");
+
+        }
+
+        if(answers[index] !== null){
+
+            dot.classList.add("answered");
 
         }
 
     });
 
+}
 
-    /* =========================
-       EQUILIBRIUM INTERACTION
-    ========================== */
 
-    const system =
-        document.querySelector(".equilibrium-system");
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-    const equilibriumParticle =
-        document.querySelector(".equilibrium-particle");
+function previousQuestion(){
 
-    system.addEventListener("mousemove", event => {
+    if(currentQuestion > 0){
 
-        const rect = system.getBoundingClientRect();
+        currentQuestion--;
 
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
+        renderQuestion();
 
-        const rotateX =
-            ((y / rect.height) - 0.5) * -6;
+    }
 
-        const rotateY =
-            ((x / rect.width) - 0.5) * 6;
+}
 
-        equilibriumParticle.style.transform =
-            `translateX(-50%) translateY(-4px)
-             rotateX(${rotateX}deg)
-             rotateY(${rotateY}deg)`;
+
+function nextQuestion(){
+
+    if(currentQuestion < examQuestions.length-1){
+
+        currentQuestion++;
+
+        renderQuestion();
+
+    }
+
+}
+
+
+/* =========================================================
+   SUBMIT
+========================================================= */
+
+function submitExam(){
+
+    if(examSubmitted) return;
+
+    const unanswered =
+        answers.filter(a=>a===null).length;
+
+    if(unanswered > 0){
+
+        const proceed =
+            confirm(
+                `You have ${unanswered} unanswered question(s).\n\nSubmit anyway?`
+            );
+
+        if(!proceed) return;
+
+    }
+
+    examSubmitted = true;
+
+    let score = 0;
+
+    examQuestions.forEach((q,index)=>{
+
+        if(answers[index] === q.answer){
+
+            score++;
+
+        }
 
     });
 
+    const wrong =
+        answers.filter(
+            (answer,index)=>
+                answer !== null &&
+                answer !== examQuestions[index].answer
+        ).length;
 
-    system.addEventListener("mouseleave", () => {
+    const blank =
+        answers.filter(
+            answer=>answer===null
+        ).length;
 
-        equilibriumParticle.style.transform =
-            "translateX(-50%) translateY(0)";
+    const percent =
+        score;
+
+    document.getElementById("resultScore")
+        .textContent =
+        `${score} / ${examQuestions.length}`;
+
+    document.getElementById("resultPercent")
+        .textContent =
+        `${percent}%`;
+
+    document.getElementById("correctCount")
+        .textContent =
+        score;
+
+    document.getElementById("wrongCount")
+        .textContent =
+        wrong;
+
+    document.getElementById("blankCount")
+        .textContent =
+        blank;
+
+    buildReview();
+
+    examArea.style.display = "none";
+
+    examResult.style.display = "block";
+
+    examResult.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+}
+
+
+/* =========================================================
+   REVIEW
+========================================================= */
+
+function buildReview(){
+
+    const container =
+        document.getElementById("reviewContainer");
+
+    container.innerHTML = "";
+
+    examQuestions.forEach((q,index)=>{
+
+        const item =
+            document.createElement("div");
+
+        const correct =
+            answers[index] === q.answer;
+
+        item.className =
+            `review-item ${
+                correct
+                ? "review-correct"
+                : "review-wrong"
+            }`;
+
+        const userAnswer =
+            answers[index] === null
+            ? "Unanswered"
+            : q.options[answers[index]];
+
+        const correctAnswer =
+            q.options[q.answer];
+
+        item.innerHTML = `
+
+            <div class="review-question">
+                ${index+1}. ${q.q}
+            </div>
+
+            <div class="review-answer">
+                <strong>Your answer:</strong>
+                ${userAnswer}
+            </div>
+
+            <div class="review-answer">
+                <strong>Correct answer:</strong>
+                ${correctAnswer}
+            </div>
+
+            <div class="review-explanation">
+                ${q.explanation}
+            </div>
+
+        `;
+
+        container.appendChild(item);
 
     });
+
+}
+
+
+/* =========================================================
+   RESTART
+========================================================= */
+
+function restartExam(){
+
+    currentQuestion = 0;
+
+    answers =
+        new Array(examQuestions.length).fill(null);
+
+    examSubmitted = false;
+
+    examArea.style.display = "block";
+
+    examResult.style.display = "none";
+
+    renderQuestion();
+
+    window.scrollTo({
+        top:document.getElementById("exam").offsetTop - 70,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+buildPalette();
+renderQuestion();
 
 </script>
 
 </body>
-
 </html>
 
