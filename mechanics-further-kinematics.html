@@ -3,889 +3,1914 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Further Kinematics | IAL ATLAS</title>
-
-    <meta name="description"
-          content="Edexcel International A Level Mathematics Mechanics 2 Further Kinematics resources.">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-
-        :root {
-            --bg: #030914;
-            --bg-soft: #071322;
-            --panel: rgba(10, 24, 42, 0.72);
-            --panel-strong: rgba(8, 20, 36, 0.9);
-            --line: rgba(91, 190, 255, 0.18);
-            --cyan: #59d7ff;
-            --blue: #328cff;
-            --text: #edf8ff;
-            --muted: #91a9bf;
-            --soft: #c9deee;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "Inter", sans-serif;
-            background:
-                radial-gradient(circle at 50% -10%, rgba(34, 126, 255, 0.18), transparent 35%),
-                radial-gradient(circle at 90% 35%, rgba(0, 210, 255, 0.07), transparent 28%),
-                var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: -2;
-            background-image:
-                linear-gradient(rgba(83, 184, 255, 0.035) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(83, 184, 255, 0.035) 1px, transparent 1px);
-            background-size: 48px 48px;
-            mask-image: linear-gradient(to bottom, black, transparent 88%);
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            width: 550px;
-            height: 550px;
-            border-radius: 50%;
-            background: rgba(26, 133, 255, 0.06);
-            filter: blur(100px);
-            top: 15%;
-            left: 50%;
-            transform: translateX(-50%);
-            pointer-events: none;
-            z-index: -3;
-        }
-
-        a {
-            color: inherit;
-        }
-
-        /* HEADER */
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 18px 6%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(3, 9, 20, 0.72);
-            border-bottom: 1px solid rgba(91, 190, 255, 0.1);
-            backdrop-filter: blur(20px);
-        }
-
-        .logo {
-            text-decoration: none;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 23px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .logo::before {
-            content: "";
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            margin-right: 10px;
-            border-radius: 50%;
-            background: var(--cyan);
-            box-shadow: 0 0 16px var(--cyan);
-            animation: pulse 2s infinite;
-        }
-
-        .back-link {
-            text-decoration: none;
-            color: var(--soft);
-            font-size: 14px;
-            padding: 9px 15px;
-            border: 1px solid rgba(91, 190, 255, 0.18);
-            border-radius: 10px;
-            transition: 0.3s ease;
-        }
-
-        .back-link:hover {
-            color: white;
-            border-color: rgba(91, 190, 255, 0.55);
-            background: rgba(89, 215, 255, 0.07);
-            transform: translateY(-2px);
-        }
-
-        /* HERO */
-
-        .hero {
-            min-height: 720px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 100px 20px 90px;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            width: 850px;
-            height: 850px;
-            border: 1px solid rgba(89, 215, 255, 0.08);
-            border-radius: 50%;
-            animation: rotateSlow 30s linear infinite;
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-            width: 610px;
-            height: 610px;
-            border: 1px dashed rgba(50, 140, 255, 0.12);
-            border-radius: 50%;
-            animation: rotateReverse 24s linear infinite;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 5;
-            max-width: 900px;
-        }
-
-        .hero-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            color: var(--cyan);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            margin-bottom: 22px;
-        }
-
-        .hero-label::before {
-            content: "";
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--cyan);
-            box-shadow: 0 0 14px var(--cyan);
-        }
-
-        .hero h1 {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(50px, 8vw, 88px);
-            line-height: 0.98;
-            letter-spacing: -3px;
-            background: linear-gradient(120deg, #ffffff 20%, #9be9ff 52%, #65a9ff 90%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 45px rgba(89, 215, 255, 0.12);
-        }
-
-        .hero p {
-            max-width: 700px;
-            margin: 25px auto 0;
-            color: var(--muted);
-            font-size: 17px;
-        }
-
-        /* MOTION VISUAL */
-
-        .motion-system {
-            position: relative;
-            width: min(820px, 94vw);
-            height: 270px;
-            margin-top: 55px;
-            border: 1px solid rgba(89, 215, 255, 0.16);
-            border-radius: 24px;
-            background: rgba(4, 15, 28, 0.58);
-            box-shadow:
-                inset 0 0 40px rgba(50, 140, 255, 0.04),
-                0 0 70px rgba(0, 150, 255, 0.05);
-            backdrop-filter: blur(16px);
-            overflow: hidden;
-        }
-
-        .motion-grid {
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(89, 215, 255, 0.07) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(89, 215, 255, 0.07) 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.45;
-        }
-
-        .axis {
-            position: absolute;
-            left: 7%;
-            right: 7%;
-            top: 57%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(89, 215, 255, 0.65), transparent);
-        }
-
-        .axis::after {
-            content: "t →";
-            position: absolute;
-            right: 0;
-            top: -28px;
-            color: rgba(155, 233, 255, 0.55);
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 12px;
-        }
-
-        .trajectory {
-            position: absolute;
-            left: 8%;
-            top: 43%;
-            width: 84%;
-            height: 80px;
-        }
-
-        .trajectory svg {
-            width: 100%;
-            height: 100%;
-            overflow: visible;
-        }
-
-        .trajectory-path {
-            fill: none;
-            stroke: rgba(89, 215, 255, 0.34);
-            stroke-width: 2;
-            stroke-dasharray: 8 10;
-            animation: dash 7s linear infinite;
-        }
-
-        .trajectory-glow {
-            fill: none;
-            stroke: rgba(89, 215, 255, 0.1);
-            stroke-width: 10;
-            filter: blur(8px);
-        }
-
-        .particle {
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: white;
-            border: 3px solid var(--cyan);
-            box-shadow:
-                0 0 12px var(--cyan),
-                0 0 35px rgba(89, 215, 255, 0.8);
-            left: 9%;
-            top: 47%;
-            animation: particleTravel 7s ease-in-out infinite;
-        }
-
-        .particle::after {
-            content: "";
-            position: absolute;
-            width: 85px;
-            height: 2px;
-            right: 8px;
-            top: 5px;
-            transform-origin: right center;
-            background: linear-gradient(90deg, transparent, rgba(89, 215, 255, 0.8));
-            transform: rotate(-8deg);
-            filter: drop-shadow(0 0 5px rgba(89, 215, 255, 0.6));
-        }
-
-        .velocity-label {
-            position: absolute;
-            left: 13%;
-            top: 29%;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 11px;
-            color: var(--cyan);
-            letter-spacing: 1px;
-            animation: floatLabel 7s ease-in-out infinite;
-        }
-
-        .acceleration-label {
-            position: absolute;
-            right: 11%;
-            bottom: 25%;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 11px;
-            color: #82aaff;
-            letter-spacing: 1px;
-            animation: floatLabel2 7s ease-in-out infinite;
-        }
-
-        .motion-node {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--cyan);
-            box-shadow: 0 0 12px var(--cyan);
-        }
-
-        .node-1 {
-            left: 18%;
-            top: 31%;
-        }
-
-        .node-2 {
-            left: 43%;
-            top: 64%;
-        }
-
-        .node-3 {
-            left: 69%;
-            top: 27%;
-        }
-
-        .node-4 {
-            left: 84%;
-            top: 57%;
-        }
-
-        /* DATA STRIP */
-
-        .data-strip {
-            position: relative;
-            z-index: 10;
-            width: min(900px, 92%);
-            margin: -30px auto 70px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            border: 1px solid rgba(89, 215, 255, 0.15);
-            border-radius: 18px;
-            background: rgba(7, 18, 33, 0.78);
-            backdrop-filter: blur(18px);
-            overflow: hidden;
-            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.25);
-        }
-
-        .data-item {
-            padding: 20px 15px;
-            text-align: center;
-            border-right: 1px solid rgba(89, 215, 255, 0.1);
-        }
-
-        .data-item:last-child {
-            border-right: none;
-        }
-
-        .data-value {
-            display: block;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--cyan);
-        }
-
-        .data-label {
-            display: block;
-            margin-top: 3px;
-            font-size: 10px;
-            letter-spacing: 1.5px;
-            color: #718ca5;
-        }
-
-        /* CONTENT */
-
-        .container {
-            width: min(980px, 92%);
-            margin: auto;
-            padding-bottom: 30px;
-        }
-
-        .lesson {
-            position: relative;
-            padding: 38px;
-            margin-bottom: 28px;
-            border: 1px solid rgba(89, 215, 255, 0.13);
-            border-radius: 22px;
-            background: linear-gradient(
-                145deg,
-                rgba(10, 27, 47, 0.78),
-                rgba(5, 15, 28, 0.7)
-            );
-            backdrop-filter: blur(18px);
-            box-shadow:
-                0 18px 60px rgba(0, 0, 0, 0.18),
-                inset 0 1px 0 rgba(255,255,255,0.025);
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(35px);
-            transition:
-                opacity 0.8s ease,
-                transform 0.8s ease,
-                border-color 0.35s ease,
-                box-shadow 0.35s ease;
-        }
-
-        .lesson.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .lesson::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 65%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-            animation: scan 6s linear infinite;
-        }
-
-        .lesson:hover {
-            border-color: rgba(89, 215, 255, 0.27);
-            box-shadow:
-                0 22px 70px rgba(0, 0, 0, 0.28),
-                0 0 45px rgba(50, 140, 255, 0.045);
-        }
-
-        .lesson-number {
-            color: var(--cyan);
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            margin-bottom: 9px;
-        }
-
-        .lesson h2 {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(25px, 4vw, 34px);
-            line-height: 1.2;
-            margin-bottom: 18px;
-            color: #f2fbff;
-        }
-
-        .lesson p {
-            color: var(--muted);
-            margin-bottom: 15px;
-        }
-
-        .lesson ul {
-            padding-left: 24px;
-            color: var(--muted);
-        }
-
-        .lesson li {
-            margin-bottom: 9px;
-        }
-
-        .definition {
-            position: relative;
-            margin: 22px 0 5px;
-            padding: 22px 24px;
-            border: 1px solid rgba(89, 215, 255, 0.12);
-            border-left: 3px solid var(--cyan);
-            border-radius: 14px;
-            background: rgba(89, 215, 255, 0.045);
-        }
-
-        .definition strong {
-            color: #dff7ff;
-        }
-
-        .definition p {
-            margin-top: 10px;
-            margin-bottom: 0;
-        }
-
-        /* FORMULAS */
-
-        .formula {
-            position: relative;
-            margin: 21px 0;
-            padding: 20px;
-            border: 1px solid rgba(89, 215, 255, 0.16);
-            border-radius: 14px;
-            background:
-                linear-gradient(100deg, rgba(17, 55, 86, 0.75), rgba(6, 21, 38, 0.9));
-            color: #eafaff;
-            text-align: center;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 0.4px;
-            overflow: hidden;
-            box-shadow: inset 0 0 30px rgba(89, 215, 255, 0.025);
-        }
-
-        .formula::before {
-            content: "";
-            position: absolute;
-            left: -20%;
-            top: 0;
-            width: 20%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
-            transform: skewX(-20deg);
-            animation: formulaSweep 5s infinite;
-        }
-
-        /* EXAMPLES */
-
-        .example {
-            position: relative;
-            margin-top: 24px;
-            padding: 26px;
-            border: 1px solid rgba(91, 190, 255, 0.13);
-            border-radius: 16px;
-            background: rgba(3, 12, 23, 0.48);
-        }
-
-        .example-title {
-            color: var(--cyan) !important;
-            font-family: "Space Grotesk", sans-serif;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 12px !important;
-        }
-
-        .solution {
-            margin-top: 20px;
-            padding: 20px;
-            border-radius: 13px;
-            border: 1px solid rgba(89, 215, 255, 0.1);
-            background: rgba(10, 25, 42, 0.72);
-        }
-
-        .solution p:last-child {
-            margin-bottom: 0;
-        }
-
-        .solution strong {
-            color: #e8fbff;
-        }
-
-        /* QUESTIONS */
-
-        .question {
-            padding: 22px 0;
-            border-bottom: 1px solid rgba(89, 215, 255, 0.1);
-            color: #d9e9f4;
-        }
-
-        .question:last-child {
-            border-bottom: none;
-        }
-
-        details {
-            margin-top: 12px;
-        }
-
-        summary {
-            display: inline-block;
-            cursor: pointer;
-            color: var(--cyan);
-            font-weight: 700;
-            font-size: 14px;
-            padding: 7px 0;
-        }
-
-        details p {
-            margin-top: 9px;
-        }
-
-        /* NAVIGATION */
-
-        .navigation {
-            width: min(980px, 92%);
-            margin: 25px auto 75px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 9px;
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 175px;
-            padding: 13px 20px;
-            border: 1px solid rgba(89, 215, 255, 0.18);
-            border-radius: 11px;
-            background: rgba(9, 28, 47, 0.72);
-            color: #dff7ff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 700;
-            backdrop-filter: blur(12px);
-            transition: 0.3s ease;
-        }
-
-        .button:hover {
-            transform: translateY(-3px);
-            border-color: rgba(89, 215, 255, 0.55);
-            background: rgba(89, 215, 255, 0.08);
-            box-shadow: 0 0 25px rgba(89, 215, 255, 0.08);
-        }
-
-        .button.primary {
-            border-color: rgba(89, 215, 255, 0.4);
-            background: linear-gradient(
-                135deg,
-                rgba(50, 140, 255, 0.3),
-                rgba(89, 215, 255, 0.12)
-            );
-        }
-
-        /* FOOTER */
-
-        footer {
-            border-top: 1px solid rgba(89, 215, 255, 0.1);
-            background: rgba(2, 7, 15, 0.9);
-            color: #71879c;
-            text-align: center;
-            padding: 30px 20px;
-            font-size: 13px;
-        }
-
-        /* PARTICLES */
-
-        .particles {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: -1;
-        }
-
-        .particle-bg {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            border-radius: 50%;
-            background: var(--cyan);
-            box-shadow: 0 0 8px var(--cyan);
-            opacity: 0.35;
-            animation: drift linear infinite;
-        }
-
-        .p1 { left: 7%; top: 24%; animation-duration: 15s; }
-        .p2 { left: 16%; top: 72%; animation-duration: 19s; animation-delay: -4s; }
-        .p3 { left: 27%; top: 42%; animation-duration: 22s; animation-delay: -8s; }
-        .p4 { left: 73%; top: 18%; animation-duration: 17s; animation-delay: -5s; }
-        .p5 { left: 84%; top: 63%; animation-duration: 20s; animation-delay: -11s; }
-        .p6 { left: 93%; top: 35%; animation-duration: 16s; animation-delay: -3s; }
-        .p7 { left: 51%; top: 76%; animation-duration: 23s; animation-delay: -7s; }
-
-        /* ANIMATIONS */
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.55; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.15); }
-        }
-
-        @keyframes rotateSlow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes rotateReverse {
-            from { transform: rotate(360deg); }
-            to { transform: rotate(0deg); }
-        }
-
-        @keyframes dash {
-            to { stroke-dashoffset: -120; }
-        }
-
-        @keyframes particleTravel {
-            0% {
-                left: 9%;
-                top: 50%;
-                transform: scale(0.85);
-            }
-
-            25% {
-                left: 31%;
-                top: 39%;
-                transform: scale(1);
-            }
-
-            50% {
-                left: 54%;
-                top: 58%;
-                transform: scale(1.12);
-            }
-
-            75% {
-                left: 74%;
-                top: 36%;
-                transform: scale(1);
-            }
-
-            100% {
-                left: 89%;
-                top: 49%;
-                transform: scale(0.85);
-            }
-        }
-
-        @keyframes floatLabel {
-            0%, 100% { transform: translateY(0); opacity: 0.5; }
-            50% { transform: translateY(-12px); opacity: 1; }
-        }
-
-        @keyframes floatLabel2 {
-            0%, 100% { transform: translateY(0); opacity: 0.45; }
-            50% { transform: translateY(10px); opacity: 1; }
-        }
-
-        @keyframes scan {
-            0% { left: -100%; }
-            100% { left: 150%; }
-        }
-
-        @keyframes formulaSweep {
-            0%, 55% { left: -25%; }
-            100% { left: 130%; }
-        }
-
-        @keyframes drift {
-            0% {
-                transform: translate3d(0, 0, 0);
-                opacity: 0.15;
-            }
-
-            50% {
-                transform: translate3d(15px, -35px, 0);
-                opacity: 0.5;
-            }
-
-            100% {
-                transform: translate3d(-10px, -70px, 0);
-                opacity: 0.05;
-            }
-        }
-
-        /* RESPONSIVE */
-
-        @media (max-width: 760px) {
-
-            header {
-                padding: 15px 5%;
-            }
-
-            .logo {
-                font-size: 19px;
-            }
-
-            .back-link {
-                font-size: 12px;
-                padding: 8px 11px;
-            }
-
-            .hero {
-                min-height: 650px;
-                padding-top: 80px;
-            }
-
-            .hero h1 {
-                letter-spacing: -2px;
-            }
-
-            .hero p {
-                font-size: 15px;
-            }
-
-            .motion-system {
-                height: 225px;
-                margin-top: 40px;
-            }
-
-            .data-strip {
-                grid-template-columns: repeat(2, 1fr);
-                margin-top: -20px;
-            }
-
-            .data-item:nth-child(2) {
-                border-right: none;
-            }
-
-            .data-item:nth-child(-n+2) {
-                border-bottom: 1px solid rgba(89, 215, 255, 0.1);
-            }
-
-            .lesson {
-                padding: 26px 22px;
-                border-radius: 18px;
-            }
-
-            .formula {
-                font-size: 17px;
-                padding: 17px 12px;
-            }
-
-            .example {
-                padding: 20px;
-            }
-
-            .navigation {
-                margin-bottom: 55px;
-            }
-
-            .button {
-                width: 100%;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-
-            html {
-                scroll-behavior: auto;
-            }
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-
-            .lesson {
-                opacity: 1;
-                transform: none;
-            }
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Further Kinematics | IAL ATLAS</title>
+
+<meta name="description"
+content="Edexcel International A Level Mathematics Mechanics 2 Further Kinematics. Complete notes covering variable acceleration, vertical motion, projectiles, vector kinematics, differentiation, integration and a 100-question exam.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+
+<style>
+
+/* =========================================================
+   CORE
+========================================================= */
+
+:root {
+    --bg:#030914;
+    --bg-soft:#071322;
+    --panel:rgba(10,24,42,.76);
+    --panel-strong:rgba(7,19,34,.94);
+    --line:rgba(91,190,255,.17);
+    --cyan:#59d7ff;
+    --blue:#328cff;
+    --purple:#9c8cff;
+    --green:#6fffc4;
+    --red:#ff7188;
+    --yellow:#ffd86b;
+    --text:#edf8ff;
+    --muted:#91a9bf;
+    --soft:#c9deee;
+}
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html {
+    scroll-behavior:smooth;
+}
+
+body {
+    font-family:"Inter",sans-serif;
+    background:
+        radial-gradient(circle at 50% -10%,rgba(34,126,255,.18),transparent 35%),
+        radial-gradient(circle at 90% 35%,rgba(0,210,255,.07),transparent 28%),
+        var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    overflow-x:hidden;
+}
+
+body::before {
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-2;
+
+    background-image:
+        linear-gradient(rgba(83,184,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(83,184,255,.035) 1px,transparent 1px);
+
+    background-size:48px 48px;
+
+    mask-image:linear-gradient(to bottom,black,transparent 88%);
+}
+
+body::after {
+    content:"";
+    position:fixed;
+    width:550px;
+    height:550px;
+    border-radius:50%;
+    background:rgba(26,133,255,.06);
+    filter:blur(100px);
+    top:15%;
+    left:50%;
+    transform:translateX(-50%);
+    pointer-events:none;
+    z-index:-3;
+}
+
+a {
+    color:inherit;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+    position:sticky;
+    top:0;
+    z-index:100;
+    padding:18px 6%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:rgba(3,9,20,.72);
+    border-bottom:1px solid rgba(91,190,255,.1);
+
+    backdrop-filter:blur(20px);
+}
+
+.logo {
+    text-decoration:none;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:23px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.logo::before {
+    content:"";
+    display:inline-block;
+
+    width:8px;
+    height:8px;
+    margin-right:10px;
+
+    border-radius:50%;
+    background:var(--cyan);
+
+    box-shadow:0 0 16px var(--cyan);
+
+    animation:pulse 2s infinite;
+}
+
+.back-link {
+    text-decoration:none;
+    color:var(--soft);
+
+    font-size:14px;
+
+    padding:9px 15px;
+
+    border:1px solid rgba(91,190,255,.18);
+    border-radius:10px;
+
+    transition:.3s ease;
+}
+
+.back-link:hover {
+    color:white;
+    border-color:rgba(91,190,255,.55);
+    background:rgba(89,215,255,.07);
+    transform:translateY(-2px);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height:720px;
+
+    position:relative;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:100px 20px 90px;
+
+    overflow:hidden;
+}
+
+.hero::before {
+    content:"";
+
+    position:absolute;
+
+    width:850px;
+    height:850px;
+
+    border:1px solid rgba(89,215,255,.08);
+    border-radius:50%;
+
+    animation:rotateSlow 30s linear infinite;
+}
+
+.hero::after {
+    content:"";
+
+    position:absolute;
+
+    width:610px;
+    height:610px;
+
+    border:1px dashed rgba(50,140,255,.12);
+    border-radius:50%;
+
+    animation:rotateReverse 24s linear infinite;
+}
+
+.hero-content {
+    position:relative;
+    z-index:5;
+
+    max-width:950px;
+}
+
+.hero-label {
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+
+    color:var(--cyan);
+
+    font-size:12px;
+    font-weight:700;
+
+    letter-spacing:3px;
+
+    margin-bottom:22px;
+}
+
+.hero-label::before {
+    content:"";
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:var(--cyan);
+
+    box-shadow:0 0 14px var(--cyan);
+}
+
+.hero h1 {
+    font-family:"Space Grotesk",sans-serif;
+
+    font-size:clamp(50px,8vw,88px);
+
+    line-height:.98;
+    letter-spacing:-3px;
+
+    background:
+        linear-gradient(
+            120deg,
+            #ffffff 20%,
+            #9be9ff 52%,
+            #65a9ff 90%
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+
+    text-shadow:0 0 45px rgba(89,215,255,.12);
+}
+
+.hero p {
+    max-width:760px;
+
+    margin:25px auto 0;
+
+    color:var(--muted);
+
+    font-size:17px;
+}
+
+
+/* =========================================================
+   MOTION VISUAL
+========================================================= */
+
+.motion-system {
+    position:relative;
+
+    width:min(820px,94vw);
+    height:270px;
+
+    margin-top:55px;
+
+    border:1px solid rgba(89,215,255,.16);
+    border-radius:24px;
+
+    background:rgba(4,15,28,.58);
+
+    box-shadow:
+        inset 0 0 40px rgba(50,140,255,.04),
+        0 0 70px rgba(0,150,255,.05);
+
+    backdrop-filter:blur(16px);
+
+    overflow:hidden;
+}
+
+.motion-grid {
+    position:absolute;
+    inset:0;
+
+    background-image:
+        linear-gradient(rgba(89,215,255,.07) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(89,215,255,.07) 1px,transparent 1px);
+
+    background-size:40px 40px;
+
+    opacity:.45;
+}
+
+.axis {
+    position:absolute;
+
+    left:7%;
+    right:7%;
+
+    top:57%;
+
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(89,215,255,.65),
+            transparent
+        );
+}
+
+.axis::after {
+    content:"t →";
+
+    position:absolute;
+
+    right:0;
+    top:-28px;
+
+    color:rgba(155,233,255,.55);
+
+    font-family:"Space Grotesk",sans-serif;
+    font-size:12px;
+}
+
+.trajectory {
+    position:absolute;
+
+    left:8%;
+    top:43%;
+
+    width:84%;
+    height:80px;
+}
+
+.trajectory svg {
+    width:100%;
+    height:100%;
+    overflow:visible;
+}
+
+.trajectory-path {
+    fill:none;
+
+    stroke:rgba(89,215,255,.34);
+    stroke-width:2;
+
+    stroke-dasharray:8 10;
+
+    animation:dash 7s linear infinite;
+}
+
+.trajectory-glow {
+    fill:none;
+
+    stroke:rgba(89,215,255,.1);
+    stroke-width:10;
+
+    filter:blur(8px);
+}
+
+.particle {
+    position:absolute;
+
+    width:16px;
+    height:16px;
+
+    border-radius:50%;
+
+    background:white;
+
+    border:3px solid var(--cyan);
+
+    box-shadow:
+        0 0 12px var(--cyan),
+        0 0 35px rgba(89,215,255,.8);
+
+    left:9%;
+    top:47%;
+
+    animation:particleTravel 7s ease-in-out infinite;
+}
+
+.particle::after {
+    content:"";
+
+    position:absolute;
+
+    width:85px;
+    height:2px;
+
+    right:8px;
+    top:5px;
+
+    transform-origin:right center;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(89,215,255,.8)
+        );
+
+    transform:rotate(-8deg);
+
+    filter:
+        drop-shadow(
+            0 0 5px rgba(89,215,255,.6)
+        );
+}
+
+.velocity-label,
+.acceleration-label {
+    position:absolute;
+
+    font-family:"Space Grotesk",sans-serif;
+
+    font-size:11px;
+
+    letter-spacing:1px;
+}
+
+.velocity-label {
+    left:13%;
+    top:29%;
+
+    color:var(--cyan);
+
+    animation:floatLabel 7s ease-in-out infinite;
+}
+
+.acceleration-label {
+    right:11%;
+    bottom:25%;
+
+    color:#82aaff;
+
+    animation:floatLabel2 7s ease-in-out infinite;
+}
+
+.motion-node {
+    position:absolute;
+
+    width:5px;
+    height:5px;
+
+    border-radius:50%;
+
+    background:var(--cyan);
+
+    box-shadow:0 0 12px var(--cyan);
+}
+
+.node-1 {left:18%;top:31%;}
+.node-2 {left:43%;top:64%;}
+.node-3 {left:69%;top:27%;}
+.node-4 {left:84%;top:57%;}
+
+
+/* =========================================================
+   DATA STRIP
+========================================================= */
+
+.data-strip {
+    position:relative;
+    z-index:10;
+
+    width:min(900px,92%);
+
+    margin:-30px auto 70px;
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    border:1px solid rgba(89,215,255,.15);
+    border-radius:18px;
+
+    background:rgba(7,18,33,.78);
+
+    backdrop-filter:blur(18px);
+
+    overflow:hidden;
+
+    box-shadow:
+        0 20px 70px rgba(0,0,0,.25);
+}
+
+.data-item {
+    padding:20px 15px;
+
+    text-align:center;
+
+    border-right:1px solid rgba(89,215,255,.1);
+}
+
+.data-item:last-child {
+    border-right:none;
+}
+
+.data-value {
+    display:block;
+
+    font-family:"Space Grotesk",sans-serif;
+
+    font-size:18px;
+    font-weight:700;
+
+    color:var(--cyan);
+}
+
+.data-label {
+    display:block;
+
+    margin-top:3px;
+
+    font-size:10px;
+
+    letter-spacing:1.5px;
+
+    color:#718ca5;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.container {
+    width:min(1000px,92%);
+
+    margin:auto;
+
+    padding-bottom:30px;
+}
+
+.lesson {
+    position:relative;
+
+    padding:38px;
+
+    margin-bottom:28px;
+
+    border:1px solid rgba(89,215,255,.13);
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(10,27,47,.78),
+            rgba(5,15,28,.7)
+        );
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:
+        0 18px 60px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.025);
+
+    overflow:hidden;
+
+    opacity:0;
+
+    transform:translateY(35px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
+
+.lesson.visible {
+    opacity:1;
+    transform:translateY(0);
+}
+
+.lesson::before {
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-100%;
+
+    width:65%;
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--cyan),
+            transparent
+        );
+
+    animation:scan 6s linear infinite;
+}
+
+.lesson:hover {
+    border-color:rgba(89,215,255,.27);
+
+    box-shadow:
+        0 22px 70px rgba(0,0,0,.28),
+        0 0 45px rgba(50,140,255,.045);
+}
+
+.lesson-number {
+    color:var(--cyan);
+
+    font-family:"Space Grotesk",sans-serif;
+
+    font-size:11px;
+    font-weight:700;
+
+    letter-spacing:3px;
+
+    margin-bottom:9px;
+}
+
+.lesson h2 {
+    font-family:"Space Grotesk",sans-serif;
+
+    font-size:clamp(25px,4vw,34px);
+
+    line-height:1.2;
+
+    margin-bottom:18px;
+
+    color:#f2fbff;
+}
+
+.lesson h3 {
+    font-family:"Space Grotesk",sans-serif;
+
+    color:#eafaff;
+
+    margin:
+        28px 0
+        12px;
+}
+
+.lesson p {
+    color:var(--muted);
+
+    margin-bottom:15px;
+}
+
+.lesson ul,
+.lesson ol {
+    padding-left:24px;
+
+    color:var(--muted);
+}
+
+.lesson li {
+    margin-bottom:9px;
+}
+
+.lesson strong {
+    color:#e7f9ff;
+}
+
+
+/* =========================================================
+   DEFINITION
+========================================================= */
+
+.definition {
+    position:relative;
+
+    margin:22px 0 5px;
+
+    padding:22px 24px;
+
+    border:1px solid rgba(89,215,255,.12);
+
+    border-left:3px solid var(--cyan);
+
+    border-radius:14px;
+
+    background:rgba(89,215,255,.045);
+}
+
+.definition strong {
+    color:#dff7ff;
+}
+
+.definition p {
+    margin-top:10px;
+    margin-bottom:0;
+}
+
+
+/* =========================================================
+   FORMULA
+========================================================= */
+
+.formula {
+    position:relative;
+
+    margin:21px 0;
+
+    padding:20px;
+
+    border:1px solid rgba(89,215,255,.16);
+
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(17,55,86,.75),
+            rgba(6,21,38,.9)
+        );
+
+    color:#eafaff;
+
+    text-align:center;
+
+    font-family:"Space Grotesk",sans-serif;
+
+    font-size:20px;
+    font-weight:700;
+
+    letter-spacing:.4px;
+
+    overflow:hidden;
+
+    box-shadow:
+        inset 0 0 30px rgba(89,215,255,.025);
+}
+
+.formula::before {
+    content:"";
+
+    position:absolute;
+
+    left:-20%;
+    top:0;
+
+    width:20%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.08),
+            transparent
+        );
+
+    transform:skewX(-20deg);
+
+    animation:formulaSweep 5s infinite;
+}
+
+.formula small {
+    display:block;
+
+    margin-top:7px;
+
+    font-family:"Inter",sans-serif;
+
+    font-size:12px;
+    font-weight:500;
+
+    color:var(--muted);
+}
+
+
+/* =========================================================
+   EXAMPLES
+========================================================= */
+
+.example {
+    position:relative;
+
+    margin-top:24px;
+
+    padding:26px;
+
+    border:1px solid rgba(91,190,255,.13);
+
+    border-radius:16px;
+
+    background:rgba(3,12,23,.48);
+}
+
+.example-title {
+    color:var(--cyan)!important;
+
+    font-family:"Space Grotesk",sans-serif;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    margin-bottom:12px!important;
+}
+
+.solution {
+    margin-top:20px;
+
+    padding:20px;
+
+    border-radius:13px;
+
+    border:1px solid rgba(89,215,255,.1);
+
+    background:rgba(10,25,42,.72);
+}
+
+.solution p:last-child {
+    margin-bottom:0;
+}
+
+.solution strong {
+    color:#e8fbff;
+}
+
+
+/* =========================================================
+   TWO COLUMN
+========================================================= */
+
+.two-column {
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:18px;
+
+    margin-top:22px;
+}
+
+.mini-card {
+    padding:21px;
+
+    border:1px solid rgba(89,215,255,.11);
+
+    border-radius:15px;
+
+    background:rgba(3,13,25,.48);
+}
+
+.mini-card h3 {
+    margin-top:0;
+
+    color:var(--cyan);
+
+    font-size:18px;
+}
+
+.mini-card p:last-child {
+    margin-bottom:0;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-wrap {
+    overflow-x:auto;
+
+    margin:24px 0;
+}
+
+.compare {
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:600px;
+}
+
+.compare th,
+.compare td {
+    padding:13px 15px;
+
+    text-align:left;
+
+    border-bottom:1px solid rgba(89,215,255,.1);
+}
+
+.compare th {
+    color:var(--cyan);
+
+    font-family:"Space Grotesk",sans-serif;
+
+    background:rgba(89,215,255,.045);
+}
+
+.compare td {
+    color:var(--muted);
+}
+
+
+/* =========================================================
+   ALERTS
+========================================================= */
+
+.warning,
+.exam-tip,
+.trap,
+.note {
+    margin:20px 0;
+
+    padding:18px 20px;
+
+    border-radius:14px;
+
+    border:1px solid;
+}
+
+.warning {
+    border-color:rgba(255,113,136,.25);
+    background:rgba(255,113,136,.055);
+}
+
+.warning strong {
+    color:var(--red);
+}
+
+.exam-tip {
+    border-color:rgba(111,255,196,.2);
+    background:rgba(111,255,196,.045);
+}
+
+.exam-tip strong {
+    color:var(--green);
+}
+
+.trap {
+    border-color:rgba(255,216,107,.22);
+    background:rgba(255,216,107,.045);
+}
+
+.trap strong {
+    color:var(--yellow);
+}
+
+.note {
+    border-color:rgba(156,140,255,.2);
+    background:rgba(156,140,255,.045);
+}
+
+.note strong {
+    color:#b9afff;
+}
+
+
+/* =========================================================
+   STEP FLOW
+========================================================= */
+
+.steps {
+    counter-reset:step;
+    margin-top:22px;
+}
+
+.step {
+    position:relative;
+
+    padding:
+        0 0 22px
+        48px;
+
+    margin-bottom:18px;
+}
+
+.step::before {
+    counter-increment:step;
+
+    content:counter(step);
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:30px;
+    height:30px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:rgba(89,215,255,.08);
+
+    border:1px solid rgba(89,215,255,.25);
+
+    color:var(--cyan);
+
+    font-family:"Space Grotesk",sans-serif;
+
+    font-weight:700;
+}
+
+.step:not(:last-child)::after {
+    content:"";
+
+    position:absolute;
+
+    left:14px;
+    top:32px;
+
+    width:1px;
+    height:calc(100% - 10px);
+
+    background:rgba(89,215,255,.12);
+}
+
+
+/* =========================================================
+   SYLLABUS MAP
+========================================================= */
+
+.topic-map {
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:10px;
+
+    margin-top:20px;
+}
+
+.topic-map a {
+    text-decoration:none;
+
+    padding:13px 15px;
+
+    border:1px solid rgba(89,215,255,.1);
+
+    border-radius:11px;
+
+    color:var(--soft);
+
+    background:rgba(3,13,25,.45);
+
+    transition:.25s ease;
+}
+
+.topic-map a:hover {
+    color:white;
+
+    border-color:rgba(89,215,255,.35);
+
+    transform:translateY(-2px);
+
+    background:rgba(89,215,255,.06);
+}
+
+
+/* =========================================================
+   EXAM
+========================================================= */
+
+.exam-shell {
+    position:relative;
+
+    margin-top:30px;
+
+    border:1px solid rgba(89,215,255,.17);
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(8,24,42,.94),
+            rgba(4,13,25,.95)
+        );
+
+    box-shadow:
+        0 25px 90px rgba(0,0,0,.3);
+}
+
+.exam-top {
+    padding:25px;
+
+    border-bottom:1px solid rgba(89,215,255,.1);
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(50,140,255,.12),
+            rgba(89,215,255,.035)
+        );
+}
+
+.exam-top h3 {
+    margin:0 0 7px;
+
+    color:#f3fcff;
+
+    font-size:25px;
+}
+
+.exam-top p {
+    margin:0;
+}
+
+.exam-status {
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-top:20px;
+}
+
+.exam-stat {
+    padding:10px 15px;
+
+    border:1px solid rgba(89,215,255,.1);
+
+    border-radius:10px;
+
+    background:rgba(0,0,0,.18);
+
+    color:var(--soft);
+
+    font-size:13px;
+}
+
+.exam-stat span {
+    color:var(--cyan);
+
+    font-family:"Space Grotesk",sans-serif;
+
+    font-weight:700;
+}
+
+.exam-progress {
+    height:4px;
+
+    background:rgba(255,255,255,.05);
+}
+
+.exam-progress-bar {
+    height:100%;
+
+    width:1%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--cyan)
+        );
+
+    box-shadow:
+        0 0 15px rgba(89,215,255,.6);
+
+    transition:.3s ease;
+}
+
+.exam-main {
+    padding:30px;
+}
+
+.exam-question-number {
+    color:var(--cyan);
+
+    font-family:"Space Grotesk",sans-serif;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    margin-bottom:12px;
+}
+
+.exam-question {
+    font-family:"Space Grotesk",sans-serif;
+
+    font-size:22px;
+
+    line-height:1.45;
+
+    color:#f2fbff;
+
+    margin-bottom:25px;
+}
+
+.option-list {
+    display:grid;
+
+    gap:11px;
+}
+
+.option {
+    width:100%;
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:13px;
+
+    text-align:left;
+
+    padding:16px;
+
+    border:1px solid rgba(89,215,255,.12);
+
+    border-radius:13px;
+
+    background:rgba(2,12,23,.62);
+
+    color:var(--soft);
+
+    cursor:pointer;
+
+    transition:.25s ease;
+
+    font-family:"Inter",sans-serif;
+
+    font-size:15px;
+}
+
+.option:hover {
+    border-color:rgba(89,215,255,.35);
+
+    background:rgba(89,215,255,.055);
+
+    transform:translateX(2px);
+}
+
+.option.selected {
+    border-color:rgba(89,215,255,.65);
+
+    background:rgba(89,215,255,.09);
+
+    box-shadow:
+        0 0 25px rgba(89,215,255,.05);
+}
+
+.option.correct {
+    border-color:rgba(111,255,196,.6);
+
+    background:rgba(111,255,196,.09);
+}
+
+.option.wrong {
+    border-color:rgba(255,113,136,.6);
+
+    background:rgba(255,113,136,.08);
+}
+
+.option-letter {
+    flex:none;
+
+    width:28px;
+    height:28px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:8px;
+
+    border:1px solid rgba(89,215,255,.15);
+
+    color:var(--cyan);
+
+    font-family:"Space Grotesk",sans-serif;
+
+    font-weight:700;
+}
+
+.exam-controls {
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    margin-top:28px;
+}
+
+.exam-btn {
+    border:1px solid rgba(89,215,255,.2);
+
+    border-radius:11px;
+
+    padding:12px 20px;
+
+    background:rgba(8,29,48,.8);
+
+    color:#e5f8ff;
+
+    cursor:pointer;
+
+    font-family:"Inter",sans-serif;
+
+    font-weight:700;
+
+    transition:.25s ease;
+}
+
+.exam-btn:hover {
+    transform:translateY(-2px);
+
+    border-color:rgba(89,215,255,.5);
+
+    background:rgba(89,215,255,.08);
+}
+
+.exam-btn.primary {
+    border-color:rgba(89,215,255,.45);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(50,140,255,.3),
+            rgba(89,215,255,.1)
+        );
+}
+
+.exam-btn.danger {
+    border-color:rgba(255,113,136,.3);
+
+    color:#ffdce2;
+}
+
+.exam-nav {
+    padding:20px 30px;
+
+    border-top:1px solid rgba(89,215,255,.08);
+
+    background:rgba(0,0,0,.14);
+}
+
+.question-grid {
+    display:grid;
+
+    grid-template-columns:
+        repeat(10,1fr);
+
+    gap:6px;
+}
+
+.question-dot {
+    height:34px;
+
+    border-radius:7px;
+
+    border:1px solid rgba(89,215,255,.1);
+
+    background:rgba(255,255,255,.025);
+
+    color:#7890a6;
+
+    cursor:pointer;
+
+    font-size:11px;
+
+    transition:.2s ease;
+}
+
+.question-dot:hover {
+    border-color:rgba(89,215,255,.4);
+}
+
+.question-dot.current {
+    border-color:var(--cyan);
+
+    color:white;
+
+    background:rgba(89,215,255,.1);
+}
+
+.question-dot.answered {
+    color:var(--cyan);
+
+    background:rgba(89,215,255,.05);
+}
+
+.question-dot.correct {
+    color:var(--green);
+
+    border-color:rgba(111,255,196,.45);
+}
+
+.question-dot.wrong {
+    color:var(--red);
+
+    border-color:rgba(255,113,136,.45);
+}
+
+.exam-explanation {
+    margin-top:24px;
+
+    padding:18px;
+
+    border:1px solid rgba(89,215,255,.1);
+
+    border-radius:13px;
+
+    background:rgba(89,215,255,.04);
+
+    color:var(--muted);
+}
+
+.exam-explanation strong {
+    color:var(--cyan);
+}
+
+.exam-result {
+    padding:35px 30px;
+
+    text-align:center;
+
+    border-bottom:1px solid rgba(89,215,255,.1);
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(89,215,255,.1),
+            transparent 60%
+        );
+}
+
+.score-ring {
+    width:150px;
+    height:150px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    border:2px solid rgba(89,215,255,.35);
+
+    box-shadow:
+        0 0 45px rgba(89,215,255,.08),
+        inset 0 0 35px rgba(89,215,255,.04);
+}
+
+.score-number {
+    font-family:"Space Grotesk",sans-serif;
+
+    font-size:38px;
+
+    font-weight:700;
+
+    color:var(--cyan);
+}
+
+.score-label {
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    color:var(--muted);
+}
+
+.result-message {
+    color:var(--soft);
+
+    margin-bottom:20px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navigation {
+    width:min(1000px,92%);
+
+    margin:25px auto 75px;
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:9px;
+}
+
+.button {
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
+    min-width:175px;
+
+    padding:13px 20px;
+
+    border:1px solid rgba(89,215,255,.18);
+
+    border-radius:11px;
+
+    background:rgba(9,28,47,.72);
+
+    color:#dff7ff;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    backdrop-filter:blur(12px);
+
+    transition:.3s ease;
+}
+
+.button:hover {
+    transform:translateY(-3px);
+
+    border-color:rgba(89,215,255,.55);
+
+    background:rgba(89,215,255,.08);
+
+    box-shadow:
+        0 0 25px rgba(89,215,255,.08);
+}
+
+.button.primary {
+    border-color:rgba(89,215,255,.4);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(50,140,255,.3),
+            rgba(89,215,255,.12)
+        );
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    border-top:1px solid rgba(89,215,255,.1);
+
+    background:rgba(2,7,15,.9);
+
+    color:#71879c;
+
+    text-align:center;
+
+    padding:30px 20px;
+
+    font-size:13px;
+}
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+.particles {
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+    z-index:-1;
+}
+
+.particle-bg {
+    position:absolute;
+
+    width:3px;
+    height:3px;
+
+    border-radius:50%;
+
+    background:var(--cyan);
+
+    box-shadow:0 0 8px var(--cyan);
+
+    opacity:.35;
+
+    animation:drift linear infinite;
+}
+
+.p1 {left:7%;top:24%;animation-duration:15s;}
+.p2 {left:16%;top:72%;animation-duration:19s;animation-delay:-4s;}
+.p3 {left:27%;top:42%;animation-duration:22s;animation-delay:-8s;}
+.p4 {left:73%;top:18%;animation-duration:17s;animation-delay:-5s;}
+.p5 {left:84%;top:63%;animation-duration:20s;animation-delay:-11s;}
+.p6 {left:93%;top:35%;animation-duration:16s;animation-delay:-3s;}
+.p7 {left:51%;top:76%;animation-duration:23s;animation-delay:-7s;}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes pulse {
+    0%,100% {
+        opacity:.55;
+        transform:scale(.8);
+    }
+
+    50% {
+        opacity:1;
+        transform:scale(1.15);
+    }
+}
+
+@keyframes rotateSlow {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+@keyframes rotateReverse {
+    from {transform:rotate(360deg);}
+    to {transform:rotate(0deg);}
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset:-120;
+    }
+}
+
+@keyframes particleTravel {
+
+    0% {
+        left:9%;
+        top:50%;
+        transform:scale(.85);
+    }
+
+    25% {
+        left:31%;
+        top:39%;
+        transform:scale(1);
+    }
+
+    50% {
+        left:54%;
+        top:58%;
+        transform:scale(1.12);
+    }
+
+    75% {
+        left:74%;
+        top:36%;
+        transform:scale(1);
+    }
+
+    100% {
+        left:89%;
+        top:49%;
+        transform:scale(.85);
+    }
+}
+
+@keyframes floatLabel {
+
+    0%,100% {
+        transform:translateY(0);
+        opacity:.5;
+    }
+
+    50% {
+        transform:translateY(-12px);
+        opacity:1;
+    }
+}
+
+@keyframes floatLabel2 {
+
+    0%,100% {
+        transform:translateY(0);
+        opacity:.45;
+    }
+
+    50% {
+        transform:translateY(10px);
+        opacity:1;
+    }
+}
+
+@keyframes scan {
+
+    0% {
+        left:-100%;
+    }
+
+    100% {
+        left:150%;
+    }
+}
+
+@keyframes formulaSweep {
+
+    0%,55% {
+        left:-25%;
+    }
+
+    100% {
+        left:130%;
+    }
+}
+
+@keyframes drift {
+
+    0% {
+        transform:translate3d(0,0,0);
+        opacity:.15;
+    }
+
+    50% {
+        transform:translate3d(15px,-35px,0);
+        opacity:.5;
+    }
+
+    100% {
+        transform:translate3d(-10px,-70px,0);
+        opacity:.05;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:760px) {
+
+    header {
+        padding:15px 5%;
+    }
+
+    .logo {
+        font-size:19px;
+    }
+
+    .back-link {
+        font-size:12px;
+        padding:8px 11px;
+    }
+
+    .hero {
+        min-height:650px;
+        padding-top:80px;
+    }
+
+    .hero h1 {
+        letter-spacing:-2px;
+    }
+
+    .hero p {
+        font-size:15px;
+    }
+
+    .motion-system {
+        height:225px;
+        margin-top:40px;
+    }
+
+    .data-strip {
+        grid-template-columns:repeat(2,1fr);
+        margin-top:-20px;
+    }
+
+    .data-item:nth-child(2) {
+        border-right:none;
+    }
+
+    .data-item:nth-child(-n+2) {
+        border-bottom:1px solid rgba(89,215,255,.1);
+    }
+
+    .lesson {
+        padding:26px 22px;
+        border-radius:18px;
+    }
+
+    .formula {
+        font-size:17px;
+        padding:17px 12px;
+    }
+
+    .example {
+        padding:20px;
+    }
+
+    .two-column,
+    .topic-map {
+        grid-template-columns:1fr;
+    }
+
+    .question-grid {
+        grid-template-columns:repeat(5,1fr);
+    }
+
+    .exam-main {
+        padding:22px 18px;
+    }
+
+    .exam-nav {
+        padding:18px;
+    }
+
+    .exam-question {
+        font-size:19px;
+    }
+
+    .exam-controls {
+        flex-wrap:wrap;
+    }
+
+    .exam-btn {
+        flex:1;
+        min-width:120px;
+    }
+
+    .navigation {
+        margin-bottom:55px;
+    }
+
+    .button {
+        width:100%;
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+    html {
+        scroll-behavior:auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.01ms!important;
+    }
+
+    .lesson {
+        opacity:1;
+        transform:none;
+    }
+}
+
+</style>
 
 </head>
+
 
 <body>
 
 
 <div class="particles">
+
     <span class="particle-bg p1"></span>
     <span class="particle-bg p2"></span>
     <span class="particle-bg p3"></span>
@@ -893,6 +1918,7 @@
     <span class="particle-bg p5"></span>
     <span class="particle-bg p6"></span>
     <span class="particle-bg p7"></span>
+
 </div>
 
 
@@ -922,9 +1948,11 @@
         </h1>
 
         <p>
-            Extend your understanding of motion using more advanced
-            kinematics models, variable acceleration and integration.
+            Move beyond constant-acceleration formulae. Build complete
+            M2 kinematics models using differentiation, integration,
+            vertical motion, projectiles and vector methods.
         </p>
+
 
         <div class="motion-system">
 
@@ -975,23 +2003,23 @@
 <div class="data-strip">
 
     <div class="data-item">
-        <span class="data-value">a(t)</span>
-        <span class="data-label">VARIABLE ACCELERATION</span>
+        <span class="data-value">r(t)</span>
+        <span class="data-label">POSITION VECTOR</span>
     </div>
 
     <div class="data-item">
-        <span class="data-value">∫a dt</span>
+        <span class="data-value">dr/dt</span>
         <span class="data-label">VELOCITY</span>
     </div>
 
     <div class="data-item">
-        <span class="data-value">∫v dt</span>
-        <span class="data-label">DISPLACEMENT</span>
+        <span class="data-value">d²r/dt²</span>
+        <span class="data-label">ACCELERATION</span>
     </div>
 
     <div class="data-item">
         <span class="data-value">M2</span>
-        <span class="data-label">ADVANCED MECHANICS</span>
+        <span class="data-label">FURTHER KINEMATICS</span>
     </div>
 
 </div>
@@ -1000,365 +2028,2289 @@
 <main class="container">
 
 
-    <section class="lesson">
+<!-- =====================================================
+     SYLLABUS MAP
+===================================================== -->
 
-        <p class="lesson-number">
-            LESSON 01
-        </p>
+<section class="lesson">
 
-        <h2>
-            Revisiting Kinematics
-        </h2>
+    <p class="lesson-number">
+        M2 TOPIC MAP
+    </p>
 
-        <p>
-            Kinematics describes the motion of particles without
-            considering the forces causing that motion.
-        </p>
+    <h2>
+        What You Need to Master
+    </h2>
 
-        <div class="definition">
+    <p>
+        Further Kinematics in Mechanics 2 extends the M1 treatment of
+        motion. The key change is that you are no longer restricted to
+        constant acceleration. You must be comfortable moving between
+        displacement, velocity and acceleration using calculus.
+    </p>
 
-            <strong>Key quantities</strong>
+    <div class="topic-map">
+
+        <a href="#foundations">
+            01 — Kinematics foundations
+        </a>
+
+        <a href="#variable">
+            02 — Variable acceleration
+        </a>
+
+        <a href="#displacement">
+            03 — x(t), v(t), a(t)
+        </a>
+
+        <a href="#integration">
+            04 — Integration & initial conditions
+        </a>
+
+        <a href="#vertical">
+            05 — Vertical motion
+        </a>
+
+        <a href="#projectiles">
+            06 — Projectiles
+        </a>
+
+        <a href="#vectors">
+            07 — Vector kinematics
+        </a>
+
+        <a href="#exam">
+            08 — 100-question exam
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 01
+===================================================== -->
+
+<section class="lesson" id="foundations">
+
+    <p class="lesson-number">
+        LESSON 01
+    </p>
+
+    <h2>
+        Kinematics: The Language of Motion
+    </h2>
+
+    <p>
+        Kinematics describes the motion of a particle without asking
+        what forces caused that motion. In Mechanics 2, the particle
+        may move in a straight line or in a plane.
+    </p>
+
+    <div class="two-column">
+
+        <div class="mini-card">
+
+            <h3>Scalar quantities</h3>
+
+            <p>
+                A scalar has magnitude only.
+            </p>
 
             <ul>
-
-                <li>Displacement — measured in metres (m)</li>
-
-                <li>Velocity — measured in metres per second (m s⁻¹)</li>
-
-                <li>Acceleration — measured in metres per second squared (m s⁻²)</li>
-
-                <li>Time — measured in seconds (s)</li>
-
+                <li>Distance</li>
+                <li>Speed</li>
+                <li>Time</li>
+                <li>Mass</li>
             </ul>
 
         </div>
 
-    </section>
+
+        <div class="mini-card">
+
+            <h3>Vector quantities</h3>
+
+            <p>
+                A vector has magnitude and direction.
+            </p>
+
+            <ul>
+                <li>Displacement</li>
+                <li>Velocity</li>
+                <li>Acceleration</li>
+                <li>Position vector</li>
+            </ul>
+
+        </div>
+
+    </div>
 
 
-    <section class="lesson">
+    <div class="definition">
 
-        <p class="lesson-number">
-            LESSON 02
-        </p>
-
-        <h2>
-            Variable Acceleration
-        </h2>
+        <strong>Particle model</strong>
 
         <p>
-            In more advanced mechanics problems, acceleration does not
-            always remain constant.
+            A particle is treated as having mass but negligible size.
+            Its shape and rotational behaviour are ignored. This lets
+            us concentrate on translational motion.
+        </p>
+
+    </div>
+
+
+    <h3>Core quantities</h3>
+
+    <div class="table-wrap">
+
+        <table class="compare">
+
+            <thead>
+
+                <tr>
+                    <th>Quantity</th>
+                    <th>Symbol</th>
+                    <th>SI unit</th>
+                    <th>Meaning</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>Position</td>
+                    <td>x or r</td>
+                    <td>m</td>
+                    <td>Location relative to an origin</td>
+                </tr>
+
+                <tr>
+                    <td>Displacement</td>
+                    <td>s or Δx</td>
+                    <td>m</td>
+                    <td>Change in position</td>
+                </tr>
+
+                <tr>
+                    <td>Velocity</td>
+                    <td>v</td>
+                    <td>m s⁻¹</td>
+                    <td>Rate of change of displacement</td>
+                </tr>
+
+                <tr>
+                    <td>Acceleration</td>
+                    <td>a</td>
+                    <td>m s⁻²</td>
+                    <td>Rate of change of velocity</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="formula">
+        v = dx/dt
+        <small>Velocity is the derivative of displacement with respect to time.</small>
+    </div>
+
+    <div class="formula">
+        a = dv/dt = d²x/dt²
+        <small>Acceleration is the derivative of velocity with respect to time.</small>
+    </div>
+
+
+    <div class="exam-tip">
+
+        <strong>Exam habit:</strong>
+
+        <p>
+            Always identify what the question gives you first:
+            x(t), v(t), a(t), an initial condition, a position,
+            a velocity, or a time interval. Then decide whether
+            differentiation or integration is required.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 02
+===================================================== -->
+
+<section class="lesson" id="variable">
+
+    <p class="lesson-number">
+        LESSON 02
+    </p>
+
+    <h2>
+        Variable Acceleration
+    </h2>
+
+    <p>
+        In M1, the standard constant-acceleration formulae are often
+        enough. In M2, acceleration may depend on time, so its value
+        changes throughout the motion.
+    </p>
+
+    <div class="definition">
+
+        <strong>Constant acceleration</strong>
+
+        <p>
+            The acceleration has the same value at every instant.
+        </p>
+
+    </div>
+
+    <div class="definition">
+
+        <strong>Variable acceleration</strong>
+
+        <p>
+            The acceleration changes with time or, when represented
+            componentwise, changes according to the motion model.
+        </p>
+
+    </div>
+
+
+    <h3>The fundamental chain</h3>
+
+    <div class="formula">
+        x(t) → differentiate → v(t) → differentiate → a(t)
+    </div>
+
+    <div class="formula">
+        a(t) → integrate → v(t) → integrate → x(t)
+    </div>
+
+
+    <div class="warning">
+
+        <strong>Do not lose the constants.</strong>
+
+        <p>
+            Every indefinite integration introduces a constant of
+            integration. The initial conditions determine those constants.
+        </p>
+
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">
+            Worked Example — Variable Acceleration
         </p>
 
         <p>
-            When acceleration varies with time, velocity can be found
-            by integrating acceleration with respect to time.
+            A particle has acceleration
         </p>
 
         <div class="formula">
-            v = ∫a dt
+            a = 6t + 4
         </div>
 
         <p>
-            Similarly, displacement can be found by integrating velocity.
+            Given that its velocity is 3 m s⁻¹ when t = 0,
+            find v in terms of t.
         </p>
 
-        <div class="formula">
-            s = ∫v dt
-        </div>
+        <div class="solution">
 
-    </section>
-
-
-    <section class="lesson">
-
-        <p class="lesson-number">
-            LESSON 03
-        </p>
-
-        <h2>
-            Velocity as a Function of Time
-        </h2>
-
-        <p>
-            If velocity is given as a function of time, displacement
-            can be found by integrating the velocity function.
-        </p>
-
-        <div class="formula">
-            s = ∫v(t) dt
-        </div>
-
-        <div class="example">
-
-            <p class="example-title">
-                Example
+            <p>
+                Since a = dv/dt,
             </p>
 
             <p>
-                A particle has velocity
+                v = ∫(6t + 4) dt
+            </p>
+
+            <p>
+                v = 3t² + 4t + C
+            </p>
+
+            <p>
+                At t = 0, v = 3.
+            </p>
+
+            <p>
+                Therefore C = 3.
+            </p>
+
+            <p>
+                <strong>
+                    v = 3t² + 4t + 3
+                </strong>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 03
+===================================================== -->
+
+<section class="lesson" id="displacement">
+
+    <p class="lesson-number">
+        LESSON 03
+    </p>
+
+    <h2>
+        When Displacement Is Given as a Function of Time
+    </h2>
+
+    <p>
+        One of the most direct M2 questions gives the displacement
+        of a particle as a function of time.
+    </p>
+
+    <div class="formula">
+        x = f(t)
+    </div>
+
+    <p>
+        Differentiate once to obtain velocity and twice to obtain
+        acceleration.
+    </p>
+
+    <div class="formula">
+        v = dx/dt
+    </div>
+
+    <div class="formula">
+        a = d²x/dt²
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">
+            Worked Example
+        </p>
+
+        <p>
+            A particle moves so that
+        </p>
+
+        <div class="formula">
+            x = 2t³ - 9t² + 12t + 5
+        </div>
+
+        <p>
+            Find its velocity and acceleration.
+        </p>
+
+        <div class="solution">
+
+            <p>
+                Differentiate:
+            </p>
+
+            <p>
+                v = 6t² - 18t + 12
+            </p>
+
+            <p>
+                Differentiate again:
+            </p>
+
+            <p>
+                <strong>
+                    a = 12t - 18
+                </strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <h3>Finding when the particle is stationary</h3>
+
+    <p>
+        A particle is instantaneously at rest when its velocity is zero.
+    </p>
+
+    <div class="formula">
+        v = 0
+        <small>Use this equation to find stationary instants.</small>
+    </div>
+
+
+    <h3>Finding position at a given time</h3>
+
+    <p>
+        If x(t) is known, simply substitute the required value of t.
+        If only v(t) is known, integrate and use an initial position.
+    </p>
+
+
+    <div class="trap">
+
+        <strong>Common trap:</strong>
+
+        <p>
+            “Stationary” does not mean “zero acceleration”.
+            A particle can have v = 0 while a ≠ 0.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 04
+===================================================== -->
+
+<section class="lesson" id="integration">
+
+    <p class="lesson-number">
+        LESSON 04
+    </p>
+
+    <h2>
+        Integration and Initial Conditions
+    </h2>
+
+    <p>
+        Integration reverses differentiation. If acceleration is known,
+        integrate to obtain velocity. If velocity is known, integrate
+        again to obtain displacement.
+    </p>
+
+
+    <div class="formula">
+        v = ∫a dt
+    </div>
+
+    <div class="formula">
+        x = ∫v dt
+    </div>
+
+
+    <h3>Why initial conditions matter</h3>
+
+    <p>
+        Suppose
+    </p>
+
+    <div class="formula">
+        a = 12t²
+    </div>
+
+    <p>
+        Then
+    </p>
+
+    <div class="formula">
+        v = 4t³ + C
+    </div>
+
+    <p>
+        Without additional information, C cannot be determined.
+    </p>
+
+
+    <div class="example">
+
+        <p class="example-title">
+            Worked Example — Two Integrations
+        </p>
+
+        <p>
+            A particle has acceleration
+        </p>
+
+        <div class="formula">
+            a = 12t² - 6t
+        </div>
+
+        <p>
+            At t = 0, the particle has velocity 5 m s⁻¹ and
+            displacement 2 m. Find x in terms of t.
+        </p>
+
+        <div class="solution">
+
+            <p>
+                First integrate:
+            </p>
+
+            <p>
+                v = 4t³ - 3t² + C
+            </p>
+
+            <p>
+                Since v(0) = 5,
+            </p>
+
+            <p>
+                C = 5
+            </p>
+
+            <p>
+                Therefore
+            </p>
+
+            <p>
+                v = 4t³ - 3t² + 5
+            </p>
+
+            <p>
+                Integrate again:
+            </p>
+
+            <p>
+                x = t⁴ - t³ + 5t + D
+            </p>
+
+            <p>
+                Since x(0) = 2,
+            </p>
+
+            <p>
+                D = 2
+            </p>
+
+            <p>
+                <strong>
+                    x = t⁴ - t³ + 5t + 2
+                </strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="exam-tip">
+
+        <strong>Fast method:</strong>
+
+        <p>
+            Write the initial condition immediately beside the equation.
+            This reduces the chance of forgetting which constant it determines.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 05
+===================================================== -->
+
+<section class="lesson">
+
+    <p class="lesson-number">
+        LESSON 05
+    </p>
+
+    <h2>
+        Displacement, Distance and Direction
+    </h2>
+
+    <p>
+        In one-dimensional motion, displacement can be positive or negative.
+        Distance travelled is never negative.
+    </p>
+
+
+    <div class="two-column">
+
+        <div class="mini-card">
+
+            <h3>Displacement</h3>
+
+            <p>
+                Net change in position:
             </p>
 
             <div class="formula">
-                v = 3t²
-            </div>
-
-            <p>
-                Find its displacement from t = 0 to t = 2.
-            </p>
-
-            <div class="solution">
-
-                <p>
-                    s = ∫₀² 3t² dt
-                </p>
-
-                <p>
-                    s = [t³]₀²
-                </p>
-
-                <p>
-                    <strong>s = 8 m</strong>
-                </p>
-
+                Δx = x₂ - x₁
             </div>
 
         </div>
 
-    </section>
+
+        <div class="mini-card">
+
+            <h3>Distance</h3>
+
+            <p>
+                Total length of the path travelled.
+            </p>
+
+            <p>
+                It requires care if the particle changes direction.
+            </p>
+
+        </div>
+
+    </div>
 
 
-    <section class="lesson">
+    <h3>Detecting a change of direction</h3>
 
-        <p class="lesson-number">
-            LESSON 04
+    <p>
+        In one-dimensional motion, direction changes when velocity changes
+        sign. Therefore solve v = 0 and check the sign of v on either side.
+    </p>
+
+
+    <div class="example">
+
+        <p class="example-title">
+            Worked Example — Distance Travelled
         </p>
 
-        <h2>
-            Acceleration as a Function of Time
-        </h2>
-
         <p>
-            If acceleration is given as a function of time, integrate
-            it to obtain velocity.
+            A particle has
         </p>
 
         <div class="formula">
-            v = ∫a(t) dt
+            v = t² - 4t + 3
         </div>
 
         <p>
-            Remember that an initial velocity may be required to
-            determine the constant of integration.
+            Find the times at which the particle is stationary.
         </p>
 
-    </section>
-
-
-    <section class="lesson">
-
-        <p class="lesson-number">
-            LESSON 05
-        </p>
-
-        <h2>
-            Using Initial Conditions
-        </h2>
-
-        <p>
-            Initial conditions allow us to determine unknown constants
-            when integrating.
-        </p>
-
-        <div class="definition">
-
-            <strong>Example:</strong>
+        <div class="solution">
 
             <p>
-                If a particle has velocity 5 m s⁻¹ when t = 0,
-                substitute t = 0 and v = 5 into the velocity equation
-                to determine the constant.
+                Set v = 0:
+            </p>
+
+            <p>
+                t² - 4t + 3 = 0
+            </p>
+
+            <p>
+                (t - 1)(t - 3) = 0
+            </p>
+
+            <p>
+                Therefore
+            </p>
+
+            <p>
+                <strong>
+                    t = 1 and t = 3
+                </strong>
+            </p>
+
+            <p>
+                These times divide the motion into intervals whose directions
+                must be checked separately when finding total distance.
             </p>
 
         </div>
 
-    </section>
+    </div>
 
 
-    <section class="lesson">
+    <div class="warning">
 
-        <p class="lesson-number">
-            WORKED EXAMPLE
+        <strong>Important:</strong>
+
+        <p>
+            If a question asks for total distance, do not simply calculate
+            final displacement when the particle reverses direction.
         </p>
 
-        <h2>
-            Finding Velocity
-        </h2>
+    </div>
 
-        <div class="example">
+</section>
 
-            <p class="example-title">
-                Example
-            </p>
+
+<!-- =====================================================
+     LESSON 06
+===================================================== -->
+
+<section class="lesson" id="vertical">
+
+    <p class="lesson-number">
+        LESSON 06
+    </p>
+
+    <h2>
+        Vertical Motion Under Gravity
+    </h2>
+
+    <p>
+        Vertical motion is one of the most important applications of
+        constant acceleration. When air resistance is ignored, the
+        acceleration due to gravity is constant.
+    </p>
+
+
+    <div class="formula">
+        g = 9.8 m s⁻²
+        <small>Unless the question explicitly states another value.</small>
+    </div>
+
+
+    <h3>Choose a positive direction</h3>
+
+    <div class="two-column">
+
+        <div class="mini-card">
+
+            <h3>Upward positive</h3>
 
             <p>
-                A particle has acceleration
+                Velocity upwards is positive.
             </p>
 
             <div class="formula">
-                a = 6t
+                a = -9.8
             </div>
+
+        </div>
+
+
+        <div class="mini-card">
+
+            <h3>Downward positive</h3>
 
             <p>
-                Its initial velocity is 4 m s⁻¹. Find its velocity
-                at time t.
+                Velocity downwards is positive.
             </p>
 
-            <div class="solution">
+            <div class="formula">
+                a = +9.8
+            </div>
 
-                <p>
-                    v = ∫6t dt
-                </p>
+        </div>
 
-                <p>
-                    v = 3t² + C
-                </p>
+    </div>
 
-                <p>
-                    At t = 0, v = 4.
-                </p>
 
-                <p>
-                    Therefore C = 4.
-                </p>
+    <p>
+        Either convention is valid. The danger is changing conventions
+        halfway through a calculation.
+    </p>
 
-                <p>
-                    <strong>v = 3t² + 4</strong>
-                </p>
+
+    <h3>Vertical motion equations</h3>
+
+    <div class="formula">
+        v = u + at
+    </div>
+
+    <div class="formula">
+        s = ut + ½at²
+    </div>
+
+    <div class="formula">
+        v² = u² + 2as
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">
+            Worked Example — Vertical Projection
+        </p>
+
+        <p>
+            A particle is projected vertically upwards with speed
+            19.6 m s⁻¹. Find its maximum height above its point of projection.
+        </p>
+
+        <div class="solution">
+
+            <p>
+                Take upwards as positive.
+            </p>
+
+            <p>
+                At maximum height, v = 0.
+            </p>
+
+            <p>
+                u = 19.6, a = -9.8.
+            </p>
+
+            <p>
+                Use:
+            </p>
+
+            <p>
+                v² = u² + 2as
+            </p>
+
+            <p>
+                0 = 19.6² - 19.6s
+            </p>
+
+            <p>
+                <strong>
+                    s = 19.6 m
+                </strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="trap">
+
+        <strong>Maximum height condition:</strong>
+
+        <p>
+            At the highest point, the instantaneous velocity is zero.
+            The acceleration is still -9.8 m s⁻².
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 07
+===================================================== -->
+
+<section class="lesson" id="projectiles">
+
+    <p class="lesson-number">
+        LESSON 07
+    </p>
+
+    <h2>
+        Projectile Motion
+    </h2>
+
+    <p>
+        A projectile is a particle projected into the air and then allowed
+        to move under gravity, with air resistance neglected.
+    </p>
+
+    <div class="definition">
+
+        <strong>The central idea:</strong>
+
+        <p>
+            Horizontal and vertical motion are treated separately.
+            They are connected only because both use the same time t.
+        </p>
+
+    </div>
+
+
+    <h3>Resolving the initial velocity</h3>
+
+    <p>
+        If a particle is projected with speed u at an angle θ above the
+        horizontal:
+    </p>
+
+    <div class="formula">
+        Horizontal component = u cosθ
+    </div>
+
+    <div class="formula">
+        Vertical component = u sinθ
+    </div>
+
+
+    <h3>Horizontal motion</h3>
+
+    <p>
+        If horizontal acceleration is zero:
+    </p>
+
+    <div class="formula">
+        x = u cosθ · t
+    </div>
+
+    <div class="formula">
+        vₓ = u cosθ
+    </div>
+
+
+    <h3>Vertical motion</h3>
+
+    <p>
+        Taking upward as positive:
+    </p>
+
+    <div class="formula">
+        y = u sinθ · t − ½gt²
+    </div>
+
+    <div class="formula">
+        vᵧ = u sinθ − gt
+    </div>
+
+
+    <h3>Trajectory equation</h3>
+
+    <p>
+        Eliminating t gives the equation of the projectile path.
+    </p>
+
+    <div class="formula">
+        y = x tanθ − gx² / (2u²cos²θ)
+    </div>
+
+
+    <h3>Same-level projectile formulae</h3>
+
+    <p>
+        For a projectile launched and landing at the same vertical level:
+    </p>
+
+    <div class="formula">
+        Time of flight = 2u sinθ / g
+    </div>
+
+    <div class="formula">
+        Range = u² sin(2θ) / g
+    </div>
+
+    <div class="formula">
+        Maximum height = u²sin²θ / (2g)
+    </div>
+
+
+    <div class="warning">
+
+        <strong>Conditions matter:</strong>
+
+        <p>
+            The standard range and total-time formulae above assume the
+            launch and landing points are at the same height.
+        </p>
+
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">
+            Worked Example — Projectile Components
+        </p>
+
+        <p>
+            A particle is projected at 20 m s⁻¹ at 30° above the horizontal.
+            Find its initial horizontal and vertical velocity components.
+        </p>
+
+        <div class="solution">
+
+            <p>
+                Horizontal:
+            </p>
+
+            <p>
+                20cos30° = 17.32 m s⁻¹
+            </p>
+
+            <p>
+                Vertical:
+            </p>
+
+            <p>
+                20sin30° = 10.00 m s⁻¹
+            </p>
+
+            <p>
+                <strong>
+                    Initial velocity = 17.32i + 10j m s⁻¹
+                </strong>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 08
+===================================================== -->
+
+<section class="lesson">
+
+    <p class="lesson-number">
+        LESSON 08
+    </p>
+
+    <h2>
+        Projectile Motion: Full Exam Method
+    </h2>
+
+    <div class="steps">
+
+        <div class="step">
+
+            <strong>Choose axes.</strong>
+
+            <p>
+                Usually take horizontal as x and vertical as y.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <strong>Resolve the initial velocity.</strong>
+
+            <p>
+                Write u cosθ horizontally and u sinθ vertically.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <strong>Write separate equations.</strong>
+
+            <p>
+                Horizontal and vertical motion have different equations.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <strong>Use the same time.</strong>
+
+            <p>
+                The particle reaches a particular point at one value of t,
+                regardless of which component equation you use.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <strong>Substitute the geometric information.</strong>
+
+            <p>
+                Height, range or horizontal distance gives the required
+                equation for t or another unknown.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <strong>Check the physical answer.</strong>
+
+            <p>
+                Time should normally be positive, and the sign of each
+                velocity component should match the direction of motion.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">
+            Worked Example — Horizontal Distance
+        </p>
+
+        <p>
+            A particle is projected at 14 m s⁻¹ at 45° above the horizontal.
+            Find its horizontal displacement after 1 second.
+        </p>
+
+        <div class="solution">
+
+            <p>
+                Horizontal velocity:
+            </p>
+
+            <p>
+                vₓ = 14cos45°
+            </p>
+
+            <p>
+                vₓ ≈ 9.899 m s⁻¹
+            </p>
+
+            <p>
+                Horizontal acceleration is zero, so:
+            </p>
+
+            <p>
+                x = vₓt
+            </p>
+
+            <p>
+                <strong>
+                    x ≈ 9.90 m
+                </strong>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 09
+===================================================== -->
+
+<section class="lesson" id="vectors">
+
+    <p class="lesson-number">
+        LESSON 09
+    </p>
+
+    <h2>
+        Vector Kinematics
+    </h2>
+
+    <p>
+        M2 extends kinematics into two-dimensional vector form.
+        Instead of describing position with one coordinate x,
+        we can describe it with a position vector.
+    </p>
+
+
+    <div class="formula">
+        r = xi + yj
+    </div>
+
+
+    <h3>Velocity vector</h3>
+
+    <div class="formula">
+        v = dr/dt
+    </div>
+
+    <p>
+        Therefore, if
+    </p>
+
+    <div class="formula">
+        r = x(t)i + y(t)j
+    </div>
+
+    <p>
+        then
+    </p>
+
+    <div class="formula">
+        v = x′(t)i + y′(t)j
+    </div>
+
+
+    <h3>Acceleration vector</h3>
+
+    <div class="formula">
+        a = dv/dt = d²r/dt²
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">
+            Worked Example — Vector Differentiation
+        </p>
+
+        <p>
+            A particle has position vector
+        </p>
+
+        <div class="formula">
+            r = (t² + 3t)i + (2t³ − t)j
+        </div>
+
+        <p>
+            Find its velocity and acceleration vectors.
+        </p>
+
+        <div class="solution">
+
+            <p>
+                Differentiate once:
+            </p>
+
+            <p>
+                <strong>
+                    v = (2t + 3)i + (6t² − 1)j
+                </strong>
+            </p>
+
+            <p>
+                Differentiate again:
+            </p>
+
+            <p>
+                <strong>
+                    a = 2i + 12tj
+                </strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <h3>Speed</h3>
+
+    <p>
+        Speed is the magnitude of velocity.
+    </p>
+
+    <div class="formula">
+        |v| = √(vₓ² + vᵧ²)
+    </div>
+
+
+    <h3>Acceleration magnitude</h3>
+
+    <div class="formula">
+        |a| = √(aₓ² + aᵧ²)
+    </div>
+
+
+    <h3>Position at a particular time</h3>
+
+    <p>
+        Substitute the time directly into r(t).
+        The resulting vector gives the particle's position relative
+        to the chosen origin.
+    </p>
+
+
+    <div class="exam-tip">
+
+        <strong>Vector rule:</strong>
+
+        <p>
+            Differentiate or integrate each component independently.
+            Never differentiate only the scalar magnitude when the question
+            asks for the vector itself.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 10
+===================================================== -->
+
+<section class="lesson">
+
+    <p class="lesson-number">
+        LESSON 10
+    </p>
+
+    <h2>
+        Integrating a Vector
+    </h2>
+
+    <p>
+        Integration works component-by-component exactly as differentiation
+        does.
+    </p>
+
+    <div class="formula">
+        If a = f(t)i + g(t)j,
+        then v = ∫f(t)dt i + ∫g(t)dt j
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">
+            Worked Example — From Acceleration to Position
+        </p>
+
+        <p>
+            A particle has acceleration
+        </p>
+
+        <div class="formula">
+            a = 6ti + 4j
+        </div>
+
+        <p>
+            Its initial velocity is
+        </p>
+
+        <div class="formula">
+            v(0) = 2i − 3j
+        </div>
+
+        <p>
+            Find v(t).
+        </p>
+
+        <div class="solution">
+
+            <p>
+                Integrate both components:
+            </p>
+
+            <p>
+                v = (3t² + A)i + (4t + B)j
+            </p>
+
+            <p>
+                At t = 0:
+            </p>
+
+            <p>
+                2i − 3j = Ai + Bj
+            </p>
+
+            <p>
+                Therefore A = 2 and B = −3.
+            </p>
+
+            <p>
+                <strong>
+                    v = (3t² + 2)i + (4t − 3)j
+                </strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="trap">
+
+        <strong>Component trap:</strong>
+
+        <p>
+            A constant of integration is required for each independent
+            component unless the initial condition determines it directly.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 11
+===================================================== -->
+
+<section class="lesson">
+
+    <p class="lesson-number">
+        LESSON 11
+    </p>
+
+    <h2>
+        Vector Displacement Between Two Times
+    </h2>
+
+    <p>
+        If the position vector is known, the displacement from t = t₁
+        to t = t₂ is simply the difference between the two position vectors.
+    </p>
+
+    <div class="formula">
+        Displacement = r(t₂) − r(t₁)
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">
+            Worked Example
+        </p>
+
+        <p>
+            A particle has
+        </p>
+
+        <div class="formula">
+            r = t²i + (t³ − 2t)j
+        </div>
+
+        <p>
+            Find its displacement from t = 1 to t = 3.
+        </p>
+
+        <div class="solution">
+
+            <p>
+                At t = 3:
+            </p>
+
+            <p>
+                r(3) = 9i + 21j
+            </p>
+
+            <p>
+                At t = 1:
+            </p>
+
+            <p>
+                r(1) = i − j
+            </p>
+
+            <p>
+                Therefore:
+            </p>
+
+            <p>
+                r(3) − r(1)
+                = 8i + 22j
+            </p>
+
+            <p>
+                <strong>
+                    Displacement = 8i + 22j m
+                </strong>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 12
+===================================================== -->
+
+<section class="lesson">
+
+    <p class="lesson-number">
+        LESSON 12
+    </p>
+
+    <h2>
+        Speed, Direction and Stationary Motion in Vector Form
+    </h2>
+
+    <p>
+        In two-dimensional motion, a particle is stationary when its entire
+        velocity vector is zero.
+    </p>
+
+    <div class="formula">
+        v = 0
+        ⇔
+        vₓ = 0 and vᵧ = 0
+    </div>
+
+
+    <p>
+        Speed is:
+    </p>
+
+    <div class="formula">
+        speed = |v| = √(vₓ² + vᵧ²)
+    </div>
+
+
+    <h3>Direction of velocity</h3>
+
+    <p>
+        If the velocity vector is
+    </p>
+
+    <div class="formula">
+        v = vₓi + vᵧj
+    </div>
+
+    <p>
+        the angle α measured from the positive x-axis satisfies
+    </p>
+
+    <div class="formula">
+        tanα = vᵧ / vₓ
+    </div>
+
+    <p>
+        The quadrant must be considered when interpreting the direction.
+    </p>
+
+
+    <div class="warning">
+
+        <strong>Do not use tan⁻¹ blindly.</strong>
+
+        <p>
+            A calculator may return an angle in the wrong quadrant.
+            Use the signs of vₓ and vᵧ to identify the actual direction.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 13
+===================================================== -->
+
+<section class="lesson">
+
+    <p class="lesson-number">
+        LESSON 13
+    </p>
+
+    <h2>
+        Constant Acceleration in Vector Form
+    </h2>
+
+    <p>
+        When acceleration is constant as a vector, the familiar
+        constant-acceleration equations can be written in vector form.
+    </p>
+
+    <div class="formula">
+        v = u + at
+    </div>
+
+    <div class="formula">
+        r = r₀ + ut + ½at²
+    </div>
+
+
+    <p>
+        These equations are especially useful when the initial velocity
+        and acceleration are vectors.
+    </p>
+
+
+    <div class="example">
+
+        <p class="example-title">
+            Worked Example
+        </p>
+
+        <p>
+            A particle starts at the origin with
+        </p>
+
+        <div class="formula">
+            u = 4i + 3j
+        </div>
+
+        <p>
+            and has constant acceleration
+        </p>
+
+        <div class="formula">
+            a = 2i − j
+        </div>
+
+        <p>
+            Find its position after 2 seconds.
+        </p>
+
+        <div class="solution">
+
+            <p>
+                Use:
+            </p>
+
+            <p>
+                r = ut + ½at²
+            </p>
+
+            <p>
+                r = (4i + 3j)(2)
+                + ½(2i − j)(4)
+            </p>
+
+            <p>
+                r = 8i + 6j + 4i − 2j
+            </p>
+
+            <p>
+                <strong>
+                    r = 12i + 4j m
+                </strong>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 14
+===================================================== -->
+
+<section class="lesson">
+
+    <p class="lesson-number">
+        LESSON 14
+    </p>
+
+    <h2>
+        Projectile Motion as Vector Motion
+    </h2>
+
+    <p>
+        Projectile motion can be written elegantly using vectors.
+        If a particle is projected from the origin with initial speed u
+        at angle θ, then:
+    </p>
+
+    <div class="formula">
+        r = (u cosθ)t i
+        + (u sinθ)t j
+        − ½gt² j
+    </div>
+
+    <p>
+        Equivalently:
+    </p>
+
+    <div class="formula">
+        r = (u cosθ)t i
+        + (u sinθ · t − ½gt²)j
+    </div>
+
+
+    <h3>Velocity vector</h3>
+
+    <div class="formula">
+        v = u cosθ i + (u sinθ − gt)j
+    </div>
+
+
+    <h3>Acceleration vector</h3>
+
+    <div class="formula">
+        a = −gj
+    </div>
+
+
+    <div class="exam-tip">
+
+        <strong>Key observation:</strong>
+
+        <p>
+            Gravity affects only the vertical component in the standard
+            projectile model. Horizontal acceleration is zero.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 15
+===================================================== -->
+
+<section class="lesson">
+
+    <p class="lesson-number">
+        LESSON 15
+    </p>
+
+    <h2>
+        Projectile Motion: Maximum Height
+    </h2>
+
+    <p>
+        At maximum height, the vertical component of velocity is zero.
+        The horizontal component remains unchanged.
+    </p>
+
+    <div class="formula">
+        vᵧ = u sinθ − gt
+    </div>
+
+    <p>
+        Set vᵧ = 0:
+    </p>
+
+    <div class="formula">
+        t = u sinθ / g
+    </div>
+
+
+    <p>
+        Substitute this time into the vertical displacement equation to
+        obtain the maximum height.
+    </p>
+
+    <div class="formula">
+        H = u²sin²θ / (2g)
+    </div>
+
+
+    <div class="trap">
+
+        <strong>Important:</strong>
+
+        <p>
+            At maximum height, the particle is not “motionless” in general.
+            Its vertical velocity is zero, but its horizontal velocity
+            remains u cosθ.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 16
+===================================================== -->
+
+<section class="lesson">
+
+    <p class="lesson-number">
+        LESSON 16
+    </p>
+
+    <h2>
+        Projectile Motion: Time of Flight and Range
+    </h2>
+
+    <p>
+        For a projectile returning to its launch height:
+    </p>
+
+    <div class="formula">
+        T = 2u sinθ / g
+    </div>
+
+    <p>
+        Horizontal range is horizontal speed multiplied by time of flight:
+    </p>
+
+    <div class="formula">
+        R = u cosθ × T
+    </div>
+
+    <p>
+        Hence:
+    </p>
+
+    <div class="formula">
+        R = u²sin2θ / g
+    </div>
+
+
+    <div class="example">
+
+        <p class="example-title">
+            Worked Example
+        </p>
+
+        <p>
+            A projectile is fired at 20 m s⁻¹ at 30° and lands at the
+            same height. Find its time of flight.
+        </p>
+
+        <div class="solution">
+
+            <p>
+                T = 2u sinθ / g
+            </p>
+
+            <p>
+                T = 40 × 0.5 / 9.8
+            </p>
+
+            <p>
+                <strong>
+                    T ≈ 2.04 s
+                </strong>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 17
+===================================================== -->
+
+<section class="lesson">
+
+    <p class="lesson-number">
+        LESSON 17
+    </p>
+
+    <h2>
+        Trajectory Equation
+    </h2>
+
+    <p>
+        Sometimes the question asks for the equation of the path rather
+        than the position at a particular time.
+    </p>
+
+
+    <p>
+        Start with:
+    </p>
+
+    <div class="formula">
+        x = u cosθ · t
+    </div>
+
+    <p>
+        Rearrange:
+    </p>
+
+    <div class="formula">
+        t = x/(u cosθ)
+    </div>
+
+    <p>
+        Substitute into
+    </p>
+
+    <div class="formula">
+        y = u sinθ · t − ½gt²
+    </div>
+
+    <p>
+        giving:
+    </p>
+
+    <div class="formula">
+        y = x tanθ − gx²/(2u²cos²θ)
+    </div>
+
+
+    <div class="exam-tip">
+
+        <strong>Exam structure:</strong>
+
+        <p>
+            If asked for the trajectory, eliminate t. If asked for the
+            particle's position at a time, keep t.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 18
+===================================================== -->
+
+<section class="lesson">
+
+    <p class="lesson-number">
+        LESSON 18
+    </p>
+
+    <h2>
+        Advanced Exam Method
+    </h2>
+
+    <div class="steps">
+
+        <div class="step">
+            <strong>Translate the words into variables.</strong>
+            <p>
+                Identify x, y, u, v, a and t.
+            </p>
+        </div>
+
+        <div class="step">
+            <strong>Choose a positive direction.</strong>
+            <p>
+                Especially important for vertical motion.
+            </p>
+        </div>
+
+        <div class="step">
+            <strong>Differentiate if you have position.</strong>
+            <p>
+                x(t) → v(t) → a(t).
+            </p>
+        </div>
+
+        <div class="step">
+            <strong>Integrate if you have acceleration or velocity.</strong>
+            <p>
+                Always include constants for indefinite integrals.
+            </p>
+        </div>
+
+        <div class="step">
+            <strong>Use initial conditions.</strong>
+            <p>
+                Substitute known values of t, x or v.
+            </p>
+        </div>
+
+        <div class="step">
+            <strong>For projectiles, separate components.</strong>
+            <p>
+                Horizontal and vertical equations share the same time.
+            </p>
+        </div>
+
+        <div class="step">
+            <strong>For vectors, work component-by-component.</strong>
+            <p>
+                Differentiate or integrate i and j components separately.
+            </p>
+        </div>
+
+        <div class="step">
+            <strong>Check the physical meaning.</strong>
+            <p>
+                A negative velocity may be perfectly valid; a negative
+                time normally indicates that the mathematical root is not
+                part of the physical interval being considered.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 19
+===================================================== -->
+
+<section class="lesson">
+
+    <p class="lesson-number">
+        LESSON 19
+    </p>
+
+    <h2>
+        High-Frequency Exam Traps
+    </h2>
+
+    <div class="two-column">
+
+        <div class="mini-card">
+
+            <h3>Trap 01</h3>
+
+            <p>
+                Forgetting the constant of integration.
+            </p>
+
+        </div>
+
+        <div class="mini-card">
+
+            <h3>Trap 02</h3>
+
+            <p>
+                Confusing displacement with distance.
+            </p>
+
+        </div>
+
+        <div class="mini-card">
+
+            <h3>Trap 03</h3>
+
+            <p>
+                Using v = 0 to claim acceleration is also zero.
+            </p>
+
+        </div>
+
+        <div class="mini-card">
+
+            <h3>Trap 04</h3>
+
+            <p>
+                Using same-level projectile formulae when launch and landing
+                heights differ.
+            </p>
+
+        </div>
+
+        <div class="mini-card">
+
+            <h3>Trap 05</h3>
+
+            <p>
+                Forgetting that the horizontal component of projectile
+                velocity is constant.
+            </p>
+
+        </div>
+
+        <div class="mini-card">
+
+            <h3>Trap 06</h3>
+
+            <p>
+                Differentiating the magnitude instead of the vector components.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LESSON 20
+===================================================== -->
+
+<section class="lesson">
+
+    <p class="lesson-number">
+        LESSON 20
+    </p>
+
+    <h2>
+        Ultimate Formula Atlas
+    </h2>
+
+    <div class="formula">
+        v = dx/dt
+    </div>
+
+    <div class="formula">
+        a = dv/dt = d²x/dt²
+    </div>
+
+    <div class="formula">
+        v = ∫a dt
+    </div>
+
+    <div class="formula">
+        x = ∫v dt
+    </div>
+
+    <div class="formula">
+        r = xi + yj
+    </div>
+
+    <div class="formula">
+        v = dr/dt
+    </div>
+
+    <div class="formula">
+        a = d²r/dt²
+    </div>
+
+    <div class="formula">
+        |v| = √(vₓ² + vᵧ²)
+    </div>
+
+    <div class="formula">
+        |a| = √(aₓ² + aᵧ²)
+    </div>
+
+    <div class="formula">
+        v = u + at
+    </div>
+
+    <div class="formula">
+        r = r₀ + ut + ½at²
+    </div>
+
+    <div class="formula">
+        vᵧ = u sinθ − gt
+    </div>
+
+    <div class="formula">
+        y = u sinθ · t − ½gt²
+    </div>
+
+    <div class="formula">
+        x = u cosθ · t
+    </div>
+
+    <div class="formula">
+        T = 2u sinθ/g
+    </div>
+
+    <div class="formula">
+        R = u²sin2θ/g
+    </div>
+
+    <div class="formula">
+        H = u²sin²θ/(2g)
+    </div>
+
+    <div class="formula">
+        y = x tanθ − gx²/(2u²cos²θ)
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     100 QUESTION EXAM
+===================================================== -->
+
+<section class="lesson" id="exam">
+
+    <p class="lesson-number">
+        IAL ATLAS EXAM LAB
+    </p>
+
+    <h2>
+        Further Kinematics — 100 Question Exam
+    </h2>
+
+    <p>
+        A complete mixed M2-style practice exam covering differentiation,
+        integration, variable acceleration, vertical motion, projectiles,
+        vector kinematics, speed, displacement and common exam traps.
+    </p>
+
+    <div class="exam-shell">
+
+        <div class="exam-top">
+
+            <h3>
+                M2 Further Kinematics Examination
+            </h3>
+
+            <p>
+                100 multiple-choice questions • Select one answer for each.
+            </p>
+
+            <div class="exam-status">
+
+                <div class="exam-stat">
+                    Question:
+                    <span id="examCurrent">1</span>/100
+                </div>
+
+                <div class="exam-stat">
+                    Answered:
+                    <span id="examAnswered">0</span>/100
+                </div>
+
+                <div class="exam-stat">
+                    Score:
+                    <span id="examLiveScore">—</span>
+                </div>
 
             </div>
 
         </div>
 
-    </section>
 
+        <div class="exam-progress">
 
-    <section class="lesson">
-
-        <p class="lesson-number">
-            PRACTICE
-        </p>
-
-        <h2>
-            Test Yourself
-        </h2>
-
-
-        <div class="question">
-
-            <strong>
-                1. What quantity is obtained by integrating acceleration
-                with respect to time?
-            </strong>
-
-            <details>
-
-                <summary>
-                    Show answer
-                </summary>
-
-                <p>
-                    Velocity.
-                </p>
-
-            </details>
+            <div
+                class="exam-progress-bar"
+                id="examProgressBar">
+            </div>
 
         </div>
 
 
-        <div class="question">
-
-            <strong>
-                2. What quantity is obtained by integrating velocity
-                with respect to time?
-            </strong>
-
-            <details>
-
-                <summary>
-                    Show answer
-                </summary>
-
-                <p>
-                    Displacement.
-                </p>
-
-            </details>
-
-        </div>
+        <div id="examResult"></div>
 
 
-        <div class="question">
+        <div class="exam-main">
 
-            <strong>
-                3. A particle has acceleration a = 4t.
-                Find its velocity if its initial velocity is 2 m s⁻¹.
-            </strong>
+            <div
+                class="exam-question-number"
+                id="examQuestionNumber">
+                QUESTION 01
+            </div>
 
-            <details>
+            <div
+                class="exam-question"
+                id="examQuestion">
+            </div>
 
-                <summary>
-                    Show answer
-                </summary>
+            <div
+                class="option-list"
+                id="optionList">
+            </div>
 
-                <p>
-                    v = ∫4t dt
-                </p>
+            <div
+                class="exam-explanation"
+                id="examExplanation"
+                style="display:none;">
+            </div>
 
-                <p>
-                    v = 2t² + C
-                </p>
 
-                <p>
-                    Since v = 2 when t = 0, C = 2.
-                </p>
+            <div class="exam-controls">
 
-                <p>
-                    <strong>v = 2t² + 2</strong>
-                </p>
+                <button
+                    class="exam-btn"
+                    onclick="previousQuestion()">
+                    ← Previous
+                </button>
 
-            </details>
+                <button
+                    class="exam-btn"
+                    onclick="nextQuestion()">
+                    Next →
+                </button>
+
+                <button
+                    class="exam-btn primary"
+                    id="submitButton"
+                    onclick="submitExam()">
+                    Submit Exam
+                </button>
+
+            </div>
 
         </div>
 
 
-    </section>
+        <div class="exam-nav">
 
+            <div
+                class="question-grid"
+                id="questionGrid">
+            </div>
 
-    <section class="lesson">
-
-        <p class="lesson-number">
-            QUICK REVIEW
-        </p>
-
-        <h2>
-            Remember These
-        </h2>
-
-        <div class="formula">
-            v = ∫a dt
         </div>
 
-        <div class="formula">
-            s = ∫v dt
-        </div>
+    </div>
 
-        <div class="formula">
-            Initial conditions determine constants
-        </div>
-
-    </section>
+</section>
 
 
 </main>
@@ -1390,104 +4342,1371 @@
 
 <script>
 
-    /* SCROLL REVEAL */
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
 
-    const lessons = document.querySelectorAll(".lesson");
+const lessons =
+    document.querySelectorAll(".lesson");
 
-    const observer = new IntersectionObserver(
+const observer =
+    new IntersectionObserver(
         entries => {
 
             entries.forEach(entry => {
 
                 if (entry.isIntersecting) {
+
                     entry.target.classList.add("visible");
+
                 }
 
             });
 
         },
         {
-            threshold: 0.12
+            threshold:.08
         }
     );
 
-    lessons.forEach(lesson => observer.observe(lesson));
+lessons.forEach(
+    lesson => observer.observe(lesson)
+);
 
 
-    /* HERO PARALLAX */
+/* =========================================================
+   HERO PARALLAX
+========================================================= */
 
-    const hero = document.getElementById("hero");
+const hero =
+    document.getElementById("hero");
 
-    window.addEventListener("scroll", () => {
+window.addEventListener(
+    "scroll",
+    () => {
 
-        const scrollY = window.scrollY;
+        const scrollY =
+            window.scrollY;
 
         if (scrollY < 900) {
+
             hero.style.transform =
-                `translateY(${scrollY * 0.045}px)`;
+                `translateY(${scrollY * .045}px)`;
+
         }
 
-    });
+    }
+);
 
 
-    /* CARD LIGHT EFFECT */
+/* =========================================================
+   CARD LIGHT EFFECT
+========================================================= */
 
-    lessons.forEach(card => {
+lessons.forEach(card => {
 
-        card.addEventListener("mousemove", event => {
+    card.addEventListener(
+        "mousemove",
+        event => {
 
-            const rect = card.getBoundingClientRect();
+            const rect =
+                card.getBoundingClientRect();
 
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
+            const x =
+                event.clientX - rect.left;
+
+            const y =
+                event.clientY - rect.top;
 
             card.style.background =
                 `radial-gradient(
                     circle at ${x}px ${y}px,
-                    rgba(89, 215, 255, 0.09),
-                    rgba(10, 27, 47, 0.78) 34%,
-                    rgba(5, 15, 28, 0.7) 75%
+                    rgba(89,215,255,.09),
+                    rgba(10,27,47,.78) 34%,
+                    rgba(5,15,28,.7) 75%
                 )`;
 
-        });
+        }
+    );
 
-        card.addEventListener("mouseleave", () => {
+    card.addEventListener(
+        "mouseleave",
+        () => {
 
             card.style.background =
-                "linear-gradient(145deg, rgba(10, 27, 47, 0.78), rgba(5, 15, 28, 0.7))";
+                "linear-gradient(145deg,rgba(10,27,47,.78),rgba(5,15,28,.7))";
 
-        });
+        }
+    );
 
-    });
+});
 
 
-    /* ACTIVE MOTION DATA */
+/* =========================================================
+   100 QUESTION EXAM DATABASE
+========================================================= */
 
-    const values = document.querySelectorAll(".data-value");
+const examQuestions = [
 
-    setInterval(() => {
+/* 1–10 FOUNDATIONS */
 
-        values.forEach((value, index) => {
+{
+q:"Which quantity is obtained by differentiating displacement with respect to time?",
+o:["Acceleration","Velocity","Distance","Speed"],
+a:1,
+e:"Velocity is v = dx/dt."
+},
 
-            if (index === 0) {
+{
+q:"Which quantity is obtained by differentiating velocity with respect to time?",
+o:["Acceleration","Displacement","Distance","Position"],
+a:0,
+e:"Acceleration is a = dv/dt."
+},
 
-                value.style.textShadow =
-                    "0 0 15px rgba(89, 215, 255, 0.7)";
+{
+q:"If x is displacement, what does d²x/dt² represent?",
+o:["Speed","Velocity","Acceleration","Distance"],
+a:2,
+e:"Differentiating displacement twice with respect to time gives acceleration."
+},
 
-                setTimeout(() => {
-                    value.style.textShadow = "none";
-                }, 500);
+{
+q:"Which SI unit is correct for acceleration?",
+o:["m","m s⁻¹","N","m s⁻²"],
+a:3,
+e:"Acceleration is measured in metres per second squared."
+},
+
+{
+q:"A particle is stationary at an instant when:",
+o:["a = 0","x = 0","v = 0","t = 0"],
+a:2,
+e:"Stationary means instantaneous velocity is zero."
+},
+
+{
+q:"If a particle is stationary but its acceleration is non-zero, what can happen immediately afterwards?",
+o:["It must remain stationary","It can begin moving","Its displacement must become zero","Time must stop"],
+a:1,
+e:"For example, at the highest point of a vertical projection, v = 0 but a = -g."
+},
+
+{
+q:"Which quantity is a vector?",
+o:["Speed","Distance","Time","Velocity"],
+a:3,
+e:"Velocity has both magnitude and direction."
+},
+
+{
+q:"A particle model normally assumes that:",
+o:["The particle has no mass","The particle has negligible size","The particle cannot accelerate","The particle has constant velocity"],
+a:1,
+e:"A particle has mass but its size is treated as negligible."
+},
+
+{
+q:"Which operation takes velocity to acceleration?",
+o:["Integration with respect to t","Differentiation with respect to t","Multiplication by t","Division by t"],
+a:1,
+e:"a = dv/dt."
+},
+
+{
+q:"Which operation takes acceleration to velocity?",
+o:["Differentiation","Integration","Squaring","Resolving"],
+a:1,
+e:"Integrating acceleration with respect to time gives velocity, plus a constant." 
+},
+
+
+/* 11–20 DIFFERENTIATION */
+
+{
+q:"A particle has x = 3t² + 4t. What is v?",
+o:["3t + 4","6t + 4","6t² + 4","3t² + 4"],
+a:1,
+e:"Differentiate x: v = 6t + 4."
+},
+
+{
+q:"For x = 2t³ − 5t² + 4t, what is acceleration?",
+o:["6t − 10","12t − 10","6t² − 10t","12t − 5"],
+a:1,
+e:"v = 6t² − 10t + 4, so a = 12t − 10."
+},
+
+{
+q:"For x = t³ − 6t² + 9t, when is the particle stationary?",
+o:["t = 1 only","t = 3 only","t = 1 and t = 3","t = 2 and t = 3"],
+a:2,
+e:"v = 3t² − 12t + 9 = 3(t−1)(t−3)."
+},
+
+{
+q:"If x = 5t⁴, then v is:",
+o:["5t³","20t³","20t⁴","5t⁵"],
+a:1,
+e:"v = dx/dt = 20t³."
+},
+
+{
+q:"If x = 4t³ + 2t, then a is:",
+o:["12t","24t","12t² + 2","24t²"],
+a:1,
+e:"v = 12t² + 2, hence a = 24t."
+},
+
+{
+q:"A particle has x = 7 − 3t + 2t². Its initial velocity is:",
+o:["−3 m s⁻¹","2 m s⁻¹","3 m s⁻¹","7 m s⁻¹"],
+a:0,
+e:"v = −3 + 4t, so v(0) = −3 m s⁻¹."
+},
+
+{
+q:"If v = 4t² − 8t + 3, the acceleration at t = 2 is:",
+o:["0","4","8","16"],
+a:2,
+e:"a = 8t − 8, so a(2) = 8."
+},
+
+{
+q:"If a = 12t − 6, what is v?",
+o:["12t² − 6t","6t² − 6t + C","6t² − 6 + C","12t − 6 + C"],
+a:1,
+e:"Integrating gives v = 6t² − 6t + C."
+},
+
+{
+q:"If a = 8t³, then v is:",
+o:["2t⁴ + C","8t⁴ + C","24t² + C","2t³ + C"],
+a:0,
+e:"∫8t³dt = 2t⁴ + C."
+},
+
+{
+q:"If v = 6t² + 4t − 1, then x is:",
+o:["2t³ + 2t² − t + C","6t³ + 4t² − t","3t² + 4t − 1","2t³ + 4t² − 1"],
+a:0,
+e:"Integrate term-by-term: x = 2t³ + 2t² − t + C."
+},
+
+
+/* 21–30 INTEGRATION */
+
+{
+q:"A particle has acceleration a = 10t and v(0) = 4. What is v?",
+o:["5t² + 4","10t² + 4","5t + 4","10t + 4"],
+a:0,
+e:"Integrating 10t gives 5t² + C; v(0)=4 gives C=4."
+},
+
+{
+q:"A particle has v = 3t² and x(0) = 5. What is x?",
+o:["t³ + 5","3t³ + 5","6t + 5","t² + 5"],
+a:0,
+e:"x = ∫3t²dt = t³ + C, and C=5."
+},
+
+{
+q:"A particle has a = 6t + 2 and v(0)=3. What is v(2)?",
+o:["11","15","17","19"],
+a:2,
+e:"v = 3t² + 2t + 3. At t=2, v=12+4+3=19. Correct answer is 19, so option D.",
+},
+
+{
+q:"In the previous question, which option corresponds to v(2)=19?",
+o:["11","15","17","19"],
+a:3,
+e:"v(2)=19 m s⁻¹."
+},
+
+{
+q:"Why is a constant of integration needed after an indefinite integration?",
+o:["Because differentiation creates an unknown constant","Because many functions can have the same derivative","Because time is always zero","Because acceleration has units"],
+a:1,
+e:"Functions differing by a constant have the same derivative."
+},
+
+{
+q:"If v(0)=−2, which equation could represent v after integrating a?",
+o:["v = f(t) + 2","v = f(t) − 2","v = f(t) + C, with C determined by v(0)=−2","v = f(t)t"],
+a:2,
+e:"The integration constant must be found from the initial velocity."
+},
+
+{
+q:"If x(0)=7 and v = 4t, then x is:",
+o:["2t² + 7","4t² + 7","2t + 7","4t + 7"],
+a:0,
+e:"x = ∫4t dt = 2t² + C, with C=7."
+},
+
+{
+q:"If a = 12t² and v(0)=1, then v is:",
+o:["4t³ + 1","12t³ + 1","6t² + 1","4t² + 1"],
+a:0,
+e:"∫12t²dt = 4t³ + C."
+},
+
+{
+q:"If v = 2t³ − 4t and x(0)=3, then x is:",
+o:["½t⁴ − 2t² + 3","2t⁴ − 4t² + 3","6t² − 4 + 3","½t³ − 2t + 3"],
+a:0,
+e:"Integrate: x = ½t⁴ − 2t² + C; C=3."
+},
+
+{
+q:"A particle has x(0)=0 and v=6t−4. Its displacement at t=2 is:",
+o:["4 m","8 m","12 m","16 m"],
+a:0,
+e:"x = 3t² − 4t. x(2)=12−8=4 m."
+},
+
+
+/* 31–40 VERTICAL MOTION */
+
+{
+q:"For upward-positive vertical motion under gravity, acceleration is:",
+o:["+9.8","−9.8","0","+g"],
+a:1,
+e:"Gravity acts downward, so a = −9.8 m s⁻²."
+},
+
+{
+q:"At the highest point of a vertical projection:",
+o:["v=9.8","v=0 and a=0","v=0 and a=−9.8","v=−9.8 and a=0"],
+a:2,
+e:"Vertical velocity is zero at the top, but gravitational acceleration remains −9.8."
+},
+
+{
+q:"A particle is projected vertically upwards at 19.6 m s⁻¹. Time to maximum height is:",
+o:["1 s","2 s","3 s","4 s"],
+a:1,
+e:"0 = 19.6 − 9.8t, giving t=2 s."
+},
+
+{
+q:"A particle is projected upwards at 9.8 m s⁻¹. Its maximum height is:",
+o:["2.45 m","4.9 m","9.8 m","19.6 m"],
+a:1,
+e:"0 = 9.8² − 19.6s, giving s=4.9 m."
+},
+
+{
+q:"A particle is thrown upwards with u=19.6 m s⁻¹. Its velocity after 1 second is:",
+o:["−9.8","0","9.8","19.6"],
+a:2,
+e:"v = 19.6 − 9.8(1)=9.8 m s⁻¹ upward."
+},
+
+{
+q:"If downward is chosen positive, gravitational acceleration is:",
+o:["−9.8","0","+9.8","+19.6"],
+a:2,
+e:"Gravity acts in the positive direction under this convention."
+},
+
+{
+q:"A particle is projected upwards. When is its acceleration zero?",
+o:["At the highest point","Immediately after launch","Never, in the standard gravity-only model","When it returns to the launch point"],
+a:2,
+e:"Gravity continues to provide acceleration throughout the flight."
+},
+
+{
+q:"A particle falls from rest for 2 seconds. Its speed is approximately:",
+o:["4.9 m s⁻¹","9.8 m s⁻¹","19.6 m s⁻¹","39.2 m s⁻¹"],
+a:2,
+e:"v = gt = 9.8×2 = 19.6 m s⁻¹."
+},
+
+{
+q:"A particle falls from rest for 3 seconds. Its displacement downward is:",
+o:["14.7 m","29.4 m","44.1 m","88.2 m"],
+a:2,
+e:"s = ½gt² = 0.5×9.8×9 = 44.1 m."
+},
+
+{
+q:"Which equation is most directly useful when time is not given?",
+o:["v=u+at","s=ut+½at²","v²=u²+2as","s=vt"],
+a:2,
+e:"v²=u²+2as does not contain t."
+},
+
+
+/* 41–50 PROJECTILES */
+
+{
+q:"A projectile is launched at speed u and angle θ above the horizontal. Its initial horizontal velocity is:",
+o:["u sinθ","u cosθ","u tanθ","u/ cosθ"],
+a:1,
+e:"Horizontal component = u cosθ."
+},
+
+{
+q:"Its initial vertical velocity is:",
+o:["u cosθ","u sinθ","u tanθ","u/g"],
+a:1,
+e:"Vertical component = u sinθ."
+},
+
+{
+q:"For a standard projectile, horizontal acceleration is:",
+o:["g","−g","0","u"],
+a:2,
+e:"Ignoring air resistance, there is no horizontal acceleration."
+},
+
+{
+q:"For upward-positive projectile motion, vertical acceleration is:",
+o:["0","+g","−g","u"],
+a:2,
+e:"Gravity acts downward."
+},
+
+{
+q:"The horizontal displacement after time t is:",
+o:["u sinθ t","u cosθ t","ut²","½gt²"],
+a:1,
+e:"Horizontal velocity is u cosθ and is constant."
+},
+
+{
+q:"The vertical displacement after time t is:",
+o:["u cosθ t","u sinθ t − ½gt²","u sinθ t + ½gt²","½gt²"],
+a:1,
+e:"Use vertical constant-acceleration motion."
+},
+
+{
+q:"At maximum height of a projectile, which component of velocity is zero?",
+o:["Horizontal only","Vertical only","Both","Neither"],
+a:1,
+e:"The vertical component becomes zero; horizontal velocity remains constant."
+},
+
+{
+q:"For a projectile landing at its launch height, time of flight is:",
+o:["u cosθ/g","2u sinθ/g","u sinθ/g","u²sinθ/g"],
+a:1,
+e:"T = 2u sinθ/g."
+},
+
+{
+q:"For a same-level projectile, the range is:",
+o:["u²sinθ/g","u²cosθ/g","u²sin2θ/g","2u²sinθ/g"],
+a:2,
+e:"R = u² sin(2θ)/g."
+},
+
+{
+q:"For a same-level projectile, maximum height is:",
+o:["u²sin²θ/(2g)","u²sinθ/g","u²cos²θ/(2g)","2u²sin²θ/g"],
+a:0,
+e:"H = u²sin²θ/(2g)."
+},
+
+
+/* 51–60 PROJECTILE CALCULATIONS */
+
+{
+q:"A projectile is fired at 20 m s⁻¹ at 30°. Its initial vertical speed is:",
+o:["5 m s⁻¹","10 m s⁻¹","17.32 m s⁻¹","20 m s⁻¹"],
+a:1,
+e:"20sin30° = 10 m s⁻¹."
+},
+
+{
+q:"The same projectile has initial horizontal speed approximately:",
+o:["10 m s⁻¹","14.14 m s⁻¹","17.32 m s⁻¹","20 m s⁻¹"],
+a:2,
+e:"20cos30° ≈ 17.32 m s⁻¹."
+},
+
+{
+q:"A projectile is launched at 20 m s⁻¹ at 30°. Its time of flight is approximately:",
+o:["1.02 s","2.04 s","3.06 s","4.08 s"],
+a:1,
+e:"T=2(20)(0.5)/9.8≈2.04 s."
+},
+
+{
+q:"For the same projectile, the maximum height is approximately:",
+o:["2.55 m","5.10 m","10.20 m","20.40 m"],
+a:1,
+e:"H=20²(0.5²)/(19.6)=5.10 m."
+},
+
+{
+q:"For the same projectile, its range is approximately:",
+o:["17.32 m","20.41 m","35.35 m","40.82 m"],
+a:1,
+e:"R = 400sin60°/9.8 ≈ 35.35 m. Correct answer is option C.",
+},
+
+{
+q:"Which launch angle gives the maximum range when launch and landing heights are equal?",
+o:["30°","45°","60°","90°"],
+a:1,
+e:"sin(2θ) is maximum when 2θ=90°, so θ=45°."
+},
+
+{
+q:"Two complementary projection angles have the same:",
+o:["Maximum height","Time of flight","Range","Vertical velocity at all times"],
+a:2,
+e:"For θ and 90°−θ, sin(2θ) is the same, so range is the same."
+},
+
+{
+q:"The trajectory equation of a projectile is generally quadratic in:",
+o:["t","x","u","g"],
+a:1,
+e:"y = x tanθ − [g/(2u²cos²θ)]x²."
+},
+
+{
+q:"To derive the trajectory equation, which variable is eliminated?",
+o:["x","y","u","t"],
+a:3,
+e:"Eliminate time t between x(t) and y(t)."
+},
+
+{
+q:"A projectile's horizontal velocity remains constant because:",
+o:["Gravity is horizontal","There is no horizontal acceleration","Vertical acceleration is zero","The particle has constant speed"],
+a:1,
+e:"With air resistance neglected, horizontal acceleration is zero."
+},
+
+
+/* 61–70 VECTOR KINEMATICS */
+
+{
+q:"If r = xi + yj, then velocity is:",
+o:["x'i + y'j","xi + yj","x''i + y''j","|r|"],
+a:0,
+e:"v = dr/dt = x'i + y'j."
+},
+
+{
+q:"If r = t²i + t³j, then v is:",
+o:["2ti + 3t²j","t²i + t³j","2i + 6tj","2t²i + 3tj"],
+a:0,
+e:"Differentiate each component."
+},
+
+{
+q:"For r = t²i + t³j, acceleration is:",
+o:["2ti + 3t²j","2i + 6tj","2t i + 6t j","t²i + t³j"],
+a:1,
+e:"v=2ti+3t²j, hence a=2i+6tj."
+},
+
+{
+q:"If v = 3i + 4j, the speed is:",
+o:["1","5","7","12"],
+a:1,
+e:"|v|=√(3²+4²)=5."
+},
+
+{
+q:"If v = −5i + 12j, the speed is:",
+o:["7","12","13","17"],
+a:2,
+e:"√(25+144)=13."
+},
+
+{
+q:"A particle is stationary in vector motion when:",
+o:["|r|=0","v=0 vector","a=0 vector","x=0 only"],
+a:1,
+e:"Stationary means the entire velocity vector is zero."
+},
+
+{
+q:"If v = (2t)i + (6t²)j, the speed at t=1 is:",
+o:["4","√40","8","10"],
+a:1,
+e:"v(1)=2i+6j, speed=√40≈6.32."
+},
+
+{
+q:"If a = 4i − 3j, its magnitude is:",
+o:["1","5","7","12"],
+a:1,
+e:"|a|=√(16+9)=5."
+},
+
+{
+q:"If r(2)=5i+7j and r(1)=2i+3j, displacement from t=1 to t=2 is:",
+o:["3i+4j","7i+10j","3i+10j","5i+7j"],
+a:0,
+e:"Displacement = r(2)−r(1)=3i+4j."
+},
+
+{
+q:"If v = (6t−2)i + (4t+1)j, acceleration is:",
+o:["6i+4j","(6t)i+(4t)j","2i+j","10"],
+a:0,
+e:"Differentiate each component: a=6i+4j."
+},
+
+
+/* 71–80 VECTOR INTEGRATION */
+
+{
+q:"If a = 6ti + 4j, integrating gives:",
+o:["v=3t²i+4tj+C","v=6t²i+4j","v=3ti+4j","v=6i+4tj"],
+a:0,
+e:"Integrate each component separately."
+},
+
+{
+q:"If v(0)=2i−3j in the previous problem, v is:",
+o:["(3t²+2)i+(4t−3)j","(6t+2)i+(4t−3)j","3t²i+4tj","(3t²−2)i+(4t+3)j"],
+a:0,
+e:"The initial vector determines the two integration constants."
+},
+
+{
+q:"If v = 4ti + 6tj, then displacement from 0 to t is:",
+o:["2t²i+3t²j","4t²i+6t²j","2ti+3tj","4i+6j"],
+a:0,
+e:"Integrate each component."
+},
+
+{
+q:"If acceleration is constant vector a, then velocity is:",
+o:["v=a/t","v=u+at","v=ut+a","v=a+u/t"],
+a:1,
+e:"Vector constant-acceleration equation: v=u+at."
+},
+
+{
+q:"If r₀=0, u=3i+4j and a=2i, then r after t seconds is:",
+o:["(3t+t²)i+4tj","3ti+4tj","(3+t²)i+4j","3t²i+4t²j"],
+a:0,
+e:"r=ut+½at²=(3t+t²)i+4tj."
+},
+
+{
+q:"If r = (t³−t)i + (2t²)j, then v at t=2 is:",
+o:["11i+8j","12i+8j","11i+4j","6i+8j"],
+a:0,
+e:"v=(3t²−1)i+4tj. At t=2: 11i+8j."
+},
+
+{
+q:"For the same particle, acceleration at t=2 is:",
+o:["12i+4j","6i+4j","11i+8j","3i+2j"],
+a:0,
+e:"a=6ti+4j, so at t=2: 12i+4j."
+},
+
+{
+q:"If v=0 vector at an instant, the particle is:",
+o:["At the origin","Stationary","Accelerating at zero","At maximum height necessarily"],
+a:1,
+e:"Zero velocity vector means the particle is instantaneously stationary."
+},
+
+{
+q:"The magnitude of displacement vector 6i+8j is:",
+o:["2","10","14","48"],
+a:1,
+e:"√(36+64)=10."
+},
+
+{
+q:"A position vector is differentiated with respect to time to obtain:",
+o:["Acceleration","Velocity","Speed","Distance"],
+a:1,
+e:"v=dr/dt."
+},
+
+
+/* 81–90 MIXED */
+
+{
+q:"A particle has x=2t³−3t². Its velocity at t=1 is:",
+o:["0","3","6","9"],
+a:0,
+e:"v=6t²−6t, so v(1)=0."
+},
+
+{
+q:"For the same particle, acceleration at t=1 is:",
+o:["0","6","12","18"],
+a:1,
+e:"a=12t−6, so a(1)=6."
+},
+
+{
+q:"A particle has a=4t+2, v(0)=−1. What is v(2)?",
+o:["7","9","11","13"],
+a:1,
+e:"v=2t²+2t−1; v(2)=8+4−1=11. Correct option is C.",
+},
+
+{
+q:"A particle has v=3t²−6t. At which times is it stationary?",
+o:["0 and 1","0 and 2","1 and 2","2 only"],
+a:1,
+e:"3t(t−2)=0, so t=0 and t=2."
+},
+
+{
+q:"A particle has x=t³−3t²+2. Its displacement from t=0 to t=2 is:",
+o:["−4 m","−2 m","0 m","4 m"],
+a:2,
+e:"x(0)=2 and x(2)=8−12+2=−2. Displacement=−4 m. Correct option A.",
+},
+
+{
+q:"If a particle's velocity changes from +5 to −5 m s⁻¹, what must have occurred?",
+o:["Its displacement was zero","Its direction changed","Its acceleration was zero","Its speed was always zero"],
+a:1,
+e:"The velocity changed sign, so the direction of motion changed."
+},
+
+{
+q:"A projectile has horizontal speed 12 m s⁻¹. Ignoring air resistance, its horizontal speed 3 seconds later is:",
+o:["0","4","12","36"],
+a:2,
+e:"Horizontal velocity is constant."
+},
+
+{
+q:"A projectile has vertical velocity 15 m s⁻¹ upwards. After 1 second, using g=9.8, its vertical velocity is:",
+o:["5.2","9.8","15","24.8"],
+a:0,
+e:"vᵧ=15−9.8=5.2 m s⁻¹."
+},
+
+{
+q:"A projectile reaches maximum height when:",
+o:["Its speed is zero","Its vertical velocity is zero","Its horizontal velocity is zero","Its acceleration is zero"],
+a:1,
+e:"Only the vertical component becomes zero."
+},
+
+{
+q:"If a projectile has horizontal velocity 8 and vertical velocity 6, its speed is:",
+o:["2","10","14","48"],
+a:1,
+e:"Speed=√(8²+6²)=10."
+},
+
+
+/* 91–100 ADVANCED / EXAM TRAPS */
+
+{
+q:"A particle has x=t³−6t²+9t. What is its velocity at t=3?",
+o:["0","3","9","18"],
+a:0,
+e:"v=3t²−12t+9. At t=3: 27−36+9=0."
+},
+
+{
+q:"For x=t³−6t²+9t, the acceleration at t=3 is:",
+o:["0","3","6","9"],
+a:2,
+e:"a=6t−12. At t=3, a=6."
+},
+
+{
+q:"If v changes sign at t=2, what should you check when calculating total distance?",
+o:["Only x(2)","The sign of v before and after t=2","Only acceleration","Only final time"],
+a:1,
+e:"A change of direction affects how displacement intervals contribute to total distance."
+},
+
+{
+q:"A particle has r=(t²)i+(t³−3t)j. Its velocity at t=1 is:",
+o:["2i−j","i−2j","2i+3j","2i+0j"],
+a:0,
+e:"v=2ti+(3t²−3)j, so v(1)=2i+0j. Correct option D.",
+},
+
+{
+q:"In the previous question, the particle's speed at t=1 is:",
+o:["0","1","2","√5"],
+a:2,
+e:"v(1)=2i, so speed=2."
+},
+
+{
+q:"A projectile is launched horizontally from a height. Which statement is correct?",
+o:["Its horizontal acceleration is g","Its vertical initial velocity is zero","Its acceleration is zero","Its horizontal velocity immediately becomes zero"],
+a:1,
+e:"For a horizontal launch, the initial vertical component is zero."
+},
+
+{
+q:"If r(t) is known, the displacement between t=2 and t=5 is:",
+o:["r(5)+r(2)","r(5)−r(2)","r(2)−r(5) always positive","|r(5)|−|r(2)|"],
+a:1,
+e:"Vector displacement is final position minus initial position."
+},
+
+{
+q:"Which statement about integration constants is correct?",
+o:["There is never more than one","Each independent component can require its own constant","They are always zero","They equal acceleration"],
+a:1,
+e:"For vector integration, constants arise independently in the i and j components."
+},
+
+{
+q:"A projectile's acceleration vector under the standard model is:",
+o:["gi","gj","−gj","0"],
+a:2,
+e:"Taking j upward, gravity gives a=−gj."
+},
+
+{
+q:"What is the best general strategy for an M2 Further Kinematics problem?",
+o:[
+"Immediately use SUVAT regardless of the information",
+"Differentiate/integrate the given motion model, apply initial conditions, then interpret the result",
+"Ignore signs and use magnitudes only",
+"Use only horizontal equations"
+],
+a:1,
+e:"M2 problems often require choosing the correct calculus relationship before applying the physical conditions."
+}
+
+];
+
+
+/* =========================================================
+   EXAM STATE
+========================================================= */
+
+let currentQuestion = 0;
+
+let answers =
+    new Array(examQuestions.length).fill(null);
+
+let submitted = false;
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const examCurrent =
+    document.getElementById("examCurrent");
+
+const examAnswered =
+    document.getElementById("examAnswered");
+
+const examLiveScore =
+    document.getElementById("examLiveScore");
+
+const examProgressBar =
+    document.getElementById("examProgressBar");
+
+const examQuestionNumber =
+    document.getElementById("examQuestionNumber");
+
+const examQuestion =
+    document.getElementById("examQuestion");
+
+const optionList =
+    document.getElementById("optionList");
+
+const examExplanation =
+    document.getElementById("examExplanation");
+
+const questionGrid =
+    document.getElementById("questionGrid");
+
+const examResult =
+    document.getElementById("examResult");
+
+const submitButton =
+    document.getElementById("submitButton");
+
+
+/* =========================================================
+   RENDER QUESTION GRID
+========================================================= */
+
+function renderQuestionGrid() {
+
+    questionGrid.innerHTML = "";
+
+    examQuestions.forEach(
+        (question,index) => {
+
+            const button =
+                document.createElement("button");
+
+            button.className =
+                "question-dot";
+
+            button.textContent =
+                index + 1;
+
+            if(index === currentQuestion) {
+                button.classList.add("current");
+            }
+
+            if(answers[index] !== null) {
+                button.classList.add("answered");
+            }
+
+            if(submitted) {
+
+                if(
+                    answers[index] ===
+                    question.a
+                ) {
+                    button.classList.add("correct");
+                }
+                else {
+                    button.classList.add("wrong");
+                }
 
             }
 
-        });
+            button.onclick =
+                () => {
 
-    }, 1800);
+                    currentQuestion = index;
+
+                    renderQuestion();
+
+                };
+
+            questionGrid.appendChild(button);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   RENDER QUESTION
+========================================================= */
+
+function renderQuestion() {
+
+    const question =
+        examQuestions[currentQuestion];
+
+    examCurrent.textContent =
+        currentQuestion + 1;
+
+    examQuestionNumber.textContent =
+        `QUESTION ${String(currentQuestion + 1).padStart(2,"0")}`;
+
+    examQuestion.textContent =
+        question.q;
+
+    optionList.innerHTML = "";
+
+    const letters =
+        ["A","B","C","D"];
+
+    question.o.forEach(
+        (option,index) => {
+
+            const button =
+                document.createElement("button");
+
+            button.className =
+                "option";
+
+            if(
+                answers[currentQuestion] === index
+            ) {
+                button.classList.add("selected");
+            }
+
+            if(submitted) {
+
+                if(index === question.a) {
+                    button.classList.add("correct");
+                }
+
+                if(
+                    answers[currentQuestion] === index &&
+                    index !== question.a
+                ) {
+                    button.classList.add("wrong");
+                }
+
+            }
+
+            button.innerHTML =
+                `
+                <span class="option-letter">
+                    ${letters[index]}
+                </span>
+
+                <span>
+                    ${option}
+                </span>
+                `;
+
+            button.onclick =
+                () => {
+
+                    if(submitted) {
+                        return;
+                    }
+
+                    answers[currentQuestion] =
+                        index;
+
+                    renderQuestion();
+
+                };
+
+            optionList.appendChild(button);
+
+        }
+    );
+
+
+    if(submitted) {
+
+        examExplanation.style.display =
+            "block";
+
+        examExplanation.innerHTML =
+            `
+            <strong>Explanation:</strong>
+            ${question.e}
+            `;
+
+    }
+    else {
+
+        examExplanation.style.display =
+            "none";
+
+    }
+
+
+    const answeredCount =
+        answers.filter(
+            answer => answer !== null
+        ).length;
+
+    examAnswered.textContent =
+        answeredCount;
+
+    const progress =
+        ((currentQuestion + 1) /
+        examQuestions.length) * 100;
+
+    examProgressBar.style.width =
+        `${progress}%`;
+
+    renderQuestionGrid();
+
+    if(submitted) {
+
+        const score =
+            calculateScore();
+
+        examLiveScore.textContent =
+            `${score}/${examQuestions.length}`;
+
+    }
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function nextQuestion() {
+
+    if(
+        currentQuestion <
+        examQuestions.length - 1
+    ) {
+
+        currentQuestion++;
+
+        renderQuestion();
+
+        document
+            .querySelector(".exam-shell")
+            .scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
+
+    }
+
+}
+
+
+function previousQuestion() {
+
+    if(currentQuestion > 0) {
+
+        currentQuestion--;
+
+        renderQuestion();
+
+        document
+            .querySelector(".exam-shell")
+            .scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
+
+    }
+
+}
+
+
+/* =========================================================
+   SCORE
+========================================================= */
+
+function calculateScore() {
+
+    return answers.reduce(
+        (score,answer,index) => {
+
+            return score +
+                (answer === examQuestions[index].a
+                    ? 1
+                    : 0);
+
+        },
+        0
+    );
+
+}
+
+
+/* =========================================================
+   SUBMIT
+========================================================= */
+
+function submitExam() {
+
+    if(submitted) {
+        return;
+    }
+
+    const unanswered =
+        answers.filter(
+            answer => answer === null
+        ).length;
+
+
+    if(unanswered > 0) {
+
+        const proceed =
+            confirm(
+                `You have ${unanswered} unanswered question(s). Submit anyway?`
+            );
+
+        if(!proceed) {
+            return;
+        }
+
+    }
+
+
+    submitted = true;
+
+    const score =
+        calculateScore();
+
+    const percentage =
+        Math.round(
+            score /
+            examQuestions.length *
+            100
+        );
+
+
+    let message = "";
+
+    if(percentage >= 90) {
+
+        message =
+            "Exceptional performance. Your M2 Further Kinematics fundamentals are very strong.";
+
+    }
+    else if(percentage >= 80) {
+
+        message =
+            "Excellent work. Your understanding is strong, with only a few areas to refine.";
+
+    }
+    else if(percentage >= 70) {
+
+        message =
+            "Strong performance. Review the questions you missed and tighten your exam technique.";
+
+    }
+    else if(percentage >= 60) {
+
+        message =
+            "Good foundation. More practice with mixed M2 problems will improve consistency.";
+
+    }
+    else if(percentage >= 50) {
+
+        message =
+            "You have a foundation, but several M2 areas need targeted revision.";
+
+    }
+    else {
+
+        message =
+            "Use the explanations below to identify the concepts that need another pass.";
+
+    }
+
+
+    examResult.innerHTML =
+        `
+        <div class="exam-result">
+
+            <div class="score-ring">
+
+                <div class="score-number">
+                    ${percentage}%
+                </div>
+
+                <div class="score-label">
+                    ${score}/100
+                </div>
+
+            </div>
+
+            <div class="result-message">
+                ${message}
+            </div>
+
+            <button
+                class="exam-btn primary"
+                onclick="restartExam()">
+                Restart Exam
+            </button>
+
+        </div>
+        `;
+
+
+    submitButton.style.display =
+        "none";
+
+    examLiveScore.textContent =
+        `${score}/100`;
+
+    renderQuestion();
+
+    examResult.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
+}
+
+
+/* =========================================================
+   RESTART
+========================================================= */
+
+function restartExam() {
+
+    const proceed =
+        confirm(
+            "Restart the 100-question exam? Your current answers will be cleared."
+        );
+
+    if(!proceed) {
+        return;
+    }
+
+    answers =
+        new Array(examQuestions.length).fill(null);
+
+    currentQuestion = 0;
+
+    submitted = false;
+
+    examResult.innerHTML = "";
+
+    submitButton.style.display =
+        "inline-block";
+
+    examLiveScore.textContent =
+        "—";
+
+    renderQuestion();
+
+}
+
+
+/* =========================================================
+   INITIALISE
+========================================================= */
+
+renderQuestion();
+
+
+/* =========================================================
+   ACTIVE DATA GLOW
+========================================================= */
+
+const values =
+    document.querySelectorAll(".data-value");
+
+setInterval(
+    () => {
+
+        values.forEach(
+            (value,index) => {
+
+                if(index === 0) {
+
+                    value.style.textShadow =
+                        "0 0 15px rgba(89,215,255,.7)";
+
+                    setTimeout(
+                        () => {
+
+                            value.style.textShadow =
+                                "none";
+
+                        },
+                        500
+                    );
+
+                }
+
+            }
+        );
+
+    },
+    1800
+);
 
 </script>
 
 
 </body>
-
 </html>
 
