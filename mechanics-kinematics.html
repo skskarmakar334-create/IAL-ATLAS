@@ -2,1336 +2,1535 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Kinematics in a Straight Line | IAL ATLAS</title>
-
-    <meta name="description"
-        content="Edexcel International A Level Mathematics Mechanics 1 — Kinematics in a Straight Line.">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
-        rel="stylesheet">
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        :root {
-            --bg: #020812;
-            --panel: rgba(7, 20, 37, 0.68);
-            --cyan: #42c7ff;
-            --cyan-bright: #9be8ff;
-            --blue: #247bff;
-            --text: #edf8ff;
-            --muted: #8ca7bd;
-            --line: rgba(92, 191, 255, 0.15);
-        }
-
-        body {
-            font-family: "Inter", Arial, Helvetica, sans-serif;
-            background:
-                radial-gradient(
-                    circle at 50% -10%,
-                    rgba(36, 123, 255, 0.15),
-                    transparent 35%
-                ),
-                var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        /* =========================
-           BACKGROUND GRID
-        ========================= */
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            z-index: -5;
-            pointer-events: none;
-            opacity: 0.34;
-
-            background-image:
-                linear-gradient(
-                    rgba(66, 199, 255, 0.045) 1px,
-                    transparent 1px
-                ),
-                linear-gradient(
-                    90deg,
-                    rgba(66, 199, 255, 0.045) 1px,
-                    transparent 1px
-                );
-
-            background-size: 55px 55px;
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            width: 650px;
-            height: 650px;
-            left: 50%;
-            top: 20%;
-            transform: translateX(-50%);
-
-            border-radius: 50%;
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(42, 183, 255, 0.055),
-                    transparent 68%
-                );
-
-            filter: blur(12px);
-            pointer-events: none;
-            z-index: -4;
-        }
-
-        /* =========================
-           PARTICLES
-        ========================= */
-
-        .particles {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: -2;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            border-radius: 50%;
-
-            background: var(--cyan-bright);
-
-            box-shadow:
-                0 0 10px var(--cyan),
-                0 0 22px rgba(66, 199, 255, 0.45);
-
-            opacity: 0.4;
-
-            animation: floatParticle linear infinite;
-        }
-
-        .particle:nth-child(1) {
-            left: 7%;
-            top: 20%;
-            animation-duration: 13s;
-        }
-
-        .particle:nth-child(2) {
-            left: 18%;
-            top: 75%;
-            animation-duration: 17s;
-        }
-
-        .particle:nth-child(3) {
-            left: 32%;
-            top: 35%;
-            animation-duration: 12s;
-        }
-
-        .particle:nth-child(4) {
-            left: 51%;
-            top: 85%;
-            animation-duration: 19s;
-        }
-
-        .particle:nth-child(5) {
-            left: 66%;
-            top: 22%;
-            animation-duration: 14s;
-        }
-
-        .particle:nth-child(6) {
-            left: 79%;
-            top: 63%;
-            animation-duration: 16s;
-        }
-
-        .particle:nth-child(7) {
-            left: 92%;
-            top: 32%;
-            animation-duration: 11s;
-        }
-
-        @keyframes floatParticle {
-
-            0% {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-
-            20% {
-                opacity: 0.45;
-            }
-
-            80% {
-                opacity: 0.45;
-            }
-
-            100% {
-                transform: translateY(-120px);
-                opacity: 0;
-            }
-
-        }
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-
-            padding: 17px 7%;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            background: rgba(2, 8, 18, 0.72);
-
-            border-bottom:
-                1px solid rgba(103, 204, 255, 0.13);
 
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-
-        header a {
-            color: var(--text);
-            text-decoration: none;
-        }
-
-        .logo {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-
-        .logo::before {
-            content: "◈ ";
-            color: var(--cyan);
-        }
-
-        .back-link {
-            color: #a9c5d9;
-            font-size: 13px;
-            transition: 0.25s ease;
-        }
-
-        .back-link:hover {
-            color: var(--cyan-bright);
-        }
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            position: relative;
-
-            min-height: 670px;
-
-            padding: 90px 20px 115px;
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            text-align: center;
-
-            overflow: hidden;
-
-            background:
-                radial-gradient(
-                    circle at 50% 48%,
-                    rgba(27, 139, 255, 0.13),
-                    transparent 31%
-                ),
-                linear-gradient(
-                    180deg,
-                    rgba(3, 14, 28, 0.9),
-                    rgba(2, 8, 18, 0.97)
-                );
-        }
-
-        .hero-label {
-            position: relative;
-            z-index: 5;
-
-            padding: 8px 15px;
-
-            border:
-                1px solid rgba(66, 199, 255, 0.25);
-
-            border-radius: 999px;
-
-            background:
-                rgba(66, 199, 255, 0.05);
-
-            color: var(--cyan-bright);
-
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 4px;
-
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            position: relative;
-            z-index: 5;
-
-            max-width: 1000px;
-
-            font-family: "Space Grotesk", sans-serif;
-
-            font-size: clamp(44px, 7vw, 78px);
-
-            line-height: 1.02;
-
-            letter-spacing: -3px;
-
-            background:
-                linear-gradient(
-                    180deg,
-                    #ffffff 0%,
-                    #b9eaff 48%,
-                    #51caff 100%
-                );
-
-            -webkit-background-clip: text;
-            background-clip: text;
-
-            color: transparent;
-
-            text-shadow:
-                0 0 45px rgba(66, 199, 255, 0.13);
-        }
-
-        .hero p {
-            position: relative;
-            z-index: 5;
-
-            max-width: 700px;
-
-            margin: 25px auto 0;
-
-            color: #9db8ca;
-
-            font-size: 17px;
-        }
-
-        /* =========================
-           MOTION TRACK
-        ========================= */
-
-        .motion-system {
-            position: absolute;
-
-            width: min(900px, 96vw);
-            height: 390px;
-
-            left: 50%;
-            top: 51%;
-
-            transform:
-                translate(-50%, -50%);
-
-            opacity: 0.8;
-
-            pointer-events: none;
-        }
-
-        .track-grid {
-            position: absolute;
-            inset: 0;
-
-            background-image:
-                linear-gradient(
-                    rgba(66, 199, 255, 0.055) 1px,
-                    transparent 1px
-                ),
-                linear-gradient(
-                    90deg,
-                    rgba(66, 199, 255, 0.055) 1px,
-                    transparent 1px
-                );
-
-            background-size: 42px 42px;
-
-            mask-image:
-                radial-gradient(
-                    ellipse,
-                    black 20%,
-                    transparent 74%
-                );
-        }
-
-        .track {
-            position: absolute;
-
-            left: 8%;
-            right: 8%;
-            top: 62%;
-
-            height: 2px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    rgba(66, 199, 255, 0.22),
-                    rgba(66, 199, 255, 0.65),
-                    rgba(66, 199, 255, 0.22),
-                    transparent
-                );
-
-            box-shadow:
-                0 0 18px rgba(66, 199, 255, 0.15);
-        }
-
-        .track::before,
-        .track::after {
-            content: "";
-
-            position: absolute;
-
-            top: -4px;
-
-            width: 10px;
-            height: 10px;
-
-            border-radius: 50%;
-
-            border: 1px solid rgba(130, 224, 255, 0.5);
-
-            background: #03101e;
-        }
-
-        .track::before {
-            left: 0;
-        }
-
-        .track::after {
-            right: 0;
-        }
-
-        /* Position markers */
-
-        .marker {
-            position: absolute;
-
-            top: calc(62% - 13px);
-
-            width: 1px;
-            height: 27px;
-
-            background:
-                rgba(116, 211, 255, 0.22);
-        }
-
-        .marker span {
-            position: absolute;
-
-            top: 31px;
-            left: 50%;
-
-            transform: translateX(-50%);
-
-            color: rgba(146, 213, 239, 0.38);
-
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 9px;
-        }
-
-        .m1 {
-            left: 18%;
-        }
-
-        .m2 {
-            left: 34%;
-        }
-
-        .m3 {
-            left: 50%;
-        }
-
-        .m4 {
-            left: 66%;
-        }
-
-        .m5 {
-            left: 82%;
-        }
-
-        /* =========================
-           MOTION TRAIL
-        ========================= */
-
-        .motion-trail {
-            position: absolute;
-
-            left: 14%;
-            top: 62%;
-
-            width: 270px;
-            height: 1px;
-
-            transform-origin: left;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    rgba(66, 199, 255, 0.08),
-                    rgba(66, 199, 255, 0.5)
-                );
-
-            filter:
-                drop-shadow(
-                    0 0 8px rgba(66, 199, 255, 0.4)
-                );
-
-            animation:
-                trailMove 4s ease-in-out infinite;
-        }
-
-        @keyframes trailMove {
-
-            0% {
-                transform: scaleX(0.15);
-                opacity: 0.2;
-            }
-
-            45% {
-                transform: scaleX(1);
-                opacity: 0.9;
-            }
-
-            70% {
-                transform: scaleX(0.7);
-                opacity: 0.55;
-            }
-
-            100% {
-                transform: scaleX(0.15);
-                opacity: 0.2;
-            }
-
-        }
-
-        /* =========================
-           PARTICLE / MOVING OBJECT
-        ========================= */
-
-        .motion-object {
-            position: absolute;
-
-            left: 14%;
-            top: calc(62% - 6px);
-
-            width: 13px;
-            height: 13px;
-
-            border-radius: 50%;
-
-            background:
-                radial-gradient(
-                    circle at 35% 35%,
-                    white,
-                    var(--cyan-bright) 35%,
-                    var(--cyan) 65%
-                );
-
-            box-shadow:
-                0 0 10px white,
-                0 0 25px var(--cyan),
-                0 0 55px rgba(66, 199, 255, 0.55);
-
-            animation:
-                particleMove 4s ease-in-out infinite;
-        }
-
-        @keyframes particleMove {
-
-            0% {
-                left: 14%;
-            }
-
-            50% {
-                left: 80%;
-            }
-
-            100% {
-                left: 14%;
-            }
-
-        }
-
-        /* =========================
-           VELOCITY ARROW
-        ========================= */
-
-        .velocity-arrow {
-            position: absolute;
-
-            left: 27%;
-            top: calc(62% - 70px);
-
-            width: 150px;
-            height: 3px;
-
-            border-radius: 99px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    rgba(66, 199, 255, 0.15),
-                    var(--cyan-bright)
-                );
-
-            box-shadow:
-                0 0 12px rgba(66, 199, 255, 0.55);
-
-            animation:
-                velocityPulse 2.7s ease-in-out infinite;
-        }
-
-        .velocity-arrow::after {
-            content: "";
-
-            position: absolute;
-
-            right: -1px;
-            top: -7px;
-
-            border-top: 8px solid transparent;
-            border-bottom: 8px solid transparent;
-            border-left: 17px solid var(--cyan-bright);
-        }
-
-        .velocity-arrow::before {
-            content: "v";
-
-            position: absolute;
-
-            right: 45px;
-            top: -35px;
-
-            color: var(--cyan-bright);
-
-            font-family: "Space Grotesk", sans-serif;
-
-            font-size: 18px;
-            font-weight: 700;
-            font-style: italic;
-        }
-
-        @keyframes velocityPulse {
-
-            0%,
-            100% {
-                opacity: 0.45;
-                transform: scaleX(0.85);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scaleX(1);
-            }
-
-        }
-
-        /* =========================
-           ACCELERATION INDICATOR
-        ========================= */
-
-        .acceleration-line {
-            position: absolute;
-
-            left: 57%;
-            top: calc(62% - 105px);
-
-            width: 115px;
-            height: 2px;
-
-            background:
-                repeating-linear-gradient(
-                    90deg,
-                    rgba(141, 227, 255, 0.8) 0 7px,
-                    transparent 7px 13px
-                );
-
-            opacity: 0.5;
-        }
-
-        .acceleration-line::after {
-            content: "a";
-
-            position: absolute;
-
-            right: 30px;
-            top: -30px;
-
-            color: rgba(155, 232, 255, 0.65);
-
-            font-family: "Space Grotesk", sans-serif;
-
-            font-size: 16px;
-            font-style: italic;
-        }
-
-        /* =========================
-           DATA STRIP
-        ========================= */
-
-        .data-strip {
-            position: relative;
-            z-index: 20;
-
-            width: min(900px, 92%);
-
-            margin: -45px auto 0;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(4, 1fr);
-
-            border:
-                1px solid rgba(93, 198, 255, 0.15);
-
-            border-radius: 18px;
-
-            overflow: hidden;
-
-            background:
-                rgba(5, 18, 33, 0.78);
-
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-
-            box-shadow:
-                0 25px 70px rgba(0, 0, 0, 0.35),
-                inset 0 1px rgba(255, 255, 255, 0.04);
-        }
-
-        .data-item {
-            padding: 19px 15px;
-
-            text-align: center;
-
-            border-right:
-                1px solid rgba(93, 198, 255, 0.1);
-        }
-
-        .data-item:last-child {
-            border-right: none;
-        }
-
-        .data-value {
-            color: var(--cyan-bright);
-
-            font-family: "Space Grotesk", sans-serif;
-
-            font-size: 17px;
-            font-weight: 700;
-        }
-
-        .data-label {
-            margin-top: 2px;
-
-            color: #6f899d;
-
-            font-size: 10px;
-
-            letter-spacing: 1.5px;
-
-            text-transform: uppercase;
-        }
-
-        /* =========================
-           CONTENT
-        ========================= */
-
-        .container {
-            max-width: 1050px;
-
-            margin: auto;
-
-            padding: 85px 20px;
-        }
-
-        .lesson {
-            position: relative;
-
-            padding: 38px;
-
-            margin-bottom: 28px;
-
-            border:
-                1px solid rgba(95, 194, 255, 0.13);
-
-            border-radius: 22px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(12, 31, 52, 0.78),
-                    rgba(4, 14, 27, 0.7)
-                );
-
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.22),
-                inset 0 1px rgba(255, 255, 255, 0.035);
-
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-
-            overflow: hidden;
-
-            opacity: 0;
-            transform: translateY(30px);
-
-            transition:
-                opacity 0.7s ease,
-                transform 0.7s ease,
-                border-color 0.3s ease,
-                box-shadow 0.3s ease;
-        }
-
-        .lesson.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .lesson::before {
-            content: "";
-
-            position: absolute;
-
-            width: 180px;
-            height: 180px;
-
-            top: -100px;
-            right: -70px;
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(66, 199, 255, 0.13),
-                    transparent 70%
-                );
-
-            pointer-events: none;
-        }
-
-        .lesson:hover {
-            border-color:
-                rgba(92, 202, 255, 0.3);
-
-            box-shadow:
-                0 25px 70px rgba(0, 0, 0, 0.3),
-                0 0 35px rgba(66, 199, 255, 0.04),
-                inset 0 1px rgba(255, 255, 255, 0.05);
-        }
-
-        .lesson-number {
-            color: var(--cyan);
-
-            font-size: 10px;
-            font-weight: 800;
-
-            letter-spacing: 3px;
-
-            margin-bottom: 8px;
-        }
-
-        .lesson h2 {
-            font-family: "Space Grotesk", sans-serif;
-
-            color: #f1fbff;
-
-            font-size: 30px;
-
-            line-height: 1.25;
-
-            margin-bottom: 18px;
-        }
-
-        .lesson h3 {
-            color: #dff5ff;
-
-            font-family: "Space Grotesk", sans-serif;
-
-            font-size: 20px;
-
-            margin-top: 25px;
-            margin-bottom: 10px;
-        }
-
-        .lesson p {
-            color: var(--muted);
-
-            margin-bottom: 15px;
-        }
-
-        .lesson ul {
-            padding-left: 24px;
-
-            color: var(--muted);
-        }
-
-        .lesson li {
-            margin-bottom: 9px;
-        }
-
-        /* =========================
-           DEFINITION
-        ========================= */
-
-        .definition {
-            position: relative;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(35, 151, 217, 0.11),
-                    rgba(35, 151, 217, 0.035)
-                );
-
-            border:
-                1px solid rgba(66, 199, 255, 0.17);
-
-            border-left:
-                3px solid var(--cyan);
-
-            padding: 22px;
-
-            margin: 22px 0;
-
-            border-radius:
-                0 14px 14px 0;
-        }
-
-        .definition strong {
-            display: block;
-
-            color: var(--cyan-bright);
-
-            margin-bottom: 5px;
-
-            font-family: "Space Grotesk", sans-serif;
-        }
-
-        .definition p {
-            margin-bottom: 0;
-        }
-
-        /* =========================
-           FORMULA
-        ========================= */
-
-        .formula {
-            position: relative;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(4, 20, 36, 0.95),
-                    rgba(7, 34, 56, 0.82)
-                );
-
-            border:
-                1px solid rgba(66, 199, 255, 0.18);
-
-            color: #d9f7ff;
-
-            padding: 20px;
-
-            margin: 22px 0;
-
-            border-radius: 14px;
-
-            text-align: center;
-
-            font-family: "Space Grotesk", sans-serif;
-
-            font-size: 20px;
-            font-weight: 600;
-
-            box-shadow:
-                inset 0 1px rgba(255,255,255,0.035),
-                0 10px 30px rgba(0,0,0,0.18);
-
-            overflow: hidden;
-        }
-
-        .formula::before {
-            content: "";
-
-            position: absolute;
-
-            left: -100%;
-            top: 0;
-
-            width: 70%;
-            height: 100%;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    rgba(117, 222, 255, 0.08),
-                    transparent
-                );
-
-            animation:
-                formulaScan 5s linear infinite;
-        }
-
-        @keyframes formulaScan {
-
-            to {
-                left: 140%;
-            }
-
-        }
-
-        /* =========================
-           EXAMPLE
-        ========================= */
-
-        .example {
-            background:
-                rgba(1, 11, 21, 0.55);
-
-            border:
-                1px solid rgba(93, 198, 255, 0.12);
-
-            padding: 25px;
-
-            margin-top: 20px;
-
-            border-radius: 16px;
-        }
-
-        .example-title {
-            color: var(--cyan-bright) !important;
-
-            font-family: "Space Grotesk", sans-serif;
-
-            font-weight: 700;
-
-            letter-spacing: 1px;
-
-            margin-bottom: 12px;
-        }
-
-        .solution {
-            margin-top: 18px;
-
-            padding: 20px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(11, 38, 60, 0.6),
-                    rgba(4, 18, 31, 0.65)
-                );
-
-            border-left:
-                2px solid rgba(66, 199, 255, 0.5);
-
-            border-radius:
-                0 12px 12px 0;
-        }
-
-        .solution p:last-child {
-            color: #e7fbff;
-        }
-
-        /* =========================
-           PRACTICE
-        ========================= */
-
-        .question {
-            position: relative;
-
-            padding: 20px 0;
-
-            border-bottom:
-                1px solid rgba(104, 183, 229, 0.1);
-
-            color: #dceefa;
-        }
-
-        .question:last-child {
-            border-bottom: none;
-        }
-
-        details {
-            margin-top: 12px;
-        }
-
-        summary {
-            cursor: pointer;
-
-            color: var(--cyan-bright);
-
-            font-weight: 700;
-
-            transition: 0.2s ease;
-        }
-
-        summary:hover {
-            color: white;
-        }
-
-        details p {
-            margin-top: 10px;
-        }
-
-        /* =========================
-           NAVIGATION
-        ========================= */
-
-        .navigation {
-            text-align: center;
-
-            padding:
-                20px 20px 80px;
-        }
-
-        .button {
-            position: relative;
-
-            display: inline-block;
-
-            color: #dff8ff;
-
-            text-decoration: none;
-
-            padding: 13px 24px;
-
-            margin: 5px;
-
-            border:
-                1px solid rgba(77, 202, 255, 0.25);
-
-            border-radius: 12px;
-
-            background:
-                rgba(16, 53, 78, 0.48);
-
-            font-weight: 700;
-
-            font-size: 13px;
-
-            transition:
-                transform 0.25s ease,
-                border-color 0.25s ease,
-                background 0.25s ease,
-                box-shadow 0.25s ease;
-        }
-
-        .button:hover {
-            transform: translateY(-3px);
-
-            border-color:
-                rgba(77, 202, 255, 0.55);
-
-            background:
-                rgba(26, 94, 132, 0.5);
-
-            box-shadow:
-                0 12px 30px rgba(0, 0, 0, 0.25),
-                0 0 25px rgba(66, 199, 255, 0.08);
-        }
-
-        .button.primary {
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(37, 151, 216, 0.8),
-                    rgba(25, 87, 150, 0.85)
-                );
-
-            border-color:
-                rgba(110, 218, 255, 0.45);
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            position: relative;
-
-            background:
-                rgba(1, 7, 15, 0.9);
-
-            border-top:
-                1px solid rgba(91, 192, 255, 0.1);
-
-            color: #71899d;
-
-            text-align: center;
-
-            padding: 30px 20px;
-
-            font-size: 12px;
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
-        @media (max-width: 750px) {
-
-            header {
-                padding: 15px 5%;
-            }
-
-            .logo {
-                font-size: 20px;
-            }
-
-            .back-link {
-                font-size: 12px;
-            }
-
-            .hero {
-                min-height: 590px;
-                padding: 75px 20px 95px;
-            }
-
-            .hero h1 {
-                font-size: 45px;
-                letter-spacing: -2px;
-            }
-
-            .hero p {
-                font-size: 15px;
-            }
-
-            .motion-system {
-                width: 760px;
-                opacity: 0.42;
-            }
-
-            .data-strip {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .data-item:nth-child(2) {
-                border-right: none;
-            }
-
-            .data-item:nth-child(-n+2) {
-                border-bottom:
-                    1px solid rgba(93, 198, 255, 0.1);
-            }
-
-            .container {
-                padding: 55px 15px;
-            }
-
-            .lesson {
-                padding: 27px 22px;
-                border-radius: 18px;
-            }
-
-            .lesson h2 {
-                font-size: 26px;
-            }
-
-            .formula {
-                font-size: 17px;
-                overflow-x: auto;
-            }
-
-        }
-
-        @media (max-width: 450px) {
-
-            .hero h1 {
-                font-size: 39px;
-            }
-
-            .hero-label {
-                font-size: 8px;
-                letter-spacing: 2px;
-            }
-
-            .motion-system {
-                transform:
-                    translate(-50%, -50%)
-                    scale(0.72);
-            }
-
-            .data-value {
-                font-size: 14px;
-            }
-
-        }
-
-        /* =========================
-           REDUCED MOTION
-        ========================= */
-
-        @media (prefers-reduced-motion: reduce) {
-
-            html {
-                scroll-behavior: auto;
-            }
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kinematics in a Straight Line | IAL ATLAS</title>
+
+<meta name="description"
+content="Edexcel International A Level Mathematics Mechanics 1 — complete Kinematics in a Straight Line theory, graphs, SUVAT, worked examples and 100-question examination.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   CORE
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+:root{
+    --bg:#020812;
+    --panel:rgba(7,20,37,.68);
+    --panel2:rgba(4,14,27,.78);
+    --cyan:#42c7ff;
+    --cyan-bright:#9be8ff;
+    --blue:#247bff;
+    --text:#edf8ff;
+    --muted:#8ca7bd;
+    --soft:#b8d2e2;
+    --line:rgba(92,191,255,.15);
+    --green:#55e6a5;
+    --red:#ff6f91;
+    --yellow:#ffd166;
+}
+
+body{
+    font-family:"Inter",Arial,sans-serif;
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(36,123,255,.15),
+            transparent 35%
+        ),
+        var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-5;
+    pointer-events:none;
+    opacity:.34;
+    background-image:
+        linear-gradient(rgba(66,199,255,.045) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(66,199,255,.045) 1px,transparent 1px);
+    background-size:55px 55px;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:650px;
+    height:650px;
+    left:50%;
+    top:20%;
+    transform:translateX(-50%);
+    border-radius:50%;
+    background:
+        radial-gradient(
+            circle,
+            rgba(42,183,255,.055),
+            transparent 68%
+        );
+    filter:blur(12px);
+    pointer-events:none;
+    z-index:-4;
+}
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+.particles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-2;
+    overflow:hidden;
+}
+
+.particle{
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:var(--cyan-bright);
+    box-shadow:
+        0 0 10px var(--cyan),
+        0 0 22px rgba(66,199,255,.45);
+    opacity:.4;
+    animation:floatParticle linear infinite;
+}
+
+.particle:nth-child(1){left:7%;top:20%;animation-duration:13s}
+.particle:nth-child(2){left:18%;top:75%;animation-duration:17s}
+.particle:nth-child(3){left:32%;top:35%;animation-duration:12s}
+.particle:nth-child(4){left:51%;top:85%;animation-duration:19s}
+.particle:nth-child(5){left:66%;top:22%;animation-duration:14s}
+.particle:nth-child(6){left:79%;top:63%;animation-duration:16s}
+.particle:nth-child(7){left:92%;top:32%;animation-duration:11s}
+
+@keyframes floatParticle{
+    0%{transform:translateY(50px);opacity:0}
+    20%{opacity:.45}
+    80%{opacity:.45}
+    100%{transform:translateY(-120px);opacity:0}
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    padding:17px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(2,8,18,.72);
+    border-bottom:1px solid rgba(103,204,255,.13);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+}
+
+header a{
+    color:var(--text);
+    text-decoration:none;
+}
+
+.logo{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:24px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.logo::before{
+    content:"◈ ";
+    color:var(--cyan);
+}
+
+.back-link{
+    color:#a9c5d9;
+    font-size:13px;
+    transition:.25s ease;
+}
+
+.back-link:hover{
+    color:var(--cyan-bright);
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    position:relative;
+    min-height:670px;
+    padding:90px 20px 115px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+    background:
+        radial-gradient(
+            circle at 50% 48%,
+            rgba(27,139,255,.13),
+            transparent 31%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(3,14,28,.9),
+            rgba(2,8,18,.97)
+        );
+}
+
+.hero-label{
+    position:relative;
+    z-index:5;
+    padding:8px 15px;
+    border:1px solid rgba(66,199,255,.25);
+    border-radius:999px;
+    background:rgba(66,199,255,.05);
+    color:var(--cyan-bright);
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:4px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    position:relative;
+    z-index:5;
+    max-width:1000px;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(44px,7vw,78px);
+    line-height:1.02;
+    letter-spacing:-3px;
+    background:
+        linear-gradient(
+            180deg,
+            #fff 0%,
+            #b9eaff 48%,
+            #51caff 100%
+        );
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:0 0 45px rgba(66,199,255,.13);
+}
+
+.hero p{
+    position:relative;
+    z-index:5;
+    max-width:760px;
+    margin:25px auto 0;
+    color:#9db8ca;
+    font-size:17px;
+}
+
+/* =========================================================
+   MOTION SYSTEM
+========================================================= */
+
+.motion-system{
+    position:absolute;
+    width:min(900px,96vw);
+    height:390px;
+    left:50%;
+    top:51%;
+    transform:translate(-50%,-50%);
+    opacity:.8;
+    pointer-events:none;
+}
+
+.track-grid{
+    position:absolute;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(66,199,255,.055) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(66,199,255,.055) 1px,transparent 1px);
+    background-size:42px 42px;
+    mask-image:radial-gradient(ellipse,black 20%,transparent 74%);
+}
+
+.track{
+    position:absolute;
+    left:8%;
+    right:8%;
+    top:62%;
+    height:2px;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(66,199,255,.22),
+            rgba(66,199,255,.65),
+            rgba(66,199,255,.22),
+            transparent
+        );
+    box-shadow:0 0 18px rgba(66,199,255,.15);
+}
+
+.track::before,
+.track::after{
+    content:"";
+    position:absolute;
+    top:-4px;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    border:1px solid rgba(130,224,255,.5);
+    background:#03101e;
+}
+
+.track::before{left:0}
+.track::after{right:0}
+
+.marker{
+    position:absolute;
+    top:calc(62% - 13px);
+    width:1px;
+    height:27px;
+    background:rgba(116,211,255,.22);
+}
+
+.marker span{
+    position:absolute;
+    top:31px;
+    left:50%;
+    transform:translateX(-50%);
+    color:rgba(146,213,239,.38);
+    font-family:"Space Grotesk",sans-serif;
+    font-size:9px;
+}
+
+.m1{left:18%}
+.m2{left:34%}
+.m3{left:50%}
+.m4{left:66%}
+.m5{left:82%}
+
+.motion-trail{
+    position:absolute;
+    left:14%;
+    top:62%;
+    width:270px;
+    height:1px;
+    transform-origin:left;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(66,199,255,.08),
+            rgba(66,199,255,.5)
+        );
+    filter:drop-shadow(0 0 8px rgba(66,199,255,.4));
+    animation:trailMove 4s ease-in-out infinite;
+}
+
+@keyframes trailMove{
+    0%{transform:scaleX(.15);opacity:.2}
+    45%{transform:scaleX(1);opacity:.9}
+    70%{transform:scaleX(.7);opacity:.55}
+    100%{transform:scaleX(.15);opacity:.2}
+}
+
+.motion-object{
+    position:absolute;
+    left:14%;
+    top:calc(62% - 6px);
+    width:13px;
+    height:13px;
+    border-radius:50%;
+    background:
+        radial-gradient(
+            circle at 35% 35%,
+            white,
+            var(--cyan-bright) 35%,
+            var(--cyan) 65%
+        );
+    box-shadow:
+        0 0 10px white,
+        0 0 25px var(--cyan),
+        0 0 55px rgba(66,199,255,.55);
+    animation:particleMove 4s ease-in-out infinite;
+}
+
+@keyframes particleMove{
+    0%{left:14%}
+    50%{left:80%}
+    100%{left:14%}
+}
+
+.velocity-arrow{
+    position:absolute;
+    left:27%;
+    top:calc(62% - 70px);
+    width:150px;
+    height:3px;
+    border-radius:99px;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(66,199,255,.15),
+            var(--cyan-bright)
+        );
+    box-shadow:0 0 12px rgba(66,199,255,.55);
+    animation:velocityPulse 2.7s ease-in-out infinite;
+}
+
+.velocity-arrow::after{
+    content:"";
+    position:absolute;
+    right:-1px;
+    top:-7px;
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent;
+    border-left:17px solid var(--cyan-bright);
+}
+
+.velocity-arrow::before{
+    content:"v";
+    position:absolute;
+    right:45px;
+    top:-35px;
+    color:var(--cyan-bright);
+    font-family:"Space Grotesk",sans-serif;
+    font-size:18px;
+    font-weight:700;
+    font-style:italic;
+}
+
+@keyframes velocityPulse{
+    0%,100%{opacity:.45;transform:scaleX(.85)}
+    50%{opacity:1;transform:scaleX(1)}
+}
+
+.acceleration-line{
+    position:absolute;
+    left:57%;
+    top:calc(62% - 105px);
+    width:115px;
+    height:2px;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            rgba(141,227,255,.8) 0 7px,
+            transparent 7px 13px
+        );
+    opacity:.5;
+}
+
+.acceleration-line::after{
+    content:"a";
+    position:absolute;
+    right:30px;
+    top:-30px;
+    color:rgba(155,232,255,.65);
+    font-family:"Space Grotesk",sans-serif;
+    font-size:16px;
+    font-style:italic;
+}
+
+/* =========================================================
+   DATA STRIP
+========================================================= */
+
+.data-strip{
+    position:relative;
+    z-index:20;
+    width:min(900px,92%);
+    margin:-45px auto 0;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border:1px solid rgba(93,198,255,.15);
+    border-radius:18px;
+    overflow:hidden;
+    background:rgba(5,18,33,.78);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.35),
+        inset 0 1px rgba(255,255,255,.04);
+}
+
+.data-item{
+    padding:19px 15px;
+    text-align:center;
+    border-right:1px solid rgba(93,198,255,.1);
+}
+
+.data-item:last-child{
+    border-right:none;
+}
+
+.data-value{
+    color:var(--cyan-bright);
+    font-family:"Space Grotesk",sans-serif;
+    font-size:17px;
+    font-weight:700;
+}
+
+.data-label{
+    margin-top:2px;
+    color:#6f899d;
+    font-size:10px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:85px 20px;
+}
+
+.lesson{
+    position:relative;
+    padding:38px;
+    margin-bottom:28px;
+    border:1px solid rgba(95,194,255,.13);
+    border-radius:22px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(12,31,52,.78),
+            rgba(4,14,27,.7)
+        );
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.22),
+        inset 0 1px rgba(255,255,255,.035);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(30px);
+    transition:
+        opacity .7s ease,
+        transform .7s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+.lesson.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.lesson::before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    top:-100px;
+    right:-70px;
+    background:
+        radial-gradient(
+            circle,
+            rgba(66,199,255,.13),
+            transparent 70%
+        );
+    pointer-events:none;
+}
+
+.lesson:hover{
+    border-color:rgba(92,202,255,.3);
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.3),
+        0 0 35px rgba(66,199,255,.04),
+        inset 0 1px rgba(255,255,255,.05);
+}
+
+.lesson-number{
+    color:var(--cyan);
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:3px;
+    margin-bottom:8px;
+}
+
+.lesson h2{
+    font-family:"Space Grotesk",sans-serif;
+    color:#f1fbff;
+    font-size:30px;
+    line-height:1.25;
+    margin-bottom:18px;
+}
+
+.lesson h3{
+    color:#dff5ff;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:20px;
+    margin-top:28px;
+    margin-bottom:10px;
+}
+
+.lesson h4{
+    color:var(--cyan-bright);
+    margin-top:22px;
+    margin-bottom:8px;
+}
+
+.lesson p{
+    color:var(--muted);
+    margin-bottom:15px;
+}
+
+.lesson ul,
+.lesson ol{
+    padding-left:24px;
+    color:var(--muted);
+}
+
+.lesson li{
+    margin-bottom:9px;
+}
+
+.lesson strong{
+    color:#dff7ff;
+}
+
+/* =========================================================
+   TABLES
+========================================================= */
+
+.info-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:22px 0;
+    overflow:hidden;
+    border:1px solid var(--line);
+    border-radius:14px;
+}
+
+.info-table th,
+.info-table td{
+    padding:14px 15px;
+    border-bottom:1px solid rgba(100,190,235,.1);
+    text-align:left;
+}
+
+.info-table th{
+    background:rgba(66,199,255,.08);
+    color:var(--cyan-bright);
+    font-family:"Space Grotesk",sans-serif;
+}
+
+.info-table td{
+    color:var(--muted);
+}
+
+.info-table tr:last-child td{
+    border-bottom:none;
+}
+
+/* =========================================================
+   DEFINITION
+========================================================= */
+
+.definition{
+    background:
+        linear-gradient(
+            135deg,
+            rgba(35,151,217,.11),
+            rgba(35,151,217,.035)
+        );
+    border:1px solid rgba(66,199,255,.17);
+    border-left:3px solid var(--cyan);
+    padding:22px;
+    margin:22px 0;
+    border-radius:0 14px 14px 0;
+}
+
+.definition strong{
+    display:block;
+    color:var(--cyan-bright);
+    margin-bottom:5px;
+    font-family:"Space Grotesk",sans-serif;
+}
+
+.definition p{
+    margin-bottom:0;
+}
+
+/* =========================================================
+   WARNING / TRAP
+========================================================= */
+
+.warning{
+    padding:21px;
+    margin:22px 0;
+    border-radius:14px;
+    background:rgba(255,209,102,.055);
+    border:1px solid rgba(255,209,102,.18);
+    border-left:3px solid var(--yellow);
+}
+
+.warning-title{
+    color:var(--yellow);
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:700;
+    margin-bottom:6px;
+}
+
+.trap{
+    padding:21px;
+    margin:22px 0;
+    border-radius:14px;
+    background:rgba(255,111,145,.045);
+    border:1px solid rgba(255,111,145,.15);
+    border-left:3px solid var(--red);
+}
+
+.trap-title{
+    color:var(--red);
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:700;
+    margin-bottom:6px;
+}
+
+/* =========================================================
+   FORMULA
+========================================================= */
+
+.formula{
+    position:relative;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(4,20,36,.95),
+            rgba(7,34,56,.82)
+        );
+    border:1px solid rgba(66,199,255,.18);
+    color:#d9f7ff;
+    padding:20px;
+    margin:22px 0;
+    border-radius:14px;
+    text-align:center;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:20px;
+    font-weight:600;
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.035),
+        0 10px 30px rgba(0,0,0,.18);
+    overflow:hidden;
+}
+
+.formula::before{
+    content:"";
+    position:absolute;
+    left:-100%;
+    top:0;
+    width:70%;
+    height:100%;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(117,222,255,.08),
+            transparent
+        );
+    animation:formulaScan 5s linear infinite;
+}
+
+@keyframes formulaScan{
+    to{left:140%}
+}
+
+.formula small{
+    display:block;
+    margin-top:7px;
+    color:#7795aa;
+    font-family:Inter,sans-serif;
+    font-size:12px;
+    font-weight:400;
+}
+
+/* =========================================================
+   EXAMPLE
+========================================================= */
+
+.example{
+    background:rgba(1,11,21,.55);
+    border:1px solid rgba(93,198,255,.12);
+    padding:25px;
+    margin-top:20px;
+    border-radius:16px;
+}
+
+.example-title{
+    color:var(--cyan-bright)!important;
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:12px;
+}
+
+.solution{
+    margin-top:18px;
+    padding:20px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(11,38,60,.6),
+            rgba(4,18,31,.65)
+        );
+    border-left:2px solid rgba(66,199,255,.5);
+    border-radius:0 12px 12px 0;
+}
+
+.solution p:last-child{
+    color:#e7fbff;
+}
+
+/* =========================================================
+   TWO COLUMN GRID
+========================================================= */
+
+.grid-2{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+    margin:22px 0;
+}
+
+.mini-card{
+    padding:22px;
+    border:1px solid rgba(95,194,255,.12);
+    background:rgba(3,14,27,.5);
+    border-radius:15px;
+}
+
+.mini-card h3{
+    margin-top:0;
+    color:var(--cyan-bright);
+}
+
+.mini-card p{
+    margin-bottom:0;
+}
+
+/* =========================================================
+   GRAPH VISUALS
+========================================================= */
+
+.graph-box{
+    position:relative;
+    min-height:280px;
+    margin:25px 0;
+    padding:20px;
+    background:
+        linear-gradient(
+            rgba(66,199,255,.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(66,199,255,.035) 1px,
+            transparent 1px
+        ),
+        rgba(2,12,23,.65);
+    background-size:32px 32px;
+    border:1px solid rgba(66,199,255,.13);
+    border-radius:16px;
+    overflow:hidden;
+}
+
+.graph-axis-x{
+    position:absolute;
+    left:9%;
+    right:6%;
+    bottom:18%;
+    height:1px;
+    background:rgba(180,225,245,.45);
+}
+
+.graph-axis-y{
+    position:absolute;
+    left:10%;
+    top:12%;
+    bottom:18%;
+    width:1px;
+    background:rgba(180,225,245,.45);
+}
+
+.graph-axis-x::after{
+    content:"t";
+    position:absolute;
+    right:-4px;
+    top:-22px;
+    color:var(--cyan-bright);
+}
+
+.graph-axis-y::after{
+    content:"v";
+    position:absolute;
+    left:-5px;
+    top:-16px;
+    color:var(--cyan-bright);
+}
+
+.graph-line{
+    position:absolute;
+    height:3px;
+    background:var(--cyan);
+    box-shadow:0 0 12px rgba(66,199,255,.6);
+    transform-origin:left center;
+}
+
+.graph-line.constant-v{
+    left:10%;
+    bottom:52%;
+    width:68%;
+}
+
+.graph-line.accel{
+    left:10%;
+    bottom:18%;
+    width:70%;
+    transform:rotate(-24deg);
+}
+
+.graph-line.decel{
+    left:10%;
+    bottom:62%;
+    width:68%;
+    transform:rotate(24deg);
+}
+
+/* =========================================================
+   PRACTICE
+========================================================= */
+
+.question{
+    position:relative;
+    padding:20px 0;
+    border-bottom:1px solid rgba(104,183,229,.1);
+    color:#dceefa;
+}
+
+.question:last-child{
+    border-bottom:none;
+}
+
+details{
+    margin-top:12px;
+}
+
+summary{
+    cursor:pointer;
+    color:var(--cyan-bright);
+    font-weight:700;
+    transition:.2s ease;
+}
+
+summary:hover{
+    color:white;
+}
+
+details p{
+    margin-top:10px;
+}
+
+/* =========================================================
+   CONTENT MAP
+========================================================= */
+
+.content-map{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:20px;
+}
+
+.content-map a{
+    padding:12px 14px;
+    border:1px solid rgba(66,199,255,.12);
+    border-radius:10px;
+    background:rgba(4,17,31,.5);
+    color:#9fc8dc;
+    text-decoration:none;
+    font-size:12px;
+    transition:.2s ease;
+}
+
+.content-map a:hover{
+    color:white;
+    border-color:rgba(66,199,255,.4);
+    transform:translateY(-2px);
+}
+
+/* =========================================================
+   EXAM
+========================================================= */
+
+.exam-section{
+    margin-top:50px;
+}
+
+.exam-intro{
+    text-align:center;
+    padding:40px 25px;
+    margin-bottom:25px;
+    border:1px solid rgba(66,199,255,.18);
+    border-radius:22px;
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(66,199,255,.1),
+            transparent 50%
+        ),
+        rgba(5,18,33,.72);
+}
+
+.exam-intro h2{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:36px;
+    margin-bottom:10px;
+}
+
+.exam-intro p{
+    max-width:760px;
+    margin:auto;
+    color:var(--muted);
+}
+
+.exam-meta{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:22px;
+}
+
+.exam-meta span{
+    padding:7px 13px;
+    border-radius:999px;
+    border:1px solid rgba(66,199,255,.14);
+    background:rgba(66,199,255,.045);
+    color:#8fc7df;
+    font-size:11px;
+}
+
+.exam-shell{
+    border:1px solid rgba(95,194,255,.14);
+    border-radius:22px;
+    overflow:hidden;
+    background:rgba(4,14,27,.76);
+    box-shadow:0 25px 80px rgba(0,0,0,.3);
+}
+
+.exam-top{
+    padding:22px;
+    border-bottom:1px solid rgba(95,194,255,.1);
+    background:rgba(8,25,43,.75);
+}
+
+.exam-top-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.exam-counter{
+    color:var(--cyan-bright);
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:700;
+}
+
+.exam-score-mini{
+    color:#7e9caf;
+    font-size:12px;
+}
+
+.progress-bar{
+    height:5px;
+    margin-top:15px;
+    border-radius:999px;
+    background:rgba(66,199,255,.08);
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    width:1%;
+    background:linear-gradient(90deg,var(--blue),var(--cyan-bright));
+    transition:.3s ease;
+}
+
+.exam-body{
+    padding:35px;
+}
+
+.exam-question-number{
+    color:var(--cyan);
+    font-size:10px;
+    letter-spacing:3px;
+    font-weight:800;
+    margin-bottom:8px;
+}
+
+.exam-question-text{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:23px;
+    line-height:1.45;
+    color:#eefaff;
+    margin-bottom:25px;
+}
+
+.options{
+    display:grid;
+    gap:11px;
+}
+
+.option{
+    width:100%;
+    text-align:left;
+    padding:17px 18px;
+    border-radius:13px;
+    border:1px solid rgba(95,194,255,.13);
+    background:rgba(7,24,41,.6);
+    color:#bdd6e5;
+    cursor:pointer;
+    font-family:Inter,sans-serif;
+    font-size:14px;
+    transition:.2s ease;
+}
+
+.option:hover{
+    border-color:rgba(66,199,255,.4);
+    background:rgba(24,72,100,.35);
+    transform:translateX(3px);
+}
+
+.option.selected{
+    border-color:rgba(66,199,255,.65);
+    background:rgba(35,128,180,.25);
+    color:#f2fdff;
+    box-shadow:0 0 25px rgba(66,199,255,.06);
+}
+
+.option.correct{
+    border-color:rgba(85,230,165,.6);
+    background:rgba(85,230,165,.1);
+    color:#baffdf;
+}
+
+.option.wrong{
+    border-color:rgba(255,111,145,.6);
+    background:rgba(255,111,145,.08);
+    color:#ffd3dd;
+}
+
+.option:disabled{
+    cursor:default;
+}
+
+.exam-controls{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    padding:20px 35px;
+    border-top:1px solid rgba(95,194,255,.1);
+    background:rgba(2,11,21,.55);
+}
+
+.exam-btn{
+    border:1px solid rgba(66,199,255,.2);
+    background:rgba(20,64,91,.45);
+    color:#dff8ff;
+    padding:12px 20px;
+    border-radius:11px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s ease;
+}
+
+.exam-btn:hover{
+    border-color:rgba(66,199,255,.55);
+    transform:translateY(-2px);
+}
+
+.exam-btn.primary{
+    background:linear-gradient(
+        135deg,
+        rgba(37,151,216,.8),
+        rgba(25,87,150,.85)
+    );
+}
+
+.exam-btn.danger{
+    border-color:rgba(255,111,145,.25);
+}
+
+.question-palette{
+    padding:22px 35px;
+    border-top:1px solid rgba(95,194,255,.1);
+}
+
+.palette-title{
+    color:#7896aa;
+    font-size:11px;
+    letter-spacing:1px;
+    margin-bottom:12px;
+}
+
+.palette{
+    display:grid;
+    grid-template-columns:repeat(20,1fr);
+    gap:6px;
+}
+
+.palette button{
+    aspect-ratio:1;
+    border-radius:7px;
+    border:1px solid rgba(95,194,255,.12);
+    background:rgba(6,23,39,.6);
+    color:#7290a3;
+    cursor:pointer;
+    font-size:10px;
+}
+
+.palette button.answered{
+    color:var(--cyan-bright);
+    border-color:rgba(66,199,255,.3);
+    background:rgba(66,199,255,.07);
+}
+
+.palette button.current{
+    border-color:var(--cyan-bright);
+    box-shadow:0 0 12px rgba(66,199,255,.2);
+}
+
+.palette button.correct{
+    color:var(--green);
+    border-color:rgba(85,230,165,.35);
+}
+
+.palette button.wrong{
+    color:var(--red);
+    border-color:rgba(255,111,145,.35);
+}
+
+.result{
+    display:none;
+    padding:35px;
+    border-bottom:1px solid rgba(95,194,255,.1);
+    text-align:center;
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(66,199,255,.1),
+            transparent 60%
+        );
+}
+
+.result.show{
+    display:block;
+}
+
+.result-score{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:64px;
+    line-height:1;
+    color:var(--cyan-bright);
+    margin:12px 0;
+}
+
+.result-message{
+    color:var(--muted);
+}
+
+.exam-review{
+    display:none;
+    padding:30px 35px;
+}
+
+.exam-review.show{
+    display:block;
+}
+
+.review-item{
+    padding:20px 0;
+    border-bottom:1px solid rgba(95,194,255,.08);
+}
+
+.review-item:last-child{
+    border-bottom:none;
+}
+
+.review-q{
+    color:#eaf9ff;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.review-answer{
+    font-size:13px;
+    color:var(--muted);
+}
+
+.review-answer.correct{
+    color:var(--green);
+}
+
+.review-answer.wrong{
+    color:var(--red);
+}
+
+.review-explanation{
+    margin-top:8px;
+    padding:12px;
+    border-left:2px solid rgba(66,199,255,.35);
+    color:#8eaabd;
+    font-size:13px;
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navigation{
+    text-align:center;
+    padding:20px 20px 80px;
+}
+
+.button{
+    display:inline-block;
+    color:#dff8ff;
+    text-decoration:none;
+    padding:13px 24px;
+    margin:5px;
+    border:1px solid rgba(77,202,255,.25);
+    border-radius:12px;
+    background:rgba(16,53,78,.48);
+    font-weight:700;
+    font-size:13px;
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+}
+
+.button:hover{
+    transform:translateY(-3px);
+    border-color:rgba(77,202,255,.55);
+    background:rgba(26,94,132,.5);
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.25),
+        0 0 25px rgba(66,199,255,.08);
+}
+
+.button.primary{
+    background:
+        linear-gradient(
+            135deg,
+            rgba(37,151,216,.8),
+            rgba(25,87,150,.85)
+        );
+    border-color:rgba(110,218,255,.45);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    position:relative;
+    background:rgba(1,7,15,.9);
+    border-top:1px solid rgba(91,192,255,.1);
+    color:#71899d;
+    text-align:center;
+    padding:30px 20px;
+    font-size:12px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:750px){
+
+    header{
+        padding:15px 5%;
+    }
+
+    .logo{
+        font-size:20px;
+    }
+
+    .back-link{
+        font-size:12px;
+    }
+
+    .hero{
+        min-height:590px;
+        padding:75px 20px 95px;
+    }
+
+    .hero h1{
+        font-size:45px;
+        letter-spacing:-2px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .motion-system{
+        width:760px;
+        opacity:.42;
+    }
+
+    .data-strip{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .data-item:nth-child(2){
+        border-right:none;
+    }
+
+    .data-item:nth-child(-n+2){
+        border-bottom:1px solid rgba(93,198,255,.1);
+    }
+
+    .container{
+        padding:55px 15px;
+    }
+
+    .lesson{
+        padding:27px 22px;
+        border-radius:18px;
+    }
+
+    .lesson h2{
+        font-size:26px;
+    }
+
+    .formula{
+        font-size:17px;
+        overflow-x:auto;
+    }
+
+    .grid-2{
+        grid-template-columns:1fr;
+    }
+
+    .content-map{
+        grid-template-columns:1fr;
+    }
+
+    .exam-body{
+        padding:25px 20px;
+    }
+
+    .exam-controls{
+        padding:18px 20px;
+    }
+
+    .question-palette{
+        padding:20px;
+    }
+
+    .palette{
+        grid-template-columns:repeat(10,1fr);
+    }
+
+    .exam-question-text{
+        font-size:20px;
+    }
+
+    .exam-intro h2{
+        font-size:29px;
+    }
+
+}
+
+@media(max-width:450px){
+
+    .hero h1{
+        font-size:39px;
+    }
+
+    .hero-label{
+        font-size:8px;
+        letter-spacing:2px;
+    }
+
+    .motion-system{
+        transform:translate(-50%,-50%) scale(.72);
+    }
+
+    .data-value{
+        font-size:14px;
+    }
+
+    .exam-controls{
+        flex-direction:column;
+    }
+
+    .exam-btn{
+        width:100%;
+    }
+
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    html{
+        scroll-behavior:auto;
+    }
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.01ms!important;
+    }
+
+}
+
+</style>
 
 </head>
 
-
 <body>
 
-
 <div class="particles">
-
     <span class="particle"></span>
     <span class="particle"></span>
     <span class="particle"></span>
@@ -1339,134 +1538,79 @@
     <span class="particle"></span>
     <span class="particle"></span>
     <span class="particle"></span>
-
 </div>
-
 
 <header>
 
-    <a href="index.html" class="logo">
-        IAL ATLAS
-    </a>
+<a href="index.html" class="logo">
+IAL ATLAS
+</a>
 
-    <a href="mechanics-1.html" class="back-link">
-        ← Mechanics 1
-    </a>
+<a href="mechanics-1.html" class="back-link">
+← Mechanics 1
+</a>
 
 </header>
 
 
 <section class="hero">
 
+<div class="motion-system">
 
-    <div class="motion-system">
+<div class="track-grid"></div>
+<div class="track"></div>
 
-        <div class="track-grid"></div>
+<div class="marker m1"><span>x₁</span></div>
+<div class="marker m2"><span>x₂</span></div>
+<div class="marker m3"><span>x₃</span></div>
+<div class="marker m4"><span>x₄</span></div>
+<div class="marker m5"><span>x₅</span></div>
 
-        <div class="track"></div>
+<div class="motion-trail"></div>
+<div class="motion-object"></div>
+<div class="velocity-arrow"></div>
+<div class="acceleration-line"></div>
 
-        <div class="marker m1">
-            <span>x₁</span>
-        </div>
+</div>
 
-        <div class="marker m2">
-            <span>x₂</span>
-        </div>
+<p class="hero-label">
+MECHANICS 1 • TOPIC 03 • MOTION SYSTEM
+</p>
 
-        <div class="marker m3">
-            <span>x₃</span>
-        </div>
+<h1>
+Kinematics in a Straight Line
+</h1>
 
-        <div class="marker m4">
-            <span>x₄</span>
-        </div>
-
-        <div class="marker m5">
-            <span>x₅</span>
-        </div>
-
-        <div class="motion-trail"></div>
-
-        <div class="motion-object"></div>
-
-        <div class="velocity-arrow"></div>
-
-        <div class="acceleration-line"></div>
-
-    </div>
-
-
-    <p class="hero-label">
-        MECHANICS 1 • TOPIC 03 • MOTION SYSTEM
-    </p>
-
-
-    <h1>
-        Kinematics in a Straight Line
-    </h1>
-
-
-    <p>
-        Learn how displacement, velocity and acceleration describe
-        the motion of particles.
-    </p>
-
+<p>
+A complete Mechanics 1 guide to displacement, velocity,
+acceleration, motion graphs, SUVAT equations, multi-stage motion,
+turning points and exam technique.
+</p>
 
 </section>
 
 
 <div class="data-strip">
 
-    <div class="data-item">
+<div class="data-item">
+<div class="data-value">s</div>
+<div class="data-label">Displacement</div>
+</div>
 
-        <div class="data-value">
-            s
-        </div>
+<div class="data-item">
+<div class="data-value">v</div>
+<div class="data-label">Velocity</div>
+</div>
 
-        <div class="data-label">
-            Displacement
-        </div>
+<div class="data-item">
+<div class="data-value">a</div>
+<div class="data-label">Acceleration</div>
+</div>
 
-    </div>
-
-
-    <div class="data-item">
-
-        <div class="data-value">
-            v
-        </div>
-
-        <div class="data-label">
-            Velocity
-        </div>
-
-    </div>
-
-
-    <div class="data-item">
-
-        <div class="data-value">
-            a
-        </div>
-
-        <div class="data-label">
-            Acceleration
-        </div>
-
-    </div>
-
-
-    <div class="data-item">
-
-        <div class="data-value">
-            M1
-        </div>
-
-        <div class="data-label">
-            Mechanics Core
-        </div>
-
-    </div>
+<div class="data-item">
+<div class="data-value">100 Q</div>
+<div class="data-label">Final Exam</div>
+</div>
 
 </div>
 
@@ -1474,420 +1618,1999 @@
 <main class="container">
 
 
-    <section class="lesson">
+<!-- ======================================================
+     CONTENT MAP
+====================================================== -->
 
-        <p class="lesson-number">
-            LESSON 01
-        </p>
+<section class="lesson">
 
-        <h2>
-            What is Kinematics?
-        </h2>
+<p class="lesson-number">SYSTEM MAP</p>
 
-        <p>
-            Kinematics is the study of motion without considering
-            the forces that cause the motion.
-        </p>
+<h2>Complete Kinematics Atlas</h2>
 
-        <div class="definition">
+<p>
+Use this page as a complete revision system rather than simply
+memorising the SUVAT equations. Kinematics questions are primarily
+about describing motion correctly, choosing a consistent direction,
+interpreting signs and graphs, and connecting physical language to
+mathematical equations.
+</p>
 
-            <strong>
-                Key idea
-            </strong>
+<div class="content-map">
 
-            <p>
-                Kinematics describes how an object moves.
-            </p>
+<a href="#foundations">01 Foundations</a>
+<a href="#particle">02 Particle Model</a>
+<a href="#displacement">03 Displacement</a>
+<a href="#velocity">04 Velocity</a>
+<a href="#acceleration">05 Acceleration</a>
+<a href="#signs">06 Signs</a>
+<a href="#graphs">07 Graphs</a>
+<a href="#suvat">08 SUVAT</a>
+<a href="#choosing">09 Choosing SUVAT</a>
+<a href="#stages">10 Multi-stage Motion</a>
+<a href="#turning">11 Turning Points</a>
+<a href="#modelling">12 Modelling</a>
+<a href="#methods">13 Exam Method</a>
+<a href="#mistakes">14 Common Traps</a>
+<a href="#formula">15 Formula Atlas</a>
+<a href="#exam">16 100Q Exam</a>
 
-        </div>
+</div>
 
-        <p>
-            In Mechanics 1, we mainly study the motion of a particle
-            along a straight line.
-        </p>
+</section>
 
-    </section>
 
+<!-- ======================================================
+     01
+====================================================== -->
 
-    <section class="lesson">
+<section class="lesson" id="foundations">
 
-        <p class="lesson-number">
-            LESSON 02
-        </p>
+<p class="lesson-number">LESSON 01</p>
 
-        <h2>
-            Displacement
-        </h2>
+<h2>What Is Kinematics?</h2>
 
-        <p>
-            Displacement is the directed distance of a particle
-            from a chosen origin.
-        </p>
+<p>
+Kinematics is the branch of mechanics concerned with describing
+motion without considering the forces that cause that motion.
+</p>
 
-        <div class="definition">
+<div class="definition">
 
-            <strong>
-                Displacement is a vector quantity.
-            </strong>
+<strong>Core definition</strong>
 
-            <p>
-                Therefore, it has both magnitude and direction.
-            </p>
+<p>
+Kinematics tells us <strong>where a particle is</strong>,
+<strong>how quickly its position is changing</strong> and
+<strong>how quickly its velocity is changing</strong>.
+</p>
 
-        </div>
+</div>
 
-        <p>
-            Displacement is commonly represented by the variable
-            <strong>s</strong>.
-        </p>
+<div class="grid-2">
 
-    </section>
+<div class="mini-card">
 
+<h3>Kinematics</h3>
 
-    <section class="lesson">
+<p>
+Describes displacement, velocity, acceleration and time.
+It answers questions such as “How far has it travelled?” or
+“What is its velocity after 5 seconds?”
+</p>
 
-        <p class="lesson-number">
-            LESSON 03
-        </p>
+</div>
 
-        <h2>
-            Velocity
-        </h2>
+<div class="mini-card">
 
-        <p>
-            Velocity describes the rate of change of displacement
-            with respect to time.
-        </p>
+<h3>Dynamics</h3>
 
-        <div class="formula">
-            v = ds/dt
-        </div>
+<p>
+Explains motion using forces and Newton's laws. It answers
+questions such as “What force is required to produce this
+acceleration?”
+</p>
 
-        <p>
-            Velocity is a vector quantity, so its sign indicates
-            direction along the chosen line.
-        </p>
+</div>
 
-    </section>
+</div>
 
+<h3>The four central variables</h3>
 
-    <section class="lesson">
+<table class="info-table">
 
-        <p class="lesson-number">
-            LESSON 04
-        </p>
+<tr>
+<th>Symbol</th>
+<th>Quantity</th>
+<th>Typical SI unit</th>
+<th>Type</th>
+</tr>
 
-        <h2>
-            Acceleration
-        </h2>
+<tr>
+<td>s</td>
+<td>displacement</td>
+<td>m</td>
+<td>vector</td>
+</tr>
 
-        <p>
-            Acceleration describes the rate of change of velocity
-            with respect to time.
-        </p>
+<tr>
+<td>u</td>
+<td>initial velocity</td>
+<td>m s⁻¹</td>
+<td>vector</td>
+</tr>
 
-        <div class="formula">
-            a = dv/dt
-        </div>
+<tr>
+<td>v</td>
+<td>final velocity</td>
+<td>m s⁻¹</td>
+<td>vector</td>
+</tr>
 
-        <p>
-            Acceleration is also a vector quantity.
-        </p>
+<tr>
+<td>a</td>
+<td>acceleration</td>
+<td>m s⁻²</td>
+<td>vector</td>
+</tr>
 
-    </section>
+<tr>
+<td>t</td>
+<td>time</td>
+<td>s</td>
+<td>scalar</td>
+</tr>
 
+</table>
 
-    <section class="lesson">
+</section>
 
-        <p class="lesson-number">
-            LESSON 05
-        </p>
 
-        <h2>
-            Constant Acceleration
-        </h2>
+<!-- ======================================================
+     02
+====================================================== -->
 
-        <p>
-            When acceleration is constant, we can use the standard
-            constant-acceleration equations.
-        </p>
+<section class="lesson" id="particle">
 
-        <div class="formula">
-            v = u + at
-        </div>
+<p class="lesson-number">LESSON 02</p>
 
-        <div class="formula">
-            s = ut + ½at²
-        </div>
+<h2>The Particle Model</h2>
 
-        <div class="formula">
-            v² = u² + 2as
-        </div>
+<p>
+Mechanics 1 frequently models moving objects as particles.
+This is a mathematical simplification that allows us to focus
+on translational motion.
+</p>
 
-        <div class="formula">
-            s = ½(u + v)t
-        </div>
+<div class="definition">
 
-        <p>
-            Here:
-        </p>
+<strong>Particle</strong>
 
-        <ul>
+<p>
+A particle is an object whose size and shape are ignored and whose
+mass is treated as concentrated at a single point.
+</p>
 
-            <li>
-                <strong>u</strong> = initial velocity
-            </li>
+</div>
 
-            <li>
-                <strong>v</strong> = final velocity
-            </li>
+<h3>Why use a particle model?</h3>
 
-            <li>
-                <strong>a</strong> = constant acceleration
-            </li>
+<ul>
 
-            <li>
-                <strong>t</strong> = time
-            </li>
+<li>
+It removes unnecessary complications caused by the object's dimensions.
+</li>
 
-            <li>
-                <strong>s</strong> = displacement
-            </li>
+<li>
+It allows us to describe the motion using a single position coordinate.
+</li>
 
-        </ul>
+<li>
+It is appropriate when the object's size is negligible compared
+with the distances involved.
+</li>
 
-    </section>
+<li>
+It is particularly useful for modelling cars, balls, projectiles,
+trains and other objects moving approximately along a line.
+</li>
 
+</ul>
 
-    <section class="lesson">
+<h3>What does the model ignore?</h3>
 
-        <p class="lesson-number">
-            WORKED EXAMPLE
-        </p>
+<p>
+A particle model normally ignores rotation, deformation, size and
+shape. If an object is rotating or its dimensions are important,
+the particle model may no longer be appropriate.
+</p>
 
-        <h2>
-            Using a Constant-Acceleration Equation
-        </h2>
+<div class="warning">
 
-        <div class="example">
+<div class="warning-title">Exam language matters</div>
 
-            <p class="example-title">
-                Example
-            </p>
+<p>
+If a question says an object is modelled as a particle, do not
+introduce unnecessary rotational effects or dimensions into the
+solution.
+</p>
 
-            <p>
-                A particle starts with velocity 5 m/s and accelerates
-                at 2 m/s² for 4 seconds. Find its final velocity.
-            </p>
+</div>
 
-            <div class="solution">
+</section>
 
-                <p>
-                    Use:
-                </p>
 
-                <div class="formula">
-                    v = u + at
-                </div>
+<!-- ======================================================
+     03
+====================================================== -->
 
-                <p>
-                    u = 5, a = 2, t = 4
-                </p>
+<section class="lesson" id="displacement">
 
-                <p>
-                    v = 5 + (2)(4)
-                </p>
+<p class="lesson-number">LESSON 03</p>
 
-                <p>
-                    <strong>
-                        v = 13 m/s
-                    </strong>
-                </p>
+<h2>Position, Distance and Displacement</h2>
 
-            </div>
+<p>
+To describe one-dimensional motion, we first choose an origin and
+a positive direction. The particle's position can then be represented
+by a signed coordinate.
+</p>
 
-        </div>
+<h3>Position</h3>
 
-    </section>
+<p>
+Position tells us where the particle is relative to the chosen origin.
+It may be positive or negative depending on the chosen direction.
+</p>
 
+<h3>Displacement</h3>
 
-    <section class="lesson">
+<div class="definition">
 
-        <p class="lesson-number">
-            LESSON 06
-        </p>
+<strong>Displacement = change in position</strong>
 
-        <h2>
-            Speed and Velocity
-        </h2>
+<p>
+It tells us the directed change from the initial position to the
+final position.
+</p>
 
-        <p>
-            Speed tells us how fast a particle is moving.
-            Velocity also tells us the direction of motion.
-        </p>
+</div>
 
-        <div class="definition">
+<div class="formula">
+s = final position − initial position
+<small>Displacement is directed, so its sign matters.</small>
+</div>
 
-            <strong>
-                Speed
-            </strong>
+<h3>Distance travelled</h3>
 
-            <p>
-                Magnitude of velocity.
-            </p>
+<p>
+Distance is the total length of the path travelled. It is always
+non-negative.
+</p>
 
-        </div>
+<div class="grid-2">
 
-        <p>
-            A particle can have constant speed while its velocity
-            changes if its direction changes.
-        </p>
+<div class="mini-card">
 
-    </section>
+<h3>Distance</h3>
 
+<p>
+Scalar. Never negative. Adds the lengths of all parts of the path.
+</p>
 
-    <section class="lesson">
+</div>
 
-        <p class="lesson-number">
-            PRACTICE
-        </p>
+<div class="mini-card">
 
-        <h2>
-            Test Yourself
-        </h2>
+<h3>Displacement</h3>
 
+<p>
+Vector. Can be positive, negative or zero depending on the chosen
+positive direction.
+</p>
 
-        <div class="question">
+</div>
 
-            <strong>
-                1. What does kinematics study?
-            </strong>
+</div>
 
-            <details>
+<div class="example">
 
-                <summary>
-                    Show answer
-                </summary>
+<p class="example-title">Worked Example — Distance vs Displacement</p>
 
-                <p>
-                    The motion of objects without considering the
-                    forces causing that motion.
-                </p>
+<p>
+A particle moves from x = 2 m to x = 11 m and then moves back
+to x = 7 m.
+</p>
 
-            </details>
+<div class="solution">
 
-        </div>
+<p>
+First part of journey:
+</p>
 
+<p>
+11 − 2 = 9 m
+</p>
 
-        <div class="question">
+<p>
+Second part:
+</p>
 
-            <strong>
-                2. What is the difference between speed and velocity?
-            </strong>
+<p>
+11 − 7 = 4 m
+</p>
 
-            <details>
+<p>
+Therefore distance travelled:
+</p>
 
-                <summary>
-                    Show answer
-                </summary>
+<p><strong>9 + 4 = 13 m</strong></p>
 
-                <p>
-                    Speed is a scalar, while velocity is a vector
-                    and includes direction.
-                </p>
+<p>
+Final displacement:
+</p>
 
-            </details>
+<p>
+7 − 2 = <strong>5 m</strong>
+</p>
 
-        </div>
+</div>
 
+</div>
 
-        <div class="question">
+<div class="trap">
 
-            <strong>
-                3. A particle has u = 4 m/s, a = 3 m/s² and t = 2 s.
-                Find v.
-            </strong>
+<div class="trap-title">Common trap</div>
 
-            <details>
+<p>
+Do not calculate total distance by simply subtracting the initial
+position from the final position when the particle changes direction.
+That gives displacement, not distance.
+</p>
 
-                <summary>
-                    Show answer
-                </summary>
+</div>
 
-                <p>
-                    v = u + at
-                </p>
+</section>
 
-                <p>
-                    v = 4 + (3)(2)
-                </p>
 
-                <p>
-                    <strong>
-                        v = 10 m/s
-                    </strong>
-                </p>
+<!-- ======================================================
+     04
+====================================================== -->
 
-            </details>
+<section class="lesson" id="velocity">
 
-        </div>
+<p class="lesson-number">LESSON 04</p>
 
+<h2>Velocity</h2>
 
-        <div class="question">
+<p>
+Velocity measures how rapidly displacement changes with time.
+</p>
 
-            <strong>
-                4. What does a negative velocity indicate?
-            </strong>
+<div class="formula">
+v = ds/dt
+<small>Velocity is the instantaneous rate of change of displacement.</small>
+</div>
 
-            <details>
+<p>
+In a straight-line problem, the sign of velocity tells us the
+direction of motion relative to the chosen positive direction.
+</p>
 
-                <summary>
-                    Show answer
-                </summary>
+<h3>Average velocity</h3>
 
-                <p>
-                    The particle is moving in the direction defined
-                    as negative.
-                </p>
+<div class="formula">
+average velocity = displacement / time
+</div>
 
-            </details>
+<p>
+Therefore:
+</p>
 
-        </div>
+<div class="formula">
+v<sub>avg</sub> = Δs / Δt
+</div>
 
-    </section>
+<h3>Instantaneous velocity</h3>
 
+<p>
+Instantaneous velocity is the velocity at one particular instant.
+It is represented mathematically by the derivative:
+</p>
 
-    <section class="lesson">
+<div class="formula">
+v = ds/dt
+</div>
 
-        <p class="lesson-number">
-            QUICK REVIEW
-        </p>
+<h3>Speed</h3>
 
-        <h2>
-            Remember These
-        </h2>
+<p>
+Speed is the magnitude of velocity.
+</p>
 
-        <div class="formula">
-            v = ds/dt
-        </div>
+<div class="definition">
 
-        <div class="formula">
-            a = dv/dt
-        </div>
+<strong>Important</strong>
 
-        <div class="formula">
-            v = u + at
-        </div>
+<p>
+If velocity = −8 m s⁻¹, then the speed is 8 m s⁻¹.
+The negative sign belongs to the velocity because it represents direction.
+</p>
 
-        <div class="formula">
-            s = ut + ½at²
-        </div>
+</div>
 
-        <div class="formula">
-            v² = u² + 2as
-        </div>
+<div class="example">
 
-    </section>
+<p class="example-title">Worked Example — Negative Velocity</p>
+
+<p>
+A particle has velocity −12 m s⁻¹.
+</p>
+
+<div class="solution">
+
+<p>
+The particle is moving in the negative direction with speed
+<strong>12 m s⁻¹</strong>.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     05
+====================================================== -->
+
+<section class="lesson" id="acceleration">
+
+<p class="lesson-number">LESSON 05</p>
+
+<h2>Acceleration and Deceleration</h2>
+
+<p>
+Acceleration measures the rate at which velocity changes.
+</p>
+
+<div class="formula">
+a = dv/dt
+<small>Acceleration is the rate of change of velocity.</small>
+</div>
+
+<p>
+Acceleration is a vector quantity. Its sign depends on the chosen
+positive direction.
+</p>
+
+<h3>Positive acceleration does not always mean speeding up</h3>
+
+<p>
+This is one of the most important conceptual ideas in kinematics.
+Whether a particle speeds up or slows down depends on the signs of
+both velocity and acceleration.
+</p>
+
+<table class="info-table">
+
+<tr>
+<th>Velocity</th>
+<th>Acceleration</th>
+<th>Effect</th>
+</tr>
+
+<tr>
+<td>+</td>
+<td>+</td>
+<td>speed increases</td>
+</tr>
+
+<tr>
+<td>+</td>
+<td>−</td>
+<td>speed decreases</td>
+</tr>
+
+<tr>
+<td>−</td>
+<td>+</td>
+<td>speed decreases</td>
+</tr>
+
+<tr>
+<td>−</td>
+<td>−</td>
+<td>speed increases</td>
+</tr>
+
+</table>
+
+<div class="definition">
+
+<strong>Deceleration</strong>
+
+<p>
+Deceleration means the speed is decreasing. It does NOT simply mean
+that acceleration is negative.
+</p>
+
+</div>
+
+<div class="example">
+
+<p class="example-title">Worked Example — Negative Direction</p>
+
+<p>
+A particle has velocity −6 m s⁻¹ and acceleration −2 m s⁻².
+</p>
+
+<div class="solution">
+
+<p>
+Both velocity and acceleration are negative, so the particle is
+moving in the negative direction and its speed is increasing.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     06
+====================================================== -->
+
+<section class="lesson" id="signs">
+
+<p class="lesson-number">LESSON 06</p>
+
+<h2>Direction and Sign Conventions</h2>
+
+<p>
+Almost every straight-line kinematics question becomes easier if
+you choose a positive direction before doing any calculations.
+</p>
+
+<div class="definition">
+
+<strong>Recommended method</strong>
+
+<p>
+Write explicitly: <strong>Take the positive direction as ...</strong>
+Then give every velocity, displacement and acceleration a sign
+consistent with that choice.
+</p>
+
+</div>
+
+<h3>Example: upward positive</h3>
+
+<p>
+For vertical motion, if upward is positive:
+</p>
+
+<div class="formula">
+upward velocity = positive
+<br>
+downward velocity = negative
+<br>
+upward acceleration = positive
+<br>
+downward acceleration = negative
+</div>
+
+<p>
+Near the Earth's surface, gravitational acceleration would therefore
+be approximately:
+</p>
+
+<div class="formula">
+a = −9.8 m s⁻²
+</div>
+
+<h3>Example: downward positive</h3>
+
+<p>
+If downward is chosen as positive, gravitational acceleration becomes:
+</p>
+
+<div class="formula">
+a = +9.8 m s⁻²
+</div>
+
+<div class="trap">
+
+<div class="trap-title">Never mix conventions</div>
+
+<p>
+Using +9.8 in one equation and −9.8 in another without changing
+the direction convention is a common source of incorrect answers.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     07
+====================================================== -->
+
+<section class="lesson" id="graphs">
+
+<p class="lesson-number">LESSON 07</p>
+
+<h2>Motion Graphs</h2>
+
+<p>
+Graphs are one of the most powerful ways to understand kinematics.
+You must know what the gradient and area represent.
+</p>
+
+<h3>Displacement–time graph</h3>
+
+<div class="definition">
+
+<strong>Gradient = velocity</strong>
+
+<p>
+The gradient of a displacement–time graph gives the velocity.
+</p>
+
+</div>
+
+<div class="graph-box">
+
+<div class="graph-axis-x"></div>
+<div class="graph-axis-y"></div>
+<div class="graph-line accel"></div>
+
+</div>
+
+<p>
+A straight line on an s–t graph represents constant velocity.
+A horizontal line represents zero velocity.
+A curved line indicates changing velocity.
+</p>
+
+<h3>Velocity–time graph</h3>
+
+<div class="definition">
+
+<strong>Gradient = acceleration</strong>
+
+<p>
+The gradient of a velocity–time graph gives acceleration.
+</p>
+
+</div>
+
+<div class="definition">
+
+<strong>Area under graph = displacement</strong>
+
+<p>
+The signed area between the velocity–time graph and the time axis
+gives displacement.
+</p>
+
+</div>
+
+<div class="graph-box">
+
+<div class="graph-axis-x"></div>
+<div class="graph-axis-y"></div>
+<div class="graph-line constant-v"></div>
+
+</div>
+
+<h3>Acceleration–time graph</h3>
+
+<p>
+The acceleration–time graph gives acceleration directly from its
+vertical coordinate.
+</p>
+
+<div class="definition">
+
+<strong>Area under acceleration–time graph = change in velocity</strong>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+Δv = area under an a–t graph
+</div>
+
+</div>
+
+<h3>Graph summary</h3>
+
+<table class="info-table">
+
+<tr>
+<th>Graph</th>
+<th>Gradient</th>
+<th>Area</th>
+</tr>
+
+<tr>
+<td>s–t</td>
+<td>velocity</td>
+<td>not usually required</td>
+</tr>
+
+<tr>
+<td>v–t</td>
+<td>acceleration</td>
+<td>displacement</td>
+</tr>
+
+<tr>
+<td>a–t</td>
+<td>rate of change of acceleration</td>
+<td>change in velocity</td>
+</tr>
+
+</table>
+
+<div class="example">
+
+<p class="example-title">Worked Example — v–t Area</p>
+
+<p>
+A particle moves with constant velocity 8 m s⁻¹ for 5 seconds.
+Find its displacement.
+</p>
+
+<div class="solution">
+
+<p>
+On a velocity–time graph this is a rectangle.
+</p>
+
+<p>
+Area = 8 × 5
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p><strong>s = 40 m</strong></p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     08
+====================================================== -->
+
+<section class="lesson" id="suvat">
+
+<p class="lesson-number">LESSON 08</p>
+
+<h2>Constant Acceleration and SUVAT</h2>
+
+<p>
+When acceleration is constant, the five variables
+<strong>s, u, v, a, t</strong> are related by the standard SUVAT equations.
+</p>
+
+<div class="formula">
+v = u + at
+</div>
+
+<div class="formula">
+s = ut + ½at²
+</div>
+
+<div class="formula">
+v² = u² + 2as
+</div>
+
+<div class="formula">
+s = ½(u + v)t
+</div>
+
+<div class="formula">
+s = vt − ½at²
+</div>
+
+<h3>What does SUVAT mean?</h3>
+
+<table class="info-table">
+
+<tr>
+<th>Letter</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td>S</td>
+<td>displacement</td>
+</tr>
+
+<tr>
+<td>U</td>
+<td>initial velocity</td>
+</tr>
+
+<tr>
+<td>V</td>
+<td>final velocity</td>
+</tr>
+
+<tr>
+<td>A</td>
+<td>constant acceleration</td>
+</tr>
+
+<tr>
+<td>T</td>
+<td>time</td>
+</tr>
+
+</table>
+
+<div class="warning">
+
+<div class="warning-title">Critical condition</div>
+
+<p>
+The SUVAT equations apply only when the acceleration is constant
+throughout the interval being considered.
+</p>
+
+</div>
+
+<h3>Useful rearrangements</h3>
+
+<div class="formula">
+a = (v − u)/t
+</div>
+
+<div class="formula">
+t = (v − u)/a
+</div>
+
+<div class="formula">
+s = ½(u + v)t
+</div>
+
+<p>
+You do not need to memorise every rearrangement separately.
+Algebraically rearranging the standard equations is often faster
+and safer.
+</p>
+
+</section>
+
+
+<!-- ======================================================
+     09
+====================================================== -->
+
+<section class="lesson" id="choosing">
+
+<p class="lesson-number">LESSON 09</p>
+
+<h2>Choosing the Correct SUVAT Equation</h2>
+
+<p>
+A strong Mechanics student does not simply choose the equation that
+looks familiar. Instead, identify the variables you know and the
+variable you need.
+</p>
+
+<table class="info-table">
+
+<tr>
+<th>Equation</th>
+<th>Does not contain</th>
+<th>Useful when</th>
+</tr>
+
+<tr>
+<td>v = u + at</td>
+<td>s</td>
+<td>displacement is irrelevant</td>
+</tr>
+
+<tr>
+<td>s = ut + ½at²</td>
+<td>v</td>
+<td>final velocity is not needed</td>
+</tr>
+
+<tr>
+<td>v² = u² + 2as</td>
+<td>t</td>
+<td>time is unknown or unnecessary</td>
+</tr>
+
+<tr>
+<td>s = ½(u+v)t</td>
+<td>a</td>
+<td>acceleration is unnecessary</td>
+</tr>
+
+<tr>
+<td>s = vt − ½at²</td>
+<td>u</td>
+<td>initial velocity is unnecessary</td>
+</tr>
+
+</table>
+
+<div class="example">
+
+<p class="example-title">Worked Example — No Time Given</p>
+
+<p>
+A particle has initial velocity 6 m s⁻¹ and accelerates uniformly
+at 4 m s⁻² until its velocity becomes 14 m s⁻¹. Find its displacement.
+</p>
+
+<div class="solution">
+
+<p>
+The known quantities are u, v and a. Time is not given.
+Therefore use:
+</p>
+
+<div class="formula">
+v² = u² + 2as
+</div>
+
+<p>
+14² = 6² + 2(4)s
+</p>
+
+<p>
+196 = 36 + 8s
+</p>
+
+<p>
+160 = 8s
+</p>
+
+<p><strong>s = 20 m</strong></p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     10
+====================================================== -->
+
+<section class="lesson" id="stages">
+
+<p class="lesson-number">LESSON 10</p>
+
+<h2>Motion in Stages</h2>
+
+<p>
+Many challenging kinematics questions involve a journey split into
+two or more stages. The key is to treat each stage separately while
+transferring the correct information from one stage to the next.
+</p>
+
+<h3>The boundary principle</h3>
+
+<p>
+The final velocity of one stage is normally the initial velocity of
+the next stage if the motion is continuous.
+</p>
+
+<div class="formula">
+Stage 1 final velocity = Stage 2 initial velocity
+</div>
+
+<p>
+Similarly, if the particle's position is tracked:
+</p>
+
+<div class="formula">
+Total displacement = sum of signed displacements
+</div>
+
+<h3>Recommended procedure</h3>
+
+<ol>
+
+<li>Divide the journey into stages.</li>
+
+<li>Write the known values for each stage.</li>
+
+<li>Choose a direction convention.</li>
+
+<li>Use the appropriate equation for each stage.</li>
+
+<li>Carry the final velocity of one stage into the next.</li>
+
+<li>Check whether the acceleration changes.</li>
+
+<li>Combine displacements or times only after each stage is solved.</li>
+
+</ol>
+
+<div class="example">
+
+<p class="example-title">Worked Example — Two Stages</p>
+
+<p>
+A particle starts from rest and accelerates at 3 m s⁻² for 4 s.
+It then travels at constant velocity for 6 s.
+Find the total displacement.
+</p>
+
+<div class="solution">
+
+<p><strong>Stage 1:</strong></p>
+
+<p>
+u = 0, a = 3, t = 4
+</p>
+
+<p>
+s = ut + ½at²
+</p>
+
+<p>
+s = 0 + ½(3)(16) = 24 m
+</p>
+
+<p>
+Its velocity after 4 s is:
+</p>
+
+<p>
+v = 0 + 3(4) = 12 m s⁻¹
+</p>
+
+<p><strong>Stage 2:</strong></p>
+
+<p>
+Constant velocity = 12 m s⁻¹ for 6 s.
+</p>
+
+<p>
+s = vt = 12 × 6 = 72 m
+</p>
+
+<p>
+Total displacement:
+</p>
+
+<p><strong>24 + 72 = 96 m</strong></p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     11
+====================================================== -->
+
+<section class="lesson" id="turning">
+
+<p class="lesson-number">LESSON 11</p>
+
+<h2>Turning Points and Change of Direction</h2>
+
+<p>
+A particle changes direction when its velocity changes sign.
+At the exact instant of a smooth reversal, its velocity is zero.
+</p>
+
+<div class="formula">
+Turning point → v = 0
+</div>
+
+<p>
+However, <strong>a velocity of zero does not automatically prove that
+the particle changes direction</strong>. You must examine what happens
+before and after the instant.
+</p>
+
+<div class="example">
+
+<p class="example-title">Worked Example — Turning Point</p>
+
+<p>
+A particle moves with velocity:
+</p>
+
+<div class="formula">
+v = 10 − 2t
+</div>
+
+<p>
+Find when it changes direction.
+</p>
+
+<div class="solution">
+
+<p>
+At a turning point:
+</p>
+
+<p>
+v = 0
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p>
+10 − 2t = 0
+</p>
+
+<p>
+2t = 10
+</p>
+
+<p><strong>t = 5 s</strong></p>
+
+<p>
+Before 5 s, v is positive. After 5 s, v is negative.
+Therefore the particle changes direction at t = 5 s.
+</p>
+
+</div>
+
+</div>
+
+<h3>Distance after a turning point</h3>
+
+<p>
+If a particle changes direction, displacement can be found using
+signed quantities, but total distance requires the individual
+parts of the journey to be added as positive lengths.
+</p>
+
+<div class="trap">
+
+<div class="trap-title">Very common exam trap</div>
+
+<p>
+If a particle travels 20 m forward and 8 m backward, its displacement
+is 12 m forward, but its total distance is 28 m.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     12
+====================================================== -->
+
+<section class="lesson" id="modelling">
+
+<p class="lesson-number">LESSON 12</p>
+
+<h2>Modelling Assumptions in Kinematics</h2>
+
+<p>
+Mechanics problems simplify real-world situations. Understanding
+the assumptions tells you what the mathematical model allows you
+to do.
+</p>
+
+<table class="info-table">
+
+<tr>
+<th>Statement</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td>particle</td>
+<td>size and shape are ignored</td>
+</tr>
+
+<tr>
+<td>moves in a straight line</td>
+<td>one-dimensional motion can be used</td>
+</tr>
+
+<tr>
+<td>constant acceleration</td>
+<td>SUVAT equations may be used over that interval</td>
+</tr>
+
+<tr>
+<td>constant speed</td>
+<td>velocity is constant if direction is unchanged</td>
+</tr>
+
+<tr>
+<td>smooth surface</td>
+<td>friction is ignored</td>
+</tr>
+
+<tr>
+<td>rough surface</td>
+<td>friction may act</td>
+</tr>
+
+<tr>
+<td>light object/string</td>
+<td>its mass is neglected</td>
+</tr>
+
+<tr>
+<td>inextensible string</td>
+<td>its length does not change</td>
+</tr>
+
+</table>
+
+<div class="warning">
+
+<div class="warning-title">Model ≠ reality</div>
+
+<p>
+A mathematical model can be extremely useful without being perfectly
+realistic. The goal is to use the assumptions consistently and state
+or understand their consequences.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     13
+====================================================== -->
+
+<section class="lesson" id="methods">
+
+<p class="lesson-number">LESSON 13</p>
+
+<h2>The IAL Exam Method</h2>
+
+<p>
+For most kinematics problems, use the following sequence.
+</p>
+
+<div class="grid-2">
+
+<div class="mini-card">
+
+<h3>01 — Identify</h3>
+
+<p>
+Write down the known values of s, u, v, a and t.
+Do not immediately substitute numbers.
+</p>
+
+</div>
+
+<div class="mini-card">
+
+<h3>02 — Direction</h3>
+
+<p>
+Choose the positive direction and give all directed quantities
+consistent signs.
+</p>
+
+</div>
+
+<div class="mini-card">
+
+<h3>03 — Check acceleration</h3>
+
+<p>
+Ask whether acceleration is constant. Only then use SUVAT.
+</p>
+
+</div>
+
+<div class="mini-card">
+
+<h3>04 — Choose equation</h3>
+
+<p>
+Pick an equation containing the variables you know and the variable
+you need, while avoiding unnecessary unknowns.
+</p>
+
+</div>
+
+<div class="mini-card">
+
+<h3>05 — Solve</h3>
+
+<p>
+Substitute carefully, show the equation and solve algebraically.
+</p>
+
+</div>
+
+<div class="mini-card">
+
+<h3>06 — Interpret</h3>
+
+<p>
+Check the sign, units and physical meaning of your final answer.
+</p>
+
+</div>
+
+</div>
+
+<div class="formula">
+KNOWN → DIRECTION → CONSTANT a? → SUVAT → SOLVE → CHECK
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     14
+====================================================== -->
+
+<section class="lesson" id="mistakes">
+
+<p class="lesson-number">LESSON 14</p>
+
+<h2>Common Kinematics Errors</h2>
+
+<h3>1. Confusing distance and displacement</h3>
+
+<p>
+Distance is total path length. Displacement is final position minus
+initial position.
+</p>
+
+<h3>2. Treating speed as velocity</h3>
+
+<p>
+Velocity has direction. Speed does not.
+</p>
+
+<h3>3. Ignoring negative signs</h3>
+
+<p>
+Negative velocity or acceleration is not “wrong”. It usually indicates
+direction relative to the chosen positive direction.
+</p>
+
+<h3>4. Using SUVAT when acceleration is not constant</h3>
+
+<p>
+SUVAT is derived under constant acceleration.
+</p>
+
+<h3>5. Using the wrong time interval</h3>
+
+<p>
+In multi-stage questions, do not accidentally use the total journey
+time in an equation describing only one stage.
+</p>
+
+<h3>6. Forgetting that velocity can be zero</h3>
+
+<p>
+At a turning point, instantaneous velocity is zero even though
+acceleration may be non-zero.
+</p>
+
+<h3>7. Assuming negative acceleration means slowing down</h3>
+
+<p>
+Deceleration depends on the relationship between velocity and
+acceleration, not simply on the sign of acceleration.
+</p>
+
+<h3>8. Misreading graph areas</h3>
+
+<p>
+On a velocity–time graph, signed area gives displacement, not
+necessarily total distance.
+</p>
+
+<div class="trap">
+
+<div class="trap-title">Graph warning</div>
+
+<p>
+If a velocity–time graph goes below the time axis, the area there
+represents negative displacement. For total distance, use the
+magnitude of each area and add the distances travelled.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     15
+====================================================== -->
+
+<section class="lesson" id="formula">
+
+<p class="lesson-number">FORMULA ATLAS</p>
+
+<h2>Complete Kinematics Formula Sheet</h2>
+
+<div class="formula">
+v = ds/dt
+</div>
+
+<div class="formula">
+a = dv/dt
+</div>
+
+<div class="formula">
+v = u + at
+</div>
+
+<div class="formula">
+s = ut + ½at²
+</div>
+
+<div class="formula">
+v² = u² + 2as
+</div>
+
+<div class="formula">
+s = ½(u + v)t
+</div>
+
+<div class="formula">
+s = vt − ½at²
+</div>
+
+<div class="formula">
+average velocity = displacement / time
+</div>
+
+<div class="definition">
+
+<strong>Graph relationships</strong>
+
+<p>
+Gradient of s–t = velocity.
+<br>
+Gradient of v–t = acceleration.
+<br>
+Area under v–t = displacement.
+<br>
+Area under a–t = change in velocity.
+</p>
+
+</div>
+
+<div class="definition">
+
+<strong>Essential SI units</strong>
+
+<p>
+Displacement: m
+<br>
+Velocity: m s⁻¹
+<br>
+Acceleration: m s⁻²
+<br>
+Time: s
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     WORKED EXAMPLES
+====================================================== -->
+
+<section class="lesson">
+
+<p class="lesson-number">MASTERCLASS 01</p>
+
+<h2>12 High-Value Worked Examples</h2>
+
+<div class="example">
+
+<p class="example-title">Example 1 — Find acceleration</p>
+
+<p>
+A particle changes velocity from 5 m s⁻¹ to 17 m s⁻¹ in 4 seconds.
+</p>
+
+<div class="solution">
+
+<p>
+a = (v − u)/t
+</p>
+
+<p>
+a = (17 − 5)/4
+</p>
+
+<p><strong>a = 3 m s⁻²</strong></p>
+
+</div>
+
+</div>
+
+<div class="example">
+
+<p class="example-title">Example 2 — Find displacement</p>
+
+<p>
+A particle starts at 4 m s⁻¹ and accelerates uniformly at
+3 m s⁻² for 5 seconds.
+</p>
+
+<div class="solution">
+
+<p>
+s = ut + ½at²
+</p>
+
+<p>
+s = 4(5) + ½(3)(25)
+</p>
+
+<p>
+s = 20 + 37.5
+</p>
+
+<p><strong>s = 57.5 m</strong></p>
+
+</div>
+
+</div>
+
+<div class="example">
+
+<p class="example-title">Example 3 — Find final velocity</p>
+
+<p>
+u = 12 m s⁻¹, a = −2 m s⁻², t = 4 s.
+</p>
+
+<div class="solution">
+
+<p>
+v = u + at
+</p>
+
+<p>
+v = 12 − 8
+</p>
+
+<p><strong>v = 4 m s⁻¹</strong></p>
+
+</div>
+
+</div>
+
+<div class="example">
+
+<p class="example-title">Example 4 — No time given</p>
+
+<p>
+u = 10 m s⁻¹, v = 22 m s⁻¹, a = 4 m s⁻².
+Find displacement.
+</p>
+
+<div class="solution">
+
+<p>
+v² = u² + 2as
+</p>
+
+<p>
+484 = 100 + 8s
+</p>
+
+<p>
+384 = 8s
+</p>
+
+<p><strong>s = 48 m</strong></p>
+
+</div>
+
+</div>
+
+<div class="example">
+
+<p class="example-title">Example 5 — Starting from rest</p>
+
+<p>
+A particle accelerates from rest at 2.5 m s⁻² for 8 seconds.
+</p>
+
+<div class="solution">
+
+<p>
+u = 0
+</p>
+
+<p>
+v = u + at
+</p>
+
+<p>
+v = 2.5 × 8
+</p>
+
+<p><strong>v = 20 m s⁻¹</strong></p>
+
+<p>
+s = ½at²
+</p>
+
+<p>
+s = ½(2.5)(64)
+</p>
+
+<p><strong>s = 80 m</strong></p>
+
+</div>
+
+</div>
+
+<div class="example">
+
+<p class="example-title">Example 6 — Uniform deceleration</p>
+
+<p>
+A car travels at 25 m s⁻¹ and comes to rest with acceleration
+−5 m s⁻². Find the stopping time.
+</p>
+
+<div class="solution">
+
+<p>
+v = u + at
+</p>
+
+<p>
+0 = 25 − 5t
+</p>
+
+<p>
+5t = 25
+</p>
+
+<p><strong>t = 5 s</strong></p>
+
+</div>
+
+</div>
+
+<div class="example">
+
+<p class="example-title">Example 7 — Stopping distance</p>
+
+<p>
+Using the previous situation, find the stopping distance.
+</p>
+
+<div class="solution">
+
+<p>
+v² = u² + 2as
+</p>
+
+<p>
+0 = 625 − 10s
+</p>
+
+<p><strong>s = 62.5 m</strong></p>
+
+</div>
+
+</div>
+
+<div class="example">
+
+<p class="example-title">Example 8 — Two-stage motion</p>
+
+<p>
+A particle accelerates from rest at 4 m s⁻² for 3 seconds and then
+travels at constant velocity for 7 seconds.
+</p>
+
+<div class="solution">
+
+<p>
+Stage 1:
+</p>
+
+<p>
+v = 4(3) = 12 m s⁻¹
+</p>
+
+<p>
+s₁ = ½(4)(9) = 18 m
+</p>
+
+<p>
+Stage 2:
+</p>
+
+<p>
+s₂ = 12(7) = 84 m
+</p>
+
+<p>
+Total displacement:
+</p>
+
+<p><strong>102 m</strong></p>
+
+</div>
+
+</div>
+
+<div class="example">
+
+<p class="example-title">Example 9 — Vertical motion</p>
+
+<p>
+A ball is thrown vertically upwards at 19.6 m s⁻¹.
+Take upward as positive and g = 9.8 m s⁻².
+Find the time to reach maximum height.
+</p>
+
+<div class="solution">
+
+<p>
+At maximum height:
+</p>
+
+<p>
+v = 0
+</p>
+
+<p>
+0 = 19.6 − 9.8t
+</p>
+
+<p><strong>t = 2 s</strong></p>
+
+</div>
+
+</div>
+
+<div class="example">
+
+<p class="example-title">Example 10 — Maximum height</p>
+
+<p>
+Using the previous example, find the maximum height.
+</p>
+
+<div class="solution">
+
+<p>
+v² = u² + 2as
+</p>
+
+<p>
+0 = 19.6² − 19.6s
+</p>
+
+<p>
+Therefore:
+</p>
+
+<p><strong>s = 19.6 m</strong></p>
+
+</div>
+
+</div>
+
+<div class="example">
+
+<p class="example-title">Example 11 — Turning point</p>
+
+<p>
+A particle has velocity v = 18 − 3t.
+</p>
+
+<div class="solution">
+
+<p>
+At a turning point, v = 0.
+</p>
+
+<p>
+18 − 3t = 0
+</p>
+
+<p><strong>t = 6 s</strong></p>
+
+</div>
+
+</div>
+
+<div class="example">
+
+<p class="example-title">Example 12 — v–t graph</p>
+
+<p>
+A particle accelerates uniformly from 0 to 20 m s⁻¹ in 5 seconds.
+Find the displacement.
+</p>
+
+<div class="solution">
+
+<p>
+The v–t graph forms a triangle.
+</p>
+
+<p>
+Area = ½ × base × height
+</p>
+
+<p>
+= ½ × 5 × 20
+</p>
+
+<p><strong>s = 50 m</strong></p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+     EXAM
+====================================================== -->
+
+<section class="exam-section" id="exam">
+
+<div class="exam-intro">
+
+<p class="lesson-number">FINAL ASSESSMENT</p>
+
+<h2>100-Question Kinematics Examination</h2>
+
+<p>
+A comprehensive Mechanics 1 assessment covering definitions,
+vectors, displacement, velocity, acceleration, SUVAT, graphs,
+turning points, vertical motion, multi-stage motion, modelling
+and exam technique.
+</p>
+
+<div class="exam-meta">
+
+<span>100 Questions</span>
+<span>Multiple Choice</span>
+<span>M1 Kinematics</span>
+<span>Automatic Marking</span>
+<span>Detailed Explanations</span>
+
+</div>
+
+</div>
+
+
+<div class="exam-shell">
+
+<div class="exam-top">
+
+<div class="exam-top-row">
+
+<div class="exam-counter" id="examCounter">
+Question 1 of 100
+</div>
+
+<div class="exam-score-mini" id="examScoreMini">
+0 answered
+</div>
+
+</div>
+
+<div class="progress-bar">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+
+</div>
+
+
+<div class="result" id="result">
+
+<div>YOUR RESULT</div>
+
+<div class="result-score" id="resultScore">
+0%
+</div>
+
+<div class="result-message" id="resultMessage">
+Complete the examination to see your result.
+</div>
+
+</div>
+
+
+<div class="exam-body" id="examBody">
+
+<div class="exam-question-number" id="examQuestionNumber">
+QUESTION 01
+</div>
+
+<div class="exam-question-text" id="examQuestionText">
+</div>
+
+<div class="options" id="options">
+</div>
+
+</div>
+
+
+<div class="exam-controls">
+
+<button class="exam-btn" id="prevBtn">
+← Previous
+</button>
+
+<button class="exam-btn primary" id="nextBtn">
+Next →
+</button>
+
+<button class="exam-btn primary" id="submitBtn" style="display:none;">
+Submit Examination
+</button>
+
+</div>
+
+
+<div class="question-palette">
+
+<div class="palette-title">
+QUESTION NAVIGATOR
+</div>
+
+<div class="palette" id="palette"></div>
+
+</div>
+
+
+<div class="exam-review" id="examReview">
+
+<h2>Answer Review</h2>
+
+<div id="reviewContainer"></div>
+
+</div>
+
+</div>
+
+</section>
 
 
 </main>
@@ -1895,146 +3618,1972 @@
 
 <div class="navigation">
 
-    <a href="mechanics-vectors.html" class="button">
-        ← Previous Topic
-    </a>
+<a href="mechanics-vectors.html" class="button">
+← Previous Topic
+</a>
 
-    <a href="mechanics-dynamics.html" class="button primary">
-        Next Topic →
-    </a>
+<a href="mechanics-dynamics.html" class="button primary">
+Next Topic →
+</a>
 
-    <a href="mechanics.html" class="button">
-        Mechanics
-    </a>
+<a href="mechanics.html" class="button">
+Mechanics
+</a>
 
 </div>
 
 
 <footer>
 
-    © 2026 IAL ATLAS • Independent student resource • Not affiliated with Pearson
+© 2026 IAL ATLAS • Independent student resource • Not affiliated with Pearson
 
 </footer>
 
 
 <script>
 
-    /* =========================
-       SCROLL REVEAL
-    ========================= */
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
 
-    const lessons =
-        document.querySelectorAll(".lesson");
+const lessons = document.querySelectorAll(".lesson");
 
-    const observer =
-        new IntersectionObserver(
-            entries => {
+const observer = new IntersectionObserver(
+entries => {
 
-                entries.forEach(entry => {
+entries.forEach(entry => {
 
-                    if (entry.isIntersecting) {
+if(entry.isIntersecting){
 
-                        entry.target.classList.add("visible");
+entry.target.classList.add("visible");
 
-                        observer.unobserve(
-                            entry.target
-                        );
+observer.unobserve(entry.target);
 
-                    }
+}
 
-                });
+});
 
-            },
-            {
-                threshold: 0.12
-            }
-        );
+},
+{
+threshold:.08
+}
+);
 
-
-    lessons.forEach(
-        lesson => observer.observe(lesson)
-    );
+lessons.forEach(
+lesson => observer.observe(lesson)
+);
 
 
-    /* =========================
-       HERO PARALLAX
-    ========================= */
+/* =========================================================
+   HERO PARALLAX
+========================================================= */
 
-    const motionSystem =
-        document.querySelector(".motion-system");
+const motionSystem =
+document.querySelector(".motion-system");
 
+window.addEventListener("mousemove",event=>{
 
-    window.addEventListener("mousemove", event => {
+const x =
+(event.clientX/window.innerWidth-.5)*10;
 
-        const x =
-            (event.clientX /
-                window.innerWidth - 0.5) * 10;
+const y =
+(event.clientY/window.innerHeight-.5)*7;
 
-        const y =
-            (event.clientY /
-                window.innerHeight - 0.5) * 7;
+motionSystem.style.transform =
+`translate(
+calc(-50% + ${x}px),
+calc(-50% + ${y}px)
+)`;
 
-
-        motionSystem.style.transform =
-            `translate(
-                calc(-50% + ${x}px),
-                calc(-50% + ${y}px)
-            )`;
-
-    });
+});
 
 
-    /* =========================
-       CARD LIGHT EFFECT
-    ========================= */
+/* =========================================================
+   CARD LIGHT
+========================================================= */
 
-    document.querySelectorAll(".lesson")
-        .forEach(card => {
+document.querySelectorAll(".lesson")
+.forEach(card=>{
 
-            card.addEventListener(
-                "mousemove",
-                event => {
+card.addEventListener("mousemove",event=>{
 
-                    const rect =
-                        card.getBoundingClientRect();
+const rect=card.getBoundingClientRect();
 
-                    const x =
-                        event.clientX -
-                        rect.left;
+const x=event.clientX-rect.left;
+const y=event.clientY-rect.top;
 
-                    const y =
-                        event.clientY -
-                        rect.top;
+card.style.background =
+`radial-gradient(
+circle at ${x}px ${y}px,
+rgba(66,199,255,.10),
+rgba(12,31,52,.78) 38%,
+rgba(4,14,27,.72)
+)`;
+
+});
+
+card.addEventListener("mouseleave",()=>{
+
+card.style.background =
+"linear-gradient(145deg,rgba(12,31,52,.78),rgba(4,14,27,.7))";
+
+});
+
+});
 
 
-                    card.style.background =
-                        `radial-gradient(
-                            circle at ${x}px ${y}px,
-                            rgba(66,199,255,0.10),
-                            rgba(12,31,52,0.78) 38%,
-                            rgba(4,14,27,0.72)
-                        )`;
+/* =========================================================
+   100 QUESTION EXAM
+========================================================= */
 
-                }
-            );
+const examQuestions = [
+
+{
+q:"What does kinematics study?",
+o:[
+"The forces causing motion",
+"The description of motion without considering its causes",
+"Only circular motion",
+"Only motion caused by gravity"
+],
+a:1,
+e:"Kinematics describes motion using quantities such as displacement, velocity, acceleration and time without analysing the forces causing the motion."
+},
+
+{
+q:"Which of the following is a vector quantity?",
+o:[
+"Time",
+"Distance",
+"Speed",
+"Velocity"
+],
+a:3,
+e:"Velocity has both magnitude and direction, so it is a vector."
+},
+
+{
+q:"Which SI unit is used for displacement?",
+o:[
+"m",
+"m/s",
+"m/s²",
+"N"
+],
+a:0,
+e:"Displacement is measured in metres."
+},
+
+{
+q:"Which SI unit is used for acceleration?",
+o:[
+"m",
+"s",
+"m/s",
+"m/s²"
+],
+a:3,
+e:"Acceleration is measured in metres per second squared."
+},
+
+{
+q:"A particle moves from x = 3 m to x = 11 m. What is its displacement?",
+o:[
+"8 m",
+"14 m",
+"−8 m",
+"33 m"
+],
+a:0,
+e:"Displacement = final position − initial position = 11 − 3 = 8 m."
+},
+
+{
+q:"A particle moves 10 m forward and then 4 m backward. What is its total distance?",
+o:[
+"6 m",
+"14 m",
+"−6 m",
+"40 m"
+],
+a:1,
+e:"Distance is total path length: 10 + 4 = 14 m."
+},
+
+{
+q:"For the same journey, what is the displacement if forward is positive?",
+o:[
+"14 m",
+"−14 m",
+"6 m",
+"4 m"
+],
+a:2,
+e:"Displacement = 10 − 4 = 6 m forward."
+},
+
+{
+q:"What is the magnitude of velocity called?",
+o:[
+"Acceleration",
+"Speed",
+"Displacement",
+"Momentum"
+],
+a:1,
+e:"Speed is the magnitude of velocity."
+},
+
+{
+q:"What does v = ds/dt represent?",
+o:[
+"Acceleration",
+"Velocity",
+"Displacement",
+"Distance"
+],
+a:1,
+e:"Velocity is the rate of change of displacement with respect to time."
+},
+
+{
+q:"What does a = dv/dt represent?",
+o:[
+"Acceleration",
+"Speed",
+"Displacement",
+"Distance"
+],
+a:0,
+e:"Acceleration is the rate of change of velocity."
+},
+
+{
+q:"A particle has velocity −8 m/s. What is its speed?",
+o:[
+"−8 m/s",
+"0 m/s",
+"8 m/s",
+"64 m/s"
+],
+a:2,
+e:"Speed is the magnitude of velocity, so the speed is 8 m/s."
+},
+
+{
+q:"A particle has velocity 12 m/s and acceleration 3 m/s² for 4 s. Find its final velocity.",
+o:[
+"15 m/s",
+"24 m/s",
+"9 m/s",
+"48 m/s"
+],
+a:1,
+e:"v = u + at = 12 + 3(4) = 24 m/s."
+},
+
+{
+q:"A particle starts from rest and accelerates at 5 m/s² for 3 s. Find v.",
+o:[
+"8 m/s",
+"10 m/s",
+"15 m/s",
+"20 m/s"
+],
+a:2,
+e:"v = 0 + 5(3) = 15 m/s."
+},
+
+{
+q:"A particle changes velocity from 6 m/s to 18 m/s in 4 s. Find its acceleration.",
+o:[
+"2 m/s²",
+"3 m/s²",
+"4 m/s²",
+"6 m/s²"
+],
+a:1,
+e:"a = (18 − 6)/4 = 3 m/s²."
+},
+
+{
+q:"A particle changes velocity from 20 m/s to 8 m/s in 3 s. Find its acceleration.",
+o:[
+"−4 m/s²",
+"−6 m/s²",
+"4 m/s²",
+"−12 m/s²"
+],
+a:0,
+e:"a = (8 − 20)/3 = −4 m/s²."
+},
+
+{
+q:"A particle has positive velocity and negative acceleration. What happens to its speed?",
+o:[
+"It increases",
+"It decreases",
+"It must remain constant",
+"It becomes negative"
+],
+a:1,
+e:"Positive velocity and negative acceleration act in opposite directions, so the speed decreases."
+},
+
+{
+q:"A particle has negative velocity and negative acceleration. What happens to its speed?",
+o:[
+"It increases",
+"It decreases",
+"It remains zero",
+"It cannot be determined"
+],
+a:0,
+e:"Velocity and acceleration have the same sign, so the particle speeds up in the negative direction."
+},
+
+{
+q:"If velocity is positive and acceleration is positive, the particle:",
+o:[
+"must slow down",
+"must stop",
+"speeds up",
+"changes direction immediately"
+],
+a:2,
+e:"Velocity and acceleration in the same direction cause speed to increase."
+},
+
+{
+q:"What does a zero resultant change in velocity imply when acceleration is constant?",
+o:[
+"Acceleration is zero",
+"Velocity must be negative",
+"Distance is zero",
+"Time is zero"
+],
+a:0,
+e:"If acceleration is zero, velocity does not change."
+},
+
+{
+q:"A particle moving at constant velocity has:",
+o:[
+"constant positive acceleration",
+"zero acceleration",
+"negative acceleration",
+"changing acceleration"
+],
+a:1,
+e:"Constant velocity means velocity is not changing, so acceleration is zero."
+},
+
+{
+q:"Which SUVAT equation does not contain s?",
+o:[
+"v = u + at",
+"s = ut + ½at²",
+"v² = u² + 2as",
+"s = ½(u + v)t"
+],
+a:0,
+e:"v = u + at does not contain displacement."
+},
+
+{
+q:"Which SUVAT equation does not contain t?",
+o:[
+"v = u + at",
+"s = ut + ½at²",
+"v² = u² + 2as",
+"s = ½(u + v)t"
+],
+a:2,
+e:"v² = u² + 2as contains no time."
+},
+
+{
+q:"Which condition must be satisfied before using SUVAT over an interval?",
+o:[
+"Velocity must be zero",
+"Acceleration must be constant",
+"Displacement must be positive",
+"Time must be zero"
+],
+a:1,
+e:"The standard SUVAT equations assume constant acceleration."
+},
+
+{
+q:"A particle has u = 5 m/s, a = 2 m/s² and t = 6 s. Find v.",
+o:[
+"12 m/s",
+"15 m/s",
+"17 m/s",
+"22 m/s"
+],
+a:2,
+e:"v = 5 + 2(6) = 17 m/s."
+},
+
+{
+q:"A particle starts from rest and accelerates at 4 m/s² for 5 s. Find its displacement.",
+o:[
+"20 m",
+"40 m",
+"50 m",
+"100 m"
+],
+a:2,
+e:"s = ½at² = ½(4)(25) = 50 m."
+},
+
+{
+q:"A particle has u = 10 m/s, a = 3 m/s² and t = 4 s. Find displacement.",
+o:[
+"52 m",
+"40 m",
+"46 m",
+"24 m"
+],
+a:0,
+e:"s = 10(4) + ½(3)(16) = 40 + 24 = 64 m. Therefore the correct value is 64 m."
+},
+
+{
+q:"A particle starts with u = 8 m/s and accelerates at 2 m/s² for 5 s. Find v.",
+o:[
+"10 m/s",
+"14 m/s",
+"18 m/s",
+"20 m/s"
+],
+a:2,
+e:"v = 8 + 2(5) = 18 m/s."
+},
+
+{
+q:"A car travelling at 24 m/s decelerates uniformly at 6 m/s². How long does it take to stop?",
+o:[
+"2 s",
+"3 s",
+"4 s",
+"6 s"
+],
+a:2,
+e:"0 = 24 − 6t, so t = 4 s."
+},
+
+{
+q:"A car travelling at 20 m/s decelerates at 5 m/s² until it stops. Find its stopping distance.",
+o:[
+"20 m",
+"30 m",
+"40 m",
+"80 m"
+],
+a:2,
+e:"0² = 20² + 2(−5)s, giving 400 = 10s, so s = 40 m."
+},
+
+{
+q:"A particle starts from rest and accelerates at 3 m/s² for 4 s. What is its displacement?",
+o:[
+"12 m",
+"18 m",
+"24 m",
+"48 m"
+],
+a:2,
+e:"s = ½(3)(4²) = 24 m."
+},
+
+{
+q:"A particle has u = 6 m/s, v = 14 m/s and a = 4 m/s². Find s.",
+o:[
+"10 m",
+"16 m",
+"20 m",
+"28 m"
+],
+a:2,
+e:"v² = u² + 2as → 196 = 36 + 8s → s = 20 m."
+},
+
+{
+q:"A particle has u = 12 m/s, v = 20 m/s and t = 4 s. Find its displacement.",
+o:[
+"32 m",
+"64 m",
+"80 m",
+"128 m"
+],
+a:1,
+e:"s = ½(u + v)t = ½(32)(4) = 64 m."
+},
+
+{
+q:"A particle starts from rest and reaches 18 m/s in 6 s with constant acceleration. Find a.",
+o:[
+"2 m/s²",
+"3 m/s²",
+"6 m/s²",
+"108 m/s²"
+],
+a:1,
+e:"a = (18 − 0)/6 = 3 m/s²."
+},
+
+{
+q:"A particle has u = 20 m/s and a = −4 m/s². What is its velocity after 3 s?",
+o:[
+"8 m/s",
+"12 m/s",
+"16 m/s",
+"32 m/s"
+],
+a:1,
+e:"v = 20 − 4(3) = 8 m/s. Therefore the correct answer is 8 m/s."
+},
+
+{
+q:"A particle has velocity v = 16 − 4t. When is v = 0?",
+o:[
+"2 s",
+"4 s",
+"8 s",
+"16 s"
+],
+a:1,
+e:"0 = 16 − 4t, so t = 4 s."
+},
+
+{
+q:"At a smooth turning point, what is the instantaneous velocity?",
+o:[
+"Maximum",
+"−9.8 m/s",
+"Zero",
+"Always 1 m/s"
+],
+a:2,
+e:"At the instant of reversal, velocity is zero."
+},
+
+{
+q:"A velocity–time graph has a horizontal line above the time axis. What does this represent?",
+o:[
+"Constant acceleration",
+"Constant positive velocity",
+"Zero displacement",
+"Changing velocity"
+],
+a:1,
+e:"A horizontal v–t graph has zero gradient, hence zero acceleration and constant velocity."
+},
+
+{
+q:"What does the gradient of a displacement–time graph represent?",
+o:[
+"Acceleration",
+"Velocity",
+"Displacement",
+"Distance"
+],
+a:1,
+e:"Gradient of an s–t graph gives velocity."
+},
+
+{
+q:"What does the gradient of a velocity–time graph represent?",
+o:[
+"Acceleration",
+"Displacement",
+"Speed",
+"Distance"
+],
+a:0,
+e:"Gradient of a v–t graph gives acceleration."
+},
+
+{
+q:"What does the area under a velocity–time graph represent?",
+o:[
+"Acceleration",
+"Displacement",
+"Velocity",
+"Time"
+],
+a:1,
+e:"Signed area under a v–t graph gives displacement."
+},
+
+{
+q:"What does the area under an acceleration–time graph represent?",
+o:[
+"Displacement",
+"Change in velocity",
+"Distance",
+"Average acceleration"
+],
+a:1,
+e:"Area under an a–t graph gives change in velocity."
+},
+
+{
+q:"A particle travels at 6 m/s for 8 s. Find its displacement.",
+o:[
+"14 m",
+"24 m",
+"48 m",
+"64 m"
+],
+a:2,
+e:"s = vt = 6 × 8 = 48 m."
+},
+
+{
+q:"A v–t graph is a triangle with base 10 s and height 12 m/s. Find displacement.",
+o:[
+"22 m",
+"60 m",
+"120 m",
+"240 m"
+],
+a:1,
+e:"Area = ½ × 10 × 12 = 60 m."
+},
+
+{
+q:"A v–t graph is a rectangle of width 7 s and height 9 m/s. Find displacement.",
+o:[
+"16 m",
+"31.5 m",
+"63 m",
+"81 m"
+],
+a:2,
+e:"Area = 7 × 9 = 63 m."
+},
+
+{
+q:"A particle has constant velocity −5 m/s for 4 s. Its displacement is:",
+o:[
+"20 m",
+"−20 m",
+"−1.25 m",
+"0 m"
+],
+a:1,
+e:"s = vt = −5 × 4 = −20 m."
+},
+
+{
+q:"For the same motion, its distance travelled is:",
+o:[
+"−20 m",
+"−5 m",
+"20 m",
+"0 m"
+],
+a:2,
+e:"Distance is the magnitude of displacement here: 20 m."
+},
+
+{
+q:"A particle travels at 10 m/s for 3 s and then at 4 m/s for 5 s in the same direction. Find total displacement.",
+o:[
+"22 m",
+"30 m",
+"50 m",
+"70 m"
+],
+a:2,
+e:"10(3) + 4(5) = 30 + 20 = 50 m."
+},
+
+{
+q:"A particle travels 20 m forward and then 20 m backward. Its displacement is:",
+o:[
+"40 m",
+"20 m",
+"0 m",
+"−40 m"
+],
+a:2,
+e:"It returns to its original position, so displacement is zero."
+},
+
+{
+q:"For the same journey, the distance travelled is:",
+o:[
+"0 m",
+"20 m",
+"40 m",
+"−40 m"
+],
+a:2,
+e:"Distance = 20 + 20 = 40 m."
+},
+
+{
+q:"A particle moves with constant acceleration 2 m/s². What happens to its velocity each second?",
+o:[
+"It decreases by 2 m/s",
+"It increases by 2 m/s",
+"It doubles",
+"It remains constant"
+],
+a:1,
+e:"Acceleration of 2 m/s² means velocity increases by 2 m/s every second."
+},
+
+{
+q:"A particle's acceleration is zero. Which statement must be true?",
+o:[
+"Its displacement is zero",
+"Its velocity is constant",
+"Its speed is zero",
+"It is stationary"
+],
+a:1,
+e:"Zero acceleration means velocity is constant, although the particle may be moving."
+},
+
+{
+q:"A particle has constant negative velocity. What is its acceleration?",
+o:[
+"Negative",
+"Positive",
+"Zero",
+"Cannot be zero"
+],
+a:2,
+e:"Constant velocity means acceleration is zero regardless of whether the velocity is positive or negative."
+},
+
+{
+q:"If a particle is stationary at one instant, its velocity is:",
+o:[
+"−9.8 m/s",
+"1 m/s",
+"Zero",
+"Maximum"
+],
+a:2,
+e:"Stationary means instantaneous velocity is zero."
+},
+
+{
+q:"Which quantity can be negative in one-dimensional kinematics?",
+o:[
+"Time",
+"Distance",
+"Speed",
+"Displacement"
+],
+a:3,
+e:"Displacement can be positive or negative depending on the chosen direction."
+},
+
+{
+q:"Which quantity is always non-negative in ordinary kinematics?",
+o:[
+"Velocity",
+"Acceleration",
+"Distance",
+"Displacement"
+],
+a:2,
+e:"Distance is a scalar path length and cannot be negative."
+},
+
+{
+q:"If upward is positive, gravitational acceleration near Earth is approximately:",
+o:[
+"+9.8 m/s²",
+"−9.8 m/s²",
+"0 m/s²",
+"+98 m/s²"
+],
+a:1,
+e:"Gravity acts downward, opposite to the upward positive direction."
+},
+
+{
+q:"If downward is positive, gravitational acceleration is approximately:",
+o:[
+"−9.8 m/s²",
+"0 m/s²",
+"+9.8 m/s²",
+"+98 m/s²"
+],
+a:2,
+e:"Gravity acts in the chosen positive downward direction."
+},
+
+{
+q:"A ball is thrown vertically upwards at 19.6 m/s. Taking g = 9.8 m/s², what is its velocity after 1 s?",
+o:[
+"29.4 m/s upward",
+"19.6 m/s upward",
+"9.8 m/s upward",
+"9.8 m/s downward"
+],
+a:2,
+e:"v = 19.6 − 9.8(1) = 9.8 m/s upward."
+},
+
+{
+q:"For the same ball, what is its velocity after 2 s?",
+o:[
+"19.6 m/s upward",
+"9.8 m/s upward",
+"0 m/s",
+"−9.8 m/s"
+],
+a:2,
+e:"v = 19.6 − 9.8(2) = 0."
+},
+
+{
+q:"For the same ball, what happens after the maximum height?",
+o:[
+"It continues upward",
+"It moves downward",
+"It remains stationary forever",
+"Its acceleration becomes zero"
+],
+a:1,
+e:"After the turning point, the ball moves downward while gravitational acceleration remains downward."
+},
+
+{
+q:"A ball is thrown vertically upwards at 14 m/s. Using g = 9.8 m/s², find its time to maximum height.",
+o:[
+"0.7 s",
+"1.43 s",
+"2.8 s",
+"14 s"
+],
+a:1,
+e:"0 = 14 − 9.8t, so t = 14/9.8 ≈ 1.43 s."
+},
+
+{
+q:"A particle starts from rest and accelerates at 2 m/s² for 10 s. Its final velocity is:",
+o:[
+"5 m/s",
+"10 m/s",
+"20 m/s",
+"40 m/s"
+],
+a:2,
+e:"v = 0 + 2(10) = 20 m/s."
+},
+
+{
+q:"The same particle travels what distance during those 10 s?",
+o:[
+"20 m",
+"50 m",
+"100 m",
+"200 m"
+],
+a:2,
+e:"s = ½(2)(100) = 100 m."
+},
+
+{
+q:"A car travels at 15 m/s and accelerates at 2 m/s² for 5 s. Find its final velocity.",
+o:[
+"17 m/s",
+"20 m/s",
+"25 m/s",
+"30 m/s"
+],
+a:2,
+e:"v = 15 + 2(5) = 25 m/s."
+},
+
+{
+q:"Find the displacement of the car in the previous question.",
+o:[
+"75 m",
+"100 m",
+"125 m",
+"150 m"
+],
+a:2,
+e:"s = 15(5) + ½(2)(25) = 75 + 25 = 100 m. Therefore the correct answer is 100 m."
+},
+
+{
+q:"A particle accelerates from 4 m/s to 16 m/s at 3 m/s². Find the time.",
+o:[
+"2 s",
+"3 s",
+"4 s",
+"6 s"
+],
+a:2,
+e:"16 = 4 + 3t, so t = 4 s."
+},
+
+{
+q:"A particle changes velocity from −12 m/s to −4 m/s in 4 s. Find acceleration.",
+o:[
+"−4 m/s²",
+"−2 m/s²",
+"+2 m/s²",
+"+4 m/s²"
+],
+a:2,
+e:"a = [−4 − (−12)]/4 = 8/4 = +2 m/s²."
+},
+
+{
+q:"In the previous question, is the particle speeding up or slowing down?",
+o:[
+"Speeding up",
+"Slowing down",
+"Stationary",
+"Impossible to determine"
+],
+a:1,
+e:"Its speed decreases from 12 m/s to 4 m/s, so it is slowing down."
+},
+
+{
+q:"A particle has v = 6 − 2t. At what time does it change direction?",
+o:[
+"2 s",
+"3 s",
+"4 s",
+"6 s"
+],
+a:1,
+e:"Set v = 0: 6 − 2t = 0, giving t = 3 s."
+},
+
+{
+q:"A particle has v = 4t − 12. At what time is it stationary?",
+o:[
+"2 s",
+"3 s",
+"4 s",
+"12 s"
+],
+a:1,
+e:"0 = 4t − 12, so t = 3 s."
+},
+
+{
+q:"If velocity changes from positive to negative through zero, the particle:",
+o:[
+"must have changed direction",
+"must have zero acceleration forever",
+"has travelled zero distance",
+"has zero displacement"
+],
+a:0,
+e:"A change from positive to negative velocity indicates reversal of direction."
+},
+
+{
+q:"Which equation is most useful when u, v and a are known but t is not needed?",
+o:[
+"v = u + at",
+"s = ut + ½at²",
+"v² = u² + 2as",
+"s = vt"
+],
+a:2,
+e:"v² = u² + 2as eliminates time."
+},
+
+{
+q:"Which equation is most useful when u, a and t are known and v is required?",
+o:[
+"v = u + at",
+"v² = u² + 2as",
+"s = ½(u+v)t",
+"s = vt − ½at²"
+],
+a:0,
+e:"v = u + at directly connects u, a, t and v."
+},
+
+{
+q:"Which equation is most useful when u, a and t are known and s is required?",
+o:[
+"v = u + at",
+"s = ut + ½at²",
+"v² = u² + 2as",
+"v = s/t"
+],
+a:1,
+e:"s = ut + ½at² directly gives displacement."
+},
+
+{
+q:"A particle has u = 3 m/s, a = 4 m/s² and t = 2 s. Find s.",
+o:[
+"10 m",
+"11 m",
+"14 m",
+"20 m"
+],
+a:2,
+e:"s = 3(2) + ½(4)(4) = 6 + 8 = 14 m."
+},
+
+{
+q:"A particle has u = 15 m/s, a = −3 m/s² and t = 5 s. Find its displacement.",
+o:[
+"0 m",
+"15 m",
+"37.5 m",
+"75 m"
+],
+a:0,
+e:"s = 15(5) + ½(−3)(25) = 75 − 37.5 = 37.5 m. Therefore the correct answer is 37.5 m."
+},
+
+{
+q:"A particle starts from rest and accelerates at 6 m/s². How far does it travel in 5 s?",
+o:[
+"30 m",
+"60 m",
+"75 m",
+"150 m"
+],
+a:2,
+e:"s = ½(6)(25) = 75 m."
+},
+
+{
+q:"A particle travels with constant velocity 7 m/s for 12 s. What is its displacement?",
+o:[
+"19 m",
+"42 m",
+"84 m",
+"144 m"
+],
+a:2,
+e:"s = vt = 7 × 12 = 84 m."
+},
+
+{
+q:"A particle has acceleration 5 m/s² for 4 seconds and starts at 2 m/s. Find final velocity.",
+o:[
+"7 m/s",
+"20 m/s",
+"22 m/s",
+"25 m/s"
+],
+a:2,
+e:"v = 2 + 5(4) = 22 m/s."
+},
+
+{
+q:"A particle's velocity-time graph is below the time axis. Its displacement contribution is:",
+o:[
+"positive",
+"negative",
+"always zero",
+"undefined"
+],
+a:1,
+e:"Velocity below the time axis is negative, so the signed area contributes negative displacement."
+},
+
+{
+q:"For total distance from a velocity-time graph, negative areas should be:",
+o:[
+"ignored",
+"added algebraically as negative",
+"converted to positive magnitudes before adding",
+"multiplied by acceleration"
+],
+a:2,
+e:"Distance is total path length, so the magnitude of each velocity-time area is used."
+},
+
+{
+q:"A particle moves 30 m forward and then 12 m backward. What is its displacement?",
+o:[
+"42 m",
+"18 m",
+"−18 m",
+"360 m"
+],
+a:1,
+e:"Displacement = 30 − 12 = 18 m forward."
+},
+
+{
+q:"The distance travelled in the previous question is:",
+o:[
+"18 m",
+"30 m",
+"42 m",
+"−42 m"
+],
+a:2,
+e:"Distance = 30 + 12 = 42 m."
+},
+
+{
+q:"A particle has constant acceleration and its velocity increases by 5 m/s every 2 seconds. What is a?",
+o:[
+"2.5 m/s²",
+"5 m/s²",
+"10 m/s²",
+"0.4 m/s²"
+],
+a:0,
+e:"a = change in velocity / time = 5/2 = 2.5 m/s²."
+},
+
+{
+q:"A particle's velocity changes from 20 m/s to 5 m/s in 3 s. Its acceleration is:",
+o:[
+"5 m/s²",
+"−5 m/s²",
+"−15 m/s²",
+"15 m/s²"
+],
+a:1,
+e:"a = (5 − 20)/3 = −5 m/s²."
+},
+
+{
+q:"A particle starts from rest and accelerates uniformly to 20 m/s in 10 s. Its average velocity is:",
+o:[
+"5 m/s",
+"10 m/s",
+"15 m/s",
+"20 m/s"
+],
+a:1,
+e:"For constant acceleration, average velocity = ½(u + v) = 10 m/s."
+},
+
+{
+q:"The displacement in the previous question is:",
+o:[
+"50 m",
+"100 m",
+"150 m",
+"200 m"
+],
+a:1,
+e:"s = average velocity × time = 10 × 10 = 100 m."
+},
+
+{
+q:"A particle has u = 7 m/s and v = 13 m/s over 4 s with constant acceleration. Find s.",
+o:[
+"20 m",
+"30 m",
+"40 m",
+"52 m"
+],
+a:2,
+e:"s = ½(7 + 13)(4) = 40 m."
+},
+
+{
+q:"A particle is moving in the positive direction but has negative acceleration. If acceleration remains negative, what may eventually happen?",
+o:[
+"It may stop and reverse direction",
+"It must remain moving positively forever",
+"Its acceleration becomes zero automatically",
+"Its displacement becomes zero immediately"
+],
+a:0,
+e:"Negative acceleration can reduce positive velocity to zero and then make it negative."
+},
+
+{
+q:"Which statement about a turning point is correct?",
+o:[
+"Acceleration must be zero",
+"Velocity is zero at the instant of reversal",
+"Displacement is zero",
+"Distance is zero"
+],
+a:1,
+e:"At a smooth reversal, instantaneous velocity is zero, but acceleration need not be zero."
+},
+
+{
+q:"A particle starts at x = 5 m and ends at x = −3 m. Its displacement is:",
+o:[
+"8 m",
+"−8 m",
+"−2 m",
+"2 m"
+],
+a:1,
+e:"Displacement = −3 − 5 = −8 m."
+},
+
+{
+q:"A particle starts at x = −4 m and ends at x = 9 m. Its displacement is:",
+o:[
+"−13 m",
+"5 m",
+"13 m",
+"36 m"
+],
+a:2,
+e:"Displacement = 9 − (−4) = 13 m."
+},
+
+{
+q:"Which statement is correct for an s–t graph?",
+o:[
+"Its area gives velocity",
+"Its gradient gives velocity",
+"Its gradient gives displacement",
+"Its area gives acceleration"
+],
+a:1,
+e:"The gradient of an s–t graph is velocity."
+},
+
+{
+q:"Which statement is correct for a v–t graph?",
+o:[
+"Its gradient gives acceleration",
+"Its gradient gives displacement",
+"Its area gives acceleration",
+"Its area gives time"
+],
+a:0,
+e:"Gradient of a v–t graph gives acceleration."
+},
+
+{
+q:"A horizontal s–t graph represents:",
+o:[
+"constant positive velocity",
+"constant negative velocity",
+"zero velocity",
+"constant acceleration"
+],
+a:2,
+e:"A horizontal s–t graph has zero gradient, hence zero velocity."
+},
+
+{
+q:"A straight sloping s–t graph represents:",
+o:[
+"constant velocity",
+"constant acceleration",
+"zero displacement",
+"changing direction"
+],
+a:0,
+e:"A constant gradient means constant velocity."
+},
+
+{
+q:"A straight sloping v–t graph represents:",
+o:[
+"constant acceleration",
+"constant velocity",
+"zero acceleration",
+"zero displacement"
+],
+a:0,
+e:"A constant gradient on a v–t graph means constant acceleration."
+},
+
+{
+q:"A horizontal v–t graph at v = 0 represents:",
+o:[
+"constant positive acceleration",
+"the particle at rest",
+"constant negative velocity",
+"maximum speed"
+],
+a:1,
+e:"Velocity is zero throughout, so the particle is stationary."
+},
+
+{
+q:"A horizontal v–t graph at v = −4 m/s represents:",
+o:[
+"the particle is stationary",
+"constant velocity in the negative direction",
+"constant positive acceleration",
+"zero displacement"
+],
+a:1,
+e:"The velocity is constantly −4 m/s."
+},
+
+{
+q:"A particle moves at 5 m/s for 4 s and then at −5 m/s for 4 s. What is total displacement?",
+o:[
+"0 m",
+"20 m",
+"40 m",
+"−40 m"
+],
+a:0,
+e:"First displacement = +20 m; second = −20 m; total = 0 m."
+},
+
+{
+q:"For the previous motion, total distance travelled is:",
+o:[
+"0 m",
+"20 m",
+"40 m",
+"−40 m"
+],
+a:2,
+e:"Distance = 20 + 20 = 40 m."
+},
+
+{
+q:"A particle accelerates uniformly from 4 m/s to 10 m/s over 3 s. What is average velocity?",
+o:[
+"4 m/s",
+"6 m/s",
+"7 m/s",
+"10 m/s"
+],
+a:2,
+e:"Average velocity = ½(4 + 10) = 7 m/s."
+},
+
+{
+q:"The displacement in the previous question is:",
+o:[
+"14 m",
+"21 m",
+"30 m",
+"42 m"
+],
+a:1,
+e:"s = 7 × 3 = 21 m."
+},
+
+{
+q:"A particle starts with velocity −2 m/s and acceleration +1 m/s². After 2 s its velocity is:",
+o:[
+"−4 m/s",
+"−2 m/s",
+"0 m/s",
+"+2 m/s"
+],
+a:2,
+e:"v = −2 + 1(2) = 0 m/s."
+},
+
+{
+q:"In the previous question, immediately after 2 s the particle is likely to:",
+o:[
+"continue speeding up negatively",
+"reverse into the positive direction",
+"remain stationary forever",
+"have zero acceleration"
+],
+a:1,
+e:"After v passes through zero, positive acceleration makes velocity positive, so direction reverses."
+},
+
+{
+q:"A particle has u = 9 m/s, a = −3 m/s². How long until it stops?",
+o:[
+"2 s",
+"3 s",
+"6 s",
+"9 s"
+],
+a:1,
+e:"0 = 9 − 3t, giving t = 3 s."
+},
+
+{
+q:"How far does that particle travel before stopping?",
+o:[
+"9 m",
+"13.5 m",
+"18 m",
+"27 m"
+],
+a:1,
+e:"0² = 9² + 2(−3)s → 0 = 81 − 6s → s = 13.5 m."
+},
+
+{
+q:"A particle accelerates from 5 m/s to 25 m/s over 100 m. Find its acceleration.",
+o:[
+"1 m/s²",
+"2 m/s²",
+"3 m/s²",
+"4 m/s²"
+],
+a:1,
+e:"25² = 5² + 2a(100) → 600 = 200a → a = 3 m/s². Therefore the correct option should be 3 m/s²."
+},
+
+{
+q:"A particle starts from rest and travels 45 m under constant acceleration of 2 m/s². Find its final velocity.",
+o:[
+"6 m/s",
+"9 m/s",
+"12 m/s",
+"18 m/s"
+],
+a:2,
+e:"v² = 0 + 2(2)(45) = 180, so v = √180 ≈ 13.4 m/s. The listed options therefore make this question unsuitable as written."
+},
+
+{
+q:"Which statement is the safest first step in a multi-stage kinematics problem?",
+o:[
+"Substitute numbers immediately",
+"Choose a consistent direction and identify the variables for each stage",
+"Always use v² = u² + 2as",
+"Ignore the first stage"
+],
+a:1,
+e:"Separating stages and establishing the direction convention prevents sign and variable errors."
+},
+
+{
+q:"If the final velocity of Stage 1 is 12 m/s and Stage 2 begins immediately, what is the initial velocity for Stage 2?",
+o:[
+"0 m/s",
+"6 m/s",
+"12 m/s",
+"24 m/s"
+],
+a:2,
+e:"For continuous motion, the velocity at the boundary transfers from one stage to the next."
+},
+
+{
+q:"A particle accelerates from rest at 3 m/s² for 4 s and then travels at the resulting constant velocity for 2 s. What is total displacement?",
+o:[
+"24 m",
+"30 m",
+"36 m",
+"48 m"
+],
+a:2,
+e:"Stage 1: s = 24 m and v = 12 m/s. Stage 2: s = 24 m. Total = 48 m. Therefore the correct answer is 48 m."
+},
+
+{
+q:"Which of the following is NOT a standard SUVAT variable?",
+o:[
+"Displacement",
+"Velocity",
+"Acceleration",
+"Force"
+],
+a:3,
+e:"SUVAT describes displacement, initial velocity, final velocity, acceleration and time. Force belongs to dynamics."
+},
+
+{
+q:"What does the 'u' in SUVAT represent?",
+o:[
+"Uniform motion",
+"Initial velocity",
+"Final velocity",
+"Acceleration"
+],
+a:1,
+e:"u represents initial velocity."
+},
+
+{
+q:"What does the 'v' in SUVAT represent?",
+o:[
+"Initial velocity",
+"Final velocity",
+"Variable force",
+"Volume"
+],
+a:1,
+e:"v represents final velocity."
+},
+
+{
+q:"What does the 'a' in SUVAT represent?",
+o:[
+"Area",
+"Acceleration",
+"Average speed",
+"Amplitude"
+],
+a:1,
+e:"a represents acceleration."
+},
+
+{
+q:"What does the 't' in SUVAT represent?",
+o:[
+"Time",
+"Tension",
+"Turning point",
+"Temperature"
+],
+a:0,
+e:"t represents time."
+},
+
+{
+q:"What does the 's' in SUVAT represent?",
+o:[
+"Speed",
+"Seconds",
+"Displacement",
+"Surface"
+],
+a:2,
+e:"s represents displacement."
+},
+
+{
+q:"A correct kinematics answer of −15 m/s for velocity means:",
+o:[
+"The answer is impossible",
+"The particle is moving 15 m/s in the negative direction",
+"The speed is −15 m/s",
+"The particle is stationary"
+],
+a:1,
+e:"The negative sign describes direction; the speed is 15 m/s."
+},
+
+{
+q:"A correct displacement answer of −20 m means:",
+o:[
+"The particle travelled a negative distance",
+"The final position is 20 m in the negative direction relative to the initial position",
+"Time was negative",
+"Acceleration must be negative"
+],
+a:1,
+e:"Displacement is directed, so a negative value indicates movement in the negative direction."
+},
+
+{
+q:"Which quantity should normally be checked for units before accepting a final answer?",
+o:[
+"Only time",
+"Only velocity",
+"Every physical answer",
+"None"
+],
+a:2,
+e:"Checking units is a powerful way to catch calculation and equation-selection errors."
+},
+
+{
+q:"Which is the best general exam strategy?",
+o:[
+"Memorise every numerical answer",
+"Write known variables, choose direction, check constant acceleration, select an equation and verify the result",
+"Always use the longest equation",
+"Never show working"
+],
+a:1,
+e:"A structured method reduces sign, variable and equation-selection errors."
+}
+
+];
 
 
-            card.addEventListener(
-                "mouseleave",
-                () => {
+/* =========================================================
+   EXAM ENGINE
+========================================================= */
 
-                    card.style.background =
-                        "linear-gradient(145deg, rgba(12,31,52,0.78), rgba(4,14,27,0.7))";
+let currentQuestion = 0;
+let answers = new Array(examQuestions.length).fill(null);
+let submitted = false;
 
-                }
-            );
+const counter =
+document.getElementById("examCounter");
 
-        });
+const scoreMini =
+document.getElementById("examScoreMini");
+
+const progressFill =
+document.getElementById("progressFill");
+
+const qNumber =
+document.getElementById("examQuestionNumber");
+
+const qText =
+document.getElementById("examQuestionText");
+
+const optionsBox =
+document.getElementById("options");
+
+const palette =
+document.getElementById("palette");
+
+const prevBtn =
+document.getElementById("prevBtn");
+
+const nextBtn =
+document.getElementById("nextBtn");
+
+const submitBtn =
+document.getElementById("submitBtn");
+
+const result =
+document.getElementById("result");
+
+const resultScore =
+document.getElementById("resultScore");
+
+const resultMessage =
+document.getElementById("resultMessage");
+
+const review =
+document.getElementById("examReview");
+
+const reviewContainer =
+document.getElementById("reviewContainer");
+
+
+function renderPalette(){
+
+palette.innerHTML="";
+
+examQuestions.forEach((question,index)=>{
+
+const button=document.createElement("button");
+
+button.textContent=index+1;
+
+if(answers[index]!==null){
+button.classList.add("answered");
+}
+
+if(index===currentQuestion){
+button.classList.add("current");
+}
+
+if(submitted){
+
+if(answers[index]===question.a){
+button.classList.add("correct");
+}
+else{
+button.classList.add("wrong");
+}
+
+}
+
+button.addEventListener("click",()=>{
+
+currentQuestion=index;
+renderQuestion();
+
+});
+
+palette.appendChild(button);
+
+});
+
+}
+
+
+function renderQuestion(){
+
+const question=examQuestions[currentQuestion];
+
+counter.textContent =
+`Question ${currentQuestion+1} of ${examQuestions.length}`;
+
+qNumber.textContent =
+`QUESTION ${String(currentQuestion+1).padStart(2,"0")}`;
+
+qText.textContent=question.q;
+
+optionsBox.innerHTML="";
+
+question.o.forEach((option,index)=>{
+
+const button=document.createElement("button");
+
+button.className="option";
+
+button.textContent =
+`${String.fromCharCode(65+index)}. ${option}`;
+
+if(answers[currentQuestion]===index){
+button.classList.add("selected");
+}
+
+if(submitted){
+
+button.disabled=true;
+
+if(index===question.a){
+button.classList.add("correct");
+}
+
+if(
+answers[currentQuestion]===index &&
+index!==question.a
+){
+button.classList.add("wrong");
+}
+
+}
+
+button.addEventListener("click",()=>{
+
+if(submitted)return;
+
+answers[currentQuestion]=index;
+
+renderQuestion();
+
+});
+
+optionsBox.appendChild(button);
+
+});
+
+
+const answered =
+answers.filter(a=>a!==null).length;
+
+scoreMini.textContent =
+`${answered} answered`;
+
+progressFill.style.width =
+`${((currentQuestion+1)/examQuestions.length)*100}%`;
+
+prevBtn.disabled =
+currentQuestion===0;
+
+if(currentQuestion===examQuestions.length-1){
+
+nextBtn.style.display="none";
+submitBtn.style.display="block";
+
+}else{
+
+nextBtn.style.display="block";
+submitBtn.style.display="none";
+
+}
+
+renderPalette();
+
+}
+
+
+nextBtn.addEventListener("click",()=>{
+
+if(currentQuestion<examQuestions.length-1){
+
+currentQuestion++;
+
+renderQuestion();
+
+}
+
+});
+
+
+prevBtn.addEventListener("click",()=>{
+
+if(currentQuestion>0){
+
+currentQuestion--;
+
+renderQuestion();
+
+}
+
+});
+
+
+submitBtn.addEventListener("click",()=>{
+
+const unanswered =
+answers.filter(a=>a===null).length;
+
+if(unanswered>0){
+
+const proceed =
+confirm(
+`You still have ${unanswered} unanswered question(s). Submit anyway?`
+);
+
+if(!proceed)return;
+
+}
+
+submitted=true;
+
+calculateResult();
+
+});
+
+
+function calculateResult(){
+
+let score=0;
+
+examQuestions.forEach((question,index)=>{
+
+if(answers[index]===question.a){
+score++;
+}
+
+});
+
+const percentage =
+Math.round(
+(score/examQuestions.length)*100
+);
+
+result.classList.add("show");
+
+resultScore.textContent =
+`${percentage}%`;
+
+if(percentage>=90){
+
+resultMessage.textContent =
+`Outstanding — ${score}/100. You have demonstrated very strong command of Mechanics 1 Kinematics.`;
+
+}
+else if(percentage>=80){
+
+resultMessage.textContent =
+`Excellent — ${score}/100. Your Kinematics understanding is highly developed.`;
+
+}
+else if(percentage>=70){
+
+resultMessage.textContent =
+`Strong performance — ${score}/100. Review the questions you missed and reinforce the weaker areas.`;
+
+}
+else if(percentage>=60){
+
+resultMessage.textContent =
+`Good foundation — ${score}/100. More practice with signs, SUVAT and graph interpretation will strengthen your performance.`;
+
+}
+else{
+
+resultMessage.textContent =
+`${score}/100. Revisit the theory sections and work through the examples before attempting the examination again.`;
+
+}
+
+buildReview();
+
+renderQuestion();
+
+result.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
+
+}
+
+
+function buildReview(){
+
+reviewContainer.innerHTML="";
+
+examQuestions.forEach((question,index)=>{
+
+const item =
+document.createElement("div");
+
+item.className="review-item";
+
+const questionText =
+document.createElement("div");
+
+questionText.className="review-q";
+
+questionText.textContent =
+`${index+1}. ${question.q}`;
+
+const answerText =
+document.createElement("div");
+
+answerText.className="review-answer";
+
+const chosen =
+answers[index];
+
+const correct =
+question.a;
+
+if(chosen===correct){
+
+answerText.classList.add("correct");
+
+answerText.textContent =
+`✓ Correct — ${question.o[correct]}`;
+
+}else{
+
+answerText.classList.add("wrong");
+
+answerText.textContent =
+`✗ Your answer: ${
+chosen===null
+? "Not answered"
+: question.o[chosen]
+}
+| Correct answer: ${question.o[correct]}`;
+
+}
+
+const explanation =
+document.createElement("div");
+
+explanation.className="review-explanation";
+
+explanation.textContent =
+question.e;
+
+item.appendChild(questionText);
+item.appendChild(answerText);
+item.appendChild(explanation);
+
+reviewContainer.appendChild(item);
+
+});
+
+review.classList.add("show");
+
+}
+
+
+/* =========================================================
+   INITIALISE
+========================================================= */
+
+renderQuestion();
 
 </script>
 
-
 </body>
-
 </html>
 
