@@ -2,1055 +2,1763 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Dynamics of a Particle | IAL ATLAS</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg: #020713;
-            --bg2: #061225;
-            --panel: rgba(8, 22, 43, 0.72);
-            --panel-soft: rgba(10, 31, 57, 0.52);
-            --cyan: #55d9ff;
-            --cyan-soft: #8de7ff;
-            --blue: #438dff;
-            --text: #f2f8ff;
-            --muted: #91a8c4;
-            --line: rgba(104, 211, 255, 0.16);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "Inter", sans-serif;
-            background:
-                radial-gradient(circle at 15% 15%, rgba(40, 139, 255, 0.12), transparent 28%),
-                radial-gradient(circle at 85% 20%, rgba(0, 219, 255, 0.09), transparent 25%),
-                linear-gradient(145deg, #01050d, #031022 55%, #01050d);
-            color: var(--text);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.35;
-            background-image:
-                linear-gradient(rgba(83, 187, 255, 0.035) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(83, 187, 255, 0.035) 1px, transparent 1px);
-            background-size: 48px 48px;
-        }
-
-        a {
-            color: inherit;
-        }
-
-        /* =========================
-           HEADER
-        ========================== */
-
-        header {
-            position: relative;
-            z-index: 20;
-            min-height: 76px;
-            padding: 18px 7%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(123, 212, 255, 0.12);
-            background: rgba(2, 9, 21, 0.68);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-        }
-
-        .logo {
-            text-decoration: none;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 25px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .logo::after {
-            content: ".";
-            color: var(--cyan);
-            text-shadow: 0 0 16px var(--cyan);
-        }
-
-        .header-link {
-            text-decoration: none;
-            color: #ccecff;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 9px 15px;
-            border: 1px solid rgba(110, 213, 255, 0.16);
-            border-radius: 10px;
-            background: rgba(15, 44, 72, 0.35);
-            transition: 0.3s ease;
-        }
-
-        .header-link:hover {
-            color: white;
-            border-color: rgba(85, 217, 255, 0.55);
-            box-shadow: 0 0 22px rgba(65, 197, 255, 0.14);
-            transform: translateY(-2px);
-        }
-
-        /* =========================
-           HERO
-        ========================== */
-
-        .hero {
-            position: relative;
-            min-height: 690px;
-            padding: 95px 20px 110px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .hero-glow {
-            position: absolute;
-            width: 650px;
-            height: 650px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(49, 164, 255, 0.12), transparent 68%);
-            filter: blur(5px);
-            pointer-events: none;
-        }
-
-        .hero-grid {
-            position: absolute;
-            inset: 0;
-            opacity: 0.22;
-            background-image:
-                linear-gradient(rgba(74, 192, 255, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(74, 192, 255, 0.08) 1px, transparent 1px);
-            background-size: 70px 70px;
-            mask-image: linear-gradient(to bottom, black, transparent 90%);
-            -webkit-mask-image: linear-gradient(to bottom, black, transparent 90%);
-        }
-
-        .hero-label {
-            position: relative;
-            z-index: 3;
-            margin-bottom: 17px;
-            color: var(--cyan);
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            text-shadow: 0 0 18px rgba(85, 217, 255, 0.5);
-        }
-
-        .hero h1 {
-            position: relative;
-            z-index: 3;
-            max-width: 950px;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(48px, 7vw, 86px);
-            line-height: 0.98;
-            letter-spacing: -3px;
-            font-weight: 700;
-            background: linear-gradient(120deg, #ffffff, #c9efff 48%, #66d9ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 35px rgba(68, 190, 255, 0.12);
-        }
-
-        .hero-description {
-            position: relative;
-            z-index: 3;
-            max-width: 700px;
-            margin-top: 25px;
-            color: #9db5d0;
-            font-size: 17px;
-        }
-
-        /* =========================
-           FORCE VISUAL
-        ========================== */
-
-        .force-system {
-            position: relative;
-            z-index: 3;
-            width: min(900px, 94vw);
-            height: 270px;
-            margin-top: 55px;
-        }
-
-        .force-track {
-            position: absolute;
-            left: 7%;
-            right: 7%;
-            bottom: 42px;
-            height: 2px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(85, 217, 255, 0.4),
-                rgba(85, 217, 255, 0.85),
-                rgba(85, 217, 255, 0.4),
-                transparent
-            );
-            box-shadow: 0 0 18px rgba(85, 217, 255, 0.4);
-        }
-
-        .force-track::before,
-        .force-track::after {
-            content: "";
-            position: absolute;
-            top: -4px;
-            width: 10px;
-            height: 10px;
-            border: 1px solid var(--cyan);
-            border-radius: 50%;
-            box-shadow: 0 0 14px rgba(85, 217, 255, 0.8);
-        }
-
-        .force-track::before {
-            left: 0;
-        }
-
-        .force-track::after {
-            right: 0;
-        }
-
-        .particle {
-            position: absolute;
-            left: 50%;
-            bottom: 43px;
-            width: 74px;
-            height: 74px;
-            transform: translateX(-50%);
-            border: 1px solid rgba(124, 225, 255, 0.75);
-            border-radius: 16px;
-            background:
-                linear-gradient(145deg, rgba(85, 217, 255, 0.18), rgba(20, 70, 110, 0.25));
-            box-shadow:
-                0 0 25px rgba(45, 194, 255, 0.3),
-                inset 0 0 30px rgba(52, 166, 255, 0.08);
-            backdrop-filter: blur(10px);
-            animation: particleFloat 3s ease-in-out infinite;
-        }
-
-        .particle::before {
-            content: "m";
-            position: absolute;
-            inset: 0;
-            display: grid;
-            place-items: center;
-            color: white;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 25px;
-            font-weight: 600;
-        }
-
-        .particle::after {
-            content: "";
-            position: absolute;
-            inset: -9px;
-            border: 1px solid rgba(85, 217, 255, 0.18);
-            border-radius: 20px;
-            animation: particleRing 2.6s linear infinite;
-        }
-
-        .force {
-            position: absolute;
-            height: 2px;
-            transform-origin: left center;
-            background: linear-gradient(90deg, var(--cyan), transparent);
-            box-shadow: 0 0 13px rgba(85, 217, 255, 0.7);
-        }
-
-        .force::after {
-            content: "";
-            position: absolute;
-            right: 0;
-            top: 50%;
-            width: 10px;
-            height: 10px;
-            border-top: 2px solid var(--cyan);
-            border-right: 2px solid var(--cyan);
-            transform: translateY(-50%) rotate(45deg);
-        }
-
-        .force-right {
-            left: 54%;
-            bottom: 80px;
-            width: 180px;
-            animation: forcePulse 2s ease-in-out infinite;
-        }
-
-        .force-left {
-            right: 54%;
-            bottom: 112px;
-            width: 150px;
-            transform: rotate(180deg);
-            animation: forcePulseReverse 2.3s ease-in-out infinite;
-        }
-
-        .force-up {
-            left: 51%;
-            bottom: 114px;
-            width: 100px;
-            transform: rotate(-90deg);
-            animation: forceUp 2.5s ease-in-out infinite;
-        }
-
-        .force-down {
-            left: 49%;
-            bottom: 40px;
-            width: 110px;
-            transform: rotate(90deg);
-            animation: forceDown 2.7s ease-in-out infinite;
-        }
-
-        .force-label {
-            position: absolute;
-            color: #a9eaff;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-shadow: 0 0 12px rgba(85, 217, 255, 0.8);
-        }
-
-        .label-f {
-            left: 75%;
-            bottom: 96px;
-        }
-
-        .label-r {
-            left: 19%;
-            bottom: 130px;
-        }
-
-        .label-n {
-            left: 57%;
-            bottom: 170px;
-        }
-
-        .label-w {
-            left: 56%;
-            bottom: 9px;
-        }
-
-        @keyframes particleFloat {
-            0%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            50% {
-                transform: translateX(-50%) translateY(-8px);
-            }
-        }
-
-        @keyframes particleRing {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes forcePulse {
-            0%, 100% {
-                opacity: 0.35;
-                transform: scaleX(0.8);
-                transform-origin: left;
-            }
-            50% {
-                opacity: 1;
-                transform: scaleX(1);
-            }
-        }
-
-        @keyframes forcePulseReverse {
-            0%, 100% {
-                opacity: 0.3;
-                transform: rotate(180deg) scaleX(0.8);
-                transform-origin: left;
-            }
-            50% {
-                opacity: 1;
-                transform: rotate(180deg) scaleX(1);
-            }
-        }
-
-        @keyframes forceUp {
-            0%, 100% {
-                opacity: 0.3;
-                transform: rotate(-90deg) scaleX(0.75);
-            }
-            50% {
-                opacity: 1;
-                transform: rotate(-90deg) scaleX(1);
-            }
-        }
-
-        @keyframes forceDown {
-            0%, 100% {
-                opacity: 0.3;
-                transform: rotate(90deg) scaleX(0.75);
-            }
-            50% {
-                opacity: 1;
-                transform: rotate(90deg) scaleX(1);
-            }
-        }
-
-        /* =========================
-           DATA STRIP
-        ========================== */
-
-        .data-strip {
-            position: relative;
-            z-index: 4;
-            width: min(850px, 92vw);
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            margin-top: 20px;
-            border: 1px solid var(--line);
-            border-radius: 16px;
-            overflow: hidden;
-            background: rgba(7, 22, 43, 0.55);
-            backdrop-filter: blur(15px);
-            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
-        }
-
-        .data-cell {
-            padding: 17px 12px;
-            border-right: 1px solid var(--line);
-        }
-
-        .data-cell:last-child {
-            border-right: none;
-        }
-
-        .data-value {
-            display: block;
-            color: white;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        .data-name {
-            display: block;
-            margin-top: 3px;
-            color: #6f8ca9;
-            font-size: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* =========================
-           CONTENT
-        ========================== */
-
-        .container {
-            position: relative;
-            z-index: 2;
-            width: min(1000px, 92vw);
-            margin: auto;
-            padding: 80px 0 40px;
-        }
-
-        .lesson {
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 30px;
-            padding: 35px;
-            border: 1px solid rgba(118, 213, 255, 0.13);
-            border-radius: 22px;
-            background:
-                linear-gradient(145deg, rgba(12, 34, 62, 0.72), rgba(4, 15, 31, 0.72));
-            box-shadow:
-                0 20px 55px rgba(0, 0, 0, 0.22),
-                inset 0 1px rgba(255, 255, 255, 0.025);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            opacity: 0;
-            transform: translateY(35px);
-            transition:
-                opacity 0.7s ease,
-                transform 0.7s ease,
-                border-color 0.35s ease,
-                box-shadow 0.35s ease;
-        }
-
-        .lesson.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .lesson::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -120%;
-            width: 80%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(112, 225, 255, 0.8), transparent);
-            animation: scanLine 5s linear infinite;
-        }
-
-        .lesson:hover {
-            border-color: rgba(85, 217, 255, 0.3);
-            box-shadow:
-                0 25px 65px rgba(0, 0, 0, 0.3),
-                0 0 30px rgba(42, 171, 255, 0.05),
-                inset 0 1px rgba(255, 255, 255, 0.035);
-        }
-
-        @keyframes scanLine {
-            0% {
-                left: -120%;
-            }
-            55%, 100% {
-                left: 130%;
-            }
-        }
-
-        .lesson-number {
-            margin-bottom: 7px;
-            color: var(--cyan);
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 3px;
-        }
-
-        .lesson h2 {
-            margin-bottom: 18px;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 30px;
-            line-height: 1.2;
-            color: #f4fbff;
-        }
-
-        .lesson p {
-            margin-bottom: 15px;
-            color: var(--muted);
-        }
-
-        .lesson ul {
-            padding-left: 25px;
-            color: var(--muted);
-        }
-
-        .lesson li {
-            margin-bottom: 9px;
-        }
-
-        .definition {
-            position: relative;
-            margin: 22px 0;
-            padding: 20px 22px;
-            border: 1px solid rgba(83, 209, 255, 0.15);
-            border-left: 3px solid var(--cyan);
-            border-radius: 13px;
-            background: rgba(44, 148, 205, 0.07);
-            box-shadow: inset 0 0 25px rgba(52, 185, 255, 0.025);
-        }
-
-        .definition strong {
-            display: block;
-            margin-bottom: 4px;
-            color: #dff8ff;
-            font-family: "Space Grotesk", sans-serif;
-        }
-
-        .definition p {
-            margin-bottom: 0;
-        }
-
-        .formula {
-            position: relative;
-            overflow: hidden;
-            margin: 20px 0;
-            padding: 19px;
-            border: 1px solid rgba(87, 210, 255, 0.18);
-            border-radius: 13px;
-            background:
-                linear-gradient(100deg, rgba(9, 30, 56, 0.95), rgba(4, 16, 33, 0.95));
-            color: #f3fbff;
-            text-align: center;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 21px;
-            font-weight: 600;
-            letter-spacing: 0.4px;
-            box-shadow:
-                inset 0 0 30px rgba(56, 190, 255, 0.035),
-                0 0 22px rgba(39, 169, 255, 0.035);
-        }
-
-        .formula::after {
-            content: "";
-            position: absolute;
-            left: -30%;
-            top: 0;
-            width: 20%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(137, 232, 255, 0.12), transparent);
-            transform: skewX(-20deg);
-            animation: formulaSweep 4.5s linear infinite;
-        }
-
-        @keyframes formulaSweep {
-            0% {
-                left: -30%;
-            }
-            65%, 100% {
-                left: 120%;
-            }
-        }
-
-        .example {
-            margin-top: 22px;
-            padding: 25px;
-            border: 1px solid rgba(109, 209, 255, 0.13);
-            border-radius: 16px;
-            background: rgba(5, 18, 36, 0.6);
-        }
-
-        .example-title {
-            margin-bottom: 12px !important;
-            color: var(--cyan) !important;
-            font-family: "Space Grotesk", sans-serif;
-            font-weight: 700;
-        }
-
-        .solution {
-            margin-top: 18px;
-            padding: 20px;
-            border: 1px solid rgba(108, 211, 255, 0.11);
-            border-radius: 12px;
-            background: rgba(13, 36, 61, 0.42);
-        }
-
-        .solution p {
-            margin-bottom: 10px;
-        }
-
-        .question {
-            padding: 21px 0;
-            border-bottom: 1px solid rgba(116, 193, 232, 0.1);
-        }
-
-        .question:last-child {
-            border-bottom: none;
-        }
-
-        .question > strong {
-            color: #e7f6ff;
-            font-weight: 600;
-        }
-
-        details {
-            margin-top: 12px;
-        }
-
-        summary {
-            display: inline-block;
-            cursor: pointer;
-            color: var(--cyan);
-            font-weight: 600;
-            transition: 0.25s ease;
-        }
-
-        summary:hover {
-            color: white;
-            text-shadow: 0 0 12px rgba(85, 217, 255, 0.5);
-        }
-
-        details p {
-            margin-top: 10px;
-        }
-
-        /* =========================
-           NAVIGATION
-        ========================== */
-
-        .navigation {
-            position: relative;
-            z-index: 3;
-            width: min(1000px, 92vw);
-            margin: 0 auto;
-            padding: 20px 0 75px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .button {
-            position: relative;
-            overflow: hidden;
-            display: inline-block;
-            padding: 13px 21px;
-            border: 1px solid rgba(87, 212, 255, 0.24);
-            border-radius: 11px;
-            background: rgba(16, 50, 78, 0.45);
-            color: #dff7ff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            backdrop-filter: blur(10px);
-            transition: 0.3s ease;
-        }
-
-        .button::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(100deg, transparent, rgba(105, 223, 255, 0.08), transparent);
-            transform: translateX(-100%);
-            transition: 0.5s ease;
-        }
-
-        .button:hover {
-            transform: translateY(-3px);
-            border-color: rgba(85, 217, 255, 0.6);
-            box-shadow: 0 0 25px rgba(40, 178, 255, 0.12);
-            color: white;
-        }
-
-        .button:hover::before {
-            transform: translateX(100%);
-        }
-
-        .button.primary {
-            background: linear-gradient(135deg, rgba(39, 146, 218, 0.35), rgba(25, 77, 130, 0.35));
-        }
-
-        /* =========================
-           FOOTER
-        ========================== */
-
-        footer {
-            position: relative;
-            z-index: 3;
-            padding: 30px 20px;
-            border-top: 1px solid rgba(104, 211, 255, 0.1);
-            background: rgba(1, 7, 17, 0.88);
-            color: #6f849e;
-            text-align: center;
-            font-size: 13px;
-        }
-
-        /* =========================
-           PARTICLES
-        ========================== */
-
-        .particles {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .particle-dot {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            border-radius: 50%;
-            background: #75dcff;
-            box-shadow: 0 0 12px rgba(75, 211, 255, 0.8);
-            opacity: 0.5;
-            animation: drift linear infinite;
-        }
-
-        .particle-dot:nth-child(1) {
-            left: 9%;
-            top: 21%;
-            animation-duration: 9s;
-        }
-
-        .particle-dot:nth-child(2) {
-            left: 21%;
-            top: 68%;
-            animation-duration: 13s;
-        }
-
-        .particle-dot:nth-child(3) {
-            left: 36%;
-            top: 17%;
-            animation-duration: 11s;
-        }
-
-        .particle-dot:nth-child(4) {
-            left: 63%;
-            top: 29%;
-            animation-duration: 14s;
-        }
-
-        .particle-dot:nth-child(5) {
-            left: 78%;
-            top: 61%;
-            animation-duration: 10s;
-        }
-
-        .particle-dot:nth-child(6) {
-            left: 91%;
-            top: 17%;
-            animation-duration: 12s;
-        }
-
-        .particle-dot:nth-child(7) {
-            left: 48%;
-            top: 77%;
-            animation-duration: 15s;
-        }
-
-        @keyframes drift {
-            0% {
-                transform: translateY(0) translateX(0);
-                opacity: 0.15;
-            }
-            50% {
-                transform: translateY(-35px) translateX(18px);
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(-70px) translateX(-10px);
-                opacity: 0.05;
-            }
-        }
-
-        /* =========================
-           CARD LIGHT
-        ========================== */
-
-        .lesson::after {
-            content: "";
-            position: absolute;
-            width: 180px;
-            height: 180px;
-            left: var(--mx, 50%);
-            top: var(--my, 50%);
-            transform: translate(-50%, -50%);
-            background: radial-gradient(
-                circle,
-                rgba(78, 208, 255, 0.08),
-                transparent 68%
-            );
-            pointer-events: none;
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================== */
-
-        @media (max-width: 700px) {
-
-            header {
-                padding: 16px 5%;
-            }
-
-            .logo {
-                font-size: 21px;
-            }
-
-            .header-link {
-                font-size: 12px;
-                padding: 8px 11px;
-            }
-
-            .hero {
-                min-height: 650px;
-                padding-top: 75px;
-            }
-
-            .hero h1 {
-                font-size: 47px;
-                letter-spacing: -2px;
-            }
-
-            .hero-description {
-                font-size: 15px;
-            }
-
-            .force-system {
-                height: 220px;
-                transform: scale(0.85);
-                transform-origin: center;
-                margin-top: 35px;
-            }
-
-            .data-strip {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .data-cell:nth-child(2) {
-                border-right: none;
-            }
-
-            .data-cell:nth-child(-n+2) {
-                border-bottom: 1px solid var(--line);
-            }
-
-            .container {
-                width: 92vw;
-                padding-top: 55px;
-            }
-
-            .lesson {
-                padding: 25px;
-                border-radius: 18px;
-            }
-
-            .lesson h2 {
-                font-size: 25px;
-            }
-
-            .formula {
-                font-size: 18px;
-                padding: 16px 10px;
-            }
-
-            .navigation {
-                padding-bottom: 55px;
-            }
-
-            .button {
-                width: 100%;
-                text-align: center;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-
-            .lesson {
-                opacity: 1;
-                transform: none;
-            }
-        }
-    </style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dynamics of a Particle | IAL ATLAS</title>
+
+<meta name="description"
+content="Complete Edexcel International A Level Mathematics Mechanics 1 Dynamics of a Particle notes, worked examples, modelling assumptions and a 100-question exam.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+:root{
+
+--bg:#020713;
+--bg2:#061225;
+--panel:rgba(8,22,43,.72);
+--panel-soft:rgba(10,31,57,.52);
+
+--cyan:#55d9ff;
+--cyan-soft:#8de7ff;
+--blue:#438dff;
+
+--text:#f2f8ff;
+--muted:#91a8c4;
+
+--line:rgba(104,211,255,.16);
+
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:"Inter",sans-serif;
+
+background:
+radial-gradient(circle at 15% 15%,rgba(40,139,255,.12),transparent 28%),
+radial-gradient(circle at 85% 20%,rgba(0,219,255,.09),transparent 25%),
+linear-gradient(145deg,#01050d,#031022 55%,#01050d);
+
+color:var(--text);
+
+line-height:1.7;
+
+overflow-x:hidden;
+
+}
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+z-index:0;
+
+opacity:.35;
+
+background-image:
+linear-gradient(rgba(83,187,255,.035) 1px,transparent 1px),
+linear-gradient(90deg,rgba(83,187,255,.035) 1px,transparent 1px);
+
+background-size:48px 48px;
+
+}
+
+a{
+color:inherit;
+}
+
+
+/* HEADER */
+
+header{
+
+position:relative;
+
+z-index:20;
+
+min-height:76px;
+
+padding:18px 7%;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+border-bottom:1px solid rgba(123,212,255,.12);
+
+background:rgba(2,9,21,.68);
+
+backdrop-filter:blur(18px);
+
+}
+
+.logo{
+
+text-decoration:none;
+
+font-family:"Space Grotesk",sans-serif;
+
+font-size:25px;
+
+font-weight:700;
+
+letter-spacing:1px;
+
+}
+
+.logo::after{
+
+content:".";
+
+color:var(--cyan);
+
+text-shadow:0 0 16px var(--cyan);
+
+}
+
+.header-link{
+
+text-decoration:none;
+
+color:#ccecff;
+
+font-size:14px;
+
+font-weight:600;
+
+padding:9px 15px;
+
+border:1px solid rgba(110,213,255,.16);
+
+border-radius:10px;
+
+background:rgba(15,44,72,.35);
+
+transition:.3s ease;
+
+}
+
+.header-link:hover{
+
+color:white;
+
+border-color:rgba(85,217,255,.55);
+
+box-shadow:0 0 22px rgba(65,197,255,.14);
+
+transform:translateY(-2px);
+
+}
+
+
+/* HERO */
+
+.hero{
+
+position:relative;
+
+min-height:700px;
+
+padding:95px 20px 110px;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+text-align:center;
+
+overflow:hidden;
+
+z-index:1;
+
+}
+
+.hero-glow{
+
+position:absolute;
+
+width:650px;
+
+height:650px;
+
+border-radius:50%;
+
+background:radial-gradient(circle,rgba(49,164,255,.12),transparent 68%);
+
+filter:blur(5px);
+
+pointer-events:none;
+
+}
+
+.hero-grid{
+
+position:absolute;
+
+inset:0;
+
+opacity:.22;
+
+background-image:
+linear-gradient(rgba(74,192,255,.08) 1px,transparent 1px),
+linear-gradient(90deg,rgba(74,192,255,.08) 1px,transparent 1px);
+
+background-size:70px 70px;
+
+mask-image:linear-gradient(to bottom,black,transparent 90%);
+
+}
+
+.hero-label{
+
+position:relative;
+
+z-index:3;
+
+margin-bottom:17px;
+
+color:var(--cyan);
+
+font-family:"Space Grotesk",sans-serif;
+
+font-size:12px;
+
+font-weight:700;
+
+letter-spacing:4px;
+
+text-transform:uppercase;
+
+}
+
+.hero h1{
+
+position:relative;
+
+z-index:3;
+
+max-width:950px;
+
+font-family:"Space Grotesk",sans-serif;
+
+font-size:clamp(48px,7vw,86px);
+
+line-height:.98;
+
+letter-spacing:-3px;
+
+font-weight:700;
+
+background:linear-gradient(120deg,#fff,#c9efff 48%,#66d9ff);
+
+-webkit-background-clip:text;
+
+background-clip:text;
+
+color:transparent;
+
+}
+
+.hero-description{
+
+position:relative;
+
+z-index:3;
+
+max-width:760px;
+
+margin-top:25px;
+
+color:#9db5d0;
+
+font-size:17px;
+
+}
+
+
+/* FORCE VISUAL */
+
+.force-system{
+
+position:relative;
+
+z-index:3;
+
+width:min(900px,94vw);
+
+height:270px;
+
+margin-top:55px;
+
+}
+
+.force-track{
+
+position:absolute;
+
+left:7%;
+
+right:7%;
+
+bottom:42px;
+
+height:2px;
+
+background:linear-gradient(
+90deg,
+transparent,
+rgba(85,217,255,.4),
+rgba(85,217,255,.85),
+rgba(85,217,255,.4),
+transparent
+);
+
+box-shadow:0 0 18px rgba(85,217,255,.4);
+
+}
+
+.particle{
+
+position:absolute;
+
+left:50%;
+
+bottom:43px;
+
+width:74px;
+
+height:74px;
+
+transform:translateX(-50%);
+
+border:1px solid rgba(124,225,255,.75);
+
+border-radius:16px;
+
+background:
+linear-gradient(145deg,rgba(85,217,255,.18),rgba(20,70,110,.25));
+
+box-shadow:
+
+0 0 25px rgba(45,194,255,.3),
+inset 0 0 30px rgba(52,166,255,.08);
+
+animation:particleFloat 3s ease-in-out infinite;
+
+}
+
+.particle::before{
+
+content:"m";
+
+position:absolute;
+
+inset:0;
+
+display:grid;
+
+place-items:center;
+
+color:white;
+
+font-family:"Space Grotesk",sans-serif;
+
+font-size:25px;
+
+font-weight:600;
+
+}
+
+.force{
+
+position:absolute;
+
+height:2px;
+
+transform-origin:left center;
+
+background:linear-gradient(90deg,var(--cyan),transparent);
+
+box-shadow:0 0 13px rgba(85,217,255,.7);
+
+}
+
+.force::after{
+
+content:"";
+
+position:absolute;
+
+right:0;
+
+top:50%;
+
+width:10px;
+
+height:10px;
+
+border-top:2px solid var(--cyan);
+
+border-right:2px solid var(--cyan);
+
+transform:translateY(-50%) rotate(45deg);
+
+}
+
+.force-right{
+
+left:54%;
+
+bottom:80px;
+
+width:180px;
+
+animation:forcePulse 2s ease-in-out infinite;
+
+}
+
+.force-left{
+
+right:54%;
+
+bottom:112px;
+
+width:150px;
+
+transform:rotate(180deg);
+
+animation:forcePulseReverse 2.3s ease-in-out infinite;
+
+}
+
+.force-up{
+
+left:51%;
+
+bottom:114px;
+
+width:100px;
+
+transform:rotate(-90deg);
+
+animation:forceUp 2.5s ease-in-out infinite;
+
+}
+
+.force-down{
+
+left:49%;
+
+bottom:40px;
+
+width:110px;
+
+transform:rotate(90deg);
+
+animation:forceDown 2.7s ease-in-out infinite;
+
+}
+
+.force-label{
+
+position:absolute;
+
+color:#a9eaff;
+
+font-family:"Space Grotesk",sans-serif;
+
+font-size:12px;
+
+font-weight:600;
+
+letter-spacing:1px;
+
+}
+
+.label-f{
+left:75%;
+bottom:96px;
+}
+
+.label-r{
+left:19%;
+bottom:130px;
+}
+
+.label-n{
+left:57%;
+bottom:170px;
+}
+
+.label-w{
+left:56%;
+bottom:9px;
+}
+
+@keyframes particleFloat{
+
+0%,100%{
+transform:translateX(-50%) translateY(0);
+}
+
+50%{
+transform:translateX(-50%) translateY(-8px);
+}
+
+}
+
+@keyframes forcePulse{
+
+0%,100%{
+opacity:.35;
+transform:scaleX(.8);
+}
+
+50%{
+opacity:1;
+transform:scaleX(1);
+}
+
+}
+
+@keyframes forcePulseReverse{
+
+0%,100%{
+opacity:.3;
+transform:rotate(180deg) scaleX(.8);
+}
+
+50%{
+opacity:1;
+transform:rotate(180deg) scaleX(1);
+}
+
+}
+
+@keyframes forceUp{
+
+0%,100%{
+opacity:.3;
+transform:rotate(-90deg) scaleX(.75);
+}
+
+50%{
+opacity:1;
+transform:rotate(-90deg) scaleX(1);
+}
+
+}
+
+@keyframes forceDown{
+
+0%,100%{
+opacity:.3;
+transform:rotate(90deg) scaleX(.75);
+}
+
+50%{
+opacity:1;
+transform:rotate(90deg) scaleX(1);
+}
+
+}
+
+
+/* DATA */
+
+.data-strip{
+
+position:relative;
+
+z-index:4;
+
+width:min(850px,92vw);
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+margin-top:20px;
+
+border:1px solid var(--line);
+
+border-radius:16px;
+
+overflow:hidden;
+
+background:rgba(7,22,43,.55);
+
+backdrop-filter:blur(15px);
+
+}
+
+.data-cell{
+
+padding:17px 12px;
+
+border-right:1px solid var(--line);
+
+}
+
+.data-cell:last-child{
+border-right:none;
+}
+
+.data-value{
+
+display:block;
+
+color:white;
+
+font-family:"Space Grotesk",sans-serif;
+
+font-size:20px;
+
+font-weight:600;
+
+}
+
+.data-name{
+
+display:block;
+
+margin-top:3px;
+
+color:#6f8ca9;
+
+font-size:10px;
+
+letter-spacing:2px;
+
+text-transform:uppercase;
+
+}
+
+
+/* CONTENT */
+
+.container{
+
+position:relative;
+
+z-index:2;
+
+width:min(1050px,92vw);
+
+margin:auto;
+
+padding:80px 0 40px;
+
+}
+
+.lesson{
+
+position:relative;
+
+overflow:hidden;
+
+margin-bottom:30px;
+
+padding:35px;
+
+border:1px solid rgba(118,213,255,.13);
+
+border-radius:22px;
+
+background:
+linear-gradient(145deg,rgba(12,34,62,.72),rgba(4,15,31,.72));
+
+box-shadow:
+0 20px 55px rgba(0,0,0,.22),
+inset 0 1px rgba(255,255,255,.025);
+
+backdrop-filter:blur(18px);
+
+opacity:0;
+
+transform:translateY(35px);
+
+transition:
+
+opacity .7s ease,
+transform .7s ease,
+border-color .35s ease,
+box-shadow .35s ease;
+
+}
+
+.lesson.visible{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+.lesson:hover{
+
+border-color:rgba(85,217,255,.3);
+
+box-shadow:
+0 25px 65px rgba(0,0,0,.3),
+0 0 30px rgba(42,171,255,.05);
+
+}
+
+.lesson-number{
+
+margin-bottom:7px;
+
+color:var(--cyan);
+
+font-family:"Space Grotesk",sans-serif;
+
+font-size:11px;
+
+font-weight:700;
+
+letter-spacing:3px;
+
+}
+
+.lesson h2{
+
+margin-bottom:18px;
+
+font-family:"Space Grotesk",sans-serif;
+
+font-size:30px;
+
+line-height:1.2;
+
+color:#f4fbff;
+
+}
+
+.lesson h3{
+
+margin:25px 0 12px;
+
+font-family:"Space Grotesk",sans-serif;
+
+color:#dff8ff;
+
+font-size:20px;
+
+}
+
+.lesson h4{
+
+margin:20px 0 10px;
+
+color:var(--cyan-soft);
+
+}
+
+.lesson p{
+
+margin-bottom:15px;
+
+color:var(--muted);
+
+}
+
+.lesson ul,
+.lesson ol{
+
+padding-left:25px;
+
+color:var(--muted);
+
+}
+
+.lesson li{
+
+margin-bottom:9px;
+
+}
+
+.definition{
+
+position:relative;
+
+margin:22px 0;
+
+padding:20px 22px;
+
+border:1px solid rgba(83,209,255,.15);
+
+border-left:3px solid var(--cyan);
+
+border-radius:13px;
+
+background:rgba(44,148,205,.07);
+
+}
+
+.definition strong{
+
+display:block;
+
+margin-bottom:4px;
+
+color:#dff8ff;
+
+font-family:"Space Grotesk",sans-serif;
+
+}
+
+.definition p{
+
+margin-bottom:0;
+
+}
+
+.formula{
+
+position:relative;
+
+overflow:hidden;
+
+margin:20px 0;
+
+padding:19px;
+
+border:1px solid rgba(87,210,255,.18);
+
+border-radius:13px;
+
+background:
+linear-gradient(100deg,rgba(9,30,56,.95),rgba(4,16,33,.95));
+
+color:#f3fbff;
+
+text-align:center;
+
+font-family:"Space Grotesk",sans-serif;
+
+font-size:21px;
+
+font-weight:600;
+
+letter-spacing:.4px;
+
+box-shadow:
+inset 0 0 30px rgba(56,190,255,.035),
+0 0 22px rgba(39,169,255,.035);
+
+}
+
+.example{
+
+margin-top:22px;
+
+padding:25px;
+
+border:1px solid rgba(109,209,255,.13);
+
+border-radius:16px;
+
+background:rgba(5,18,36,.6);
+
+}
+
+.example-title{
+
+margin-bottom:12px!important;
+
+color:var(--cyan)!important;
+
+font-family:"Space Grotesk",sans-serif;
+
+font-weight:700;
+
+}
+
+.solution{
+
+margin-top:18px;
+
+padding:20px;
+
+border:1px solid rgba(108,211,255,.11);
+
+border-radius:12px;
+
+background:rgba(13,36,61,.42);
+
+}
+
+.solution p{
+margin-bottom:10px;
+}
+
+.warning{
+
+margin:20px 0;
+
+padding:18px 20px;
+
+border-radius:13px;
+
+border:1px solid rgba(255,190,80,.16);
+
+background:rgba(255,170,50,.05);
+
+color:#d6c8a5;
+
+}
+
+.two-column{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:18px;
+
+}
+
+.mini-card{
+
+padding:20px;
+
+border:1px solid rgba(110,211,255,.12);
+
+border-radius:15px;
+
+background:rgba(7,24,45,.48);
+
+}
+
+.mini-card h4{
+
+margin-top:0;
+
+}
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+margin:20px 0;
+
+font-size:14px;
+
+}
+
+th,td{
+
+padding:13px;
+
+border:1px solid rgba(110,211,255,.12);
+
+text-align:left;
+
+}
+
+th{
+
+color:#dff8ff;
+
+background:rgba(50,150,210,.1);
+
+}
+
+td{
+
+color:var(--muted);
+
+}
+
+
+/* EXAM */
+
+.exam-intro{
+
+padding:35px;
+
+margin-bottom:25px;
+
+border:1px solid rgba(85,217,255,.18);
+
+border-radius:22px;
+
+background:
+linear-gradient(145deg,rgba(10,38,69,.8),rgba(4,15,30,.85));
+
+}
+
+.exam-title{
+
+font-family:"Space Grotesk",sans-serif;
+
+font-size:38px;
+
+margin-bottom:10px;
+
+}
+
+.exam-meta{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:12px;
+
+margin-top:25px;
+
+}
+
+.exam-stat{
+
+padding:15px;
+
+border:1px solid rgba(85,217,255,.12);
+
+border-radius:12px;
+
+background:rgba(0,0,0,.16);
+
+text-align:center;
+
+}
+
+.exam-stat strong{
+
+display:block;
+
+font-family:"Space Grotesk",sans-serif;
+
+font-size:20px;
+
+color:white;
+
+}
+
+.exam-stat span{
+
+font-size:11px;
+
+color:#7893ae;
+
+text-transform:uppercase;
+
+letter-spacing:1px;
+
+}
+
+.exam-controls{
+
+position:sticky;
+
+top:10px;
+
+z-index:10;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:15px;
+
+padding:15px;
+
+margin-bottom:20px;
+
+border:1px solid rgba(85,217,255,.16);
+
+border-radius:15px;
+
+background:rgba(3,13,27,.88);
+
+backdrop-filter:blur(18px);
+
+}
+
+.progress-wrap{
+
+flex:1;
+
+}
+
+.progress-text{
+
+font-size:13px;
+
+color:#9db5d0;
+
+margin-bottom:6px;
+
+}
+
+.progress-bar{
+
+height:7px;
+
+border-radius:10px;
+
+overflow:hidden;
+
+background:rgba(255,255,255,.06);
+
+}
+
+.progress-fill{
+
+height:100%;
+
+width:0%;
+
+background:linear-gradient(90deg,var(--blue),var(--cyan));
+
+transition:.3s ease;
+
+}
+
+.exam-button{
+
+border:1px solid rgba(85,217,255,.3);
+
+border-radius:10px;
+
+padding:10px 17px;
+
+background:rgba(25,86,130,.4);
+
+color:#dff8ff;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.25s ease;
+
+}
+
+.exam-button:hover{
+
+border-color:var(--cyan);
+
+transform:translateY(-2px);
+
+}
+
+.question-card{
+
+display:none;
+
+padding:30px;
+
+border:1px solid rgba(118,213,255,.13);
+
+border-radius:20px;
+
+background:
+linear-gradient(145deg,rgba(12,34,62,.72),rgba(4,15,31,.72));
+
+}
+
+.question-card.active{
+display:block;
+}
+
+.question-number{
+
+color:var(--cyan);
+
+font-family:"Space Grotesk",sans-serif;
+
+font-size:12px;
+
+font-weight:700;
+
+letter-spacing:2px;
+
+margin-bottom:10px;
+
+}
+
+.question-text{
+
+font-family:"Space Grotesk",sans-serif;
+
+font-size:21px;
+
+line-height:1.5;
+
+margin-bottom:22px;
+
+color:#f1f8ff;
+
+}
+
+.options{
+
+display:grid;
+
+gap:11px;
+
+}
+
+.option{
+
+position:relative;
+
+padding:15px 17px;
+
+border:1px solid rgba(113,205,255,.12);
+
+border-radius:12px;
+
+background:rgba(6,20,38,.55);
+
+color:#b8cbe0;
+
+cursor:pointer;
+
+transition:.2s ease;
+
+}
+
+.option:hover{
+
+border-color:rgba(85,217,255,.5);
+
+background:rgba(27,77,112,.3);
+
+color:white;
+
+}
+
+.option.selected{
+
+border-color:var(--cyan);
+
+background:rgba(40,157,211,.16);
+
+color:white;
+
+}
+
+.option.correct{
+
+border-color:#61e6a7;
+
+background:rgba(60,210,140,.1);
+
+color:#b9ffda;
+
+}
+
+.option.wrong{
+
+border-color:#ff7272;
+
+background:rgba(255,70,70,.08);
+
+color:#ffc1c1;
+
+}
+
+.exam-navigation{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-top:25px;
+
+gap:12px;
+
+}
+
+.question-counter{
+
+text-align:center;
+
+margin-top:15px;
+
+color:#718aa5;
+
+font-size:13px;
+
+}
+
+.result-box{
+
+display:none;
+
+padding:40px;
+
+margin-top:25px;
+
+text-align:center;
+
+border:1px solid rgba(85,217,255,.22);
+
+border-radius:22px;
+
+background:
+linear-gradient(145deg,rgba(10,38,69,.8),rgba(4,15,30,.9));
+
+}
+
+.result-score{
+
+font-family:"Space Grotesk",sans-serif;
+
+font-size:70px;
+
+font-weight:700;
+
+color:var(--cyan);
+
+}
+
+.result-message{
+
+font-size:20px;
+
+color:#dceeff;
+
+margin-bottom:20px;
+
+}
+
+.review{
+
+margin-top:25px;
+
+text-align:left;
+
+max-height:600px;
+
+overflow:auto;
+
+}
+
+.review-item{
+
+padding:15px;
+
+margin-bottom:10px;
+
+border-radius:10px;
+
+background:rgba(0,0,0,.2);
+
+border-left:3px solid var(--cyan);
+
+}
+
+.review-item.correct-review{
+border-left-color:#61e6a7;
+}
+
+.review-item.wrong-review{
+border-left-color:#ff7272;
+}
+
+.review-item strong{
+display:block;
+margin-bottom:5px;
+}
+
+.review-item span{
+color:#91a8c4;
+font-size:14px;
+}
+
+
+/* NAV */
+
+.navigation{
+
+position:relative;
+
+z-index:3;
+
+width:min(1000px,92vw);
+
+margin:0 auto;
+
+padding:20px 0 75px;
+
+display:flex;
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+gap:10px;
+
+}
+
+.button{
+
+display:inline-block;
+
+padding:13px 21px;
+
+border:1px solid rgba(87,212,255,.24);
+
+border-radius:11px;
+
+background:rgba(16,50,78,.45);
+
+color:#dff7ff;
+
+text-decoration:none;
+
+font-size:14px;
+
+font-weight:600;
+
+transition:.3s ease;
+
+}
+
+.button:hover{
+
+transform:translateY(-3px);
+
+border-color:rgba(85,217,255,.6);
+
+box-shadow:0 0 25px rgba(40,178,255,.12);
+
+color:white;
+
+}
+
+.button.primary{
+
+background:linear-gradient(
+135deg,
+rgba(39,146,218,.35),
+rgba(25,77,130,.35)
+);
+
+}
+
+
+/* FOOTER */
+
+footer{
+
+position:relative;
+
+z-index:3;
+
+padding:30px 20px;
+
+border-top:1px solid rgba(104,211,255,.1);
+
+background:rgba(1,7,17,.88);
+
+color:#6f849e;
+
+text-align:center;
+
+font-size:13px;
+
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:700px){
+
+header{
+padding:16px 5%;
+}
+
+.logo{
+font-size:21px;
+}
+
+.header-link{
+font-size:12px;
+padding:8px 11px;
+}
+
+.hero{
+
+min-height:650px;
+
+padding-top:75px;
+
+}
+
+.hero h1{
+
+font-size:47px;
+
+letter-spacing:-2px;
+
+}
+
+.hero-description{
+font-size:15px;
+}
+
+.force-system{
+
+height:220px;
+
+transform:scale(.85);
+
+transform-origin:center;
+
+margin-top:35px;
+
+}
+
+.data-strip{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.data-cell:nth-child(2){
+border-right:none;
+}
+
+.data-cell:nth-child(-n+2){
+border-bottom:1px solid var(--line);
+}
+
+.container{
+
+width:92vw;
+
+padding-top:55px;
+
+}
+
+.lesson{
+
+padding:25px;
+
+border-radius:18px;
+
+}
+
+.lesson h2{
+font-size:25px;
+}
+
+.formula{
+
+font-size:18px;
+
+padding:16px 10px;
+
+}
+
+.two-column{
+
+grid-template-columns:1fr;
+
+}
+
+.exam-meta{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.exam-controls{
+
+flex-direction:column;
+
+align-items:stretch;
+
+}
+
+.exam-title{
+font-size:30px;
+}
+
+.question-card{
+padding:22px;
+}
+
+.question-text{
+font-size:18px;
+}
+
+.exam-navigation{
+
+flex-direction:column;
+
+}
+
+.exam-button{
+width:100%;
+}
+
+.button{
+
+width:100%;
+
+text-align:center;
+
+}
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
+
 <header>
 
-    <a href="index.html" class="logo">
-        IAL ATLAS
-    </a>
+<a href="index.html" class="logo">
+IAL ATLAS
+</a>
 
-    <a href="mechanics-1.html" class="header-link">
-        ← Mechanics 1
-    </a>
+<a href="mechanics-1.html" class="header-link">
+← Mechanics 1
+</a>
 
 </header>
 
 
 <section class="hero">
 
-    <div class="hero-grid"></div>
-    <div class="hero-glow"></div>
+<div class="hero-grid"></div>
 
-    <div class="particles">
-        <span class="particle-dot"></span>
-        <span class="particle-dot"></span>
-        <span class="particle-dot"></span>
-        <span class="particle-dot"></span>
-        <span class="particle-dot"></span>
-        <span class="particle-dot"></span>
-        <span class="particle-dot"></span>
-    </div>
-
-    <p class="hero-label">
-        MECHANICS 1 • TOPIC 04 • FORCE SYSTEM
-    </p>
-
-    <h1>
-        Dynamics of a Particle
-    </h1>
-
-    <p class="hero-description">
-        Understand how forces affect the motion of particles
-        using Newton's laws of motion.
-    </p>
+<div class="hero-glow"></div>
 
 
-    <div class="force-system">
+<div class="force-system">
 
-        <div class="force-track"></div>
+<div class="force-track"></div>
 
-        <div class="force force-right"></div>
-        <div class="force force-left"></div>
-        <div class="force force-up"></div>
-        <div class="force force-down"></div>
+<div class="force force-right"></div>
 
-        <span class="force-label label-f">F</span>
-        <span class="force-label label-r">R</span>
-        <span class="force-label label-n">N</span>
-        <span class="force-label label-w">W</span>
+<div class="force force-left"></div>
 
-        <div class="particle"></div>
+<div class="force force-up"></div>
 
-    </div>
+<div class="force force-down"></div>
+
+<span class="force-label label-f">F</span>
+
+<span class="force-label label-r">R</span>
+
+<span class="force-label label-n">N</span>
+
+<span class="force-label label-w">W</span>
+
+<div class="particle"></div>
+
+</div>
 
 
-    <div class="data-strip">
+<p class="hero-label">
+MECHANICS 1 • DYNAMICS • COMPLETE ATLAS
+</p>
 
-        <div class="data-cell">
-            <span class="data-value">F = ma</span>
-            <span class="data-name">Newton II</span>
-        </div>
 
-        <div class="data-cell">
-            <span class="data-value">W = mg</span>
-            <span class="data-name">Weight</span>
-        </div>
+<h1>
+Dynamics of a Particle
+</h1>
 
-        <div class="data-cell">
-            <span class="data-value">ΣF</span>
-            <span class="data-name">Resultant</span>
-        </div>
 
-        <div class="data-cell">
-            <span class="data-value">M1</span>
-            <span class="data-name">Mechanics</span>
-        </div>
+<p class="hero-description">
 
-    </div>
+A complete Edexcel IAL Mechanics 1 guide to Newton's laws,
+resultant forces, weight, friction, connected particles,
+tension, inclined planes and dynamic modelling.
+
+</p>
+
+
+<div class="data-strip">
+
+<div class="data-cell">
+
+<span class="data-value">F = ma</span>
+
+<span class="data-name">
+Newton II
+</span>
+
+</div>
+
+
+<div class="data-cell">
+
+<span class="data-value">W = mg</span>
+
+<span class="data-name">
+Weight
+</span>
+
+</div>
+
+
+<div class="data-cell">
+
+<span class="data-value">ΣF = ma</span>
+
+<span class="data-name">
+Resultant
+</span>
+
+</div>
+
+
+<div class="data-cell">
+
+<span class="data-value">100</span>
+
+<span class="data-name">
+Exam Questions
+</span>
+
+</div>
+
+</div>
 
 </section>
 
@@ -1058,310 +1766,1495 @@
 <main class="container">
 
 
-    <section class="lesson">
+<!-- 01 -->
 
-        <p class="lesson-number">LESSON 01</p>
+<section class="lesson">
 
-        <h2>What is Dynamics?</h2>
+<p class="lesson-number">
+LESSON 01
+</p>
 
-        <p>
-            Dynamics is the study of how forces affect the motion
-            of particles.
-        </p>
+<h2>
+Dynamics vs Kinematics
+</h2>
 
-        <div class="definition">
-            <strong>Key idea</strong>
-            <p>
-                Kinematics describes motion, while dynamics explains
-                how forces cause changes in motion.
-            </p>
-        </div>
+<p>
+Dynamics is the part of mechanics concerned with the relationship
+between forces and motion. While kinematics describes how an object
+moves, dynamics investigates why its motion changes.
+</p>
 
-    </section>
+<div class="two-column">
 
+<div class="mini-card">
 
-    <section class="lesson">
+<h4>Kinematics</h4>
 
-        <p class="lesson-number">LESSON 02</p>
+<p>
+Deals with displacement, velocity, acceleration and time without
+considering the forces responsible for the motion.
+</p>
 
-        <h2>Newton's Second Law</h2>
+</div>
 
-        <p>
-            The most important equation in M1 dynamics is Newton's
-            Second Law.
-        </p>
 
-        <div class="formula">
-            F = ma
-        </div>
+<div class="mini-card">
 
-        <p>
-            Here F is the resultant force, m is the mass of the
-            particle and a is its acceleration.
-        </p>
+<h4>Dynamics</h4>
 
-        <ul>
-            <li>F is measured in newtons (N).</li>
-            <li>m is measured in kilograms (kg).</li>
-            <li>a is measured in metres per second squared (m/s²).</li>
-        </ul>
+<p>
+Deals with forces and uses Newton's laws to determine acceleration
+and hence the resulting motion.
+</p>
 
-    </section>
+</div>
 
+</div>
 
-    <section class="lesson">
 
-        <p class="lesson-number">LESSON 03</p>
+<div class="definition">
 
-        <h2>Resultant Force</h2>
+<strong>Particle model</strong>
 
-        <p>
-            The resultant force is the single force that has the
-            same effect as all the forces acting on a particle.
-        </p>
+<p>
+In M1, an object is often modelled as a particle. Its size and
+shape are ignored, so all relevant forces can be treated as acting
+on a single point.
+</p>
 
-        <div class="definition">
-            <strong>Important:</strong>
-            <p>
-                Always consider the direction of each force before
-                calculating the resultant force.
-            </p>
-        </div>
+</div>
 
-        <p>
-            If forces act in opposite directions, subtract their
-            magnitudes.
-        </p>
+</section>
 
-    </section>
 
+<!-- 02 -->
 
-    <section class="lesson">
+<section class="lesson">
 
-        <p class="lesson-number">LESSON 04</p>
+<p class="lesson-number">
+LESSON 02
+</p>
 
-        <h2>Weight</h2>
+<h2>
+Newton's First Law
+</h2>
 
-        <p>
-            The weight of a particle is the force caused by gravity.
-        </p>
+<p>
+Newton's First Law describes what happens when the resultant force
+on a particle is zero.
+</p>
 
-        <div class="formula">
-            W = mg
-        </div>
+<div class="definition">
 
-        <p>
-            On Earth, the acceleration due to gravity is commonly
-            taken as:
-        </p>
+<strong>Newton's First Law</strong>
 
-        <div class="formula">
-            g = 9.8 m/s²
-        </div>
+<p>
+A particle remains at rest or continues to move with constant
+velocity unless acted upon by a non-zero resultant force.
+</p>
 
-        <p>
-            unless the question specifies another value.
-        </p>
+</div>
 
-    </section>
+<p>
+Since acceleration is the rate of change of velocity, constant
+velocity means zero acceleration.
+</p>
 
+<div class="formula">
+ΣF = 0 → a = 0
+</div>
 
-    <section class="lesson">
+<h3>Equilibrium</h3>
 
-        <p class="lesson-number">LESSON 05</p>
+<p>
+A particle is in equilibrium when the vector sum of all forces acting
+on it is zero.
+</p>
 
-        <h2>Newton's First Law</h2>
+<p>
+Equilibrium does not necessarily mean that the particle is stationary.
+A particle travelling with constant velocity can also be in equilibrium.
+</p>
 
-        <p>
-            Newton's First Law states that a particle remains at rest
-            or continues moving with constant velocity unless acted
-            upon by a resultant force.
-        </p>
+<div class="warning">
 
-        <div class="definition">
-            <strong>Equilibrium</strong>
-            <p>
-                If the resultant force is zero, the acceleration is zero.
-            </p>
-        </div>
+<strong>Exam trap:</strong>
 
-    </section>
+<p>
+Do not automatically write "the particle is stationary" when the
+resultant force is zero. The correct conclusion is that its
+acceleration is zero, so its velocity is constant.
+</p>
 
+</div>
 
-    <section class="lesson">
+</section>
 
-        <p class="lesson-number">LESSON 06</p>
 
-        <h2>Newton's Third Law</h2>
+<!-- 03 -->
 
-        <p>
-            When two objects interact, they exert equal and opposite
-            forces on each other.
-        </p>
+<section class="lesson">
 
-        <div class="definition">
-            <strong>Remember:</strong>
-            <p>
-                The two forces act on different bodies.
-            </p>
-        </div>
+<p class="lesson-number">
+LESSON 03
+</p>
 
-    </section>
+<h2>
+Newton's Second Law
+</h2>
 
+<p>
+Newton's Second Law is the central equation used throughout M1
+dynamics.
+</p>
 
-    <section class="lesson">
+<div class="formula">
+ΣF = ma
+</div>
 
-        <p class="lesson-number">WORKED EXAMPLE</p>
+<p>
+The symbol ΣF means the vector sum, or resultant, of all forces
+acting on the particle.
+</p>
 
-        <h2>Using F = ma</h2>
+<div class="two-column">
 
-        <div class="example">
+<div class="mini-card">
 
-            <p class="example-title">
-                Example
-            </p>
+<h4>F</h4>
 
-            <p>
-                A particle of mass 4 kg is acted on by a resultant
-                force of 20 N. Find its acceleration.
-            </p>
+<p>
+Resultant force, measured in newtons (N).
+</p>
 
-            <div class="solution">
+</div>
 
-                <p>
-                    Use:
-                </p>
+<div class="mini-card">
 
-                <div class="formula">
-                    F = ma
-                </div>
+<h4>m</h4>
 
-                <p>
-                    20 = 4a
-                </p>
+<p>
+Mass, measured in kilograms (kg).
+</p>
 
-                <p>
-                    a = 20 ÷ 4
-                </p>
+</div>
 
-                <p>
-                    <strong>a = 5 m/s²</strong>
-                </p>
+<div class="mini-card">
 
-            </div>
+<h4>a</h4>
 
-        </div>
+<p>
+Acceleration, measured in m/s².
+</p>
 
-    </section>
+</div>
 
+<div class="mini-card">
 
-    <section class="lesson">
+<h4>Direction</h4>
 
-        <p class="lesson-number">PRACTICE</p>
+<p>
+The acceleration is in the direction of the resultant force.
+</p>
 
-        <h2>Test Yourself</h2>
+</div>
 
-        <div class="question">
+</div>
 
-            <strong>
-                1. State Newton's Second Law.
-            </strong>
+<div class="definition">
 
-            <details>
-                <summary>Show answer</summary>
-                <p>
-                    The resultant force on a particle equals its mass
-                    multiplied by its acceleration: F = ma.
-                </p>
-            </details>
+<strong>Vector principle</strong>
 
-        </div>
+<p>
+If several forces act along one straight line, choose a positive
+direction and assign signs consistently. Forces acting in the
+opposite direction are negative.
+</p>
 
+</div>
 
-        <div class="question">
+</section>
 
-            <strong>
-                2. Find the weight of a 5 kg particle using g = 9.8 m/s².
-            </strong>
 
-            <details>
-                <summary>Show answer</summary>
-                <p>
-                    W = mg = 5 × 9.8
-                </p>
-                <p>
-                    <strong>W = 49 N</strong>
-                </p>
-            </details>
+<!-- 04 -->
 
-        </div>
+<section class="lesson">
 
+<p class="lesson-number">
+LESSON 04
+</p>
 
-        <div class="question">
+<h2>
+Force Diagrams and Free-Body Diagrams
+</h2>
 
-            <strong>
-                3. A 6 kg particle has a resultant force of 30 N.
-                Find its acceleration.
-            </strong>
+<p>
+Before applying Newton's Second Law, identify every force acting
+on the particle.
+</p>
 
-            <details>
-                <summary>Show answer</summary>
-                <p>
-                    F = ma
-                </p>
-                <p>
-                    30 = 6a
-                </p>
-                <p>
-                    <strong>a = 5 m/s²</strong>
-                </p>
-            </details>
+<h3>Common forces</h3>
 
-        </div>
+<ul>
 
+<li><strong>Weight:</strong> gravitational force acting vertically downward.</li>
 
-        <div class="question">
+<li><strong>Normal reaction:</strong> contact force perpendicular to a surface.</li>
 
-            <strong>
-                4. What happens when the resultant force is zero?
-            </strong>
+<li><strong>Tension:</strong> pulling force transmitted through a string.</li>
 
-            <details>
-                <summary>Show answer</summary>
-                <p>
-                    The acceleration is zero, so the particle remains
-                    at rest or moves with constant velocity.
-                </p>
-            </details>
+<li><strong>Friction:</strong> force opposing relative motion or the tendency to move.</li>
 
-        </div>
+<li><strong>Thrust/applied force:</strong> an externally applied force.</li>
 
-    </section>
+</ul>
 
+<div class="definition">
 
-    <section class="lesson">
+<strong>Free-body diagram rule</strong>
 
-        <p class="lesson-number">QUICK REVIEW</p>
+<p>
+Draw only forces acting ON the chosen particle. Do not draw forces
+that the particle exerts on other bodies.
+</p>
 
-        <h2>Remember These</h2>
+</div>
 
-        <div class="formula">
-            F = ma
-        </div>
+</section>
 
-        <div class="formula">
-            W = mg
-        </div>
 
-        <div class="formula">
-            Resultant force = mass × acceleration
-        </div>
+<!-- 05 -->
 
-        <div class="formula">
-            Resultant force = 0 → acceleration = 0
-        </div>
+<section class="lesson">
 
-    </section>
+<p class="lesson-number">
+LESSON 05
+</p>
+
+<h2>
+Weight and Gravity
+</h2>
+
+<p>
+The weight of a particle is the gravitational force acting on it.
+</p>
+
+<div class="formula">
+W = mg
+</div>
+
+<p>
+where m is mass and g is the acceleration due to gravity.
+</p>
+
+<p>
+Unless another value is specified, Edexcel mechanics questions
+commonly use:
+</p>
+
+<div class="formula">
+g = 9.8 m/s²
+</div>
+
+<h3>Mass vs Weight</h3>
+
+<table>
+
+<tr>
+
+<th>Mass</th>
+
+<th>Weight</th>
+
+</tr>
+
+<tr>
+
+<td>Amount of matter in an object.</td>
+
+<td>Force caused by gravity.</td>
+
+</tr>
+
+<tr>
+
+<td>Measured in kg.</td>
+
+<td>Measured in N.</td>
+
+</tr>
+
+<tr>
+
+<td>Does not depend on gravitational field strength.</td>
+
+<td>Depends on g.</td>
+
+</tr>
+
+</table>
+
+<div class="example">
+
+<p class="example-title">
+Worked Example
+</p>
+
+<p>
+A particle has mass 7 kg. Find its weight.
+Take g = 9.8 m/s².
+</p>
+
+<div class="solution">
+
+<p>
+W = mg
+</p>
+
+<p>
+W = 7 × 9.8
+</p>
+
+<p>
+<strong>W = 68.6 N</strong>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- 06 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 06
+</p>
+
+<h2>
+Newton's Third Law
+</h2>
+
+<div class="definition">
+
+<strong>Newton's Third Law</strong>
+
+<p>
+When two bodies interact, the force exerted by the first body on
+the second is equal in magnitude and opposite in direction to the
+force exerted by the second body on the first.
+</p>
+
+</div>
+
+<h3>The three important conditions</h3>
+
+<ul>
+
+<li>The forces are equal in magnitude.</li>
+
+<li>The forces are opposite in direction.</li>
+
+<li>The forces act on different bodies.</li>
+
+</ul>
+
+<div class="warning">
+
+<strong>Common mistake:</strong>
+
+<p>
+The normal reaction and weight of an object are NOT automatically
+a Newton's Third Law pair because they act on the same body.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 07 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 07
+</p>
+
+<h2>
+Resultant Force
+</h2>
+
+<p>
+The resultant force is the single force that has the same effect
+on the motion of the particle as all the individual forces combined.
+</p>
+
+<h3>Collinear forces</h3>
+
+<p>
+Forces acting along one straight line can be combined algebraically
+after selecting a positive direction.
+</p>
+
+<div class="formula">
+Rightward forces − Leftward forces = ma
+</div>
+
+<div class="example">
+
+<p class="example-title">
+Worked Example
+</p>
+
+<p>
+A 5 kg particle is pulled horizontally by a 32 N force to the right
+and experiences a 12 N resistance to the left.
+</p>
+
+<div class="solution">
+
+<p>
+Resultant force = 32 − 12 = 20 N
+</p>
+
+<p>
+20 = 5a
+</p>
+
+<p>
+<strong>a = 4 m/s²</strong>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- 08 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 08
+</p>
+
+<h2>
+Horizontal Motion
+</h2>
+
+<p>
+For horizontal motion on a surface, the vertical forces may balance
+while the horizontal forces produce acceleration.
+</p>
+
+<p>
+For example, on a horizontal surface:
+</p>
+
+<div class="formula">
+R = mg
+</div>
+
+<p>
+provided there are no vertical accelerations and no other vertical
+forces.
+</p>
+
+<p>
+Horizontally:
+</p>
+
+<div class="formula">
+ΣF_horizontal = ma
+</div>
+
+<div class="definition">
+
+<strong>Important distinction</strong>
+
+<p>
+A balanced vertical pair of forces does not imply that the particle
+has zero horizontal acceleration.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 09 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 09
+</p>
+
+<h2>
+Vertical Motion
+</h2>
+
+<p>
+When a particle moves vertically, weight acts downward. Other
+vertical forces may include tension or an applied force.
+</p>
+
+<p>
+Choose a positive direction before writing Newton's Second Law.
+</p>
+
+<div class="formula">
+ΣF_vertical = ma
+</div>
+
+<h3>Moving upward</h3>
+
+<p>
+If upward is positive, weight is negative:
+</p>
+
+<div class="formula">
+T − mg = ma
+</div>
+
+<h3>Moving downward</h3>
+
+<p>
+If downward is positive:
+</p>
+
+<div class="formula">
+mg − T = ma
+</div>
+
+<div class="warning">
+
+<strong>Remember:</strong>
+
+<p>
+The direction of motion does not determine the direction of
+acceleration. Acceleration depends on the resultant force.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 10 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 10
+</p>
+
+<h2>
+Acceleration, Deceleration and Direction
+</h2>
+
+<p>
+A particle accelerates whenever its velocity changes.
+</p>
+
+<p>
+It is important to distinguish between velocity and acceleration.
+</p>
+
+<div class="two-column">
+
+<div class="mini-card">
+
+<h4>Same direction</h4>
+
+<p>
+If velocity and acceleration have the same direction, the particle's
+speed increases.
+</p>
+
+</div>
+
+<div class="mini-card">
+
+<h4>Opposite directions</h4>
+
+<p>
+If velocity and acceleration are in opposite directions, the
+particle slows down.
+</p>
+
+</div>
+
+</div>
+
+<p>
+Therefore, a particle can be moving to the right while accelerating
+to the left.
+</p>
+
+</section>
+
+
+<!-- 11 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 11
+</p>
+
+<h2>
+Normal Reaction
+</h2>
+
+<p>
+The normal reaction is the force exerted by a surface on a particle
+in contact with it.
+</p>
+
+<p>
+It acts perpendicular to the surface.
+</p>
+
+<div class="formula">
+R ⟂ surface
+</div>
+
+<p>
+For a particle resting on a horizontal surface with no vertical
+acceleration and no additional vertical forces:
+</p>
+
+<div class="formula">
+R = mg
+</div>
+
+<p>
+However, this equation should not be used automatically on inclined
+planes or when other vertical forces are present.
+</p>
+
+</section>
+
+
+<!-- 12 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 12
+</p>
+
+<h2>
+Inclined Planes
+</h2>
+
+<p>
+When a particle lies on a plane inclined at angle θ to the horizontal,
+resolve forces parallel and perpendicular to the plane.
+</p>
+
+<h3>Weight components</h3>
+
+<div class="formula">
+Component down the plane = mg sin θ
+</div>
+
+<div class="formula">
+Component perpendicular to plane = mg cos θ
+</div>
+
+<p>
+For a particle on a smooth plane with no other perpendicular force:
+</p>
+
+<div class="formula">
+R = mg cos θ
+</div>
+
+<p>
+and, if gravity is the only force parallel to the plane:
+</p>
+
+<div class="formula">
+mg sin θ = ma
+</div>
+
+therefore:
+
+<div class="formula">
+a = g sin θ
+</div>
+
+<div class="warning">
+
+<strong>Exam memory aid:</strong>
+
+<p>
+For an inclined plane measured from the horizontal, the component
+<strong>down the plane</strong> is mg sin θ and the component
+<strong>into the plane</strong> is mg cos θ.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 13 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 13
+</p>
+
+<h2>
+Friction
+</h2>
+
+<p>
+Friction acts between surfaces in contact and opposes relative motion
+or the tendency for relative motion.
+</p>
+
+<h3>Limiting friction</h3>
+
+<p>
+When a particle is on the point of sliding, friction has its maximum
+possible value, called limiting friction.
+</p>
+
+<div class="formula">
+F = μR
+</div>
+
+<p>
+where μ is the coefficient of friction and R is the normal reaction.
+</p>
+
+<div class="definition">
+
+<strong>Coefficient of friction</strong>
+
+<p>
+The coefficient μ is dimensionless and describes the relationship
+between limiting friction and normal reaction.
+</p>
+
+</div>
+
+<p>
+If the surface is rough and the particle is moving or is on the
+point of moving, friction acts opposite to the direction of motion
+or impending motion.
+</p>
+
+</section>
+
+
+<!-- 14 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 14
+</p>
+
+<h2>
+Smooth vs Rough Surfaces
+</h2>
+
+<table>
+
+<tr>
+
+<th>Smooth surface</th>
+
+<th>Rough surface</th>
+
+</tr>
+
+<tr>
+
+<td>No friction is considered.</td>
+
+<td>Friction acts between surfaces.</td>
+
+</tr>
+
+<tr>
+
+<td>Only relevant forces such as R, W and T are considered.</td>
+
+<td>Include friction where appropriate.</td>
+
+</tr>
+
+<tr>
+
+<td>Useful for simplified models.</td>
+
+<td>Used when resistance is important.</td>
+
+</tr>
+
+</table>
+
+<div class="warning">
+
+<strong>Key phrase:</strong>
+
+<p>
+If a question says the surface is smooth, do not introduce a
+friction force.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 15 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 15
+</p>
+
+<h2>
+Tension in a String
+</h2>
+
+<p>
+A taut light string transmits tension between connected particles.
+</p>
+
+<p>
+For an ideal string and ideal pulley, the tension is the same
+throughout the string.
+</p>
+
+<div class="formula">
+T = same throughout a light inextensible string
+</div>
+
+<h3>Important assumptions</h3>
+
+<ul>
+
+<li>The string is light, so its mass is negligible.</li>
+
+<li>The string is inextensible, so its length does not change.</li>
+
+<li>The string is taut, so it does not go slack.</li>
+
+<li>A smooth pulley changes the direction of tension but not its magnitude.</li>
+
+</ul>
+
+</section>
+
+
+<!-- 16 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 16
+</p>
+
+<h2>
+Connected Particles
+</h2>
+
+<p>
+When two or more particles are connected by a light inextensible
+string, their accelerations are related.
+</p>
+
+<div class="definition">
+
+<strong>Key principle</strong>
+
+<p>
+If connected particles move under a taut inextensible string, their
+accelerations have equal magnitudes while the string remains taut.
+</p>
+
+</div>
+
+<h3>Typical procedure</h3>
+
+<ol>
+
+<li>Draw a separate force diagram for each particle.</li>
+
+<li>Choose a positive direction for each particle.</li>
+
+<li>Apply Newton's Second Law separately.</li>
+
+<li>Use the common acceleration condition.</li>
+
+<li>Solve the simultaneous equations.</li>
+
+<li>Check whether the result makes physical sense.</li>
+
+</ol>
+
+</section>
+
+
+<!-- 17 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 17
+</p>
+
+<h2>
+Particle on a Rough Horizontal Surface
+</h2>
+
+<p>
+Suppose a particle of mass m is pulled horizontally by force P
+and the surface has coefficient of friction μ.
+</p>
+
+<p>
+If there is no vertical acceleration:
+</p>
+
+<div class="formula">
+R = mg
+</div>
+
+At limiting friction:
+
+<div class="formula">
+F = μmg
+</div>
+
+Therefore, horizontally:
+
+<div class="formula">
+P − μmg = ma
+</div>
+
+so:
+
+<div class="formula">
+a = (P − μmg) / m
+</div>
+
+<p>
+This equation is only valid when the assumed friction state is
+appropriate.
+</p>
+
+</section>
+
+
+<!-- 18 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 18
+</p>
+
+<h2>
+Particle on a Rough Inclined Plane
+</h2>
+
+<p>
+For a particle on an inclined plane, resolve forces parallel and
+perpendicular to the plane.
+</p>
+
+<p>
+If the plane is inclined at θ:
+</p>
+
+<div class="formula">
+Weight component down plane = mg sin θ
+</div>
+
+<div class="formula">
+Normal component = mg cos θ
+</div>
+
+If friction acts up the plane:
+
+<div class="formula">
+mg sin θ − F = ma
+</div>
+
+If the particle is on the point of sliding:
+
+<div class="formula">
+F = μR
+</div>
+
+and, in the simplest case:
+
+<div class="formula">
+F = μmg cos θ
+</div>
+
+</section>
+
+
+<!-- 19 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 19
+</p>
+
+<h2>
+Limiting Equilibrium
+</h2>
+
+<p>
+A particle is in limiting equilibrium when it is in equilibrium but
+is on the point of moving.
+</p>
+
+<p>
+At limiting equilibrium, friction has reached its limiting value:
+</p>
+
+<div class="formula">
+F = μR
+</div>
+
+<p>
+This is different from ordinary equilibrium, where friction may
+be less than μR.
+</p>
+
+<div class="warning">
+
+<strong>Very important:</strong>
+
+<p>
+Do not write F = μR for every rough-surface problem. It applies
+when the particle is moving or is on the point of slipping,
+according to the model being used.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 20 -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+LESSON 20
+</p>
+
+<h2>
+Modelling Assumptions
+</h2>
+
+<p>
+Mechanics questions often describe an idealised mathematical model.
+Understanding the assumptions is essential.
+</p>
+
+<table>
+
+<tr>
+
+<th>Phrase</th>
+
+<th>Meaning</th>
+
+</tr>
+
+<tr>
+
+<td>Particle</td>
+
+<td>Size and shape are ignored.</td>
+
+</tr>
+
+<tr>
+
+<td>Light string</td>
+
+<td>String mass is negligible.</td>
+
+</tr>
+
+<tr>
+
+<td>Inextensible string</td>
+
+<td>String length remains constant.</td>
+
+</tr>
+
+<tr>
+
+<td>Smooth pulley</td>
+
+<td>Negligible friction at pulley; tension is unchanged.</td>
+
+</tr>
+
+<tr>
+
+<td>Smooth surface</td>
+
+<td>No friction.</td>
+
+</tr>
+
+<tr>
+
+<td>Rough surface</td>
+
+<td>Friction may act.</td>
+
+</tr>
+
+<tr>
+
+<td>Uniform gravitational field</td>
+
+<td>g is treated as constant.</td>
+
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- WORKED EXAMPLES -->
+
+<section class="lesson">
+
+<p class="lesson-number">
+WORKED EXAMPLES
+</p>
+
+<h2>
+High-Value Exam Problems
+</h2>
+
+
+<div class="example">
+
+<p class="example-title">
+Example 1 — Horizontal Dynamics
+</p>
+
+<p>
+A 3 kg particle is acted upon by forces of 25 N to the right and
+7 N to the left. Find its acceleration.
+</p>
+
+<div class="solution">
+
+<p>
+Resultant = 25 − 7 = 18 N
+</p>
+
+<p>
+18 = 3a
+</p>
+
+<p>
+<strong>a = 6 m/s²</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<p class="example-title">
+Example 2 — Vertical Motion
+</p>
+
+<p>
+A 4 kg particle is pulled vertically upward by a tension of 60 N.
+Find its acceleration.
+</p>
+
+<div class="solution">
+
+<p>
+Take upward as positive.
+</p>
+
+<p>
+T − mg = ma
+</p>
+
+<p>
+60 − 4(9.8) = 4a
+</p>
+
+<p>
+60 − 39.2 = 4a
+</p>
+
+<p>
+20.8 = 4a
+</p>
+
+<p>
+<strong>a = 5.2 m/s² upward</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<p class="example-title">
+Example 3 — Smooth Inclined Plane
+</p>
+
+<p>
+A particle rests on a smooth plane inclined at 30° to the horizontal.
+Find its acceleration down the plane.
+</p>
+
+<div class="solution">
+
+<p>
+Parallel component of weight:
+</p>
+
+<p>
+mg sin 30°
+</p>
+
+<p>
+ma = mg sin 30°
+</p>
+
+<p>
+a = g sin 30°
+</p>
+
+<p>
+<strong>a = 4.9 m/s²</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<p class="example-title">
+Example 4 — Rough Horizontal Surface
+</p>
+
+<p>
+A 5 kg particle is pulled horizontally by 35 N. The coefficient of
+friction is 0.2. Find its acceleration, assuming it is moving.
+</p>
+
+<div class="solution">
+
+<p>
+R = mg = 49 N
+</p>
+
+<p>
+F = μR = 0.2 × 49 = 9.8 N
+</p>
+
+<p>
+35 − 9.8 = 5a
+</p>
+
+<p>
+25.2 = 5a
+</p>
+
+<p>
+<strong>a = 5.04 m/s²</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<div class="example">
+
+<p class="example-title">
+Example 5 — Connected Particles
+</p>
+
+<p>
+Particles of masses 3 kg and 5 kg are connected by a light
+inextensible string passing over a smooth pulley. The 5 kg particle
+moves downward. Find the acceleration.
+</p>
+
+<div class="solution">
+
+<p>
+For the 5 kg particle:
+</p>
+
+<p>
+49 − T = 5a
+</p>
+
+<p>
+For the 3 kg particle:
+</p>
+
+<p>
+T − 29.4 = 3a
+</p>
+
+<p>
+Adding:
+</p>
+
+<p>
+19.6 = 8a
+</p>
+
+<p>
+<strong>a = 2.45 m/s²</strong>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- EXAM -->
+
+<section class="exam-intro" id="exam">
+
+<p class="lesson-number">
+FINAL EXAM
+</p>
+
+<h2 class="exam-title">
+100-Question Dynamics Exam
+</h2>
+
+<p>
+A comprehensive M1 Dynamics assessment covering definitions,
+Newton's laws, forces, weight, friction, inclined planes,
+connected particles, tension and modelling.
+</p>
+
+<div class="exam-meta">
+
+<div class="exam-stat">
+
+<strong>100</strong>
+
+<span>Questions</span>
+
+</div>
+
+<div class="exam-stat">
+
+<strong>100</strong>
+
+<span>Marks</span>
+
+</div>
+
+<div class="exam-stat">
+
+<strong>MCQ</strong>
+
+<span>Format</span>
+
+</div>
+
+<div class="exam-stat">
+
+<strong>M1</strong>
+
+<span>Level</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+<div class="exam-controls">
+
+<div class="progress-wrap">
+
+<div class="progress-text" id="progressText">
+Question 1 of 100
+</div>
+
+<div class="progress-bar">
+
+<div class="progress-fill" id="progressFill"></div>
+
+</div>
+
+</div>
+
+<button class="exam-button" onclick="restartExam()">
+Restart
+</button>
+
+</div>
+
+
+<div id="examContainer"></div>
+
+
+<div class="result-box" id="resultBox">
+
+<div class="result-score" id="resultScore">
+0%
+</div>
+
+<div class="result-message" id="resultMessage">
+</div>
+
+<button class="exam-button" onclick="restartExam()">
+Take Exam Again
+</button>
+
+<div class="review" id="review"></div>
+
+</div>
 
 
 </main>
@@ -1369,130 +3262,1481 @@
 
 <nav class="navigation">
 
-    <a href="mechanics-kinematics.html" class="button">
-        ← Previous: Kinematics
-    </a>
+<a href="mechanics-kinematics.html" class="button">
+← Previous: Kinematics
+</a>
 
-    <a href="mechanics-statics.html" class="button primary">
-        Next: Statics →
-    </a>
+<a href="mechanics-statics.html" class="button primary">
+Next: Statics →
+</a>
 
-    <a href="mechanics.html" class="button">
-        Mechanics
-    </a>
+<a href="mechanics.html" class="button">
+Mechanics
+</a>
 
 </nav>
 
 
 <footer>
-    © 2026 IAL ATLAS • Independent student resource • Not affiliated with Pearson
+
+© 2026 IAL ATLAS • Independent student resource • Not affiliated with Pearson
+
 </footer>
 
 
 <script>
-    /* =========================
-       SCROLL REVEAL
-    ========================== */
-
-    const lessons = document.querySelectorAll(".lesson");
-
-    const observer = new IntersectionObserver(
-        entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                    observer.unobserve(entry.target);
-                }
-            });
-        },
-        {
-            threshold: 0.12
-        }
-    );
-
-    lessons.forEach(lesson => observer.observe(lesson));
 
 
-    /* =========================
-       MOUSE FOLLOW LIGHT
-    ========================== */
+/* =========================
+   SCROLL REVEAL
+========================= */
 
-    lessons.forEach(lesson => {
+const lessons=document.querySelectorAll(".lesson");
 
-        lesson.addEventListener("mousemove", event => {
+const observer=new IntersectionObserver(
 
-            const rect = lesson.getBoundingClientRect();
+entries=>{
 
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
+entries.forEach(entry=>{
 
-            lesson.style.setProperty("--mx", `${x}px`);
-            lesson.style.setProperty("--my", `${y}px`);
+if(entry.isIntersecting){
 
-        });
+entry.target.classList.add("visible");
 
-    });
+observer.unobserve(entry.target);
 
+}
 
-    /* =========================
-       HERO PARALLAX
-    ========================== */
+});
 
-    const hero = document.querySelector(".hero");
-    const heroGrid = document.querySelector(".hero-grid");
-    const heroGlow = document.querySelector(".hero-glow");
+},
 
-    window.addEventListener("scroll", () => {
+{threshold:.12}
 
-        const scroll = window.scrollY;
+);
 
-        if (scroll < window.innerHeight) {
-
-            heroGrid.style.transform =
-                `translateY(${scroll * 0.16}px)`;
-
-            heroGlow.style.transform =
-                `translateY(${scroll * 0.08}px)`;
-
-        }
-
-    });
+lessons.forEach(lesson=>observer.observe(lesson));
 
 
-    /* =========================
-       FORCE SYSTEM INTERACTION
-    ========================== */
+/* =========================
+   100 QUESTION EXAM
+========================= */
 
-    const forceSystem = document.querySelector(".force-system");
-    const particle = document.querySelector(".particle");
+const questions=[
 
-    forceSystem.addEventListener("mousemove", event => {
 
-        const rect = forceSystem.getBoundingClientRect();
+{
+q:"What does dynamics study?",
+o:[
+"The description of motion only",
+"The relationship between forces and motion",
+"Only acceleration and time",
+"Only displacement"
+],
+a:1
+},
 
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
+{
+q:"Which equation represents Newton's Second Law?",
+o:["F = mv","F = ma","F = m/a","F = a/m"],
+a:1
+},
 
-        const rotateX =
-            ((y / rect.height) - 0.5) * -7;
+{
+q:"What is the SI unit of force?",
+o:["kg","m/s","N","J"],
+a:2
+},
 
-        const rotateY =
-            ((x / rect.width) - 0.5) * 7;
+{
+q:"What is the SI unit of mass?",
+o:["N","kg","m/s²","J"],
+a:1
+},
 
-        particle.style.transform =
-            `translateX(-50%) translateY(-4px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+{
+q:"What is the SI unit of acceleration?",
+o:["m/s","m/s²","N","kg"],
+a:1
+},
 
-    });
+{
+q:"If the resultant force on a particle is zero, its acceleration is:",
+o:["Maximum","9.8 m/s²","Zero","Constant and non-zero"],
+a:2
+},
 
-    forceSystem.addEventListener("mouseleave", () => {
+{
+q:"A particle moving at constant velocity has:",
+o:["Zero resultant force","Increasing force","Constant acceleration","Increasing acceleration"],
+a:0
+},
 
-        particle.style.transform =
-            "translateX(-50%) translateY(0)";
+{
+q:"Newton's First Law is closely associated with:",
+o:["Equilibrium","Momentum only","Energy only","Power"],
+a:0
+},
 
-    });
+{
+q:"Which force always acts vertically downward near Earth's surface?",
+o:["Reaction","Tension","Weight","Friction"],
+a:2
+},
+
+{
+q:"The equation for weight is:",
+o:["W = m/g","W = mg","W = ma","W = g/m"],
+a:1
+},
+
+{
+q:"Using g = 9.8 m/s², the weight of a 5 kg particle is:",
+o:["4.9 N","49 N","98 N","50 N"],
+a:1
+},
+
+{
+q:"Mass is measured in:",
+o:["Newtons","Kilograms","Joules","Metres"],
+a:1
+},
+
+{
+q:"Weight is measured in:",
+o:["kg","N","m/s","m/s²"],
+a:1
+},
+
+{
+q:"Which statement about mass is correct?",
+o:[
+"It depends on g",
+"It is a force",
+"It is measured in kg",
+"It always equals weight"
+],
+a:2
+},
+
+{
+q:"The resultant force is:",
+o:[
+"The largest force",
+"The smallest force",
+"The vector sum of all forces",
+"Always equal to weight"
+],
+a:2
+},
+
+{
+q:"A 4 kg particle experiences a resultant force of 20 N. Its acceleration is:",
+o:["5 m/s²","80 m/s²","0.2 m/s²","24 m/s²"],
+a:0
+},
+
+{
+q:"A 10 kg particle accelerates at 3 m/s². Its resultant force is:",
+o:["3 N","10 N","13 N","30 N"],
+a:3
+},
+
+{
+q:"A 6 kg particle has acceleration 4 m/s². The resultant force is:",
+o:["1.5 N","10 N","24 N","30 N"],
+a:2
+},
+
+{
+q:"A force of 50 N acts right and 20 N acts left. The resultant is:",
+o:["70 N right","30 N right","30 N left","70 N left"],
+a:1
+},
+
+{
+q:"A 2 kg particle has a resultant force of 12 N. Acceleration is:",
+o:["6 m/s²","24 m/s²","10 m/s²","0.17 m/s²"],
+a:0
+},
+
+{
+q:"If the resultant force is in the positive x-direction, acceleration is:",
+o:["Always vertical","In the positive x-direction","Always zero","Opposite x-direction"],
+a:1
+},
+
+{
+q:"A particle can have zero resultant force while:",
+o:[
+"Moving at constant velocity",
+"Always accelerating",
+"Changing velocity",
+"Increasing speed"
+],
+a:0
+},
+
+{
+q:"Newton's Third Law forces act:",
+o:[
+"On the same body",
+"On different bodies",
+"Only horizontally",
+"Only vertically"
+],
+a:1
+},
+
+{
+q:"Newton's Third Law forces are:",
+o:[
+"Unequal and opposite",
+"Equal and same direction",
+"Equal and opposite",
+"Always zero"
+],
+a:2
+},
+
+{
+q:"Weight and normal reaction on a stationary horizontal particle are:",
+o:[
+"Always a Third Law pair",
+"Both horizontal",
+"Usually forces acting on the same particle",
+"Always equal by Newton III"
+],
+a:2
+},
+
+{
+q:"A normal reaction acts:",
+o:[
+"Parallel to the surface",
+"Perpendicular to the surface",
+"Always vertically",
+"Always horizontally"
+],
+a:1
+},
+
+{
+q:"A smooth surface has:",
+o:[
+"Maximum friction",
+"No friction",
+"Constant friction",
+"Limiting friction only"
+],
+a:1
+},
+
+{
+q:"A rough surface may exert:",
+o:[
+"Friction",
+"Only weight",
+"Only tension",
+"No reaction"
+],
+a:0
+},
+
+{
+q:"Friction generally acts:",
+o:[
+"In the direction of motion",
+"Opposing relative motion or its tendency",
+"Vertically upward",
+"Toward the centre of Earth"
+],
+a:1
+},
+
+{
+q:"Limiting friction is given by:",
+o:["F = μR","F = mg","F = ma","F = μm"],
+a:0
+},
+
+{
+q:"The coefficient of friction has:",
+o:["Units of N","Units of kg","No units","Units of m/s²"],
+a:2
+},
+
+{
+q:"If R = 50 N and μ = 0.3, limiting friction is:",
+o:["15 N","50.3 N","150 N","0.006 N"],
+a:0
+},
+
+{
+q:"If μ = 0.2 and R = 80 N, limiting friction is:",
+o:["16 N","40 N","80.2 N","400 N"],
+a:0
+},
+
+{
+q:"If a particle is on the point of sliding, friction is:",
+o:[
+"Zero",
+"Less than μR",
+"Equal to μR",
+"Always equal to mg"
+],
+a:2
+},
+
+{
+q:"For a particle on a horizontal surface with no vertical acceleration, R usually equals:",
+o:["ma","mg","μmg","T"],
+a:1
+},
+
+{
+q:"A 5 kg particle on a horizontal surface has normal reaction:",
+o:["5 N","9.8 N","49 N","98 N"],
+a:2
+},
+
+{
+q:"A particle of mass 8 kg has weight:",
+o:["8 N","78.4 N","80 N","9.8 N"],
+a:1
+},
+
+{
+q:"A particle is pulled right by 40 N and friction is 10 N left. Resultant is:",
+o:["50 N right","30 N right","30 N left","10 N right"],
+a:1
+},
+
+{
+q:"If a 5 kg particle has resultant force 30 N, acceleration is:",
+o:["6 m/s²","150 m/s²","25 m/s²","0.167 m/s²"],
+a:0
+},
+
+{
+q:"If a particle moves right but accelerates left, its speed is:",
+o:["Increasing","Decreasing","Constant necessarily","Zero"],
+a:1
+},
+
+{
+q:"Acceleration is always in the direction of:",
+o:["Velocity","Weight","Resultant force","Displacement"],
+a:2
+},
+
+{
+q:"A particle moving upward can have acceleration:",
+o:["Only upward","Only downward","Either upward or downward","Never zero"],
+a:2
+},
+
+{
+q:"If a particle is moving downward and accelerating upward, its speed is:",
+o:["Increasing","Decreasing","Always constant","Infinite"],
+a:1
+},
+
+{
+q:"For a particle on a plane inclined at θ to the horizontal, the component of weight down the plane is:",
+o:["mg cos θ","mg sin θ","mg tan θ","mg"],
+a:1
+},
+
+{
+q:"The component of weight perpendicular to an inclined plane is:",
+o:["mg sin θ","mg cos θ","mg tan θ","mgsin²θ"],
+a:1
+},
+
+{
+q:"On a smooth inclined plane, friction is:",
+o:["μR","mg sin θ","Zero","R"],
+a:2
+},
+
+{
+q:"A particle slides down a smooth plane at angle θ. Its acceleration is:",
+o:["g cos θ","g sin θ","g tan θ","g"],
+a:1
+},
+
+{
+q:"At θ = 30°, acceleration down a smooth plane is:",
+o:["9.8 m/s²","4.9 m/s²","8.49 m/s²","2.45 m/s²"],
+a:1
+},
+
+{
+q:"At θ = 90°, a smooth-plane particle has acceleration:",
+o:["0","4.9","9.8","19.6"],
+a:2
+},
+
+{
+q:"At θ = 0°, the component of weight down the plane is:",
+o:["mg","mg cos 0","0","g"],
+a:2
+},
+
+{
+q:"On an inclined plane, the normal reaction acts:",
+o:[
+"Vertically upward",
+"Vertically downward",
+"Perpendicular to the plane",
+"Parallel to the plane"
+],
+a:2
+},
+
+{
+q:"A light string has:",
+o:[
+"Negligible mass",
+"Large mass",
+"Zero tension",
+"Variable length necessarily"
+],
+a:0
+},
+
+{
+q:"An inextensible string:",
+o:[
+"Can stretch freely",
+"Has constant length",
+"Has zero tension",
+"Has no mass only"
+],
+a:1
+},
+
+{
+q:"For an ideal light string over a smooth pulley, tension is:",
+o:[
+"Different on each side",
+"The same throughout",
+"Always zero",
+"Always equal to weight"
+],
+a:1
+},
+
+{
+q:"Connected particles joined by an inextensible taut string have:",
+o:[
+"Different acceleration magnitudes necessarily",
+"Equal acceleration magnitudes",
+"Zero acceleration always",
+"Opposite speeds"
+],
+a:1
+},
+
+{
+q:"When solving connected particles, Newton's Second Law should normally be applied:",
+o:[
+"To the whole universe",
+"Separately to each particle",
+"Only to the heavier particle",
+"Only to the pulley"
+],
+a:1
+},
+
+{
+q:"A smooth pulley means:",
+o:[
+"There is no tension",
+"Pulley friction is neglected",
+"The string is heavy",
+"The particles are stationary"
+],
+a:1
+},
+
+{
+q:"A 3 kg particle has weight:",
+o:["29.4 N","30 N","3 N","9.8 N"],
+a:0
+},
+
+{
+q:"A 7 kg particle has weight using g = 9.8:",
+o:["68.6 N","70 N","7.8 N","49 N"],
+a:0
+},
+
+{
+q:"A force of 18 N acts on a 3 kg particle. Acceleration:",
+o:["6 m/s²","54 m/s²","15 m/s²","0.167 m/s²"],
+a:0
+},
+
+{
+q:"A force of 45 N produces acceleration 9 m/s². Mass is:",
+o:["5 kg","36 kg","54 kg","4 kg"],
+a:0
+},
+
+{
+q:"A 2 kg particle has acceleration 7 m/s². Resultant force:",
+o:["3.5 N","9 N","14 N","21 N"],
+a:2
+},
+
+{
+q:"If the resultant force is doubled while mass remains constant, acceleration:",
+o:["Halves","Doubles","Stays constant","Becomes zero"],
+a:1
+},
+
+{
+q:"If mass doubles while resultant force stays constant, acceleration:",
+o:["Doubles","Halves","Quadruples","Stays constant"],
+a:1
+},
+
+{
+q:"If both force and mass double, acceleration:",
+o:["Doubles","Halves","Remains unchanged","Quadruples"],
+a:2
+},
+
+{
+q:"If force triples and mass doubles, acceleration becomes:",
+o:["3/2 of original","2/3 of original","6 times","1/6"],
+a:0
+},
+
+{
+q:"A particle in equilibrium has:",
+o:[
+"Zero acceleration",
+"Zero velocity necessarily",
+"Zero mass",
+"Zero weight necessarily"
+],
+a:0
+},
+
+{
+q:"A particle moving with constant velocity has:",
+o:[
+"Constant non-zero acceleration",
+"Zero acceleration",
+"Increasing acceleration",
+"Maximum resultant force"
+],
+a:1
+},
+
+{
+q:"A particle at rest necessarily has:",
+o:[
+"Zero acceleration",
+"Zero resultant force",
+"Zero velocity",
+"Both B and C"
+],
+a:3
+},
+
+{
+q:"A particle can be stationary but not in equilibrium:",
+o:[
+"Yes",
+"No",
+"Only in space",
+"Only on rough surfaces"
+],
+a:0
+},
+
+{
+q:"A force diagram should include:",
+o:[
+"Forces acting on the chosen particle",
+"Forces exerted by the particle on others only",
+"Only horizontal forces",
+"Only forces causing motion"
+],
+a:0
+},
+
+{
+q:"When resolving forces on an incline, it is usually convenient to choose axes:",
+o:[
+"Randomly",
+"Parallel and perpendicular to the plane",
+"Only vertical",
+"Only horizontal"
+],
+a:1
+},
+
+{
+q:"For an inclined plane, increasing θ increases:",
+o:[
+"mg sin θ",
+"mg cos θ",
+"Mass",
+"Gravity"
+],
+a:0
+},
+
+{
+q:"For θ = 0°, cos θ equals:",
+o:["0","1","−1","9.8"],
+a:1
+},
+
+{
+q:"For θ = 90°, sin θ equals:",
+o:["0","1","−1","0.5"],
+a:1
+},
+
+{
+q:"If a rough horizontal surface has μ = 0, limiting friction is:",
+o:["mg","R","Zero","μ"],
+a:2
+},
+
+{
+q:"If μ increases while R remains fixed, limiting friction:",
+o:["Decreases","Increases","Stays zero","Becomes negative"],
+a:1
+},
+
+{
+q:"If normal reaction doubles and μ remains constant, limiting friction:",
+o:["Halves","Doubles","Unchanged","Becomes zero"],
+a:1
+},
+
+{
+q:"The normal reaction is generally represented by:",
+o:["R","W","T","μ"],
+a:0
+},
+
+{
+q:"Tension is a force that:",
+o:[
+"Pushes along a string",
+"Pulls along a string",
+"Always acts vertically",
+"Always equals weight"
+],
+a:1
+},
+
+{
+q:"A string cannot normally push a particle in the standard tension model because it:",
+o:[
+"Has no mass",
+"Can only sustain tension",
+"Has infinite length",
+"Has no force"
+],
+a:1
+},
+
+{
+q:"If a string becomes slack, its tension is:",
+o:["Negative","Zero","Infinite","Equal to μR"],
+a:1
+},
+
+{
+q:"For two connected particles, the tension forces on the two particles:",
+o:[
+"Act in the same direction",
+"Act along the string in opposite directions",
+"Are always zero",
+"Are always unequal"
+],
+a:1
+},
+
+{
+q:"In an ideal Atwood-type system, the heavier particle generally:",
+o:[
+"Moves upward",
+"Moves downward",
+"Does not move",
+"Has zero weight"
+],
+a:1
+},
+
+{
+q:"For a 5 kg particle moving downward, with downward positive, Newton's law may be written:",
+o:[
+"T − 5g = 5a",
+"5g − T = 5a",
+"T + 5g = 5a",
+"5g + T = a"
+],
+a:1
+},
+
+{
+q:"For a particle moving upward with tension T, upward positive:",
+o:[
+"T − mg = ma",
+"mg − T = ma",
+"T + mg = ma",
+"T = mg always"
+],
+a:0
+},
+
+{
+q:"If T = mg for a vertically moving particle, acceleration is:",
+o:["g","2g","0","−g"],
+a:2
+},
+
+{
+q:"A vertically moving particle has T > mg. Its acceleration is:",
+o:["Downward","Upward","Zero necessarily","Horizontal"],
+a:1
+},
+
+{
+q:"A vertically moving particle has T < mg. Its acceleration is:",
+o:["Upward","Downward","Zero necessarily","Horizontal"],
+a:1
+},
+
+{
+q:"A rough surface means friction:",
+o:[
+"Must always equal μR",
+"May act depending on the motion/tendency",
+"Is always zero",
+"Always equals weight"
+],
+a:1
+},
+
+{
+q:"Limiting equilibrium means the particle is:",
+o:[
+"Accelerating maximally",
+"On the point of slipping",
+"Moving at constant acceleration",
+"Free of friction"
+],
+a:1
+},
+
+{
+q:"For limiting equilibrium on a rough surface:",
+o:[
+"F = μR",
+"F = 0",
+"R = 0",
+"μ = 0"
+],
+a:0
+},
+
+{
+q:"Which assumption means an object's dimensions are ignored?",
+o:["Smooth","Light","Particle","Inextensible"],
+a:2
+},
+
+{
+q:"Which assumption means string mass is ignored?",
+o:["Particle","Light","Smooth","Rough"],
+a:1
+},
+
+{
+q:"Which assumption means a string cannot change length?",
+o:["Smooth","Rough","Inextensible","Light"],
+a:2
+},
+
+{
+q:"Which assumption usually allows equal tension throughout an ideal pulley system?",
+o:[
+"Smooth pulley and light string",
+"Rough surface only",
+"Heavy string",
+"Elastic string"
+],
+a:0
+},
+
+{
+q:"When writing ΣF = ma, the forces must be:",
+o:[
+"Added as scalars regardless of direction",
+"Combined with their directions/signs",
+"Ignored if small",
+"Always positive"
+],
+a:1
+},
+
+{
+q:"A negative value for acceleration in a chosen direction means:",
+o:[
+"The calculation is necessarily wrong",
+"The acceleration acts opposite to the chosen positive direction",
+"The particle has zero acceleration",
+"The particle has negative mass"
+],
+a:1
+},
+
+{
+q:"A negative value for tension in a standard taut-string model may indicate:",
+o:[
+"The string model or assumed direction is inconsistent",
+"The tension is physically negative",
+"Gravity is negative",
+"Mass is negative"
+],
+a:0
+},
+
+{
+q:"The first step in a difficult dynamics problem should usually be:",
+o:[
+"Guess the answer",
+"Draw a force diagram",
+"Substitute numbers immediately",
+"Ignore directions"
+],
+a:1
+},
+
+{
+q:"In a multi-particle system, the most reliable method is to:",
+o:[
+"Apply one equation to every particle without distinction",
+"Draw separate diagrams and equations",
+"Ignore tension",
+"Assume equilibrium"
+],
+a:1
+},
+
+{
+q:"If the surface is explicitly described as smooth, friction should be:",
+o:["Included","Ignored","Set equal to μR","Set equal to weight"],
+a:1
+},
+
+{
+q:"If the question gives g = 10 m/s², you should:",
+o:[
+"Always use 9.8",
+"Use the specified value",
+"Use 9.81",
+"Ignore gravity"
+],
+a:1
+},
+
+{
+q:"The phrase 'take g = 9.8 m/s²' means:",
+o:[
+"Use 9.8 for gravitational acceleration",
+"Mass is 9.8 kg",
+"Weight is always 9.8 N",
+"Friction is 9.8 N"
+],
+a:0
+},
+
+{
+q:"Which quantity is a vector?",
+o:["Mass","Speed","Force","Energy"],
+a:2
+},
+
+{
+q:"Which quantity determines the direction of acceleration?",
+o:["Mass","Resultant force","Speed","Time"],
+a:1
+},
+
+{
+q:"If the resultant force is constant and non-zero, acceleration is:",
+o:[
+"Constant",
+"Always zero",
+"Always increasing",
+"Always decreasing"
+],
+a:0
+},
+
+{
+q:"A constant force acting on constant mass produces:",
+o:[
+"Constant acceleration",
+"Constant velocity necessarily",
+"Zero acceleration",
+"Constant displacement"
+],
+a:0
+},
+
+{
+q:"The equation F = ma should use:",
+o:[
+"Mass in grams",
+"Mass in kilograms",
+"Mass in tonnes only",
+"Mass in newtons"
+],
+a:1
+},
+
+{
+q:"A 500 g mass is equivalent to:",
+o:["0.5 kg","5 kg","50 kg","500 kg"],
+a:0
+},
+
+{
+q:"A 2.5 kg particle experiences 10 N resultant force. Its acceleration is:",
+o:["4 m/s²","25 m/s²","12.5 m/s²","0.25 m/s²"],
+a:0
+},
+
+{
+q:"A 12 kg particle accelerates at 2.5 m/s². Resultant force:",
+o:["4.8 N","14.5 N","30 N","24 N"],
+a:2
+},
+
+{
+q:"A 40 N force acts on a 8 kg particle. Acceleration:",
+o:["5 m/s²","32 m/s²","48 m/s²","0.2 m/s²"],
+a:0
+},
+
+{
+q:"A 9 kg particle has resultant force 18 N. Acceleration:",
+o:["162 m/s²","27 m/s²","2 m/s²","0.5 m/s²"],
+a:2
+},
+
+{
+q:"If a particle has no resultant force, Newton's Second Law gives:",
+o:["ma = 0","ma = mg","ma = T","ma = μR"],
+a:0
+},
+
+{
+q:"Which force opposes relative motion between contacting surfaces?",
+o:["Weight","Friction","Tension","Reaction only"],
+a:1
+},
+
+{
+q:"On a smooth inclined plane, the particle's acceleration is independent of:",
+o:["Angle","g","Mass","Gravity"],
+a:2
+},
+
+{
+q:"Why is acceleration down a smooth plane independent of mass?",
+o:[
+"Mass cancels from ma = mg sin θ",
+"Mass is zero",
+"Weight is zero",
+"The reaction is infinite"
+],
+a:0
+}
+
+];
+
+
+let currentQuestion=0;
+
+let answers=new Array(questions.length).fill(null);
+
+let submitted=false;
+
+
+function renderExam(){
+
+const container=document.getElementById("examContainer");
+
+container.innerHTML="";
+
+questions.forEach((question,index)=>{
+
+const card=document.createElement("div");
+
+card.className="question-card";
+
+if(index===0){
+card.classList.add("active");
+}
+
+card.id="question-"+index;
+
+
+let options="";
+
+question.o.forEach((option,optIndex)=>{
+
+options+=`
+
+<div class="option"
+
+onclick="selectAnswer(${index},${optIndex})"
+
+id="option-${index}-${optIndex}">
+
+<strong>${String.fromCharCode(65+optIndex)}.</strong>
+
+${option}
+
+</div>
+
+`;
+
+});
+
+
+card.innerHTML=`
+
+<div class="question-number">
+
+QUESTION ${index+1} / ${questions.length}
+
+</div>
+
+<div class="question-text">
+
+${question.q}
+
+</div>
+
+<div class="options">
+
+${options}
+
+</div>
+
+<div class="exam-navigation">
+
+<button class="exam-button"
+
+onclick="previousQuestion()"
+
+${index===0?"disabled":""}>
+
+← Previous
+
+</button>
+
+<button class="exam-button"
+
+onclick="${index===questions.length-1?"submitExam()":"nextQuestion()"}">
+
+${index===questions.length-1?"Submit Exam":"Next →"}
+
+</button>
+
+</div>
+
+<div class="question-counter">
+
+Question ${index+1} of ${questions.length}
+
+</div>
+
+`;
+
+container.appendChild(card);
+
+});
+
+updateProgress();
+
+}
+
+
+function selectAnswer(questionIndex,optionIndex){
+
+if(submitted)return;
+
+answers[questionIndex]=optionIndex;
+
+const options=document.querySelectorAll(
+`#question-${questionIndex} .option`
+);
+
+options.forEach(option=>{
+
+option.classList.remove("selected");
+
+});
+
+document
+.getElementById(`option-${questionIndex}-${optionIndex}`)
+.classList.add("selected");
+
+}
+
+
+function showQuestion(index){
+
+if(index<0 || index>=questions.length)return;
+
+document.querySelectorAll(".question-card")
+.forEach(card=>card.classList.remove("active"));
+
+document
+.getElementById("question-"+index)
+.classList.add("active");
+
+currentQuestion=index;
+
+updateProgress();
+
+window.scrollTo({
+top:document.getElementById("exam").offsetTop-20,
+behavior:"smooth"
+});
+
+}
+
+
+function nextQuestion(){
+
+if(currentQuestion<questions.length-1){
+
+showQuestion(currentQuestion+1);
+
+}
+
+}
+
+
+function previousQuestion(){
+
+if(currentQuestion>0){
+
+showQuestion(currentQuestion-1);
+
+}
+
+}
+
+
+function updateProgress(){
+
+const percent=((currentQuestion+1)/questions.length)*100;
+
+document.getElementById("progressFill")
+.style.width=percent+"%";
+
+document.getElementById("progressText")
+.textContent=
+`Question ${currentQuestion+1} of ${questions.length}`;
+
+}
+
+
+function submitExam(){
+
+const unanswered=answers.filter(a=>a===null).length;
+
+if(unanswered>0){
+
+const proceed=confirm(
+`You have ${unanswered} unanswered question(s). Submit anyway?`
+);
+
+if(!proceed)return;
+
+}
+
+submitted=true;
+
+let score=0;
+
+questions.forEach((question,index)=>{
+
+const options=document.querySelectorAll(
+`#question-${index} .option`
+);
+
+options.forEach((option,optIndex)=>{
+
+option.onclick=null;
+
+if(optIndex===question.a){
+
+option.classList.add("correct");
+
+}
+
+if(
+answers[index]===optIndex &&
+answers[index]!==question.a
+){
+
+option.classList.add("wrong");
+
+}
+
+});
+
+if(answers[index]===question.a){
+
+score++;
+
+}
+
+});
+
+
+document
+.querySelectorAll(".question-card")
+.forEach(card=>card.classList.remove("active"));
+
+
+document.getElementById("resultBox")
+.style.display="block";
+
+
+const percentage=Math.round(
+(score/questions.length)*100
+);
+
+
+document.getElementById("resultScore")
+.textContent=`${score}/100`;
+
+
+let message="";
+
+if(percentage>=90){
+
+message="Excellent — outstanding Dynamics performance.";
+
+}
+
+else if(percentage>=80){
+
+message="Very strong — your Dynamics fundamentals are well developed.";
+
+}
+
+else if(percentage>=70){
+
+message="Good performance — continue refining exam technique.";
+
+}
+
+else if(percentage>=60){
+
+message="Solid foundation — revisit the weaker areas and practise more.";
+
+}
+
+else{
+
+message="Use the lesson sections to review the fundamentals, then attempt the exam again.";
+
+}
+
+
+document.getElementById("resultMessage")
+.textContent=message;
+
+
+const review=document.getElementById("review");
+
+review.innerHTML="<h3>Answer Review</h3>";
+
+
+questions.forEach((question,index)=>{
+
+const item=document.createElement("div");
+
+const correct=answers[index]===question.a;
+
+item.className=
+"review-item "+
+(correct?"correct-review":"wrong-review");
+
+
+item.innerHTML=`
+
+<strong>
+${index+1}. ${question.q}
+</strong>
+
+<span>
+
+Your answer:
+${
+answers[index]===null
+?"Not answered"
+:question.o[answers[index]]
+}
+
+<br>
+
+Correct answer:
+${question.o[question.a]}
+
+</span>
+
+`;
+
+review.appendChild(item);
+
+});
+
+
+document.getElementById("resultBox")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+function restartExam(){
+
+currentQuestion=0;
+
+answers=new Array(questions.length).fill(null);
+
+submitted=false;
+
+document.getElementById("resultBox")
+.style.display="none";
+
+renderExam();
+
+showQuestion(0);
+
+}
+
+
+renderExam();
+
+
+/* =========================
+   MOUSE CARD LIGHT
+========================= */
+
+document.querySelectorAll(".lesson")
+.forEach(lesson=>{
+
+lesson.addEventListener("mousemove",event=>{
+
+const rect=lesson.getBoundingClientRect();
+
+lesson.style.setProperty(
+"--mx",
+`${event.clientX-rect.left}px`
+);
+
+lesson.style.setProperty(
+"--my",
+`${event.clientY-rect.top}px`
+);
+
+});
+
+});
+
+
+/* =========================
+   HERO PARALLAX
+========================= */
+
+const heroGrid=document.querySelector(".hero-grid");
+
+const heroGlow=document.querySelector(".hero-glow");
+
+
+window.addEventListener("scroll",()=>{
+
+const scroll=window.scrollY;
+
+if(scroll<window.innerHeight){
+
+heroGrid.style.transform=
+`translateY(${scroll*.16}px)`;
+
+heroGlow.style.transform=
+`translateY(${scroll*.08}px)`;
+
+}
+
+});
+
+
+/* =========================
+   PARTICLE INTERACTION
+========================= */
+
+const forceSystem=document.querySelector(".force-system");
+
+const particle=document.querySelector(".particle");
+
+
+forceSystem.addEventListener("mousemove",event=>{
+
+const rect=forceSystem.getBoundingClientRect();
+
+const x=event.clientX-rect.left;
+
+const y=event.clientY-rect.top;
+
+const rotateX=
+((y/rect.height)-.5)*-7;
+
+const rotateY=
+((x/rect.width)-.5)*7;
+
+particle.style.transform=
+`translateX(-50%) translateY(-4px)
+rotateX(${rotateX}deg)
+rotateY(${rotateY}deg)`;
+
+});
+
+
+forceSystem.addEventListener("mouseleave",()=>{
+
+particle.style.transform=
+"translateX(-50%) translateY(0)";
+
+});
+
+
 </script>
 
 </body>
 
 </html>
-
