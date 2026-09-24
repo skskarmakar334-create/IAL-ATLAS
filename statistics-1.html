@@ -3,1996 +3,3136 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Statistics 1 | IAL ATLAS</title>
-
-    <meta name="description"
-          content="Edexcel International A Level Mathematics Statistics 1 — complete notes, examples and practice.">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-
-        :root {
-            --bg: #020812;
-            --bg2: #061321;
-            --panel: rgba(7, 22, 37, 0.72);
-            --panel2: rgba(10, 31, 49, 0.58);
-            --cyan: #55dcff;
-            --blue: #4da3ff;
-            --purple: #a77cff;
-            --green: #58e6b3;
-            --text: #eefaff;
-            --soft: #c5d9e7;
-            --muted: #8ba5b8;
-            --line: rgba(91, 211, 255, 0.14);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "Inter", sans-serif;
-            color: var(--text);
-            background:
-                radial-gradient(circle at 10% 15%, rgba(77,163,255,0.10), transparent 27%),
-                radial-gradient(circle at 90% 30%, rgba(167,124,255,0.08), transparent 28%),
-                radial-gradient(circle at 50% 90%, rgba(88,230,179,0.055), transparent 28%),
-                var(--bg);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        /* =========================
-           GLOBAL DATA GRID
-        ========================= */
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            z-index: -5;
-            pointer-events: none;
-            opacity: 0.25;
-            background-image:
-                linear-gradient(rgba(85,220,255,0.045) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(85,220,255,0.045) 1px, transparent 1px);
-            background-size: 46px 46px;
-            mask-image: linear-gradient(to bottom, black, transparent 90%);
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            width: 750px;
-            height: 750px;
-            left: 50%;
-            top: 30%;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            background: radial-gradient(
-                circle,
-                rgba(85,220,255,0.045),
-                transparent 68%
-            );
-            pointer-events: none;
-            z-index: -4;
-        }
-
-        /* =========================
-           PARTICLES
-        ========================= */
-
-        .particles {
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            border-radius: 50%;
-            background: var(--cyan);
-            box-shadow: 0 0 12px var(--cyan);
-            opacity: 0.45;
-            animation: floatData linear infinite;
-        }
-
-        .particle:nth-child(1) { left: 5%; top: 15%; animation-duration: 17s; }
-        .particle:nth-child(2) { left: 12%; top: 70%; animation-duration: 23s; }
-        .particle:nth-child(3) { left: 20%; top: 35%; animation-duration: 19s; }
-        .particle:nth-child(4) { left: 28%; top: 82%; animation-duration: 26s; }
-        .particle:nth-child(5) { left: 37%; top: 20%; animation-duration: 18s; }
-        .particle:nth-child(6) { left: 46%; top: 72%; animation-duration: 22s; }
-        .particle:nth-child(7) { left: 57%; top: 13%; animation-duration: 25s; }
-        .particle:nth-child(8) { left: 66%; top: 55%; animation-duration: 20s; }
-        .particle:nth-child(9) { left: 76%; top: 25%; animation-duration: 18s; }
-        .particle:nth-child(10) { left: 86%; top: 78%; animation-duration: 24s; }
-        .particle:nth-child(11) { left: 93%; top: 38%; animation-duration: 21s; }
-        .particle:nth-child(12) { left: 51%; top: 42%; animation-duration: 16s; }
-        .particle:nth-child(13) { left: 33%; top: 48%; animation-duration: 27s; }
-        .particle:nth-child(14) { left: 72%; top: 88%; animation-duration: 19s; }
-
-        @keyframes floatData {
-
-            0% {
-                transform: translate3d(0, 0, 0);
-                opacity: 0.1;
-            }
-
-            50% {
-                transform: translate3d(28px, -45px, 0);
-                opacity: 0.65;
-            }
-
-            100% {
-                transform: translate3d(-15px, -90px, 0);
-                opacity: 0.05;
-            }
-
-        }
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        header {
-            position: relative;
-            z-index: 20;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 21px 7%;
-            background: rgba(2, 8, 16, 0.76);
-            border-bottom: 1px solid rgba(85,220,255,0.12);
-            backdrop-filter: blur(18px);
-        }
-
-        .logo {
-            color: white;
-            text-decoration: none;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 25px;
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-
-        .logo::after {
-            content: " // S1";
-            color: var(--cyan);
-            font-size: 10px;
-            letter-spacing: 3px;
-            margin-left: 8px;
-            opacity: 0.7;
-        }
-
-        header > a:last-child {
-            color: #c8ddec;
-            text-decoration: none;
-            font-size: 13px;
-            padding: 10px 16px;
-            border-radius: 10px;
-            border: 1px solid rgba(85,220,255,0.15);
-            background: rgba(255,255,255,0.025);
-            transition: 0.3s ease;
-        }
-
-        header > a:last-child:hover {
-            color: white;
-            border-color: rgba(85,220,255,0.48);
-            box-shadow: 0 0 25px rgba(85,220,255,0.1);
-            transform: translateY(-2px);
-        }
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            position: relative;
-            min-height: 650px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            padding: 90px 20px 120px;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 5;
-            max-width: 820px;
-        }
-
-        .hero-label {
-            color: var(--cyan);
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 4px;
-            margin-bottom: 22px;
-        }
-
-        .hero h1 {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(54px, 8vw, 94px);
-            line-height: 0.98;
-            letter-spacing: -3px;
-            margin-bottom: 27px;
-            text-shadow: 0 0 55px rgba(85,220,255,0.12);
-        }
-
-        .hero h1 span {
-            background: linear-gradient(
-                110deg,
-                #ffffff,
-                var(--cyan),
-                #9acaff
-            );
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .hero p {
-            max-width: 700px;
-            margin: auto;
-            color: var(--soft);
-            font-size: 16px;
-            line-height: 1.85;
-        }
-
-        .hero-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 29px;
-            padding: 10px 16px;
-            border-radius: 999px;
-            border: 1px solid rgba(85,220,255,0.17);
-            background: rgba(4,20,34,0.68);
-            color: #91bed5;
-            font-size: 9px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            backdrop-filter: blur(10px);
-        }
-
-        .status-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--green);
-            box-shadow: 0 0 14px var(--green);
-            animation: pulse 1.8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-
-            50% {
-                opacity: 0.35;
-                transform: scale(0.72);
-            }
-
-        }
-
-        /* =========================
-           DATA OBSERVATORY
-        ========================= */
-
-        .observatory {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            width: 590px;
-            height: 440px;
-            transform: translate(-50%, -48%);
-            opacity: 0.7;
-            pointer-events: none;
-        }
-
-        .obs-grid {
-            position: absolute;
-            inset: 25px;
-            border: 1px solid rgba(85,220,255,0.08);
-            transform: perspective(500px) rotateX(62deg);
-            transform-origin: center;
-            background-image:
-                linear-gradient(rgba(85,220,255,0.055) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(85,220,255,0.055) 1px, transparent 1px);
-            background-size: 40px 40px;
-            mask-image: radial-gradient(circle, black, transparent 72%);
-        }
-
-        .distribution {
-            position: absolute;
-            left: 50%;
-            bottom: 80px;
-            width: 450px;
-            height: 220px;
-            transform: translateX(-50%);
-        }
-
-        .distribution::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(85,220,255,0.6),
-                transparent
-            );
-        }
-
-        .bar {
-            position: absolute;
-            bottom: 1px;
-            width: 25px;
-            border-radius: 5px 5px 0 0;
-            background: linear-gradient(
-                to top,
-                rgba(77,163,255,0.1),
-                rgba(85,220,255,0.7)
-            );
-            box-shadow: 0 0 15px rgba(85,220,255,0.16);
-            transform-origin: bottom;
-            animation: dataBars 3s ease-in-out infinite alternate;
-        }
-
-        .b1 { left: 3%;  height: 42px; animation-delay: .1s; }
-        .b2 { left: 10%; height: 70px; animation-delay: .25s; }
-        .b3 { left: 17%; height: 110px; animation-delay: .4s; }
-        .b4 { left: 24%; height: 145px; animation-delay: .55s; }
-        .b5 { left: 31%; height: 175px; animation-delay: .7s; }
-        .b6 { left: 38%; height: 200px; animation-delay: .85s; }
-        .b7 { left: 45%; height: 185px; animation-delay: 1s; }
-        .b8 { left: 52%; height: 155px; animation-delay: 1.15s; }
-        .b9 { left: 59%; height: 120px; animation-delay: 1.3s; }
-        .b10 { left: 66%; height: 82px; animation-delay: 1.45s; }
-        .b11 { left: 73%; height: 55px; animation-delay: 1.6s; }
-        .b12 { left: 80%; height: 32px; animation-delay: 1.75s; }
-        .b13 { left: 87%; height: 20px; animation-delay: 1.9s; }
-
-        @keyframes dataBars {
-
-            from {
-                transform: scaleY(0.82);
-                opacity: 0.55;
-            }
-
-            to {
-                transform: scaleY(1.05);
-                opacity: 0.95;
-            }
-
-        }
-
-        .mean-line {
-            position: absolute;
-            left: 51%;
-            bottom: 45px;
-            width: 2px;
-            height: 245px;
-            background: linear-gradient(
-                to top,
-                rgba(167,124,255,0),
-                rgba(167,124,255,0.75)
-            );
-            box-shadow: 0 0 15px rgba(167,124,255,0.35);
-            transform: rotate(2deg);
-        }
-
-        .mean-label {
-            position: absolute;
-            top: -18px;
-            left: 7px;
-            color: var(--purple);
-            font-size: 8px;
-            letter-spacing: 2px;
-        }
-
-        .obs-point {
-            position: absolute;
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: white;
-            box-shadow: 0 0 14px var(--cyan);
-            animation: observation 2.8s ease-in-out infinite;
-        }
-
-        .op1 { left: 16%; top: 35%; animation-delay: .2s; }
-        .op2 { left: 27%; top: 23%; animation-delay: .6s; }
-        .op3 { left: 39%; top: 18%; animation-delay: .9s; }
-        .op4 { left: 57%; top: 21%; animation-delay: .3s; }
-        .op5 { left: 70%; top: 33%; animation-delay: 1.1s; }
-        .op6 { left: 82%; top: 47%; animation-delay: .5s; }
-
-        @keyframes observation {
-
-            50% {
-                transform: translateY(-10px);
-                opacity: 0.45;
-            }
-
-        }
-
-        /* =========================
-           DATA STRIP
-        ========================= */
-
-        .data-strip {
-            position: relative;
-            z-index: 10;
-            max-width: 1040px;
-            margin: -48px auto 0;
-            padding: 17px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            background: rgba(5,18,31,0.75);
-            border: 1px solid rgba(85,220,255,0.13);
-            border-radius: 18px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 25px 80px rgba(0,0,0,0.32);
-        }
-
-        .data-cell {
-            text-align: center;
-            padding: 13px;
-            border-right: 1px solid rgba(85,220,255,0.09);
-        }
-
-        .data-cell:last-child {
-            border-right: none;
-        }
-
-        .data-cell strong {
-            display: block;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 17px;
-            margin-bottom: 4px;
-        }
-
-        .data-cell span {
-            color: #6f98ae;
-            font-size: 8px;
-            letter-spacing: 2px;
-        }
-
-        /* =========================
-           CONTENT
-        ========================= */
-
-        .container {
-            max-width: 1050px;
-            margin: auto;
-            padding: 115px 20px 90px;
-        }
-
-        .section-intro {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-intro .eyebrow {
-            color: var(--cyan);
-            font-size: 9px;
-            font-weight: 700;
-            letter-spacing: 4px;
-            margin-bottom: 14px;
-        }
-
-        .section-intro h2 {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(34px, 5vw, 50px);
-            margin-bottom: 14px;
-        }
-
-        .section-intro p {
-            color: var(--muted);
-            max-width: 720px;
-            margin: auto;
-            line-height: 1.8;
-        }
-
-        /* =========================
-           LESSON PANELS
-        ========================= */
-
-        .lesson {
-            position: relative;
-            margin-bottom: 30px;
-            padding: 38px;
-            border-radius: 23px;
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(11,32,51,0.75),
-                    rgba(4,14,25,0.72)
-                );
-            border: 1px solid rgba(100,190,225,0.12);
-            box-shadow:
-                inset 0 1px 0 rgba(255,255,255,0.035),
-                0 25px 70px rgba(0,0,0,0.2);
-            backdrop-filter: blur(18px);
-            overflow: hidden;
-            transition:
-                transform 0.4s ease,
-                border-color 0.4s ease,
-                box-shadow 0.4s ease;
-        }
-
-        .lesson::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(
-                to bottom,
-                var(--cyan),
-                transparent
-            );
-            box-shadow: 0 0 20px rgba(85,220,255,0.45);
-        }
-
-        .lesson::after {
-            content: "";
-            position: absolute;
-            right: -140px;
-            top: -140px;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(
-                circle,
-                rgba(85,220,255,0.07),
-                transparent 68%
-            );
-            pointer-events: none;
-        }
-
-        .lesson:hover {
-            transform: translateY(-5px);
-            border-color: rgba(85,220,255,0.27);
-            box-shadow:
-                0 30px 80px rgba(0,0,0,0.3),
-                0 0 40px rgba(85,220,255,0.045);
-        }
-
-        .lesson-number {
-            color: var(--cyan);
-            font-size: 9px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            margin-bottom: 8px;
-        }
-
-        .lesson h2 {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 31px;
-            margin-bottom: 20px;
-        }
-
-        .lesson h3 {
-            color: #e8f7ff;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 19px;
-            margin-top: 28px;
-            margin-bottom: 10px;
-        }
-
-        .lesson p,
-        .lesson li {
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        .lesson ul {
-            padding-left: 22px;
-            margin-top: 10px;
-        }
-
-        .lesson li {
-            margin-bottom: 8px;
-        }
-
-        /* =========================
-           DEFINITION
-        ========================= */
-
-        .definition {
-            position: relative;
-            margin: 23px 0;
-            padding: 20px 22px;
-            border-radius: 14px;
-            background: rgba(85,220,255,0.045);
-            border: 1px solid rgba(85,220,255,0.13);
-        }
-
-        .definition > strong {
-            color: var(--cyan);
-            font-size: 12px;
-            letter-spacing: 1px;
-        }
-
-        .definition p {
-            margin-top: 6px;
-        }
-
-        /* =========================
-           FORMULA
-        ========================= */
-
-        .formula {
-            position: relative;
-            margin: 20px 0;
-            padding: 19px 22px;
-            text-align: center;
-            border-radius: 13px;
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(8,30,49,0.9),
-                    rgba(4,16,28,0.88)
-                );
-            border: 1px solid rgba(85,220,255,0.16);
-            color: #f1fbff;
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 18px;
-            font-weight: 600;
-            letter-spacing: 0.2px;
-            box-shadow:
-                inset 0 0 25px rgba(85,220,255,0.025),
-                0 0 24px rgba(85,220,255,0.035);
-        }
-
-        .formula::before {
-            content: "FORMULA";
-            position: absolute;
-            top: 7px;
-            right: 11px;
-            color: rgba(85,220,255,0.4);
-            font-family: "Inter", sans-serif;
-            font-size: 7px;
-            letter-spacing: 2px;
-        }
-
-        /* =========================
-           EXAMPLE
-        ========================= */
-
-        .example {
-            margin-top: 25px;
-            padding: 25px;
-            border-radius: 16px;
-            background: rgba(12,37,56,0.48);
-            border: 1px solid rgba(88,230,179,0.13);
-        }
-
-        .example-title {
-            color: var(--green) !important;
-            font-size: 10px !important;
-            font-weight: 700;
-            letter-spacing: 3px;
-            margin-bottom: 13px;
-        }
-
-        .solution {
-            margin-top: 18px;
-            padding: 19px;
-            border-radius: 12px;
-            background: rgba(2,13,23,0.72);
-            border: 1px solid rgba(88,230,179,0.09);
-        }
-
-        .solution p {
-            margin-bottom: 7px;
-        }
-
-        .solution strong {
-            color: white;
-        }
-
-        /* =========================
-           PRACTICE
-        ========================= */
-
-        .question {
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(120,180,210,0.09);
-        }
-
-        .question:last-child {
-            border-bottom: none;
-        }
-
-        .question > strong {
-            color: #dcecf6;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        details {
-            margin-top: 12px;
-        }
-
-        summary {
-            display: inline-flex;
-            align-items: center;
-            color: var(--cyan);
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            list-style: none;
-        }
-
-        summary::-webkit-details-marker {
-            display: none;
-        }
-
-        summary::before {
-            content: "+";
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 22px;
-            height: 22px;
-            margin-right: 8px;
-            border-radius: 6px;
-            border: 1px solid rgba(85,220,255,0.2);
-            background: rgba(85,220,255,0.045);
-        }
-
-        details[open] summary::before {
-            content: "−";
-        }
-
-        details p {
-            margin-top: 12px;
-            padding: 15px;
-            border-radius: 10px;
-            background: rgba(85,220,255,0.035);
-            border: 1px solid rgba(85,220,255,0.08);
-        }
-
-        /* =========================
-           NAVIGATION
-        ========================= */
-
-        .navigation {
-            text-align: center;
-            padding: 10px 20px 70px;
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            margin: 5px;
-            padding: 13px 21px;
-            border-radius: 11px;
-            color: #dff5ff;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 700;
-            border: 1px solid rgba(85,220,255,0.18);
-            background: rgba(85,220,255,0.045);
-            transition: 0.3s ease;
-        }
-
-        .button:hover {
-            transform: translateY(-3px);
-            border-color: rgba(85,220,255,0.5);
-            background: rgba(85,220,255,0.09);
-            box-shadow: 0 0 30px rgba(85,220,255,0.1);
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            background: rgba(2,8,15,0.82);
-            border-top: 1px solid rgba(85,220,255,0.08);
-            color: #718798;
-            text-align: center;
-            padding: 32px 20px;
-            font-size: 12px;
-        }
-
-        /* =========================
-           REVEAL
-        ========================= */
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(28px);
-            transition:
-                opacity 0.75s ease,
-                transform 0.75s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
-        @media (max-width: 800px) {
-
-            .data-strip {
-                grid-template-columns: repeat(2, 1fr);
-                margin-left: 16px;
-                margin-right: 16px;
-            }
-
-            .data-cell:nth-child(2) {
-                border-right: none;
-            }
-
-            .observatory {
-                width: 500px;
-                height: 400px;
-                opacity: 0.45;
-            }
-
-            .container {
-                padding-top: 90px;
-            }
-
-        }
-
-        @media (max-width: 600px) {
-
-            header {
-                padding: 18px 5%;
-            }
-
-            .logo {
-                font-size: 20px;
-            }
-
-            .logo::after {
-                display: none;
-            }
-
-            header > a:last-child {
-                font-size: 11px;
-                padding: 8px 11px;
-            }
-
-            .hero {
-                min-height: 590px;
-                padding-top: 70px;
-            }
-
-            .hero h1 {
-                letter-spacing: -2px;
-            }
-
-            .hero p {
-                font-size: 14px;
-            }
-
-            .observatory {
-                width: 370px;
-                height: 330px;
-                opacity: 0.35;
-            }
-
-            .distribution {
-                width: 300px;
-            }
-
-            .bar {
-                width: 17px;
-            }
-
-            .lesson {
-                padding: 27px 23px;
-            }
-
-            .lesson h2 {
-                font-size: 26px;
-            }
-
-            .formula {
-                font-size: 16px;
-                overflow-x: auto;
-            }
-
-            .data-cell {
-                padding: 11px 5px;
-            }
-
-            .data-cell strong {
-                font-size: 14px;
-            }
-
-            .data-cell span {
-                font-size: 7px;
-            }
-
-        }
-
-        /* =========================
-           REDUCED MOTION
-        ========================= */
-
-        @media (prefers-reduced-motion: reduce) {
-
-            html {
-                scroll-behavior: auto;
-            }
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-
-            .reveal {
-                opacity: 1;
-                transform: none;
-            }
-
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Statistics 1 | IAL ATLAS</title>
+
+<meta name="description"
+content="Edexcel International A Level Mathematics Statistics 1 — comprehensive notes, worked examples, exam techniques and a 100-question practice examination.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+:root{
+    --bg:#020812;
+    --bg2:#061321;
+    --panel:rgba(7,22,37,.72);
+    --cyan:#55dcff;
+    --blue:#4da3ff;
+    --purple:#a77cff;
+    --green:#58e6b3;
+    --orange:#ffbd70;
+    --red:#ff718b;
+    --text:#eefaff;
+    --soft:#c5d9e7;
+    --muted:#8ba5b8;
+    --line:rgba(91,211,255,.14);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Inter",sans-serif;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 10% 15%,rgba(77,163,255,.10),transparent 27%),
+        radial-gradient(circle at 90% 30%,rgba(167,124,255,.08),transparent 28%),
+        radial-gradient(circle at 50% 90%,rgba(88,230,179,.055),transparent 28%),
+        var(--bg);
+    line-height:1.75;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-5;
+    pointer-events:none;
+    opacity:.25;
+    background-image:
+        linear-gradient(rgba(85,220,255,.045) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(85,220,255,.045) 1px,transparent 1px);
+    background-size:46px 46px;
+    mask-image:linear-gradient(to bottom,black,transparent 90%);
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:750px;
+    height:750px;
+    left:50%;
+    top:30%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(85,220,255,.045),transparent 68%);
+    pointer-events:none;
+    z-index:-4;
+}
+
+/* PARTICLES */
+
+.particles{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    pointer-events:none;
+    overflow:hidden;
+}
+
+.particle{
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:var(--cyan);
+    box-shadow:0 0 12px var(--cyan);
+    opacity:.45;
+    animation:floatData linear infinite;
+}
+
+.particle:nth-child(1){left:5%;top:15%;animation-duration:17s}
+.particle:nth-child(2){left:12%;top:70%;animation-duration:23s}
+.particle:nth-child(3){left:20%;top:35%;animation-duration:19s}
+.particle:nth-child(4){left:28%;top:82%;animation-duration:26s}
+.particle:nth-child(5){left:37%;top:20%;animation-duration:18s}
+.particle:nth-child(6){left:46%;top:72%;animation-duration:22s}
+.particle:nth-child(7){left:57%;top:13%;animation-duration:25s}
+.particle:nth-child(8){left:66%;top:55%;animation-duration:20s}
+.particle:nth-child(9){left:76%;top:25%;animation-duration:18s}
+.particle:nth-child(10){left:86%;top:78%;animation-duration:24s}
+.particle:nth-child(11){left:93%;top:38%;animation-duration:21s}
+.particle:nth-child(12){left:51%;top:42%;animation-duration:16s}
+.particle:nth-child(13){left:33%;top:48%;animation-duration:27s}
+.particle:nth-child(14){left:72%;top:88%;animation-duration:19s}
+
+@keyframes floatData{
+    0%{transform:translate3d(0,0,0);opacity:.1}
+    50%{transform:translate3d(28px,-45px,0);opacity:.65}
+    100%{transform:translate3d(-15px,-90px,0);opacity:.05}
+}
+
+/* HEADER */
+
+header{
+    position:relative;
+    z-index:20;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:21px 7%;
+    background:rgba(2,8,16,.76);
+    border-bottom:1px solid rgba(85,220,255,.12);
+    backdrop-filter:blur(18px);
+}
+
+.logo{
+    color:white;
+    text-decoration:none;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:25px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.logo::after{
+    content:" // S1";
+    color:var(--cyan);
+    font-size:10px;
+    letter-spacing:3px;
+    margin-left:8px;
+    opacity:.7;
+}
+
+header>a:last-child{
+    color:#c8ddec;
+    text-decoration:none;
+    font-size:13px;
+    padding:10px 16px;
+    border-radius:10px;
+    border:1px solid rgba(85,220,255,.15);
+    background:rgba(255,255,255,.025);
+    transition:.3s ease;
+}
+
+header>a:last-child:hover{
+    color:white;
+    border-color:rgba(85,220,255,.48);
+    box-shadow:0 0 25px rgba(85,220,255,.1);
+    transform:translateY(-2px);
+}
+
+/* HERO */
+
+.hero{
+    position:relative;
+    min-height:650px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+    padding:90px 20px 120px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:5;
+    max-width:850px;
+}
+
+.hero-label{
+    color:var(--cyan);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:4px;
+    margin-bottom:22px;
+}
+
+.hero h1{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(54px,8vw,94px);
+    line-height:.98;
+    letter-spacing:-3px;
+    margin-bottom:27px;
+    text-shadow:0 0 55px rgba(85,220,255,.12);
+}
+
+.hero h1 span{
+    background:linear-gradient(110deg,#fff,var(--cyan),#9acaff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    max-width:720px;
+    margin:auto;
+    color:var(--soft);
+    font-size:16px;
+    line-height:1.85;
+}
+
+.hero-status{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top:29px;
+    padding:10px 16px;
+    border-radius:999px;
+    border:1px solid rgba(85,220,255,.17);
+    background:rgba(4,20,34,.68);
+    color:#91bed5;
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:2px;
+    backdrop-filter:blur(10px);
+}
+
+.status-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 14px var(--green);
+    animation:pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse{
+    50%{opacity:.35;transform:scale(.72)}
+}
+
+/* OBSERVATORY */
+
+.observatory{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:590px;
+    height:440px;
+    transform:translate(-50%,-48%);
+    opacity:.7;
+    pointer-events:none;
+}
+
+.obs-grid{
+    position:absolute;
+    inset:25px;
+    border:1px solid rgba(85,220,255,.08);
+    transform:perspective(500px) rotateX(62deg);
+    transform-origin:center;
+    background-image:
+        linear-gradient(rgba(85,220,255,.055) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(85,220,255,.055) 1px,transparent 1px);
+    background-size:40px 40px;
+    mask-image:radial-gradient(circle,black,transparent 72%);
+}
+
+.distribution{
+    position:absolute;
+    left:50%;
+    bottom:80px;
+    width:450px;
+    height:220px;
+    transform:translateX(-50%);
+}
+
+.distribution::before{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(85,220,255,.6),transparent);
+}
+
+.bar{
+    position:absolute;
+    bottom:1px;
+    width:25px;
+    border-radius:5px 5px 0 0;
+    background:linear-gradient(to top,rgba(77,163,255,.1),rgba(85,220,255,.7));
+    box-shadow:0 0 15px rgba(85,220,255,.16);
+    transform-origin:bottom;
+    animation:dataBars 3s ease-in-out infinite alternate;
+}
+
+.b1{left:3%;height:42px;animation-delay:.1s}
+.b2{left:10%;height:70px;animation-delay:.25s}
+.b3{left:17%;height:110px;animation-delay:.4s}
+.b4{left:24%;height:145px;animation-delay:.55s}
+.b5{left:31%;height:175px;animation-delay:.7s}
+.b6{left:38%;height:200px;animation-delay:.85s}
+.b7{left:45%;height:185px;animation-delay:1s}
+.b8{left:52%;height:155px;animation-delay:1.15s}
+.b9{left:59%;height:120px;animation-delay:1.3s}
+.b10{left:66%;height:82px;animation-delay:1.45s}
+.b11{left:73%;height:55px;animation-delay:1.6s}
+.b12{left:80%;height:32px;animation-delay:1.75s}
+.b13{left:87%;height:20px;animation-delay:1.9s}
+
+@keyframes dataBars{
+    from{transform:scaleY(.82);opacity:.55}
+    to{transform:scaleY(1.05);opacity:.95}
+}
+
+.mean-line{
+    position:absolute;
+    left:51%;
+    bottom:45px;
+    width:2px;
+    height:245px;
+    background:linear-gradient(to top,rgba(167,124,255,0),rgba(167,124,255,.75));
+    box-shadow:0 0 15px rgba(167,124,255,.35);
+    transform:rotate(2deg);
+}
+
+.mean-label{
+    position:absolute;
+    top:-18px;
+    left:7px;
+    color:var(--purple);
+    font-size:8px;
+    letter-spacing:2px;
+}
+
+/* DATA STRIP */
+
+.data-strip{
+    position:relative;
+    z-index:10;
+    max-width:1040px;
+    margin:-48px auto 0;
+    padding:17px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    background:rgba(5,18,31,.75);
+    border:1px solid rgba(85,220,255,.13);
+    border-radius:18px;
+    backdrop-filter:blur(20px);
+    box-shadow:0 25px 80px rgba(0,0,0,.32);
+}
+
+.data-cell{
+    text-align:center;
+    padding:13px;
+    border-right:1px solid rgba(85,220,255,.09);
+}
+
+.data-cell:last-child{
+    border-right:none;
+}
+
+.data-cell strong{
+    display:block;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:17px;
+    margin-bottom:4px;
+}
+
+.data-cell span{
+    color:#6f98ae;
+    font-size:8px;
+    letter-spacing:2px;
+}
+
+/* CONTENT */
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:115px 20px 90px;
+}
+
+.section-intro{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-intro .eyebrow{
+    color:var(--cyan);
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:4px;
+    margin-bottom:14px;
+}
+
+.section-intro h2{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(34px,5vw,50px);
+    margin-bottom:14px;
+}
+
+.section-intro p{
+    color:var(--muted);
+    max-width:760px;
+    margin:auto;
+    line-height:1.8;
+}
+
+/* LESSON */
+
+.lesson{
+    position:relative;
+    margin-bottom:30px;
+    padding:40px;
+    border-radius:23px;
+    background:linear-gradient(145deg,rgba(11,32,51,.75),rgba(4,14,25,.72));
+    border:1px solid rgba(100,190,225,.12);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 25px 70px rgba(0,0,0,.2);
+    backdrop-filter:blur(18px);
+    overflow:hidden;
+    transition:.4s ease;
+}
+
+.lesson::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:3px;
+    height:100%;
+    background:linear-gradient(to bottom,var(--cyan),transparent);
+    box-shadow:0 0 20px rgba(85,220,255,.45);
+}
+
+.lesson:hover{
+    transform:translateY(-4px);
+    border-color:rgba(85,220,255,.27);
+    box-shadow:0 30px 80px rgba(0,0,0,.3),0 0 40px rgba(85,220,255,.045);
+}
+
+.lesson-number{
+    color:var(--cyan);
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:3px;
+    margin-bottom:8px;
+}
+
+.lesson h2{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:31px;
+    margin-bottom:20px;
+}
+
+.lesson h3{
+    color:#e8f7ff;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:19px;
+    margin-top:30px;
+    margin-bottom:10px;
+}
+
+.lesson h4{
+    color:#bfeaff;
+    font-size:15px;
+    margin-top:22px;
+    margin-bottom:7px;
+}
+
+.lesson p,
+.lesson li{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.lesson ul,
+.lesson ol{
+    padding-left:24px;
+    margin-top:10px;
+}
+
+.lesson li{
+    margin-bottom:8px;
+}
+
+.lesson li::marker{
+    color:var(--cyan);
+}
+
+/* DEFINITION */
+
+.definition{
+    margin:23px 0;
+    padding:20px 22px;
+    border-radius:14px;
+    background:rgba(85,220,255,.045);
+    border:1px solid rgba(85,220,255,.13);
+}
+
+.definition>strong{
+    color:var(--cyan);
+    font-size:11px;
+    letter-spacing:1px;
+}
+
+.definition p{
+    margin-top:6px;
+}
+
+/* FORMULA */
+
+.formula{
+    position:relative;
+    margin:20px 0;
+    padding:19px 22px;
+    text-align:center;
+    border-radius:13px;
+    background:linear-gradient(135deg,rgba(8,30,49,.9),rgba(4,16,28,.88));
+    border:1px solid rgba(85,220,255,.16);
+    color:#f1fbff;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:18px;
+    font-weight:600;
+    overflow-x:auto;
+}
+
+.formula::before{
+    content:"FORMULA";
+    position:absolute;
+    top:7px;
+    right:11px;
+    color:rgba(85,220,255,.4);
+    font-family:"Inter",sans-serif;
+    font-size:7px;
+    letter-spacing:2px;
+}
+
+/* EXAMPLE */
+
+.example{
+    margin-top:25px;
+    padding:25px;
+    border-radius:16px;
+    background:rgba(12,37,56,.48);
+    border:1px solid rgba(88,230,179,.13);
+}
+
+.example-title{
+    color:var(--green)!important;
+    font-size:10px!important;
+    font-weight:700;
+    letter-spacing:3px;
+    margin-bottom:13px;
+}
+
+.solution{
+    margin-top:18px;
+    padding:19px;
+    border-radius:12px;
+    background:rgba(2,13,23,.72);
+    border:1px solid rgba(88,230,179,.09);
+}
+
+.solution p{
+    margin-bottom:7px;
+}
+
+.solution strong{
+    color:white;
+}
+
+/* TABLE */
+
+.table-wrap{
+    overflow-x:auto;
+    margin:20px 0;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:600px;
+}
+
+th{
+    color:var(--cyan);
+    background:rgba(85,220,255,.07);
+    font-size:12px;
+    text-align:left;
+    padding:12px;
+    border:1px solid rgba(85,220,255,.1);
+}
+
+td{
+    color:var(--muted);
+    padding:12px;
+    border:1px solid rgba(120,180,210,.08);
+    font-size:13px;
+}
+
+/* EXAM TIP */
+
+.tip{
+    margin:22px 0;
+    padding:18px 21px;
+    border-radius:13px;
+    background:rgba(88,230,179,.045);
+    border-left:3px solid var(--green);
+}
+
+.tip strong{
+    color:var(--green);
+}
+
+.warning{
+    margin:22px 0;
+    padding:18px 21px;
+    border-radius:13px;
+    background:rgba(255,189,112,.045);
+    border-left:3px solid var(--orange);
+}
+
+.warning strong{
+    color:var(--orange);
+}
+
+/* PRACTICE */
+
+.question{
+    padding:20px 0;
+    border-bottom:1px solid rgba(120,180,210,.09);
+}
+
+.question:last-child{
+    border-bottom:none;
+}
+
+.question>strong{
+    color:#dcecf6;
+    font-size:14px;
+    font-weight:600;
+}
+
+.question p{
+    margin-top:10px;
+}
+
+details{
+    margin-top:12px;
+}
+
+summary{
+    display:inline-flex;
+    align-items:center;
+    color:var(--cyan);
+    cursor:pointer;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1px;
+    list-style:none;
+}
+
+summary::-webkit-details-marker{
+    display:none;
+}
+
+summary::before{
+    content:"+";
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:22px;
+    height:22px;
+    margin-right:8px;
+    border-radius:6px;
+    border:1px solid rgba(85,220,255,.2);
+    background:rgba(85,220,255,.045);
+}
+
+details[open] summary::before{
+    content:"−";
+}
+
+details p{
+    margin-top:12px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(85,220,255,.035);
+    border:1px solid rgba(85,220,255,.08);
+}
+
+/* NAVIGATION */
+
+.navigation{
+    text-align:center;
+    padding:10px 20px 70px;
+}
+
+.button{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    margin:5px;
+    padding:13px 21px;
+    border-radius:11px;
+    color:#dff5ff;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:700;
+    border:1px solid rgba(85,220,255,.18);
+    background:rgba(85,220,255,.045);
+    transition:.3s ease;
+}
+
+.button:hover{
+    transform:translateY(-3px);
+    border-color:rgba(85,220,255,.5);
+    background:rgba(85,220,255,.09);
+    box-shadow:0 0 30px rgba(85,220,255,.1);
+}
+
+/* FOOTER */
+
+footer{
+    background:rgba(2,8,15,.82);
+    border-top:1px solid rgba(85,220,255,.08);
+    color:#718798;
+    text-align:center;
+    padding:32px 20px;
+    font-size:12px;
+}
+
+/* REVEAL */
+
+.reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .75s ease,transform .75s ease;
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:800px){
+
+    .data-strip{
+        grid-template-columns:repeat(2,1fr);
+        margin-left:16px;
+        margin-right:16px;
+    }
+
+    .data-cell:nth-child(2){
+        border-right:none;
+    }
+
+    .observatory{
+        width:500px;
+        height:400px;
+        opacity:.45;
+    }
+
+    .container{
+        padding-top:90px;
+    }
+
+}
+
+@media(max-width:600px){
+
+    header{
+        padding:18px 5%;
+    }
+
+    .logo{
+        font-size:20px;
+    }
+
+    .logo::after{
+        display:none;
+    }
+
+    header>a:last-child{
+        font-size:11px;
+        padding:8px 11px;
+    }
+
+    .hero{
+        min-height:590px;
+        padding-top:70px;
+    }
+
+    .hero h1{
+        letter-spacing:-2px;
+    }
+
+    .hero p{
+        font-size:14px;
+    }
+
+    .observatory{
+        width:370px;
+        height:330px;
+        opacity:.35;
+    }
+
+    .distribution{
+        width:300px;
+    }
+
+    .bar{
+        width:17px;
+    }
+
+    .lesson{
+        padding:27px 23px;
+    }
+
+    .lesson h2{
+        font-size:26px;
+    }
+
+    .formula{
+        font-size:16px;
+    }
+
+    .data-cell{
+        padding:11px 5px;
+    }
+
+    .data-cell strong{
+        font-size:14px;
+    }
+
+    .data-cell span{
+        font-size:7px;
+    }
+
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    html{
+        scroll-behavior:auto;
+    }
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.01ms!important;
+    }
+
+    .reveal{
+        opacity:1;
+        transform:none;
+    }
+
+}
+
+</style>
 
 </head>
 
-
 <body>
 
-
-<!-- DATA PARTICLES -->
-
 <div class="particles">
-
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-    <span class="particle"></span>
-
+<span class="particle"></span><span class="particle"></span>
+<span class="particle"></span><span class="particle"></span>
+<span class="particle"></span><span class="particle"></span>
+<span class="particle"></span><span class="particle"></span>
+<span class="particle"></span><span class="particle"></span>
+<span class="particle"></span><span class="particle"></span>
+<span class="particle"></span><span class="particle"></span>
 </div>
-
-
-<!-- HEADER -->
 
 <header>
 
-    <a href="index.html" class="logo">
-        IAL ATLAS
-    </a>
+<a href="index.html" class="logo">IAL ATLAS</a>
 
-    <a href="statistics.html">
-        ← Statistics
-    </a>
+<a href="statistics.html">← Statistics</a>
 
 </header>
 
 
-<!-- =========================
-     HERO
-========================= -->
-
 <section class="hero">
 
+<div class="observatory">
 
-    <!-- Statistical visualization -->
+<div class="obs-grid"></div>
 
-    <div class="observatory">
+<div class="distribution">
 
-        <div class="obs-grid"></div>
+<span class="bar b1"></span>
+<span class="bar b2"></span>
+<span class="bar b3"></span>
+<span class="bar b4"></span>
+<span class="bar b5"></span>
+<span class="bar b6"></span>
+<span class="bar b7"></span>
+<span class="bar b8"></span>
+<span class="bar b9"></span>
+<span class="bar b10"></span>
+<span class="bar b11"></span>
+<span class="bar b12"></span>
+<span class="bar b13"></span>
 
-        <div class="obs-point op1"></div>
-        <div class="obs-point op2"></div>
-        <div class="obs-point op3"></div>
-        <div class="obs-point op4"></div>
-        <div class="obs-point op5"></div>
-        <div class="obs-point op6"></div>
+<div class="mean-line">
+<span class="mean-label">MEAN</span>
+</div>
 
-        <div class="distribution">
+</div>
 
-            <span class="bar b1"></span>
-            <span class="bar b2"></span>
-            <span class="bar b3"></span>
-            <span class="bar b4"></span>
-            <span class="bar b5"></span>
-            <span class="bar b6"></span>
-            <span class="bar b7"></span>
-            <span class="bar b8"></span>
-            <span class="bar b9"></span>
-            <span class="bar b10"></span>
-            <span class="bar b11"></span>
-            <span class="bar b12"></span>
-            <span class="bar b13"></span>
+</div>
 
-            <div class="mean-line">
-                <span class="mean-label">MEAN</span>
-            </div>
+<div class="hero-content reveal">
 
-        </div>
+<p class="hero-label">
+EDEXCEL INTERNATIONAL A LEVEL MATHEMATICS • STATISTICS 1
+</p>
 
-    </div>
+<h1>
+THE DATA<br>
+<span>OBSERVATORY</span>
+</h1>
 
+<p>
+A complete S1 learning environment covering sampling, data
+representation, summary statistics, probability, discrete random
+variables, binomial distribution, correlation and regression —
+followed by a 100-question examination.
+</p>
 
-    <div class="hero-content reveal">
+<div class="hero-status">
+<span class="status-dot"></span>
+S1 STATISTICAL SYSTEM ONLINE
+</div>
 
-        <p class="hero-label">
-            EDEXCEL INTERNATIONAL A LEVEL MATHEMATICS • STATISTICS 1
-        </p>
-
-        <h1>
-            THE DATA<br>
-            <span>OBSERVATORY</span>
-        </h1>
-
-        <p>
-            Enter the first region of the statistical universe —
-            where populations become samples, observations become
-            distributions, and uncertainty becomes probability.
-        </p>
-
-        <div class="hero-status">
-
-            <span class="status-dot"></span>
-
-            S1 STATISTICAL SYSTEM ONLINE
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- DATA STRIP -->
-
 <div class="data-strip reveal">
 
-    <div class="data-cell">
-        <strong>07</strong>
-        <span>CORE TOPICS</span>
-    </div>
+<div class="data-cell">
+<strong>07</strong>
+<span>CORE AREAS</span>
+</div>
 
-    <div class="data-cell">
-        <strong>DATA</strong>
-        <span>OBSERVATION LAYER</span>
-    </div>
+<div class="data-cell">
+<strong>100</strong>
+<span>EXAM QUESTIONS</span>
+</div>
 
-    <div class="data-cell">
-        <strong>P(X)</strong>
-        <span>PROBABILITY FIELD</span>
-    </div>
+<div class="data-cell">
+<strong>P(X)</strong>
+<span>PROBABILITY FIELD</span>
+</div>
 
-    <div class="data-cell">
-        <strong>B(n,p)</strong>
-        <span>BINOMIAL SYSTEM</span>
-    </div>
+<div class="data-cell">
+<strong>B(n,p)</strong>
+<span>BINOMIAL SYSTEM</span>
+</div>
 
 </div>
 
 
-<!-- =========================
-     CONTENT
-========================= -->
-
 <main class="container">
 
 
-    <div class="section-intro reveal">
+<div class="section-intro reveal">
+
+<p class="eyebrow">
+S1 // COMPLETE LEARNING SYSTEM
+</p>
+
+<h2>
+Statistics 1
+</h2>
+
+<p>
+The aim of this page is not simply to memorise formulae. You should
+be able to recognise statistical situations, select appropriate
+methods, perform calculations accurately, interpret results in context,
+and explain conclusions using correct mathematical language.
+</p>
 
-        <p class="eyebrow">
-            S1 // DATA OBSERVATORY
-        </p>
+</div>
+
+
+<!-- TOPIC 01 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+TOPIC 01 // STATISTICAL SAMPLING
+</p>
+
+<h2>Populations, Samples and Sampling</h2>
+
+<p>
+A statistical investigation begins by identifying the population about
+which information is required. In many real investigations it is
+impractical, expensive or impossible to collect data from every member
+of the population. A sample is therefore selected.
+</p>
 
-        <h2>
-            Statistical Foundations
-        </h2>
+<h3>Population</h3>
 
-        <p>
-            A complete foundation in statistical sampling, data analysis,
-            probability, discrete random variables and the binomial distribution.
-        </p>
+<p>
+The population is the complete set of individuals or objects about
+which the investigation is concerned.
+</p>
 
-    </div>
+<div class="definition">
+<strong>EXAMPLE</strong>
+<p>
+If a school wants to investigate the average number of hours its
+students spend studying each week, the population could be all
+students in that school.
+</p>
+</div>
 
+<h3>Sample</h3>
 
-    <!-- =========================
-         TOPIC 01
-    ========================= -->
+<p>
+A sample is a subset of the population selected for observation.
+Statistical conclusions about the population are made using information
+obtained from the sample.
+</p>
 
-    <section class="lesson reveal">
+<h3>Census</h3>
 
-        <p class="lesson-number">
-            TOPIC 01 // POPULATION SYSTEM
-        </p>
+<p>
+A census collects information from every member of the population.
+Although a census eliminates sampling variation, it may be expensive,
+time-consuming or difficult to organise.
+</p>
 
-        <h2>
-            Statistical Sampling
-        </h2>
+<h3>Sampling Frame</h3>
 
-        <p>
-            Statistical investigations usually begin by collecting
-            information from a population.
-        </p>
+<p>
+A sampling frame is a list or system identifying the members of the
+population from which the sample is selected.
+</p>
 
-        <h3>
-            Population and Sample
-        </h3>
+<h3>Simple Random Sampling</h3>
 
-        <p>
-            The population is the complete set of individuals or objects
-            being investigated. A sample is a smaller group selected from
-            the population.
-        </p>
+<p>
+In simple random sampling, every possible sample of the required size
+has an equal chance of being selected. Random numbers can be used to
+select individuals from a sampling frame.
+</p>
 
-        <div class="definition">
+<div class="tip">
+<strong>ADVANTAGE:</strong>
+Simple random sampling reduces deliberate selection by the researcher
+and gives members of the population an equal opportunity of selection.
+</div>
 
-            <strong>IMPORTANT // REPRESENTATION</strong>
+<div class="warning">
+<strong>LIMITATION:</strong>
+A complete sampling frame is required, and a purely random sample may
+still be unrepresentative by chance.
+</div>
 
-            <p>
-                A sample should be representative of the population if
-                reliable conclusions are to be drawn.
-            </p>
+<h3>Systematic Sampling</h3>
 
-        </div>
+<p>
+Systematic sampling selects members at regular intervals from a
+sampling frame. If the population contains N members and n are required,
+the sampling interval is approximately N/n.
+</p>
 
-        <h3>
-            Sampling Methods
-        </h3>
+<div class="formula">
+Sampling interval ≈ N ÷ n
+</div>
 
-        <ul>
+<p>
+A random starting point is normally chosen before applying the fixed
+interval.
+</p>
 
-            <li>Simple random sampling</li>
+<h3>Stratified Sampling</h3>
 
-            <li>Systematic sampling</li>
+<p>
+Stratified sampling divides the population into relevant strata and
+selects a sample from each stratum in proportion to the size of that
+stratum.
+</p>
 
-            <li>Stratified sampling</li>
+<div class="formula">
+Sample from stratum =
+(stratum population ÷ total population) × total sample size
+</div>
 
-            <li>Quota sampling</li>
+<div class="example">
 
-        </ul>
+<p class="example-title">WORKED EXAMPLE // STRATIFIED SAMPLE</p>
 
-        <h3>
-            Bias
-        </h3>
+<p>
+A college contains 600 Year 12 students and 400 Year 13 students.
+A sample of 50 students is required.
+</p>
 
-        <p>
-            Bias occurs when a sampling method systematically favours
-            certain members of the population.
-        </p>
+<div class="solution">
 
-    </section>
+<p>
+Year 12 sample = (600/1000) × 50 = 30
+</p>
 
+<p>
+Year 13 sample = (400/1000) × 50 = 20
+</p>
 
-    <!-- =========================
-         TOPIC 02
-    ========================= -->
+<p><strong>Therefore the stratified sample contains 30 Year 12
+and 20 Year 13 students.</strong></p>
 
-    <section class="lesson reveal">
+</div>
 
-        <p class="lesson-number">
-            TOPIC 02 // DATA VISUALISATION
-        </p>
+</div>
 
-        <h2>
-            Data Presentation and Interpretation
-        </h2>
+<h3>Quota Sampling</h3>
 
-        <p>
-            Data can be organised and represented in different ways
-            to make important features easier to identify.
-        </p>
+<p>
+Quota sampling sets required numbers for categories of individuals.
+The interviewer then selects individuals until each quota is filled.
+Unlike stratified random sampling, the selection within each category
+is not necessarily random.
+</p>
 
-        <h3>
-            Frequency Tables
-        </h3>
+<h3>Opportunity Sampling</h3>
 
-        <p>
-            A frequency table records the number of observations
-            belonging to each value or class.
-        </p>
+<p>
+Opportunity sampling selects individuals who are readily available.
+It is usually convenient but can produce substantial bias because the
+people available may differ systematically from the wider population.
+</p>
 
-        <h3>
-            Histograms
-        </h3>
+<h3>Sampling Bias</h3>
 
-        <p>
-            Histograms are used for continuous data. The area of each
-            bar represents frequency.
-        </p>
+<p>
+Bias occurs when the method of collecting data systematically favours
+some members or characteristics of the population over others.
+</p>
 
-        <div class="definition">
+<h3>Non-response</h3>
 
-            <strong>FREQUENCY DENSITY</strong>
+<p>
+Non-response occurs when selected individuals do not provide the
+required information. If non-responders differ from responders, the
+resulting sample may be biased.
+</p>
 
-            <div class="formula">
-                Frequency density = Frequency ÷ Class width
-            </div>
+<h3>Response Bias</h3>
 
-        </div>
+<p>
+Response bias can occur when individuals give inaccurate answers,
+perhaps because a question is sensitive, leading or difficult to
+understand.
+</p>
 
-        <h3>
-            Cumulative Frequency
-        </h3>
+<h3>Designing a Good Sample</h3>
 
-        <p>
-            Cumulative frequency is the running total of frequencies.
-            It can be used to estimate the median, quartiles and
-            percentiles.
-        </p>
+<ul>
+<li>Define the population clearly.</li>
+<li>Use an appropriate sampling frame.</li>
+<li>Choose a sampling method suitable for the investigation.</li>
+<li>Reduce opportunities for selection bias.</li>
+<li>Use an adequate sample size.</li>
+<li>Consider non-response and measurement issues.</li>
+<li>Ensure the wording of questions is neutral.</li>
+</ul>
 
-        <h3>
-            Box Plots
-        </h3>
+</section>
 
-        <p>
-            A box plot summarises data using the minimum, lower quartile,
-            median, upper quartile and maximum.
-        </p>
 
-    </section>
+<!-- TOPIC 02 -->
 
+<section class="lesson reveal">
 
-    <!-- =========================
-         TOPIC 03
-    ========================= -->
+<p class="lesson-number">
+TOPIC 02 // DATA REPRESENTATION
+</p>
 
-    <section class="lesson reveal">
+<h2>Types of Data and Statistical Diagrams</h2>
 
-        <p class="lesson-number">
-            TOPIC 03 // DATA METRICS
-        </p>
+<h3>Qualitative Data</h3>
 
-        <h2>
-            Measures of Location and Spread
-        </h2>
+<p>
+Qualitative data describes categories or qualities rather than numerical
+measurements. Examples include eye colour, transport type and brand.
+</p>
 
-        <h3>
-            Mean
-        </h3>
+<h3>Quantitative Data</h3>
 
-        <div class="formula">
-            Mean = Σx ÷ n
-        </div>
+<p>
+Quantitative data is numerical. It can be divided into discrete and
+continuous data.
+</p>
 
-        <h3>
-            Median
-        </h3>
+<h3>Discrete Data</h3>
 
-        <p>
-            The median is the middle observation when the data is arranged
-            in ascending order.
-        </p>
+<p>
+Discrete data can take separate, countable values. Examples include
+number of children in a family and number of defective components.
+</p>
 
-        <h3>
-            Range
-        </h3>
+<h3>Continuous Data</h3>
 
-        <div class="formula">
-            Range = Maximum − Minimum
-        </div>
+<p>
+Continuous data can take any value within an interval. Measurements
+such as height, mass, time and temperature are commonly continuous.
+</p>
 
-        <h3>
-            Interquartile Range
-        </h3>
+<h3>Primary and Secondary Data</h3>
 
-        <div class="formula">
-            IQR = Q₃ − Q₁
-        </div>
+<ul>
+<li><strong>Primary data:</strong> collected directly for the investigation.</li>
+<li><strong>Secondary data:</strong> obtained from an existing source.</li>
+</ul>
 
-        <h3>
-            Variance
-        </h3>
+<h3>Frequency Tables</h3>
 
-        <div class="formula">
-            Var(X) = E(X²) − [E(X)]²
-        </div>
+<p>
+A frequency table records how many observations occur in each category
+or class.
+</p>
 
-        <h3>
-            Standard Deviation
-        </h3>
+<h3>Grouped Data</h3>
 
-        <div class="formula">
-            Standard deviation = √Variance
-        </div>
+<p>
+When there are many numerical observations, values can be grouped into
+class intervals. Grouping makes data easier to display but loses some
+information because the exact values are no longer known.
+</p>
 
-        <div class="example">
+<h3>Class Boundaries</h3>
 
-            <p class="example-title">
-                WORKED EXAMPLE // LOCATION
-            </p>
+<p>
+For continuous measurements rounded to a stated accuracy, class
+boundaries may be needed. For example, values recorded to the nearest
+integer as 10, 11, 12 may correspond to boundaries
+9.5, 10.5, 11.5 and so on.
+</p>
 
-            <p>
-                Find the mean of 4, 7, 9 and 12.
-            </p>
+<h3>Histograms</h3>
 
-            <div class="solution">
+<p>
+A histogram is used for continuous grouped data. The area of each bar
+is proportional to the frequency.
+</p>
 
-                <p>
-                    Mean = (4 + 7 + 9 + 12) ÷ 4
-                </p>
+<div class="formula">
+Frequency density = Frequency ÷ Class width
+</div>
 
-                <p>
-                    Mean = 32 ÷ 4
-                </p>
+<p>
+Therefore:
+</p>
 
-                <p>
-                    <strong>Mean = 8</strong>
-                </p>
+<div class="formula">
+Frequency = Frequency density × Class width
+</div>
 
-            </div>
+<div class="warning">
+<strong>COMMON ERROR:</strong>
+The height of a histogram bar represents frequency density, not
+necessarily frequency. Only when all class widths are equal can bar
+heights be directly compared as frequencies.
+</div>
 
-        </div>
+<h3>Stem-and-Leaf Diagrams</h3>
 
-    </section>
+<p>
+A stem-and-leaf diagram preserves the original observations while
+displaying their distribution. A key is essential.
+</p>
 
+<div class="example">
 
-    <!-- =========================
-         TOPIC 04
-    ========================= -->
+<p class="example-title">EXAMPLE</p>
 
-    <section class="lesson reveal">
+<p>
+A key such as 3 | 7 = 37 tells the reader how to interpret the diagram.
+</p>
 
-        <p class="lesson-number">
-            TOPIC 04 // PROBABILITY FIELD
-        </p>
+</div>
 
-        <h2>
-            Probability
-        </h2>
+<h3>Scatter Diagrams</h3>
 
-        <p>
-            Probability describes how likely an event is to occur.
-        </p>
+<p>
+A scatter diagram displays paired observations for two variables.
+It can be used to investigate whether a linear relationship appears
+to exist.
+</p>
 
-        <div class="formula">
-            0 ≤ P(A) ≤ 1
-        </div>
+<h3>Outliers</h3>
 
-        <h3>
-            Complement
-        </h3>
+<p>
+An outlier is an observation that lies unusually far from the main body
+of the data. An outlier should not automatically be deleted. Its cause
+should be investigated.
+</p>
 
-        <div class="formula">
-            P(A') = 1 − P(A)
-        </div>
+<h3>Interpreting Diagrams</h3>
 
-        <h3>
-            Addition Rule
-        </h3>
+<p>
+When interpreting a diagram, consider centre, spread, shape, skewness,
+clusters, gaps and unusual observations.
+</p>
 
-        <div class="formula">
-            P(A ∪ B) = P(A) + P(B) − P(A ∩ B)
-        </div>
+</section>
 
-        <h3>
-            Mutually Exclusive Events
-        </h3>
 
-        <div class="formula">
-            P(A ∩ B) = 0
-        </div>
+<!-- TOPIC 03 -->
 
-        <h3>
-            Independent Events
-        </h3>
+<section class="lesson reveal">
 
-        <div class="formula">
-            P(A ∩ B) = P(A)P(B)
-        </div>
+<p class="lesson-number">
+TOPIC 03 // LOCATION AND SPREAD
+</p>
 
-    </section>
+<h2>Measures of Location and Variation</h2>
 
+<h3>Arithmetic Mean</h3>
 
-    <!-- =========================
-         TOPIC 05
-    ========================= -->
+<div class="formula">
+x̄ = Σx ÷ n
+</div>
 
-    <section class="lesson reveal">
+<p>
+The mean uses every observation and is therefore sensitive to extreme
+values.
+</p>
 
-        <p class="lesson-number">
-            TOPIC 05 // RANDOM VARIABLE ENGINE
-        </p>
+<h3>Mean from a Frequency Table</h3>
 
-        <h2>
-            Discrete Random Variables
-        </h2>
+<div class="formula">
+x̄ = Σfx ÷ Σf
+</div>
 
-        <p>
-            A discrete random variable takes a countable set of possible
-            numerical values.
-        </p>
+<p>
+For grouped data, class midpoints are commonly used to estimate the
+mean.
+</p>
 
-        <div class="definition">
+<div class="formula">
+Estimated mean = Σ(f × midpoint) ÷ Σf
+</div>
 
-            <strong>PROBABILITY DISTRIBUTION</strong>
+<div class="warning">
+<strong>IMPORTANT:</strong>
+A mean calculated from grouped data is generally an estimate because
+the exact observations inside each class are unknown.
+</div>
 
-            <p>
-                The probabilities of all possible values must add to 1.
-            </p>
+<h3>Median</h3>
 
-        </div>
+<p>
+The median is the central observation after the data has been arranged
+in order. It is less affected by extreme observations than the mean.
+</p>
 
-        <div class="formula">
-            ΣP(X = x) = 1
-        </div>
+<h3>Mode</h3>
 
-        <h3>
-            Expected Value
-        </h3>
+<p>
+The mode is the value or category occurring most frequently.
+</p>
 
-        <div class="formula">
-            E(X) = ΣxP(X = x)
-        </div>
+<h3>Range</h3>
 
-        <h3>
-            Variance
-        </h3>
+<div class="formula">
+Range = Maximum − Minimum
+</div>
 
-        <div class="formula">
-            Var(X) = E(X²) − [E(X)]²
-        </div>
+<p>
+The range measures the total spread but depends only on two observations.
+</p>
 
-    </section>
+<h3>Quartiles</h3>
 
+<p>
+The lower quartile Q₁ divides approximately the lowest quarter of the
+ordered data from the upper three quarters. Q₃ similarly separates the
+upper quarter.
+</p>
 
-    <!-- =========================
-         TOPIC 06
-    ========================= -->
+<h3>Interquartile Range</h3>
 
-    <section class="lesson reveal">
+<div class="formula">
+IQR = Q₃ − Q₁
+</div>
 
-        <p class="lesson-number">
-            TOPIC 06 // BINOMIAL ENGINE
-        </p>
+<p>
+The IQR measures the spread of the middle 50% of the data and is less
+affected by extreme values than the range.
+</p>
 
-        <h2>
-            Binomial Distribution
-        </h2>
+<h3>Variance</h3>
 
-        <p>
-            The binomial distribution models the number of successes
-            obtained in a fixed number of independent trials.
-        </p>
+<div class="formula">
+Variance = E(X²) − [E(X)]²
+</div>
 
-        <div class="formula">
-            X ~ B(n, p)
-        </div>
+<p>
+For a dataset, variance measures the average squared distance from the
+mean. Its units are the square of the original units.
+</p>
 
-        <h3>
-            Conditions
-        </h3>
+<h3>Standard Deviation</h3>
 
-        <ul>
+<div class="formula">
+Standard deviation = √Variance
+</div>
 
-            <li>A fixed number of trials.</li>
+<p>
+Standard deviation is expressed in the same units as the original
+data and gives a measure of typical spread around the mean.
+</p>
 
-            <li>Each trial has two possible outcomes.</li>
+<h3>Effect of Transformations</h3>
 
-            <li>The probability of success remains constant.</li>
+<p>
+If every observation is increased by a constant a, the mean increases
+by a but the variance and standard deviation remain unchanged.
+</p>
 
-            <li>The trials are independent.</li>
+<div class="formula">
+If Y = X + a:
+E(Y) = E(X) + a
+Var(Y) = Var(X)
+</div>
 
-        </ul>
+<p>
+If every observation is multiplied by a constant b, the mean is
+multiplied by b, the variance is multiplied by b², and the standard
+deviation is multiplied by |b|.
+</p>
 
-        <h3>
-            Probability Formula
-        </h3>
+<div class="formula">
+If Y = bX:
+E(Y) = bE(X)
+Var(Y) = b²Var(X)
+</div>
 
-        <div class="formula">
-            P(X = r) = ⁿCᵣ pʳ(1 − p)ⁿ⁻ʳ
-        </div>
+<h3>Coding</h3>
 
-        <h3>
-            Mean
-        </h3>
+<p>
+Coding can simplify calculations by replacing x with a transformed
+variable such as y = (x − a)/b. The original statistics can then be
+recovered using the transformation.
+</p>
 
-        <div class="formula">
-            E(X) = np
-        </div>
+<div class="example">
 
-        <h3>
-            Variance
-        </h3>
+<p class="example-title">WORKED EXAMPLE // CODING</p>
 
-        <div class="formula">
-            Var(X) = np(1 − p)
-        </div>
+<p>
+Suppose y = (x − 50)/10 and the mean of y is 2.4.
+</p>
 
-    </section>
+<div class="solution">
 
+<p>
+x = 10y + 50
+</p>
 
-    <!-- =========================
-         TOPIC 07
-    ========================= -->
+<p>
+Therefore:
+</p>
 
-    <section class="lesson reveal">
+<p>
+mean(x) = 10(2.4) + 50
+</p>
 
-        <p class="lesson-number">
-            TOPIC 07 // RELATIONSHIP NETWORK
-        </p>
+<p>
+<strong>mean(x) = 74</strong>
+</p>
 
-        <h2>
-            Correlation and Regression
-        </h2>
+</div>
 
-        <p>
-            Correlation describes the strength and direction of a
-            linear relationship between two variables.
-        </p>
+</div>
 
-        <h3>
-            Types of Correlation
-        </h3>
+</section>
 
-        <ul>
 
-            <li>Positive correlation</li>
+<!-- TOPIC 04 -->
 
-            <li>Negative correlation</li>
+<section class="lesson reveal">
 
-            <li>No correlation</li>
+<p class="lesson-number">
+TOPIC 04 // PROBABILITY FIELD
+</p>
 
-        </ul>
+<h2>Probability and Events</h2>
 
-        <h3>
-            Product Moment Correlation Coefficient
-        </h3>
+<p>
+Probability provides a numerical measure of how likely an event is to
+occur.
+</p>
 
-        <p>
-            The product moment correlation coefficient measures the
-            strength of linear correlation.
-        </p>
+<div class="formula">
+0 ≤ P(A) ≤ 1
+</div>
 
-        <div class="definition">
+<p>
+A probability of 0 represents an impossible event and a probability
+of 1 represents a certain event.
+</p>
 
-            <strong>RANGE</strong>
+<h3>Sample Space</h3>
 
-            <p>
-                The correlation coefficient lies between −1 and 1.
-            </p>
+<p>
+The sample space is the set of all possible outcomes of an experiment.
+</p>
 
-        </div>
+<h3>Complement</h3>
 
-        <h3>
-            Regression Line
-        </h3>
+<div class="formula">
+P(A′) = 1 − P(A)
+</div>
 
-        <p>
-            A regression line provides a mathematical model for the
-            relationship between two variables and can be used to
-            make predictions.
-        </p>
+<h3>Union</h3>
 
-        <div class="formula">
-            y = a + bx
-        </div>
+<p>
+A ∪ B means that A or B or both occur.
+</p>
 
-        <div class="definition">
+<h3>Intersection</h3>
 
-            <strong>REMEMBER</strong>
+<p>
+A ∩ B means that both A and B occur.
+</p>
 
-            <p>
-                Correlation does not necessarily imply causation.
-            </p>
+<h3>Addition Rule</h3>
 
-        </div>
+<div class="formula">
+P(A ∪ B) = P(A) + P(B) − P(A ∩ B)
+</div>
 
-    </section>
+<p>
+The intersection is subtracted because it is counted twice when
+P(A) and P(B) are added.
+</p>
 
+<h3>Mutually Exclusive Events</h3>
 
-    <!-- =========================
-         MIXED PRACTICE
-    ========================= -->
+<p>
+Two events are mutually exclusive if they cannot occur together.
+</p>
 
-    <section class="lesson reveal">
+<div class="formula">
+P(A ∩ B) = 0
+</div>
 
-        <p class="lesson-number">
-            PRACTICE // S1 DATA TRIALS
-        </p>
+<p>
+Therefore:
+</p>
 
-        <h2>
-            S1 Mixed Practice
-        </h2>
+<div class="formula">
+P(A ∪ B) = P(A) + P(B)
+</div>
 
+<h3>Conditional Probability</h3>
 
-        <div class="question">
+<div class="formula">
+P(A|B) = P(A ∩ B) ÷ P(B)
+</div>
 
-            <strong>
-                1. Explain the difference between a population and a sample.
-            </strong>
+<p>
+The notation P(A|B) means the probability of A occurring given that B
+has already occurred.
+</p>
 
-            <details>
+<h3>Independent Events</h3>
 
-                <summary>
-                    SHOW ANSWER
-                </summary>
+<p>
+Events A and B are independent if the occurrence of one does not alter
+the probability of the other.
+</p>
 
-                <p>
-                    A population is the complete group being studied,
-                    while a sample is a subset selected from that population.
-                </p>
+<div class="formula">
+P(A ∩ B) = P(A)P(B)
+</div>
 
-            </details>
+<p>
+For independent events:
+</p>
 
-        </div>
+<div class="formula">
+P(A|B) = P(A)
+</div>
 
+<h3>Tree Diagrams</h3>
 
-        <div class="question">
+<p>
+Tree diagrams can be used to represent sequences of events. Probabilities
+along a path are multiplied, while probabilities of alternative paths
+are added.
+</p>
 
-            <strong>
-                2. State one advantage of simple random sampling.
-            </strong>
+<div class="tip">
+<strong>EXAM METHOD:</strong>
+On a tree diagram, multiply along branches and add separate successful
+paths.
+</div>
 
-            <details>
+<h3>Venn Diagrams</h3>
 
-                <summary>
-                    SHOW ANSWER
-                </summary>
+<p>
+Venn diagrams are useful for visualising unions, intersections,
+complements and mutually exclusive events.
+</p>
 
-                <p>
-                    Every member of the population has an equal chance
-                    of being selected.
-                </p>
+</section>
 
-            </details>
 
-        </div>
+<!-- TOPIC 05 -->
 
+<section class="lesson reveal">
 
-        <div class="question">
+<p class="lesson-number">
+TOPIC 05 // DISCRETE RANDOM VARIABLES
+</p>
 
-            <strong>
-                3. Find the mean of 6, 8, 10, 11 and 15.
-            </strong>
+<h2>Discrete Random Variables and Probability Distributions</h2>
 
-            <details>
+<p>
+A random variable assigns a numerical value to the outcome of a random
+experiment.
+</p>
 
-                <summary>
-                    SHOW ANSWER
-                </summary>
+<h3>Discrete Random Variable</h3>
 
-                <p>
-                    Mean = (6 + 8 + 10 + 11 + 15) ÷ 5 = 10.
-                </p>
+<p>
+A discrete random variable can take a countable set of possible values.
+For example, X may represent the number of defective items in a sample.
+</p>
 
-            </details>
+<h3>Probability Distribution</h3>
 
-        </div>
+<p>
+A probability distribution lists the possible values of X together
+with their probabilities.
+</p>
 
+<div class="formula">
+ΣP(X = x) = 1
+</div>
 
-        <div class="question">
+<p>
+Every probability must satisfy:
+</p>
 
-            <strong>
-                4. If P(A) = 0.27, find P(A').
-            </strong>
+<div class="formula">
+0 ≤ P(X = x) ≤ 1
+</div>
 
-            <details>
+<h3>Finding an Unknown Probability</h3>
 
-                <summary>
-                    SHOW ANSWER
-                </summary>
+<p>
+If a distribution contains an unknown constant k, use the fact that
+the probabilities must add to 1.
+</p>
 
-                <p>
-                    P(A') = 1 − 0.27 = 0.73.
-                </p>
+<div class="example">
 
-            </details>
+<p class="example-title">WORKED EXAMPLE</p>
 
-        </div>
+<p>
+Suppose probabilities are k, 2k, 3k and 4k.
+</p>
 
+<div class="solution">
 
-        <div class="question">
+<p>
+k + 2k + 3k + 4k = 1
+</p>
 
-            <strong>
-                5. A random variable X has probabilities that must
-                sum to what value?
-            </strong>
+<p>
+10k = 1
+</p>
 
-            <details>
+<p>
+<strong>k = 0.1</strong>
+</p>
 
-                <summary>
-                    SHOW ANSWER
-                </summary>
+</div>
 
-                <p>
-                    The probabilities must sum to 1.
-                </p>
+</div>
 
-            </details>
+<h3>Expected Value</h3>
 
-        </div>
+<div class="formula">
+E(X) = ΣxP(X = x)
+</div>
 
+<p>
+The expected value is the long-run average value of X over a large
+number of repetitions of the experiment.
+</p>
 
-        <div class="question">
+<h3>Expected Value of a Function</h3>
 
-            <strong>
-                6. State the four conditions required for a binomial model.
-            </strong>
+<p>
+For suitable functions of X:
+</p>
 
-            <details>
+<div class="formula">
+E[g(X)] = Σg(x)P(X = x)
+</div>
 
-                <summary>
-                    SHOW ANSWER
-                </summary>
+<h3>Variance</h3>
 
-                <p>
-                    Fixed number of trials, two possible outcomes,
-                    constant probability of success and independent trials.
-                </p>
+<div class="formula">
+Var(X) = E(X²) − [E(X)]²
+</div>
 
-            </details>
+<h3>Standard Deviation</h3>
 
-        </div>
+<div class="formula">
+σ = √Var(X)
+</div>
 
+<h3>Linear Transformations</h3>
 
-        <div class="question">
+<div class="formula">
+E(aX+b) = aE(X)+b
+</div>
 
-            <strong>
-                7. What is the possible range of the product moment
-                correlation coefficient?
-            </strong>
+<div class="formula">
+Var(aX+b) = a²Var(X)
+</div>
 
-            <details>
+<p>
+Adding a constant changes location but not spread. Multiplication
+changes both location and spread.
+</p>
 
-                <summary>
-                    SHOW ANSWER
-                </summary>
+</section>
 
-                <p>
-                    −1 ≤ r ≤ 1.
-                </p>
 
-            </details>
+<!-- TOPIC 06 -->
 
-        </div>
+<section class="lesson reveal">
 
+<p class="lesson-number">
+TOPIC 06 // BINOMIAL ENGINE
+</p>
 
-        <div class="question">
+<h2>Binomial Distribution</h2>
 
-            <strong>
-                8. For X ~ B(10, 0.3), find E(X).
-            </strong>
+<p>
+The binomial distribution models the number of successes in a fixed
+number of independent trials when each trial has two outcomes and the
+probability of success remains constant.
+</p>
 
-            <details>
+<div class="formula">
+X ~ B(n,p)
+</div>
 
-                <summary>
-                    SHOW ANSWER
-                </summary>
+<h3>The Four Conditions</h3>
 
-                <p>
-                    E(X) = np = 10 × 0.3 = 3.
-                </p>
+<ol>
+<li>There is a fixed number n of trials.</li>
+<li>Each trial has exactly two relevant outcomes: success or failure.</li>
+<li>The probability of success p is constant.</li>
+<li>The trials are independent.</li>
+</ol>
 
-            </details>
+<div class="warning">
+<strong>MODEL CHECK:</strong>
+Do not automatically use the binomial distribution simply because a
+question contains repeated trials. All four conditions must be justified.
+</div>
 
-        </div>
+<h3>Probability of Exactly r Successes</h3>
 
-    </section>
+<div class="formula">
+P(X = r) = C(n,r)pʳ(1−p)ⁿ⁻ʳ
+</div>
 
+<h3>Combination Notation</h3>
 
-    <!-- =========================
-         QUICK REVIEW
-    ========================= -->
+<div class="formula">
+C(n,r) = n! ÷ [r!(n−r)!]
+</div>
 
-    <section class="lesson reveal">
+<h3>At Least</h3>
 
-        <p class="lesson-number">
-            SYSTEM ARCHIVE // QUICK REVIEW
-        </p>
+<p>
+“At least r” means r or more.
+</p>
 
-        <h2>
-            S1 Key Formulae
-        </h2>
+<div class="formula">
+P(X ≥ r) = P(X=r)+P(X=r+1)+...+P(X=n)
+</div>
 
-        <div class="formula">
-            Mean = Σx ÷ n
-        </div>
+<p>
+Often the complement is easier:
+</p>
 
-        <div class="formula">
-            IQR = Q₃ − Q₁
-        </div>
+<div class="formula">
+P(X ≥ r) = 1 − P(X ≤ r−1)
+</div>
 
-        <div class="formula">
-            P(A') = 1 − P(A)
-        </div>
+<h3>At Most</h3>
 
-        <div class="formula">
-            E(X) = ΣxP(X = x)
-        </div>
+<div class="formula">
+P(X ≤ r) = P(X=0)+...+P(X=r)
+</div>
 
-        <div class="formula">
-            Var(X) = E(X²) − [E(X)]²
-        </div>
+<h3>More Than</h3>
 
-        <div class="formula">
-            X ~ B(n,p)
-        </div>
+<div class="formula">
+P(X > r) = 1 − P(X ≤ r)
+</div>
 
-        <div class="formula">
-            E(X) = np
-        </div>
+<h3>Less Than</h3>
 
-        <div class="formula">
-            Var(X) = np(1 − p)
-        </div>
+<div class="formula">
+P(X < r) = P(X ≤ r−1)
+</div>
 
-    </section>
+<h3>Mean</h3>
+
+<div class="formula">
+E(X) = np
+</div>
+
+<h3>Variance</h3>
+
+<div class="formula">
+Var(X) = np(1−p)
+</div>
+
+<h3>Standard Deviation</h3>
+
+<div class="formula">
+σ = √[np(1−p)]
+</div>
+
+<div class="example">
+
+<p class="example-title">WORKED EXAMPLE // BINOMIAL</p>
+
+<p>
+A machine produces components with probability 0.1 of being defective.
+Ten components are selected independently. Let X be the number of
+defective components.
+</p>
+
+<div class="solution">
+
+<p>
+X ~ B(10,0.1)
+</p>
+
+<p>
+P(X=2)=C(10,2)(0.1)²(0.9)⁸
+</p>
+
+<p>
+E(X)=np=10(0.1)=1
+</p>
+
+<p>
+Var(X)=np(1-p)=10(0.1)(0.9)=0.9
+</p>
+
+</div>
+
+</div>
+
+<h3>When Binomial Is Not Appropriate</h3>
+
+<ul>
+<li>The number of trials is not fixed.</li>
+<li>There are more than two relevant outcomes.</li>
+<li>The probability of success changes from trial to trial.</li>
+<li>The trials are not independent.</li>
+</ul>
+
+</section>
+
+
+<!-- TOPIC 07 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+TOPIC 07 // CORRELATION AND REGRESSION
+</p>
+
+<h2>Correlation, Product Moment and Regression</h2>
+
+<h3>Bivariate Data</h3>
+
+<p>
+Bivariate data consists of paired observations for two variables.
+For example, height and mass measured for the same group of people.
+</p>
+
+<h3>Scatter Diagram</h3>
+
+<p>
+A scatter diagram can reveal the direction, strength and approximate
+form of a relationship between two variables.
+</p>
+
+<h3>Positive Correlation</h3>
+
+<p>
+As one variable increases, the other tends to increase.
+</p>
+
+<h3>Negative Correlation</h3>
+
+<p>
+As one variable increases, the other tends to decrease.
+</p>
+
+<h3>No Linear Correlation</h3>
+
+<p>
+There may be little evidence of a linear relationship. This does not
+necessarily mean that no relationship of any kind exists.
+</p>
+
+<h3>Product Moment Correlation Coefficient</h3>
+
+<p>
+The product moment correlation coefficient, commonly denoted by r,
+measures the strength and direction of linear association.
+</p>
+
+<div class="formula">
+−1 ≤ r ≤ 1
+</div>
+
+<p>
+Values close to 1 indicate strong positive linear correlation.
+Values close to −1 indicate strong negative linear correlation.
+Values close to 0 indicate weak linear correlation.
+</p>
+
+<div class="warning">
+<strong>IMPORTANT:</strong>
+Correlation does not establish causation. Two variables can be strongly
+correlated without one causing the other.
+</div>
+
+<h3>Regression Line</h3>
+
+<p>
+A regression line provides a model for predicting one variable from
+another.
+</p>
+
+<div class="formula">
+y = a + bx
+</div>
+
+<p>
+Here a is the intercept and b is the gradient.
+</p>
+
+<h3>Interpolation</h3>
+
+<p>
+Interpolation predicts a value within the range of observed x-values.
+It is generally more defensible than extrapolation because it remains
+within the observed region.
+</p>
+
+<h3>Extrapolation</h3>
+
+<p>
+Extrapolation predicts beyond the observed range. The linear model may
+not remain valid outside the available data.
+</p>
+
+<h3>Residuals</h3>
+
+<p>
+A residual is the difference between an observed value and the value
+predicted by the regression model.
+</p>
+
+<div class="formula">
+Residual = observed y − predicted y
+</div>
+
+<h3>Interpreting r</h3>
+
+<p>
+The sign of r gives the direction of linear correlation, while the
+magnitude of r indicates its strength.
+</p>
+
+<h3>Correlation and Causation</h3>
+
+<p>
+A strong correlation can arise because one variable causes another,
+because both are influenced by another variable, because of coincidence,
+or because of the way the data was collected.
+</p>
+
+</section>
+
+
+<!-- TOPIC 08 -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+EXAM SYSTEM // ESSENTIAL TECHNIQUE
+</p>
+
+<h2>How to Approach S1 Questions</h2>
+
+<h3>1. Identify the Statistical Structure</h3>
+
+<p>
+Before calculating, identify whether the question involves sampling,
+summary statistics, probability, a random variable, binomial modelling,
+or correlation/regression.
+</p>
+
+<h3>2. Define Variables</h3>
+
+<p>
+When using a probability model, define X clearly. For example:
+“Let X be the number of defective components.”
+</p>
+
+<h3>3. State the Model</h3>
+
+<p>
+For binomial questions write:
+</p>
+
+<div class="formula">
+X ~ B(n,p)
+</div>
+
+<p>
+This demonstrates that you have identified the correct distribution.
+</p>
+
+<h3>4. Keep Full Precision</h3>
+
+<p>
+Do not round intermediate values unnecessarily. Round only at the
+appropriate stage, normally at the final answer.
+</p>
+
+<h3>5. Interpret in Context</h3>
+
+<p>
+A statistical answer should often be interpreted using the original
+context. Do not leave an answer as a disconnected numerical value when
+the question asks for a conclusion.
+</p>
+
+<h3>6. Check Plausibility</h3>
+
+<ul>
+<li>Probability must lie between 0 and 1.</li>
+<li>Standard deviation cannot be negative.</li>
+<li>Variance cannot be negative.</li>
+<li>A probability distribution must sum to 1.</li>
+<li>A correlation coefficient must lie between −1 and 1.</li>
+<li>Expected values do not necessarily have to be possible individual outcomes.</li>
+</ul>
+
+</section>
+
+
+<!-- FORMULA ARCHIVE -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+SYSTEM ARCHIVE // FORMULA DATABASE
+</p>
+
+<h2>S1 Formula Archive</h2>
+
+<div class="formula">x̄ = Σx ÷ n</div>
+
+<div class="formula">x̄ = Σfx ÷ Σf</div>
+
+<div class="formula">Estimated mean = Σ(f × midpoint) ÷ Σf</div>
+
+<div class="formula">IQR = Q₃ − Q₁</div>
+
+<div class="formula">Frequency density = frequency ÷ class width</div>
+
+<div class="formula">P(A′) = 1 − P(A)</div>
+
+<div class="formula">P(A ∪ B) = P(A)+P(B)−P(A∩B)</div>
+
+<div class="formula">P(A|B) = P(A∩B) ÷ P(B)</div>
+
+<div class="formula">P(A∩B) = P(A)P(B) for independent events</div>
+
+<div class="formula">E(X) = ΣxP(X=x)</div>
+
+<div class="formula">Var(X) = E(X²) − [E(X)]²</div>
+
+<div class="formula">SD(X) = √Var(X)</div>
+
+<div class="formula">E(aX+b)=aE(X)+b</div>
+
+<div class="formula">Var(aX+b)=a²Var(X)</div>
+
+<div class="formula">X ~ B(n,p)</div>
+
+<div class="formula">P(X=r)=C(n,r)pʳ(1−p)ⁿ⁻ʳ</div>
+
+<div class="formula">E(X)=np</div>
+
+<div class="formula">Var(X)=np(1−p)</div>
+
+<div class="formula">SD(X)=√[np(1−p)]</div>
+
+<div class="formula">−1 ≤ r ≤ 1</div>
+
+<div class="formula">y=a+bx</div>
+
+<div class="formula">Residual = observed y − predicted y</div>
+
+</section>
+
+
+<!-- 100 QUESTION EXAM -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+FINAL EXAM // 100 QUESTION S1 ASSESSMENT
+</p>
+
+<h2>Statistics 1 — 100 Question Examination</h2>
+
+<p>
+This examination is designed as a comprehensive revision system.
+Attempt all questions before opening the answers. Questions progress
+from foundational knowledge to calculation, interpretation and
+multi-step statistical reasoning.
+</p>
+
+<div class="definition">
+
+<strong>EXAM RULE</strong>
+
+<p>
+Try to complete the entire paper without opening the answer sections.
+Use a calculator where appropriate and show working for calculation
+questions.
+</p>
+
+</div>
+
+
+<!-- Q1-10 -->
+
+<div class="question">
+<strong>1. Define a population in the context of a statistical investigation.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>The complete set of individuals or objects about which the investigation is concerned.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>2. Define a sample.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>A subset of the population selected for observation.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>3. State one advantage of a census.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>Information is collected from every member of the population, so sampling variation is avoided.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>4. State one disadvantage of a census.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>It can be expensive, time-consuming or impractical for a large population.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>5. What is a sampling frame?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>A list or system identifying members of the population from which a sample can be selected.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>6. State one feature of simple random sampling.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>Every possible sample of the required size has an equal chance of being selected.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>7. A population contains 800 people and a sample of 40 is required. Find the systematic sampling interval.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>800 ÷ 40 = <strong>20</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>8. A population contains 600 boys and 400 girls. A stratified sample of 50 is required. How many boys should be selected?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>(600/1000) × 50 = <strong>30 boys</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>9. Explain why opportunity sampling may be biased.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>The people who are easiest to access may differ systematically from the wider population.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>10. What is non-response bias?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>Bias arising when people who do not respond differ in relevant characteristics from those who respond.</p>
+</details>
+</div>
+
+
+<!-- Q11-20 -->
+
+<div class="question">
+<strong>11. Distinguish between discrete and continuous data.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>Discrete data has countable separate values; continuous data can take any value within an interval.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>12. Is height continuous or discrete data?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>Continuous.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>13. Is number of siblings discrete or continuous?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>Discrete.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>14. What does the area of a histogram bar represent?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>Frequency.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>15. A class has width 5 and frequency 30. Find its frequency density.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>30 ÷ 5 = <strong>6</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>16. A histogram class has width 8 and frequency density 4. Find its frequency.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>4 × 8 = <strong>32</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>17. Why can grouped data give only an estimated mean?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>The exact values within each class are unknown, so class midpoints are used to represent the observations.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>18. What five values are represented by a box plot?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>Minimum, lower quartile, median, upper quartile and maximum.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>19. What is an outlier?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>An observation unusually far from the main body of the data.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>20. State two features that can be identified from a statistical diagram.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>For example, centre and spread; other valid answers include skewness, clusters, gaps and outliers.</p>
+</details>
+</div>
+
+
+<!-- Q21-30 -->
+
+<div class="question">
+<strong>21. Find the mean of 4, 7, 9, 10 and 15.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>(4+7+9+10+15)/5 = <strong>9</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>22. Find the median of 3, 8, 4, 12, 7.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>Ordered data: 3,4,7,8,12. Median = <strong>7</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>23. Find the range of 12, 18, 7, 21 and 15.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>21 − 7 = <strong>14</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>24. Find the IQR if Q₁ = 14 and Q₃ = 31.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>31 − 14 = <strong>17</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>25. State one advantage of the median over the mean.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>The median is less affected by extreme values.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>26. Calculate the mean of values 2, 4 and 8 with frequencies 3, 2 and 5 respectively.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>Σfx = 6+8+40 = 54; Σf = 10. Mean = <strong>5.4</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>27. Find the variance of a random variable with E(X)=5 and E(X²)=29.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>29 − 5² = <strong>4</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>28. Find the standard deviation when the variance is 49.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>√49 = <strong>7</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>29. If every observation increases by 10, what happens to the variance?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>It remains unchanged.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>30. If every observation is multiplied by 3, by what factor does the variance change?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>The variance is multiplied by 3² = <strong>9</strong>.</p>
+</details>
+</div>
+
+
+<!-- Q31-40 -->
+
+<div class="question">
+<strong>31. State the possible range of a probability.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>0 ≤ P(A) ≤ 1.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>32. If P(A)=0.38, find P(A′).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>1 − 0.38 = <strong>0.62</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>33. What does A ∩ B mean?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>A and B both occur.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>34. What does A ∪ B mean?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>A or B or both occur.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>35. State the addition rule for two events.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>P(A∪B)=P(A)+P(B)−P(A∩B).</p>
+</details>
+</div>
+
+<div class="question">
+<strong>36. If A and B are mutually exclusive, what is P(A∩B)?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p><strong>0</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>37. If P(A)=0.4 and P(B)=0.3 and A and B are mutually exclusive, find P(A∪B).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>0.4 + 0.3 = <strong>0.7</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>38. If P(A)=0.6 and P(B)=0.5 and A and B are independent, find P(A∩B).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>0.6 × 0.5 = <strong>0.3</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>39. State the formula for conditional probability P(A|B).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>P(A|B)=P(A∩B)/P(B).</p>
+</details>
+</div>
+
+<div class="question">
+<strong>40. If P(A∩B)=0.18 and P(B)=0.3, find P(A|B).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>0.18 ÷ 0.3 = <strong>0.6</strong>.</p>
+</details>
+</div>
+
+
+<!-- Q41-50 -->
+
+<div class="question">
+<strong>41. What is a discrete random variable?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>A random variable that takes a countable set of possible values.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>42. What must the probabilities in a probability distribution sum to?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p><strong>1</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>43. A distribution has probabilities k, 2k, 3k and 4k. Find k.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>10k=1, so <strong>k=0.1</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>44. State the formula for E(X).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>E(X)=ΣxP(X=x).</p>
+</details>
+</div>
+
+<div class="question">
+<strong>45. X takes values 1, 2 and 4 with probabilities 0.2, 0.5 and 0.3. Find E(X).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>1(0.2)+2(0.5)+4(0.3)=<strong>2.4</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>46. Using the distribution in Question 45, find E(X²).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>1²(0.2)+2²(0.5)+4²(0.3)=0.2+2+4.8=<strong>7</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>47. Using Questions 45 and 46, find Var(X).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>7−2.4² = <strong>1.24</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>48. Find the standard deviation from Question 47.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>√1.24 ≈ <strong>1.114</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>49. If Y=2X+5 and E(X)=4, find E(Y).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>2(4)+5 = <strong>13</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>50. If Y=3X−7 and Var(X)=4, find Var(Y).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>3²×4 = <strong>36</strong>.</p>
+</details>
+</div>
+
+
+<!-- Q51-60 -->
+
+<div class="question">
+<strong>51. State the four conditions required for a binomial model.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>Fixed number of trials, two outcomes, constant probability of success and independent trials.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>52. Write the notation for a binomial random variable with n=20 and p=0.4.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p><strong>X~B(20,0.4)</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>53. If X~B(10,0.2), find E(X).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>10×0.2 = <strong>2</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>54. If X~B(10,0.2), find Var(X).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>10×0.2×0.8 = <strong>1.6</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>55. If X~B(10,0.2), find P(X=0).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>(0.8)¹⁰ ≈ <strong>0.1074</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>56. If X~B(10,0.2), write an expression for P(X=3).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>C(10,3)(0.2)³(0.8)⁷.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>57. What does “at least 4” mean for X?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>X ≥ 4.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>58. What does “at most 4” mean for X?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>X ≤ 4.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>59. Express P(X≥5) using a complement.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>P(X≥5)=1−P(X≤4).</p>
+</details>
+</div>
+
+<div class="question">
+<strong>60. State one situation where the binomial distribution would not be appropriate.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>For example, when the probability of success changes between trials.</p>
+</details>
+</div>
+
+
+<!-- Q61-70 -->
+
+<div class="question">
+<strong>61. A coin is biased so that P(head)=0.7. It is tossed 8 times independently. Define X and state its distribution.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>X = number of heads. X~B(8,0.7).</p>
+</details>
+</div>
+
+<div class="question">
+<strong>62. For Question 61, find P(X=5).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>C(8,5)(0.7)⁵(0.3)³ ≈ <strong>0.2541</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>63. For Question 61, find P(X≥7).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>P(X=7)+P(X=8) ≈ <strong>0.2553</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>64. For Question 61, find E(X).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>8×0.7 = <strong>5.6</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>65. For Question 61, find Var(X).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>8×0.7×0.3 = <strong>1.68</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>66. A component has probability 0.05 of being defective. A sample of 20 is tested independently. What is the probability that none is defective?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>0.95²⁰ ≈ <strong>0.3585</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>67. For Question 66, find the expected number of defective components.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>20×0.05 = <strong>1</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>68. For Question 66, find the variance.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>20×0.05×0.95 = <strong>0.95</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>69. Explain why a probability of success must remain constant for a standard binomial model.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>The binomial distribution assumes each trial has the same probability p of success.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>70. Explain why independence is required for the binomial model.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>The outcome of one trial must not affect the probability of the outcome of another trial.</p>
+</details>
+</div>
+
+
+<!-- Q71-80 -->
+
+<div class="question">
+<strong>71. What does a positive correlation indicate?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>As one variable increases, the other tends to increase.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>72. What does a negative correlation indicate?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>As one variable increases, the other tends to decrease.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>73. State the possible range of r.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>−1 ≤ r ≤ 1.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>74. Interpret r=0.92.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>There is a strong positive linear correlation.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>75. Interpret r=−0.81.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>There is a strong negative linear correlation.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>76. What does r≈0 indicate?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>There is little or no linear correlation. It does not prove that there is no relationship at all.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>77. Write the general form of a regression line of y on x.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>y=a+bx.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>78. In y=12+3x, identify the gradient.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>The gradient is <strong>3</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>79. In y=12+3x, find the predicted value of y when x=5.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>12+3(5)=<strong>27</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>80. What is the difference between interpolation and extrapolation?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>Interpolation predicts within the observed range; extrapolation predicts outside it.</p>
+</details>
+</div>
+
+
+<!-- Q81-90 -->
+
+<div class="question">
+<strong>81. A regression model predicts y=24, but the observed value is 27. Find the residual.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>27−24 = <strong>3</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>82. Why can extrapolation be unreliable?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>The relationship observed in the available data may not continue outside the observed range.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>83. Does a strong correlation prove causation?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>No.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>84. Give one possible reason for a correlation without direct causation.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>A third variable may influence both variables.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>85. A regression line is y=5+2.4x. Predict y when x=10.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>5+24 = <strong>29</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>86. A predicted value is 42 and the observed value is 38. Find the residual.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>38−42 = <strong>−4</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>87. Explain what the sign of r tells you.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>It indicates the direction of linear association: positive or negative.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>88. Explain what the magnitude of r tells you.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>It indicates the strength of the linear relationship.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>89. Why is a scatter diagram useful before fitting a regression model?</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>It allows the relationship, possible outliers and suitability of a linear model to be assessed visually.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>90. State one danger of using a regression line outside the observed x-range.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>The prediction is an extrapolation and the linear relationship may not continue.</p>
+</details>
+</div>
+
+
+<!-- Q91-100 -->
+
+<div class="question">
+<strong>91. A population has 1200 people. A sample of 60 is selected using systematic sampling. Find the interval.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>1200÷60 = <strong>20</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>92. A random variable has E(X)=7 and Var(X)=5. Let Y=4X−3. Find E(Y).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>4(7)−3 = <strong>25</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>93. Using Question 92, find Var(Y).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>4²×5 = <strong>80</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>94. If X~B(15,0.4), find the mean.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>15×0.4 = <strong>6</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>95. If X~B(15,0.4), find the variance.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>15×0.4×0.6 = <strong>3.6</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>96. If X~B(15,0.4), express P(X≥13) using a complement.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>P(X≥13)=1−P(X≤12).</p>
+</details>
+</div>
+
+<div class="question">
+<strong>97. A probability distribution has probabilities 0.15, 0.25, k and 0.30. Find k.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>0.15+0.25+k+0.30=1, so <strong>k=0.30</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>98. A random variable has values 0, 1, 2 with probabilities 0.2, 0.5 and 0.3. Find E(X).</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>0(0.2)+1(0.5)+2(0.3)=<strong>1.1</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>99. A sample has mean 20 and standard deviation 4. Every observation is transformed using Y=3X+5. Find the new mean and standard deviation.</strong>
+<details><summary>SHOW ANSWER</summary>
+<p>Mean = 3(20)+5 = <strong>65</strong>. Standard deviation = 3(4) = <strong>12</strong>.</p>
+</details>
+</div>
+
+<div class="question">
+<strong>100. A factory produces components independently with probability 0.08 of a component being defective. Twenty-five components are selected. Define a suitable random variable, state its distribution, find its expected value and variance, and write an expression for the probability that at least three components are defective.</strong>
+<details><summary>SHOW ANSWER</summary>
+
+<p>
+Let X be the number of defective components.
+</p>
+
+<p>
+<strong>X~B(25,0.08)</strong>
+</p>
+
+<p>
+E(X)=25(0.08)=<strong>2</strong>
+</p>
+
+<p>
+Var(X)=25(0.08)(0.92)=<strong>1.84</strong>
+</p>
+
+<p>
+P(X≥3)=1−P(X≤2)
+</p>
+
+<p>
+So:
+</p>
+
+<p>
+<strong>
+P(X≥3)=1−[P(X=0)+P(X=1)+P(X=2)]
+</strong>
+</p>
+
+</details>
+</div>
+
+</section>
+
+
+<!-- FINAL CHECKLIST -->
+
+<section class="lesson reveal">
+
+<p class="lesson-number">
+SYSTEM CHECK // S1 MASTERY
+</p>
+
+<h2>S1 Mastery Checklist</h2>
+
+<ul>
+
+<li>I can distinguish a population from a sample.</li>
+
+<li>I can explain census and sampling frames.</li>
+
+<li>I can compare simple random, systematic, stratified, quota and opportunity sampling.</li>
+
+<li>I can identify potential sources of sampling bias.</li>
+
+<li>I can distinguish discrete and continuous data.</li>
+
+<li>I can interpret frequency tables, histograms, stem-and-leaf diagrams, box plots and scatter diagrams.</li>
+
+<li>I understand frequency density.</li>
+
+<li>I can calculate and interpret mean, median, mode, range, quartiles and IQR.</li>
+
+<li>I can calculate variance and standard deviation.</li>
+
+<li>I understand the effects of linear transformations on mean and variance.</li>
+
+<li>I can use complements, unions and intersections.</li>
+
+<li>I can distinguish mutually exclusive and independent events.</li>
+
+<li>I can calculate conditional probabilities.</li>
+
+<li>I can construct and interpret tree diagrams.</li>
+
+<li>I can construct probability distributions.</li>
+
+<li>I can calculate expected value and variance of a discrete random variable.</li>
+
+<li>I can recognise and use the binomial distribution.</li>
+
+<li>I can calculate exact, cumulative, at-least and at-most binomial probabilities.</li>
+
+<li>I can calculate the mean and variance of a binomial distribution.</li>
+
+<li>I can interpret scatter diagrams and correlation coefficients.</li>
+
+<li>I understand the difference between correlation and causation.</li>
+
+<li>I can use regression equations for prediction.</li>
+
+<li>I understand interpolation and extrapolation.</li>
+
+<li>I can calculate and interpret residuals.</li>
+
+<li>I can complete a full 100-question S1 assessment.</li>
+
+</ul>
+
+<div class="definition">
+
+<strong>FINAL TARGET</strong>
+
+<p>
+Do not judge mastery by whether you can remember the formulae.
+A strong S1 student should be able to identify the correct statistical
+model, explain why it applies, perform the calculation accurately,
+interpret the result and recognise when a method is inappropriate.
+</p>
+
+</div>
+
+</section>
 
 
 </main>
 
 
-<!-- NAVIGATION -->
-
 <div class="navigation">
 
-    <a href="statistics.html" class="button">
-        ← Back to Statistics
-    </a>
+<a href="statistics.html" class="button">
+← Back to Statistics
+</a>
 
-    <a href="mathematics.html" class="button">
-        Mathematics
-    </a>
+<a href="mathematics.html" class="button">
+Mathematics
+</a>
+
+<a href="index.html" class="button">
+IAL ATLAS Home
+</a>
 
 </div>
 
 
-<!-- FOOTER -->
-
 <footer>
 
-    © 2026 IAL ATLAS • Independent student resource • Not affiliated with Pearson
+© 2026 IAL ATLAS • Independent student resource • Not affiliated with Pearson
 
 </footer>
 
 
 <script>
 
-    /* =========================
-       SCROLL REVEAL
-    ========================= */
+const revealElements=document.querySelectorAll(".reveal");
 
-    const revealElements =
-        document.querySelectorAll(".reveal");
+const observer=new IntersectionObserver(
+entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("visible");
+}
+});
+},
+{threshold:.08}
+);
 
-    const observer =
-        new IntersectionObserver(
-            entries => {
-
-                entries.forEach(entry => {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add("visible");
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.10
-            }
-        );
-
-    revealElements.forEach(element => {
-        observer.observe(element);
-    });
+revealElements.forEach(element=>{
+observer.observe(element);
+});
 
 
-    /* =========================
-       CARD LIGHT
-    ========================= */
+const lessons=document.querySelectorAll(".lesson");
 
-    const lessons =
-        document.querySelectorAll(".lesson");
+lessons.forEach(lesson=>{
 
-    lessons.forEach(lesson => {
+lesson.addEventListener("mousemove",event=>{
 
-        lesson.addEventListener("mousemove", event => {
+const rect=lesson.getBoundingClientRect();
 
-            const rect =
-                lesson.getBoundingClientRect();
+const x=event.clientX-rect.left;
+const y=event.clientY-rect.top;
 
-            const x =
-                event.clientX - rect.left;
+lesson.style.background=`
+radial-gradient(
+circle at ${x}px ${y}px,
+rgba(85,220,255,.075),
+rgba(7,22,37,.74) 43%
+)
+`;
 
-            const y =
-                event.clientY - rect.top;
+});
 
-            lesson.style.background = `
-                radial-gradient(
-                    circle at ${x}px ${y}px,
-                    rgba(85,220,255,0.075),
-                    rgba(7,22,37,0.74) 43%
-                )
-            `;
+lesson.addEventListener("mouseleave",()=>{
 
-        });
+lesson.style.background=`
+linear-gradient(
+145deg,
+rgba(11,32,51,.75),
+rgba(4,14,25,.72)
+)
+`;
 
-        lesson.addEventListener("mouseleave", () => {
+});
 
-            lesson.style.background = `
-                linear-gradient(
-                    145deg,
-                    rgba(11,32,51,0.75),
-                    rgba(4,14,25,0.72)
-                )
-            `;
-
-        });
-
-    });
+});
 
 
-    /* =========================
-       HERO PARALLAX
-    ========================= */
+const observatory=document.querySelector(".observatory");
 
-    const observatory =
-        document.querySelector(".observatory");
+window.addEventListener("mousemove",event=>{
 
-    window.addEventListener("mousemove", event => {
+const x=(event.clientX/window.innerWidth-.5)*2;
+const y=(event.clientY/window.innerHeight-.5)*2;
 
-        const x =
-            (event.clientX / window.innerWidth - 0.5) * 2;
+observatory.style.transform=
+`translate(
+calc(-50% + ${x*10}px),
+calc(-48% + ${y*10}px)
+)`;
 
-        const y =
-            (event.clientY / window.innerHeight - 0.5) * 2;
-
-        observatory.style.transform =
-            `translate(
-                calc(-50% + ${x * 10}px),
-                calc(-48% + ${y * 10}px)
-            )`;
-
-    });
+});
 
 </script>
-
 
 </body>
 
