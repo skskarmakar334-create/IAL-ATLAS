@@ -1,645 +1,1201 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Further Mathematics Atlas | IAL ATLAS</title>
-<meta name="description" content="Learn Further Mathematics with interactive notes, matrices, complex numbers, calculus, vectors, sequences and a 100-question practice exam.">
-<meta name="author" content="Shuvojit Karmakar">
+<meta name="description" content="Learn Further Mathematics through interactive lessons, formulas, animated topic cards and a 100-question practice test.">
 <link rel="canonical" href="https://ialatlas.com/further-mathematics.html">
 <link rel="stylesheet" href="style.css">
-<meta name="theme-color" content="#050916">
 
 <style>
-:root{
-  --bg:#050916;--panel:rgba(13,22,44,.78);--cyan:#53f5ff;
-  --purple:#ad7bff;--blue:#6a9cff;--text:#eef5ff;
-  --muted:#a7b6d2;--border:rgba(83,245,255,.22);
-  --green:#5cf5b2;--red:#ff758e
+:root {
+  --bg: #050914;
+  --panel: #0b1729;
+  --cyan: #00f5ff;
+  --purple: #b45cff;
+  --green: #42ffb0;
+  --text: #eef8ff;
+  --muted: #a5b8ce;
+  --red: #ff668a;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
- margin:0;color:var(--text);font-family:Inter,"Segoe UI",Arial,sans-serif;
- line-height:1.7;overflow-x:hidden;
- background:radial-gradient(ellipse at 20% 0%,#10264c 0%,transparent 40%),
- radial-gradient(ellipse at 90% 35%,#241343 0%,transparent 35%),var(--bg);
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 15% 5%, #00f5ff16, transparent 32%),
+    radial-gradient(ellipse at 90% 30%, #b45cff13, transparent 32%),
+    var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, sans-serif;
+  overflow-x: hidden;
 }
-#fx-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1}
-#cursor-glow{position:fixed;width:260px;height:260px;border-radius:50%;pointer-events:none;z-index:0;
- background:radial-gradient(circle,rgba(83,245,255,.09),rgba(173,123,255,.04) 40%,transparent 72%);
- transform:translate(-50%,-50%);will-change:left,top}
-a{color:var(--cyan)}
-button,a{-webkit-tap-highlight-color:transparent}
-.wrap{width:min(1120px,92%);margin:auto;position:relative;z-index:1}
-.nav{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 0;border-bottom:1px solid var(--border)}
-.brand{color:var(--text);font-weight:900;letter-spacing:2px;text-decoration:none}
-.brand span{color:var(--cyan);text-shadow:0 0 18px #53f5ff66}
-.navlinks{display:flex;gap:18px;flex-wrap:wrap}
-.navlinks a{text-decoration:none;color:var(--muted);font-size:.9rem;transition:color .25s,text-shadow .25s}
-.navlinks a:hover{color:var(--cyan);text-shadow:0 0 12px var(--cyan)}
-.hero{min-height:550px;display:grid;place-items:center;text-align:center;padding:65px 0}
-.hero-inner{max-width:900px}
-.kicker{display:inline-block;padding:6px 14px;border:1px solid var(--border);border-radius:30px;color:var(--cyan);font-size:.76rem;letter-spacing:2px;text-transform:uppercase;animation:pulse 3s infinite}
-.hero h1{font-size:clamp(2.5rem,7vw,5.8rem);line-height:1.04;letter-spacing:-2px;margin:24px 0}
-.gradient-text{background:linear-gradient(100deg,var(--cyan),#fff,var(--purple),var(--cyan));background-size:300% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gradientFlow 6s linear infinite}
-.hero p{max-width:730px;margin:0 auto 28px;color:var(--muted);font-size:1.08rem}
-.actions{display:flex;justify-content:center;gap:13px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 19px;border-radius:10px;border:1px solid var(--cyan);background:rgba(83,245,255,.07);color:var(--text);font-weight:750;text-decoration:none;font:inherit;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s;position:relative;overflow:hidden}
-.btn:hover{transform:translateY(-4px) scale(1.025);box-shadow:0 0 24px #53f5ff35,0 10px 25px #0005;background:#53f5ff18}
-.btn.primary{background:var(--cyan);color:#07101e;box-shadow:0 0 25px #53f5ff22}
-.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0 auto 55px}
-.stat,.card,.topic,.question-box{background:linear-gradient(145deg,rgba(16,32,58,.88),rgba(9,14,31,.82));border:1px solid var(--border);border-radius:17px;backdrop-filter:blur(14px);box-shadow:0 14px 35px #0002;position:relative;overflow:hidden}
-.stat{text-align:center;padding:22px}
-.stat strong{display:block;font-size:1.8rem;color:var(--cyan);text-shadow:0 0 18px #53f5ff4a}
-.stat span{font-size:.86rem;color:var(--muted)}
-.section{padding:24px 0 48px;scroll-margin-top:20px}
-.section-head{margin-bottom:23px}
-.eyebrow{color:var(--purple);font-size:.78rem;letter-spacing:2px;text-transform:uppercase}
-.section h2{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.2;margin:8px 0}
-.section-head p{color:var(--muted);max-width:780px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
-.card{padding:24px;transition:transform .2s,border-color .3s,box-shadow .3s}
-.card::before,.topic::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(125deg,transparent,var(--cyan),transparent,var(--purple),transparent);background-size:300% 300%;opacity:0;pointer-events:none;transition:opacity .3s;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}
-.card:hover::before,.topic:hover::before{opacity:1;animation:borderFlow 4s linear infinite}
-.card:hover{border-color:#53f5ff88;box-shadow:0 15px 40px #53f5ff12,0 0 18px #ad7bff12}
-.card h3,.topic h3{color:var(--cyan);margin:0 0 10px}
-.card p,.card li,.topic p{color:var(--muted)}
-.formula{padding:14px 16px;margin:14px 0;border:1px solid #53f5ff27;border-radius:10px;background:#02081788;color:#bafaff;font-family:ui-monospace,Menlo,Consolas,monospace;overflow-x:auto}
-.example{border-left:3px solid var(--purple);padding:11px 14px;background:#ad7bff0b;border-radius:0 8px 8px 0;color:var(--muted)}
-.roadmap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
-.topic{padding:20px;transition:transform .3s,border-color .3s}
-.topic:hover{transform:translateY(-6px);border-color:#ad7bff88}
-.topic-number{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;background:linear-gradient(135deg,#53f5ff22,#ad7bff24);color:var(--cyan);font-weight:900;margin-bottom:12px}
-.topic h3{font-size:1rem}
-.topic p{font-size:.9rem;margin-bottom:0}
-.exam{padding:clamp(18px,4vw,36px);border:1px solid #53f5ff38;border-radius:20px;background:linear-gradient(145deg,#101d39eF,#090d20f5);box-shadow:0 0 45px #53f5ff09;position:relative;overflow:hidden}
-.exam::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent,#53f5ff05,transparent);background-size:200% 100%;animation:scan 7s linear infinite}
-.exam-top{position:relative;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
-.exam-top h3{margin:0;font-size:1.45rem}
-.muted{color:var(--muted);font-size:.9rem}
-.progress{height:8px;background:#ffffff10;border-radius:20px;overflow:hidden;margin:20px 0;position:relative}
-.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--purple));border-radius:20px;box-shadow:0 0 15px #53f5ff99;transition:width .5s ease}
-.question-box{padding:22px;animation:questionIn .35s ease both}
-.q-meta{color:var(--purple);font-size:.8rem;letter-spacing:1.5px;font-weight:800}
-.q-text{font-size:1.12rem;font-weight:700;margin:12px 0 20px}
-.options{display:grid;gap:10px}
-.option{display:flex;align-items:flex-start;gap:12px;text-align:left;width:100%;padding:13px 15px;background:#ffffff04;border:1px solid #a7b6d22b;border-radius:10px;color:var(--text);font:inherit;cursor:pointer;transition:all .2s}
-.option:hover:not(:disabled){border-color:var(--cyan);background:#53f5ff0c;transform:translateX(4px)}
-.option:disabled{cursor:default}
-.option.correct{border-color:var(--green);background:#5cf5b20d}
-.option.incorrect{border-color:var(--red);background:#ff758e0d}
-.letter{flex:0 0 28px;height:28px;border:1px solid var(--border);border-radius:7px;display:grid;place-items:center;color:var(--cyan);font-size:.82rem;font-weight:900}
-.feedback{min-height:30px;margin-top:15px;color:var(--muted);font-size:.94rem}
-.feedback.good{color:var(--green)}.feedback.bad{color:var(--red)}
-.exam-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:14px}
-.result{text-align:center;padding:30px 10px;animation:questionIn .5s ease both}
-.result-circle{width:150px;height:150px;display:grid;place-items:center;border:3px solid var(--cyan);border-radius:50%;margin:22px auto;color:var(--cyan);font-size:2rem;font-weight:900;box-shadow:0 0 30px #53f5ff22;animation:float 4s ease-in-out infinite}
-.result p{color:var(--muted)}
-.footer{border-top:1px solid var(--border);padding:28px 0 36px;text-align:center;color:var(--muted);font-size:.86rem}
-.footer a{text-decoration:none}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.hidden{display:none!important}
-@keyframes gradientFlow{0%{background-position:0% 50%}100%{background-position:300% 50%}}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 #53f5ff00}50%{box-shadow:0 0 22px #53f5ff18}}
-@keyframes borderFlow{0%{background-position:0% 50%}100%{background-position:300% 50%}}
-@keyframes scan{0%{background-position:200% 0}100%{background-position:-200% 0}}
-@keyframes questionIn{from{opacity:0;transform:translateY(12px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-@media(max-width:760px){.roadmap{grid-template-columns:repeat(2,minmax(0,1fr))}.nav{align-items:flex-start;flex-direction:column}.hero{min-height:470px}.grid{grid-template-columns:1fr}}
-@media(max-width:470px){.roadmap,.stats{grid-template-columns:1fr}.hero h1{letter-spacing:-1px}.question-box{padding:15px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+#particles {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 16px 6%;
+  background: #050914eF;
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid #00f5ff35;
+}
+
+.brand {
+  color: var(--cyan);
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: .9rem;
+}
+
+nav a:hover { color: var(--cyan); }
+
+.hero {
+  min-height: 570px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 85px 20px 65px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 9px 15px;
+  border: 1px solid #00f5ff70;
+  background: #00f5ff0d;
+  color: var(--cyan);
+  border-radius: 50px;
+  animation: glowPulse 2.5s infinite;
+}
+
+h1 {
+  font-size: clamp(3rem, 10vw, 7rem);
+  line-height: 1;
+  letter-spacing: -3px;
+  margin: 27px 0 18px;
+  background: linear-gradient(100deg, white, var(--cyan), var(--purple), white);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientFlow 6s linear infinite, floatTitle 4s ease-in-out infinite;
+}
+
+.hero p {
+  max-width: 720px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 22px 0;
+}
+
+.btn {
+  display: inline-block;
+  border: 1px solid var(--cyan);
+  border-radius: 11px;
+  padding: 13px 19px;
+  color: var(--cyan);
+  background: #00f5ff0d;
+  font: inherit;
+  font-weight: 750;
+  text-decoration: none;
+  cursor: pointer;
+  transition: .25s ease;
+}
+
+.btn.primary {
+  color: #031016;
+  background: var(--cyan);
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 25px #00f5ff40;
+}
+
+.stats {
+  width: min(740px, 100%);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.stat {
+  padding: 17px 8px;
+  border: 1px solid #00f5ff30;
+  border-radius: 15px;
+  background: #0b1729c9;
+}
+
+.stat strong {
+  display: block;
+  color: var(--cyan);
+  font-size: 1.6rem;
+}
+
+.stat span {
+  color: var(--muted);
+  font-size: .8rem;
+}
+
+section {
+  width: min(1120px, 92%);
+  margin: auto;
+  padding: 55px 0;
+}
+
+.heading { margin-bottom: 25px; }
+
+.heading h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  margin: 0 0 10px;
+}
+
+.heading h2 span { color: var(--cyan); }
+
+.heading p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.card, .lesson, .exam {
+  border: 1px solid #00f5ff2c;
+  background: linear-gradient(145deg, #0d1b31ed, #070d1bed);
+  border-radius: 17px;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  padding: 23px;
+  transition: transform .3s, border-color .3s, box-shadow .3s;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -80%;
+  left: -120%;
+  width: 55%;
+  height: 260%;
+  transform: rotate(25deg);
+  background: linear-gradient(90deg, transparent, #ffffff15, transparent);
+  transition: left .7s;
+  pointer-events: none;
+}
+
+.card:hover::before { left: 150%; }
+
+.card:hover {
+  transform: translateY(-7px);
+  border-color: #00f5ff99;
+  box-shadow: 0 12px 35px #00f5ff15;
+}
+
+.icon {
+  display: inline-block;
+  font-size: 2rem;
+  animation: bob 3s ease-in-out infinite;
+}
+
+.card h3 { margin: 14px 0 8px; }
+
+.card p, .lesson p, .lesson li {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.card p { font-size: .93rem; }
+
+.tag {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 5px 9px;
+  border: 1px solid #39ffb63d;
+  border-radius: 7px;
+  color: var(--green);
+  font-size: .75rem;
+}
+
+.lessons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.lesson {
+  padding: 23px;
+  transition: .3s;
+}
+
+.lesson:hover {
+  border-color: var(--purple);
+  transform: translateY(-4px);
+}
+
+.lesson h3 { color: var(--cyan); }
+
+.formula {
+  margin: 14px 0;
+  padding: 14px;
+  border-left: 3px solid var(--cyan);
+  border-radius: 0 9px 9px 0;
+  background: #00f5ff0c;
+  color: #f4fcff;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+.note {
+  padding: 13px 15px;
+  border-left: 3px solid var(--purple);
+  border-radius: 0 9px 9px 0;
+  background: #b45cff0d;
+  color: #ddceff;
+  line-height: 1.8;
+}
+
+.exam { padding: clamp(18px, 4vw, 32px); }
+
+.examtop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+#number { color: var(--cyan); font-weight: 800; }
+
+.track {
+  height: 8px;
+  margin: 18px 0 25px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #1a2940;
+}
+
+#bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--cyan), var(--purple));
+  box-shadow: 0 0 15px var(--cyan);
+  transition: width .35s;
+}
+
+#question {
+  font-size: clamp(1.1rem, 3vw, 1.45rem);
+  line-height: 1.7;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.option {
+  padding: 15px;
+  text-align: left;
+  border: 1px solid #a0bedc35;
+  border-radius: 11px;
+  background: #ffffff05;
+  color: var(--text);
+  font: inherit;
+  line-height: 1.6;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.option:hover:not(:disabled) {
+  border-color: var(--cyan);
+  background: #00f5ff10;
+  transform: translateY(-2px);
+}
+
+.option:disabled { cursor: default; }
+
+.option.correct {
+  border-color: var(--green);
+  background: #39ffb61b;
+}
+
+.option.wrong {
+  border-color: var(--red);
+  background: #ff668a15;
+}
+
+#feedback {
+  min-height: 35px;
+  margin-top: 16px;
+  line-height: 1.7;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+button:disabled { opacity: .45; cursor: not-allowed; }
+
+#result {
+  display: none;
+  text-align: center;
+  padding: 25px 5px;
+}
+
+.ring {
+  width: 155px;
+  height: 155px;
+  display: grid;
+  place-items: center;
+  margin: 24px auto;
+  border: 5px solid var(--cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 35px #00f5ff35;
+  animation: glowPulse 2s infinite;
+}
+
+.ring strong { font-size: 2rem; color: var(--cyan); }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .7s, transform .7s;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+footer {
+  padding: 30px 20px;
+  text-align: center;
+  border-top: 1px solid #00f5ff25;
+  color: #8195ad;
+  line-height: 1.9;
+}
+
+@keyframes gradientFlow {
+  to { background-position: 300% 0; }
+}
+
+@keyframes floatTitle {
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes bob {
+  50% { transform: translateY(-5px) rotate(3deg); }
+}
+
+@keyframes glowPulse {
+  50% { box-shadow: 0 0 25px #00f5ff25; }
+}
+
+@media(max-width:800px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media(max-width:560px) {
+  .grid, .lessons, .options { grid-template-columns: 1fr; }
+  h1 { letter-spacing: -1px; }
+  .stats { gap: 7px; }
+  .stat strong { font-size: 1.3rem; }
+  nav { gap: 11px; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
 </style>
 </head>
 
 <body>
-<canvas id="fx-canvas" aria-hidden="true"></canvas>
-<div id="cursor-glow" aria-hidden="true"></div>
+<canvas id="particles" aria-hidden="true"></canvas>
 
-<header class="wrap">
- <nav class="nav">
-  <a class="brand" href="index.html">IAL <span>ATLAS</span></a>
-  <div class="navlinks">
-   <a href="index.html">Home</a>
-   <a href="#learn">Learn</a>
-   <a href="#topics">Topics</a>
-   <a href="#exam">Practice Exam</a>
-  </div>
- </nav>
+<header>
+  <a class="brand" href="index.html">IAL ATLAS</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="#topics">Topics</a>
+    <a href="#learn">Lessons</a>
+    <a href="#practice">Practice</a>
+  </nav>
 </header>
 
 <main>
-<section class="wrap hero">
- <div class="hero-inner">
-  <span class="kicker">Advanced Mathematics // Learning Hub</span>
-  <h1>Go beyond the limits of <span class="gradient-text">Mathematics.</span></h1>
-  <p>Explore complex numbers, matrices, vectors, proof, sequences and advanced calculus. Build your foundation, understand the methods, and challenge yourself with 100 interactive practice questions.</p>
+<section class="hero">
+  <div class="badge">✦ ADVANCED MATHEMATICS SYSTEM</div>
+  <h1>Further<br>Mathematics</h1>
+  <p>
+    Explore complex numbers, matrices, vectors, advanced calculus,
+    differential equations and mathematical proof through clear lessons
+    and interactive practice.
+  </p>
+
   <div class="actions">
-   <a class="btn primary" href="#learn">✦ Start Learning</a>
-   <a class="btn" href="#exam">⚡ Enter the Challenge</a>
+    <a class="btn primary" href="#learn">Start Learning ↗</a>
+    <a class="btn" href="#practice">100-Question Practice Test</a>
   </div>
- </div>
+
+  <div class="stats">
+    <div class="stat"><strong>12</strong><span>Topic Areas</span></div>
+    <div class="stat"><strong>100</strong><span>Practice Questions</span></div>
+    <div class="stat"><strong>∞</strong><span>Keep Learning</span></div>
+  </div>
 </section>
 
-<section class="wrap stats">
- <div class="stat reveal"><strong>12</strong><span>Core learning areas</span></div>
- <div class="stat reveal"><strong>100</strong><span>Practice questions</span></div>
- <div class="stat reveal"><strong>∞</strong><span>Ways to explore maths</span></div>
+<section id="topics">
+  <div class="heading reveal">
+    <h2>Explore <span>Topics</span></h2>
+    <p>Build advanced mathematical understanding one concept at a time.</p>
+  </div>
+
+  <div class="grid">
+    <article class="card reveal"><span class="icon">ℂ</span><h3>01. Complex Numbers</h3><p>Real and imaginary parts, conjugates, modulus, argument and complex arithmetic.</p><span class="tag">NUMBER SYSTEMS</span></article>
+    <article class="card reveal"><span class="icon">▦</span><h3>02. Matrices</h3><p>Matrix operations, determinants, inverses and solving simultaneous equations.</p><span class="tag">LINEAR ALGEBRA</span></article>
+    <article class="card reveal"><span class="icon">➤</span><h3>03. Vectors</h3><p>Vector arithmetic, magnitude, direction, scalar products and geometric applications.</p><span class="tag">GEOMETRY</span></article>
+    <article class="card reveal"><span class="icon">∫</span><h3>04. Advanced Integration</h3><p>Integration techniques, definite integrals and applications to area.</p><span class="tag">CALCULUS</span></article>
+    <article class="card reveal"><span class="icon">d/dx</span><h3>05. Advanced Differentiation</h3><p>Rates of change, stationary points, product rules and chain rules.</p><span class="tag">CALCULUS</span></article>
+    <article class="card reveal"><span class="icon">∑</span><h3>06. Series</h3><p>Arithmetic and geometric progressions, sums and convergence ideas.</p><span class="tag">SEQUENCES</span></article>
+    <article class="card reveal"><span class="icon">ⁿCᵣ</span><h3>07. Binomial Expansion</h3><p>Expand powers, calculate coefficients and work with general binomial terms.</p><span class="tag">ALGEBRA</span></article>
+    <article class="card reveal"><span class="icon">ƒ</span><h3>08. Differential Equations</h3><p>Understand derivatives in equations and solve introductory differential equations.</p><span class="tag">MODELLING</span></article>
+    <article class="card reveal"><span class="icon">✓</span><h3>09. Mathematical Proof</h3><p>Construct logical arguments, direct proofs and proof by contradiction.</p><span class="tag">REASONING</span></article>
+    <article class="card reveal"><span class="icon">≈</span><h3>10. Numerical Methods</h3><p>Approximate roots, use iteration and understand numerical accuracy.</p><span class="tag">APPROXIMATION</span></article>
+    <article class="card reveal"><span class="icon">θ</span><h3>11. Further Trigonometry</h3><p>Use identities, equations, radians and trigonometric relationships.</p><span class="tag">TRIGONOMETRY</span></article>
+    <article class="card reveal"><span class="icon">📈</span><h3>12. Mathematical Modelling</h3><p>Translate real situations into equations, state assumptions and interpret results.</p><span class="tag">APPLICATIONS</span></article>
+  </div>
 </section>
 
-<section class="wrap section" id="learn">
- <div class="section-head reveal">
-  <span class="eyebrow">01 / The Foundation</span>
-  <h2>Welcome to Further Mathematics</h2>
-  <p>Further Mathematics extends the techniques and ideas studied in Mathematics. Exact content depends on your qualification and exam board, so use these notes as a general foundation rather than a complete specification checklist.</p>
- </div>
+<section id="learn">
+  <div class="heading reveal">
+    <h2>Interactive <span>Lessons</span></h2>
+    <p>Read the explanations and formulas before attempting the practice test.</p>
+  </div>
 
- <div class="grid">
-  <article class="card reveal">
-   <h3>01. Complex Numbers</h3>
-   <p>A complex number has a real part and an imaginary part. The imaginary unit is defined by \(i^2=-1\).</p>
-   <div class="formula">z = a + bi</div>
-   <p>Here, a is the real part and b is the coefficient of the imaginary part.</p>
-   <div class="example"><b>Example:</b> If z = 3 + 2i and w = 1 − 4i, then z + w = 4 − 2i.</div>
-   <p>For multiplication, expand normally and replace every \(i^2\) with −1.</p>
-  </article>
+  <div class="lessons">
+    <article class="lesson reveal">
+      <h3>01 — Complex Numbers</h3>
+      <p>A complex number has a real part and an imaginary part. The imaginary unit \(i\) satisfies \(i^2=-1\).</p>
+      <div class="formula">z = a + bi<br>Re(z) = a<br>Im(z) = b<br>i² = −1</div>
+      <p>Example: if \(z=3+4i\), its real part is 3 and its imaginary part is 4.</p>
+      <div class="formula">|z| = √(a² + b²)</div>
+      <p>For \(z=3+4i\), the modulus is \(\sqrt{3^2+4^2}=5\).</p>
+    </article>
 
-  <article class="card reveal">
-   <h3>02. Modulus and Argument</h3>
-   <p>A complex number can be represented on an Argand diagram, with the real part on the horizontal axis and the imaginary part on the vertical axis.</p>
-   <div class="formula">|z| = √(a² + b²)</div>
-   <div class="formula">z = r(cos θ + i sin θ)</div>
-   <p>The modulus r is the distance from the origin. The argument θ is the angle measured from the positive real axis, taking the correct quadrant into account.</p>
-   <div class="example"><b>Example:</b> For z = 3 + 4i, |z| = √(9 + 16) = 5.</div>
-  </article>
+    <article class="lesson reveal">
+      <h3>02 — Complex Conjugates</h3>
+      <p>The conjugate of a complex number is formed by changing the sign of its imaginary part.</p>
+      <div class="formula">z = a + bi<br>z̄ = a − bi<br>z z̄ = a² + b²</div>
+      <p>Example: the conjugate of \(2+3i\) is \(2-3i\).</p>
+      <div class="note">Multiplying a complex number by its conjugate produces a real number.</div>
+    </article>
 
-  <article class="card reveal">
-   <h3>03. Matrices</h3>
-   <p>Matrices organise numbers into rows and columns. You can add matrices of the same dimensions and multiply compatible matrices.</p>
-   <div class="formula">A = [ a  b ]<br>    [ c  d ]</div>
-   <p>For a 2 × 2 matrix, its determinant is:</p>
-   <div class="formula">det(A) = ad − bc</div>
-   <div class="example"><b>Example:</b> If A = [[2, 1], [3, 4]], then det(A) = 2 × 4 − 1 × 3 = 5.</div>
-   <p>A 2 × 2 matrix has an inverse only when its determinant is non-zero.</p>
-  </article>
+    <article class="lesson reveal">
+      <h3>03 — Matrices</h3>
+      <p>A matrix is a rectangular arrangement of numbers. Addition requires matrices of the same dimensions.</p>
+      <div class="formula">
+        A = [a b; c d]<br>
+        det(A) = ad − bc
+      </div>
+      <p>For a 2 × 2 matrix, the determinant is the top-left entry times the bottom-right entry minus the other diagonal product.</p>
+      <div class="formula">
+        A⁻¹ = 1/(ad − bc) [d −b; −c a]
+      </div>
+      <p>The inverse exists only when the determinant is non-zero.</p>
+    </article>
 
-  <article class="card reveal">
-   <h3>04. Vectors</h3>
-   <p>A vector has magnitude and direction. In two dimensions, a vector can be written using its horizontal and vertical components.</p>
-   <div class="formula">a = (x, y)<br>|a| = √(x² + y²)</div>
-   <p>Vectors can be added component by component. Scalar multiplication scales each component.</p>
-   <div class="example"><b>Example:</b> (2, 3) + (4, −1) = (6, 2).</div>
-  </article>
+    <article class="lesson reveal">
+      <h3>04 — Vectors</h3>
+      <p>A vector has magnitude and direction. In two dimensions, its components can be written as \((a,b)\).</p>
+      <div class="formula">|(a,b)| = √(a² + b²)</div>
+      <p>Example: the magnitude of \((3,4)\) is 5.</p>
+      <div class="formula">(a,b) · (c,d) = ac + bd</div>
+      <p>If the scalar product is zero, two non-zero vectors are perpendicular.</p>
+    </article>
 
-  <article class="card reveal">
-   <h3>05. Differentiation</h3>
-   <p>Differentiation finds the rate of change of a function. It is used to study gradients, stationary points and optimisation.</p>
-   <div class="formula">If y = xⁿ, then dy/dx = nxⁿ⁻¹</div>
-   <div class="example"><b>Example:</b> If y = 3x⁴, then dy/dx = 12x³.</div>
-   <p>At a stationary point, dy/dx = 0. Further analysis can help determine whether it is a maximum, minimum or another type of stationary point.</p>
-  </article>
+    <article class="lesson reveal">
+      <h3>05 — Differentiation</h3>
+      <p>Differentiation measures the instantaneous rate of change of a function.</p>
+      <div class="formula">d/dx (xⁿ) = nxⁿ⁻¹</div>
+      <p>Example:</p>
+      <div class="formula">y = x³<br>dy/dx = 3x²</div>
+      <p>At a stationary point, the first derivative is zero, though the point may be a maximum, minimum or stationary point of inflection.</p>
+    </article>
 
-  <article class="card reveal">
-   <h3>06. Integration</h3>
-   <p>Integration can reverse differentiation and can calculate areas under curves when the appropriate conditions are met.</p>
-   <div class="formula">∫ xⁿ dx = xⁿ⁺¹/(n + 1) + C, n ≠ −1</div>
-   <div class="example"><b>Example:</b> ∫ 6x² dx = 2x³ + C.</div>
-   <p>The constant C is needed for an indefinite integral because differentiating a constant gives zero.</p>
-  </article>
+    <article class="lesson reveal">
+      <h3>06 — Integration</h3>
+      <p>Integration reverses differentiation for many functions and can calculate accumulated quantities.</p>
+      <div class="formula">∫xⁿ dx = xⁿ⁺¹/(n+1) + C, n ≠ −1</div>
+      <p>Example:</p>
+      <div class="formula">∫3x² dx = x³ + C</div>
+      <p>The constant \(C\) appears in indefinite integration because a constant disappears when differentiated.</p>
+    </article>
 
-  <article class="card reveal">
-   <h3>07. Sequences and Series</h3>
-   <p>An arithmetic sequence has a constant difference between consecutive terms.</p>
-   <div class="formula">uₙ = a + (n − 1)d</div>
-   <p>A geometric sequence has a constant ratio between consecutive terms.</p>
-   <div class="formula">uₙ = arⁿ⁻¹</div>
-   <div class="example"><b>Example:</b> For 5, 8, 11, 14, ... the common difference is 3 and the fifth term is 17.</div>
-  </article>
+    <article class="lesson reveal">
+      <h3>07 — Arithmetic Progressions</h3>
+      <p>An arithmetic progression has a constant difference between consecutive terms.</p>
+      <div class="formula">uₙ = a + (n − 1)d</div>
+      <div class="formula">Sₙ = n/2 [2a + (n − 1)d]</div>
+      <p>Here \(a\) is the first term and \(d\) is the common difference.</p>
+    </article>
 
-  <article class="card reveal">
-   <h3>08. Mathematical Proof</h3>
-   <p>Proof uses logical reasoning to establish that a statement is true under its stated assumptions.</p>
-   <ul>
-    <li><b>Direct proof:</b> Start from known facts and derive the result.</li>
-    <li><b>Proof by contradiction:</b> Assume the opposite and derive a contradiction.</li>
-    <li><b>Induction:</b> Prove a base case and show one case implies the next.</li>
-   </ul>
-   <div class="example">A few successful examples are not enough to prove a statement true for every positive integer.</div>
-  </article>
+    <article class="lesson reveal">
+      <h3>08 — Geometric Progressions</h3>
+      <p>A geometric progression has a constant ratio between consecutive terms.</p>
+      <div class="formula">uₙ = arⁿ⁻¹</div>
+      <div class="formula">Sₙ = a(1 − rⁿ)/(1 − r), r ≠ 1</div>
+      <p>For an infinite geometric series, the sum exists when \(|r|&lt;1\):</p>
+      <div class="formula">S∞ = a/(1 − r)</div>
+    </article>
 
-  <article class="card reveal">
-   <h3>09. Binomial Expansion</h3>
-   <p>Binomial expansion expresses a power of a sum as a series of terms.</p>
-   <div class="formula">(a + b)² = a² + 2ab + b²</div>
-   <div class="formula">(a + b)³ = a³ + 3a²b + 3ab² + b³</div>
-   <p>For larger positive integer powers, binomial coefficients can be arranged using Pascal's triangle or calculated with combinations.</p>
-  </article>
+    <article class="lesson reveal">
+      <h3>09 — Binomial Expansion</h3>
+      <p>For a non-negative integer \(n\), the binomial theorem expands a power of a sum.</p>
+      <div class="formula">(a + b)ⁿ = Σ ⁿCᵣ aⁿ⁻ʳbʳ</div>
+      <p>Example:</p>
+      <div class="formula">(x + 2)² = x² + 4x + 4</div>
+      <p>The coefficients come from binomial coefficients, which can be calculated using factorials.</p>
+      <div class="formula">ⁿCᵣ = n! / [r!(n − r)!]</div>
+    </article>
 
-  <article class="card reveal">
-   <h3>10. Differential Equations</h3>
-   <p>A differential equation connects an unknown function with one or more of its derivatives.</p>
-   <div class="formula">dy/dx = ky</div>
-   <p>One solution is y = Aeᵏˣ, where A is a constant determined by an initial condition.</p>
-   <div class="example"><b>Example:</b> If dy/dx = 2y, then y = Ae²ˣ satisfies the equation.</div>
-  </article>
+    <article class="lesson reveal">
+      <h3>10 — Differential Equations</h3>
+      <p>A differential equation relates a function to one or more of its derivatives.</p>
+      <div class="formula">dy/dx = ky</div>
+      <p>One general solution is:</p>
+      <div class="formula">y = Aeᵏˣ</div>
+      <p>The constant \(A\) is determined using an initial condition when one is given.</p>
+    </article>
 
-  <article class="card reveal">
-   <h3>11. Numerical Methods</h3>
-   <p>Numerical methods approximate solutions when exact algebraic solutions are difficult or unavailable.</p>
-   <div class="formula">Newton–Raphson: xₙ₊₁ = xₙ − f(xₙ)/f′(xₙ)</div>
-   <p>The method uses a starting estimate and tangent-line information to generate a new estimate of a root.</p>
-   <div class="example">The starting value matters; convergence is not guaranteed for every function and initial estimate.</div>
-  </article>
+    <article class="lesson reveal">
+      <h3>11 — Mathematical Proof</h3>
+      <p>A proof is a logically complete argument showing that a statement follows from accepted facts or assumptions.</p>
+      <p><strong>Direct proof:</strong> begin with known information and logically derive the result.</p>
+      <p><strong>Contradiction:</strong> assume the statement is false and show that this leads to a contradiction.</p>
+      <div class="note">A few examples supporting a statement do not, by themselves, prove a universal mathematical claim.</div>
+    </article>
 
-  <article class="card reveal">
-   <h3>12. Mathematical Modelling</h3>
-   <p>A mathematical model represents a real-world situation using variables, equations and assumptions.</p>
-   <ul>
-    <li>Define the variables and assumptions.</li>
-    <li>Construct the mathematical relationship.</li>
-    <li>Solve and interpret the result in context.</li>
-    <li>Check whether the answer is realistic.</li>
-   </ul>
-   <div class="example">A model is only useful when its assumptions and limitations are understood.</div>
-  </article>
- </div>
+    <article class="lesson reveal">
+      <h3>12 — Numerical Methods</h3>
+      <p>Numerical methods can approximate solutions when exact algebraic solutions are difficult to obtain.</p>
+      <div class="formula">xₙ₊₁ = g(xₙ)</div>
+      <p>In fixed-point iteration, repeatedly apply the function \(g\) to the previous approximation.</p>
+      <p>Convergence depends on the function and starting value. Always consider the required accuracy and check whether the method converges.</p>
+    </article>
+  </div>
 </section>
 
-<section class="wrap section" id="topics">
- <div class="section-head reveal">
-  <span class="eyebrow">02 / Learning Roadmap</span>
-  <h2>Your Next-Level Mathematics Path</h2>
-  <p>Work through the topics gradually. Master the underlying algebra before attempting more complex questions.</p>
- </div>
- <div class="roadmap">
-  <article class="topic reveal"><div class="topic-number">01</div><h3>Algebraic Skills</h3><p>Indices, surds, equations and rearranging expressions.</p></article>
-  <article class="topic reveal"><div class="topic-number">02</div><h3>Complex Arithmetic</h3><p>Operations, conjugates and complex roots.</p></article>
-  <article class="topic reveal"><div class="topic-number">03</div><h3>Argand Diagrams</h3><p>Modulus, argument and geometric representation.</p></article>
-  <article class="topic reveal"><div class="topic-number">04</div><h3>Matrices</h3><p>Operations, determinants and inverses.</p></article>
-  <article class="topic reveal"><div class="topic-number">05</div><h3>Vectors</h3><p>Components, magnitudes and direction.</p></article>
-  <article class="topic reveal"><div class="topic-number">06</div><h3>Calculus</h3><p>Differentiation, integration and applications.</p></article>
-  <article class="topic reveal"><div class="topic-number">07</div><h3>Sequences</h3><p>Arithmetic and geometric progressions.</p></article>
-  <article class="topic reveal"><div class="topic-number">08</div><h3>Proof</h3><p>Direct reasoning, contradiction and induction.</p></article>
-  <article class="topic reveal"><div class="topic-number">09</div><h3>Binomial Theorem</h3><p>Expansions and binomial coefficients.</p></article>
-  <article class="topic reveal"><div class="topic-number">10</div><h3>Differential Equations</h3><p>Simple first-order equations and solutions.</p></article>
-  <article class="topic reveal"><div class="topic-number">11</div><h3>Numerical Methods</h3><p>Iteration and approximate roots.</p></article>
-  <article class="topic reveal"><div class="topic-number">12</div><h3>Modelling</h3><p>Assumptions, interpretation and validation.</p></article>
- </div>
-</section>
+<section id="practice">
+  <div class="heading reveal">
+    <h2>100-Question <span>Practice Lab</span></h2>
+    <p>Instant feedback, explanations, progress tracking and a final score.</p>
+  </div>
 
-<section class="wrap section" id="exam">
- <div class="section-head reveal">
-  <span class="eyebrow">03 / The Challenge</span>
-  <h2>100-Question Practice Exam</h2>
-  <p>Answer one question at a time, receive instant feedback and check your final score. Questions are generated from foundational Further Mathematics skills, so each attempt can contain different numerical values.</p>
- </div>
+  <div class="exam reveal">
+    <div class="examtop">
+      <strong>FURTHER MATHEMATICS FOUNDATION TEST</strong>
+      <span id="number">Question 1 / 100</span>
+    </div>
 
- <div class="exam reveal">
-  <div class="exam-top">
-   <div><h3>Further Mathematics Challenge</h3><div class="muted" id="status">Question 1 of 100</div></div>
-   <div><strong id="live-score">Score: 0</strong><div class="muted">Correct answers</div></div>
+    <div class="track"><div id="bar"></div></div>
+
+    <div id="quiz">
+      <h3 id="question">Loading question bank…</h3>
+      <div class="options" id="options"></div>
+      <div id="feedback" aria-live="polite"></div>
+      <div class="controls">
+        <button class="btn primary" id="next" disabled>Next Question →</button>
+      </div>
+    </div>
+
+    <div id="result">
+      <h2>Practice Complete!</h2>
+      <p style="color:var(--muted)">Your result</p>
+      <div class="ring"><strong id="score">0/100</strong></div>
+      <h3 id="message"></h3>
+      <p id="detail" style="color:var(--muted)"></p>
+      <button class="btn primary" id="retry">Try Again ↻</button>
+    </div>
   </div>
-  <div class="progress"><div class="progress-bar" id="progress"></div></div>
-  <div class="question-box" id="question-area">
-   <div class="q-meta" id="q-meta">QUESTION 01</div>
-   <div class="q-text" id="q-text">Preparing your first question...</div>
-   <div class="options" id="options"></div>
-   <div class="feedback" id="feedback" aria-live="polite"></div>
-   <div class="exam-controls">
-    <span class="muted" id="answered">Answered: 0 / 100</span>
-    <button class="btn primary" id="next" disabled>Next Question →</button>
-   </div>
-  </div>
-  <div class="result hidden" id="result">
-   <span class="kicker">Challenge Complete</span>
-   <h2>Your Result</h2>
-   <div class="result-circle" id="result-score">0/100</div>
-   <h3 id="result-message"></h3>
-   <p id="result-detail"></p>
-   <button class="btn primary" id="restart">↻ Try Another Attempt</button>
-  </div>
- </div>
 </section>
 </main>
 
-<footer class="footer">
- <div class="wrap">
-  <p><a href="index.html">IAL ATLAS</a> — Learn without the confusion.</p>
-  <p>Created by Shuvojit Karmakar. Independent educational resource; not affiliated with or endorsed by Pearson Edexcel.</p>
- </div>
+<footer>
+  <strong style="color:var(--cyan)">IAL ATLAS</strong><br>
+  Learn without the confusion.<br>
+  Independent educational resource; not affiliated with or endorsed by Pearson Edexcel.
+  <br>These introductory lessons are not a substitute for the complete official syllabus.
 </footer>
 
 <script>
-/* ---------- Animated background particles ---------- */
-(() => {
- const canvas=document.getElementById("fx-canvas");
- const ctx=canvas.getContext("2d");
- const glow=document.getElementById("cursor-glow");
- let w=0,h=0,dpr=1,particles=[],mouse={x:-1000,y:-1000};
+"use strict";
 
- function resize(){
-  dpr=Math.min(window.devicePixelRatio||1,2);
-  w=window.innerWidth;h=window.innerHeight;
-  canvas.width=w*dpr;canvas.height=h*dpr;
-  canvas.style.width=w+"px";canvas.style.height=h+"px";
-  ctx.setTransform(dpr,0,0,dpr,0,0);
-  const count=Math.min(95,Math.floor(w*h/13500));
-  particles=Array.from({length:count},()=>({
-   x:Math.random()*w,y:Math.random()*h,
-   vx:(Math.random()-.5)*.38,vy:(Math.random()-.5)*.38,
-   r:Math.random()*1.8+.5,
-   phase:Math.random()*Math.PI*2
-  }));
- }
- function draw(){
-  ctx.clearRect(0,0,w,h);
-  for(let i=0;i<particles.length;i++){
-   const p=particles[i];
-   p.x+=p.vx;p.y+=p.vy;p.phase+=.012;
-   if(p.x<0||p.x>w)p.vx*=-1;
-   if(p.y<0||p.y>h)p.vy*=-1;
-   const dx=p.x-mouse.x,dy=p.y-mouse.y;
-   const distance=Math.sqrt(dx*dx+dy*dy);
-   if(distance<100&&distance>0){p.x+=dx/distance*.25;p.y+=dy/distance*.25}
-   ctx.beginPath();
-   ctx.arc(p.x,p.y,p.r+Math.sin(p.phase)*.35,0,Math.PI*2);
-   ctx.fillStyle=i%3===0?"rgba(173,123,255,.72)":"rgba(83,245,255,.72)";
-   ctx.fill();
-   for(let j=i+1;j<particles.length;j++){
-    const q=particles[j],xx=p.x-q.x,yy=p.y-q.y;
-    const dist=Math.sqrt(xx*xx+yy*yy);
-    if(dist<105){
-     ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);
-     ctx.strokeStyle=`rgba(83,245,255,${(1-dist/105)*.13})`;
-     ctx.lineWidth=.7;ctx.stroke();
+/* ===========================
+   SCROLL ANIMATIONS
+=========================== */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      revealObserver.unobserve(entry.target);
     }
-   }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(element => {
+  revealObserver.observe(element);
+});
+
+/* ===========================
+   PARTICLE NETWORK ANIMATION
+=========================== */
+(() => {
+  const canvas = document.getElementById("particles");
+  const ctx = canvas.getContext("2d");
+  let width = 0;
+  let height = 0;
+  let particles = [];
+
+  function resize() {
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    canvas.width = width * ratio;
+    canvas.height = height * ratio;
+    canvas.style.width = width + "px";
+    canvas.style.height = height + "px";
+
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+    particles = Array.from(
+      { length: Math.min(65, Math.floor(width / 20)) },
+      () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35
+      })
+    );
   }
-  requestAnimationFrame(draw);
- }
- window.addEventListener("resize",resize);
- window.addEventListener("pointermove",e=>{
-  mouse.x=e.clientX;mouse.y=e.clientY;
-  glow.style.left=e.clientX+"px";glow.style.top=e.clientY+"px";
- },{passive:true});
- resize();draw();
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+
+    particles.forEach((p, i) => {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0 || p.x > width) p.vx *= -1;
+      if (p.y < 0 || p.y > height) p.vy *= -1;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 1.4, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(0,245,255,.65)";
+      ctx.fill();
+
+      for (let j = i + 1; j < particles.length; j++) {
+        const q = particles[j];
+        const distance = Math.hypot(p.x - q.x, p.y - q.y);
+
+        if (distance < 105) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.strokeStyle =
+            `rgba(0,245,255,${0.12 * (1 - distance / 105)})`;
+          ctx.stroke();
+        }
+      }
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  resize();
+  animate();
+  window.addEventListener("resize", resize);
 })();
 
-/* ---------- Scroll reveal and card tilt ---------- */
-(() => {
- const nodes=document.querySelectorAll(".reveal");
- if("IntersectionObserver" in window){
-  const observer=new IntersectionObserver(entries=>{
-   entries.forEach(entry=>{
-    if(entry.isIntersecting){
-     entry.target.classList.add("visible");
-     observer.unobserve(entry.target);
-    }
-   });
-  },{threshold:.12});
-  nodes.forEach((node,i)=>{
-   node.style.transitionDelay=(i%3)*65+"ms";
-   observer.observe(node);
-  });
- }else nodes.forEach(node=>node.classList.add("visible"));
-
- const cards=document.querySelectorAll(".card");
- const reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
- if(!reduced&&window.matchMedia("(pointer:fine)").matches){
-  cards.forEach(card=>{
-   card.addEventListener("pointermove",e=>{
-    const r=card.getBoundingClientRect();
-    const x=(e.clientX-r.left)/r.width;
-    const y=(e.clientY-r.top)/r.height;
-    card.style.transform=`perspective(900px) rotateX(${(0.5-y)*4}deg) rotateY(${(x-0.5)*5}deg) translateY(-3px)`;
-   });
-   card.addEventListener("pointerleave",()=>card.style.transform="");
-  });
- }
-})();
-
-/* ---------- 100-question practice exam ---------- */
-const templates=[
- function(){
-  const n=rand(2,8),p=rand(2,6);
-  return item(`If y = x^${p}, what is dy/dx?`,[`x^${p-1}`,`${p}x^${p-1}`,`${p}x^${p}`,`${p-1}x^${p}`],1,
-  `Using d(xⁿ)/dx = nxⁿ⁻¹, the derivative is ${p}x^${p-1}.`);
- },
- function(){
-  const a=rand(2,9),n=rand(2,5);
-  return item(`Differentiate y = ${a}x^${n}.`,[`${a*n}x^${n-1}`,`${a}x^${n-1}`,`${n}x^${a-1}`,`${a*n}x^${n}`],0,
-  `Multiply the coefficient by the power and reduce the power by one: ${a*n}x^${n-1}.`);
- },
- function(){
-  const a=rand(1,8),n=rand(1,5);
-  const correct=`${a}/${n+1} x^${n+1} + C`;
-  return item(`Find ∫ ${a}x^${n} dx.`,[`${a}x^${n+1} + C`,`${a}/${n} x^${n} + C`,correct,`${a*n}x^${n-1} + C`],2,
-  `Increase the power to ${n+1} and divide the coefficient by ${n+1}.`);
- },
- function(){
-  const a=rand(1,9),b=rand(1,9),c=rand(1,9),d=rand(1,9);
-  const det=a*d-b*c;
-  return item(`Find the determinant of [[${a}, ${b}], [${c}, ${d}]].`,[`${a*d+b*c}`,`${a*b-c*d}`,`${a*c-b*d}`,`${det}`],3,
-  `For a 2 × 2 matrix, determinant = ad − bc = ${a}×${d} − ${b}×${c} = ${det}.`);
- },
- function(){
-  const a=rand(-8,8),b=rand(-8,8);
-  const result=a+b;
-  return item(`What is (${a}) + (${b})?`,[`${result+2}`,`${result}`,`${a-b}`,`${result-1}`],1,
-  `Add the signed numbers: ${a} + (${b}) = ${result}.`);
- },
- function(){
-  const a=rand(1,9),b=rand(1,9);
-  const mag=Math.sqrt(a*a+b*b);
-  const perfect=[3,4,5],[5,12,13];
-  const pairs=[[3,4,5],[5,12,13],[6,8,10],[8,15,17]];
-  const pair=pairs[rand(0,pairs.length-1)];
-  return item(`Find the magnitude of vector (${pair[0]}, ${pair[1]}).`,
-  [`${pair[0]+pair[1]}`,`${pair[2]-1}`,`${pair[2]}`,`${pair[0]*pair[1]}`],2,
-  `Magnitude = √(${pair[0]}² + ${pair[1]}²) = ${pair[2]}.`);
- },
- function(){
-  const a=rand(1,12),d=rand(2,7),n=rand(3,12);
-  const value=a+(n-1)*d;
-  return item(`An arithmetic sequence has first term ${a} and common difference ${d}. Find its ${n}th term.`,
-  [`${a+n*d}`,`${value}`,`${a*d*n}`,`${a+(n*d)}`],1,
-  `Use uₙ = a + (n − 1)d = ${a} + (${n} − 1)×${d} = ${value}.`);
- },
- function(){
-  const a=rand(1,6),r=rand(2,4),n=rand(2,5);
-  const value=a*Math.pow(r,n-1);
-  return item(`A geometric sequence starts at ${a} with common ratio ${r}. Find its ${n}th term.`,
-  [`${a*r*n}`,`${value+r}`,`${a+((n-1)*r)}`,`${value}`],3,
-  `Use uₙ = arⁿ⁻¹ = ${a}×${r}^${n-1} = ${value}.`);
- },
- function(){
-  const a=rand(2,9),b=rand(1,9);
-  return item(`Simplify (${a} + ${b}i) + (2 − ${b}i).`,[`${a+2} + ${2*b}i`,`${a+2}`,`${a-2} + ${b}i`,`${a+b} + 2i`],1,
-  `Add real and imaginary parts separately. The imaginary terms cancel, leaving ${a+2}.`);
- },
- function(){
-  const n=rand(2,9);
-  return item(`What is i^${4*n+2}?`,["1","−1","i","−i"],1,
-  `Powers of i repeat every four: i^(4k+2) = i² = −1.`);
- },
- function(){
-  const a=rand(2,8),b=rand(1,7);
-  return item(`Expand (${a} + ${b})².`,[
-   `${a*a+b*b}`,
-   `${a*a+2*a*b+b*b}`,
-   `${a*a+a*b+b*b}`,
-   `${a*a+2*b}`
-  ],1,`Use (a+b)² = a² + 2ab + b².`);
- },
- function(){
-  const a=rand(2,8),b=rand(2,8);
-  return item(`If f(x) = x² − ${a}x + ${b}, what is f′(x)?`,[
-   `2x − ${a}`,`x − ${a}`,`2x + ${a}`,`x² − ${a}`
-  ],0,`Differentiate each term: d(x²)/dx = 2x, d(−${a}x)/dx = −${a}, and a constant differentiates to zero.`);
- },
- function(){
-  const a=rand(2,8);
-  return item(`If z = ${a} + ${a+1}i, what is the real part of z?`,[
-   `${a+1}`,`−${a}`,`${a}`,`${a}i`
-  ],2,`The real part is the real-number component, which is ${a}.`);
- },
- function(){
-  const a=rand(2,7),b=rand(2,7);
-  return item(`Find the coefficient of x in (x + ${a})².`,[
-   `${a}`,`${a*a}`,`${2*a}`,`2`
-  ],2,`(x + a)² = x² + 2ax + a², so the coefficient of x is 2a = ${2*a}.`);
- },
- function(){
-  const a=rand(2,8),b=rand(1,8);
-  return item(`If y = ${a}x + ${b}, what is the gradient?`,[
-   `${b}`,`${a+b}`,`x`,`${a}`
-  ],3,`For a straight line y = mx + c, the gradient is the coefficient m = ${a}.`);
- },
- function(){
-  const a=rand(2,8);
-  return item(`Evaluate ∫ ${a} dx.`,[
-   `${a}x + C`,`${a}x² + C`,`x + ${a}`,`${a}`
-  ],0,`The integral of a constant ${a} is ${a}x + C.`);
- },
- function(){
-  const a=rand(2,8),b=rand(2,8);
-  return item(`Calculate (${a}, ${b}) · (1, 0).`,[
-   `${a+b}`,`${b}`,`${a}`,`0`
-  ],2,`Dot product = ${a}×1 + ${b}×0 = ${a}.`);
- },
- function(){
-  const a=rand(2,8),b=rand(2,8);
-  return item(`What is the conjugate of ${a} + ${b}i?`,[
-   `${a} − ${b}i`,`${b} + ${a}i`,`−${a} + ${b}i`,`${a} + ${b}i`
-  ],0,`The complex conjugate keeps the real part and changes the sign of the imaginary part.`);
- },
- function(){
-  const a=rand(2,8);
-  return item(`Solve 2x = ${2*a}.`,[
-   `${2*a}`,`${a}`,`${a/2}`,`${2*a+1}`
-  ],1,`Divide both sides by 2: x = ${a}.`);
- },
- function(){
-  const a=rand(2,9),b=rand(2,9);
-  return item(`What is the sum of the roots of x² − ${a+b}x + ${a*b} = 0?`,[
-   `${a*b}`,`${a-b}`,`${a+b}`,`−${a+b}`
-  ],2,`For x² − Sx + P = 0, the sum of the roots is S = ${a+b}.`);
- }
+/* ===========================
+   QUESTION BANK
+=========================== */
+const baseQuestions = [
+  {
+    q: "What is the value of i²?",
+    o: ["1", "-1", "i", "0"],
+    a: 1,
+    e: "By definition, i² = −1."
+  },
+  {
+    q: "What is the real part of z = 5 + 3i?",
+    o: ["3", "5i", "5", "8"],
+    a: 2,
+    e: "In z = a + bi, the real part is a. Here it is 5."
+  },
+  {
+    q: "What is the imaginary part of z = 2 − 7i?",
+    o: ["2", "7", "-7", "-7i"],
+    a: 2,
+    e: "The imaginary part is the coefficient of i, which is −7."
+  },
+  {
+    q: "Find the modulus of z = 3 + 4i.",
+    o: ["7", "1", "25", "5"],
+    a: 3,
+    e: "|z| = √(3² + 4²) = √25 = 5."
+  },
+  {
+    q: "What is the conjugate of 4 + 6i?",
+    o: ["4 − 6i", "-4 + 6i", "6 + 4i", "4 + 6i"],
+    a: 0,
+    e: "The conjugate changes the sign of the imaginary part."
+  },
+  {
+    q: "Simplify (2 + 3i) + (4 + i).",
+    o: ["6 + 4i", "6 + 3i", "2 + 4i", "6 + 2i"],
+    a: 0,
+    e: "Add real parts and imaginary parts separately: 6 + 4i."
+  },
+  {
+    q: "Simplify (5 + 4i) − (2 + i).",
+    o: ["7 + 5i", "3 + 3i", "3 + 5i", "2 + 3i"],
+    a: 1,
+    e: "Subtract the real and imaginary parts: 3 + 3i."
+  },
+  {
+    q: "Simplify i⁴.",
+    o: ["i", "-1", "1", "-i"],
+    a: 2,
+    e: "i⁴ = (i²)² = (−1)² = 1."
+  },
+  {
+    q: "What is the determinant of [[2, 1], [3, 4]]?",
+    o: ["11", "8", "5", "2"],
+    a: 2,
+    e: "The determinant is 2 × 4 − 1 × 3 = 5."
+  },
+  {
+    q: "What is the determinant of [[1, 2], [3, 4]]?",
+    o: ["2", "-2", "10", "4"],
+    a: 1,
+    e: "The determinant is 1 × 4 − 2 × 3 = −2."
+  },
+  {
+    q: "When does a 2 × 2 matrix have an inverse?",
+    o: ["Whenever all entries are positive", "Whenever the entries sum to 1", "Only when its determinant is non-zero", "Only when its determinant is 1"],
+    a: 2,
+    e: "A square matrix is invertible exactly when its determinant is non-zero."
+  },
+  {
+    q: "What is the magnitude of vector (3, 4)?",
+    o: ["7", "1", "25", "5"],
+    a: 3,
+    e: "Magnitude = √(3² + 4²) = 5."
+  },
+  {
+    q: "Calculate (1, 2) · (3, 4).",
+    o: ["11", "10", "14", "5"],
+    a: 0,
+    e: "The scalar product is 1 × 3 + 2 × 4 = 11."
+  },
+  {
+    q: "If two non-zero vectors have scalar product zero, they are:",
+    o: ["Parallel", "Perpendicular", "Equal", "Opposite in every case"],
+    a: 1,
+    e: "A zero scalar product means the vectors are perpendicular."
+  },
+  {
+    q: "Differentiate x⁵ with respect to x.",
+    o: ["x⁴", "4x⁵", "5x⁴", "5x"],
+    a: 2,
+    e: "Using the power rule, d(xⁿ)/dx = nxⁿ⁻¹."
+  },
+  {
+    q: "Differentiate 3x².",
+    o: ["3x", "6x", "6x²", "x³"],
+    a: 1,
+    e: "d(3x²)/dx = 6x."
+  },
+  {
+    q: "Integrate 2x with respect to x.",
+    o: ["2 + C", "x + C", "x² + C", "2x² + C"],
+    a: 2,
+    e: "∫2x dx = x² + C."
+  },
+  {
+    q: "Integrate 3x² with respect to x.",
+    o: ["6x + C", "x³ + C", "3x³ + C", "x² + C"],
+    a: 1,
+    e: "∫3x² dx = x³ + C."
+  },
+  {
+    q: "What is the derivative of sin x?",
+    o: ["−sin x", "cos x", "−cos x", "tan x"],
+    a: 1,
+    e: "The derivative of sin x is cos x."
+  },
+  {
+    q: "What is the derivative of cos x?",
+    o: ["sin x", "cos x", "−sin x", "−cos x"],
+    a: 2,
+    e: "The derivative of cos x is −sin x."
+  },
+  {
+    q: "An arithmetic progression has first term 3 and common difference 2. Find its fourth term.",
+    o: ["7", "9", "11", "5"],
+    a: 1,
+    e: "The terms are 3, 5, 7, 9. The fourth term is 9."
+  },
+  {
+    q: "Find the fifth term of a geometric progression with first term 2 and ratio 3.",
+    o: ["54", "81", "162", "486"],
+    a: 2,
+    e: "u₅ = 2 × 3⁴ = 162."
+  },
+  {
+    q: "Expand (x + 2)².",
+    o: ["x² + 4", "x² + 2x + 4", "x² + 4x + 4", "x² + 4x + 2"],
+    a: 2,
+    e: "(x + 2)² = x² + 4x + 4."
+  },
+  {
+    q: "What is ⁵C₂?",
+    o: ["10", "5", "20", "25"],
+    a: 0,
+    e: "⁵C₂ = 5!/(2!3!) = 10."
+  },
+  {
+    q: "What is the general solution of dy/dx = 2y?",
+    o: ["y = 2x + C", "y = Ae²ˣ", "y = x² + C", "y = A + 2x"],
+    a: 1,
+    e: "For dy/dx = ky, the general solution is y = Aeᵏˣ."
+  },
+  {
+    q: "What does mathematical proof establish?",
+    o: ["That a statement works for one example only", "That a graph looks correct", "That a statement follows logically from accepted facts", "That a numerical answer is always an integer"],
+    a: 2,
+    e: "A proof gives a logically complete argument."
+  },
+  {
+    q: "What is a fixed-point iteration formula commonly written as?",
+    o: ["xₙ₊₁ = g(xₙ)", "xₙ₊₁ = xₙ² always", "x = 0 always", "y = mx + c"],
+    a: 0,
+    e: "Fixed-point iteration repeatedly applies xₙ₊₁ = g(xₙ)."
+  },
+  {
+    q: "What is the sum to infinity of a geometric series with first term 6 and ratio 1/2?",
+    o: ["3", "6", "9", "12"],
+    a: 3,
+    e: "S∞ = a/(1 − r) = 6/(1 − 1/2) = 12."
+  },
+  {
+    q: "What is the common difference of 4, 9, 14, 19, ...?",
+    o: ["4", "5", "9", "14"],
+    a: 1,
+    e: "Each term increases by 5."
+  },
+  {
+    q: "What is the sum of the first 5 positive integers?",
+    o: ["10", "12", "15", "20"],
+    a: 2,
+    e: "1 + 2 + 3 + 4 + 5 = 15."
+  }
 ];
 
-function rand(min,max){return Math.floor(Math.random()*(max-min+1))+min}
-function item(q,options,correctIndex,explanation){
- return {q,options,correct:correctIndex,explanation};
-}
-function shuffleQuestion(q){
- const correctText=q.options[q.correct];
- const options=q.options.map((text,index)=>({text,index}));
- for(let i=options.length-1;i>0;i--){
-  const j=rand(0,i);[options[i],options[j]]=[options[j],options[i]];
- }
- return {...q,options:options.map(x=>x.text),correct:options.findIndex(x=>x.text===correctText)};
-}
-function makeExam(){
- const result=[];
- while(result.length<100){
-  const template=templates[result.length%templates.length];
-  result.push(shuffleQuestion(template()));
- }
- return result;
+/* Generate arithmetic and algebra variants with computed answers. */
+function makeNumericQuestions() {
+  const questions = [];
+
+  for (let i = 0; i < 18; i++) {
+    const n = i + 2;
+    const power = n + 1;
+    questions.push({
+      q: `Differentiate x^${power} with respect to x.`,
+      o: [
+        `${power}x^${n}`,
+        `x^${n}`,
+        `${n}x^${power}`,
+        `${power}x^${power}`
+      ],
+      a: 0,
+      e: `By the power rule, the derivative is ${power}x^${n}.`
+    });
+
+    const k = i + 2;
+    questions.push({
+      q: `Integrate ${k}x^${k - 1} with respect to x.`,
+      o: [
+        `${k}x^${k} + C`,
+        `x^${k} + C`,
+        `x^${k - 1} + C`,
+        `${k - 1}x^${k} + C`
+      ],
+      a: 1,
+      e: `The integral is x^${k} + C because its derivative is ${k}x^${k - 1}.`
+    });
+
+    const a = i + 1;
+    const d = (i % 5) + 2;
+    const term = a + 4 * d;
+    questions.push({
+      q: `An arithmetic progression starts at ${a} with common difference ${d}. Find its fifth term.`,
+      o: [
+        String(a + 3 * d),
+        String(term),
+        String(a + 5 * d),
+        String(a + d)
+      ],
+      a: 1,
+      e: `The fifth term is a + 4d = ${a} + 4 × ${d} = ${term}.`
+    });
+
+    const first = i + 1;
+    const ratio = 2;
+    const geometricTerm = first * Math.pow(ratio, 3);
+    questions.push({
+      q: `A geometric progression has first term ${first} and common ratio 2. Find its fourth term.`,
+      o: [
+        String(first * 4),
+        String(first * 2),
+        String(geometricTerm),
+        String(first * 8)
+      ],
+      a: 2,
+      e: `The fourth term is ar³ = ${first} × 2³ = ${geometricTerm}.`
+    });
+  }
+
+  return questions;
 }
 
-let questions=makeExam();
-let current=0,score=0,answered=Array(100).fill(false),selected=Array(100).fill(null);
-const $=id=>document.getElementById(id);
-function renderQuestion(){
- const q=questions[current],done=answered[current];
- $("status").textContent=`Question ${current+1} of 100`;
- $("live-score").textContent=`Score: ${score}`;
- $("progress").style.width=`${current/100*100}%`;
- $("q-meta").textContent=`QUESTION ${String(current+1).padStart(2,"0")} / 100`;
- $("q-text").textContent=q.q;
- $("options").replaceChildren();
- $("feedback").textContent="";
- $("feedback").className="feedback";
- $("answered").textContent=`Answered: ${answered.filter(Boolean).length} / 100`;
- $("next").disabled=!done;
- $("next").textContent=current===99?"View Results →":"Next Question →";
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
- q.options.forEach((text,i)=>{
-  const btn=document.createElement("button");
-  btn.type="button";btn.className="option";
-  const letter=document.createElement("span");
-  letter.className="letter";letter.textContent=String.fromCharCode(65+i);
-  const label=document.createElement("span");label.textContent=text;
-  btn.append(letter,label);
-  if(done){
-   btn.disabled=true;
-   if(i===q.correct)btn.classList.add("correct");
-   if(i===selected[current]&&i!==q.correct)btn.classList.add("incorrect");
-  }else btn.addEventListener("click",()=>choose(i));
-  $("options").append(btn);
- });
- if(done){
-  const correct=selected[current]===q.correct;
-  $("feedback").textContent=(correct?"Correct! ":"Not quite. ")+q.explanation;
-  $("feedback").classList.add(correct?"good":"bad");
- }
+const state = {
+  questions: [],
+  index: 0,
+  score: 0,
+  answered: false
+};
+
+const $ = id => document.getElementById(id);
+const numberEl = $("number");
+const questionEl = $("question");
+const optionsEl = $("options");
+const feedbackEl = $("feedback");
+const barEl = $("bar");
+const nextBtn = $("next");
+const quizEl = $("quiz");
+const resultEl = $("result");
+
+function buildQuestions() {
+  const combined = [
+    ...baseQuestions.map(q => ({
+      q: q.q,
+      o: [...q.o],
+      a: q.a,
+      e: q.e
+    })),
+    ...makeNumericQuestions()
+  ];
+
+  /*
+    Expand the bank to exactly 100 entries.
+    Questions are kept mathematically consistent; when the bank
+    is expanded, the question wording identifies the practice item.
+  */
+  const original = [...combined];
+  let cursor = 0;
+
+  while (combined.length < 100) {
+    const source = original[cursor % original.length];
+    combined.push({
+      q: `Practice ${combined.length + 1}: ${source.q}`,
+      o: [...source.o],
+      a: source.a,
+      e: source.e
+    });
+    cursor++;
+  }
+
+  state.questions = shuffle(combined).slice(0, 100);
 }
-function choose(i){
- if(answered[current])return;
- selected[current]=i;answered[current]=true;
- if(i===questions[current].correct)score++;
- renderQuestion();
+
+function renderQuestion() {
+  state.answered = false;
+
+  const q = state.questions[state.index];
+
+  numberEl.textContent = `Question ${state.index + 1} / 100`;
+  questionEl.textContent = q.q;
+  optionsEl.innerHTML = "";
+  feedbackEl.textContent = "";
+  feedbackEl.style.color = "var(--muted)";
+  barEl.style.width = `${state.index}%`;
+
+  nextBtn.disabled = true;
+  nextBtn.textContent =
+    state.index === 99 ? "See Results ✓" : "Next Question →";
+
+  q.o.forEach((optionText, index) => {
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = "option";
+    button.textContent =
+      `${String.fromCharCode(65 + index)}. ${optionText}`;
+
+    button.addEventListener("click", () => selectAnswer(index));
+    optionsEl.appendChild(button);
+  });
 }
-function finish(){
- $("question-area").classList.add("hidden");
- $("result").classList.remove("hidden");
- $("progress").style.width="100%";
- $("status").textContent="Challenge completed";
- $("live-score").textContent=`Score: ${score}`;
- $("result-score").textContent=`${score}/100`;
- $("result-message").textContent=
-  score>=90?"Outstanding mathematical thinking!":
-  score>=75?"Excellent progress!":
-  score>=60?"A strong foundation is forming!":
-  score>=40?"Keep practising your methods!":"Every attempt is a chance to improve!";
- $("result-detail").textContent=`You answered ${score} out of 100 questions correctly. Review the notes, practise the methods and try another set of questions.`;
+
+function selectAnswer(selectedIndex) {
+  if (state.answered) return;
+
+  state.answered = true;
+  const q = state.questions[state.index];
+
+  [...optionsEl.children].forEach((button, index) => {
+    button.disabled = true;
+
+    if (index === q.a) {
+      button.classList.add("correct");
+    }
+
+    if (index === selectedIndex && selectedIndex !== q.a) {
+      button.classList.add("wrong");
+    }
+  });
+
+  if (selectedIndex === q.a) {
+    state.score++;
+    feedbackEl.textContent = `✓ Correct! ${q.e}`;
+    feedbackEl.style.color = "var(--green)";
+  } else {
+    feedbackEl.textContent = `Not quite. ${q.e}`;
+    feedbackEl.style.color = "var(--red)";
+  }
+
+  barEl.style.width = `${state.index + 1}%`;
+  nextBtn.disabled = false;
 }
-$("next").addEventListener("click",()=>{
- if(!answered[current])return;
- if(current<99){current++;renderQuestion()}else finish();
+
+function finishQuiz() {
+  quizEl.style.display = "none";
+  resultEl.style.display = "block";
+
+  $("score").textContent = `${state.score}/100`;
+
+  if (state.score >= 90) {
+    $("message").textContent = "Outstanding work! 🌟";
+  } else if (state.score >= 75) {
+    $("message").textContent = "Great progress! 🚀";
+  } else if (state.score >= 50) {
+    $("message").textContent = "Good start — keep practising. 📘";
+  } else {
+    $("message").textContent = "Keep learning. You can improve! 💡";
+  }
+
+  $("detail").textContent =
+    `You answered ${state.score} of 100 questions correctly. ` +
+    "Review the lessons and try again.";
+
+  barEl.style.width = "100%";
+}
+
+nextBtn.addEventListener("click", () => {
+  if (!state.answered) return;
+
+  if (state.index === 99) {
+    finishQuiz();
+    return;
+  }
+
+  state.index++;
+  renderQuestion();
 });
-$("restart").addEventListener("click",()=>{
- questions=makeExam();current=0;score=0;
- answered=Array(100).fill(false);selected=Array(100).fill(null);
- $("question-area").classList.remove("hidden");
- $("result").classList.add("hidden");
- renderQuestion();
- $("exam").scrollIntoView({behavior:"smooth"});
+
+$("retry").addEventListener("click", () => {
+  state.index = 0;
+  state.score = 0;
+  state.answered = false;
+
+  buildQuestions();
+
+  resultEl.style.display = "none";
+  quizEl.style.display = "block";
+
+  renderQuestion();
+
+  $("practice").scrollIntoView({ behavior: "smooth" });
 });
+
+/* Initialise the test only after the bank has been created. */
+buildQuestions();
 renderQuestion();
 </script>
 </body>
