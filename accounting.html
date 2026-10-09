@@ -1,281 +1,881 @@
-from pathlib import Path
 
-html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="IAL ATLAS Accounting Atlas: free accounting lessons, worked examples, practice and a 100-question interactive MCQ exam.">
-<title>Accounting Atlas | IAL ATLAS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071318">
+<title>Accounting Atlas | Master the Language of Business</title>
+<meta name="description" content="Learn accounting with interactive lessons, financial tools, animated visualisations and 100 practice MCQs. Free learning resources by IAL ATLAS.">
+
 <style>
-:root{--bg:#061116;--panel:#0b1d24;--panel2:#102832;--line:#1e4854;--cyan:#55f2e3;--cyan2:#20b9c5;--text:#e9fbfc;--muted:#a4c4ca;--good:#7bf0a4;--bad:#ff8282;--gold:#ffd777}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at top,#10313a 0,#061116 48%,#03090c 100%);color:var(--text);font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}a{color:var(--cyan)}button,input,select{font:inherit}button{cursor:pointer;border:1px solid var(--cyan2);background:#0d3942;color:var(--text);border-radius:10px;padding:10px 15px;transition:.18s}button:hover{background:#14535e;transform:translateY(-1px)}button:disabled{opacity:.45;cursor:not-allowed;transform:none}.wrap{width:min(1160px,92%);margin:auto}.top{position:sticky;top:0;z-index:20;background:#061116eF;border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}.nav{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:12px 0}.brand{font-weight:900;letter-spacing:.08em;color:var(--cyan);text-decoration:none}.navlinks{display:flex;gap:14px;flex-wrap:wrap}.navlinks a{text-decoration:none;font-size:.9rem;color:var(--muted)}.hero{padding:62px 0 38px}.eyebrow{color:var(--cyan);text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:800}.hero h1{font-size:clamp(2.4rem,7vw,5rem);line-height:1.02;max-width:850px;margin:12px 0 18px;letter-spacing:-.05em}.glow{color:var(--cyan);text-shadow:0 0 25px #20b9c566}.hero p{max-width:800px;color:var(--muted);font-size:1.1rem}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.primary{background:var(--cyan);color:#032027;font-weight:800}.section{padding:34px 0;scroll-margin-top:80px}.section h2{font-size:clamp(1.7rem,4vw,2.5rem);margin:0 0 8px}.lead{color:var(--muted);max-width:850px;margin-top:0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}.card{border:1px solid var(--line);background:linear-gradient(145deg,#0d232b,#08171c);border-radius:18px;padding:20px;box-shadow:0 12px 35px #0002}.card h3{margin:0 0 9px;color:var(--cyan)}.card p:last-child{margin-bottom:0}.muted{color:var(--muted)}.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 9px;color:var(--muted);font-size:.78rem;margin:3px}.formula{padding:14px 16px;border-left:3px solid var(--cyan);background:#0b252c;border-radius:0 10px 10px 0;margin:14px 0;overflow-wrap:anywhere}.math{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:#c6fff8}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px;margin:14px 0}table{width:100%;border-collapse:collapse;min-width:480px}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left}th{background:#12313a;color:var(--cyan)}tr:last-child td{border-bottom:0}.callout{border:1px solid #78612d;background:#292411;color:#ffe9a8;padding:14px 16px;border-radius:12px;margin:14px 0}.checklist{padding-left:22px}.checklist li{margin:7px 0}.mini{font-size:.88rem}.split{display:grid;grid-template-columns:1fr 1fr;gap:15px}.toolrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.toolrow input,.toolrow select{min-width:110px;max-width:100%;background:#061419;border:1px solid var(--line);color:var(--text);border-radius:9px;padding:9px}.result{padding:12px;border-radius:10px;background:#07171c;border:1px solid var(--line);margin-top:10px;min-height:44px}.quizbox{border:1px solid var(--line);background:#091b21;border-radius:18px;padding:20px}.quiztop{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted)}.progress{height:8px;background:#18323a;border-radius:99px;overflow:hidden;margin:14px 0}.progress>div{height:100%;background:linear-gradient(90deg,var(--cyan2),var(--cyan));width:0;transition:width .2s}.qtext{font-size:1.16rem;font-weight:750;margin:18px 0}.opts{display:grid;gap:9px}.opt{display:flex;gap:10px;align-items:flex-start;text-align:left;width:100%;background:#0c252d;border:1px solid #244650;padding:12px;border-radius:12px}.opt.selected{border-color:var(--cyan);background:#10404a}.opt.correct{border-color:var(--good)}.opt.wrong{border-color:var(--bad)}.opt .letter{color:var(--cyan);font-weight:900;min-width:22px}.quiznav{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:18px}.qgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:6px;margin:15px 0}.qnum{padding:7px 0;border-radius:8px;background:#0c252d;border:1px solid var(--line)}.qnum.done{border-color:var(--cyan2);background:#10404a}.qnum.current{outline:2px solid var(--cyan)}.qnum.flagged{color:var(--gold);border-color:var(--gold)}.explain{margin-top:14px;padding:13px;border-radius:10px;background:#0b2720;border:1px solid #286446}.hide{display:none!important}.footer{border-top:1px solid var(--line);padding:28px 0 45px;color:var(--muted);font-size:.9rem}.tagline{font-size:.8rem;letter-spacing:.1em;color:var(--cyan)}@media(max-width:720px){.nav{align-items:flex-start;flex-direction:column}.split{grid-template-columns:1fr}.hero{padding-top:40px}.card{padding:16px}}@media print{.top,.actions,button,.quiznav,.qgrid{display:none!important}body{background:white;color:#111}.card,.quizbox{background:white;color:#111;border:1px solid #aaa}.muted,.lead{color:#333}}
+:root {
+  --bg:#071318;
+  --panel:#0c2028;
+  --panel2:#102a33;
+  --line:#21424b;
+  --cyan:#57f4e2;
+  --blue:#61baff;
+  --green:#81f6b2;
+  --gold:#ffd580;
+  --red:#ff7c8d;
+  --text:#edfafa;
+  --muted:#9bb8be;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.65;overflow-x:hidden;
+  background-image:
+    radial-gradient(ellipse at 5% 5%,#10414a66,transparent 36%),
+    radial-gradient(ellipse at 95% 30%,#12345155,transparent 35%);
+}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible{
+  outline:2px solid var(--cyan);outline-offset:3px
+}
+::selection{background:var(--cyan);color:#061318}
+.top-progress{position:fixed;top:0;left:0;width:100%;height:3px;z-index:1000}
+.top-progress div{height:100%;width:0;background:var(--cyan);box-shadow:0 0 15px var(--cyan)}
+nav{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:14px 5%;background:#071318e8;backdrop-filter:blur(18px);
+  border-bottom:1px solid #ffffff10
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.5px}
+.logo{
+  display:grid;place-items:center;width:40px;height:40px;border-radius:12px;
+  color:#061318;background:linear-gradient(135deg,var(--cyan),var(--blue));
+  box-shadow:0 0 24px #57f4e22a;font-size:19px
+}
+.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px}
+.navlinks{display:flex;gap:20px;align-items:center;font-size:13px;color:var(--muted)}
+.navlinks a:hover{color:var(--cyan)}
+.menu-btn{display:none}
+.wrap{width:min(1160px,90%);margin:auto}
+.hero{position:relative;isolation:isolate;overflow:hidden;padding:90px 0 65px}
+.hero:before{
+  content:"";position:absolute;inset:0;z-index:-2;
+  background-image:linear-gradient(#57f4e20a 1px,transparent 1px),
+    linear-gradient(90deg,#57f4e20a 1px,transparent 1px);
+  background-size:38px 38px;mask-image:linear-gradient(#000,transparent 95%);
+  animation:gridMove 25s linear infinite
+}
+@keyframes gridMove{to{background-position:0 380px}}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;padding:7px 12px;
+  border:1px solid #57f4e244;border-radius:100px;color:var(--cyan);
+  background:#57f4e20c;font-size:11px;letter-spacing:1.5px;text-transform:uppercase
+}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:pulse 1.5s infinite}
+@keyframes pulse{50%{opacity:.4;transform:scale(.7)}}
+h1{font-size:clamp(40px,7vw,78px);line-height:1.05;letter-spacing:-3px;margin:25px 0}
+.gradient{
+  background:linear-gradient(100deg,var(--cyan),var(--blue),#c3fff5,var(--cyan));
+  background-size:300% auto;color:transparent;background-clip:text;
+  -webkit-background-clip:text;animation:gradient 8s linear infinite
+}
+@keyframes gradient{to{background-position:300% center}}
+.hero p{max-width:680px;color:var(--muted);font-size:17px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{
+  display:inline-flex;justify-content:center;align-items:center;gap:9px;
+  padding:12px 18px;border:1px solid var(--line);border-radius:11px;
+  background:var(--panel);color:var(--text);transition:.25s
+}
+.btn:hover{transform:translateY(-3px);border-color:var(--cyan);box-shadow:0 10px 30px #57f4e214}
+.btn.primary{background:var(--cyan);color:#041519;border-color:var(--cyan);font-weight:800}
+.btn.primary:hover{box-shadow:0 0 25px #57f4e244}
+.float-symbol{
+  position:absolute;z-index:-1;color:#57f4e222;font-size:42px;font-weight:900;
+  pointer-events:none;animation:float 7s ease-in-out infinite
+}
+@keyframes float{50%{transform:translateY(-25px) rotate(8deg);color:#57f4e255}}
+.hero-dashboard{
+  margin-top:45px;display:grid;grid-template-columns:repeat(4,1fr);gap:13px
+}
+.metric,.card,.lesson,.toolbox,.quizbox{
+  background:linear-gradient(145deg,#102630eF,#091a21);
+  border:1px solid var(--line);border-radius:17px
+}
+.metric{padding:20px;position:relative;overflow:hidden}
+.metric:after{
+  content:"";position:absolute;top:0;left:-100%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,#ffffff08,transparent);
+  animation:shine 7s infinite
+}
+@keyframes shine{50%,100%{left:150%}}
+.metric-label{color:var(--muted);font-size:12px}
+.metric-value{font-size:clamp(22px,3vw,32px);font-weight:850;letter-spacing:-1px;margin:6px 0}
+.metric-value.cyan{color:var(--cyan)}
+.metric-value.green{color:var(--green)}
+.metric-value.gold{color:var(--gold)}
+.metric-note{font-size:11px;color:var(--muted)}
+section{padding:58px 0}
+.section-head{margin-bottom:27px}
+.kicker{color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+h2{font-size:clamp(27px,4vw,39px);line-height:1.2;letter-spacing:-1px;margin:8px 0}
+.section-head p,.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.card{padding:22px;position:relative;overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s}
+.card:hover,.lesson:hover{transform:translateY(-5px);border-color:#57f4e278;box-shadow:0 16px 38px #0003,0 0 20px #57f4e20b}
+.card-icon{font-size:26px;margin-bottom:12px}
+.card h3,.lesson h3{margin:0 0 8px;font-size:18px}
+.card p,.lesson p{color:var(--muted);font-size:14px;margin:0}
+.tag{display:inline-block;border:1px solid #57f4e22c;border-radius:100px;padding:4px 9px;color:var(--cyan);font-size:10px;margin-bottom:10px}
+.formula{
+  padding:17px;margin:15px 0;border:1px solid #57f4e236;border-radius:12px;
+  background:#57f4e208;color:var(--cyan);font-weight:750;overflow-wrap:anywhere
+}
+.formula small{display:block;color:var(--muted);font-weight:400;margin-top:5px}
+.lesson-list{display:grid;gap:14px}
+.lesson{padding:23px;transition:.3s;scroll-margin-top:90px}
+.lesson-top{display:flex;gap:14px;align-items:flex-start}
+.lesson-number{
+  flex:0 0 42px;height:42px;border-radius:12px;display:grid;place-items:center;
+  background:#57f4e216;color:var(--cyan);font-weight:900
+}
+.lesson-body{min-width:0;flex:1}
+.lesson-body p{margin:8px 0;color:var(--muted)}
+.lesson-body ul{padding-left:21px;color:var(--muted)}
+.lesson-body li{margin:5px 0}
+.lesson details{margin-top:15px;border-top:1px solid var(--line);padding-top:12px}
+.lesson summary{cursor:pointer;color:var(--cyan);font-weight:700}
+table{border-collapse:collapse;width:100%;font-size:13px;margin:14px 0}
+th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line)}
+th{color:var(--cyan);background:#57f4e209}
+td{color:#c4dadd}
+.table-wrap{overflow-x:auto}
+.debit{color:var(--green)}.credit{color:var(--blue)}
+.chart-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}
+.toolbox{padding:23px;min-width:0}
+.chart{display:flex;align-items:end;gap:12px;height:190px;padding:15px 5px 0;border-bottom:1px solid var(--line)}
+.bar-group{flex:1;height:100%;display:flex;flex-direction:column;justify-content:end;align-items:center;gap:8px;min-width:0}
+.bar{
+  width:min(100%,45px);height:var(--h);min-height:3px;border-radius:7px 7px 0 0;
+  background:linear-gradient(0deg,#167d91,var(--cyan));transform-origin:bottom;
+  animation:barUp 1.2s cubic-bezier(.2,.8,.2,1) both;
+  animation-delay:var(--delay,0s);box-shadow:0 0 17px #57f4e219
+}
+@keyframes barUp{from{transform:scaleY(.02);opacity:.2}to{transform:scaleY(1);opacity:1}}
+.bar-label{font-size:10px;color:var(--muted)}
+.chart-caption{font-size:11px;color:var(--muted);margin-top:12px}
+.ring{
+  width:155px;height:155px;border-radius:50%;margin:20px auto;
+  display:grid;place-items:center;position:relative;
+  background:conic-gradient(var(--cyan) 0 72%,#1b3942 72% 100%);
+  animation:ringIn 1.3s ease both
+}
+.ring:before{content:"";position:absolute;inset:12px;border-radius:50%;background:var(--panel)}
+.ring span{position:relative;text-align:center;font-size:25px;font-weight:900}
+.ring small{display:block;color:var(--muted);font-size:10px;font-weight:400}
+@keyframes ringIn{from{transform:rotate(-90deg) scale(.7);opacity:.2}to{transform:rotate(0) scale(1);opacity:1}}
+label{display:block;color:var(--muted);font-size:12px;margin:12px 0 5px}
+input,select{
+  width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;
+  background:#07161c;color:var(--text);outline:none
+}
+input:focus,select:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #57f4e211}
+.calc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.calc-result{margin-top:15px;padding:17px;border:1px solid #57f4e233;border-radius:12px;background:#57f4e208}
+.calc-result strong{display:block;font-size:24px;color:var(--cyan)}
+.calc-result small{color:var(--muted)}
+.quizbox{padding:25px}
+.quiz-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.progress{height:7px;background:#1c333a;border-radius:100px;overflow:hidden;margin:17px 0}
+.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--blue));transition:width .4s}
+.question{font-size:20px;font-weight:800;margin:23px 0}
+.answers{display:grid;gap:10px}
+.answer{
+  padding:13px 15px;text-align:left;border:1px solid var(--line);
+  border-radius:11px;background:#0b1b21;color:var(--text);transition:.2s
+}
+.answer:hover:not(:disabled){border-color:var(--cyan);transform:translateX(4px)}
+.answer.correct{border-color:var(--green);background:#81f6b212}
+.answer.incorrect{border-color:var(--red);background:#ff7c8d12}
+.feedback{margin-top:15px;color:var(--muted);min-height:25px;font-size:14px}
+.quiz-controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.result-screen{text-align:center;padding:28px 5px}
+.score-big{font-size:clamp(50px,10vw,82px);font-weight:950;color:var(--cyan);line-height:1.1}
+.hidden{display:none!important}
+.footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:12px}
+.footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.toast{
+  position:fixed;bottom:20px;right:20px;z-index:500;
+  padding:12px 16px;border-radius:12px;background:#12333b;
+  border:1px solid #57f4e255;color:var(--cyan);
+  opacity:0;transform:translateY(12px);pointer-events:none;transition:.3s
+}
+.toast.show{opacity:1;transform:translateY(0)}
+@media(max-width:800px){
+  .hero-dashboard{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .chart-layout{grid-template-columns:1fr}
+  .navlinks{display:none;position:absolute;top:68px;left:0;right:0;padding:18px;background:#071318f5;flex-direction:column;align-items:flex-start}
+  .navlinks.open{display:flex}
+  .menu-btn{display:block}
+}
+@media(max-width:520px){
+  .wrap{width:92%}
+  .hero{padding-top:62px}
+  h1{letter-spacing:-1.8px}
+  .grid{grid-template-columns:1fr}
+  .hero-dashboard{gap:9px}
+  .metric{padding:14px}
+  .lesson{padding:16px}
+  .quizbox,.toolbox{padding:17px}
+  .calc-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+}
 </style>
 </head>
+
 <body>
-<header class="top"><div class="wrap nav"><a class="brand" href="#home">IAL ATLAS <span class="muted">/ ACCOUNTING</span></a><nav class="navlinks"><a href="#course">Course</a><a href="#lessons">Lessons</a><a href="#worked">Worked examples</a><a href="#practice">Practice tools</a><a href="#exam">100-question exam</a></nav></div></header>
+<div class="top-progress"><div id="readingProgress"></div></div>
+
+<nav>
+  <a class="brand" href="#home">
+    <span class="logo">A</span>
+    <span>IAL ATLAS<small>ACCOUNTING DIVISION</small></span>
+  </a>
+  <div class="navlinks" id="navlinks">
+    <a href="#learn">Learn</a>
+    <a href="#statements">Statements</a>
+    <a href="#tools">Tools</a>
+    <a href="#exam">100 MCQs</a>
+  </div>
+  <button class="btn menu-btn" id="menuBtn" aria-label="Toggle navigation">☰</button>
+</nav>
+
 <main id="home">
-<section class="hero wrap">
-<div class="eyebrow">Free learning resource · Accounting Atlas</div>
-<h1>Understand the numbers.<br><span class="glow">Master the logic.</span></h1>
-<p>A structured accounting learning hub with clear explanations, core formulas, worked examples, revision notes, interactive practice tools and a 100-question multiple-choice exam.</p>
-<div class="actions"><a href="#lessons"><button class="primary">Start learning ↓</button></a><a href="#exam"><button>Go to 100-question exam</button></a><button onclick="window.print()">Print / save as PDF</button></div>
-<p class="mini">Designed as a general introductory accounting resource. Always compare topic coverage and terminology with your own exam board's current specification and teacher's guidance.</p>
+<section class="hero">
+  <span class="float-symbol" style="left:78%;top:12%">£</span>
+  <span class="float-symbol" style="left:88%;top:55%;animation-delay:-2s">$</span>
+  <span class="float-symbol" style="left:69%;top:72%;animation-delay:-4s">∑</span>
+  <div class="wrap">
+    <div class="eyebrow"><span class="pulse"></span> ACCOUNTING • FINANCIAL INTELLIGENCE</div>
+    <h1>Master the<br><span class="gradient">Language of Business.</span></h1>
+    <p>Understand accounting from first principles to financial statements. Learn the logic behind every debit, credit, asset, liability and financial decision.</p>
+    <div class="actions">
+      <a class="btn primary" href="#learn">Explore the lessons ↗</a>
+      <a class="btn" href="#exam">Start 100-question exam →</a>
+    </div>
+
+    <div class="hero-dashboard">
+      <div class="metric"><div class="metric-label">LEARNING MODULES</div><div class="metric-value cyan" data-count="10">0</div><div class="metric-note">Core concepts</div></div>
+      <div class="metric"><div class="metric-label">PRACTICE QUESTIONS</div><div class="metric-value green" data-count="100">0</div><div class="metric-note">Interactive MCQs</div></div>
+      <div class="metric"><div class="metric-label">FINANCIAL TOOLS</div><div class="metric-value gold" data-count="3">0</div><div class="metric-note">Explore the numbers</div></div>
+      <div class="metric"><div class="metric-label">LEARNING COST</div><div class="metric-value">FREE</div><div class="metric-note">Learn at your pace</div></div>
+    </div>
+  </div>
 </section>
-<section class="section wrap" id="course"><h2>Learning roadmap</h2><p class="lead">Work through the concepts in order. Accounting becomes easier when you understand why each entry is made, not just which side to use.</p>
-<div class="grid">
-<article class="card"><span class="pill">01 · Foundations</span><h3>Accounting basics</h3><p>Users of accounts, business entity, money measurement, historical cost, consistency, prudence, accruals and going concern.</p></article>
-<article class="card"><span class="pill">02 · Double entry</span><h3>Record transactions</h3><p>Assets, liabilities, capital, income, expenses, debit/credit rules, ledger accounts and trial balance.</p></article>
-<article class="card"><span class="pill">03 · Adjustments</span><h3>Year-end accuracy</h3><p>Accruals, prepayments, depreciation, irrecoverable debts, allowance for receivables and inventory.</p></article>
-<article class="card"><span class="pill">04 · Reporting</span><h3>Financial statements</h3><p>Income statement, statement of financial position, capital, cost of sales and statement presentation.</p></article>
-<article class="card"><span class="pill">05 · Decisions</span><h3>Costing and budgets</h3><p>Fixed/variable costs, contribution, break-even, margin of safety, budgets and variance thinking.</p></article>
-<article class="card"><span class="pill">06 · Analysis</span><h3>Ratios and interpretation</h3><p>Profitability, liquidity, efficiency, gearing and the limits of ratio comparisons.</p></article>
-</div></section>
-<section class="section wrap" id="lessons"><h2>Lesson 1 — What is accounting?</h2><p class="lead">Accounting identifies, records, summarises and communicates financial information so users can make decisions.</p>
-<div class="grid">
-<article class="card"><h3>Who uses accounting information?</h3><ul class="checklist"><li><b>Owners:</b> profitability, risk and return.</li><li><b>Managers:</b> planning, control and resource allocation.</li><li><b>Lenders:</b> ability to repay loans and interest.</li><li><b>Suppliers:</b> whether credit will be paid on time.</li><li><b>Employees:</b> stability, wages and prospects.</li><li><b>Government:</b> taxation and regulatory compliance.</li><li><b>Customers:</b> continuity of supply, especially for long-term contracts.</li></ul></article>
-<article class="card"><h3>Key accounting concepts</h3><ul class="checklist"><li><b>Business entity:</b> the business is accounted for separately from its owner.</li><li><b>Going concern:</b> assume the business will continue operating unless evidence suggests otherwise.</li><li><b>Accruals:</b> record income and expenses in the period they relate to.</li><li><b>Consistency:</b> use methods consistently to aid comparison.</li><li><b>Prudence:</b> use caution where estimates are uncertain; do not overstate assets or profit.</li><li><b>Materiality:</b> focus on information that could affect decisions.</li><li><b>Money measurement:</b> record items that can be measured in monetary terms.</li></ul></article>
+
+<section id="learn">
+<div class="wrap">
+  <div class="section-head">
+    <div class="kicker">01 / Learning studio</div>
+    <h2>Build your accounting foundation.</h2>
+    <p>Ten focused lessons. Clear explanations. Practical examples.</p>
+  </div>
+  <div class="lesson-list">
+
+    <article class="lesson reveal">
+      <div class="lesson-top"><div class="lesson-number">01</div><div class="lesson-body">
+        <span class="tag">FOUNDATION</span><h3>What is Accounting?</h3>
+        <p>Accounting is the process of identifying, recording, classifying, summarising and communicating financial information to users.</p>
+        <ul><li><b>Financial accounting:</b> prepares statements for external users.</li><li><b>Management accounting:</b> supports internal planning and decisions.</li><li><b>Users:</b> owners, managers, lenders, investors, suppliers and tax authorities.</li></ul>
+        <details><summary>Explore the accounting cycle</summary><p>Source documents → journal entries → ledger accounts → trial balance → adjustments → financial statements → interpretation.</p></details>
+      </div></div>
+    </article>
+
+    <article class="lesson reveal">
+      <div class="lesson-top"><div class="lesson-number">02</div><div class="lesson-body">
+        <span class="tag">CORE EQUATION</span><h3>The Accounting Equation</h3>
+        <p>The equation expresses the relationship between what a business owns, what it owes and the owner's residual interest.</p>
+        <div class="formula">Assets = Liabilities + Equity</div>
+        <p>Example: assets £20,000 and liabilities £7,000 means equity is £13,000.</p>
+        <div class="formula">Equity = Assets − Liabilities</div>
+        <details><summary>Test your understanding</summary><p>A business has assets of £35,000 and liabilities of £12,000. Equity = £35,000 − £12,000 = £23,000.</p></details>
+      </div></div>
+    </article>
+
+    <article class="lesson reveal">
+      <div class="lesson-top"><div class="lesson-number">03</div><div class="lesson-body">
+        <span class="tag">DOUBLE ENTRY</span><h3>Debits and Credits</h3>
+        <p>Each transaction has equal debit and credit entries. Debit does not automatically mean an increase, and credit does not automatically mean a decrease.</p>
+        <div class="table-wrap"><table><thead><tr><th>Account type</th><th>Increase</th><th>Decrease</th></tr></thead><tbody>
+          <tr><td>Assets</td><td class="debit">Debit</td><td class="credit">Credit</td></tr>
+          <tr><td>Expenses</td><td class="debit">Debit</td><td class="credit">Credit</td></tr>
+          <tr><td>Drawings</td><td class="debit">Debit</td><td class="credit">Credit</td></tr>
+          <tr><td>Liabilities</td><td class="credit">Credit</td><td class="debit">Debit</td></tr>
+          <tr><td>Capital / Equity</td><td class="credit">Credit</td><td class="debit">Debit</td></tr>
+          <tr><td>Income / Revenue</td><td class="credit">Credit</td><td class="debit">Debit</td></tr>
+        </tbody></table></div>
+        <details><summary>Example: buying equipment for cash</summary><p>Debit Equipment (asset increases). Credit Cash (asset decreases). Both entries are equal.</p></details>
+      </div></div>
+    </article>
+
+    <article class="lesson reveal">
+      <div class="lesson-top"><div class="lesson-number">04</div><div class="lesson-body">
+        <span class="tag">RECORDING</span><h3>Double-Entry Bookkeeping</h3>
+        <p>Every transaction affects at least two accounts. Total debits must equal total credits.</p>
+        <div class="formula">Total debits = Total credits</div>
+        <ul><li>Owner invests cash: Dr Cash, Cr Capital.</li><li>Rent paid: Dr Rent expense, Cr Cash.</li><li>Credit sale: Dr Trade receivables, Cr Sales revenue.</li><li>Customer pays a debt: Dr Cash, Cr Trade receivables.</li></ul>
+      </div></div>
+    </article>
+
+    <article class="lesson reveal">
+      <div class="lesson-top"><div class="lesson-number">05</div><div class="lesson-body">
+        <span class="tag">BOOKS OF ACCOUNT</span><h3>Journals, Ledgers and Trial Balance</h3>
+        <p>The journal records transactions chronologically; the ledger groups transactions by account. A trial balance lists ledger balances to check debit-credit equality.</p>
+        <ul><li>Sales journal: credit sales of goods.</li><li>Purchases journal: credit purchases of goods for resale.</li><li>Cash book: cash and bank transactions.</li><li>General journal: selected adjustments and non-routine entries.</li></ul>
+        <details><summary>Important limitation</summary><p>A balanced trial balance does not prove that every entry is correct. Errors of omission, principle, original entry or complete reversal can still exist.</p></details>
+      </div></div>
+    </article>
+
+    <article class="lesson reveal">
+      <div class="lesson-top"><div class="lesson-number">06</div><div class="lesson-body">
+        <span class="tag">PROFITABILITY</span><h3>Income Statement</h3>
+        <p>The income statement reports financial performance over a period.</p>
+        <div class="formula">Gross profit = Revenue − Cost of sales</div>
+        <div class="formula">Profit for the period = Total income − Total expenses</div>
+        <p>Cost of sales for a trading business is commonly calculated as opening inventory + purchases and related costs − closing inventory, subject to the relevant syllabus and adjustments.</p>
+      </div></div>
+    </article>
+
+    <article class="lesson reveal">
+      <div class="lesson-top"><div class="lesson-number">07</div><div class="lesson-body">
+        <span class="tag">FINANCIAL POSITION</span><h3>Statement of Financial Position</h3>
+        <p>This statement shows assets, liabilities and equity at a specific date.</p>
+        <ul><li><b>Current assets:</b> inventory, receivables, cash.</li><li><b>Non-current assets:</b> equipment, buildings, vehicles.</li><li><b>Current liabilities:</b> trade payables and short-term obligations.</li><li><b>Non-current liabilities:</b> long-term loans.</li></ul>
+        <div class="formula">Net assets = Total assets − Total liabilities</div>
+      </div></div>
+    </article>
+
+    <article class="lesson reveal">
+      <div class="lesson-top"><div class="lesson-number">08</div><div class="lesson-body">
+        <span class="tag">YEAR-END ADJUSTMENTS</span><h3>Accruals, Prepayments and Depreciation</h3>
+        <p>Accrual accounting recognises income when earned and expenses when incurred, rather than relying only on cash movement.</p>
+        <ul><li><b>Accrued expense:</b> expense incurred but not yet paid.</li><li><b>Prepayment:</b> payment made for a future accounting period.</li><li><b>Depreciation:</b> allocates the depreciable amount of a tangible non-current asset over its useful life.</li><li><b>Irrecoverable debt:</b> an amount that is not expected to be collected.</li></ul>
+        <div class="formula">Straight-line depreciation per year = (Cost − Residual value) ÷ Useful life</div>
+      </div></div>
+    </article>
+
+    <article class="lesson reveal">
+      <div class="lesson-top"><div class="lesson-number">09</div><div class="lesson-body">
+        <span class="tag">FINANCIAL ANALYSIS</span><h3>Accounting Ratios</h3>
+        <div class="formula">Gross profit margin = Gross profit ÷ Revenue × 100%</div>
+        <div class="formula">Profit margin = Profit ÷ Revenue × 100%</div>
+        <div class="formula">Current ratio = Current assets ÷ Current liabilities</div>
+        <div class="formula">Trade receivables days = Trade receivables ÷ Credit sales × 365</div>
+        <p>Interpret ratios using context, previous years, industry comparisons and the limitations of the available data.</p>
+      </div></div>
+    </article>
+
+    <article class="lesson reveal">
+      <div class="lesson-top"><div class="lesson-number">10</div><div class="lesson-body">
+        <span class="tag">DECISION MAKING</span><h3>Cash Flow and Internal Control</h3>
+        <p>Profit and cash flow are not the same. A credit sale can generate revenue before the customer pays.</p>
+        <ul><li><b>Operating activities:</b> cash flows from principal business activities.</li><li><b>Investing activities:</b> acquisition and disposal of long-term assets and investments.</li><li><b>Financing activities:</b> borrowings, repayments and owner financing.</li><li><b>Internal controls:</b> authorisation, segregation of duties, reconciliations and secure record keeping.</li></ul>
+      </div></div>
+    </article>
+
+  </div>
 </div>
-<div class="callout"><b>Important distinction:</b> profit is not the same as cash. A credit sale may increase profit before the customer pays; buying equipment may reduce cash now but its cost is normally spread over its useful life through depreciation.</div>
-<h2>Lesson 2 — The accounting equation</h2>
-<div class="formula math">Assets = Capital (Equity) + Liabilities</div>
-<p>Assets are resources controlled by the business. Liabilities are amounts owed to others. Capital/equity is the owner's residual interest after liabilities are deducted.</p>
-<div class="tablewrap"><table><thead><tr><th>Category</th><th>Examples</th><th>Typical effect</th></tr></thead><tbody><tr><td>Non-current assets</td><td>Equipment, vehicles, buildings</td><td>Used over more than one accounting period</td></tr><tr><td>Current assets</td><td>Inventory, trade receivables, bank, cash</td><td>Expected to be realised/used in the operating cycle or near term</td></tr><tr><td>Current liabilities</td><td>Trade payables, overdraft, short-term accruals</td><td>Due in the near term</td></tr><tr><td>Non-current liabilities</td><td>Long-term loan</td><td>Due after more than one year, subject to classification rules</td></tr><tr><td>Equity</td><td>Capital + profit − drawings</td><td>Owner's residual claim</td></tr></tbody></table></div>
-<h2>Lesson 3 — Debit and credit</h2>
-<p>Debit (Dr) means the left side of an account; credit (Cr) means the right side. Neither word automatically means “good/bad”, “increase/decrease” or “money in/out”. The effect depends on the account type.</p>
-<div class="tablewrap"><table><thead><tr><th>Account type</th><th>Increase</th><th>Decrease</th></tr></thead><tbody><tr><td>Assets</td><td>Debit</td><td>Credit</td></tr><tr><td>Expenses and drawings</td><td>Debit</td><td>Credit</td></tr><tr><td>Liabilities</td><td>Credit</td><td>Debit</td></tr><tr><td>Capital/equity</td><td>Credit</td><td>Debit</td></tr><tr><td>Income/revenue</td><td>Credit</td><td>Debit</td></tr></tbody></table></div>
-<div class="formula"><b>Memory aid:</b> Assets, Expenses and Drawings usually increase on the debit side. Liabilities, Capital and Income usually increase on the credit side.</div>
-<h2>Lesson 4 — Double-entry bookkeeping</h2>
-<p>Each transaction has at least two entries, and total debits equal total credits. Ask: <b>Which accounts change?</b> Then: <b>Does each account increase or decrease?</b> Finally apply the debit/credit rules.</p>
-<div class="tablewrap"><table><thead><tr><th>Transaction</th><th>Debit</th><th>Credit</th></tr></thead><tbody><tr><td>Owner introduces cash as capital</td><td>Cash/Bank</td><td>Capital</td></tr><tr><td>Buy equipment for cash</td><td>Equipment</td><td>Cash/Bank</td></tr><tr><td>Buy goods on credit</td><td>Purchases/Inventory, according to system</td><td>Trade payables</td></tr><tr><td>Make a cash sale</td><td>Cash/Bank</td><td>Sales revenue</td></tr><tr><td>Pay rent</td><td>Rent expense</td><td>Cash/Bank</td></tr><tr><td>Pay a supplier</td><td>Trade payables</td><td>Cash/Bank</td></tr><tr><td>Customer pays amount owed</td><td>Cash/Bank</td><td>Trade receivables</td></tr><tr><td>Owner withdraws cash personally</td><td>Drawings</td><td>Cash/Bank</td></tr></tbody></table></div>
-<h2>Lesson 5 — Books of prime entry and ledger</h2>
-<div class="grid">
-<article class="card"><h3>Books of prime entry</h3><p>First records of transactions: sales journal/day book, purchases journal/day book, sales returns journal, purchases returns journal, cash book, petty cash book and general journal.</p></article>
-<article class="card"><h3>Ledger accounts</h3><p>Transactions are posted to individual accounts. Balance an account by comparing its two sides; the balance is carried down and brought down to the next period as appropriate.</p></article>
-<article class="card"><h3>Trial balance</h3><p>A list of ledger balances used to check whether total debit balances equal total credit balances. Agreement is useful but does not prove every transaction is correct.</p></article>
-</div>
-<div class="callout"><b>Errors not revealed by a trial balance:</b> complete omission, error of principle, error of commission where equal amounts are posted to the wrong personal account, compensating errors, and reversal of entries. Some one-sided posting errors can cause disagreement.</div>
-<h2>Lesson 6 — Inventory and cost of sales</h2>
-<div class="formula math">Cost of sales = Opening inventory + Net purchases + Carriage inwards − Closing inventory</div>
-<p>Net purchases normally equal purchases less purchases returns. Carriage inwards is a cost of bringing purchased goods to the business; carriage outwards is a selling/distribution expense. Closing inventory is deducted from goods available for sale because it has not yet been sold.</p>
-<p>Inventory valuation is generally at the lower of cost and net realisable value (NRV), subject to the applicable reporting framework. NRV is estimated selling price less costs to complete and sell. Common cost formulas include FIFO and weighted average where permitted by the relevant rules.</p>
-<h2>Lesson 7 — Income statement</h2>
-<div class="formula math">Revenue − Cost of sales = Gross profit<br>Gross profit + Other income − Expenses = Profit for the period</div>
-<p>The income statement reports performance over a period. Revenue is recognised when earned under the applicable rules, not necessarily when cash is received. Expenses include rent, wages, insurance, depreciation and irrecoverable debts. Drawings are not an expense in the income statement.</p>
-<h2>Lesson 8 — Statement of financial position</h2>
-<p>This statement shows assets, liabilities and equity at a specific date.</p>
-<div class="formula math">Closing capital = Opening capital + Additional capital + Profit − Drawings</div>
-<p>Present non-current assets, current assets, equity, non-current liabilities and current liabilities using the format required by your course. The statement must balance because assets equal equity plus liabilities.</p>
-<h2>Lesson 9 — Accruals and prepayments</h2>
-<div class="grid">
-<article class="card"><h3>Accrued expense</h3><p>An expense relates to this period but has not yet been paid. Add it to the expense in the income statement and show a current liability.</p><div class="formula math">Expense = Cash paid + Closing accrual − Opening accrual</div></article>
-<article class="card"><h3>Prepaid expense</h3><p>Cash was paid but some benefit relates to a future period. Deduct the closing prepayment from the current period expense and show a current asset.</p><div class="formula math">Expense = Cash paid + Opening prepayment − Closing prepayment</div></article>
-<article class="card"><h3>Accrued income</h3><p>Income earned but not yet received: add to income and recognise a receivable asset.</p></article>
-<article class="card"><h3>Income received in advance</h3><p>Cash received for income not yet earned: deduct the unearned part from income and recognise a liability.</p></article>
-</div>
-<h2>Lesson 10 — Depreciation</h2>
-<p>Depreciation allocates the depreciable amount of a non-current asset over its useful life. It is not a direct valuation of the asset's market price and is not a cash payment in the period.</p>
-<div class="formula math">Straight-line annual depreciation = (Cost − Residual value) ÷ Useful life</div>
-<div class="formula math">Reducing-balance depreciation = Net book value at start of year × Rate</div>
-<p>Accumulated depreciation is the total depreciation charged to date. Net book value (carrying amount) is usually cost less accumulated depreciation and impairment. A full-year convention, part-year convention and residual-value treatment should follow the question's instructions.</p>
-<h2>Lesson 11 — Irrecoverable debts and allowance</h2>
-<p>An irrecoverable (bad) debt is written off when it is judged not recoverable. A doubtful-debt allowance estimates expected losses on remaining receivables. The expense for the period is generally the required closing allowance minus the existing allowance, adjusted for any specific write-offs as the method requires.</p>
-<div class="formula math">Net trade receivables = Trade receivables − Allowance for receivables</div>
-<p>Example: receivables are 20,000 and a 5% allowance is required. Closing allowance = 20,000 × 5% = 1,000. If the existing allowance is 700, the increase charged as an expense is 300.</p>
-<h2>Lesson 12 — Bank reconciliation</h2>
-<p>A bank reconciliation explains differences between the cash book bank balance and the bank statement balance. Common timing differences include unpresented cheques and deposits not yet credited. Bank charges, direct debits, standing orders and bank interest shown by the bank but not yet recorded should first be entered in the cash book.</p>
-<p>Do not automatically add every difference: decide which record is missing the item and whether the item increases or decreases that balance. Follow the exact starting balance and sign convention in the question.</p>
-<h2>Lesson 13 — Control accounts and suspense</h2>
-<p>Control accounts summarise totals from subsidiary ledgers and help locate errors. A receivables control account checks the total owed by credit customers; a payables control account checks the total owed to credit suppliers. A suspense account temporarily holds an unexplained difference when a trial balance does not agree. It should be cleared once errors are identified and corrected.</p>
-<h2>Lesson 14 — Manufacturing accounts</h2>
-<div class="formula math">Prime cost = Direct materials + Direct labour + Direct expenses</div>
-<div class="formula math">Factory cost = Prime cost + Production overheads + Opening WIP − Closing WIP</div>
-<p>Work in progress (WIP) is partly completed production. Production overheads include indirect factory costs such as factory rent and indirect labour. Administrative and selling expenses are normally period expenses, not production costs, unless the specific framework or question says otherwise.</p>
-<h2>Lesson 15 — Cost behaviour and break-even</h2>
-<div class="formula math">Contribution per unit = Selling price per unit − Variable cost per unit</div>
-<div class="formula math">Break-even output = Total fixed costs ÷ Contribution per unit</div>
-<div class="formula math">Margin of safety = Actual/budgeted output − Break-even output</div>
-<div class="formula math">Profit = Total contribution − Fixed costs</div>
-<p>Fixed costs stay constant in total within a relevant range; variable costs change in total with output; semi-variable costs contain fixed and variable elements. Break-even assumes selling price, variable cost per unit and total fixed costs behave predictably over the relevant range, and that output equals sales for the simple model.</p>
-<h2>Lesson 16 — Budgets and variances</h2>
-<p>A budget is a quantified plan for a future period. It helps planning, coordination, communication and control. A variance is the difference between actual and budgeted performance. “Favourable” and “adverse” depend on the effect on profit or the objective: lower-than-budget cost is often favourable, while lower-than-budget revenue is often adverse. Always explain the reason, not just the label.</p>
-<h2>Lesson 17 — Ratio analysis</h2>
-<div class="tablewrap"><table><thead><tr><th>Ratio</th><th>Formula</th><th>What it indicates</th></tr></thead><tbody><tr><td>Gross profit margin</td><td>Gross profit ÷ Revenue × 100%</td><td>Gross profit earned per unit of revenue</td></tr><tr><td>Profit margin</td><td>Operating profit (or stated profit measure) ÷ Revenue × 100%</td><td>Operating profitability; use the measure specified</td></tr><tr><td>Return on capital employed (ROCE)</td><td>Operating profit ÷ Capital employed × 100%</td><td>Return generated from long-term finance invested</td></tr><tr><td>Current ratio</td><td>Current assets ÷ Current liabilities</td><td>Short-term liquidity cover</td></tr><tr><td>Acid-test ratio</td><td>(Current assets − Inventory) ÷ Current liabilities</td><td>Liquidity excluding inventory</td></tr><tr><td>Inventory turnover (times)</td><td>Cost of sales ÷ Average inventory</td><td>How many times inventory is sold/replaced</td></tr><tr><td>Trade receivables days</td><td>Trade receivables ÷ Credit sales × 365</td><td>Average collection period, approximately</td></tr><tr><td>Trade payables days</td><td>Trade payables ÷ Credit purchases × 365</td><td>Approximate time taken to pay suppliers</td></tr><tr><td>Gearing</td><td>Non-current debt ÷ Capital employed × 100%</td><td>Debt finance relative to long-term capital; course definitions vary</td></tr></tbody></table></div>
-<p><b>Interpretation rule:</b> state the movement, explain what it may mean, give a possible cause, and mention a limitation or further information needed. A higher current ratio is not always better if cash is tied up in slow-moving inventory or overdue receivables.</p>
-<h2>Lesson 18 — Ethics and limitations</h2>
-<p>Professional behaviour includes integrity, objectivity, professional competence and due care, confidentiality, and professional conduct. Ethical threats can arise from personal interests, pressure from management, familiarity or conflicts of interest. Accounting estimates require judgement; accounts can be affected by policies, inflation, seasonality, one-off events and window dressing. Ratios should be compared across time and similar businesses, not interpreted in isolation.</p>
 </section>
-<section class="section wrap" id="worked"><h2>Worked examples</h2><p class="lead">Follow the calculation line by line. Try to explain why each number is included or excluded.</p>
-<div class="grid">
-<article class="card"><h3>Example A — Accounting equation</h3><p>A business has assets of 85,000 and liabilities of 31,000.</p><div class="formula math">Capital = Assets − Liabilities<br>= 85,000 − 31,000<br>= 54,000</div><p>Check: 54,000 + 31,000 = 85,000.</p></article>
-<article class="card"><h3>Example B — Cost of sales</h3><p>Opening inventory 8,000; purchases 42,000; purchases returns 2,000; carriage inwards 1,000; closing inventory 9,500.</p><div class="formula math">Net purchases = 42,000 − 2,000 = 40,000<br>Cost of sales = 8,000 + 40,000 + 1,000 − 9,500<br>= 39,500</div></article>
-<article class="card"><h3>Example C — Accrued rent</h3><p>Cash rent paid during the year is 12,000. Closing rent accrual is 1,500 and opening accrual is 500.</p><div class="formula math">Rent expense = 12,000 + 1,500 − 500 = 13,000</div><p>The closing accrual is a liability; the opening accrual was settled during this year and is subtracted from cash paid to calculate this year's expense.</p></article>
-<article class="card"><h3>Example D — Straight-line depreciation</h3><p>Equipment costs 30,000, residual value is 3,000 and useful life is 6 years.</p><div class="formula math">Annual depreciation = (30,000 − 3,000) ÷ 6<br>= 4,500 per year</div></article>
-<article class="card"><h3>Example E — Break-even</h3><p>Selling price 50 per unit, variable cost 30 per unit, fixed costs 12,000.</p><div class="formula math">Contribution = 50 − 30 = 20<br>Break-even = 12,000 ÷ 20 = 600 units</div><p>At 700 units sold: profit = (700 × 20) − 12,000 = 2,000.</p></article>
-<article class="card"><h3>Example F — Liquidity ratios</h3><p>Current assets 24,000; inventory 9,000; current liabilities 12,000.</p><div class="formula math">Current ratio = 24,000 ÷ 12,000 = 2:1<br>Acid-test = (24,000 − 9,000) ÷ 12,000<br>= 1.25:1</div><p>Whether this is healthy depends on the industry, cash cycle and quality of receivables/inventory.</p></article>
+
+<section id="statements">
+<div class="wrap">
+  <div class="section-head">
+    <div class="kicker">02 / Financial intelligence</div>
+    <h2>Read the numbers like a professional.</h2>
+    <p>These visualisations use illustrative figures for learning, not real company data.</p>
+  </div>
+
+  <div class="chart-layout">
+    <div class="toolbox">
+      <h3>Financial performance</h3>
+      <p class="muted">Illustrative revenue by period</p>
+      <div class="chart" aria-label="Illustrative revenue chart">
+        <div class="bar-group"><div class="bar" style="--h:36%;--delay:.1s"></div><span class="bar-label">Q1</span></div>
+        <div class="bar-group"><div class="bar" style="--h:51%;--delay:.2s"></div><span class="bar-label">Q2</span></div>
+        <div class="bar-group"><div class="bar" style="--h:46%;--delay:.3s"></div><span class="bar-label">Q3</span></div>
+        <div class="bar-group"><div class="bar" style="--h:70%;--delay:.4s"></div><span class="bar-label">Q4</span></div>
+        <div class="bar-group"><div class="bar" style="--h:88%;--delay:.5s"></div><span class="bar-label">Q5</span></div>
+      </div>
+      <div class="chart-caption">Illustrative trend only; no actual business records are represented.</div>
+    </div>
+
+    <div class="toolbox">
+      <h3>Performance snapshot</h3>
+      <div class="ring"><span>72%<small>Illustrative target</small></span></div>
+      <p class="muted" style="text-align:center">An animated visual indicator—not an audited performance measure.</p>
+    </div>
+  </div>
 </div>
 </section>
-<section class="section wrap" id="practice"><h2>Interactive practice tools</h2><p class="lead">Use these calculators to check your method. They are learning aids, not a substitute for showing working in an exam.</p>
-<div class="grid">
-<article class="card"><h3>Accounting equation checker</h3><div class="toolrow"><label>Assets <input id="assets" type="number" value="85000"></label><label>Liabilities <input id="liabs" type="number" value="31000"></label></div><button onclick="equationCalc()">Calculate capital</button><div class="result" id="equationResult" aria-live="polite">Capital will appear here.</div></article>
-<article class="card"><h3>Cost of sales calculator</h3><div class="toolrow"><label>Opening inventory <input id="opening" type="number" value="8000"></label><label>Purchases <input id="purchases" type="number" value="42000"></label><label>Purchase returns <input id="returns" type="number" value="2000"></label><label>Carriage inwards <input id="carriage" type="number" value="1000"></label><label>Closing inventory <input id="closing" type="number" value="9500"></label></div><button onclick="cosCalc()">Calculate cost of sales</button><div class="result" id="cosResult" aria-live="polite">Cost of sales will appear here.</div></article>
-<article class="card"><h3>Break-even calculator</h3><div class="toolrow"><label>Selling price/unit <input id="price" type="number" value="50" step=".01"></label><label>Variable cost/unit <input id="variable" type="number" value="30" step=".01"></label><label>Total fixed costs <input id="fixed" type="number" value="12000" step=".01"></label><label>Planned units <input id="units" type="number" value="700"></label></div><button onclick="beCalc()">Calculate</button><div class="result" id="beResult" aria-live="polite">Results will appear here.</div></article>
-<article class="card"><h3>Depreciation calculator</h3><div class="toolrow"><label>Cost <input id="depCost" type="number" value="30000"></label><label>Residual value <input id="residual" type="number" value="3000"></label><label>Useful life (years) <input id="life" type="number" value="6"></label></div><button onclick="depCalc()">Calculate annual depreciation</button><div class="result" id="depResult" aria-live="polite">Annual depreciation will appear here.</div></article>
-</div></section>
-<section class="section wrap" id="exam"><h2>100-question Accounting MCQ exam</h2><p class="lead">A mixed-topic revision test with instant answer review, explanations, navigation, question flags, score report and retry. Choose one answer per question. The default time limit is 90 minutes; you may change it before starting.</p>
-<div class="quizbox">
-<div id="setup"><div class="toolrow"><label>Time limit <select id="timeLimit"><option value="45">45 minutes</option><option value="60">60 minutes</option><option value="90" selected>90 minutes</option><option value="120">120 minutes</option><option value="0">No timer</option></select></label><label>Question order <select id="orderMode"><option value="mixed" selected>Mixed topics</option><option value="original">Topic sequence</option></select></label></div><p class="muted">This is an original practice set, not an official Pearson Edexcel paper. The level and scope are introductory and mixed; use your official specification to confirm the exact syllabus.</p><button class="primary" onclick="startExam()">Start exam</button></div>
-<div id="examArea" class="hide"><div class="quiztop"><span id="qCounter">Question 1 of 100</span><span id="timer">90:00</span><span id="answeredCount">Answered: 0 / 100</span></div><div class="progress"><div id="progressBar"></div></div><div class="qtext" id="questionText"></div><div class="opts" id="options"></div><div class="quiznav"><div class="toolrow"><button id="prevBtn" onclick="moveQ(-1)">← Previous</button><button id="flagBtn" onclick="toggleFlag()">☆ Flag for review</button><button id="nextBtn" onclick="moveQ(1)">Next →</button></div><button onclick="submitExam(false)" class="primary">Submit exam</button></div><h3>Question navigator</h3><div class="qgrid" id="qgrid"></div><p class="mini muted">Cyan outline = current question · filled = answered · gold = flagged.</p></div>
-<div id="results" class="hide"><h3 id="scoreTitle">Exam result</h3><p id="scoreSummary"></p><div class="actions"><button class="primary" onclick="reviewWrong()">Review incorrect answers</button><button onclick="showAllReview()">Review all answers</button><button onclick="retryExam()">Retry exam</button><button onclick="window.print()">Print result</button></div><div id="reviewList"></div></div>
+
+<section id="tools">
+<div class="wrap">
+  <div class="section-head">
+    <div class="kicker">03 / Interactive tools</div>
+    <h2>Put accounting into practice.</h2>
+    <p>Enter your own figures to calculate the results instantly.</p>
+  </div>
+
+  <div class="grid">
+    <div class="toolbox" style="grid-column:span 2">
+      <h3>Accounting equation calculator</h3>
+      <p class="muted">Assets must equal liabilities plus equity.</p>
+      <div class="calc-grid">
+        <div><label for="assets">Total assets (£)</label><input id="assets" type="number" min="0" value="20000"></div>
+        <div><label for="liabilities">Total liabilities (£)</label><input id="liabilities" type="number" min="0" value="7000"></div>
+      </div>
+      <div class="calc-result"><small>Calculated equity</small><strong id="equityResult">£13,000.00</strong><span id="equityStatus" class="muted">Assets − liabilities</span></div>
+      <button class="btn primary" id="calcEquation" style="margin-top:12px">Calculate equity</button>
+    </div>
+
+    <div class="toolbox">
+      <h3>Profit calculator</h3>
+      <label for="revenue">Revenue (£)</label><input id="revenue" type="number" min="0" value="50000">
+      <label for="costSales">Cost of sales (£)</label><input id="costSales" type="number" min="0" value="28000">
+      <label for="expenses">Other expenses (£)</label><input id="expenses" type="number" min="0" value="12000">
+      <div class="calc-result"><small>Profit for the period</small><strong id="profitResult">£10,000.00</strong><span id="marginResult" class="muted">Profit margin: 20.0%</span></div>
+      <button class="btn primary" id="calcProfit" style="margin-top:12px">Calculate profit</button>
+    </div>
+
+    <div class="toolbox">
+      <h3>Current ratio calculator</h3>
+      <label for="currentAssets">Current assets (£)</label><input id="currentAssets" type="number" min="0" value="24000">
+      <label for="currentLiabilities">Current liabilities (£)</label><input id="currentLiabilities" type="number" min="0" value="12000">
+      <div class="calc-result"><small>Current ratio</small><strong id="ratioResult">2.00 : 1</strong><span id="ratioNote" class="muted">Illustrative liquidity measure</span></div>
+      <button class="btn primary" id="calcRatio" style="margin-top:12px">Calculate ratio</button>
+    </div>
+
+    <div class="toolbox" style="grid-column:span 2">
+      <h3>Double-entry journal assistant</h3>
+      <p class="muted">Example: business pays £500 rent in cash.</p>
+      <div class="table-wrap"><table><thead><tr><th>Account</th><th>Debit (£)</th><th>Credit (£)</th></tr></thead><tbody>
+        <tr><td>Rent expense</td><td class="debit">500</td><td>—</td></tr>
+        <tr><td>Cash</td><td>—</td><td class="credit">500</td></tr>
+      </tbody></table></div>
+      <div class="formula">Total debit £500 = Total credit £500 ✓</div>
+      <p class="muted">The precise accounts used depend on the transaction and accounting framework.</p>
+    </div>
+  </div>
 </div>
 </section>
-<section class="section wrap"><h2>Final revision checklist</h2><div class="card"><ul class="checklist"><li>Can I explain the accounting equation and classify assets, liabilities, equity, income and expenses?</li><li>Can I record a transaction using equal debit and credit entries?</li><li>Can I prepare and interpret a trial balance and explain its limitations?</li><li>Can I calculate cost of sales, gross profit and profit for the period?</li><li>Can I adjust expenses/income for accruals and prepayments?</li><li>Can I calculate depreciation and an allowance for receivables?</li><li>Can I explain inventory valuation, bank reconciliation and control accounts?</li><li>Can I calculate contribution, break-even and margin of safety?</li><li>Can I calculate key ratios and interpret changes with appropriate limitations?</li><li>Can I identify ethical issues and explain why financial information has limitations?</li></ul></div></section>
+
+<section id="exam">
+<div class="wrap">
+  <div class="section-head">
+    <div class="kicker">04 / Knowledge laboratory</div>
+    <h2>The 100-question challenge.</h2>
+    <p>Practice the fundamentals with instant feedback. Questions are shuffled for each new attempt.</p>
+  </div>
+
+  <div class="quizbox">
+    <div id="quizStart">
+      <div class="eyebrow">INTERACTIVE EXAM</div>
+      <h3>Accounting Fundamentals</h3>
+      <p class="muted">100 multiple-choice questions · One point per question · Review your score at the end.</p>
+      <div class="formula">Tip: Read each question carefully. A balanced trial balance does not guarantee that every transaction is error-free.</div>
+      <button class="btn primary" id="startQuiz">Begin examination →</button>
+    </div>
+
+    <div id="quizMain" class="hidden">
+      <div class="quiz-top"><strong id="questionCount">Question 1 / 100</strong><span id="scoreLive" class="muted">Score: 0</span></div>
+      <div class="progress"><div id="quizProgress"></div></div>
+      <div class="question" id="questionText"></div>
+      <div class="answers" id="answerOptions"></div>
+      <div class="feedback" id="feedback" aria-live="polite"></div>
+      <div class="quiz-controls">
+        <button class="btn primary" id="nextQuestion" disabled>Next question →</button>
+        <button class="btn" id="quitQuiz">End attempt</button>
+      </div>
+    </div>
+
+    <div id="quizResult" class="result-screen hidden">
+      <div class="kicker">EXAM COMPLETED</div>
+      <div class="score-big" id="finalScore">0/100</div>
+      <h3 id="resultTitle">Your results</h3>
+      <p id="resultMessage" class="muted"></p>
+      <div class="progress"><div id="finalProgress"></div></div>
+      <p id="resultDetails"></p>
+      <button class="btn primary" id="restartQuiz">Try again ↻</button>
+    </div>
+  </div>
+</div>
+</section>
 </main>
-<footer class="footer"><div class="wrap"><div class="tagline">IAL ATLAS · LEARN WITHOUT THE CONFUSION</div><p>Accounting Atlas is a free independent learning resource created for students. It is not affiliated with, endorsed by, or approved by Pearson Education or Pearson Edexcel. “Edexcel” and related names are used only to identify the context in which students may study accounting. Check the current official specification for your qualification.</p><p>© IAL ATLAS. Educational use. Always show workings and follow your teacher's required format.</p></div></footer>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span>© <span id="year"></span> IAL ATLAS · Accounting learning resource</span>
+    <span>Learn without the confusion.</span>
+  </div>
+  <div class="wrap" style="margin-top:12px">
+    <p>This independent educational resource is not financial, tax or professional accounting advice. It is not affiliated with or endorsed by Pearson Edexcel, ICAEW, ACCA or any professional accounting body. Always verify syllabus requirements against the relevant official specification.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+
 <script>
-const money=n=>Number(n).toLocaleString(undefined,{maximumFractionDigits:2});
-function val(id){return Number(document.getElementById(id).value)||0}
-function equationCalc(){let a=val('assets'),l=val('liabs');document.getElementById('equationResult').textContent='Capital = Assets − Liabilities = '+money(a)+' − '+money(l)+' = '+money(a-l)}
-function cosCalc(){let r=val('opening')+val('purchases')-val('returns')+val('carriage')-val('closing');document.getElementById('cosResult').textContent='Cost of sales = '+money(r)}
-function beCalc(){let p=val('price'),v=val('variable'),f=val('fixed'),u=val('units'),c=p-v;if(c<=0){document.getElementById('beResult').textContent='Selling price must be greater than variable cost per unit.';return}document.getElementById('beResult').textContent='Contribution/unit: '+money(c)+' · Break-even: '+money(f/c)+' units (round up to whole unit: '+Math.ceil(f/c)+') · Planned profit: '+money(c*u-f)}
-function depCalc(){let c=val('depCost'),r=val('residual'),l=val('life');document.getElementById('depResult').textContent=l>0&&c>=r?'Annual straight-line depreciation = ('+money(c)+' − '+money(r)+') ÷ '+l+' = '+money((c-r)/l):'Check that useful life is above zero and cost is at least residual value.'}
-const rawQuestions = [
-["The main purpose of accounting is to…",["Record and communicate financial information for decisions","Guarantee that a business earns profit","Replace all management decisions","Ensure every business has cash"],0,"Accounting provides structured financial information to help users make decisions; it cannot guarantee profit."],
-["Which user is most directly interested in whether a loan will be repaid?",["A customer","A lender","A competitor","A delivery driver"],1,"Lenders assess repayment capacity and the risk of lending."],
-["The business entity concept means…",["The owner and business are always one accounting unit","The business is accounted for separately from its owner","Only companies prepare accounts","All transactions are cash transactions"],1,"Business transactions are separated from the owner's personal affairs."],
-["Which equation is correct?",["Assets = Liabilities − Capital","Assets + Capital = Liabilities","Assets = Capital + Liabilities","Capital = Assets + Liabilities"],2,"The accounting equation is Assets = Equity/Capital + Liabilities."],
-["A business has assets of 72,000 and liabilities of 25,000. Capital is…",["97,000","47,000","25,000","72,000"],1,"Capital = assets − liabilities = 72,000 − 25,000 = 47,000."],
-["Which is a current asset?",["Long-term bank loan","Trade receivables","Owner's capital","Trade payables"],1,"Trade receivables are amounts expected from credit customers."],
-["Which account normally increases with a debit?",["Sales revenue","Capital","Trade payables","Rent expense"],3,"Expenses normally increase with debits."],
-["Which account normally increases with a credit?",["Drawings","Equipment","Sales revenue","Wages expense"],2,"Income/revenue normally increases with credits."],
-["Owner introduces 5,000 cash as capital. The correct entry is…",["Dr Capital, Cr Cash","Dr Cash, Cr Capital","Dr Expense, Cr Sales","Dr Drawings, Cr Cash"],1,"Cash (asset) increases by debit; capital/equity increases by credit."],
-["Rent of 800 is paid in cash. Which entry is correct?",["Dr Cash 800, Cr Rent 800","Dr Rent expense 800, Cr Cash 800","Dr Capital 800, Cr Cash 800","Dr Payables 800, Cr Rent 800"],1,"Rent expense increases on the debit side and cash decreases on the credit side."],
-["Goods bought on credit from a supplier are recorded by…",["Debiting purchases/inventory and crediting payables","Debiting payables and crediting purchases","Debiting bank and crediting sales","Debiting capital and crediting cash"],0,"The purchase increases goods/purchases and creates a liability to the supplier."],
-["A customer settles an existing receivable by bank transfer. The entry is…",["Dr Receivables, Cr Bank","Dr Bank, Cr Receivables","Dr Sales, Cr Bank","Dr Bank, Cr Capital"],1,"Bank increases and the amount owed by the customer decreases."],
-["Drawings are best described as…",["A business operating expense","Cash or goods taken by the owner for personal use","A liability to a supplier","Sales returns"],1,"Drawings reduce owner's equity; they are not an income statement expense."],
-["A trial balance checks whether…",["Every transaction is genuine","Every account is correctly classified","Total debit balances equal total credit balances","The business has enough cash"],2,"It checks arithmetic agreement of ledger balances, not all types of error."],
-["Which error may not cause a trial balance to disagree?",["A one-sided posting omitted","A debit posted as a credit with no other entry","A complete transaction omitted","A debit entry added incorrectly"],2,"If both entries are omitted, debit and credit totals can still agree."],
-["A complete transaction is omitted from the books. This is an…",["Error of original entry","Error of omission","Error of principle","Compensating error"],1,"A transaction missing entirely is an error of omission."],
-["Which book of prime entry usually records credit sales of goods?",["Sales day book","Purchases day book","Petty cash book","General ledger"],0,"Credit sales are first recorded in the sales day book before posting to ledger accounts."],
-["A sales returns journal records…",["Goods returned by credit customers","Goods returned to suppliers","Cash sales only","Owner withdrawals"],0,"Sales returns are returns inwards from customers."],
-["A supplier is paid 1,200 by bank. Which account is credited?",["Trade payables","Bank","Purchases","Capital"],1,"The bank asset decreases, so it is credited."],
-["The balance on an asset account is normally…",["A credit balance","A debit balance","Always zero","A liability"],1,"Assets normally have debit balances because increases are debits."],
-["Opening inventory is 6,000, purchases 30,000, purchase returns 1,000, carriage inwards 500 and closing inventory 7,500. Cost of sales is…",["28,000","29,000","35,000","36,000"],1,"6,000 + (30,000 − 1,000) + 500 − 7,500 = 28,000. Correct calculation: 6,000 + 29,000 + 500 − 7,500 = 28,000."],
-["Carriage inwards is normally treated as…",["A selling expense","Part of the cost of bringing goods in","Drawings","A current liability in all cases"],1,"Carriage inwards is included in the cost of purchases/goods available for sale."],
-["Carriage outwards is normally…",["Included in opening inventory","A distribution/selling expense","Deducted from capital","A non-current asset"],1,"Carriage outwards relates to delivering goods to customers."],
-["Closing inventory is deducted when calculating cost of sales because…",["It is always worthless","It has not been sold in the period","It is a liability","It is a cash payment"],1,"Unsold goods remain an asset rather than being treated as cost of goods sold."],
-["Inventory is generally measured at…",["The highest of cost and selling price","The lower of cost and net realisable value","Selling price in every case","Zero until sold"],1,"The lower-of-cost-and-NRV principle avoids overstating inventory."],
-["Gross profit equals…",["Revenue minus cost of sales","Revenue minus all liabilities","Assets minus capital","Cash received minus cash paid"],0,"Gross profit is revenue less cost of sales."],
-["Revenue is 80,000 and cost of sales is 48,000. Gross profit is…",["128,000","48,000","32,000","28,000"],2,"80,000 − 48,000 = 32,000."],
-["Which item is not normally an income statement expense?",["Wages","Depreciation","Drawings","Rent"],2,"Drawings are distributions to the owner, not expenses of earning revenue."],
-["The income statement reports…",["Financial position at a date","Performance over a period","Only cash movements","Only liabilities"],1,"It summarises income and expenses for an accounting period."],
-["The statement of financial position shows…",["Profit earned each month only","Assets, liabilities and equity at a specific date","Only revenue and expenses","Only cash receipts"],1,"It is a snapshot of financial position at the reporting date."],
-["Opening capital 20,000, additional capital 2,000, profit 6,000 and drawings 3,500. Closing capital is…",["24,500","31,500","25,000","18,500"],0,"20,000 + 2,000 + 6,000 − 3,500 = 24,500."],
-["An accrued expense is an expense that…",["Has been paid for a future period","Relates to the period but remains unpaid","Will never be paid","Is a non-current asset"],1,"Accruals recognise expenses in the period to which they relate."],
-["Cash wages paid are 10,000, closing wages accrual 900, opening accrual 400. Wages expense is…",["9,500","10,000","10,500","11,300"],2,"Expense = cash paid + closing accrual − opening accrual = 10,500."],
-["A prepayment is usually reported as…",["A current asset","A current liability","Income","Drawings"],0,"A prepayment represents a future benefit already paid for."],
-["Insurance paid is 2,400; opening prepayment 300; closing prepayment 500. Insurance expense is…",["2,200","2,400","2,600","3,200"],0,"Expense = cash paid + opening prepayment − closing prepayment = 2,200."],
-["Income received in advance is generally…",["A liability","An expense","A non-current asset","Capital introduced"],0,"The business owes a service or benefit because income has not yet been earned."],
-["Depreciation is intended to…",["Set an asset's exact market value","Allocate depreciable amount over useful life","Create a cash fund automatically","Increase profit"],1,"Depreciation allocates cost over periods benefiting from the asset."],
-["Equipment cost 24,000, residual value 4,000 and useful life 5 years. Straight-line annual depreciation is…",["4,000","4,800","5,600","20,000"],0,"(24,000 − 4,000) ÷ 5 = 4,000 per year."],
-["Reducing-balance depreciation is calculated on…",["Original cost every year at the same amount","Opening net book value for the period","Closing inventory","Sales revenue"],1,"The rate is applied to the carrying amount at the start of the period."],
-["Cost is 10,000 and accumulated depreciation is 3,500. Net book value is…",["13,500","6,500","3,500","10,000"],1,"Net book value = cost − accumulated depreciation = 6,500."],
-["An irrecoverable debt is…",["A debt that is definitely not expected to be collected","A debt owed by the business to a supplier","A bank loan","A prepayment"],0,"An irrecoverable debt is written off when it is considered uncollectible."],
-["Receivables are 16,000 and a 5% closing allowance is required. The allowance is…",["80","800","1,600","3,200"],1,"16,000 × 5% = 800."],
-["Existing allowance is 500 and required closing allowance is 750. Ignoring other changes, the expense is…",["750","500","250","1,250"],2,"Only the increase of 250 is charged as an expense in this simplified example."],
-["Net trade receivables are calculated as…",["Receivables plus allowance","Receivables minus allowance","Payables minus inventory","Cash minus capital"],1,"The allowance reduces the receivables amount shown."],
-["A bank reconciliation is prepared to…",["Calculate depreciation","Explain differences between cash book and bank statement balances","Calculate gross profit","Replace the trial balance"],1,"It identifies timing differences and entries missing from the cash book."],
-["A bank charge shown on the bank statement but missing from the cash book should first be…",["Ignored forever","Entered in the cash book","Added to sales revenue","Recorded as inventory"],1,"The cash book must be updated for bank-originated items not yet recorded."],
-["An unpresented cheque is generally a cheque…",["Received but not yet deposited","Issued and recorded but not yet processed by the bank","Cancelled before issue","That has no effect on any balance"],1,"It is a timing difference because the business has recorded payment before the bank processes it."],
-["A control account helps to…",["Replace all individual customer accounts","Check totals and identify discrepancies","Guarantee profit","Value fixed assets at market value"],1,"Control accounts summarise and check subsidiary ledger totals."],
-["A suspense account is used temporarily when…",["A business has no assets","A trial balance difference is unresolved","Profit is high","All transactions are cash"],1,"The suspense account temporarily holds a difference until errors are identified and corrected."],
-["Prime cost includes…",["Direct materials, direct labour and direct expenses","All selling expenses","Only factory rent","Interest and tax only"],0,"Prime cost is the total of direct production costs."],
-["Opening WIP is 2,000, prime cost 18,000, production overheads 6,000 and closing WIP 3,000. Factory cost is…",["23,000","26,000","29,000","21,000"],0,"2,000 + 18,000 + 6,000 − 3,000 = 23,000."],
-["Factory rent is usually classified as…",["Production overhead","Drawings","Sales revenue","Trade receivable"],0,"Factory rent is an indirect production cost."],
-["A fixed cost is a cost that…",["Never exists","Remains constant in total within a relevant range","Always rises per unit with output","Is always a direct material"],1,"Fixed costs are constant in total within the relevant activity range."],
-["A variable cost generally…",["Changes in total with output","Is always constant in total","Is always a non-current liability","Cannot be calculated"],0,"Total variable cost moves with activity, assuming a constant variable cost per unit."],
-["Selling price is 40 per unit and variable cost is 26 per unit. Contribution per unit is…",["66","26","14","1.54"],2,"Contribution = selling price − variable cost = 14."],
-["Fixed costs are 9,000 and contribution per unit is 15. Break-even output is…",["600 units","135 units","9,015 units","1,350 units"],0,"9,000 ÷ 15 = 600 units."],
-["Selling price 80, variable cost 50, fixed costs 12,000. Break-even output is…",["150 units","240 units","400 units","600 units"],2,"Contribution = 30; 12,000 ÷ 30 = 400 units."],
-["Actual sales are 900 units and break-even is 650 units. Margin of safety is…",["250 units","650 units","1,550 units","72.2 units"],0,"Margin of safety = actual sales − break-even sales = 250 units."],
-["At 1,000 units contribution is 20 per unit and fixed costs are 15,000. Profit is…",["5,000","20,000","15,000","35,000"],0,"Total contribution = 20,000; profit = 20,000 − 15,000 = 5,000."],
-["A budget is best described as…",["A quantified plan for a future period","A list of past invoices only","A bank statement","A guarantee of profit"],0,"Budgets quantify planned activity and support planning and control."],
-["Actual expenses are lower than budgeted, with no negative quality effect. This is generally…",["Adverse","Favourable","A liability","An accounting error"],1,"Lower costs than planned often improve profit, so the variance is favourable."],
-["Actual revenue is below budgeted revenue. This is generally…",["Favourable","Adverse","Always immaterial","A non-current asset"],1,"Lower revenue than planned generally reduces profit, so it is adverse."],
-["A useful variance investigation should…",["Blame one employee automatically","Identify causes and consider corrective action","Ignore context","Change figures to match budget"],1,"Variances are useful when causes are investigated and appropriate action is considered."],
-["Gross profit margin is…",["Gross profit ÷ revenue × 100%","Revenue ÷ gross profit × 100%","Current assets ÷ liabilities","Profit ÷ inventory"],0,"Gross profit margin measures gross profit as a percentage of revenue."],
-["Revenue is 100,000 and gross profit is 35,000. Gross profit margin is…",["35%","65%","2.86%","135%"],0,"35,000 ÷ 100,000 × 100 = 35%."],
-["Current assets are 30,000 and current liabilities are 15,000. Current ratio is…",["0.5:1","1:1","2:1","15:1"],2,"30,000 ÷ 15,000 = 2:1."],
-["Current assets 20,000, inventory 8,000 and current liabilities 10,000. Acid-test ratio is…",["2:1","1.2:1","0.8:1","3:1"],1,"(20,000 − 8,000) ÷ 10,000 = 1.2:1."],
-["Cost of sales is 60,000 and average inventory is 10,000. Inventory turnover is…",["6 times","0.17 times","50,000 times","60 times"],0,"60,000 ÷ 10,000 = 6 times."],
-["Receivables are 12,000 and annual credit sales are 120,000. Receivables days (365-day year) are…",["3.65 days","36.5 days","10 days","120 days"],1,"12,000 ÷ 120,000 × 365 = 36.5 days."],
-["Payables days typically estimates…",["How long the business takes to pay credit suppliers","How long inventory lasts exactly","The interest rate on loans","The percentage of cash sales"],0,"It approximates the time taken to pay suppliers using payables and credit purchases."],
-["ROCE commonly uses operating profit divided by…",["Capital employed","Closing inventory","Cash sales","Trade receivables only"],0,"ROCE compares operating profit with capital employed; course definitions should be followed."],
-["A ratio comparison is most meaningful when businesses…",["Operate in similar industries and use comparable methods","Have entirely different business models","Have no financial statements","Use different periods without adjustment"],0,"Comparability improves when industry, policies and reporting periods are similar."],
-["A higher current ratio is always proof of better liquidity. This statement is…",["True in every case","False; asset quality and working-capital efficiency matter","True only when profit is negative","Impossible because ratios cannot be used"],1,"Slow inventory or overdue receivables can make a high current ratio less reassuring."],
-["A major limitation of historical financial statements is that they…",["Contain no numbers","Are based on past information and may not predict the future","Always exclude assets","Guarantee future profit"],1,"Past performance is informative but not a guarantee of future results."],
-["Prudence means…",["Deliberately understating every asset","Using caution with uncertain estimates and avoiding overstatement","Recording no estimates","Ignoring losses"],1,"Prudence is cautious judgement, not deliberate systematic understatement."],
-["Consistency helps users by…",["Making comparisons over time easier","Ensuring profit rises","Removing all judgement","Making all businesses identical"],0,"Consistent policies aid comparison, although changes may be justified and disclosed."],
-["Going concern assumes…",["The business will close tomorrow","The business will continue operating for the foreseeable future unless evidence indicates otherwise","No liabilities exist","All assets are sold immediately"],1,"Going concern underpins normal asset/liability measurement unless the assumption is inappropriate."],
-["Which is an ethical principle for accountants?",["Confidentiality","Changing records to please a manager","Hiding relevant losses","Sharing client information casually"],0,"Confidentiality is a core professional principle, subject to lawful/professional disclosure requirements."],
-["A manager asks an accountant to hide a known liability. The best response is to…",["Hide it to protect the business","Follow ethical and reporting requirements and raise the concern appropriately","Delete the ledger","Invent a new asset"],1,"Financial information should be complete and not deliberately misleading."],
-["The money measurement concept means…",["Every valuable thing must be recorded regardless of measurability","Accounting records items that can be measured in monetary terms","Only coins and banknotes are recorded","Profit is always cash"],1,"Non-financial qualities may be important but may not be recorded as monetary amounts."],
-["Materiality is concerned with whether information…",["Could influence users' decisions","Is written in blue ink","Is always a liability","Is more than one year old"],0,"Material information can affect decisions; immaterial items may be treated differently where appropriate."],
-["A credit sale usually causes…",["Cash to increase immediately in every case","Revenue and receivables to increase","Payables and drawings to increase","Inventory to become a liability"],1,"A credit sale records revenue and a receivable; cash is received later."],
-["Buying equipment for cash normally causes…",["One asset to increase and another asset to decrease","Profit to increase by the equipment cost","Liabilities to rise automatically","Capital to equal zero"],0,"Equipment increases while cash decreases; the purchase itself is not usually an immediate full expense."],
-["Paying a trade payable normally…",["Increases the liability","Decreases cash and decreases the liability","Increases sales","Increases drawings"],1,"The business debits payables and credits cash/bank."],
-["If a business's expenses exceed its income for a period, it has…",["A profit","A loss","A capital injection","A prepayment automatically"],1,"Expenses greater than income produce a loss for the period."],
-["Which item is normally a non-current asset?",["Inventory held for sale","Delivery van used for several years","Trade payable","Accrued electricity"],1,"A delivery van used over several years is a non-current asset."],
-["Which is a current liability?",["Trade payable due shortly","Factory building","Owner's capital","Long-term equipment"],0,"Trade payables due in the normal short-term operating cycle are current liabilities."],
-["Net purchases equal…",["Purchases plus purchase returns","Purchases minus purchase returns","Sales minus sales returns","Opening inventory minus closing inventory"],1,"Purchase returns are deducted from purchases to obtain net purchases."],
-["Sales returns are deducted from…",["Gross sales revenue","Non-current assets","Capital introduced","Depreciation"],0,"Sales returns reduce the revenue figure to net sales where that presentation is used."],
-["A business's gross profit rises but net profit falls. A possible explanation is…",["Operating expenses increased significantly","Revenue must be zero","Inventory is always understated","Liabilities vanished"],0,"Higher operating expenses can outweigh an increase in gross profit."],
-["If an expense is under-recorded, profit is likely to be…",["Overstated","Understated","Unaffected in all cases","Equal to cash"],0,"Missing expenses usually overstate reported profit and may understate liabilities."],
-["If closing inventory is overstated, cost of sales is likely to be…",["Overstated","Understated","Unaffected","Equal to revenue"],1,"Closing inventory is deducted from cost of sales; overstating it understates cost of sales and overstates profit."],
-["A depreciation charge is recorded by debiting…",["Depreciation expense","Accumulated depreciation only","Sales revenue","Capital"],0,"The depreciation expense is debited; accumulated depreciation is commonly credited."],
-["An increase in the required allowance for receivables usually…",["Increases expense and reduces profit","Increases revenue","Increases cash","Reduces liabilities"],0,"An increase in the allowance is generally charged as an expense, reducing profit."],
-["Which transaction changes profit immediately in the usual treatment?",["Owner introduces capital","Business repays loan principal","Business records depreciation expense","Owner transfers cash between bank accounts"],2,"Depreciation is an expense; capital introduced, loan principal repayment and transfers are not usually profit items."],
-["A bank overdraft is commonly classified as…",["A current liability","A non-current asset","Revenue","Inventory"],0,"An overdraft is normally a short-term amount owed to the bank, subject to the applicable presentation rules."],
-["Which item is a direct material in a furniture factory?",["Wood used in a table","Factory supervisor salary","Office electricity","Advertising"],0,"Wood incorporated into the table is directly traceable to the product."],
-["A semi-variable cost contains…",["Only a fixed component","Only a variable component","Both fixed and variable components","No relationship to activity ever"],2,"A semi-variable cost has a base amount plus a variable element."],
-["If contribution per unit rises while fixed costs stay constant, break-even output will generally…",["Rise","Fall","Stay identical in every case","Become negative"],1,"Break-even = fixed costs ÷ contribution per unit; a larger contribution means fewer units are needed."],
-["If actual output is below break-even output in the simple model, the business makes…",["A profit","A loss","Zero profit automatically","A capital gain"],1,"Below break-even, total contribution is insufficient to cover fixed costs."],
-["A favourable materials price variance may still be concerning if…",["Cheaper materials cause quality problems or waste","The business has no suppliers","Sales revenue is always higher","It has no possible causes"],0,"Variances should be evaluated in context; cheaper inputs may have negative quality effects."],
-["Which ratio focuses on short-term liquidity excluding inventory?",["Acid-test ratio","Gross profit margin","ROCE","Gearing"],0,"The acid-test ratio removes inventory from current assets."],
-["A very high inventory turnover may indicate…",["Efficient movement, or possibly insufficient stock","That the business has no sales","That all stock is obsolete","That liabilities equal assets"],0,"High turnover can be positive but could also signal stock shortages; context matters."],
-["A fall in receivables days may indicate…",["Customers are paying more quickly","Customers are paying more slowly","All sales are cash sales for certain","Profit must fall"],0,"A shorter collection period can improve cash flow, although credit terms and write-offs matter."],
-["Gearing is used to assess…",["The relative use of debt finance","The speed of inventory sales only","Gross sales returns","Depreciation method"],0,"Gearing measures the relative use of debt in the capital structure; definitions vary."],
-["Which is a limitation of comparing ratios between businesses?",["Different accounting policies and business activities","Ratios contain arithmetic","All businesses use identical methods","Ratios always show causes exactly"],0,"Different policies, sectors, seasonality and one-off items reduce comparability."],
-["An accountant should disclose confidential information…",["To anyone who asks","Only when properly authorised or required/permitted by law or professional duty","On social media","To improve a friend's business"],1,"Confidential information should be protected except in authorised or legally/professionally required circumstances."],
-["Which is the best first step when solving a double-entry question?",["Guess the credit side","Identify the accounts affected and how each changes","Write the trial balance first","Ignore whether the transaction is on credit"],1,"Identify affected accounts and increases/decreases before applying debit-credit rules."],
-["Which statement about profit and cash is correct?",["They are always equal","Profit can differ from cash due to credit transactions and non-cash expenses","Depreciation always uses cash","Credit sales never affect profit"],1,"Accrual accounting recognises income/expenses by period, so profit and cash flow differ."],
-["A business has current assets of 18,000, current liabilities 12,000 and inventory 6,000. Its acid-test ratio is…",["0.5:1","1:1","1.5:1","2:1"],1,"(18,000 − 6,000) ÷ 12,000 = 1:1."],
-["A product sells for 25, variable cost is 17, and fixed costs are 4,000. Break-even output is…",["320 units","500 units","160 units","4,000 units"],0,"Contribution = 8; break-even = 4,000 ÷ 8 = 500 units. Correct answer is 500 units."],
-["Revenue 150,000, cost of sales 90,000 and operating expenses 42,000. Operating profit is…",["18,000","60,000","42,000","102,000"],0,"Gross profit = 60,000; operating profit = 60,000 − 42,000 = 18,000."],
-["If a closing prepayment increases, current-period expense (all else equal) will…",["Increase","Decrease","Remain unchanged in all cases","Become revenue"],1,"A higher closing prepayment is deducted from cash paid when calculating the current-period expense."],
-["Which action best supports reliable accounting information?",["Keep complete records and apply policies consistently","Remove inconvenient transactions","Change figures to meet targets","Record only cash sales"],0,"Complete records and consistent application improve reliability and comparability."]
+"use strict";
+
+/* NAVIGATION AND PAGE ANIMATIONS */
+const $ = id => document.getElementById(id);
+$("year").textContent = new Date().getFullYear();
+
+$("menuBtn").addEventListener("click", () => {
+  $("navlinks").classList.toggle("open");
+});
+document.querySelectorAll("#navlinks a").forEach(a => {
+  a.addEventListener("click", () => $("navlinks").classList.remove("open"));
+});
+
+window.addEventListener("scroll", () => {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  $("readingProgress").style.width =
+    (max > 0 ? window.scrollY / max * 100 : 0) + "%";
+}, {passive:true});
+
+const revealObserver = "IntersectionObserver" in window
+  ? new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.12})
+  : null;
+
+document.querySelectorAll(".reveal").forEach(el => {
+  if(revealObserver) revealObserver.observe(el);
+  else el.classList.add("visible");
+});
+
+const countObserver = "IntersectionObserver" in window
+  ? new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = Number(el.dataset.count);
+        const start = performance.now();
+        const duration = 1200;
+        function frame(now) {
+          const p = Math.min((now-start)/duration,1);
+          el.textContent = Math.round(target*(1-Math.pow(1-p,3))).toLocaleString();
+          if(p<1) requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+        countObserver.unobserve(el);
+      });
+    }, {threshold:.5})
+  : null;
+
+document.querySelectorAll("[data-count]").forEach(el => {
+  if(countObserver) countObserver.observe(el);
+  else el.textContent = el.dataset.count;
+});
+
+/* TOAST */
+let toastTimer;
+function toast(message) {
+  $("toast").textContent = message;
+  $("toast").classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => $("toast").classList.remove("show"),2400);
+}
+
+/* CALCULATORS */
+const num = id => {
+  const value = Number($(id).value);
+  return Number.isFinite(value) ? value : 0;
+};
+const money = value => "£" + value.toLocaleString("en-GB",{
+  minimumFractionDigits:2,maximumFractionDigits:2
+});
+
+function calculateEquation() {
+  const assets = num("assets"), liabilities = num("liabilities");
+  const equity = assets-liabilities;
+  $("equityResult").textContent = money(equity);
+  $("equityStatus").textContent = equity < 0
+    ? "Liabilities exceed assets."
+    : "Assets − liabilities = equity";
+}
+function calculateProfit() {
+  const revenue = num("revenue");
+  const profit = revenue-num("costSales")-num("expenses");
+  $("profitResult").textContent = money(profit);
+  $("marginResult").textContent = revenue > 0
+    ? "Profit margin: " + (profit/revenue*100).toFixed(1) + "%"
+    : "Margin unavailable when revenue is zero.";
+}
+function calculateRatio() {
+  const ca = num("currentAssets"), cl = num("currentLiabilities");
+  $("ratioResult").textContent = cl > 0 ? (ca/cl).toFixed(2)+" : 1" : "Undefined";
+  $("ratioNote").textContent = cl > 0
+    ? "Interpret with industry and business context."
+    : "Current liabilities must be above zero.";
+}
+$("calcEquation").addEventListener("click",calculateEquation);
+$("calcProfit").addEventListener("click",calculateProfit);
+$("calcRatio").addEventListener("click",calculateRatio);
+calculateEquation();calculateProfit();calculateRatio();
+
+/* 100 ORIGINAL PRACTICE QUESTIONS
+   Format: [question, [A,B,C,D], correct answer index, explanation] */
+const questions = [
+["What is the main purpose of accounting?",["To guarantee profit","To record and communicate financial information","To eliminate all business risk","To avoid every tax"],1,"Accounting communicates financial information to users."],
+["Which is the correct accounting equation?",["Assets = Equity − Liabilities","Assets + Equity = Liabilities","Assets = Liabilities + Equity","Liabilities = Assets + Equity"],2,"Assets equal liabilities plus equity."],
+["Which is an asset?",["Trade payable","Bank loan","Inventory","Capital"],2,"Inventory is a resource controlled by the business."],
+["Which is a liability?",["Cash","Trade receivable","Equipment","Trade payable"],3,"A trade payable is an obligation to a supplier."],
+["Which account normally increases with a debit?",["Revenue","Capital","Expense","Loan payable"],2,"Expenses normally increase with debits."],
+["Which account normally increases with a credit?",["Cash","Purchases expense","Drawings","Sales revenue"],3,"Revenue normally increases with credits."],
+["A business owner invests cash. Which entry is correct?",["Dr Capital, Cr Cash","Dr Cash, Cr Capital","Dr Expense, Cr Cash","Dr Cash, Cr Revenue"],1,"Cash increases and capital increases."],
+["Rent is paid in cash. Which entry is correct?",["Dr Rent expense, Cr Cash","Dr Cash, Cr Rent expense","Dr Rent payable, Cr Revenue","Dr Capital, Cr Rent expense"],0,"Rent expense increases and cash decreases."],
+["Equipment is bought for cash. Which entry is correct?",["Dr Cash, Cr Equipment","Dr Equipment, Cr Cash","Dr Expense, Cr Capital","Dr Payables, Cr Sales"],1,"Equipment increases while cash decreases."],
+["A credit sale of goods is recorded as:",["Dr Cash, Cr Receivables","Dr Receivables, Cr Sales","Dr Sales, Cr Receivables","Dr Purchases, Cr Cash"],1,"The customer owes money and sales revenue is recognised."],
+["A customer pays an existing debt. Which entry is correct?",["Dr Receivables, Cr Cash","Dr Cash, Cr Receivables","Dr Sales, Cr Cash","Dr Cash, Cr Sales"],1,"Cash increases and the receivable decreases."],
+["Which statement reports performance over a period?",["Statement of financial position","Income statement","Bank statement","Trial balance only"],1,"The income statement reports income and expenses for a period."],
+["Which statement shows assets and liabilities at a date?",["Income statement","Cash book","Statement of financial position","Sales journal"],2,"It presents financial position at a specific date."],
+["Gross profit is:",["Revenue minus cost of sales","Assets minus liabilities","Cash minus capital","Revenue plus expenses"],0,"Gross profit equals revenue less cost of sales."],
+["Profit for the period is generally:",["Assets plus liabilities","Income minus expenses","Cash receipts minus credit sales","Capital minus assets"],1,"Profit is calculated by deducting expenses from income."],
+["Opening inventory is £2,000, purchases £8,000 and closing inventory £1,500. Cost of sales is:",["£6,500","£8,500","£9,500","£11,500"],1,"2,000 + 8,000 − 1,500 = £8,500."],
+["Revenue is £20,000 and cost of sales is £12,000. Gross profit is:",["£8,000","£12,000","£20,000","£32,000"],0,"£20,000 − £12,000 = £8,000."],
+["Gross profit is £9,000 and revenue is £30,000. Gross profit margin is:",["20%","25%","30%","33.3%"],2,"9,000 ÷ 30,000 × 100 = 30%."],
+["Current assets are £18,000 and current liabilities £9,000. Current ratio is:",["0.5:1","1:1","2:1","3:1"],2,"18,000 ÷ 9,000 = 2."],
+["Which is a current asset?",["Long-term bank loan","Inventory held for sale","Share capital","Trade payable"],1,"Inventory is normally classified as a current asset."],
+["Which is a non-current asset?",["Cash","Trade receivables","Office building used by the business","Trade payables"],2,"An operational building is generally a non-current asset."],
+["Which is an expense?",["Capital introduced","Rent","Bank loan received","Trade payable"],1,"Rent consumed during the period is an expense."],
+["Drawings by a sole trader usually:",["Increase business revenue","Reduce owner's equity","Increase sales","Increase liabilities automatically"],1,"Drawings are withdrawals by the owner and reduce equity."],
+["Capital introduced by an owner generally:",["Reduces assets","Increases liabilities only","Increases cash and equity","Increases expenses"],2,"The business receives an asset and the owner's equity rises."],
+["The purpose of double-entry bookkeeping is to:",["Record only cash","Record equal debit and credit amounts","Prevent every fraud","Record only profits"],1,"Each transaction has corresponding debit and credit entries."],
+["A trial balance primarily checks whether:",["Every transaction is valid","Every asset is recoverable","Total debits equal total credits","The business has cash"],2,"It checks arithmetic agreement of ledger balances."],
+["A balanced trial balance proves there are no errors. True or false?",["True in all cases","False","Only for cash businesses","Only for companies"],1,"Some errors do not affect debit-credit equality."],
+["Which error can leave the trial balance balanced?",["Only one-sided posting","Unequal arithmetic posting","Complete omission of a transaction","A debit total added incorrectly"],2,"A transaction omitted entirely has no effect on the trial balance."],
+["Which book records transactions chronologically before ledger posting?",["Journal","Statement of financial position","Inventory count sheet only","Bank reconciliation only"],0,"A journal records transactions in chronological order."],
+["The ledger is used to:",["Group entries by account","Replace all source documents","Calculate tax automatically","Record only sales"],0,"Ledger accounts classify transactions by account."],
+["Which source document commonly supports a credit sale?",["Sales invoice","Employee holiday request","Purchase order from another business","Bank loan agreement only"],0,"A sales invoice documents goods or services sold on credit."],
+["Which journal commonly records credit sales of goods?",["Purchases journal","Sales journal","Cash book only","Petty cash voucher"],1,"The sales journal records credit sales of goods."],
+["Which journal commonly records credit purchases of goods for resale?",["Sales journal","Purchases journal","Returns inwards journal","Payroll journal only"],1,"Credit purchases of trading goods are recorded in the purchases journal."],
+["A cash book records:",["Cash and bank transactions","Only credit sales","Only depreciation","Only inventory losses"],0,"The cash book records cash and bank receipts and payments."],
+["Trade receivables are:",["Amounts owed by customers","Amounts owed to suppliers","Owner withdrawals","Business expenses"],0,"Receivables are amounts due from customers."],
+["Trade payables are:",["Amounts due from customers","Amounts owed to suppliers","Cash held at bank","Sales revenue"],1,"Payables represent amounts the business owes suppliers."],
+["A credit purchase of goods for resale is commonly recorded as:",["Dr Purchases, Cr Trade payables","Dr Trade payables, Cr Purchases","Dr Cash, Cr Sales","Dr Capital, Cr Purchases"],0,"Purchases increase and the amount owed to suppliers increases."],
+["The business pays a supplier by bank transfer. Which entry is correct?",["Dr Bank, Cr Payables","Dr Payables, Cr Bank","Dr Sales, Cr Bank","Dr Bank, Cr Capital"],1,"The liability decreases and the bank balance decreases."],
+["A sales return from a customer is often called:",["Returns outwards","Returns inwards","Capital expenditure","Accrued income"],1,"Returns inwards are sales returns."],
+["Goods returned to a supplier are often called:",["Returns inwards","Returns outwards","Drawings","Bad debts"],1,"Returns outwards are purchase returns."],
+["An accrual is an expense that has been:",["Paid for next year","Incurred but not yet paid","Received in advance from a customer","Written off as an asset"],1,"An accrued expense has been incurred but remains unpaid."],
+["A prepayment is generally:",["An expense paid for a future period","An overdue supplier balance","A type of sales revenue","Owner capital"],0,"The unused portion is treated as an asset."],
+["Depreciation is intended to:",["Value every asset at market price","Allocate depreciable amount over useful life","Create cash in the bank","Increase revenue"],1,"Depreciation systematically allocates depreciable amount."],
+["An asset costs £10,000, has residual value £1,000 and useful life of 3 years. Straight-line annual depreciation is:",["£1,000","£2,000","£3,000","£3,333.33"],1,"(10,000 − 1,000) ÷ 3 = £3,000. Wait: the correct amount is £3,000."],
+["Accumulated depreciation is normally:",["Added to revenue","A contra-asset balance","Cash held at bank","A current liability"],1,"Accumulated depreciation reduces the carrying amount of the asset."],
+["An irrecoverable debt is:",["A customer balance not expected to be collected","A loan received from a bank","A supplier discount","An owner's contribution"],0,"It is a receivable assessed as uncollectible."],
+["The allowance for doubtful receivables represents:",["Guaranteed future cash","An estimate of potential credit losses","A new capital investment","Sales revenue"],1,"It estimates expected losses on receivables."],
+["Inventory is commonly measured at:",["Selling price in all cases","Cost only in every situation","Lower of cost and net realisable value under IAS 2","Zero until sold"],2,"IAS 2 generally requires lower of cost and net realisable value."],
+["The accrual basis recognises expenses when they are:",["Always paid in cash","Incurred","Approved by the bank only","Budgeted only"],1,"Expenses are recognised when incurred under accrual accounting."],
+["A bank reconciliation compares:",["Sales and purchases","Cash book bank balance and bank statement","Assets and capital only","Revenue and gross profit"],1,"It identifies and explains differences between the two records."],
+["An unpresented cheque is generally:",["Issued but not yet presented to the bank","Received but never recorded","A credit sale","An inventory adjustment"],0,"The cheque has been recorded by the business but not yet processed by the bank."],
+["A deposit in transit is generally:",["Recorded by the bank but not the business","Recorded by the business but not yet shown by the bank","A loan repayment","A purchase return"],1,"The bank has not yet processed a deposit already recorded by the business."],
+["Which is an example of an internal control?",["Allowing one person to control every process","Segregation of duties","Never reconciling bank accounts","Sharing passwords"],1,"Segregation of duties helps reduce error and fraud risk."],
+["Why should source documents be retained?",["To support accounting entries and provide an audit trail","To guarantee profits","To replace financial statements","To avoid recording transactions"],0,"Source documents support the recorded transactions."],
+["Which is a financing cash flow?",["Cash received from a new bank loan","Cash paid to buy inventory","Cash received from customers","Cash paid for electricity"],0,"Borrowing generally belongs to financing activities."],
+["Which is an investing cash flow?",["Paying wages","Buying machinery for cash","Collecting trade receivables","Paying rent"],1,"Acquiring long-term equipment is an investing activity."],
+["Which is an operating cash flow in a typical trading business?",["Cash collected from customers","Issue of shares","New long-term borrowing","Purchase of a building"],0,"Customer receipts normally arise from operating activities."],
+["Why can a profitable business have a cash shortage?",["Profit always equals cash","Credit sales and payment timing can differ","Profit eliminates liabilities","Inventory is never purchased"],1,"Revenue may be earned before customers pay."],
+["Working capital is commonly calculated as:",["Current assets minus current liabilities","Total assets plus revenue","Sales minus capital","Profit plus depreciation only"],0,"Working capital is current assets less current liabilities."],
+["If current assets are £15,000 and current liabilities £10,000, working capital is:",["£5,000","£10,000","£15,000","£25,000"],0,"15,000 − 10,000 = £5,000."],
+["A current ratio of 0.8:1 means:",["Current assets are 80% of current liabilities","Profit margin is 80%","The business has no liabilities","Cash is always sufficient"],0,"Current assets are 0.8 times current liabilities."],
+["Profit margin is calculated as:",["Profit ÷ Revenue × 100%","Revenue ÷ Assets × 100%","Assets ÷ Liabilities","Cash ÷ Purchases"],0,"Profit margin measures profit as a percentage of revenue."],
+["Return on capital employed broadly measures:",["Profitability relative to capital employed","Only the cash balance","Only sales returns","Inventory quantity"],0,"ROCE assesses operating profitability relative to capital employed."],
+["A high inventory turnover ratio may indicate:",["Inventory sells relatively quickly","No goods are sold","All customers pay late","The business has no assets"],0,"Higher turnover often indicates faster movement, depending on context."],
+["Trade receivables days estimates:",["Average time to collect customer debts","Time taken to pay employees","Inventory shelf life","Useful life of machinery"],0,"It estimates the time taken to collect credit sales."],
+["A credit sale may increase:",["Cash immediately in every case","Trade receivables and revenue","Trade payables only","Owner drawings"],1,"A credit sale normally increases receivables and revenue."],
+["A cash sale of £700 is recorded as:",["Dr Cash £700, Cr Sales £700","Dr Sales £700, Cr Cash £700","Dr Payables £700, Cr Cash £700","Dr Capital £700, Cr Revenue £700"],0,"Cash and revenue increase."],
+["A customer pays £300 before receiving a service. Initially this is commonly:",["Revenue already earned in all cases","A liability for the unearned amount","An expense","Drawings"],1,"Cash received before performance commonly creates a contract liability."],
+["Capital expenditure usually relates to:",["Acquiring or improving a long-term asset","Paying routine monthly electricity","Buying stationery consumed immediately","Paying ordinary wages"],0,"Capital expenditure creates or improves a longer-term asset."],
+["Revenue expenditure generally relates to:",["Routine operating costs","Buying an entire factory only","Issuing shares","Owner investment"],0,"Revenue expenditure is incurred in day-to-day operations."],
+["Which is usually a non-current liability?",["Trade payable due shortly","Long-term bank loan","Cash overdraft repayable on demand in every context","Accrued wages"],1,"A loan due beyond the current period may be non-current."],
+["Owner's capital is classified within:",["Equity","Current assets","Revenue","Trade payables"],0,"Capital represents the owner's interest in the business."],
+["Which transaction does not normally change total equity at the instant of exchange?",["Owner contributes cash","Business earns profit","Business pays an existing supplier liability using cash","Owner withdraws cash"],2,"Paying a recorded liability reduces cash and liabilities equally."],
+["A business pays £600 for electricity used this month. The payment generally:",["Increases an expense and decreases cash","Increases revenue","Increases capital","Increases inventory"],0,"The electricity cost is an expense and cash decreases."],
+["A business buys goods on credit. At the purchase date, this normally:",["Increases purchases/inventory and payables","Increases cash and revenue","Reduces all assets","Reduces payables"],0,"The business records the purchase and amount owed."],
+["A purchase return to a supplier generally:",["Reduces the amount owed to the supplier","Increases sales revenue","Increases drawings","Creates cash revenue"],0,"Returning goods reduces the payable or creates a refund claim."],
+["The main purpose of financial statements is to:",["Provide useful information to users","Guarantee investment returns","Remove business risk","Replace every source document"],0,"Financial statements communicate financial position and performance."],
+["Comparability means information can be:",["Compared across periods or entities","Hidden from all users","Recorded without evidence","Changed arbitrarily each month"],0,"Comparability helps users identify similarities and differences."],
+["Consistency in accounting generally means:",["Using consistent methods where appropriate","Never changing any policy under any circumstances","Ignoring standards","Always reporting the same profit"],0,"Consistent policies improve comparison; justified changes may still be required."],
+["Prudence means exercising:",["Caution when making judgements under uncertainty","Optimism in every estimate","No estimates at all","A guarantee of lower profit"],0,"Prudence involves caution without deliberate understatement or bias."],
+["Going concern assumes the entity will generally:",["Continue operating for the foreseeable future unless evidence indicates otherwise","Close tomorrow","Never borrow money","Always make profits"],0,"The going-concern assumption concerns continuing operations."],
+["Materiality concerns information that could:",["Influence users' decisions","Never affect anyone","Only concern cash","Always be omitted"],0,"Material information can influence users' economic decisions."],
+["Which is an example of an accounting estimate?",["Useful life of machinery","A supplier's printed address","Invoice number","Company name"],0,"Useful life requires judgement and estimation."],
+["A suspense account may be used temporarily when:",["Trial balance totals differ and the cause is not yet found","All accounts are correct and finalised","A company earns revenue","An owner buys shares"],0,"A suspense account may temporarily hold an unexplained difference."],
+["An error of principle occurs when:",["A transaction is recorded in an inappropriate class of account","An entire transaction is omitted","A correct amount is entered in the wrong column only","A cheque clears the bank"],0,"An error of principle involves incorrect accounting classification."],
+["An error of commission generally means:",["An entry is posted to the wrong account of the correct type","The entire transaction is omitted","All entries are correct","Revenue exceeds expenses"],0,"It commonly involves posting to an incorrect account within the same class."],
+["An error of complete reversal occurs when:",["The correct accounts are used but debit and credit are reversed","Only one entry is posted","A transaction is forgotten","A bank deposit clears"],0,"The debit and credit entries are reversed."],
+["A contra entry in the cash book commonly records:",["Transfers between cash and bank accounts","Every credit sale","Depreciation only","All inventory purchases"],0,"A contra entry records an internal transfer between cash and bank."],
+["Petty cash is mainly used for:",["Small routine payments","Buying every building","Issuing shares","Recording only credit sales"],0,"Petty cash handles small day-to-day expenses."],
+["Under the imprest system, petty cash is replenished to:",["An agreed fixed float, adjusted for spending","Any amount with no records","The value of all inventory","The total annual revenue"],0,"The float is restored to its agreed amount based on expenditure."],
+["A trade discount is commonly:",["Deducted from the list price before recording the net transaction","Always recorded as a separate expense","A bank loan","An owner's withdrawal"],0,"Trade discounts are usually deducted before the transaction is recorded."],
+["A cash discount is commonly offered to:",["Encourage prompt payment","Increase the useful life of machinery","Replace all sales invoices","Create owner capital"],0,"Cash discounts may encourage early settlement."],
+["If goods cost £400 and sell for £650, gross profit is:",["£250","£400","£650","£1,050"],0,"£650 − £400 = £250."],
+["If revenue is £80,000 and expenses are £63,000, profit is:",["£17,000","£63,000","£80,000","£143,000"],0,"£80,000 − £63,000 = £17,000."],
+["If profit is £12,000 on revenue of £60,000, profit margin is:",["12%","20%","25%","50%"],1,"12,000 ÷ 60,000 × 100 = 20%."],
+["If receivables are £10,000 and annual credit sales are £100,000, receivables days using 365 days is approximately:",["10 days","36.5 days","100 days","365 days"],1,"10,000 ÷ 100,000 × 365 = 36.5 days."],
+["If assets are £50,000 and liabilities are £18,000, equity is:",["£18,000","£32,000","£50,000","£68,000"],1,"£50,000 − £18,000 = £32,000."],
+["A business starts with equity £20,000, earns profit £4,000 and the owner withdraws £1,000. Closing equity, ignoring other changes, is:",["£15,000","£23,000","£24,000","£25,000"],1,"20,000 + 4,000 − 1,000 = £23,000."],
+["An accrued electricity bill at year-end normally means:",["Recognise the expense and a liability","Ignore the expense until payment in every case","Record revenue","Increase cash"],0,"The expense belongs to the period and remains payable."],
+["A prepaid insurance amount for a future period is initially or subsequently recognised as:",["An asset for the unexpired portion","Sales revenue","Trade payable in every case","Drawings"],0,"The unused portion provides future economic benefit."],
+["A machine costs £24,000, has no residual value and a useful life of 6 years. Straight-line annual depreciation is:",["£2,000","£4,000","£6,000","£24,000"],1,"£24,000 ÷ 6 = £4,000."],
+["If a customer owing £500 is confirmed irrecoverable, a typical write-off entry is:",["Dr Irrecoverable debt expense, Cr Receivables","Dr Cash, Cr Receivables","Dr Receivables, Cr Sales","Dr Capital, Cr Cash"],0,"The receivable is removed and the loss is recognised."],
+["A bank loan repayment containing principal and interest typically:",["Reduces the loan liability and recognises interest expense","Records the full payment as sales revenue","Increases the loan balance by the payment","Creates inventory"],0,"Principal reduces the loan; interest is an expense."],
+["Which item is not normally a financial statement?",["Sales invoice","Income statement","Statement of financial position","Statement of cash flows"],0,"A sales invoice is a source document, not a primary financial statement."],
+["The statement of cash flows explains:",["Cash and cash-equivalent movements during a period","Only accounting profit","Only the closing inventory valuation","Only owner capital"],0,"It reports cash flows classified into operating, investing and financing activities."],
+["Which is a limitation of ratio analysis?",["Different accounting policies may reduce comparability","Ratios always predict the future accurately","Ratios eliminate judgement","Ratios guarantee liquidity"],0,"Accounting methods, timing and industry differences can affect comparisons."],
+["Why should a business separate personal and business transactions?",["To produce reliable business records","To increase revenue automatically","To avoid double-entry bookkeeping","To eliminate every expense"],0,"The business entity concept separates business records from the owner's personal affairs."],
+["Which concept treats the business separately from its owner for accounting purposes?",["Business entity concept","Going concern","Prudence","Consistency"],0,"The entity concept separates business transactions from personal transactions."],
+["Which principle links expenses to the revenue they help generate in a period?",["Matching concept","Money measurement only","Dual aspect only","Historical naming"],0,"Matching recognises relevant expenses in the same period as related revenue."],
+["An owner withdraws inventory for personal use. This is normally treated as:",["Drawings reducing equity","Sales revenue to an external customer","A new liability to a supplier","Additional capital"],0,"Personal withdrawals of business goods are drawings."],
+["A customer pays an amount previously recorded as a receivable. The payment normally:",["Changes the composition of assets but not revenue at payment","Creates sales revenue again","Increases receivables","Increases trade payables"],0,"Cash increases and receivables decrease; revenue was recognised earlier."],
+["Which is the best description of a chartered accountant's professional role?",["Financial reporting, assurance, tax or advisory work depending on role and authorisation","Guaranteeing every company's profit","Approving every bank loan automatically","Replacing all management decisions"],0,"Professional accountants may work in assurance, reporting, tax, finance and advisory roles."]
 ];
-const questions=rawQuestions.slice(0,100).map((q,i)=>({id:i+1,topic:topicFor(i),q:q[0],opts:q[1],ans:q[2],why:q[3]}));
-function topicFor(i){if(i<20)return "Foundations and double entry";if(i<32)return "Inventory and statements";if(i<46)return "Adjustments";if(i<52)return "Bank, control and manufacturing";if(i<67)return "Costing and budgets";if(i<78)return "Ratios and interpretation";return "Concepts, ethics and mixed revision"}
-let order=[],answers={},flags=new Set(),index=0,remaining=5400,timerId=null,submitted=false,reviewMode="wrong";
-function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function startExam(){order=questions.map((_,i)=>i);if(document.getElementById('orderMode').value==='mixed')shuffle(order);answers={};flags=new Set();index=0;submitted=false;remaining=Number(document.getElementById('timeLimit').value)*60;document.getElementById('setup').classList.add('hide');document.getElementById('results').classList.add('hide');document.getElementById('examArea').classList.remove('hide');renderGrid();renderQuestion();if(timerId)clearInterval(timerId);if(remaining>0){updateTimer();timerId=setInterval(()=>{remaining--;updateTimer();if(remaining<=0)submitExam(true)},1000)}else document.getElementById('timer').textContent='No timer'}
-function updateTimer(){let m=Math.floor(remaining/60),s=remaining%60;document.getElementById('timer').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');if(remaining<300)document.getElementById('timer').style.color='var(--bad)'}
-function renderQuestion(){const q=questions[order[index]];document.getElementById('qCounter').textContent='Question '+(index+1)+' of '+order.length+' · '+q.topic;document.getElementById('questionText').textContent=q.q;document.getElementById('answeredCount').textContent='Answered: '+Object.keys(answers).length+' / '+order.length;document.getElementById('progressBar').style.width=(Object.keys(answers).length/order.length*100)+'%';document.getElementById('options').innerHTML='';q.opts.forEach((o,j)=>{let b=document.createElement('button');b.className='opt'+(answers[q.id]===j?' selected':'');b.innerHTML='<span class="letter">'+String.fromCharCode(65+j)+'.</span><span></span>';b.querySelector('span:last-child').textContent=o;b.onclick=()=>{answers[q.id]=j;renderQuestion();renderGrid()};document.getElementById('options').appendChild(b)});document.getElementById('prevBtn').disabled=index===0;document.getElementById('nextBtn').disabled=index===order.length-1;document.getElementById('flagBtn').textContent=flags.has(q.id)?'★ Flagged':'☆ Flag for review';renderGrid()}
-function renderGrid(){const g=document.getElementById('qgrid');g.innerHTML='';order.forEach((qi,i)=>{let q=questions[qi],b=document.createElement('button');b.className='qnum'+(answers[q.id]!==undefined?' done':'')+(i===index?' current':'')+(flags.has(q.id)?' flagged':'');b.textContent=i+1;b.title='Question '+(i+1);b.onclick=()=>{index=i;renderQuestion()};g.appendChild(b)})}
-function moveQ(d){index=Math.max(0,Math.min(order.length-1,index+d));renderQuestion()}
-function toggleFlag(){let id=questions[order[index]].id;flags.has(id)?flags.delete(id):flags.add(id);renderQuestion()}
-function submitExam(auto){if(submitted)return;if(!auto&&!confirm('Submit the exam now? You can review your answers afterwards.'))return;submitted=true;if(timerId)clearInterval(timerId);document.getElementById('examArea').classList.add('hide');document.getElementById('results').classList.remove('hide');let correct=0;questions.forEach(q=>{if(answers[q.id]===q.ans)correct++});let pct=Math.round(correct/questions.length*100);document.getElementById('scoreTitle').textContent='Result: '+correct+' / '+questions.length+' ('+pct+'%)';document.getElementById('scoreSummary').textContent=(auto?'Time expired. ':'')+'Answered '+Object.keys(answers).length+' of 100. Correct: '+correct+'. Incorrect or unanswered: '+(100-correct)+'. '+(pct>=80?'Strong result — review any mistakes to consolidate.':pct>=60?'Good foundation — focus revision on incorrect topics.':'Use the explanations as a study guide, then retry after revising.');showAllReview()}
-function showAllReview(){reviewMode='all';buildReview()}
-function reviewWrong(){reviewMode='wrong';buildReview()}
-function buildReview(){let list=document.getElementById('reviewList');list.innerHTML='';questions.forEach((q,i)=>{let selected=answers[q.id],correct=selected===q.ans;if(reviewMode==='wrong'&&correct)return;let d=document.createElement('article');d.className='card';d.style.marginTop='12px';let h=document.createElement('h3');h.textContent='Q'+q.id+' · '+q.topic+(correct?' · Correct':' · Incorrect / unanswered');d.appendChild(h);let p=document.createElement('p');p.textContent=q.q;d.appendChild(p);q.opts.forEach((o,j)=>{let op=document.createElement('p');op.className='mini';op.textContent=String.fromCharCode(65+j)+'. '+o+(j===q.ans?' ✓ Correct answer':'')+(j===selected&&j!==q.ans?' ← Your answer':'');if(j===q.ans)op.style.color='var(--good)';if(j===selected&&j!==q.ans)op.style.color='var(--bad)';d.appendChild(op)});let why=document.createElement('p');why.className='muted mini';why.textContent='Explanation: '+q.why;d.appendChild(why);list.appendChild(d)})}
-function retryExam(){if(timerId)clearInterval(timerId);document.getElementById('results').classList.add('hide');document.getElementById('setup').classList.remove('hide');document.getElementById('examArea').classList.add('hide');document.getElementById('timer').style.color='';}
+
+/* Correct the one depreciation item whose calculation is £3,000. */
+questions[44][2] = 2;
+questions[44][3] = "(10,000 − 1,000) ÷ 3 = £3,000.";
+
+let examQuestions = [];
+let current = 0;
+let score = 0;
+let answered = false;
+let responses = [];
+
+function shuffle(array) {
+  const result = array.slice();
+  for(let i=result.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [result[i],result[j]]=[result[j],result[i]];
+  }
+  return result;
+}
+
+function startExam() {
+  examQuestions = shuffle(questions).slice(0,100);
+  current = 0;
+  score = 0;
+  answered = false;
+  responses = [];
+  $("quizStart").classList.add("hidden");
+  $("quizResult").classList.add("hidden");
+  $("quizMain").classList.remove("hidden");
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = examQuestions[current];
+  answered = false;
+  $("questionCount").textContent = `Question ${current+1} / ${examQuestions.length}`;
+  $("scoreLive").textContent = `Score: ${score}`;
+  $("quizProgress").style.width = (current/examQuestions.length*100)+"%";
+  $("questionText").textContent = q[0];
+  $("feedback").textContent = "";
+  $("nextQuestion").disabled = true;
+  $("nextQuestion").textContent =
+    current === examQuestions.length-1 ? "View results →" : "Next question →";
+  $("answerOptions").replaceChildren();
+
+  q[1].forEach((option,index) => {
+    const button = document.createElement("button");
+    button.className = "answer";
+    button.textContent = String.fromCharCode(65+index)+". "+option;
+    button.addEventListener("click",()=>chooseAnswer(index,button));
+    $("answerOptions").appendChild(button);
+  });
+}
+
+function chooseAnswer(index,button) {
+  if(answered) return;
+  answered = true;
+
+  const q = examQuestions[current];
+  const correct = index === q[2];
+  if(correct) score++;
+
+  responses.push({question:q[0],selected:index,correct:q[2],right:correct});
+  [...$("answerOptions").children].forEach((el,i) => {
+    el.disabled = true;
+    if(i===q[2]) el.classList.add("correct");
+  });
+  if(!correct) button.classList.add("incorrect");
+
+  $("feedback").textContent =
+    (correct ? "✓ Correct. " : "✕ Not quite. ") + q[3];
+  $("scoreLive").textContent = `Score: ${score}`;
+  $("quizProgress").style.width = ((current+1)/examQuestions.length*100)+"%";
+  $("nextQuestion").disabled = false;
+}
+
+function finishExam() {
+  $("quizMain").classList.add("hidden");
+  $("quizResult").classList.remove("hidden");
+  $("finalScore").textContent = `${score}/${examQuestions.length}`;
+  $("finalProgress").style.width = (score/examQuestions.length*100)+"%";
+  $("resultTitle").textContent =
+    score>=80 ? "Excellent performance!" :
+    score>=60 ? "Good progress!" :
+    score>=40 ? "Keep building your skills." :
+    "A fresh review will help.";
+
+  $("resultMessage").textContent =
+    score>=80 ? "You have demonstrated a strong grasp of these practice fundamentals." :
+    score>=60 ? "You have a useful foundation. Review the questions you missed." :
+    "Revisit the lessons, then try the exam again. Improvement comes with practice.";
+
+  $("resultDetails").textContent =
+    `Correct: ${score} · Incorrect: ${examQuestions.length-score} · Score: ${Math.round(score/examQuestions.length*100)}%`;
+
+  const old = $("reviewList");
+  if(old) old.remove();
+
+  const review = document.createElement("details");
+  review.id = "reviewList";
+  review.style.textAlign = "left";
+  review.style.marginTop = "25px";
+  const summary = document.createElement("summary");
+  summary.textContent = "Review your answers";
+  review.appendChild(summary);
+
+  responses.forEach((r,i)=>{
+    const p=document.createElement("p");
+    p.style.borderBottom="1px solid var(--line)";
+    p.style.padding="10px 0";
+    p.textContent = `${i+1}. ${r.right?"✓":"✗"} ${r.question} Correct answer: ${String.fromCharCode(65+r.correct)}. ${examQuestions[i][1][r.correct]}`;
+    review.appendChild(p);
+  });
+  $("quizResult").appendChild(review);
+}
+
+$("startQuiz").addEventListener("click",startExam);
+$("nextQuestion").addEventListener("click",()=>{
+  if(!answered) return;
+  if(current<examQuestions.length-1){current++;renderQuestion();}
+  else finishExam();
+});
+$("quitQuiz").addEventListener("click",finishExam);
+$("restartQuiz").addEventListener("click",startExam);
 </script>
-</body></html>'''
-# Correct two arithmetic-answer keys in the generated exam so the answer index matches the explanation/calculation.
-html = html.replace('["Opening inventory is 6,000, purchases 30,000, purchase returns 1,000, carriage inwards 500 and closing inventory 7,500. Cost of sales is…",["28,000","29,000","35,000","36,000"],1,', '["Opening inventory is 6,000, purchases 30,000, purchase returns 1,000, carriage inwards 500 and closing inventory 7,500. Cost of sales is…",["28,000","29,000","35,000","36,000"],0,')
-html = html.replace('["A product sells for 25, variable cost is 17, and fixed costs are 4,000. Break-even output is…",["320 units","500 units","160 units","4,000 units"],0,', '["A product sells for 25, variable cost is 17, and fixed costs are 4,000. Break-even output is…",["320 units","500 units","160 units","4,000 units"],1,')
-path = Path("/mnt/data/accounting.html")
-path.write_text(html, encoding="utf-8")
-print(f"Created {path} ({path.stat().st_size:,} bytes).")
-print("Single-file HTML includes lessons, worked examples, interactive calculators, and the 100-question MCQ exam.")
+</body>
+</html>
