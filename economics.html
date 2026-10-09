@@ -1,0 +1,1786 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Economics Atlas | IAL ATLAS</title>
+  <meta name="description" content="Learn Economics from the fundamentals with clear notes, essential concepts, examples, and a 100-question interactive Economics exam on IAL ATLAS.">
+  <meta name="keywords" content="Economics, Economics basics, microeconomics, macroeconomics, demand, supply, elasticity, IAL ATLAS">
+  <meta name="author" content="Shuvojit Karmakar">
+  <link rel="canonical" href="https://ialatlas.com/economics.html">
+  <link rel="stylesheet" href="style.css">
+  <meta name="theme-color" content="#06111c">
+
+  <style>
+    :root {
+      --eco-bg: #06111c;
+      --eco-panel: rgba(12, 30, 46, .82);
+      --eco-cyan: #48e5ff;
+      --eco-blue: #63a9ff;
+      --eco-text: #e8f5ff;
+      --eco-muted: #a0b7c9;
+      --eco-border: rgba(72, 229, 255, .22);
+      --eco-green: #66f2b3;
+      --eco-red: #ff7387;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 10% 0%, rgba(25, 116, 160, .19), transparent 38%),
+        radial-gradient(ellipse at 90% 20%, rgba(47, 67, 155, .14), transparent 34%),
+        var(--eco-bg);
+      color: var(--eco-text);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      line-height: 1.7;
+    }
+
+    a { color: var(--eco-cyan); }
+
+    .eco-wrap {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    .eco-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--eco-border);
+    }
+
+    .eco-brand {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-decoration: none;
+      color: var(--eco-text);
+    }
+
+    .eco-brand span { color: var(--eco-cyan); }
+
+    .eco-navlinks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: .9rem;
+    }
+
+    .eco-navlinks a {
+      text-decoration: none;
+      color: var(--eco-muted);
+    }
+
+    .eco-navlinks a:hover { color: var(--eco-cyan); }
+
+    .eco-hero {
+      padding: 76px 0 55px;
+      text-align: center;
+    }
+
+    .eco-kicker {
+      display: inline-block;
+      padding: 6px 13px;
+      border: 1px solid var(--eco-border);
+      border-radius: 30px;
+      color: var(--eco-cyan);
+      font-size: .78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .eco-hero h1 {
+      margin: 20px 0 14px;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      line-height: 1.08;
+      letter-spacing: -2px;
+    }
+
+    .eco-hero h1 span {
+      color: var(--eco-cyan);
+      text-shadow: 0 0 28px rgba(72, 229, 255, .22);
+    }
+
+    .eco-hero p {
+      max-width: 720px;
+      margin: 0 auto 26px;
+      color: var(--eco-muted);
+      font-size: 1.05rem;
+    }
+
+    .eco-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .eco-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 18px;
+      border: 1px solid var(--eco-cyan);
+      border-radius: 9px;
+      background: rgba(72, 229, 255, .08);
+      color: var(--eco-text);
+      font: inherit;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .2s, background .2s, box-shadow .2s;
+    }
+
+    .eco-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(72, 229, 255, .16);
+      box-shadow: 0 0 22px rgba(72, 229, 255, .12);
+    }
+
+    .eco-btn.primary {
+      background: var(--eco-cyan);
+      color: #03111b;
+    }
+
+    .eco-btn:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .eco-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 10px 0 55px;
+    }
+
+    .eco-stat, .eco-card, .eco-topic, .eco-question {
+      border: 1px solid var(--eco-border);
+      border-radius: 15px;
+      background: var(--eco-panel);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, .12);
+    }
+
+    .eco-stat {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .eco-stat strong {
+      display: block;
+      color: var(--eco-cyan);
+      font-size: 1.7rem;
+    }
+
+    .eco-stat span {
+      color: var(--eco-muted);
+      font-size: .85rem;
+    }
+
+    .eco-section { padding: 24px 0 45px; }
+
+    .eco-section-heading {
+      margin-bottom: 22px;
+    }
+
+    .eco-section-heading .eyebrow {
+      color: var(--eco-cyan);
+      font-size: .78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .eco-section-heading h2 {
+      margin: 6px 0;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.2;
+    }
+
+    .eco-section-heading p {
+      max-width: 760px;
+      color: var(--eco-muted);
+    }
+
+    .eco-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .eco-card { padding: 23px; }
+
+    .eco-card h3, .eco-topic h3 {
+      margin-top: 0;
+      color: var(--eco-cyan);
+    }
+
+    .eco-card p, .eco-card li, .eco-topic p {
+      color: var(--eco-muted);
+    }
+
+    .eco-card ul { padding-left: 22px; }
+
+    .eco-formula {
+      overflow-x: auto;
+      margin: 15px 0;
+      padding: 15px;
+      border: 1px solid rgba(72, 229, 255, .18);
+      border-radius: 10px;
+      background: rgba(0, 0, 0, .2);
+      color: #baf6ff;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: .96rem;
+    }
+
+    .eco-example {
+      padding: 12px 15px;
+      border-left: 3px solid var(--eco-cyan);
+      background: rgba(72, 229, 255, .055);
+      color: var(--eco-muted);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .eco-roadmap {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 13px;
+    }
+
+    .eco-topic { padding: 18px; }
+
+    .eco-topic .num {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(72, 229, 255, .12);
+      color: var(--eco-cyan);
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .eco-topic h3 { font-size: 1rem; margin-bottom: 8px; }
+    .eco-topic p { font-size: .9rem; margin-bottom: 0; }
+
+    .eco-exam {
+      margin: 10px 0 65px;
+      padding: clamp(18px, 4vw, 35px);
+      border: 1px solid var(--eco-border);
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(12, 37, 54, .95), rgba(8, 19, 32, .96));
+    }
+
+    .eco-exam-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .eco-exam-top h2 { margin: 0; font-size: 1.8rem; }
+    .eco-exam-top p { color: var(--eco-muted); margin: 5px 0; }
+
+    .eco-progress {
+      height: 7px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, .08);
+      margin: 15px 0 25px;
+    }
+
+    .eco-progress-bar {
+      width: 0;
+      height: 100%;
+      background: var(--eco-cyan);
+      transition: width .2s;
+    }
+
+    .eco-question { padding: 22px; }
+
+    .eco-q-meta {
+      color: var(--eco-cyan);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+
+    .eco-q-text {
+      margin: 12px 0 20px;
+      font-size: 1.13rem;
+      font-weight: 650;
+    }
+
+    .eco-options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .eco-option {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+      width: 100%;
+      padding: 13px 15px;
+      border: 1px solid rgba(160, 183, 201, .2);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, .025);
+      color: var(--eco-text);
+      text-align: left;
+      font: inherit;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+
+    .eco-option:hover:not(:disabled) {
+      border-color: var(--eco-cyan);
+      background: rgba(72, 229, 255, .07);
+    }
+
+    .eco-option:disabled { cursor: default; }
+
+    .eco-option.correct {
+      border-color: var(--eco-green);
+      background: rgba(102, 242, 179, .09);
+    }
+
+    .eco-option.incorrect {
+      border-color: var(--eco-red);
+      background: rgba(255, 115, 135, .09);
+    }
+
+    .eco-option .letter {
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 26px;
+      height: 26px;
+      border: 1px solid var(--eco-border);
+      border-radius: 7px;
+      color: var(--eco-cyan);
+      font-size: .8rem;
+      font-weight: 800;
+    }
+
+    .eco-feedback {
+      min-height: 28px;
+      margin-top: 15px;
+      color: var(--eco-muted);
+    }
+
+    .eco-feedback.good { color: var(--eco-green); }
+    .eco-feedback.bad { color: var(--eco-red); }
+
+    .eco-exam-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 17px;
+    }
+
+    .eco-result {
+      text-align: center;
+      padding: 28px 10px;
+    }
+
+    .eco-result-score {
+      margin: 20px auto;
+      display: grid;
+      place-items: center;
+      width: 145px;
+      height: 145px;
+      border: 3px solid var(--eco-cyan);
+      border-radius: 50%;
+      color: var(--eco-cyan);
+      font-size: 2rem;
+      font-weight: 800;
+      box-shadow: 0 0 35px rgba(72, 229, 255, .12);
+    }
+
+    .eco-result p { color: var(--eco-muted); }
+
+    .eco-footer {
+      padding: 25px 0 35px;
+      border-top: 1px solid var(--eco-border);
+      color: var(--eco-muted);
+      text-align: center;
+      font-size: .87rem;
+    }
+
+    .eco-footer a { text-decoration: none; }
+
+    .eco-small { font-size: .87rem; color: var(--eco-muted); }
+
+    @media (max-width: 720px) {
+      .eco-grid, .eco-stats { grid-template-columns: 1fr; }
+      .eco-roadmap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .eco-hero { padding: 55px 0 35px; }
+      .eco-nav { align-items: flex-start; flex-direction: column; }
+      .eco-navlinks { gap: 12px; }
+    }
+
+    @media (max-width: 440px) {
+      .eco-roadmap { grid-template-columns: 1fr; }
+      .eco-question { padding: 15px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="eco-wrap">
+    <nav class="eco-nav" aria-label="Main navigation">
+      <a class="eco-brand" href="index.html">IAL <span>ATLAS</span></a>
+      <div class="eco-navlinks">
+        <a href="index.html">Home</a>
+        <a href="#learn">Learn</a>
+        <a href="#topics">Topics</a>
+        <a href="#exam">100-Question Exam</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="eco-wrap eco-hero">
+      <span class="eco-kicker">The Economics Learning Hub</span>
+      <h1>Understand the world through <span>Economics.</span></h1>
+      <p>
+        Start with the fundamentals. Learn how people, businesses and governments
+        make decisions, explore microeconomics and macroeconomics, and test your
+        knowledge with an interactive 100-question exam.
+      </p>
+      <div class="eco-actions">
+        <a class="eco-btn primary" href="#learn">Start Learning</a>
+        <a class="eco-btn" href="#exam">Take the 100-Question Exam</a>
+      </div>
+    </section>
+
+    <section class="eco-wrap eco-stats" aria-label="Course overview">
+      <div class="eco-stat">
+        <strong>12</strong>
+        <span>Core topic areas</span>
+      </div>
+      <div class="eco-stat">
+        <strong>100</strong>
+        <span>Practice exam questions</span>
+      </div>
+      <div class="eco-stat">
+        <strong>Free</strong>
+        <span>Learning resources</span>
+      </div>
+    </section>
+
+    <section class="eco-wrap eco-section" id="learn">
+      <div class="eco-section-heading">
+        <span class="eyebrow">01 / The Fundamentals</span>
+        <h2>What is Economics?</h2>
+        <p>
+          Economics studies how individuals, businesses and governments allocate
+          limited resources to satisfy competing needs and wants.
+        </p>
+      </div>
+
+      <div class="eco-grid">
+        <article class="eco-card">
+          <h3>1. Scarcity</h3>
+          <p>
+            Resources are limited, but human wants are unlimited. This fundamental
+            problem forces people and societies to make choices.
+          </p>
+          <div class="eco-example">
+            <strong>Example:</strong> If you have ৳500, you may have to choose
+            between buying a textbook and going out with friends.
+          </div>
+        </article>
+
+        <article class="eco-card">
+          <h3>2. Choice and Opportunity Cost</h3>
+          <p>
+            Every choice involves giving something up. <strong>Opportunity cost</strong>
+            is the value of the next best alternative forgone when a decision is made.
+          </p>
+          <div class="eco-example">
+            <strong>Example:</strong> If studying for an exam means missing a
+            football match, the match may be your opportunity cost.
+          </div>
+        </article>
+
+        <article class="eco-card">
+          <h3>3. The Four Factors of Production</h3>
+          <ul>
+            <li><strong>Land:</strong> Natural resources, such as oil and soil.</li>
+            <li><strong>Labour:</strong> Human effort used in production.</li>
+            <li><strong>Capital:</strong> Man-made resources used to produce goods and services.</li>
+            <li><strong>Enterprise:</strong> Organising production and taking business risks.</li>
+          </ul>
+        </article>
+
+        <article class="eco-card">
+          <h3>4. The Three Basic Economic Questions</h3>
+          <ul>
+            <li><strong>What</strong> goods and services should be produced?</li>
+            <li><strong>How</strong> should they be produced?</li>
+            <li><strong>For whom</strong> should they be produced?</li>
+          </ul>
+          <p>Different economic systems answer these questions in different ways.</p>
+        </article>
+
+        <article class="eco-card">
+          <h3>5. Microeconomics</h3>
+          <p>
+            Microeconomics examines individual markets and decision-makers:
+            consumers, workers and firms.
+          </p>
+          <div class="eco-example">
+            <strong>Example:</strong> How does the price of rice affect the
+            quantity consumers buy?
+          </div>
+        </article>
+
+        <article class="eco-card">
+          <h3>6. Macroeconomics</h3>
+          <p>
+            Macroeconomics examines the economy as a whole, including economic
+            growth, inflation, unemployment and international trade.
+          </p>
+          <div class="eco-example">
+            <strong>Example:</strong> Why might a country's general price level rise?
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="eco-wrap eco-section" id="topics">
+      <div class="eco-section-heading">
+        <span class="eyebrow">02 / Essential Concepts</span>
+        <h2>Build Your Economics Foundation</h2>
+        <p>Learn these concepts before moving into more advanced economic analysis.</p>
+      </div>
+
+      <div class="eco-grid">
+        <article class="eco-card">
+          <h3>Demand</h3>
+          <p>
+            Demand is the quantity of a good or service consumers are willing and
+            able to buy at different prices over a given period.
+          </p>
+          <ul>
+            <li>When price falls, quantity demanded usually rises.</li>
+            <li>When price rises, quantity demanded usually falls.</li>
+            <li>This is the law of demand, other things being equal.</li>
+          </ul>
+          <div class="eco-formula">Price ↑ → Quantity demanded ↓</div>
+          <p>
+            A change in the good's own price causes a movement along the demand
+            curve. Changes in income, tastes or the prices of related goods can
+            shift the demand curve.
+          </p>
+        </article>
+
+        <article class="eco-card">
+          <h3>Supply</h3>
+          <p>
+            Supply is the quantity producers are willing and able to sell at
+            different prices over a given period.
+          </p>
+          <ul>
+            <li>Higher prices usually encourage producers to supply more.</li>
+            <li>Lower prices usually encourage producers to supply less.</li>
+            <li>Production costs and technology can shift supply.</li>
+          </ul>
+          <div class="eco-formula">Price ↑ → Quantity supplied ↑</div>
+          <p>
+            A change in the good's own price causes a movement along the supply
+            curve. A change in production costs can shift the whole curve.
+          </p>
+        </article>
+
+        <article class="eco-card">
+          <h3>Market Equilibrium</h3>
+          <p>
+            Equilibrium occurs where quantity demanded equals quantity supplied.
+            The market-clearing price is the equilibrium price.
+          </p>
+          <div class="eco-formula">Quantity demanded = Quantity supplied</div>
+          <ul>
+            <li><strong>Shortage:</strong> Quantity demanded exceeds quantity supplied.</li>
+            <li><strong>Surplus:</strong> Quantity supplied exceeds quantity demanded.</li>
+          </ul>
+        </article>
+
+        <article class="eco-card">
+          <h3>Elasticity</h3>
+          <p>
+            Elasticity measures how responsive one variable is to a change in another.
+          </p>
+          <div class="eco-formula">
+            PED = % change in quantity demanded ÷ % change in price
+          </div>
+          <ul>
+            <li><strong>PED greater than 1 in absolute value:</strong> Elastic demand.</li>
+            <li><strong>PED less than 1 in absolute value:</strong> Inelastic demand.</li>
+            <li><strong>PED equal to 1 in absolute value:</strong> Unit elastic demand.</li>
+          </ul>
+          <p>
+            Price elasticity of supply (PES) measures how responsive quantity
+            supplied is to a change in price.
+          </p>
+        </article>
+
+        <article class="eco-card">
+          <h3>Market Failure</h3>
+          <p>
+            Market failure occurs when the free market fails to allocate resources
+            efficiently from society's perspective.
+          </p>
+          <ul>
+            <li><strong>Externalities:</strong> Effects on third parties.</li>
+            <li><strong>Public goods:</strong> Non-rival and non-excludable goods.</li>
+            <li><strong>Information gaps:</strong> Buyers or sellers lack relevant information.</li>
+            <li><strong>Market power:</strong> Firms may restrict competition.</li>
+          </ul>
+        </article>
+
+        <article class="eco-card">
+          <h3>GDP and Economic Growth</h3>
+          <p>
+            Gross Domestic Product (GDP) measures the value of final goods and
+            services produced within a country during a given period.
+          </p>
+          <div class="eco-formula">GDP = C + I + G + (X − M)</div>
+          <p>
+            C = consumption, I = investment, G = government spending,
+            X = exports and M = imports.
+          </p>
+          <p>
+            Real GDP adjusts for changes in the general price level, helping
+            economists assess changes in output.
+          </p>
+        </article>
+
+        <article class="eco-card">
+          <h3>Inflation and Unemployment</h3>
+          <p>
+            <strong>Inflation</strong> is a sustained increase in the general
+            price level. It reduces the purchasing power of money when incomes
+            do not rise correspondingly.
+          </p>
+          <p>
+            <strong>Unemployment</strong> occurs when people who are willing and
+            able to work cannot find a job.
+          </p>
+          <p>
+            Common types of unemployment include frictional, structural and
+            cyclical unemployment.
+          </p>
+        </article>
+
+        <article class="eco-card">
+          <h3>Fiscal and Monetary Policy</h3>
+          <p>
+            Governments and central banks can influence economic activity through
+            different policy tools.
+          </p>
+          <ul>
+            <li><strong>Fiscal policy:</strong> Government spending and taxation.</li>
+            <li><strong>Monetary policy:</strong> Interest rates and other monetary tools.</li>
+          </ul>
+          <p>
+            Expansionary policies aim to support economic activity; contractionary
+            policies aim to reduce excess demand or inflationary pressure.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="eco-wrap eco-section">
+      <div class="eco-section-heading">
+        <span class="eyebrow">03 / Your Learning Path</span>
+        <h2>Explore the Main Topic Areas</h2>
+        <p>Use this roadmap to organise your study and identify areas for revision.</p>
+      </div>
+
+      <div class="eco-roadmap">
+        <article class="eco-topic">
+          <span class="num">01</span>
+          <h3>Basic Economic Problem</h3>
+          <p>Scarcity, choice, opportunity cost and resource allocation.</p>
+        </article>
+        <article class="eco-topic">
+          <span class="num">02</span>
+          <h3>Economic Systems</h3>
+          <p>Market, planned and mixed economies.</p>
+        </article>
+        <article class="eco-topic">
+          <span class="num">03</span>
+          <h3>Demand and Supply</h3>
+          <p>Curves, determinants, movements and shifts.</p>
+        </article>
+        <article class="eco-topic">
+          <span class="num">04</span>
+          <h3>Elasticity</h3>
+          <p>PED, YED, XED and PES.</p>
+        </article>
+        <article class="eco-topic">
+          <span class="num">05</span>
+          <h3>Market Structures</h3>
+          <p>Competition, monopoly and firm behaviour.</p>
+        </article>
+        <article class="eco-topic">
+          <span class="num">06</span>
+          <h3>Market Failure</h3>
+          <p>Externalities, public goods and government intervention.</p>
+        </article>
+        <article class="eco-topic">
+          <span class="num">07</span>
+          <h3>Macroeconomic Objectives</h3>
+          <p>Growth, price stability, employment and balance of payments.</p>
+        </article>
+        <article class="eco-topic">
+          <span class="num">08</span>
+          <h3>Aggregate Demand and Supply</h3>
+          <p>AD, AS and changes in the general price level and output.</p>
+        </article>
+        <article class="eco-topic">
+          <span class="num">09</span>
+          <h3>Inflation and Unemployment</h3>
+          <p>Causes, consequences and possible policy responses.</p>
+        </article>
+        <article class="eco-topic">
+          <span class="num">10</span>
+          <h3>Economic Policies</h3>
+          <p>Fiscal, monetary and supply-side policies.</p>
+        </article>
+        <article class="eco-topic">
+          <span class="num">11</span>
+          <h3>International Trade</h3>
+          <p>Specialisation, comparative advantage, tariffs and quotas.</p>
+        </article>
+        <article class="eco-topic">
+          <span class="num">12</span>
+          <h3>Development Economics</h3>
+          <p>Living standards, inequality, poverty and development indicators.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="eco-wrap eco-section" id="exam">
+      <div class="eco-section-heading">
+        <span class="eyebrow">04 / Test Your Knowledge</span>
+        <h2>The 100-Question Economics Exam</h2>
+        <p>
+          Answer each question and receive immediate feedback. Your final score
+          will be calculated out of 100. This is a foundational practice exam,
+          not an official Pearson Edexcel assessment.
+        </p>
+      </div>
+
+      <div class="eco-exam">
+        <div class="eco-exam-top">
+          <div>
+            <h2>Economics Challenge</h2>
+            <p id="eco-status">Question 1 of 100</p>
+          </div>
+          <div>
+            <strong id="eco-score-live">Score: 0</strong>
+            <p class="eco-small">Correct answers</p>
+          </div>
+        </div>
+
+        <div class="eco-progress" aria-label="Exam progress">
+          <div class="eco-progress-bar" id="eco-progress-bar"></div>
+        </div>
+
+        <div id="eco-question-area" class="eco-question" aria-live="polite">
+          <div class="eco-q-meta" id="eco-q-meta">QUESTION 01</div>
+          <div class="eco-q-text" id="eco-q-text">Loading question...</div>
+          <div class="eco-options" id="eco-options"></div>
+          <div class="eco-feedback" id="eco-feedback" role="status"></div>
+          <div class="eco-exam-controls">
+            <span class="eco-small" id="eco-answered">Answered: 0 / 100</span>
+            <button class="eco-btn primary" id="eco-next" type="button" disabled>Next Question →</button>
+          </div>
+        </div>
+
+        <div id="eco-result" class="eco-result" hidden>
+          <span class="eco-kicker">Exam Completed</span>
+          <h2>Your Economics Result</h2>
+          <div class="eco-result-score" id="eco-result-score">0/100</div>
+          <h3 id="eco-result-message"></h3>
+          <p id="eco-result-detail"></p>
+          <button class="eco-btn primary" id="eco-restart" type="button">Try Again</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="eco-footer">
+    <div class="eco-wrap">
+      <p><a href="index.html">IAL ATLAS</a> — Learn without the confusion.</p>
+      <p>Created by Shuvojit Karmakar. Independent educational resource; not affiliated with or endorsed by Pearson Edexcel.</p>
+    </div>
+  </footer>
+
+  <script>
+    /*
+      Each question has:
+      q = question text
+      o = four answer options
+      a = index of the correct answer (0, 1, 2 or 3)
+      e = explanation shown after answering
+    */
+
+    const economicsQuestions = [
+      {
+        q: "What is the fundamental economic problem?",
+        o: ["Unlimited resources and limited wants", "Scarce resources and unlimited wants", "A lack of money in every economy", "The absence of international trade"],
+        a: 1,
+        e: "Scarcity means resources are limited relative to human wants."
+      },
+      {
+        q: "What is opportunity cost?",
+        o: ["The money already spent on a decision", "The total cost of every available option", "The value of the next best alternative forgone", "The profit earned from a decision"],
+        a: 2,
+        e: "Opportunity cost is the value of the next best alternative given up."
+      },
+      {
+        q: "Which is an example of a free good in a particular context?",
+        o: ["A scarce diamond", "A paid train ticket", "A restaurant meal", "Air available freely in an open field"],
+        a: 3,
+        e: "A free good has no opportunity cost of use in the relevant context, though clean air can become scarce."
+      },
+      {
+        q: "Which factor of production includes workers' physical and mental effort?",
+        o: ["Labour", "Land", "Capital", "Enterprise"],
+        a: 0,
+        e: "Labour is human effort used in the production of goods and services."
+      },
+      {
+        q: "Which factor of production includes natural resources?",
+        o: ["Enterprise", "Capital", "Land", "Labour"],
+        a: 2,
+        e: "Land includes natural resources such as minerals, forests and soil."
+      },
+      {
+        q: "In economics, capital usually refers to:",
+        o: ["Cash held by every consumer", "Man-made resources used in production", "All natural resources", "The owner of a business"],
+        a: 1,
+        e: "Capital goods include machinery, tools and factory equipment."
+      },
+      {
+        q: "What is the main role of enterprise?",
+        o: ["Providing all natural resources", "Setting every market price", "Removing scarcity", "Organising production and bearing risk"],
+        a: 3,
+        e: "Entrepreneurs organise factors of production and take business risks."
+      },
+      {
+        q: "Which is one of the three basic economic questions?",
+        o: ["What should be produced?", "How can scarcity be abolished forever?", "Why should all prices be zero?", "When should every business close?"],
+        a: 0,
+        e: "Economies decide what to produce, how to produce and for whom to produce."
+      },
+      {
+        q: "What does a production possibility frontier (PPF) show?",
+        o: ["The prices of every good in a market", "The distribution of income between households", "Maximum possible combinations of output with given resources and technology", "The unemployment rate over time"],
+        a: 2,
+        e: "A PPF illustrates productive capacity and trade-offs between outputs."
+      },
+      {
+        q: "A point inside a PPF generally indicates:",
+        o: ["Unattainable production", "Underused resources or productive inefficiency", "Maximum productive efficiency", "No opportunity cost"],
+        a: 1,
+        e: "An interior point indicates that output could potentially increase using existing resources more effectively."
+      },
+      {
+        q: "A point beyond the current PPF is:",
+        o: ["Always productively efficient and attainable", "A point of zero scarcity", "An equilibrium price", "Unattainable with current resources and technology"],
+        a: 3,
+        e: "Output beyond the frontier requires more resources, better technology or another improvement."
+      },
+      {
+        q: "What would most likely shift a country's PPF outward?",
+        o: ["An increase in productive resources", "A fall in worker skills", "A major loss of machinery", "A permanent reduction in technology"],
+        a: 0,
+        e: "More resources or improved technology can increase productive capacity."
+      },
+      {
+        q: "What does specialisation mean?",
+        o: ["Producing every good equally", "Avoiding all international trade", "Concentrating on a particular task or product", "Eliminating division of labour"],
+        a: 2,
+        e: "Specialisation focuses productive effort on particular tasks or outputs."
+      },
+      {
+        q: "A market economy relies mainly on:",
+        o: ["Government orders for every output", "Price signals and private decisions", "Traditional rules alone", "The absence of consumer choice"],
+        a: 1,
+        e: "Market economies use prices and decentralised decisions to allocate resources."
+      },
+      {
+        q: "A planned economy relies mainly on:",
+        o: ["Consumer demand alone", "Unregulated private ownership alone", "International organisations setting all wages", "Central authorities directing resource allocation"],
+        a: 3,
+        e: "In a planned economy, central authorities make major production and allocation decisions."
+      },
+      {
+        q: "A mixed economy combines:",
+        o: ["Market forces with government involvement", "Only barter and subsistence farming", "No private sector and no public sector", "Only imports and exports"],
+        a: 0,
+        e: "Mixed economies combine market mechanisms with varying levels of state intervention."
+      },
+      {
+        q: "What is demand?",
+        o: ["The amount firms have already produced", "A consumer's desire without purchasing ability", "The quantity consumers are willing and able to buy at different prices", "The total tax paid by firms"],
+        a: 2,
+        e: "Demand requires both willingness and ability to purchase."
+      },
+      {
+        q: "According to the law of demand, other things equal, when price rises:",
+        o: ["Quantity demanded always rises", "Quantity demanded usually falls", "Demand must shift right", "Supply must fall"],
+        a: 1,
+        e: "There is generally an inverse relationship between price and quantity demanded."
+      },
+      {
+        q: "A change in a good's own price normally causes:",
+        o: ["A shift of the demand curve", "A shift of the supply curve only", "A change in consumer income", "A movement along the demand curve"],
+        a: 3,
+        e: "A price change changes quantity demanded along the existing demand curve."
+      },
+      {
+        q: "Which change is most likely to shift demand for a normal good to the right?",
+        o: ["An increase in consumer income", "A fall in consumer income", "A reduction in the number of buyers", "A fall in the good's own price"],
+        a: 0,
+        e: "Higher income usually increases demand for a normal good. A price change causes movement along the curve."
+      },
+      {
+        q: "Goods that can be used in place of each other are called:",
+        o: ["Public goods", "Complementary goods", "Substitute goods", "Capital goods"],
+        a: 2,
+        e: "Examples of substitutes include tea and coffee for some consumers."
+      },
+      {
+        q: "Cars and petrol are often examples of:",
+        o: ["Unrelated goods", "Complementary goods", "Free goods", "Public goods"],
+        a: 1,
+        e: "Complementary goods are consumed together; changes in the price of one can affect demand for the other."
+      },
+      {
+        q: "For an inferior good, demand usually falls when:",
+        o: ["Its own price falls", "The number of consumers rises", "Its quality improves", "Consumer income rises"],
+        a: 3,
+        e: "Demand for an inferior good tends to decrease as income rises, other things equal."
+      },
+      {
+        q: "What is supply?",
+        o: ["The quantity producers are willing and able to sell at different prices", "The amount consumers wish they could buy", "Total household income", "The amount of money in circulation"],
+        a: 0,
+        e: "Supply describes producers' willingness and ability to sell at different prices."
+      },
+      {
+        q: "According to the law of supply, other things equal, when price rises:",
+        o: ["Quantity supplied always falls", "Demand must become zero", "Quantity supplied usually rises", "The supply curve must shift left"],
+        a: 2,
+        e: "A higher price generally provides an incentive to supply more."
+      },
+      {
+        q: "A rise in production costs will usually:",
+        o: ["Increase supply", "Decrease supply", "Increase demand automatically", "Have no possible effect on supply"],
+        a: 1,
+        e: "Higher costs make production less profitable and usually shift supply left."
+      },
+      {
+        q: "Improved production technology usually:",
+        o: ["Reduces productive capacity", "Raises every firm's costs", "Reduces demand in every market", "Increases supply by lowering costs or improving productivity"],
+        a: 3,
+        e: "Better technology can lower unit costs or allow firms to produce more efficiently."
+      },
+      {
+        q: "Market equilibrium occurs when:",
+        o: ["Quantity demanded equals quantity supplied", "All consumers earn the same income", "Government spending equals tax revenue", "Imports equal exports in every case"],
+        a: 0,
+        e: "At equilibrium, the quantity buyers wish to purchase equals the quantity sellers wish to sell."
+      },
+      {
+        q: "A shortage occurs when:",
+        o: ["Supply exceeds demand at the current price", "The market is always in equilibrium", "Quantity demanded exceeds quantity supplied", "Firms produce more than consumers want"],
+        a: 2,
+        e: "A shortage means buyers want more than sellers offer at the current price."
+      },
+      {
+        q: "A surplus occurs when:",
+        o: ["Quantity demanded exceeds quantity supplied", "Quantity supplied exceeds quantity demanded", "Demand and supply are equal", "Resources become unlimited"],
+        a: 1,
+        e: "A surplus means firms offer more than buyers wish to purchase at the current price."
+      },
+      {
+        q: "If demand increases while supply remains unchanged, equilibrium price will generally:",
+        o: ["Fall", "Become zero", "Remain fixed in all circumstances", "Rise"],
+        a: 3,
+        e: "An outward shift in demand generally raises both equilibrium price and quantity."
+      },
+      {
+        q: "If supply increases while demand remains unchanged, equilibrium price will generally:",
+        o: ["Fall", "Rise in every possible case", "Become negative", "Remain unchanged in every case"],
+        a: 0,
+        e: "An outward shift in supply generally lowers equilibrium price and raises equilibrium quantity."
+      },
+      {
+        q: "Price elasticity of demand (PED) measures:",
+        o: ["How income changes with unemployment", "How supply changes with technology", "The responsiveness of quantity demanded to a price change", "The change in GDP after taxation"],
+        a: 2,
+        e: "PED measures the responsiveness of quantity demanded to a change in price."
+      },
+      {
+        q: "The formula for PED is:",
+        o: ["Percentage change in price ÷ percentage change in income", "Percentage change in quantity demanded ÷ percentage change in price", "Total cost ÷ total revenue", "Percentage change in supply ÷ percentage change in wages"],
+        a: 1,
+        e: "PED = percentage change in quantity demanded divided by percentage change in price."
+      },
+      {
+        q: "If the absolute value of PED is greater than 1, demand is:",
+        o: ["Perfectly inelastic", "Unit elastic", "Inelastic", "Elastic"],
+        a: 3,
+        e: "Elastic demand means quantity demanded responds proportionately more than price."
+      },
+      {
+        q: "If the absolute value of PED is less than 1, demand is:",
+        o: ["Inelastic", "Elastic", "Perfectly elastic", "Unit elastic"],
+        a: 0,
+        e: "Inelastic demand means the percentage response in quantity is smaller than the percentage price change."
+      },
+      {
+        q: "Demand with an absolute PED of exactly 1 is:",
+        o: ["Perfectly elastic", "Perfectly inelastic", "Unit elastic", "Necessarily zero"],
+        a: 2,
+        e: "Unit elasticity means the absolute percentage changes in price and quantity demanded are equal."
+      },
+      {
+        q: "Demand for a product with many close substitutes is likely to be:",
+        o: ["Perfectly inelastic in all cases", "More price elastic", "Unrelated to price", "Always unit elastic"],
+        a: 1,
+        e: "Consumers can switch to substitutes when the product's price rises."
+      },
+      {
+        q: "If demand is price inelastic, a price increase will generally cause total revenue to:",
+        o: ["Fall to zero", "Remain zero", "Always remain unchanged", "Increase"],
+        a: 3,
+        e: "With inelastic demand, the percentage fall in quantity is smaller than the percentage rise in price."
+      },
+      {
+        q: "Income elasticity of demand (YED) measures responsiveness of demand to a change in:",
+        o: ["Consumer income", "The firm's production costs", "The exchange rate only", "Indirect taxes only"],
+        a: 0,
+        e: "YED measures the percentage change in demand divided by the percentage change in income."
+      },
+      {
+        q: "A positive YED usually indicates a:",
+        o: ["Public good", "Inferior good", "Normal good", "Negative externality"],
+        a: 2,
+        e: "Demand for a normal good tends to rise as consumer income rises."
+      },
+      {
+        q: "A negative YED usually indicates a:",
+        o: ["Luxury good", "Inferior good", "Complementary good", "Merit good in every case"],
+        a: 1,
+        e: "Demand for an inferior good tends to fall as income rises."
+      },
+      {
+        q: "Cross elasticity of demand measures how demand for one good responds to a change in:",
+        o: ["The population only", "Government spending only", "Its own production technology", "The price of another good"],
+        a: 3,
+        e: "XED compares the percentage change in demand for one good with the percentage change in another good's price."
+      },
+      {
+        q: "Positive cross elasticity usually suggests that two goods are:",
+        o: ["Substitutes", "Complements", "Both inferior in every case", "Unrelated in every case"],
+        a: 0,
+        e: "A rise in the price of one substitute tends to increase demand for the other."
+      },
+      {
+        q: "Negative cross elasticity usually suggests that two goods are:",
+        o: ["Perfect substitutes", "Unrelated goods", "Complements", "Both public goods"],
+        a: 2,
+        e: "A rise in the price of one complementary good tends to reduce demand for the other."
+      },
+      {
+        q: "Price elasticity of supply (PES) measures how responsive quantity supplied is to:",
+        o: ["Consumer income", "A change in price", "The unemployment rate", "The exchange rate only"],
+        a: 1,
+        e: "PES measures the percentage change in quantity supplied divided by the percentage change in price."
+      },
+      {
+        q: "Supply is usually more elastic when firms:",
+        o: ["Cannot change production at all", "Have no spare capacity", "Need many years to adjust output", "Have spare capacity and can increase output quickly"],
+        a: 3,
+        e: "Spare capacity and flexible production make it easier to respond to price changes."
+      },
+      {
+        q: "Which is a direct tax?",
+        o: ["Income tax", "Value-added tax", "A sales tax on a product", "An excise duty on fuel"],
+        a: 0,
+        e: "Income tax is imposed directly on income. VAT and excise duties are indirect taxes."
+      },
+      {
+        q: "Which is an indirect tax?",
+        o: ["Personal income tax", "Corporation tax", "Value-added tax (VAT)", "A tax on annual earnings"],
+        a: 2,
+        e: "VAT is levied on spending on goods and services."
+      },
+      {
+        q: "A subsidy to producers will generally:",
+        o: ["Increase their costs directly", "Reduce production costs and encourage supply", "Eliminate all scarcity", "Always reduce supply"],
+        a: 1,
+        e: "A subsidy lowers effective production costs and can shift supply to the right."
+      },
+      {
+        q: "An indirect tax on a product will generally:",
+        o: ["Make production costless", "Increase supply automatically", "Eliminate the market price", "Raise firms' costs and reduce supply, other things equal"],
+        a: 3,
+        e: "An indirect tax raises the cost of supplying a product and generally shifts supply left."
+      },
+      {
+        q: "A maximum price set below equilibrium may cause:",
+        o: ["A shortage", "A surplus", "Unlimited supply", "No possible market effect"],
+        a: 0,
+        e: "A binding price ceiling can cause quantity demanded to exceed quantity supplied."
+      },
+      {
+        q: "A minimum price set above equilibrium may cause:",
+        o: ["A shortage in every market", "The disappearance of demand", "A surplus", "Zero production costs"],
+        a: 2,
+        e: "A binding price floor can cause quantity supplied to exceed quantity demanded."
+      },
+      {
+        q: "What is a public good in the economic sense?",
+        o: ["Any product sold by a government-owned firm", "A good that is non-rival and non-excludable", "A good that is always free to produce", "Any good purchased by a large group"],
+        a: 1,
+        e: "Pure public goods are non-rival and non-excludable."
+      },
+      {
+        q: "What does non-rivalry mean?",
+        o: ["Nobody is allowed to use the good", "The good has no production cost", "The good must be sold privately", "One person's use does not reduce availability to others"],
+        a: 3,
+        e: "Non-rival consumption means one person's use does not reduce the amount available to others."
+      },
+      {
+        q: "What does non-excludability mean?",
+        o: ["It is difficult or impossible to prevent non-payers from benefiting", "The good cannot benefit anyone", "The good is always scarce", "Only one person can consume it"],
+        a: 0,
+        e: "Non-excludability makes it difficult to prevent people from benefiting without paying."
+      },
+      {
+        q: "The free-rider problem is particularly associated with:",
+        o: ["Private goods with easy exclusion", "A rise in production costs only", "Public goods", "Perfectly competitive labour markets only"],
+        a: 2,
+        e: "People may benefit from a public good without contributing to its cost."
+      },
+      {
+        q: "A negative externality of production occurs when:",
+        o: ["A firm benefits every third party", "Production imposes external costs on third parties", "Consumers pay the full social cost in every case", "Government spending equals tax revenue"],
+        a: 1,
+        e: "Pollution from production can impose costs on people who are not part of the transaction."
+      },
+      {
+        q: "A positive externality of consumption occurs when:",
+        o: ["Consumption harms every third party", "A consumer pays no price", "A firm earns an unusually high profit", "Consumption creates benefits for third parties"],
+        a: 3,
+        e: "Education and vaccination can create benefits for people beyond the direct consumer."
+      },
+      {
+        q: "Which policy may help reduce a negative production externality?",
+        o: ["A tax related to the external cost", "A subsidy for every polluting activity", "A ban on all consumer information", "A guaranteed price above equilibrium for every product"],
+        a: 0,
+        e: "A corrective tax can make producers take more of the external cost into account."
+      },
+      {
+        q: "Which is an example of a merit good?",
+        o: ["A good that has no possible social benefit", "A good that only benefits its producer", "Education", "A good that cannot be consumed"],
+        a: 2,
+        e: "Education is often treated as a merit good because its benefits may be underestimated by consumers and spill over to society."
+      },
+      {
+        q: "What is a monopoly?",
+        o: ["A market with countless identical sellers", "A market dominated by a single supplier with substantial market power", "A market where no firm sells anything", "A market in which all products are free"],
+        a: 1,
+        e: "A monopoly is commonly characterised by one dominant supplier and significant barriers to entry."
+      },
+      {
+        q: "Perfect competition is associated with:",
+        o: ["One seller and strong barriers to entry", "Only one buyer", "Firms that can set any price without constraint", "Many firms selling identical products with easy entry and exit"],
+        a: 3,
+        e: "The ideal model of perfect competition assumes many buyers and sellers, homogeneous products and low barriers to entry."
+      },
+      {
+        q: "A barrier to entry is:",
+        o: ["Something that makes it difficult for new firms to enter a market", "A fall in all consumer incomes", "A type of public good", "A measure of inflation"],
+        a: 0,
+        e: "Barriers to entry can include high start-up costs, legal restrictions and strong brand loyalty."
+      },
+      {
+        q: "What is total revenue?",
+        o: ["Total cost minus total profit", "Fixed cost multiplied by variable cost", "Price multiplied by quantity sold", "Output divided by price"],
+        a: 2,
+        e: "Total revenue = price per unit × quantity sold."
+      },
+      {
+        q: "What is profit?",
+        o: ["Total revenue plus total cost", "Total revenue minus total cost", "Total cost minus total output", "Price divided by quantity"],
+        a: 1,
+        e: "Profit is the difference between total revenue and total cost."
+      },
+      {
+        q: "Fixed costs are costs that, in the short run:",
+        o: ["Rise by exactly the same amount as output", "Are always zero", "Only apply to government firms", "Do not vary directly with the level of output"],
+        a: 3,
+        e: "Examples can include rent or some insurance payments over a given short-run period."
+      },
+      {
+        q: "Variable costs generally:",
+        o: ["Change as output changes", "Never change with output", "Equal profit in every firm", "Only exist in public organisations"],
+        a: 0,
+        e: "Raw materials and some energy costs tend to change with the amount produced."
+      },
+      {
+        q: "What is productivity?",
+        o: ["The general price level", "The number of consumers in a country", "Output per unit of input", "The total amount of tax collected"],
+        a: 2,
+        e: "Labour productivity, for example, measures output per worker or per hour worked."
+      },
+      {
+        q: "Economies of scale occur when:",
+        o: ["Long-run average costs always rise as output increases", "Long-run average cost falls as scale of output increases", "Demand becomes zero", "All firms have identical costs"],
+        a: 1,
+        e: "Economies of scale reduce average cost as a firm expands its scale of production."
+      },
+      {
+        q: "Diseconomies of scale occur when:",
+        o: ["Average cost is permanently zero", "Every worker becomes more productive", "A firm's revenue equals its cost", "Long-run average cost rises as output expands beyond a point"],
+        a: 3,
+        e: "Excessive size can create coordination and communication problems that raise average costs."
+      },
+      {
+        q: "Macroeconomics primarily studies:",
+        o: ["The economy as a whole", "Only the pricing of one product", "One household's shopping choices", "A single firm's production line only"],
+        a: 0,
+        e: "Macroeconomics examines aggregate output, employment, inflation and other economy-wide variables."
+      },
+      {
+        q: "Gross Domestic Product (GDP) measures:",
+        o: ["The wealth owned by every citizen worldwide", "Only the value of imported goods", "The value of final goods and services produced within a country during a period", "Only government tax revenue"],
+        a: 2,
+        e: "GDP measures domestic production over a specified period."
+      },
+      {
+        q: "Which item is included in the expenditure approach to GDP?",
+        o: ["Only used goods resold between households", "Consumption spending on final goods and services", "Every financial transaction regardless of output", "All unpaid household work at market prices"],
+        a: 1,
+        e: "Consumption is one component of GDP expenditure."
+      },
+      {
+        q: "In the GDP expenditure formula, what does I represent?",
+        o: ["Inflation", "Imports only", "Income tax", "Investment"],
+        a: 3,
+        e: "The expenditure formula is GDP = C + I + G + (X − M)."
+      },
+      {
+        q: "Why are imports subtracted in the GDP expenditure formula?",
+        o: ["They are produced abroad and are not part of domestic production", "Imports never benefit consumers", "Imports are always harmful", "They are identical to taxes"],
+        a: 0,
+        e: "Imports may appear in consumption or investment spending, so they are subtracted to exclude foreign production."
+      },
+      {
+        q: "Real GDP differs from nominal GDP because real GDP:",
+        o: ["Excludes every service", "Measures only imports", "Adjusts for changes in the general price level", "Counts only government spending"],
+        a: 2,
+        e: "Real GDP removes the effect of price changes to better measure changes in output."
+      },
+      {
+        q: "Economic growth usually refers to:",
+        o: ["A rise in every individual household's income", "An increase in real GDP over time", "A fall in all prices", "A rise in unemployment only"],
+        a: 1,
+        e: "Economic growth is commonly measured as an increase in real GDP."
+      },
+      {
+        q: "GDP per capita is calculated by:",
+        o: ["GDP multiplied by the population", "GDP minus imports only", "Population divided by exports", "GDP divided by the population"],
+        a: 3,
+        e: "GDP per capita is average GDP per person, though it does not show how income is distributed."
+      },
+      {
+        q: "Inflation is:",
+        o: ["A sustained rise in the general price level", "A fall in the price of one product only", "A rise in the quantity of goods produced only", "A decline in the labour force"],
+        a: 0,
+        e: "Inflation is a sustained increase in the overall price level."
+      },
+      {
+        q: "Which is a possible cause of demand-pull inflation?",
+        o: ["A collapse in aggregate demand", "A permanent fall in spending", "Aggregate demand rising faster than the economy's ability to supply output", "A fall in production costs in every sector"],
+        a: 2,
+        e: "Demand-pull inflation can occur when aggregate demand grows beyond productive capacity."
+      },
+      {
+        q: "Cost-push inflation can be caused by:",
+        o: ["A fall in wages and energy prices", "A rise in important input costs", "A reduction in indirect taxes", "A fall in firms' unit costs"],
+        a: 1,
+        e: "Higher energy, wage or imported input costs can raise firms' costs and prices."
+      },
+      {
+        q: "If prices rise while nominal income stays unchanged, purchasing power generally:",
+        o: ["Increases", "Becomes unlimited", "Never changes", "Falls"],
+        a: 3,
+        e: "The same money income buys fewer goods and services when the general price level rises."
+      },
+      {
+        q: "Unemployment occurs when people who are willing and able to work:",
+        o: ["Cannot find a job", "Choose not to seek any work and are not available", "Are all self-employed", "Receive a wage increase"],
+        a: 0,
+        e: "Official definitions vary, but unemployment generally involves being without work, available for work and seeking work."
+      },
+      {
+        q: "Frictional unemployment can occur when:",
+        o: ["All industries disappear permanently", "The price level falls", "People are between jobs or searching for a suitable job", "Every worker is unable to change jobs"],
+        a: 2,
+        e: "Frictional unemployment often arises during job search and transitions between jobs."
+      },
+      {
+        q: "Structural unemployment may occur when:",
+        o: ["A worker takes a short holiday", "Workers' skills or locations do not match available jobs", "Every market is in equilibrium", "Prices remain stable"],
+        a: 1,
+        e: "Structural unemployment can result from changes in industry, technology or the location of jobs."
+      },
+      {
+        q: "Cyclical unemployment is associated with:",
+        o: ["Workers changing jobs in a growing economy only", "A permanent lack of all natural resources", "A fall in the retirement age only", "Weak demand during an economic downturn"],
+        a: 3,
+        e: "A downturn can reduce output and labour demand, creating cyclical unemployment."
+      },
+      {
+        q: "Which is a possible consequence of high unemployment?",
+        o: ["Lost output and lower tax revenue", "Guaranteed economic growth", "The elimination of opportunity cost", "The end of all inflation"],
+        a: 0,
+        e: "Unemployment can reduce output, household incomes and government tax receipts."
+      },
+      {
+        q: "Fiscal policy involves changes in:",
+        o: ["Weather and climate", "Only commercial bank logos", "Government spending and taxation", "The number of private firms only"],
+        a: 2,
+        e: "Fiscal policy uses government spending and taxation to influence economic activity."
+      },
+      {
+        q: "Expansionary fiscal policy may involve:",
+        o: ["Reducing government spending and raising taxes", "Increasing government spending or reducing taxes", "Banning all borrowing", "Reducing aggregate demand deliberately in every case"],
+        a: 1,
+        e: "Expansionary fiscal policy is intended to support aggregate demand."
+      },
+      {
+        q: "Monetary policy is commonly implemented by:",
+        o: ["Every household independently", "The largest supermarket", "The national tourism board", "A central bank"],
+        a: 3,
+        e: "Central banks commonly use interest rates and other monetary tools to influence the economy."
+      },
+      {
+        q: "A rise in interest rates is likely to:",
+        o: ["Make borrowing more expensive and may reduce spending", "Make every loan cheaper", "Eliminate all saving", "Guarantee an increase in consumption"],
+        a: 0,
+        e: "Higher interest rates tend to discourage some borrowing and spending, though effects vary."
+      },
+      {
+        q: "Supply-side policies aim to:",
+        o: ["Fix every price at zero", "Reduce productive capacity", "Improve the economy's productive potential", "Eliminate all international trade"],
+        a: 2,
+        e: "Education, training, infrastructure and competition reforms can improve productive capacity."
+      },
+      {
+        q: "Aggregate demand (AD) is:",
+        o: ["The demand for one specific brand only", "Total planned spending on domestically produced output at different price levels", "The total supply of labour only", "The tax rate charged by local authorities"],
+        a: 1,
+        e: "AD represents total planned expenditure in the economy at different general price levels."
+      },
+      {
+        q: "Which is a component of aggregate demand?",
+        o: ["Only the population count", "Only the unemployment rate", "Only the stock of natural resources", "Net exports"],
+        a: 3,
+        e: "Net exports (exports minus imports) are a component of aggregate demand."
+      },
+      {
+        q: "An increase in consumer confidence may:",
+        o: ["Increase consumption and aggregate demand", "Always reduce consumption", "Eliminate the money supply", "Reduce productive capacity automatically"],
+        a: 0,
+        e: "More confidence may encourage households to spend more, shifting AD to the right."
+      },
+      {
+        q: "Aggregate supply describes:",
+        o: ["Only imports of consumer goods", "Only government borrowing", "The total output firms are willing and able to produce at different price levels", "The demand for one firm's product only"],
+        a: 2,
+        e: "Aggregate supply relates the general price level to the output firms are willing and able to produce."
+      },
+      {
+        q: "A depreciation of a country's currency may make its exports:",
+        o: ["Automatically illegal", "Cheaper for foreign buyers, other things equal", "More expensive for all foreign buyers in every case", "Unrelated to exchange rates"],
+        a: 1,
+        e: "Currency depreciation can lower the foreign-currency price of exports if exchange-rate changes pass through to prices."
+      },
+      {
+        q: "A tariff is:",
+        o: ["A payment made only to unemployed workers", "A limit on the number of domestic firms", "A type of exchange rate", "A tax on imported goods"],
+        a: 3,
+        e: "Tariffs raise the cost of imports and can protect domestic producers, but may also raise consumer prices."
+      },
+      {
+        q: "An import quota is:",
+        o: ["A limit on the quantity or value of imports", "A tax on domestic income", "A subsidy to every exporter", "A measure of real GDP"],
+        a: 0,
+        e: "A quota restricts the amount of a product that can be imported."
+      },
+      {
+        q: "Comparative advantage is based on:",
+        o: ["Having the largest population", "Producing everything with the fewest resources in absolute terms", "Having a lower opportunity cost of producing a good", "Having the highest wages in every industry"],
+        a: 2,
+        e: "Comparative advantage exists when a producer has a lower opportunity cost for a particular product."
+      },
+      {
+        q: "International trade can allow countries to:",
+        o: ["Avoid every economic risk", "Specialise and consume a wider range of goods and services", "Eliminate scarcity entirely", "Guarantee equal incomes for all citizens"],
+        a: 1,
+        e: "Trade can increase specialisation, variety and potential gains from exchange, though benefits may be unevenly distributed."
+      },
+      {
+        q: "A current account deficit means, in simplified terms, that:",
+        o: ["The government has no debt", "Every firm is unprofitable", "The country has no imports", "Current-account outflows exceed inflows over the period"],
+        a: 3,
+        e: "A current account deficit means the balance of current-account transactions is negative."
+      },
+      {
+        q: "What is an exchange rate?",
+        o: ["The price of one currency in terms of another", "The tax on every domestic product", "The total output of a country", "The interest rate on every loan"],
+        a: 0,
+        e: "An exchange rate tells you how much one currency is worth in another currency."
+      },
+      {
+        q: "A depreciation of a currency means that it:",
+        o: ["Must be replaced by coins", "Becomes more valuable against every currency", "Falls in value relative to another currency under a floating-rate system", "Cannot be exchanged"],
+        a: 2,
+        e: "Depreciation is a fall in a currency's value relative to another currency."
+      },
+      {
+        q: "Economic development is broader than economic growth because it also considers:",
+        o: ["Only the number of banks", "Living standards, health, education and other aspects of wellbeing", "Only the number of products exported", "Only changes in nominal GDP"],
+        a: 1,
+        e: "Development includes broader improvements in human wellbeing, not just higher output."
+      },
+      {
+        q: "Which indicator is often used to compare health, education and income outcomes?",
+        o: ["The price elasticity of supply", "The market equilibrium price", "The total cost curve", "The Human Development Index (HDI)"],
+        a: 3,
+        e: "HDI combines indicators related to life expectancy, education and income."
+      },
+      {
+        q: "Income inequality refers to:",
+        o: ["How unevenly income is distributed across a population", "A fall in every person's income by the same amount", "A country's total imports", "The price of a single product"],
+        a: 0,
+        e: "Income inequality describes differences in income across individuals or households."
+      },
+      {
+        q: "A progressive income tax takes:",
+        o: ["The same percentage from everyone in every tax system", "No tax from high earners under all conditions", "A higher proportion of income as income rises", "Only indirect taxes from consumers"],
+        a: 2,
+        e: "Under a progressive tax structure, the average tax rate rises as taxable income rises."
+      },
+      {
+        q: "Which is a possible benefit of economic growth?",
+        o: ["It always eliminates inequality", "Higher average incomes and more resources for public services", "It always eliminates pollution", "It guarantees full employment forever"],
+        a: 1,
+        e: "Growth can increase incomes and the tax base, although outcomes depend on how gains are distributed."
+      },
+      {
+        q: "Which may be a cost of rapid economic growth?",
+        o: ["Opportunity cost disappearing", "All wages falling to zero", "The elimination of every externality", "Environmental damage or depletion of resources"],
+        a: 3,
+        e: "Growth can create environmental costs if production increases pollution or resource use."
+      },
+      {
+        q: "A budget deficit occurs when, over a period:",
+        o: ["Government spending exceeds government revenue", "Tax revenue exceeds spending in every case", "Imports equal exports", "The money supply becomes zero"],
+        a: 0,
+        e: "A budget deficit occurs when government expenditure exceeds revenue over the relevant period."
+      },
+      {
+        q: "A budget surplus occurs when:",
+        o: ["Government spending exceeds revenue", "All households save nothing", "Government revenue exceeds spending", "A country imports more than it exports"],
+        a: 2,
+        e: "A budget surplus occurs when government revenue exceeds expenditure."
+      },
+      {
+        q: "What does the circular flow of income model illustrate?",
+        o: ["Only the movement of imported goods", "The flows of income and expenditure between sectors of an economy", "The number of firms in a market", "The relationship between one firm's price and output only"],
+        a: 1,
+        e: "The circular flow model shows how income and spending flow between households, firms and other sectors."
+      },
+      {
+        q: "In the circular flow of income, saving is commonly treated as:",
+        o: ["An injection", "A type of import tariff", "A factor of production", "A leakage from the current spending flow"],
+        a: 3,
+        e: "Saving is a leakage because income saved is not immediately spent on domestic output."
+      },
+      {
+        q: "Which is an injection into the circular flow of income?",
+        o: ["Investment", "Saving", "Taxation", "Imports"],
+        a: 0,
+        e: "Investment, government spending and exports are commonly treated as injections."
+      },
+      {
+        q: "Which is a leakage from the circular flow of income?",
+        o: ["Investment", "Exports", "Taxation", "Government spending"],
+        a: 2,
+        e: "Saving, taxation and imports are commonly treated as leakages."
+      },
+      {
+        q: "If planned injections exceed leakages, national income tends to:",
+        o: ["Fall in every circumstance", "Rise, other things equal", "Become zero immediately", "Remain unchanged by definition"],
+        a: 1,
+        e: "In the basic circular-flow model, injections greater than leakages tend to increase income."
+      },
+      {
+        q: "What is the multiplier effect?",
+        o: ["A tax that doubles automatically", "A firm's output always doubling when price falls", "A method of calculating PED", "An initial change in spending causing a larger eventual change in national income"],
+        a: 3,
+        e: "An initial injection can create further rounds of income and spending."
+      },
+      {
+        q: "Which is a likely aim of macroeconomic policy?",
+        o: ["Sustainable growth, stable prices and high employment", "Eliminating every consumer choice", "Making every market a monopoly", "Preventing all international exchange"],
+        a: 0,
+        e: "Common macroeconomic objectives include growth, low inflation, employment and external balance."
+      },
+      {
+        q: "What is a trade-off in economic policy?",
+        o: ["A guarantee that every objective improves together", "The elimination of scarcity", "An improvement in one objective that may create costs for another", "A type of production factor"],
+        a: 2,
+        e: "Policies can involve trade-offs; for example, stimulating demand may increase inflationary pressure."
+      },
+      {
+        q: "Which statement about economic models is most accurate?",
+        o: ["They reproduce every detail of reality", "They simplify reality to help analyse relationships", "They never rely on assumptions", "They can only be used in physics"],
+        a: 1,
+        e: "Economic models simplify complex situations and use assumptions to examine possible relationships."
+      },
+      {
+        q: "In economics, 'ceteris paribus' means:",
+        o: ["The economy has no government", "Prices are always constant", "All resources are unlimited", "Other things being equal"],
+        a: 3,
+        e: "Ceteris paribus means holding other relevant factors constant."
+      },
+      {
+        q: "A positive economic statement is one that:",
+        o: ["Can in principle be tested against evidence", "Must express a moral opinion", "Always recommends a policy", "Cannot be investigated"],
+        a: 0,
+        e: "Positive economics analyses statements that can be examined using evidence."
+      },
+      {
+        q: "A normative economic statement:",
+        o: ["Is always mathematically proven", "Only describes a measured fact", "Expresses a value judgement about what ought to happen", "Never involves opinions"],
+        a: 2,
+        e: "Normative statements involve value judgements, such as whether a tax rate is fair."
+      },
+      {
+        q: "Which statement best describes a rational choice in a basic economic model?",
+        o: ["Always choosing the most expensive option", "Choosing the option that best meets an objective given constraints", "Ignoring all costs", "Making decisions without considering alternatives"],
+        a: 1,
+        e: "Basic models often assume decision-makers choose the option that best serves their objectives within constraints."
+      },
+      {
+        q: "What is a sunk cost?",
+        o: ["A cost that has not yet occurred and can always be avoided", "A cost that changes with each unit of output", "The next best alternative forgone", "A cost already incurred that cannot be recovered"],
+        a: 3,
+        e: "Sunk costs have already been incurred and should not determine a decision based solely on future costs and benefits."
+      },
+      {
+        q: "Which best describes a market?",
+        o: ["A system through which buyers and sellers exchange goods or services", "Only a physical building where goods are sold", "A government budget", "A measure of population growth"],
+        a: 0,
+        e: "Markets can be physical or digital and connect buyers with sellers."
+      },
+      {
+        q: "Why can competition benefit consumers?",
+        o: ["It always eliminates every business failure", "It guarantees every firm earns maximum profit", "It can encourage lower prices, innovation and better quality", "It makes consumer preferences irrelevant"],
+        a: 2,
+        e: "Competitive pressure can encourage firms to improve efficiency, price and quality."
+      },
+      {
+        q: "Which statement about inflation is correct?",
+        o: ["A fall in the price of one good is always inflation", "A fall in the general price level is called deflation", "Inflation always benefits every household equally", "Inflation and unemployment mean the same thing"],
+        a: 1,
+        e: "Deflation is a sustained fall in the general price level."
+      },
+      {
+        q: "What is a real wage?",
+        o: ["A wage stated only in foreign currency", "The total tax paid by a worker", "The amount of money printed by a central bank", "A wage adjusted for changes in the price level"],
+        a: 3,
+        e: "Real wages measure the purchasing power of money wages."
+      },
+      {
+        q: "Which is the best description of sustainable development?",
+        o: ["Meeting present needs without compromising future generations' ability to meet theirs", "Maximising current output regardless of future costs", "Stopping all economic activity", "Using every resource as quickly as possible"],
+        a: 0,
+        e: "Sustainable development balances current needs with the wellbeing and resources of future generations."
+      },
+      {
+        q: "What is the central purpose of studying economics?",
+        o: ["To guarantee that prices never change", "To remove every difficult choice", "To understand choices and resource allocation under scarcity", "To ensure all businesses make the same profit"],
+        a: 2,
+        e: "Economics analyses how choices are made and how scarce resources are allocated."
+      }
+    ];
+
+    const state = {
+      index: 0,
+      score: 0,
+      answered: new Array(economicsQuestions.length).fill(false),
+      selected: new Array(economicsQuestions.length).fill(null)
+    };
+
+    const el = {
+      status: document.getElementById("eco-status"),
+      score: document.getElementById("eco-score-live"),
+      progress: document.getElementById("eco-progress-bar"),
+      meta: document.getElementById("eco-q-meta"),
+      question: document.getElementById("eco-q-text"),
+      options: document.getElementById("eco-options"),
+      feedback: document.getElementById("eco-feedback"),
+      answered: document.getElementById("eco-answered"),
+      next: document.getElementById("eco-next"),
+      area: document.getElementById("eco-question-area"),
+      result: document.getElementById("eco-result"),
+      resultScore: document.getElementById("eco-result-score"),
+      resultMessage: document.getElementById("eco-result-message"),
+      resultDetail: document.getElementById("eco-result-detail"),
+      restart: document.getElementById("eco-restart")
+    };
+
+    function renderQuestion() {
+      const item = economicsQuestions[state.index];
+      const number = state.index + 1;
+      const alreadyAnswered = state.answered[state.index];
+
+      el.status.textContent = `Question ${number} of ${economicsQuestions.length}`;
+      el.score.textContent = `Score: ${state.score}`;
+      el.progress.style.width = `${(number - 1) / economicsQuestions.length * 100}%`;
+      el.meta.textContent = `QUESTION ${String(number).padStart(2, "0")}`;
+      el.question.textContent = item.q;
+      el.options.innerHTML = "";
+      el.feedback.textContent = "";
+      el.feedback.className = "eco-feedback";
+      el.answered.textContent = `Answered: ${state.answered.filter(Boolean).length} / ${economicsQuestions.length}`;
+      el.next.disabled = !alreadyAnswered;
+      el.next.textContent = number === economicsQuestions.length ? "View Results →" : "Next Question →";
+
+      item.o.forEach((option, optionIndex) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "eco-option";
+
+        const letter = document.createElement("span");
+        letter.className = "letter";
+        letter.textContent = String.fromCharCode(65 + optionIndex);
+
+        const text = document.createElement("span");
+        text.textContent = option;
+
+        button.append(letter, text);
+
+        if (alreadyAnswered) {
+          button.disabled = true;
+          if (optionIndex === item.a) button.classList.add("correct");
+          if (optionIndex === state.selected[state.index] && optionIndex !== item.a) {
+            button.classList.add("incorrect");
+          }
+        } else {
+          button.addEventListener("click", () => chooseAnswer(optionIndex));
+        }
+
+        el.options.appendChild(button);
+      });
+
+      if (alreadyAnswered) {
+        const correct = state.selected[state.index] === item.a;
+        el.feedback.textContent = `${correct ? "Correct!" : "Not quite."} ${item.e}`;
+        el.feedback.classList.add(correct ? "good" : "bad");
+      }
+    }
+
+    function chooseAnswer(optionIndex) {
+      if (state.answered[state.index]) return;
+
+      const item = economicsQuestions[state.index];
+      state.selected[state.index] = optionIndex;
+      state.answered[state.index] = true;
+
+      if (optionIndex === item.a) {
+        state.score++;
+      }
+
+      renderQuestion();
+    }
+
+    function showResults() {
+      el.area.hidden = true;
+      el.result.hidden = false;
+      el.progress.style.width = "100%";
+      el.status.textContent = "Exam completed";
+      el.score.textContent = `Score: ${state.score}`;
+      el.resultScore.textContent = `${state.score}/100`;
+
+      let message;
+      if (state.score >= 90) {
+        message = "Outstanding work!";
+      } else if (state.score >= 75) {
+        message = "Excellent progress!";
+      } else if (state.score >= 60) {
+        message = "Good foundation!";
+      } else if (state.score >= 40) {
+        message = "Keep practising!";
+      } else {
+        message = "Your learning journey has started!";
+      }
+
+      el.resultMessage.textContent = message;
+      el.resultDetail.textContent =
+        `You answered ${state.score} out of ${economicsQuestions.length} questions correctly. ` +
+        "Review the learning notes, revisit the topics you found difficult, and try again.";
+    }
+
+    el.next.addEventListener("click", () => {
+      if (!state.answered[state.index]) return;
+
+      if (state.index < economicsQuestions.length - 1) {
+        state.index++;
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    });
+
+    el.restart.addEventListener("click", () => {
+      state.index = 0;
+      state.score = 0;
+      state.answered = new Array(economicsQuestions.length).fill(false);
+      state.selected = new Array(economicsQuestions.length).fill(null);
+      el.area.hidden = false;
+      el.result.hidden = true;
+      renderQuestion();
+      document.getElementById("exam").scrollIntoView({ behavior: "smooth" });
+    });
+
+    renderQuestion();
+  </script>
+</body>
+</html>
