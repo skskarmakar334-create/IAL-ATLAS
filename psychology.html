@@ -1,0 +1,1221 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Study Edexcel International A Level Psychology with IAL ATLAS. Explore psychology theories, research methods, study notes and interactive practice questions.">
+  <meta name="theme-color" content="#061018">
+  <title>Psychology Atlas | IAL ATLAS</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    :root {
+      --bg: #061018;
+      --panel: rgba(13, 31, 43, .78);
+      --cyan: #5df5ff;
+      --blue: #7b9dff;
+      --purple: #bd8aff;
+      --text: #edfaff;
+      --muted: #9bb4c5;
+      --border: rgba(93, 245, 255, .18);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 15% 0%, rgba(0, 202, 255, .12), transparent 36%),
+        radial-gradient(ellipse at 95% 35%, rgba(125, 80, 255, .10), transparent 30%),
+        var(--bg);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+
+    .psy-shell {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    .psy-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 23px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .psy-logo {
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      font-size: 1.08rem;
+    }
+
+    .psy-logo span { color: var(--cyan); }
+
+    .psy-nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .psy-nav-links a:hover { color: var(--cyan); }
+
+    .psy-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 76px 0 58px;
+    }
+
+    .psy-hero::before {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      right: 4%;
+      top: 35px;
+      border: 1px solid rgba(93,245,255,.13);
+      border-radius: 50%;
+      box-shadow:
+        0 0 55px rgba(93,245,255,.08),
+        inset 0 0 55px rgba(93,245,255,.06);
+      animation: orbit 18s linear infinite;
+      pointer-events: none;
+    }
+
+    .psy-hero::after {
+      content: "Ψ";
+      position: absolute;
+      right: 12%;
+      top: 68px;
+      font-size: clamp(8rem, 20vw, 16rem);
+      font-weight: 200;
+      color: rgba(93,245,255,.11);
+      animation: float 5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .psy-kicker {
+      display: inline-flex;
+      gap: 9px;
+      align-items: center;
+      color: var(--cyan);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .psy-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 14px var(--cyan);
+      animation: pulse 1.8s infinite;
+    }
+
+    .psy-hero h1 {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 22px 0;
+      font-size: clamp(2.7rem, 7vw, 5.8rem);
+      line-height: .98;
+      letter-spacing: -3px;
+    }
+
+    .psy-gradient {
+      background: linear-gradient(100deg, var(--cyan), #92c6ff 48%, var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .psy-hero p {
+      position: relative;
+      z-index: 1;
+      max-width: 620px;
+      line-height: 1.8;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .psy-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .psy-btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 19px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: rgba(13,31,43,.8);
+      cursor: pointer;
+      transition: .25s ease;
+    }
+
+    .psy-btn.primary {
+      background: var(--cyan);
+      color: #031218;
+      border-color: var(--cyan);
+      font-weight: 850;
+    }
+
+    .psy-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(93,245,255,.12);
+    }
+
+    .psy-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 18px 0 54px;
+    }
+
+    .psy-stat {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--panel);
+      backdrop-filter: blur(14px);
+    }
+
+    .psy-stat strong {
+      display: block;
+      color: var(--cyan);
+      font-size: 1.65rem;
+      margin-bottom: 5px;
+    }
+
+    .psy-stat span { color: var(--muted); font-size: .88rem; }
+
+    .psy-section { padding: 25px 0 50px; }
+
+    .psy-section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .psy-section h2 {
+      font-size: clamp(1.65rem, 4vw, 2.5rem);
+      margin: 0 0 9px;
+      letter-spacing: -.8px;
+    }
+
+    .psy-section-head p {
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .psy-search {
+      width: min(100%, 360px);
+      padding: 13px 15px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(5,19,29,.8);
+      color: var(--text);
+      outline: none;
+    }
+
+    .psy-search:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(93,245,255,.08);
+    }
+
+    .psy-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 22px;
+    }
+
+    .psy-filter {
+      padding: 9px 13px;
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .psy-filter.active,
+    .psy-filter:hover {
+      background: rgba(93,245,255,.12);
+      color: var(--cyan);
+      border-color: rgba(93,245,255,.5);
+    }
+
+    .psy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .psy-card {
+      position: relative;
+      overflow: hidden;
+      padding: 22px;
+      min-height: 230px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(15,37,51,.88), rgba(7,19,29,.92));
+      transition: transform .28s, border-color .28s, box-shadow .28s;
+      animation: appear .55s both;
+    }
+
+    .psy-card::before {
+      content: "";
+      position: absolute;
+      top: -70px;
+      right: -70px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: var(--glow, rgba(93,245,255,.12));
+      filter: blur(3px);
+      transition: transform .35s;
+    }
+
+    .psy-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(93,245,255,.5);
+      box-shadow: 0 16px 40px rgba(0,0,0,.22);
+    }
+
+    .psy-card:hover::before { transform: scale(1.45); }
+
+    .psy-card-icon {
+      position: relative;
+      font-size: 1.7rem;
+      margin-bottom: 18px;
+    }
+
+    .psy-tag {
+      display: inline-block;
+      color: var(--cyan);
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .psy-card h3 { margin: 0 0 10px; font-size: 1.12rem; }
+    .psy-card p { color: var(--muted); font-size: .9rem; line-height: 1.7; }
+
+    .psy-card button {
+      margin-top: 7px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--cyan);
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .psy-empty {
+      display: none;
+      padding: 25px;
+      color: var(--muted);
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+    }
+
+    .psy-study-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .psy-study-panel {
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--panel);
+    }
+
+    .psy-study-panel h3 { margin-top: 0; }
+    .psy-study-panel p, .psy-study-panel li {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .psy-study-panel ul { padding-left: 20px; }
+
+    .psy-note {
+      padding: 14px 16px;
+      border-left: 3px solid var(--cyan);
+      border-radius: 0 10px 10px 0;
+      background: rgba(93,245,255,.06);
+      line-height: 1.7;
+      color: #cbe8ef;
+    }
+
+    .psy-quiz {
+      padding: 26px;
+      border: 1px solid rgba(189,138,255,.28);
+      border-radius: 20px;
+      background: linear-gradient(140deg, rgba(31,22,52,.65), rgba(9,24,35,.88));
+    }
+
+    .psy-quiz-count { color: var(--purple); font-size: .83rem; font-weight: 800; }
+
+    .psy-progress {
+      height: 5px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.08);
+      margin: 14px 0 23px;
+      overflow: hidden;
+    }
+
+    .psy-progress-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      transition: width .3s;
+    }
+
+    .psy-question { font-size: 1.2rem; line-height: 1.6; margin-bottom: 20px; }
+
+    .psy-options { display: grid; gap: 10px; }
+
+    .psy-option {
+      text-align: left;
+      padding: 14px 16px;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(3,14,22,.6);
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .psy-option:hover:not(:disabled) {
+      border-color: var(--cyan);
+      transform: translateX(3px);
+    }
+
+    .psy-option.correct { border-color: #58e6a3; background: rgba(88,230,163,.1); }
+    .psy-option.wrong { border-color: #ff7c91; background: rgba(255,124,145,.1); }
+    .psy-option:disabled { cursor: default; }
+
+    .psy-feedback { min-height: 28px; margin: 15px 0; color: var(--muted); line-height: 1.6; }
+    .psy-quiz-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .psy-footer {
+      margin-top: 25px;
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .87rem;
+      line-height: 1.8;
+    }
+
+    .psy-footer strong { color: var(--cyan); }
+
+    .psy-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(0,8,14,.8);
+      backdrop-filter: blur(10px);
+    }
+
+    .psy-modal.open { display: flex; animation: fade .2s; }
+
+    .psy-modal-box {
+      width: min(650px, 100%);
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 27px;
+      border: 1px solid rgba(93,245,255,.3);
+      border-radius: 20px;
+      background: #0a1a27;
+      box-shadow: 0 0 60px rgba(93,245,255,.08);
+    }
+
+    .psy-modal-box h2 { color: var(--cyan); }
+    .psy-modal-box p, .psy-modal-box li { color: #c1d5e0; line-height: 1.8; }
+    .psy-modal-close { float: right; }
+
+    @keyframes orbit { to { transform: rotate(360deg); } }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
+    @keyframes pulse { 0%,100% { opacity: 1; box-shadow: 0 0 14px var(--cyan); } 50% { opacity: .45; box-shadow: 0 0 4px var(--cyan); } }
+    @keyframes appear { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+    @media (max-width: 850px) {
+      .psy-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .psy-hero::before { right: -140px; }
+      .psy-hero::after { right: 0; opacity: .7; }
+    }
+
+    @media (max-width: 600px) {
+      .psy-nav { align-items: flex-start; flex-direction: column; }
+      .psy-hero { padding-top: 53px; }
+      .psy-hero h1 { letter-spacing: -1.5px; }
+      .psy-hero::before { width: 220px; height: 220px; top: 100px; right: -110px; }
+      .psy-hero::after { top: 115px; right: 0; }
+      .psy-stats { grid-template-columns: 1fr; gap: 9px; margin-bottom: 35px; }
+      .psy-stat { padding: 15px; }
+      .psy-grid, .psy-study-layout { grid-template-columns: 1fr; }
+      .psy-section-head { align-items: stretch; flex-direction: column; }
+      .psy-search { width: 100%; }
+      .psy-card { min-height: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="psy-shell">
+    <nav class="psy-nav">
+      <a class="psy-logo" href="index.html">IAL <span>ATLAS</span></a>
+      <div class="psy-nav-links">
+        <a href="index.html">Home</a>
+        <a href="#topics">Topics</a>
+        <a href="#study">Study notes</a>
+        <a href="#practice">Practice</a>
+      </div>
+    </nav>
+
+    <header class="psy-hero">
+      <div class="psy-kicker"><span class="psy-dot"></span> Mind · Behaviour · Research</div>
+      <h1>Understand the mind.<br><span class="psy-gradient">Decode behaviour.</span></h1>
+      <p>
+        Welcome to Psychology Atlas — a learning space for exploring human behaviour,
+        psychological theories, research methods and the science behind the mind.
+        Learn concepts step by step and test your understanding.
+      </p>
+      <div class="psy-actions">
+        <a class="psy-btn primary" href="#topics">Explore topics ↗</a>
+        <a class="psy-btn" href="#practice">Try an MCQ →</a>
+      </div>
+    </header>
+
+    <section class="psy-stats" aria-label="Study features">
+      <div class="psy-stat">
+        <strong>01</strong>
+        <span>Learn concepts step by step</span>
+      </div>
+      <div class="psy-stat">
+        <strong>02</strong>
+        <span>Explore theories and studies</span>
+      </div>
+      <div class="psy-stat">
+        <strong>03</strong>
+        <span>Practise with instant feedback</span>
+      </div>
+    </section>
+
+    <main>
+      <section class="psy-section" id="topics">
+        <div class="psy-section-head">
+          <div>
+            <div class="psy-kicker">Your learning map</div>
+            <h2>Explore Psychology</h2>
+            <p>Choose a topic to open its introductory study notes.</p>
+          </div>
+          <input
+            class="psy-search"
+            id="topicSearch"
+            type="search"
+            placeholder="Search topics..."
+            aria-label="Search psychology topics"
+          >
+        </div>
+
+        <div class="psy-filters" aria-label="Filter topics">
+          <button class="psy-filter active" data-filter="all">All topics</button>
+          <button class="psy-filter" data-filter="social">Social</button>
+          <button class="psy-filter" data-filter="cognitive">Cognitive</button>
+          <button class="psy-filter" data-filter="biological">Biological</button>
+          <button class="psy-filter" data-filter="learning">Learning</button>
+          <button class="psy-filter" data-filter="research">Research methods</button>
+          <button class="psy-filter" data-filter="applied">Applied psychology</button>
+        </div>
+
+        <div class="psy-grid" id="topicGrid">
+          <article class="psy-card" data-category="social" style="--glow:rgba(93,245,255,.13)">
+            <div class="psy-card-icon">👥</div>
+            <span class="psy-tag">Social psychology</span>
+            <h3>Social Influence</h3>
+            <p>Explore conformity, obedience, social pressure and the influence of groups on individual behaviour.</p>
+            <button data-topic="social-influence">Open study notes →</button>
+          </article>
+
+          <article class="psy-card" data-category="social" style="--glow:rgba(189,138,255,.15)">
+            <div class="psy-card-icon">🤝</div>
+            <span class="psy-tag">Social psychology</span>
+            <h3>Relationships and Groups</h3>
+            <p>Explore group behaviour, social identity and how interactions can shape attitudes and decisions.</p>
+            <button data-topic="groups">Open study notes →</button>
+          </article>
+
+          <article class="psy-card" data-category="cognitive" style="--glow:rgba(123,157,255,.15)">
+            <div class="psy-card-icon">🧠</div>
+            <span class="psy-tag">Cognitive psychology</span>
+            <h3>Memory</h3>
+            <p>Learn about encoding, storage, retrieval and explanations of how human memory works.</p>
+            <button data-topic="memory">Open study notes →</button>
+          </article>
+
+          <article class="psy-card" data-category="cognitive" style="--glow:rgba(93,245,255,.12)">
+            <div class="psy-card-icon">👁️</div>
+            <span class="psy-tag">Cognitive psychology</span>
+            <h3>Perception and Attention</h3>
+            <p>Investigate how people select information, interpret sensory input and understand their surroundings.</p>
+            <button data-topic="perception">Open study notes →</button>
+          </article>
+
+          <article class="psy-card" data-category="biological" style="--glow:rgba(255,130,160,.13)">
+            <div class="psy-card-icon">⚡</div>
+            <span class="psy-tag">Biological psychology</span>
+            <h3>The Brain and Nervous System</h3>
+            <p>Explore neurons, brain structures and the relationship between biological processes and behaviour.</p>
+            <button data-topic="brain">Open study notes →</button>
+          </article>
+
+          <article class="psy-card" data-category="biological" style="--glow:rgba(123,157,255,.15)">
+            <div class="psy-card-icon">🧬</div>
+            <span class="psy-tag">Biological psychology</span>
+            <h3>Genes and Behaviour</h3>
+            <p>Study genetic influences, environmental factors and debates about the origins of behaviour.</p>
+            <button data-topic="genes">Open study notes →</button>
+          </article>
+
+          <article class="psy-card" data-category="learning" style="--glow:rgba(255,199,106,.12)">
+            <div class="psy-card-icon">🔁</div>
+            <span class="psy-tag">Learning theories</span>
+            <h3>Classical Conditioning</h3>
+            <p>Understand how associations between stimuli can lead to learned responses.</p>
+            <button data-topic="classical">Open study notes →</button>
+          </article>
+
+          <article class="psy-card" data-category="learning" style="--glow:rgba(93,245,255,.13)">
+            <div class="psy-card-icon">🎯</div>
+            <span class="psy-tag">Learning theories</span>
+            <h3>Operant Conditioning</h3>
+            <p>Explore reinforcement, punishment and how consequences affect the likelihood of behaviour.</p>
+            <button data-topic="operant">Open study notes →</button>
+          </article>
+
+          <article class="psy-card" data-category="learning" style="--glow:rgba(189,138,255,.15)">
+            <div class="psy-card-icon">👀</div>
+            <span class="psy-tag">Learning theories</span>
+            <h3>Observational Learning</h3>
+            <p>Learn how modelling, imitation and social observation can influence behaviour.</p>
+            <button data-topic="observational">Open study notes →</button>
+          </article>
+
+          <article class="psy-card" data-category="research" style="--glow:rgba(123,157,255,.15)">
+            <div class="psy-card-icon">🔬</div>
+            <span class="psy-tag">Research methods</span>
+            <h3>Experiments and Variables</h3>
+            <p>Understand hypotheses, independent and dependent variables, controls and experimental designs.</p>
+            <button data-topic="experiments">Open study notes →</button>
+          </article>
+
+          <article class="psy-card" data-category="research" style="--glow:rgba(93,245,255,.12)">
+            <div class="psy-card-icon">📊</div>
+            <span class="psy-tag">Research methods</span>
+            <h3>Data and Sampling</h3>
+            <p>Explore sampling techniques, qualitative and quantitative data, reliability and validity.</p>
+            <button data-topic="data">Open study notes →</button>
+          </article>
+
+          <article class="psy-card" data-category="applied" style="--glow:rgba(189,138,255,.15)">
+            <div class="psy-card-icon">🌱</div>
+            <span class="psy-tag">Applied psychology</span>
+            <h3>Development and Behaviour</h3>
+            <p>Explore how behaviour changes over time and how psychological ideas can be applied to real life.</p>
+            <button data-topic="development">Open study notes →</button>
+          </article>
+
+          <article class="psy-card" data-category="applied" style="--glow:rgba(255,130,160,.13)">
+            <div class="psy-card-icon">🩺</div>
+            <span class="psy-tag">Applied psychology</span>
+            <h3>Clinical Psychology</h3>
+            <p>Introduce explanations of psychological disorders, assessment and approaches to treatment.</p>
+            <button data-topic="clinical">Open study notes →</button>
+          </article>
+
+          <article class="psy-card" data-category="applied" style="--glow:rgba(255,199,106,.12)">
+            <div class="psy-card-icon">🏅</div>
+            <span class="psy-tag">Applied psychology</span>
+            <h3>Sport Psychology</h3>
+            <p>Explore motivation, confidence, arousal and psychological factors affecting sports performance.</p>
+            <button data-topic="sport">Open study notes →</button>
+          </article>
+        </div>
+
+        <div class="psy-empty" id="noTopics">No matching topics found. Try another search.</div>
+      </section>
+
+      <section class="psy-section" id="study">
+        <div class="psy-kicker">Study smarter</div>
+        <h2>How to study Psychology</h2>
+        <p style="color:var(--muted);line-height:1.8;margin-bottom:22px">
+          Psychology is more than memorising definitions. Learn theories, understand evidence
+          and practise applying concepts to examples.
+        </p>
+
+        <div class="psy-study-layout">
+          <div class="psy-study-panel">
+            <h3>📚 Build a strong answer</h3>
+            <ul>
+              <li><strong style="color:var(--cyan)">Define:</strong> Explain the key term accurately.</li>
+              <li><strong style="color:var(--cyan)">Explain:</strong> Describe the theory or psychological process.</li>
+              <li><strong style="color:var(--cyan)">Evidence:</strong> Refer to relevant research when required.</li>
+              <li><strong style="color:var(--cyan)">Evaluate:</strong> Discuss strengths, limitations and alternative explanations.</li>
+              <li><strong style="color:var(--cyan)">Apply:</strong> Link your answer directly to the question or scenario.</li>
+            </ul>
+          </div>
+
+          <div class="psy-study-panel">
+            <h3>🧪 Research methods checklist</h3>
+            <ul>
+              <li>Identify the aim and hypothesis.</li>
+              <li>Distinguish the independent variable from the dependent variable.</li>
+              <li>Recognise the sample and sampling method.</li>
+              <li>Consider reliability, validity and possible bias.</li>
+              <li>Discuss informed consent, confidentiality and protection from harm.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="psy-note" style="margin-top:16px">
+          <strong>Exam tip:</strong> Always check the command word. “Describe” asks what something
+          is like; “explain” asks how or why; “evaluate” requires a balanced judgement supported
+          by relevant reasoning.
+        </div>
+      </section>
+
+      <section class="psy-section" id="practice">
+        <div class="psy-kicker">Test your understanding</div>
+        <h2>Psychology MCQ Lab</h2>
+        <p style="color:var(--muted);line-height:1.8;margin-bottom:22px">
+          Answer each question and receive immediate feedback. These are introductory practice
+          questions, not official Pearson examination questions.
+        </p>
+
+        <div class="psy-quiz">
+          <div class="psy-quiz-count" id="quizCount">QUESTION 1 OF 10</div>
+          <div class="psy-progress"><div class="psy-progress-bar" id="quizProgress"></div></div>
+          <h3 class="psy-question" id="quizQuestion">Loading question...</h3>
+          <div class="psy-options" id="quizOptions"></div>
+          <div class="psy-feedback" id="quizFeedback" aria-live="polite"></div>
+          <div class="psy-quiz-actions">
+            <button class="psy-btn primary" id="nextQuestion" disabled>Next question →</button>
+            <button class="psy-btn" id="restartQuiz" style="display:none">Try again ↻</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="psy-footer">
+      <strong>IAL ATLAS</strong> — Learn without the confusion.<br>
+      An independent student learning project. Not affiliated with or endorsed by Pearson
+      Edexcel. Always check the official specification for your examination series.
+    </footer>
+  </div>
+
+  <div class="psy-modal" id="topicModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="psy-modal-box">
+      <button class="psy-btn psy-modal-close" id="closeModal" aria-label="Close study notes">✕ Close</button>
+      <div class="psy-kicker">Topic introduction</div>
+      <h2 id="modalTitle">Topic</h2>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    const topicNotes = {
+      "social-influence": {
+        title: "Social Influence",
+        definition: "Social influence occurs when the presence, behaviour or expectations of other people affect an individual's thoughts, feelings or actions.",
+        points: [
+          "Conformity: changing behaviour or beliefs to align with a group.",
+          "Compliance: agreeing to a request without necessarily changing private beliefs.",
+          "Obedience: following an instruction from an authority figure.",
+          "When evaluating research, consider the sample, setting, ethics and whether the findings generalise."
+        ],
+        example: "A student may give the same answer as a group because they want to fit in, even if they privately disagree."
+      },
+      "groups": {
+        title: "Relationships and Groups",
+        definition: "Groups can influence identity, attitudes, decision-making and how people behave around others.",
+        points: [
+          "Social identity refers to aspects of self-concept linked to group membership.",
+          "Group norms are shared expectations about appropriate behaviour.",
+          "Group pressure may affect independent judgement.",
+          "Consider individual differences and the context in which group behaviour occurs."
+        ],
+        example: "A person may adopt a team's routines because those behaviours are normal within the group."
+      },
+      "memory": {
+        title: "Memory",
+        definition: "Memory involves taking in information, retaining it and retrieving it when needed.",
+        points: [
+          "Encoding: transforming information into a form that can be stored.",
+          "Storage: retaining information over time.",
+          "Retrieval: accessing stored information.",
+          "Recall and recognition are different ways of measuring memory."
+        ],
+        example: "Remembering a definition without seeing it is recall; identifying it from a list is recognition."
+      },
+      "perception": {
+        title: "Perception and Attention",
+        definition: "Perception is the process of interpreting sensory information. Attention helps select which information receives further processing.",
+        points: [
+          "Sensation concerns detecting information through the senses.",
+          "Perception involves interpreting that sensory information.",
+          "Selective attention means focusing on some information while other information may be ignored.",
+          "Expectations and context can influence how information is interpreted."
+        ],
+        example: "In a noisy room, you may focus on one conversation and miss parts of another."
+      },
+      "brain": {
+        title: "The Brain and Nervous System",
+        definition: "Biological psychology investigates how the brain, nervous system and other biological processes relate to behaviour.",
+        points: [
+          "Neurons transmit information through electrical and chemical signalling.",
+          "Synapses are junctions where signals pass between neurons.",
+          "Different brain regions have specialised functions, but many behaviours involve networks of regions.",
+          "Correlation between brain activity and behaviour does not automatically prove causation."
+        ],
+        example: "Researchers may investigate whether activity in a particular brain network changes during a memory task."
+      },
+      "genes": {
+        title: "Genes and Behaviour",
+        definition: "Behaviour may be influenced by genetic factors, environmental experiences and interactions between them.",
+        points: [
+          "Genes carry biological information inherited from parents.",
+          "Heritability describes variation within a particular population and environment; it is not a measure of how fixed a trait is in an individual.",
+          "Environmental conditions can affect how characteristics develop.",
+          "Twin and family studies can provide evidence, but each method has limitations."
+        ],
+        example: "Two people with similar genetic backgrounds may develop differently because they experience different environments."
+      },
+      "classical": {
+        title: "Classical Conditioning",
+        definition: "Classical conditioning is learning through an association between stimuli.",
+        points: [
+          "An unconditioned stimulus naturally produces an unconditioned response.",
+          "A neutral stimulus can become a conditioned stimulus after repeated association.",
+          "The conditioned stimulus may then produce a conditioned response.",
+          "Extinction can occur when the conditioned stimulus is repeatedly presented without the expected unconditioned stimulus."
+        ],
+        example: "If a sound repeatedly predicts food, an animal may eventually respond to the sound alone."
+      },
+      "operant": {
+        title: "Operant Conditioning",
+        definition: "Operant conditioning explains how consequences influence the likelihood of a behaviour occurring again.",
+        points: [
+          "Positive reinforcement adds a consequence that increases behaviour.",
+          "Negative reinforcement removes an unpleasant condition and increases behaviour.",
+          "Punishment aims to reduce the likelihood of a behaviour.",
+          "Negative reinforcement is not the same as punishment."
+        ],
+        example: "If completing homework removes an extra task, a student may become more likely to complete homework promptly."
+      },
+      "observational": {
+        title: "Observational Learning",
+        definition: "Observational learning occurs when people learn by watching others and the consequences of their actions.",
+        points: [
+          "A model demonstrates a behaviour.",
+          "Attention and retention affect whether the behaviour is learned.",
+          "Reproduction concerns whether the observer can perform the behaviour.",
+          "Motivation can influence whether the learned behaviour is carried out."
+        ],
+        example: "A child may learn a new skill by watching an older sibling demonstrate it."
+      },
+      "experiments": {
+        title: "Experiments and Variables",
+        definition: "An experiment investigates whether changing one variable produces a change in another while controlling other relevant factors.",
+        points: [
+          "Independent variable (IV): the variable manipulated by the researcher.",
+          "Dependent variable (DV): the outcome measured.",
+          "Operationalisation specifies exactly how a variable is manipulated or measured.",
+          "Control of confounding variables strengthens conclusions about cause and effect."
+        ],
+        example: "A researcher changes the amount of background noise (IV) and measures the number of words recalled (DV)."
+      },
+      "data": {
+        title: "Data and Sampling",
+        definition: "Psychologists collect data to investigate questions about behaviour and mental processes.",
+        points: [
+          "Quantitative data are numerical; qualitative data are descriptive.",
+          "Random sampling gives members of a defined population a chance of selection.",
+          "Opportunity sampling uses participants who are readily available.",
+          "Reliability concerns consistency; validity concerns whether a measure assesses what it intends to measure."
+        ],
+        example: "A memory test score is quantitative, while a participant's interview description is qualitative."
+      },
+      "development": {
+        title: "Development and Behaviour",
+        definition: "Developmental psychology investigates changes in behaviour and psychological processes across the lifespan.",
+        points: [
+          "Development may involve biological maturation, learning and social experience.",
+          "Longitudinal research follows participants over time.",
+          "Cross-sectional research compares different groups at one point in time.",
+          "Consider cohort effects, participant attrition and alternative explanations."
+        ],
+        example: "Researchers may compare problem-solving strategies across age groups to investigate developmental differences."
+      },
+      "clinical": {
+        title: "Clinical Psychology",
+        definition: "Clinical psychology applies psychological knowledge to understand, assess and help address psychological difficulties.",
+        points: [
+          "Psychological approaches may offer different explanations for the same difficulty.",
+          "Assessment can involve interviews, observations and standardised measures.",
+          "Treatment choice can depend on evidence, needs, preferences and circumstances.",
+          "Avoid assuming that one explanation or treatment works for everyone."
+        ],
+        example: "A clinician may use an evidence-based psychological assessment to help decide which support is appropriate."
+      },
+      "sport": {
+        title: "Sport Psychology",
+        definition: "Sport psychology investigates how psychological factors influence participation, training and performance in sport.",
+        points: [
+          "Motivation affects effort and persistence.",
+          "Confidence can influence performance and responses to challenges.",
+          "Arousal and anxiety may affect athletes differently depending on the task and person.",
+          "Goal setting and mental rehearsal may be used as performance strategies."
+        ],
+        example: "An athlete might use a pre-performance routine to focus attention before a competition."
+      }
+    };
+
+    const modal = document.getElementById("topicModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalContent = document.getElementById("modalContent");
+
+    document.querySelectorAll("[data-topic]").forEach(button => {
+      button.addEventListener("click", () => {
+        const note = topicNotes[button.dataset.topic];
+        if (!note) return;
+
+        modalTitle.textContent = note.title;
+        modalContent.replaceChildren();
+
+        const intro = document.createElement("p");
+        intro.textContent = note.definition;
+        modalContent.appendChild(intro);
+
+        const heading = document.createElement("h3");
+        heading.textContent = "Key points";
+        modalContent.appendChild(heading);
+
+        const list = document.createElement("ul");
+        note.points.forEach(point => {
+          const item = document.createElement("li");
+          item.textContent = point;
+          list.appendChild(item);
+        });
+        modalContent.appendChild(list);
+
+        const example = document.createElement("div");
+        example.className = "psy-note";
+        const label = document.createElement("strong");
+        label.textContent = "Example: ";
+        example.append(label, document.createTextNode(note.example));
+        modalContent.appendChild(example);
+
+        modal.classList.add("open");
+        document.getElementById("closeModal").focus();
+      });
+    });
+
+    function closeModal() {
+      modal.classList.remove("open");
+    }
+
+    document.getElementById("closeModal").addEventListener("click", closeModal);
+    modal.addEventListener("click", event => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeModal();
+    });
+
+    // Topic search and category filters
+    const searchInput = document.getElementById("topicSearch");
+    const filterButtons = document.querySelectorAll(".psy-filter");
+    const topicCards = [...document.querySelectorAll(".psy-card")];
+    const noTopics = document.getElementById("noTopics");
+    let activeFilter = "all";
+
+    function filterTopics() {
+      const query = searchInput.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      topicCards.forEach(card => {
+        const matchesCategory =
+          activeFilter === "all" || card.dataset.category === activeFilter;
+        const matchesSearch = card.textContent.toLowerCase().includes(query);
+        const visible = matchesCategory && matchesSearch;
+
+        card.style.display = visible ? "" : "none";
+        if (visible) visibleCount++;
+      });
+
+      noTopics.style.display = visibleCount ? "none" : "block";
+    }
+
+    searchInput.addEventListener("input", filterTopics);
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        activeFilter = button.dataset.filter;
+        filterButtons.forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+        filterTopics();
+      });
+    });
+
+    // Introductory practice quiz
+    const questions = [
+      {
+        q: "Which term describes changing behaviour to fit in with a group?",
+        options: ["Conformity", "Extinction", "Encoding", "Operationalisation"],
+        answer: 0,
+        explanation: "Conformity involves changing behaviour or beliefs to align with group expectations."
+      },
+      {
+        q: "Which process involves retaining information over time?",
+        options: ["Retrieval", "Storage", "Sampling", "Reinforcement"],
+        answer: 1,
+        explanation: "Storage is the retention of information; retrieval is accessing it later."
+      },
+      {
+        q: "In an experiment, what is the dependent variable?",
+        options: [
+          "The variable manipulated",
+          "The participants' age in every study",
+          "The outcome measured",
+          "The researcher's prediction"
+        ],
+        answer: 2,
+        explanation: "The dependent variable is the outcome the researcher measures."
+      },
+      {
+        q: "What is classical conditioning primarily based on?",
+        options: [
+          "Associations between stimuli",
+          "Random sampling",
+          "Brain imaging only",
+          "Written examinations"
+        ],
+        answer: 0,
+        explanation: "Classical conditioning involves learning an association between stimuli."
+      },
+      {
+        q: "Which is an example of quantitative data?",
+        options: [
+          "A detailed interview transcript",
+          "An observation written in words",
+          "A participant's personal story",
+          "The number of correct answers on a test"
+        ],
+        answer: 3,
+        explanation: "A count of correct answers is numerical, so it is quantitative data."
+      },
+      {
+        q: "What does reliability concern?",
+        options: [
+          "Whether a result is interesting",
+          "The consistency of a measure",
+          "Whether a theory is popular",
+          "The size of a classroom"
+        ],
+        answer: 1,
+        explanation: "Reliability concerns consistency across measurements or occasions."
+      },
+      {
+        q: "In operant conditioning, reinforcement generally does what?",
+        options: [
+          "Always reduces behaviour",
+          "Removes all memory",
+          "Increases the likelihood of behaviour",
+          "Makes every response involuntary"
+        ],
+        answer: 2,
+        explanation: "Reinforcement increases the likelihood of a behaviour occurring again."
+      },
+      {
+        q: "Which approach investigates the brain and nervous system in relation to behaviour?",
+        options: [
+          "Biological psychology",
+          "Literary criticism",
+          "Pure mathematics",
+          "Historical linguistics"
+        ],
+        answer: 0,
+        explanation: "Biological psychology studies biological processes associated with behaviour."
+      },
+      {
+        q: "What is a hypothesis?",
+        options: [
+          "A list of references",
+          "A research question's final answer",
+          "A participant's identity",
+          "A testable prediction"
+        ],
+        answer: 3,
+        explanation: "A hypothesis is a prediction that can be tested through research."
+      },
+      {
+        q: "What should an ethical researcher generally do before a participant takes part?",
+        options: [
+          "Guarantee a particular result",
+          "Obtain informed consent where appropriate",
+          "Publish private information",
+          "Hide every aspect of the study in all circumstances"
+        ],
+        answer: 1,
+        explanation: "Informed consent is a key ethical consideration, subject to appropriate safeguards and exceptions."
+      }
+    ];
+
+    let questionIndex = 0;
+    let score = 0;
+    let answered = false;
+
+    const quizCount = document.getElementById("quizCount");
+    const quizQuestion = document.getElementById("quizQuestion");
+    const quizOptions = document.getElementById("quizOptions");
+    const quizFeedback = document.getElementById("quizFeedback");
+    const quizProgress = document.getElementById("quizProgress");
+    const nextButton = document.getElementById("nextQuestion");
+    const restartButton = document.getElementById("restartQuiz");
+
+    function renderQuestion() {
+      answered = false;
+      const current = questions[questionIndex];
+
+      quizCount.textContent = `QUESTION ${questionIndex + 1} OF ${questions.length}`;
+      quizQuestion.textContent = current.q;
+      quizOptions.replaceChildren();
+      quizFeedback.textContent = "";
+      quizProgress.style.width = `${(questionIndex / questions.length) * 100}%`;
+      nextButton.disabled = true;
+      nextButton.style.display = "";
+      restartButton.style.display = "none";
+
+      current.options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.className = "psy-option";
+        button.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
+        button.addEventListener("click", () => selectAnswer(index));
+        quizOptions.appendChild(button);
+      });
+    }
+
+    function selectAnswer(selectedIndex) {
+      if (answered) return;
+      answered = true;
+
+      const current = questions[questionIndex];
+      const buttons = [...quizOptions.querySelectorAll("button")];
+
+      buttons.forEach((button, index) => {
+        button.disabled = true;
+        if (index === current.answer) button.classList.add("correct");
+        if (index === selectedIndex && selectedIndex !== current.answer) {
+          button.classList.add("wrong");
+        }
+      });
+
+      if (selectedIndex === current.answer) {
+        score++;
+        quizFeedback.textContent = `Correct! ${current.explanation}`;
+      } else {
+        quizFeedback.textContent = `Not quite. ${current.explanation}`;
+      }
+
+      quizProgress.style.width = `${((questionIndex + 1) / questions.length) * 100}%`;
+      nextButton.disabled = false;
+
+      if (questionIndex === questions.length - 1) {
+        nextButton.textContent = "See results →";
+      }
+    }
+
+    nextButton.addEventListener("click", () => {
+      if (!answered) return;
+
+      if (questionIndex < questions.length - 1) {
+        questionIndex++;
+        nextButton.textContent = "Next question →";
+        renderQuestion();
+      } else {
+        quizCount.textContent = "PRACTICE COMPLETE";
+        quizQuestion.textContent = `Your score: ${score} / ${questions.length}`;
+        quizOptions.replaceChildren();
+
+        const summary = document.createElement("p");
+        summary.className = "psy-note";
+        summary.textContent =
+          score === questions.length
+            ? "Excellent! You answered every question correctly."
+            : "Review the explanations and try again to strengthen your understanding.";
+        quizOptions.appendChild(summary);
+
+        quizFeedback.textContent = "Keep practising. Understanding the reasoning matters more than memorising answers.";
+        quizProgress.style.width = "100%";
+        nextButton.style.display = "none";
+        restartButton.style.display = "";
+      }
+    });
+
+    restartButton.addEventListener("click", () => {
+      questionIndex = 0;
+      score = 0;
+      nextButton.textContent = "Next question →";
+      renderQuestion();
+    });
+
+    renderQuestion();
+  </script>
+</body>
+</html>
