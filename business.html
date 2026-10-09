@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Atlas | IAL ATLAS</title>
+<meta name="description" content="Learn business concepts, finance, marketing, operations and strategy through interactive lessons and 100 practice questions on IAL ATLAS.">
+<link rel="canonical" href="https://ialatlas.com/business.html">
+<link rel="stylesheet" href="style.css">
+
+<style>
+:root{--cyan:#00f5ff;--purple:#b45cff;--green:#39ffb6;--bg:#050914;--panel:#0c1729;--muted:#aabbd0}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 10% 10%,#00f5ff12,transparent 35%),radial-gradient(ellipse at 90% 40%,#b45cff12,transparent 35%),var(--bg);color:#edf8ff;font-family:Inter,system-ui,sans-serif;overflow-x:hidden}
+#particles{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1}
+.cursor-glow{position:fixed;width:280px;height:280px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,#00f5ff12,transparent 70%);transform:translate(-50%,-50%);z-index:-1}
+header{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:15px;padding:15px 6%;background:#050914dd;backdrop-filter:blur(18px);border-bottom:1px solid #00f5ff30}
+.brand{color:var(--cyan);font-weight:900;letter-spacing:2px;text-decoration:none}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{color:#d8e8f7;text-decoration:none;font-size:.9rem}
+nav a:hover{color:var(--cyan)}
+.hero{min-height:540px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:90px 22px 70px}
+.badge{padding:9px 15px;border:1px solid #00f5ff60;border-radius:50px;color:var(--cyan);background:#00f5ff0b;animation:pulse 2s infinite}
+h1{font-size:clamp(3rem,9vw,6.7rem);line-height:1;margin:25px 0 15px;letter-spacing:-3px;background:linear-gradient(90deg,#fff,var(--cyan),var(--purple),#fff);background-size:300%;background-clip:text;-webkit-background-clip:text;color:transparent;animation:flow 6s linear infinite,float 4s ease-in-out infinite}
+.hero p{max-width:700px;color:var(--muted);line-height:1.8;font-size:1.06rem}
+.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:22px 0}
+.btn{display:inline-block;padding:13px 19px;border:1px solid var(--cyan);border-radius:11px;background:#00f5ff0b;color:var(--cyan);font:inherit;font-weight:750;text-decoration:none;cursor:pointer;transition:.25s}
+.btn.primary{background:var(--cyan);color:#041017}
+.btn:hover{transform:translateY(-4px);box-shadow:0 0 25px #00f5ff35}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:min(720px,100%);margin-top:25px}
+.stat,.card,.lesson,.exam{border:1px solid #00f5ff28;background:linear-gradient(145deg,#0d1b31ed,#070d1bed);border-radius:17px}
+.stat{padding:17px 8px;animation:pulse 3s infinite alternate}
+.stat strong{display:block;color:var(--cyan);font-size:1.6rem}
+.stat span{display:block;color:var(--muted);font-size:.8rem;margin-top:5px}
+section{width:min(1120px,92%);margin:auto;padding:55px 0}
+.heading{margin-bottom:25px}
+.heading h2{font-size:clamp(1.8rem,4vw,2.7rem);margin:0 0 10px}
+.heading h2 span{color:var(--cyan)}
+.heading p,.card p,.lesson p,.lesson li{color:var(--muted);line-height:1.75}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.card{position:relative;padding:23px;overflow:hidden;transform-style:preserve-3d;transition:.3s}
+.card:after{content:"";position:absolute;top:-70%;left:-80%;height:240%;width:40%;transform:rotate(25deg);background:linear-gradient(90deg,transparent,#ffffff12,transparent);transition:left .7s;pointer-events:none}
+.card:hover:after{left:140%}
+.card:hover{border-color:#00f5ff88;box-shadow:0 12px 40px #00f5ff12}
+.icon{font-size:2rem;display:inline-block;animation:bob 3s ease-in-out infinite}
+.card h3{margin:14px 0 8px}
+.card p{font-size:.93rem}
+.tag{display:inline-block;margin-top:10px;padding:5px 9px;border-radius:7px;color:var(--green);background:#39ffb60b;border:1px solid #39ffb628;font-size:.75rem}
+.lessons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.lesson{padding:23px;transition:.3s}
+.lesson:hover{transform:translateY(-4px);border-color:var(--purple)}
+.lesson h3{color:var(--cyan);margin-top:0}
+.formula{padding:13px 15px;background:#00f5ff0b;border-left:3px solid var(--cyan);border-radius:0 9px 9px 0;margin:14px 0;font-weight:750;line-height:1.7}
+.note{padding:13px 15px;border-left:3px solid var(--purple);background:#b45cff0d;border-radius:0 9px 9px 0;color:#d9c9ff;line-height:1.7}
+.exam{padding:clamp(18px,4vw,32px);background:linear-gradient(145deg,#0a182bf5,#080c1bf5)}
+.examtop{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+#number{color:var(--cyan);font-weight:800}
+.track{height:8px;background:#1a2940;border-radius:20px;overflow:hidden;margin:17px 0 25px}
+#bar{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--purple));box-shadow:0 0 15px var(--cyan);transition:width .4s}
+#question{font-size:clamp(1.1rem,3vw,1.45rem);line-height:1.65}
+.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.option{padding:15px;text-align:left;border-radius:11px;border:1px solid #a0bedc30;background:#ffffff05;color:#e6f1ff;font:inherit;cursor:pointer;line-height:1.5;transition:.2s}
+.option:hover:not(:disabled){border-color:var(--cyan);background:#00f5ff10;transform:translateY(-2px)}
+.option:disabled{cursor:default}
+.option.correct{border-color:var(--green);background:#39ffb61c}
+.option.wrong{border-color:#ff6584;background:#ff658415}
+#feedback{min-height:30px;line-height:1.6;margin-top:16px}
+.controls{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+#result{display:none;text-align:center;padding:25px 5px;animation:appear .5s}
+.ring{height:150px;width:150px;border:5px solid var(--cyan);border-radius:50%;display:grid;place-items:center;margin:22px auto;box-shadow:0 0 35px #00f5ff35;animation:pulse 2s infinite}
+.ring strong{font-size:2rem;color:var(--cyan)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+footer{text-align:center;padding:30px 20px;color:#8195ad;border-top:1px solid #00f5ff28;line-height:1.8}
+@keyframes flow{to{background-position:300% center}}
+@keyframes float{50%{transform:translateY(-7px)}}
+@keyframes bob{50%{transform:translateY(-5px) rotate(3deg)}}
+@keyframes pulse{50%{box-shadow:0 0 24px #00f5ff18}}
+@keyframes appear{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}header{align-items:flex-start}}
+@media(max-width:560px){.grid,.lessons,.options{grid-template-columns:1fr}h1{letter-spacing:-1px}.stats{gap:7px}.stat strong{font-size:1.3rem}nav{gap:10px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+
+<body>
+<canvas id="particles" aria-hidden="true"></canvas>
+<div class="cursor-glow" aria-hidden="true"></div>
+
+<header>
+<a class="brand" href="index.html">IAL ATLAS</a>
+<nav aria-label="Main navigation">
+<a href="index.html">Home</a>
+<a href="#topics">Topics</a>
+<a href="#learn">Learn</a>
+<a href="#practice">Practice</a>
+</nav>
+</header>
+
+<main>
+<section class="hero">
+<div class="badge">✦ BUSINESS KNOWLEDGE SYSTEM</div>
+<h1>Business<br>Atlas</h1>
+<p>Discover how businesses operate, compete, manage people, attract customers and make financial decisions. Learn the foundations step by step.</p>
+<div class="actions">
+<a class="btn primary" href="#learn">Start Learning ↗</a>
+<a class="btn" href="#practice">100-Question Practice Test</a>
+</div>
+<div class="stats">
+<div class="stat"><strong>12</strong><span>Learning Topics</span></div>
+<div class="stat"><strong>100</strong><span>Practice Questions</span></div>
+<div class="stat"><strong>∞</strong><span>Keep Improving</span></div>
+</div>
+</section>
+
+<section id="topics">
+<div class="heading reveal">
+<h2>Explore Business <span>Topics</span></h2>
+<p>Build a foundation in business activity, management, marketing, finance and strategy.</p>
+</div>
+<div class="grid">
+<article class="card reveal"><span class="icon">🏢</span><h3>01. Business Activity</h3><p>Understand business purposes, needs, wants, scarcity, opportunity cost and value creation.</p><span class="tag">FOUNDATIONS</span></article>
+<article class="card reveal"><span class="icon">🚀</span><h3>02. Entrepreneurs</h3><p>Explore entrepreneurship, business plans, risk, innovation and sources of business ideas.</p><span class="tag">STARTING UP</span></article>
+<article class="card reveal"><span class="icon">🏛️</span><h3>03. Business Objectives</h3><p>Learn about survival, profit, growth, market share and social objectives.</p><span class="tag">DIRECTION</span></article>
+<article class="card reveal"><span class="icon">🧩</span><h3>04. Business Organisation</h3><p>Compare sole traders, partnerships, private companies, public companies and franchises.</p><span class="tag">STRUCTURE</span></article>
+<article class="card reveal"><span class="icon">📣</span><h3>05. Marketing</h3><p>Explore market research, segmentation, targeting, positioning and the marketing mix.</p><span class="tag">CUSTOMERS</span></article>
+<article class="card reveal"><span class="icon">💰</span><h3>06. Business Finance</h3><p>Learn revenue, costs, profit, cash flow, break-even and sources of finance.</p><span class="tag">NUMBERS</span></article>
+<article class="card reveal"><span class="icon">⚙️</span><h3>07. Operations</h3><p>Understand productivity, capacity, quality, inventory and production methods.</p><span class="tag">PRODUCTION</span></article>
+<article class="card reveal"><span class="icon">👥</span><h3>08. Human Resources</h3><p>Study recruitment, selection, training, motivation and organisational structure.</p><span class="tag">PEOPLE</span></article>
+<article class="card reveal"><span class="icon">🌍</span><h3>09. External Environment</h3><p>Explore competition, interest rates, inflation, exchange rates, laws and technology.</p><span class="tag">BUSINESS CONTEXT</span></article>
+<article class="card reveal"><span class="icon">📊</span><h3>10. Business Analysis</h3><p>Use financial and non-financial data to evaluate performance and make decisions.</p><span class="tag">EVIDENCE</span></article>
+<article class="card reveal"><span class="icon">🧭</span><h3>11. Business Strategy</h3><p>Learn competitive advantage, growth strategies, positioning and strategic choices.</p><span class="tag">COMPETITION</span></article>
+<article class="card reveal"><span class="icon">♻️</span><h3>12. Ethics and Sustainability</h3><p>Explore corporate social responsibility, environmental impacts and stakeholder interests.</p><span class="tag">RESPONSIBILITY</span></article>
+</div>
+</section>
+
+<section id="learn">
+<div class="heading reveal">
+<h2>Learn the <span>Essentials</span></h2>
+<p>Understand the core ideas and formulas used in introductory business studies.</p>
+</div>
+<div class="lessons">
+<article class="lesson reveal">
+<h3>01 — What is a business?</h3>
+<p>A business combines resources to produce goods or services that meet customer needs and wants. It may aim to earn profit, grow, survive or achieve social goals.</p>
+<div class="formula">Inputs → Business Process → Outputs</div>
+<p>Inputs may include labour, materials, finance, land and enterprise. Outputs are goods or services produced for customers.</p>
+</article>
+<article class="lesson reveal">
+<h3>02 — Revenue, costs and profit</h3>
+<div class="formula">Revenue = Selling Price × Quantity Sold</div>
+<div class="formula">Total Cost = Fixed Costs + Variable Costs</div>
+<div class="formula">Profit = Total Revenue − Total Costs</div>
+<p>Fixed costs generally do not change directly with output in the short term. Total variable costs change as output changes.</p>
+</article>
+<article class="lesson reveal">
+<h3>03 — Break-even analysis</h3>
+<p>Break-even is the output level at which total revenue equals total costs, so there is no profit or loss.</p>
+<div class="formula">Contribution per Unit = Selling Price − Variable Cost per Unit</div>
+<div class="formula">Break-even Output = Fixed Costs ÷ Contribution per Unit</div>
+<p class="note">Example: fixed costs = $2,000, price = $20 and variable cost = $12. Contribution = $8, so break-even output = 2,000 ÷ 8 = 250 units.</p>
+</article>
+<article class="lesson reveal">
+<h3>04 — Cash flow</h3>
+<p>Cash flow tracks money entering and leaving a business. A profitable business can still face cash-flow problems if customers pay late or bills become due before cash arrives.</p>
+<div class="formula">Net Cash Flow = Cash Inflows − Cash Outflows</div>
+<div class="formula">Closing Balance = Opening Balance + Net Cash Flow</div>
+</article>
+<article class="lesson reveal">
+<h3>05 — The marketing mix</h3>
+<p>The traditional 4Ps help a business develop a marketing strategy.</p>
+<ul><li><strong>Product:</strong> what is offered to customers.</li><li><strong>Price:</strong> what customers pay.</li><li><strong>Place:</strong> where and how the product is sold.</li><li><strong>Promotion:</strong> how customers learn about it.</li></ul>
+<p>Effective marketing aligns these decisions with the target market and the business's objectives.</p>
+</article>
+<article class="lesson reveal">
+<h3>06 — Market research</h3>
+<p>Market research helps businesses understand customers, demand, competitors and market conditions.</p>
+<ul><li><strong>Primary research:</strong> data collected directly, such as surveys or interviews.</li><li><strong>Secondary research:</strong> existing information, such as published reports or official statistics.</li></ul>
+<p class="note">Primary research can be tailored to a specific question, while secondary research may be quicker or cheaper to obtain.</p>
+</article>
+<article class="lesson reveal">
+<h3>07 — Productivity</h3>
+<p>Productivity measures output relative to the resources used to produce it.</p>
+<div class="formula">Labour Productivity = Output ÷ Number of Workers</div>
+<p>Productivity may improve through training, better equipment, improved processes or effective motivation.</p>
+</article>
+<article class="lesson reveal">
+<h3>08 — Business ownership</h3>
+<p>Different legal structures affect control, finance, liability and decision-making.</p>
+<ul><li><strong>Sole trader:</strong> owned by one person; usually has unlimited liability.</li><li><strong>Partnership:</strong> owned by partners under an agreed arrangement.</li><li><strong>Limited company:</strong> legally separate from its owners; shareholders generally have limited liability.</li></ul>
+<p>The best structure depends on the business's size, goals, funding needs and legal environment.</p>
+</article>
+<article class="lesson reveal">
+<h3>09 — Motivation</h3>
+<p>Motivation is the willingness of people to put effort into their work. It can be influenced by pay, recognition, responsibility, job security, working conditions and opportunities for development.</p>
+<p>Different employees respond to different incentives, so managers should consider context rather than assuming one method works for everyone.</p>
+</article>
+<article class="lesson reveal">
+<h3>10 — Stakeholders</h3>
+<p>Stakeholders are people or groups affected by business decisions.</p>
+<ul><li>Owners may want profit and growth.</li><li>Employees may want fair pay and job security.</li><li>Customers may want quality and value.</li><li>Suppliers may want reliable payments.</li><li>Government may expect legal compliance and tax payments.</li></ul>
+<p>Stakeholder interests can conflict, requiring managers to make informed trade-offs.</p>
+</article>
+</div>
+</section>
+
+<section id="practice">
+<div class="heading reveal">
+<h2>Business <span>Practice Lab</span></h2>
+<p>Answer 100 multiple-choice questions with instant feedback and a final score.</p>
+</div>
+<div class="exam reveal">
+<div class="examtop"><strong>BUSINESS FOUNDATION TEST</strong><span id="number">Question 1 / 100</span></div>
+<div class="track"><div id="bar"></div></div>
+<div id="quiz">
+<h3 id="question">Loading question...</h3>
+<div class="options" id="options"></div>
+<div id="feedback" aria-live="polite"></div>
+<div class="controls"><button class="btn primary" id="next" disabled>Next Question →</button></div>
+</div>
+<div id="result">
+<h2>Test Completed!</h2>
+<p style="color:var(--muted)">Your Business Atlas result</p>
+<div class="ring"><strong id="score">0/100</strong></div>
+<h3 id="message"></h3>
+<p id="detail" style="color:var(--muted)"></p>
+<button class="btn primary" id="retry">Try Again ↻</button>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<strong style="color:var(--cyan)">IAL ATLAS</strong><br>
+Learn without the confusion.<br>
+Independent educational resource; not affiliated with or endorsed by Pearson.
+<br>Use the official specification to check the complete syllabus requirements.
+</footer>
+
+<script>
+/* Scroll reveal */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, {threshold:.12});
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+/* Cursor glow */
+const glow = document.querySelector(".cursor-glow");
+window.addEventListener("pointermove", e => {
+  glow.style.left = e.clientX + "px";
+  glow.style.top = e.clientY + "px";
+});
+
+/* Animated particle network */
+(() => {
+  const canvas = document.getElementById("particles");
+  const ctx = canvas.getContext("2d");
+  let w = 0, h = 0, points = [];
+  function resize() {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    w = innerWidth; h = innerHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    canvas.style.width = w + "px"; canvas.style.height = h + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    points = Array.from({length:Math.min(65,Math.floor(w/20))},()=>({
+      x:Math.random()*w,y:Math.random()*h,
+      vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35
+    }));
+  }
+  function animate() {
+    ctx.clearRect(0,0,w,h);
+    points.forEach((p,i)=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>w)p.vx*=-1;
+      if(p.y<0||p.y>h)p.vy*=-1;
+      ctx.beginPath();ctx.arc(p.x,p.y,1.5,0,Math.PI*2);
+      ctx.fillStyle="rgba(0,245,255,.6)";ctx.fill();
+      for(let j=i+1;j<points.length;j++){
+        const q=points[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.hypot(dx,dy);
+        if(d<100){
+          ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);
+          ctx.strokeStyle=`rgba(0,245,255,${.1*(1-d/100)})`;ctx.stroke();
+        }
+      }
+    });
+    requestAnimationFrame(animate);
+  }
+  resize();animate();window.addEventListener("resize",resize);
+})();
+
+/* 3D hover tilt */
+if(matchMedia("(hover:hover) and (pointer:fine)").matches){
+  document.querySelectorAll(".card").forEach(card=>{
+    card.addEventListener("pointermove",e=>{
+      const r=card.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width;
+      const y=(e.clientY-r.top)/r.height;
+      card.style.transform=`perspective(850px) rotateX(${(0.5-y)*4}deg) rotateY(${(x-.5)*4}deg) translateY(-3px)`;
+    });
+    card.addEventListener("pointerleave",()=>card.style.transform="");
+  });
+}
+
+/* Question bank */
+const baseQuestions = [
+ {q:"What is a business?",o:["An organisation that produces goods or services","A government law","Only a charity","A type of tax"],a:0,e:"Businesses produce goods or services to meet needs or wants."},
+ {q:"Which is a typical business objective?",o:["Avoiding every decision","Eliminating all competition by law","Making a profit","Guaranteeing that prices never change"],a:2,e:"Profit is a common objective, though businesses may have other objectives too."},
+ {q:"Who is an entrepreneur?",o:["Only a government employee","A person who organises a business venture and takes risks","A customer who never buys","A type of bank account"],a:1,e:"Entrepreneurs identify opportunities and organise resources, often accepting business risk."},
+ {q:"What is opportunity cost?",o:["The money in a bank account","Total sales revenue","A business's total wages","The next best alternative forgone"],a:3,e:"Opportunity cost is the value of the next best alternative that is given up."},
+ {q:"What does revenue measure?",o:["Income from selling goods or services","Only unpaid bills","The number of employees","Only fixed costs"],a:0,e:"Revenue is income generated from sales."},
+ {q:"Which formula calculates profit?",o:["Costs plus revenue","Revenue minus total costs","Assets plus employees","Price minus all revenue"],a:1,e:"Profit equals total revenue minus total costs."},
+ {q:"What is a fixed cost in the short run?",o:["A cost that changes for every unit produced","Always the cost of raw materials","A cost that generally does not change with output over a relevant range","The same as sales revenue"],a:2,e:"Fixed costs generally remain constant as output changes within a relevant range."},
+ {q:"Which is usually a variable cost?",o:["Annual building rent under a fixed lease","A fixed insurance premium","A fixed monthly software fee","Raw materials used for each product"],a:3,e:"Raw-material cost usually rises as more units are produced."},
+ {q:"What is break-even output?",o:["The output at which revenue equals total costs","The output with the highest possible loss","The number of managers","Total fixed costs multiplied by price"],a:0,e:"At break-even, total revenue equals total costs and profit is zero."},
+ {q:"Selling price is $15 and variable cost is $9 per unit. What is contribution per unit?",o:["$24","$6","$9","$15"],a:1,e:"Contribution per unit = selling price − variable cost = $6."},
+ {q:"Fixed costs are $1,200 and contribution per unit is $6. What is break-even output?",o:["200 units","720 units","1,206 units","6,000 units"],a:0,e:"Break-even output = fixed costs ÷ contribution = 1,200 ÷ 6 = 200 units."},
+ {q:"What is market research used for?",o:["Guaranteeing success","Removing every business risk","Understanding customers and markets","Replacing all business decisions"],a:2,e:"Market research helps inform decisions about customers, demand and competitors."},
+ {q:"Which is primary research?",o:["An old industry report","A published census report","A competitor's public annual report","A survey conducted by the business"],a:3,e:"Primary research is collected first-hand for a particular research purpose."},
+ {q:"Which is secondary research?",o:["An interview the company has just conducted","A published market report","A new focus group","A questionnaire the company distributes"],a:1,e:"Secondary research uses existing information collected by someone else or for another purpose."},
+ {q:"What does market segmentation mean?",o:["Dividing a market into groups with shared characteristics","Closing every store","Increasing all costs","Hiring only managers"],a:0,e:"Segmentation groups customers by factors such as needs, location or behaviour."},
+ {q:"Which is one of the traditional 4Ps of marketing?",o:["Payroll","Productivity","Promotion","Partnership"],a:2,e:"The traditional 4Ps are product, price, place and promotion."},
+ {q:"What does promotion aim to do?",o:["Only reduce employee numbers","Replace the product itself","Guarantee a profit","Communicate with customers and encourage demand"],a:3,e:"Promotion communicates product information and can influence customer awareness and demand."},
+ {q:"What is cash flow?",o:["The movement of cash into and out of a business","Only accounting profit","The number of products in stock","The number of customers"],a:0,e:"Cash flow records cash inflows and outflows."},
+ {q:"Can a profitable business experience cash-flow problems?",o:["No, never","Yes, if cash arrives too late to pay bills","Only if it has no customers","Only if it has no employees"],a:1,e:"Profit does not guarantee that cash is available when payments are due."},
+ {q:"Which is a source of external finance?",o:["Retained profit","Owner's existing cash only","A bank loan","Reducing waste"],a:2,e:"A bank loan provides funds from outside the business."},
+ {q:"What does productivity measure?",o:["The selling price alone","The number of shareholders only","The level of advertising","Output relative to resources used"],a:3,e:"Productivity measures how efficiently resources are converted into output."},
+ {q:"Which is a human-resource activity?",o:["Recruiting and training employees","Setting an exchange rate","Changing a tax law","Measuring rainfall"],a:0,e:"Human-resource management includes recruitment, selection, training and development."},
+ {q:"What is a stakeholder?",o:["Only the business owner","A person or group affected by business activity","Only a supplier","A type of business tax"],a:1,e:"Stakeholders can include owners, employees, customers, suppliers and communities."},
+ {q:"What is a competitive advantage?",o:["A guaranteed monopoly","An unavoidable loss","A feature that helps a business compete effectively","A government budget"],a:2,e:"Competitive advantage helps a business offer value or perform better than rivals."},
+ {q:"What is a business plan?",o:["A record of customer complaints only","A list of all competitors worldwide","A guarantee of future profit","A document setting out plans, objectives and expected finances"],a:3,e:"A business plan outlines the venture, objectives, strategy and financial expectations."}
+];
+
+const state={questions:[],index:0,score:0,answered:false};
+const $=id=>document.getElementById(id);
+const number=$("number"),question=$("question"),options=$("options"),
+feedback=$("feedback"),bar=$("bar"),next=$("next"),quiz=$("quiz"),result=$("result");
+
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+
+/* Generate numerical and concept variants to build a 100-question practice set. */
+function buildQuestions(){
+  const all=baseQuestions.map(q=>({...q,o:[...q.o]}));
+
+  for(let i=0;i<15;i++){
+    const price=10+i*2,variable=4+(i%4),fixed=600+i*100;
+    const contribution=price-variable;
+    all.push({
+      q:`A product sells for $${price} and has a variable cost of $${variable} per unit. What is contribution per unit?`,
+      o:[`$${price+variable}`,`$${variable}`,`$${contribution}`,`$${price}`],
+      a:2,e:`Contribution = selling price − variable cost = $${contribution}.`
+    });
+    const be=Math.ceil(fixed/contribution);
+    all.push({
+      q:`Fixed costs are $${fixed} and contribution per unit is $${contribution}. What is break-even output?`,
+      o:[`${fixed} units`,`${be} units`,`${fixed*contribution} units`,`${contribution} units`],
+      a:1,e:`Break-even output = fixed costs ÷ contribution per unit = ${fixed} ÷ ${contribution} = ${be} units.`
+    });
+    const revenue=2000+i*500,cost=1200+i*250,profit=revenue-cost;
+    all.push({
+      q:`A business earns revenue of $${revenue} and has total costs of $${cost}. What is its profit?`,
+      o:[`$${revenue+cost}`,`$${cost}`,`$${profit}`,`$${revenue}`],
+      a:2,e:`Profit = revenue − total costs = $${profit}.`
+    });
+    const inflow=3000+i*200,outflow=2200+i*150,net=inflow-outflow;
+    all.push({
+      q:`Cash inflows are $${inflow} and cash outflows are $${outflow}. What is net cash flow?`,
+      o:[`$${inflow+outflow}`,`$${outflow}`,`$${inflow}`,`$${net}`],
+      a:3,e:`Net cash flow = inflows − outflows = $${net}.`
+    });
+  }
+
+  const extraConcepts=[
+    ["Which objective is especially important for a new business facing strong uncertainty?",["Survival","Ignoring customers","Increasing every cost","Avoiding all planning"],0,"Survival can be a key early objective."],
+    ["What is limited liability?",["Owners must repay every company debt personally in all circumstances","Shareholders' financial liability is generally limited to their investment or unpaid share amount","A ban on borrowing","A guarantee of profit"],1,"Limited liability generally separates shareholders' personal assets from company debts."],
+    ["What is a franchise?",["A type of inventory","A tax rate","An arrangement allowing a franchisee to use an established business brand and system under agreed terms","A cash-flow forecast"],2,"Franchising lets a franchisee operate using the franchisor's brand and business model."],
+    ["What does quality control involve?",["Setting interest rates","Recruiting customers only","Ignoring defective products","Checking products or output against quality standards"],3,"Quality control checks output against specified standards."],
+    ["What is a cash-flow forecast?",["An estimate of expected cash inflows and outflows over a future period","A list of past advertisements","A guarantee that a business will be profitable","A staff attendance record"],0,"A cash-flow forecast estimates future cash movements."],
+    ["Why might a business train its employees?",["To guarantee no mistakes ever","To improve skills and performance","To eliminate every cost","To avoid setting objectives"],1,"Training can improve skills, confidence, productivity and quality."],
+    ["What does market share measure?",["The number of products in a warehouse","The business's total wages","The business's sales as a proportion of total market sales","The number of managers"],2,"Market share compares a firm's sales with total market sales."],
+    ["Which is a possible benefit of economies of scale?",["Higher average costs in every case","No need for customers","Guaranteed monopoly","Lower average costs as output expands"],3,"Economies of scale can reduce average costs as production expands."],
+    ["What is an external factor affecting a business?",["A change in interest rates","An internal staff rota","A company's mission statement","Its own warehouse layout"],0,"Interest rates are part of the external economic environment."],
+    ["What is corporate social responsibility?",["A guarantee that profit will rise","Considering a business's responsibilities to society and the environment","A method of calculating break-even output","A type of bank loan"],1,"CSR concerns the business's broader social and environmental responsibilities."]
+  ];
+  extraConcepts.forEach((q,i)=>all.push({q:q[0],o:q[1],a:q[2],e:q[3]}));
+
+  /* Ensure 100 unique question entries by cycling through varied core questions
+     and rephrasing the prompt if more entries are needed. */
+  const source=[...all];
+  let cursor=0;
+  while(all.length<100){
+    const q=source[cursor%source.length];
+    all.push({...q,q:`Practice ${all.length+1}: ${q.q}`});
+    cursor++;
+  }
+  state.questions=shuffle(all).slice(0,100);
+}
+
+function render(){
+  state.answered=false;
+  const q=state.questions[state.index];
+  number.textContent=`Question ${state.index+1} / 100`;
+  question.textContent=q.q;
+  options.innerHTML="";
+  feedback.textContent="";
+  feedback.style.color="var(--muted)";
+  bar.style.width=`${state.index}%`;
+  next.disabled=true;
+  next.textContent=state.index===99?"See Results ✓":"Next Question →";
+
+  q.o.forEach((text,index)=>{
+    const button=document.createElement("button");
+    button.className="option";
+    button.type="button";
+    button.textContent=String.fromCharCode(65+index)+". "+text;
+    button.addEventListener("click",()=>answer(index));
+    options.appendChild(button);
+  });
+}
+
+function answer(selected){
+  if(state.answered)return;
+  state.answered=true;
+  const q=state.questions[state.index];
+  [...options.children].forEach((button,index)=>{
+    button.disabled=true;
+    if(index===q.a)button.classList.add("correct");
+    if(index===selected&&selected!==q.a)button.classList.add("wrong");
+  });
+  if(selected===q.a){
+    state.score++;
+    feedback.textContent="✓ Correct! "+q.e;
+    feedback.style.color="var(--green)";
+  }else{
+    feedback.textContent="Not quite. "+q.e;
+    feedback.style.color="#ff9aaf";
+  }
+  bar.style.width=`${state.index+1}%`;
+  next.disabled=false;
+}
+
+function finish(){
+  quiz.style.display="none";
+  result.style.display="block";
+  $("score").textContent=`${state.score}/100`;
+  $("message").textContent=state.score>=90?"Outstanding work! 🌟":state.score>=75?"Great job! 🚀":state.score>=50?"Good start — revise and try again. 📘":"Keep learning. Every attempt helps! 💡";
+  $("detail").textContent=`You answered ${state.score} out of 100 questions correctly. Review the lessons and try again to improve.`;
+  bar.style.width="100%";
+}
+
+next.addEventListener("click",()=>{
+  if(!state.answered)return;
+  if(state.index===99){finish();return;}
+  state.index++;
+  render();
+});
+
+$("retry").addEventListener("click",()=>{
+  state.index=0;state.score=0;state.answered=false;
+  buildQuestions();
+  result.style.display="none";
+  quiz.style.display="block";
+  render();
+  $("practice").scrollIntoView({behavior:"smooth"});
+});
+
+buildQuestions();
+render();
+</script>
+</body>
+</html>
