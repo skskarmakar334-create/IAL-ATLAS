@@ -1,0 +1,1066 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn Computer Science with IAL ATLAS. Explore algorithms, programming, data representation, databases, networking, cybersecurity and practice questions.">
+  <meta name="theme-color" content="#061018">
+  <title>Computer Science Atlas | IAL ATLAS</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    :root {
+      --bg: #061018;
+      --panel: rgba(13, 31, 43, .82);
+      --cyan: #5df5ff;
+      --blue: #7b9dff;
+      --purple: #bd8aff;
+      --text: #edfaff;
+      --muted: #9bb4c5;
+      --border: rgba(93, 245, 255, .18);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 12% 0%, rgba(0,202,255,.12), transparent 35%),
+        radial-gradient(ellipse at 95% 30%, rgba(125,80,255,.10), transparent 32%),
+        var(--bg);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+
+    .cs-shell { width: min(1180px, 92%); margin: auto; }
+
+    .cs-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 23px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cs-logo { font-weight: 900; letter-spacing: 1.5px; }
+    .cs-logo span { color: var(--cyan); }
+
+    .cs-nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .cs-nav-links a:hover { color: var(--cyan); }
+
+    .cs-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 76px 0 58px;
+    }
+
+    .cs-hero::before {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      right: 4%;
+      top: 30px;
+      border: 1px solid rgba(93,245,255,.15);
+      border-radius: 50%;
+      box-shadow: 0 0 60px rgba(93,245,255,.08), inset 0 0 60px rgba(93,245,255,.06);
+      animation: rotate 22s linear infinite;
+      pointer-events: none;
+    }
+
+    .cs-hero::after {
+      content: "</>";
+      position: absolute;
+      right: 8%;
+      top: 105px;
+      font-size: clamp(5rem, 15vw, 12rem);
+      font-weight: 900;
+      letter-spacing: -10px;
+      color: rgba(93,245,255,.11);
+      animation: float 5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .cs-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--cyan);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .cs-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 14px var(--cyan);
+      animation: pulse 1.8s infinite;
+    }
+
+    .cs-hero h1 {
+      position: relative;
+      z-index: 1;
+      max-width: 790px;
+      margin: 22px 0;
+      font-size: clamp(2.7rem, 7vw, 5.8rem);
+      line-height: .99;
+      letter-spacing: -3px;
+    }
+
+    .cs-gradient {
+      background: linear-gradient(100deg, var(--cyan), #92c6ff 50%, var(--purple));
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .cs-hero p {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      color: var(--muted);
+      font-size: 1.04rem;
+      line-height: 1.8;
+    }
+
+    .cs-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; position: relative; z-index: 1; }
+
+    .cs-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 13px 19px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      background: rgba(13,31,43,.8);
+      cursor: pointer;
+      transition: .25s;
+    }
+
+    .cs-btn.primary {
+      background: var(--cyan);
+      color: #031218;
+      border-color: var(--cyan);
+      font-weight: 850;
+    }
+
+    .cs-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(93,245,255,.12); }
+
+    .cs-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 18px 0 54px;
+    }
+
+    .cs-stat {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--panel);
+      backdrop-filter: blur(14px);
+    }
+
+    .cs-stat strong { display: block; color: var(--cyan); font-size: 1.65rem; margin-bottom: 5px; }
+    .cs-stat span { color: var(--muted); font-size: .88rem; }
+
+    .cs-section { padding: 25px 0 50px; }
+
+    .cs-section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .cs-section h2 { margin: 0 0 9px; font-size: clamp(1.65rem,4vw,2.5rem); letter-spacing: -.8px; }
+    .cs-section-head p { color: var(--muted); margin: 0; line-height: 1.7; }
+
+    .cs-search {
+      width: min(100%, 360px);
+      padding: 13px 15px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      background: rgba(5,19,29,.8);
+      outline: none;
+    }
+
+    .cs-search:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(93,245,255,.08); }
+
+    .cs-filters { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 22px; }
+
+    .cs-filter {
+      padding: 9px 13px;
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .cs-filter.active, .cs-filter:hover {
+      color: var(--cyan);
+      background: rgba(93,245,255,.12);
+      border-color: rgba(93,245,255,.5);
+    }
+
+    .cs-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+
+    .cs-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 230px;
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(145deg,rgba(15,37,51,.9),rgba(7,19,29,.94));
+      transition: transform .28s, border-color .28s, box-shadow .28s;
+      animation: appear .55s both;
+    }
+
+    .cs-card::before {
+      content: "";
+      position: absolute;
+      top: -70px;
+      right: -70px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: var(--glow,rgba(93,245,255,.12));
+      transition: transform .35s;
+      pointer-events: none;
+    }
+
+    .cs-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(93,245,255,.5);
+      box-shadow: 0 16px 40px rgba(0,0,0,.22);
+    }
+
+    .cs-card:hover::before { transform: scale(1.45); }
+    .cs-card-icon { position: relative; font-size: 1.7rem; margin-bottom: 18px; }
+    .cs-tag { display: inline-block; color: var(--cyan); font-size: .7rem; text-transform: uppercase; letter-spacing: 1.2px; font-weight: 800; margin-bottom: 10px; }
+    .cs-card h3 { margin: 0 0 10px; font-size: 1.12rem; }
+    .cs-card p { color: var(--muted); font-size: .9rem; line-height: 1.7; }
+    .cs-card button { margin-top: 7px; padding: 0; border: 0; background: transparent; color: var(--cyan); font-weight: 750; cursor: pointer; }
+    .cs-empty { display: none; padding: 25px; color: var(--muted); border: 1px dashed var(--border); border-radius: 14px; }
+
+    .cs-study-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .cs-study-panel {
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--panel);
+    }
+
+    .cs-study-panel h3 { margin-top: 0; }
+    .cs-study-panel p, .cs-study-panel li { color: var(--muted); line-height: 1.8; }
+    .cs-study-panel ul { padding-left: 20px; }
+
+    .cs-code {
+      overflow-x: auto;
+      padding: 17px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #030b12;
+      color: #a9f8d2;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      line-height: 1.8;
+      font-size: .9rem;
+      white-space: pre;
+    }
+
+    .cs-note {
+      padding: 14px 16px;
+      border-left: 3px solid var(--cyan);
+      border-radius: 0 10px 10px 0;
+      background: rgba(93,245,255,.06);
+      color: #cbe8ef;
+      line-height: 1.7;
+    }
+
+    .cs-quiz {
+      padding: 26px;
+      border: 1px solid rgba(189,138,255,.28);
+      border-radius: 20px;
+      background: linear-gradient(140deg,rgba(31,22,52,.65),rgba(9,24,35,.88));
+    }
+
+    .cs-quiz-count { color: var(--purple); font-size: .83rem; font-weight: 800; }
+
+    .cs-progress { height: 5px; border-radius: 20px; background: rgba(255,255,255,.08); margin: 14px 0 23px; overflow: hidden; }
+    .cs-progress-bar { height: 100%; width: 0; background: linear-gradient(90deg,var(--cyan),var(--purple)); transition: width .3s; }
+    .cs-question { font-size: 1.2rem; line-height: 1.6; margin-bottom: 20px; }
+    .cs-options { display: grid; gap: 10px; }
+
+    .cs-option {
+      text-align: left;
+      padding: 14px 16px;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(3,14,22,.6);
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .cs-option:hover:not(:disabled) { border-color: var(--cyan); transform: translateX(3px); }
+    .cs-option.correct { border-color: #58e6a3; background: rgba(88,230,163,.1); }
+    .cs-option.wrong { border-color: #ff7c91; background: rgba(255,124,145,.1); }
+    .cs-option:disabled { cursor: default; }
+    .cs-feedback { min-height: 28px; margin: 15px 0; color: var(--muted); line-height: 1.6; }
+    .cs-quiz-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .cs-footer { margin-top: 25px; padding: 28px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: .87rem; line-height: 1.8; }
+    .cs-footer strong { color: var(--cyan); }
+
+    .cs-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(0,8,14,.8);
+      backdrop-filter: blur(10px);
+    }
+
+    .cs-modal.open { display: flex; animation: fade .2s; }
+
+    .cs-modal-box {
+      width: min(680px,100%);
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 27px;
+      border: 1px solid rgba(93,245,255,.3);
+      border-radius: 20px;
+      background: #0a1a27;
+      box-shadow: 0 0 60px rgba(93,245,255,.08);
+    }
+
+    .cs-modal-box h2 { color: var(--cyan); }
+    .cs-modal-box p, .cs-modal-box li { color: #c1d5e0; line-height: 1.8; }
+    .cs-modal-close { float: right; }
+
+    @keyframes rotate { to { transform: rotate(360deg); } }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
+    @keyframes pulse { 0%,100% { opacity: 1; box-shadow: 0 0 14px var(--cyan); } 50% { opacity: .45; box-shadow: 0 0 4px var(--cyan); } }
+    @keyframes appear { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+    @media(max-width:850px) {
+      .cs-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .cs-hero::before { right: -140px; }
+    }
+
+    @media(max-width:600px) {
+      .cs-nav { align-items: flex-start; flex-direction: column; }
+      .cs-hero { padding-top: 53px; }
+      .cs-hero h1 { letter-spacing: -1.5px; }
+      .cs-hero::before { width: 220px; height: 220px; top: 100px; right: -110px; }
+      .cs-hero::after { top: 115px; right: 0; }
+      .cs-stats { grid-template-columns: 1fr; gap: 9px; margin-bottom: 35px; }
+      .cs-stat { padding: 15px; }
+      .cs-grid, .cs-study-grid { grid-template-columns: 1fr; }
+      .cs-section-head { align-items: stretch; flex-direction: column; }
+      .cs-search { width: 100%; }
+      .cs-card { min-height: 0; }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      *,*::before,*::after {
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        scroll-behavior:auto !important;
+        transition-duration:.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cs-shell">
+    <nav class="cs-nav">
+      <a class="cs-logo" href="index.html">IAL <span>ATLAS</span></a>
+      <div class="cs-nav-links">
+        <a href="index.html">Home</a>
+        <a href="#topics">Topics</a>
+        <a href="#study">Study notes</a>
+        <a href="#practice">Practice</a>
+      </div>
+    </nav>
+
+    <header class="cs-hero">
+      <div class="cs-kicker"><span class="cs-dot"></span> Logic · Algorithms · Computing</div>
+      <h1>Think logically.<br><span class="cs-gradient">Build intelligently.</span></h1>
+      <p>
+        Welcome to Computer Science Atlas — explore algorithms, programming, data representation,
+        computer systems, networking and databases through structured learning notes and interactive practice.
+      </p>
+      <div class="cs-actions">
+        <a class="cs-btn primary" href="#topics">Explore topics ↗</a>
+        <a class="cs-btn" href="#practice">Try an MCQ →</a>
+      </div>
+    </header>
+
+    <section class="cs-stats">
+      <div class="cs-stat"><strong>01</strong><span>Understand core concepts</span></div>
+      <div class="cs-stat"><strong>02</strong><span>Explore logic and algorithms</span></div>
+      <div class="cs-stat"><strong>03</strong><span>Practise with instant feedback</span></div>
+    </section>
+
+    <main>
+      <section class="cs-section" id="topics">
+        <div class="cs-section-head">
+          <div>
+            <div class="cs-kicker">Your learning map</div>
+            <h2>Explore Computer Science</h2>
+            <p>Search topics or filter by subject area.</p>
+          </div>
+          <input class="cs-search" id="topicSearch" type="search" placeholder="Search topics..." aria-label="Search computer science topics">
+        </div>
+
+        <div class="cs-filters">
+          <button class="cs-filter active" data-filter="all">All topics</button>
+          <button class="cs-filter" data-filter="systems">Computer systems</button>
+          <button class="cs-filter" data-filter="data">Data</button>
+          <button class="cs-filter" data-filter="programming">Programming</button>
+          <button class="cs-filter" data-filter="algorithms">Algorithms</button>
+          <button class="cs-filter" data-filter="networks">Networks</button>
+          <button class="cs-filter" data-filter="security">Security</button>
+        </div>
+
+        <div class="cs-grid" id="topicGrid">
+          <article class="cs-card" data-category="data" style="--glow:rgba(93,245,255,.13)">
+            <div class="cs-card-icon">🔢</div><span class="cs-tag">Data</span>
+            <h3>Data Representation</h3>
+            <p>Binary, denary, hexadecimal, character sets, images, sound and data compression.</p>
+            <button data-topic="representation">Open study notes →</button>
+          </article>
+
+          <article class="cs-card" data-category="systems" style="--glow:rgba(189,138,255,.15)">
+            <div class="cs-card-icon">⚙️</div><span class="cs-tag">Computer systems</span>
+            <h3>Processor and Architecture</h3>
+            <p>CPU components, registers, buses, the fetch-decode-execute cycle and performance.</p>
+            <button data-topic="processor">Open study notes →</button>
+          </article>
+
+          <article class="cs-card" data-category="systems" style="--glow:rgba(123,157,255,.15)">
+            <div class="cs-card-icon">💾</div><span class="cs-tag">Computer systems</span>
+            <h3>Memory and Storage</h3>
+            <p>RAM, ROM, cache, virtual memory and secondary storage technologies.</p>
+            <button data-topic="memory">Open study notes →</button>
+          </article>
+
+          <article class="cs-card" data-category="programming" style="--glow:rgba(93,245,255,.12)">
+            <div class="cs-card-icon">⌨️</div><span class="cs-tag">Programming</span>
+            <h3>Programming Fundamentals</h3>
+            <p>Variables, data types, operators, selection, iteration and modular programming.</p>
+            <button data-topic="programming">Open study notes →</button>
+          </article>
+
+          <article class="cs-card" data-category="algorithms" style="--glow:rgba(255,199,106,.12)">
+            <div class="cs-card-icon">🧩</div><span class="cs-tag">Algorithms</span>
+            <h3>Algorithms and Pseudocode</h3>
+            <p>Design solutions with clear steps, trace tables, flowcharts and pseudocode.</p>
+            <button data-topic="algorithms">Open study notes →</button>
+          </article>
+
+          <article class="cs-card" data-category="algorithms" style="--glow:rgba(189,138,255,.15)">
+            <div class="cs-card-icon">🔍</div><span class="cs-tag">Algorithms</span>
+            <h3>Searching and Sorting</h3>
+            <p>Explore linear search, binary search, bubble sort and algorithm efficiency.</p>
+            <button data-topic="searching">Open study notes →</button>
+          </article>
+
+          <article class="cs-card" data-category="data" style="--glow:rgba(123,157,255,.15)">
+            <div class="cs-card-icon">🗃️</div><span class="cs-tag">Data</span>
+            <h3>Databases and SQL</h3>
+            <p>Tables, records, fields, primary keys, relationships and introductory SQL queries.</p>
+            <button data-topic="databases">Open study notes →</button>
+          </article>
+
+          <article class="cs-card" data-category="data" style="--glow:rgba(93,245,255,.13)">
+            <div class="cs-card-icon">🌳</div><span class="cs-tag">Data structures</span>
+            <h3>Stacks, Queues and Trees</h3>
+            <p>Understand common abstract data types, operations and typical use cases.</p>
+            <button data-topic="structures">Open study notes →</button>
+          </article>
+
+          <article class="cs-card" data-category="networks" style="--glow:rgba(189,138,255,.15)">
+            <div class="cs-card-icon">🌐</div><span class="cs-tag">Networks</span>
+            <h3>Computer Networks</h3>
+            <p>LANs, WANs, network topologies, protocols, IP addresses and packet switching.</p>
+            <button data-topic="networks">Open study notes →</button>
+          </article>
+
+          <article class="cs-card" data-category="security" style="--glow:rgba(255,130,160,.13)">
+            <div class="cs-card-icon">🔐</div><span class="cs-tag">Security</span>
+            <h3>Cybersecurity</h3>
+            <p>Threats, malware, phishing, encryption, authentication and security measures.</p>
+            <button data-topic="security">Open study notes →</button>
+          </article>
+
+          <article class="cs-card" data-category="programming" style="--glow:rgba(255,199,106,.12)">
+            <div class="cs-card-icon">🧱</div><span class="cs-tag">Software development</span>
+            <h3>Software Engineering</h3>
+            <p>Analysis, design, implementation, testing, maintenance and development approaches.</p>
+            <button data-topic="software">Open study notes →</button>
+          </article>
+
+          <article class="cs-card" data-category="systems" style="--glow:rgba(93,245,255,.12)">
+            <div class="cs-card-icon">🖥️</div><span class="cs-tag">Computer systems</span>
+            <h3>Operating Systems</h3>
+            <p>Process management, memory management, file systems and device management.</p>
+            <button data-topic="operating">Open study notes →</button>
+          </article>
+        </div>
+
+        <div class="cs-empty" id="noTopics">No matching topics found. Try another search.</div>
+      </section>
+
+      <section class="cs-section" id="study">
+        <div class="cs-kicker">Learn by doing</div>
+        <h2>Programming quick start</h2>
+        <p style="color:var(--muted);line-height:1.8;margin-bottom:22px">
+          A simple example of sequence, selection and iteration — three fundamental programming constructs.
+        </p>
+
+        <div class="cs-study-grid">
+          <div class="cs-study-panel">
+            <h3>Example: Find the largest number</h3>
+            <div class="cs-code">DECLARE a : INTEGER
+DECLARE b : INTEGER
+
+OUTPUT "Enter two numbers"
+INPUT a
+INPUT b
+
+IF a > b THEN
+    OUTPUT a
+ELSE
+    OUTPUT b
+ENDIF</div>
+            <p>This pseudocode inputs two numbers, compares them and outputs the larger one. If they are equal, the example outputs the second number, which is also the same value.</p>
+          </div>
+
+          <div class="cs-study-panel">
+            <h3>Three core constructs</h3>
+            <ul>
+              <li><strong style="color:var(--cyan)">Sequence:</strong> instructions execute in order.</li>
+              <li><strong style="color:var(--cyan)">Selection:</strong> a condition determines which path runs.</li>
+              <li><strong style="color:var(--cyan)">Iteration:</strong> instructions repeat while a loop condition or count requires it.</li>
+            </ul>
+            <div class="cs-note">
+              Exam tip: trace the algorithm line by line. Update variable values carefully and record each output in order.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cs-section" id="practice">
+        <div class="cs-kicker">Test your understanding</div>
+        <h2>Computer Science MCQ Lab</h2>
+        <p style="color:var(--muted);line-height:1.8;margin-bottom:22px">
+          Try these introductory questions and read the explanations after every answer.
+          They are practice questions, not official Pearson examination questions.
+        </p>
+
+        <div class="cs-quiz">
+          <div class="cs-quiz-count" id="quizCount">QUESTION 1 OF 12</div>
+          <div class="cs-progress"><div class="cs-progress-bar" id="quizProgress"></div></div>
+          <h3 class="cs-question" id="quizQuestion">Loading question...</h3>
+          <div class="cs-options" id="quizOptions"></div>
+          <div class="cs-feedback" id="quizFeedback" aria-live="polite"></div>
+          <div class="cs-quiz-actions">
+            <button class="cs-btn primary" id="nextQuestion" disabled>Next question →</button>
+            <button class="cs-btn" id="restartQuiz" style="display:none">Try again ↻</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="cs-footer">
+      <strong>IAL ATLAS</strong> — Learn without the confusion.<br>
+      An independent student learning project. Not affiliated with or endorsed by Pearson Edexcel.
+      Check the official specification for your examination series.
+    </footer>
+  </div>
+
+  <div class="cs-modal" id="topicModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="cs-modal-box">
+      <button class="cs-btn cs-modal-close" id="closeModal" aria-label="Close study notes">✕ Close</button>
+      <div class="cs-kicker">Topic introduction</div>
+      <h2 id="modalTitle">Topic</h2>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    const topicNotes = {
+      representation: {
+        title: "Data Representation",
+        definition: "Computers represent and process data using binary digits: 0 and 1.",
+        points: [
+          "Binary is base 2; denary is base 10; hexadecimal is base 16.",
+          "One byte contains 8 bits.",
+          "Character sets assign binary codes to characters.",
+          "Image file size depends on factors such as resolution and colour depth.",
+          "Sound file size depends on sample rate, bit depth, duration and number of channels.",
+          "Lossless compression preserves all original data; lossy compression discards some information."
+        ],
+        example: "The binary number 1011₂ equals 11 in denary: 8 + 0 + 2 + 1."
+      },
+      processor: {
+        title: "Processor and Architecture",
+        definition: "The CPU executes instructions and coordinates operations within a computer system.",
+        points: [
+          "The control unit coordinates instruction execution.",
+          "The ALU performs arithmetic and logical operations.",
+          "Registers provide very fast storage inside the processor.",
+          "The fetch-decode-execute cycle describes the repeated processing of instructions.",
+          "Clock speed, cores and cache can affect performance, but no single factor determines it alone."
+        ],
+        example: "During fetching, the processor retrieves an instruction from memory using the relevant address."
+      },
+      memory: {
+        title: "Memory and Storage",
+        definition: "Primary memory supports immediate processing, while secondary storage retains data for longer-term use.",
+        points: [
+          "RAM is volatile working memory.",
+          "ROM is non-volatile and can store firmware.",
+          "Cache stores frequently needed data and instructions close to the CPU.",
+          "Virtual memory uses secondary storage to extend available memory when RAM is insufficient.",
+          "SSDs use flash memory and have no moving mechanical parts."
+        ],
+        example: "Unsaved data in RAM may be lost when power is removed."
+      },
+      programming: {
+        title: "Programming Fundamentals",
+        definition: "Programming expresses instructions in a language that can be translated or interpreted for execution.",
+        points: [
+          "Variables store values; constants represent values intended not to change.",
+          "Data types describe the kind of value being represented.",
+          "Selection chooses between paths using conditions.",
+          "Iteration repeats a sequence of instructions.",
+          "Procedures and functions help organise reusable code."
+        ],
+        example: "An IF statement can choose one action when a condition is true and another when it is false."
+      },
+      algorithms: {
+        title: "Algorithms and Pseudocode",
+        definition: "An algorithm is a finite, ordered set of steps for solving a problem.",
+        points: [
+          "Pseudocode expresses algorithm logic without requiring a specific programming language.",
+          "Flowcharts use standard symbols to represent actions and decisions.",
+          "Trace tables track variable values as an algorithm runs.",
+          "Correct algorithms should handle relevant inputs and edge cases.",
+          "Efficiency can be assessed using time and memory requirements."
+        ],
+        example: "To calculate a total, initialise a total variable, add each value, then output the final total."
+      },
+      searching: {
+        title: "Searching and Sorting",
+        definition: "Searching algorithms locate items; sorting algorithms arrange items into a specified order.",
+        points: [
+          "Linear search checks items sequentially.",
+          "Binary search repeatedly halves the search interval and requires sorted data.",
+          "Bubble sort compares adjacent items and swaps them when they are out of order.",
+          "Different algorithms trade simplicity, speed and resource use.",
+          "Trace each comparison and swap carefully in exam questions."
+        ],
+        example: "Binary search cannot be applied directly to an unsorted list without first arranging the data."
+      },
+      databases: {
+        title: "Databases and SQL",
+        definition: "A relational database organises related data into tables connected through keys.",
+        points: [
+          "A record is a row; a field is a column.",
+          "A primary key uniquely identifies a record.",
+          "A foreign key links related tables.",
+          "Normalisation helps reduce unnecessary duplication and update anomalies.",
+          "SQL can retrieve, insert, update and delete data."
+        ],
+        example: "SELECT name FROM Students; retrieves the name field from the Students table."
+      },
+      structures: {
+        title: "Stacks, Queues and Trees",
+        definition: "Abstract data types describe how data is organised and which operations are supported.",
+        points: [
+          "A stack uses last-in, first-out (LIFO).",
+          "A queue uses first-in, first-out (FIFO).",
+          "A tree organises nodes hierarchically.",
+          "A linked list connects nodes using references or pointers.",
+          "Choose a structure based on the operations a problem requires."
+        ],
+        example: "A stack of plates is a useful analogy for LIFO: the last plate placed on top is usually removed first."
+      },
+      networks: {
+        title: "Computer Networks",
+        definition: "A computer network connects devices so they can communicate and share resources.",
+        points: [
+          "A LAN generally covers a limited geographical area; a WAN spans larger areas.",
+          "Protocols define rules for communication.",
+          "Packet switching divides data into packets that can travel through a network.",
+          "IP addresses identify network interfaces for communication.",
+          "DNS helps translate domain names into IP addresses."
+        ],
+        example: "When a web page is requested, network protocols help transfer the required data between devices and servers."
+      },
+      security: {
+        title: "Cybersecurity",
+        definition: "Cybersecurity protects systems, networks and information against unauthorised access, damage and disruption.",
+        points: [
+          "Malware is malicious software.",
+          "Phishing attempts to trick users into revealing information or taking unsafe actions.",
+          "Encryption transforms readable data into a protected form using cryptographic methods.",
+          "Authentication checks claimed identity.",
+          "Updates, access controls, backups and user awareness can reduce risk."
+        ],
+        example: "Multi-factor authentication requires more than one type of evidence to verify a user's identity."
+      },
+      software: {
+        title: "Software Engineering",
+        definition: "Software engineering uses structured methods to develop, test, deploy and maintain software.",
+        points: [
+          "Requirements analysis identifies what the system must do.",
+          "Design plans the structure and behaviour of the system.",
+          "Implementation turns the design into code.",
+          "Testing finds defects and checks requirements.",
+          "Maintenance corrects issues and adapts software after release."
+        ],
+        example: "A boundary-value test checks inputs near the edges of the permitted range."
+      },
+      operating: {
+        title: "Operating Systems",
+        definition: "An operating system manages hardware resources and provides services to applications and users.",
+        points: [
+          "Process management coordinates running programs.",
+          "Memory management allocates and tracks memory.",
+          "File management organises stored information.",
+          "Device management coordinates input and output devices.",
+          "User interfaces allow people to interact with the system."
+        ],
+        example: "The operating system helps multiple applications share processor time and memory."
+      }
+    };
+
+    const modal = document.getElementById("topicModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalContent = document.getElementById("modalContent");
+
+    document.querySelectorAll("[data-topic]").forEach(button => {
+      button.addEventListener("click", () => {
+        const note = topicNotes[button.dataset.topic];
+        if (!note) return;
+
+        modalTitle.textContent = note.title;
+        modalContent.replaceChildren();
+
+        const intro = document.createElement("p");
+        intro.textContent = note.definition;
+        modalContent.appendChild(intro);
+
+        const heading = document.createElement("h3");
+        heading.textContent = "Key points";
+        modalContent.appendChild(heading);
+
+        const list = document.createElement("ul");
+        note.points.forEach(point => {
+          const item = document.createElement("li");
+          item.textContent = point;
+          list.appendChild(item);
+        });
+        modalContent.appendChild(list);
+
+        const example = document.createElement("div");
+        example.className = "cs-note";
+        const label = document.createElement("strong");
+        label.textContent = "Example: ";
+        example.append(label, document.createTextNode(note.example));
+        modalContent.appendChild(example);
+
+        modal.classList.add("open");
+        document.getElementById("closeModal").focus();
+      });
+    });
+
+    function closeModal() {
+      modal.classList.remove("open");
+    }
+
+    document.getElementById("closeModal").addEventListener("click", closeModal);
+    modal.addEventListener("click", event => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeModal();
+    });
+
+    // Search and category filters
+    const searchInput = document.getElementById("topicSearch");
+    const filterButtons = document.querySelectorAll(".cs-filter");
+    const topicCards = [...document.querySelectorAll(".cs-card")];
+    const noTopics = document.getElementById("noTopics");
+    let activeFilter = "all";
+
+    function filterTopics() {
+      const query = searchInput.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      topicCards.forEach(card => {
+        const matchesCategory = activeFilter === "all" || card.dataset.category === activeFilter;
+        const matchesSearch = card.textContent.toLowerCase().includes(query);
+        const visible = matchesCategory && matchesSearch;
+
+        card.style.display = visible ? "" : "none";
+        if (visible) visibleCount++;
+      });
+
+      noTopics.style.display = visibleCount ? "none" : "block";
+    }
+
+    searchInput.addEventListener("input", filterTopics);
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        activeFilter = button.dataset.filter;
+        filterButtons.forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+        filterTopics();
+      });
+    });
+
+    // Introductory MCQ practice
+    const questions = [
+      {
+        q: "How many bits are in one byte?",
+        options: ["4", "8", "16", "32"],
+        answer: 1,
+        explanation: "One byte contains 8 bits."
+      },
+      {
+        q: "Which number system uses base 2?",
+        options: ["Denary", "Hexadecimal", "Binary", "Octal"],
+        answer: 2,
+        explanation: "Binary uses only the digits 0 and 1, so its base is 2."
+      },
+      {
+        q: "Which CPU component performs arithmetic and logical operations?",
+        options: ["ALU", "Control unit", "SSD", "Network interface"],
+        answer: 0,
+        explanation: "The Arithmetic Logic Unit performs arithmetic and logical operations."
+      },
+      {
+        q: "Which type of memory is normally volatile?",
+        options: ["ROM", "Blu-ray disc", "RAM", "Flash drive"],
+        answer: 2,
+        explanation: "RAM is volatile, meaning its contents normally require power to be retained."
+      },
+      {
+        q: "What is the main purpose of a primary key in a relational table?",
+        options: [
+          "To compress every record",
+          "To uniquely identify a record",
+          "To encrypt all fields",
+          "To sort every table automatically"
+        ],
+        answer: 1,
+        explanation: "A primary key uniquely identifies each record in a table."
+      },
+      {
+        q: "Which search algorithm requires the list to be sorted?",
+        options: ["Linear search", "Binary search", "Random search", "Sequential output"],
+        answer: 1,
+        explanation: "Binary search relies on sorted data to discard half of the remaining search range."
+      },
+      {
+        q: "What does LIFO mean?",
+        options: [
+          "Last In, First Out",
+          "Last Input, Final Output",
+          "Low Information, Fast Operation",
+          "List In, File Out"
+        ],
+        answer: 0,
+        explanation: "A stack follows Last In, First Out (LIFO)."
+      },
+      {
+        q: "Which construct is used to repeat instructions?",
+        options: ["Constant", "Iteration", "Declaration only", "Comment"],
+        answer: 1,
+        explanation: "Iteration repeats instructions using a loop."
+      },
+      {
+        q: "What is the main role of DNS?",
+        options: [
+          "To cool the CPU",
+          "To replace RAM",
+          "To help translate domain names into IP addresses",
+          "To sort database records"
+        ],
+        answer: 2,
+        explanation: "DNS helps resolve domain names to IP addresses."
+      },
+      {
+        q: "Which statement about lossless compression is correct?",
+        options: [
+          "It always removes image colour",
+          "It permanently deletes some original information",
+          "It works only for sound",
+          "The original data can be reconstructed exactly"
+        ],
+        answer: 3,
+        explanation: "Lossless compression preserves enough information to reconstruct the original data exactly."
+      },
+      {
+        q: "What is phishing?",
+        options: [
+          "A type of CPU register",
+          "An attempt to deceive people into revealing information or taking unsafe actions",
+          "A sorting algorithm",
+          "A database relationship"
+        ],
+        answer: 1,
+        explanation: "Phishing uses deceptive messages or websites to manipulate users."
+      },
+      {
+        q: "What does the dependent variable represent in an experiment?",
+        options: [
+          "The outcome being measured",
+          "The programming language",
+          "The input device",
+          "The file extension"
+        ],
+        answer: 0,
+        explanation: "The dependent variable is the outcome measured by the experiment."
+      }
+    ];
+
+    let questionIndex = 0;
+    let score = 0;
+    let answered = false;
+
+    const quizCount = document.getElementById("quizCount");
+    const quizQuestion = document.getElementById("quizQuestion");
+    const quizOptions = document.getElementById("quizOptions");
+    const quizFeedback = document.getElementById("quizFeedback");
+    const quizProgress = document.getElementById("quizProgress");
+    const nextButton = document.getElementById("nextQuestion");
+    const restartButton = document.getElementById("restartQuiz");
+
+    function renderQuestion() {
+      answered = false;
+      const current = questions[questionIndex];
+
+      quizCount.textContent = `QUESTION ${questionIndex + 1} OF ${questions.length}`;
+      quizQuestion.textContent = current.q;
+      quizOptions.replaceChildren();
+      quizFeedback.textContent = "";
+      quizProgress.style.width = `${(questionIndex / questions.length) * 100}%`;
+      nextButton.disabled = true;
+      nextButton.style.display = "";
+      restartButton.style.display = "none";
+
+      current.options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.className = "cs-option";
+        button.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
+        button.addEventListener("click", () => selectAnswer(index));
+        quizOptions.appendChild(button);
+      });
+    }
+
+    function selectAnswer(selectedIndex) {
+      if (answered) return;
+      answered = true;
+
+      const current = questions[questionIndex];
+      const buttons = [...quizOptions.querySelectorAll("button")];
+
+      buttons.forEach((button, index) => {
+        button.disabled = true;
+        if (index === current.answer) button.classList.add("correct");
+        if (index === selectedIndex && selectedIndex !== current.answer) {
+          button.classList.add("wrong");
+        }
+      });
+
+      if (selectedIndex === current.answer) {
+        score++;
+        quizFeedback.textContent = `Correct! ${current.explanation}`;
+      } else {
+        quizFeedback.textContent = `Not quite. ${current.explanation}`;
+      }
+
+      quizProgress.style.width = `${((questionIndex + 1) / questions.length) * 100}%`;
+      nextButton.disabled = false;
+
+      if (questionIndex === questions.length - 1) {
+        nextButton.textContent = "See results →";
+      }
+    }
+
+    nextButton.addEventListener("click", () => {
+      if (!answered) return;
+
+      if (questionIndex < questions.length - 1) {
+        questionIndex++;
+        nextButton.textContent = "Next question →";
+        renderQuestion();
+      } else {
+        quizCount.textContent = "PRACTICE COMPLETE";
+        quizQuestion.textContent = `Your score: ${score} / ${questions.length}`;
+        quizOptions.replaceChildren();
+
+        const summary = document.createElement("p");
+        summary.className = "cs-note";
+        summary.textContent = score === questions.length
+          ? "Excellent! You answered every question correctly."
+          : "Review the explanations and try again to strengthen your understanding.";
+        quizOptions.appendChild(summary);
+
+        quizFeedback.textContent = "Keep practising. Understanding the reasoning matters more than memorising answers.";
+        quizProgress.style.width = "100%";
+        nextButton.style.display = "none";
+        restartButton.style.display = "";
+      }
+    });
+
+    restartButton.addEventListener("click", () => {
+      questionIndex = 0;
+      score = 0;
+      nextButton.textContent = "Next question →";
+      renderQuestion();
+    });
+
+    renderQuestion();
+  </script>
+</body>
+</html>
