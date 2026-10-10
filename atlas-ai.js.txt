@@ -1,0 +1,102 @@
+(() => {
+  const ENDPOINT = "https://atlas-ai.skskarmakar334.workers.dev/";
+
+  const history = [];
+  let busy = false;
+
+  const root = document.createElement("div");
+  root.className = "ai-root";
+  root.innerHTML = `
+    <section class="ai-panel" id="aiPanel" role="dialog" aria-label="Atlas AI study assistant" hidden>
+      <header class="ai-head">
+        <div><strong>Atlas AI</strong><span>Ask about any IAL subject</span></div>
+        <button class="ai-close" type="button" aria-label="Close Atlas AI">✕</button>
+      </header>
+      <div class="ai-log" role="log" aria-live="polite"></div>
+      <div class="ai-suggest">
+        <button type="button">Explain integration by parts</button>
+        <button type="button">What is price elasticity of demand?</button>
+        <button type="button">Help me revise Le Chatelier's principle</button>
+      </div>
+      <form class="ai-form">
+        <label class="ai-sr" for="aiInput">Your question</label>
+        <textarea id="aiInput" rows="1" maxlength="1500" placeholder="Ask a question…"></textarea>
+        <button type="submit">Send</button>
+      </form>
+      <p class="ai-note">AI can make mistakes. Check important details against your specification.</p>
+    </section>
+    <button class="ai-launch" type="button" aria-controls="aiPanel" aria-expanded="false">
+      <span aria-hidden="true">✦</span> Ask Atlas AI
+    </button>`;
+  document.body.appendChild(root);
+
+  const panel = root.querySelector(".ai-panel");
+  const launch = root.querySelector(".ai-launch");
+  const log = root.querySelector(".ai-log");
+  const form = root.querySelector(".ai-form");
+  const input = root.querySelector("textarea");
+  const suggest = root.querySelector(".ai-suggest");
+
+  function setOpen(open) {
+    panel.hidden = !open;
+    launch.setAttribute("aria-expanded", String(open));
+    if (open) input.focus(); else launch.focus();
+  }
+  launch.addEventListener("click", () => setOpen(panel.hidden));
+  root.querySelector(".ai-close").addEventListener("click", () => setOpen(false));
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !panel.hidden) setOpen(false); });
+
+  function add(role, text) {
+    const el = document.createElement("div");
+    el.className = "ai-msg ai-" + role;
+    el.textContent = text;
+    log.appendChild(el);
+    log.scrollTop = log.scrollHeight;
+    return el;
+  }
+
+  async function send(text) {
+    if (busy || !text.trim()) return;
+    busy = true;
+    suggest.hidden = true;
+    add("user", text);
+    history.push({ role: "user", content: text });
+    const pending = add("bot", "Thinking…");
+    pending.classList.add("ai-pending");
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: history.slice(-8) }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Something went wrong.");
+      pending.classList.remove("ai-pending");
+      pending.textContent = data.reply;
+      history.push({ role: "assistant", content: data.reply });
+    } catch (err) {
+      pending.classList.remove("ai-pending");
+      pending.classList.add("ai-error");
+      pending.textContent = err.message || "Couldn't reach Atlas AI. Check your connection and try again.";
+      history.pop();
+    } finally {
+      busy = false;
+      log.scrollTop = log.scrollHeight;
+    }
+  }
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const text = input.value;
+    input.value = "";
+    send(text);
+  });
+  input.addEventListener("keydown", e => {
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); }
+  });
+  suggest.addEventListener("click", e => {
+    if (e.target.tagName === "BUTTON") send(e.target.textContent);
+  });
+
+  add("bot", "Hi, I'm Atlas AI. Ask me to explain a topic, work through a problem, or help structure an essay answer.");
+})();
