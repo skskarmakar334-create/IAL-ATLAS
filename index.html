@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,24 +73,12 @@
     "name": "Shuvojit Karmakar"
   },
   "about": [
-    "Mathematics",
-    "Physics",
-    "Chemistry",
-    "Biology",
-    "Accounting",
-    "Economics",
-    "Further Mathematics",
-    "Business",
-    "Psychology",
-    "Computer Science",
-    "Geography",
-    "History",
-    "Sociology",
-    "Law",
-    "Environmental Science",
-    "English Language",
-    "English Literature",
-    "Information Technology"
+    "Mathematics", "Physics", "Chemistry", "Biology",
+    "Accounting", "Economics", "Further Mathematics",
+    "Business", "Psychology", "Computer Science",
+    "Geography", "History", "Sociology", "Law",
+    "Environmental Science", "English Language",
+    "English Literature", "Information Technology"
   ]
 }
 </script>
@@ -107,24 +96,12 @@
     "name": "Shuvojit Karmakar"
   },
   "knowsAbout": [
-    "Mathematics",
-    "Physics",
-    "Chemistry",
-    "Biology",
-    "Accounting",
-    "Economics",
-    "Further Mathematics",
-    "Business",
-    "Psychology",
-    "Computer Science",
-    "Geography",
-    "History",
-    "Sociology",
-    "Law",
-    "Environmental Science",
-    "English Language",
-    "English Literature",
-    "Information Technology"
+    "Mathematics", "Physics", "Chemistry", "Biology",
+    "Accounting", "Economics", "Further Mathematics",
+    "Business", "Psychology", "Computer Science",
+    "Geography", "History", "Sociology", "Law",
+    "Environmental Science", "English Language",
+    "English Literature", "Information Technology"
   ]
 }
 </script>
@@ -167,6 +144,224 @@
 
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="atlas-ai.css">
+
+<style>
+/* ==========================================
+   IAL ATLAS — PREMIUM AI ASSISTANT CTA
+   ========================================== */
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  overflow: visible;
+}
+
+.ai-cta {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 13px;
+
+  min-width: 300px;
+  min-height: 82px;
+  padding: 14px 19px;
+  margin: 10px 0 10px auto;
+
+  box-sizing: border-box;
+  overflow: hidden;
+
+  color: #fff !important;
+  text-decoration: none !important;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(0, 211, 255, .20),
+      rgba(105, 76, 255, .32) 55%,
+      rgba(182, 73, 255, .22)
+    ),
+    #080f23;
+
+  border: 1px solid rgba(91, 225, 255, .78);
+  border-radius: 18px;
+
+  box-shadow:
+    0 0 16px rgba(0, 210, 255, .25),
+    0 0 34px rgba(105, 76, 255, .20),
+    inset 0 0 20px rgba(0, 210, 255, .06);
+
+  transition:
+    transform .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease,
+    filter .3s ease;
+
+  animation: atlasAiPulse 3s ease-in-out infinite;
+}
+
+.ai-cta::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -60%;
+  left: -90%;
+  width: 55%;
+  height: 220%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.17),
+    transparent
+  );
+
+  transform: rotate(22deg);
+  animation: atlasAiShimmer 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.ai-cta:hover {
+  transform: translateY(-4px) scale(1.025);
+  border-color: #a5f3ff;
+  filter: brightness(1.12);
+
+  box-shadow:
+    0 0 24px rgba(0, 210, 255, .42),
+    0 0 48px rgba(105, 76, 255, .34),
+    inset 0 0 22px rgba(0, 210, 255, .10);
+}
+
+.ai-cta:focus-visible {
+  outline: 3px solid #b7f7ff;
+  outline-offset: 5px;
+}
+
+.ai-cta-icon {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+
+  width: 45px;
+  height: 45px;
+
+  font-size: 30px;
+  line-height: 1;
+  color: #8df3ff;
+
+  background: rgba(0, 207, 255, .12);
+  border: 1px solid rgba(113, 235, 255, .32);
+  border-radius: 13px;
+
+  text-shadow: 0 0 16px rgba(0, 225, 255, .9);
+  box-shadow: inset 0 0 14px rgba(0, 210, 255, .08);
+}
+
+.ai-cta-copy {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  text-align: left;
+}
+
+.ai-cta-copy strong {
+  color: #fff;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.2px;
+}
+
+.ai-cta-copy small {
+  color: #c5e4ff;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.ai-cta-arrow {
+  flex: 0 0 auto;
+  align-self: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #8df3ff;
+  transition: transform .3s ease;
+}
+
+.ai-cta:hover .ai-cta-arrow {
+  transform: translate(3px, -3px);
+}
+
+@keyframes atlasAiPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 16px rgba(0, 210, 255, .20),
+      0 0 30px rgba(105, 76, 255, .16),
+      inset 0 0 20px rgba(0, 210, 255, .05);
+  }
+  50% {
+    box-shadow:
+      0 0 23px rgba(0, 210, 255, .36),
+      0 0 42px rgba(105, 76, 255, .27),
+      inset 0 0 24px rgba(0, 210, 255, .09);
+  }
+}
+
+@keyframes atlasAiShimmer {
+  0%, 65%, 100% { left: -90%; }
+  35% { left: 145%; }
+}
+
+@media (max-width: 900px) {
+  .ai-cta {
+    min-width: 270px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .hero-buttons > .button {
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+  }
+
+  .ai-cta {
+    min-width: 0;
+    min-height: 78px;
+    margin: 4px 0 10px;
+    justify-content: flex-start !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-cta,
+  .ai-cta::before {
+    animation: none !important;
+  }
+
+  .ai-cta,
+  .ai-cta-arrow {
+    transition: none !important;
+  }
+}
+</style>
 </head>
 
 <body id="top">
@@ -234,8 +429,23 @@
 
     <div class="hero-buttons">
       <a href="#subjects" class="button primary-button">Explore the Atlas →</a>
+
       <a href="about.html" class="button secondary-button">About IAL ATLAS</a>
-      <a href="https://agentency.com/agent/ial-atlas" target="_blank" rel="noopener noreferrer" class="button secondary-button">Ask IAL ATLAS AI ✦</a>
+
+      <a
+        href="https://agentency.com/agent/ial-atlas"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="button ai-cta"
+        aria-label="Open IAL ATLAS AI Assistant in a new tab"
+      >
+        <span class="ai-cta-icon" aria-hidden="true">✦</span>
+        <span class="ai-cta-copy">
+          <strong>Ask IAL ATLAS AI</strong>
+          <small>Your personal IAL study assistant</small>
+        </span>
+        <span class="ai-cta-arrow" aria-hidden="true">↗</span>
+      </a>
     </div>
 
     <div class="hero-subjects" aria-label="Featured subjects">
@@ -257,7 +467,6 @@
 <div class="energy-divider" aria-hidden="true"></div>
 
 <section class="section" id="subjects" aria-labelledby="subjects-title">
-
   <p class="section-label reveal">KNOWLEDGE SYSTEM</p>
   <h2 id="subjects-title" class="reveal">Explore the Atlas.</h2>
 
@@ -417,7 +626,6 @@
 </section>
 
 <section class="section" id="atlases" aria-labelledby="atlases-title">
-
   <p class="section-label reveal">REVISION SYSTEM</p>
   <h2 id="atlases-title" class="reveal">The Atlas Tools.</h2>
 
@@ -465,7 +673,6 @@
 
 <section class="why-ial" id="why" aria-labelledby="why-title">
   <div class="why-inner">
-
     <p class="section-label reveal">WHY IAL ATLAS?</p>
 
     <h2 id="why-title" class="reveal">
@@ -480,7 +687,6 @@
     </p>
 
     <div class="why-grid">
-
       <div class="why-card reveal">
         <div class="why-icon" aria-hidden="true">📖</div>
         <h3>Understand</h3>
@@ -498,7 +704,6 @@
         <h3>Prepare</h3>
         <p>Organised revision materials help learners identify gaps and prepare more effectively.</p>
       </div>
-
     </div>
   </div>
 </section>
@@ -521,7 +726,6 @@
 
 <footer>
   <div class="footer-content">
-
     <h2>IAL ATLAS</h2>
     <p class="footer-tagline">Explore • Learn • Master</p>
 
@@ -549,7 +753,6 @@
       Subject availability and qualification specifications should be
       checked with the relevant awarding organisation.
     </p>
-
   </div>
 </footer>
 
@@ -709,7 +912,6 @@ const header = document.getElementById("mainHeader");
 
 window.addEventListener("scroll", () => {
   if (!header) return;
-
   header.classList.toggle("scrolled", window.scrollY > 40);
 }, { passive: true });
 
@@ -806,6 +1008,4 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
-
-
 
