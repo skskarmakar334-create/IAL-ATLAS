@@ -2,2086 +2,1512 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>IAL ATLAS | Free Edexcel IAL Notes, Revision & Learning Resources</title>
-<meta name="description" content="Explore IAL ATLAS, a free student-built Edexcel International A Level learning platform featuring Mathematics, Physics, Chemistry, Biology, Accounting, Economics and more.">
-<meta name="author" content="Shuvojit Karmakar">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://ialatlas.com/">
-<link rel="icon" href="logo.png">
-<meta name="theme-color" content="#050b14">
-
-<meta property="og:title" content="IAL ATLAS | Learn Without the Confusion">
-<meta property="og:description" content="Free student-built Edexcel IAL learning resources, subject atlases and revision tools.">
-<meta property="og:url" content="https://ialatlas.com/">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://ialatlas.com/logo.png">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-:root {
-  --bg: #050b14;
-  --panel: rgba(13,25,42,.82);
-  --text: #edf7ff;
-  --muted: #98aec4;
-  --cyan: #5ce1ff;
-  --blue: #6b8cff;
-  --purple: #bd9cff;
-  --green: #70ffc0;
-  --border: rgba(130,191,230,.17);
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 90px;
-}
-
-body {
-  min-height: 100vh;
-  overflow-x: hidden;
-  color: var(--text);
-  background:
-    radial-gradient(ellipse at 12% 0%, rgba(26,94,146,.2), transparent 36%),
-    radial-gradient(ellipse at 92% 25%, rgba(105,66,165,.13), transparent 34%),
-    radial-gradient(ellipse at 45% 80%, rgba(14,86,120,.1), transparent 38%),
-    var(--bg);
-  font-family: Inter, sans-serif;
-  line-height: 1.7;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  pointer-events: none;
-  opacity: .38;
-  background-image:
-    linear-gradient(rgba(92,225,255,.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(92,225,255,.035) 1px, transparent 1px);
-  background-size: 48px 48px;
-  animation: gridMove 28s linear infinite;
-  mask-image: linear-gradient(to bottom, black, transparent 95%);
-}
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  pointer-events: none;
-  opacity: .025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  font: inherit;
-  cursor: pointer;
-}
-
-.container {
-  width: min(1160px, calc(100% - 40px));
-  margin-inline: auto;
-}
-
-section {
-  position: relative;
-  padding: 90px 0;
-}
-
-h1, h2, h3, .brand-name {
-  font-family: "Space Grotesk", sans-serif;
-  letter-spacing: -.04em;
-}
-
-.gradient-text {
-  color: var(--cyan);
-  background: linear-gradient(100deg, #fff, #5ce1ff, #8daaff, #d2a8ff, #5ce1ff);
-  background-size: 300% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientFlow 7s ease-in-out infinite alternate;
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--cyan);
-  font-size: .74rem;
-  font-weight: 800;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-}
-
-.eyebrow::before {
-  content: "";
-  width: 23px;
-  height: 1px;
-  background: var(--cyan);
-  box-shadow: 0 0 12px var(--cyan);
-}
-
-.section-heading {
-  max-width: 740px;
-  margin-bottom: 36px;
-}
-
-.section-heading h2 {
-  margin-top: 14px;
-  font-size: clamp(2.1rem, 4.8vw, 3.4rem);
-  line-height: 1.15;
-}
-
-.section-heading p {
-  margin-top: 15px;
-  max-width: 650px;
-  color: var(--muted);
-}
-
-/* HEADER */
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  border-bottom: 1px solid rgba(130,191,230,.12);
-  background: rgba(5,11,20,.8);
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
-  transition: background .3s, box-shadow .3s;
-}
-
-.site-header:hover {
-  background: rgba(5,11,20,.97);
-  box-shadow: 0 8px 35px rgba(0,0,0,.2);
-}
-
-.nav {
-  min-height: 78px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 22px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
-}
-
-.brand img {
-  width: 42px;
-  height: 42px;
-  object-fit: contain;
-  border-radius: 12px;
-  transition: transform .4s, filter .4s;
-}
-
-.brand:hover img {
-  transform: rotate(-8deg) scale(1.1);
-  filter: drop-shadow(0 0 13px rgba(92,225,255,.6));
-}
-
-.brand-name {
-  font-size: 1.15rem;
-  font-weight: 800;
-  line-height: 1.2;
-}
-
-.brand-name span {
-  display: block;
-  margin-top: 4px;
-  color: var(--cyan);
-  font: 800 .62rem Inter, sans-serif;
-  letter-spacing: .16em;
-  animation: brandGlow 4s ease-in-out infinite alternate;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 23px;
-}
-
-.nav-links a {
-  position: relative;
-  color: #b8c9db;
-  font-size: .82rem;
-  font-weight: 600;
-  transition: color .25s;
-}
-
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -8px;
-  width: 100%;
-  height: 2px;
-  background: var(--cyan);
-  box-shadow: 0 0 10px var(--cyan);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .3s;
-}
-
-.nav-links a:hover {
-  color: white;
-}
-
-.nav-links a:hover::after {
-  transform: scaleX(1);
-}
-
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--green);
-  font-size: .7rem;
-  font-weight: 800;
-  white-space: nowrap;
-}
-
-.status-dot {
-  width: 7px;
-  height: 7px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 12px var(--green);
-  animation: statusPulse 1.8s infinite;
-}
-
-/* BUTTONS */
-
-.btn {
-  position: relative;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 9px;
-  min-height: 48px;
-  padding: 12px 20px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  font-size: .86rem;
-  font-weight: 800;
-  transition: transform .25s, box-shadow .3s, border-color .3s;
-}
-
-.btn::before {
-  content: "";
-  position: absolute;
-  top: -80%;
-  left: -70%;
-  width: 35%;
-  height: 260%;
-  transform: rotate(25deg);
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
-  transition: left .7s;
-  pointer-events: none;
-}
-
-.btn:hover::before {
-  left: 150%;
-}
-
-.btn:hover {
-  transform: translateY(-3px);
-}
-
-.btn-primary {
-  color: #03111b;
-  border-color: transparent;
-  background: linear-gradient(115deg, #5ce1ff, #80b9ff 55%, #bda5ff);
-  box-shadow: 0 8px 30px rgba(92,225,255,.17);
-}
-
-.btn-primary:hover {
-  box-shadow: 0 12px 38px rgba(92,225,255,.35);
-}
-
-.btn-secondary {
-  color: var(--text);
-  background: rgba(255,255,255,.035);
-}
-
-.btn-secondary:hover {
-  border-color: rgba(92,225,255,.5);
-  box-shadow: 0 0 28px rgba(92,225,255,.1);
-}
-
-/* HERO */
-
-.hero {
-  position: relative;
-  isolation: isolate;
-  min-height: 620px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  padding: 100px 0;
-}
-
-.hero-content {
-  max-width: 850px;
-}
-
-.hero-glow {
-  position: absolute;
-  z-index: -1;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  filter: blur(85px);
-  opacity: .18;
-  pointer-events: none;
-}
-
-.hero-glow.one {
-  top: -150px;
-  right: 5%;
-  background: #168cce;
-  animation: floatGlow 10s ease-in-out infinite alternate;
-}
-
-.hero-glow.two {
-  left: 20%;
-  bottom: -230px;
-  background: #7855d9;
-  animation: floatGlow 13s ease-in-out infinite alternate-reverse;
-}
-
-.hero h1 {
-  margin-top: 22px;
-  max-width: 900px;
-  font-size: clamp(3.1rem, 8vw, 6.4rem);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -.075em;
-  animation: heroEnter 1.1s cubic-bezier(.16,1,.3,1) both;
-}
-
-.hero .eyebrow {
-  animation: fadeUp .8s .05s both;
-}
-
-.hero-description {
-  max-width: 650px;
-  margin-top: 25px;
-  color: #a9bdd1;
-  font-size: clamp(1rem, 1.8vw, 1.12rem);
-  line-height: 1.9;
-  animation: fadeUp .9s .25s both;
-}
-
-.hero-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 13px;
-  margin-top: 31px;
-  animation: fadeUp .9s .4s both;
-}
-
-.hero-note {
-  margin-top: 25px;
-  color: #829ab1;
-  font-size: .78rem;
-}
-
-.hero-note span {
-  color: var(--cyan);
-}
-
-.hero-orbit {
-  position: absolute;
-  top: 50%;
-  right: -110px;
-  width: 350px;
-  aspect-ratio: 1;
-  border: 1px solid rgba(92,225,255,.14);
-  border-radius: 50%;
-  transform: translateY(-50%);
-  animation: orbitSpin 35s linear infinite;
-  pointer-events: none;
-}
-
-.hero-orbit::before,
-.hero-orbit::after {
-  content: "";
-  position: absolute;
-  inset: 25px;
-  border: 1px solid rgba(189,156,255,.14);
-  border-radius: 50%;
-}
-
-.hero-orbit::after {
-  inset: 60px;
-  border-color: rgba(92,225,255,.15);
-}
-
-.hero-orbit-core {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 75px;
-  height: 75px;
-  border: 1px solid rgba(92,225,255,.45);
-  border-radius: 22px;
-  background: rgba(92,225,255,.08);
-  box-shadow: 0 0 45px rgba(92,225,255,.2);
-  transform: translate(-50%,-50%) rotate(45deg);
-  animation: corePulse 4s ease-in-out infinite;
-}
-
-/* SUBJECT CARDS */
-
-.subject-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
-  gap: 18px;
-}
-
-.subject-card {
-  --accent: var(--cyan);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-height: 218px;
-  padding: 24px;
-  overflow: hidden;
-  isolation: isolate;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  background: linear-gradient(145deg, rgba(17,34,54,.88), rgba(7,16,28,.92));
-  opacity: 0;
-  transform: translateY(25px);
-  transition:
-    opacity .7s,
-    transform .45s cubic-bezier(.2,.8,.2,1),
-    border-color .3s,
-    box-shadow .35s,
-    background .35s;
-}
-
-.subject-card.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.subject-card:nth-child(6n+2) { --accent: var(--purple); }
-.subject-card:nth-child(6n+3) { --accent: var(--green); }
-.subject-card:nth-child(6n+4) { --accent: #91a9ff; }
-.subject-card:nth-child(6n+5) { --accent: #ffc58b; }
-.subject-card:nth-child(6n) { --accent: #ff91d4; }
-
-.subject-card::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: -90px;
-  right: -90px;
-  width: 190px;
-  height: 190px;
-  border-radius: 50%;
-  background: var(--accent);
-  opacity: .06;
-  filter: blur(35px);
-  transition: transform .5s, opacity .4s;
-}
-
-.subject-card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 70%;
-  height: 100%;
-  transform: skewX(-22deg);
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);
-  pointer-events: none;
-}
-
-.subject-card:hover {
-  z-index: 2;
-  transform: translateY(-8px) scale(1.012);
-  border-color: var(--accent);
-  box-shadow: 0 18px 45px rgba(0,0,0,.24), 0 0 24px rgba(92,225,255,.08);
-}
-
-.subject-card:hover::before {
-  opacity: .18;
-  transform: scale(1.4);
-}
-
-.subject-card:hover::after {
-  animation: cardSweep .8s ease forwards;
-}
-
-.subject-icon {
-  width: 49px;
-  height: 49px;
-  display: grid;
-  place-items: center;
-  margin-bottom: 19px;
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-  border-radius: 15px;
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 9%, transparent);
-  font-size: 1.4rem;
-  transition: transform .4s, box-shadow .4s;
-}
-
-.subject-card:hover .subject-icon {
-  transform: translateY(-3px) rotate(-7deg) scale(1.08);
-  box-shadow: 0 0 22px color-mix(in srgb, var(--accent) 20%, transparent);
-}
-
-.subject-card h3 {
-  font-size: 1.14rem;
-}
-
-.subject-card p {
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: .84rem;
-  line-height: 1.75;
-}
-
-.card-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: auto;
-  padding-top: 18px;
-  color: var(--accent, var(--cyan));
-  font-size: .8rem;
-  font-weight: 800;
-}
-
-.card-link span {
-  display: inline-block;
-  transition: transform .25s;
-}
-
-.subject-card:hover .card-link span,
-.atlas-card:hover .card-link span {
-  transform: translateX(6px);
-}
-
-/* LEARNING ATLASES */
-
-.atlas-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: 18px;
-}
-
-.atlas-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  padding: 27px;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  background: var(--panel);
-  transition: transform .35s, border-color .35s, box-shadow .35s;
-}
-
-.atlas-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(92,225,255,.4);
-  box-shadow: 0 15px 40px rgba(0,0,0,.18), 0 0 25px rgba(92,225,255,.08);
-}
-
-.atlas-icon {
-  display: grid;
-  place-items: center;
-  width: 52px;
-  height: 52px;
-  flex-shrink: 0;
-  border: 1px solid rgba(92,225,255,.2);
-  border-radius: 16px;
-  color: var(--cyan);
-  background: rgba(92,225,255,.08);
-  font-size: 1.4rem;
-  transition: transform .35s;
-}
-
-.atlas-card:hover .atlas-icon {
-  transform: rotate(-8deg) scale(1.08);
-}
-
-.atlas-card h3 {
-  font-size: 1.13rem;
-}
-
-.atlas-card p {
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: .85rem;
-}
-
-/* ABOUT IAL ATLAS */
-
-.about-universe {
-  overflow: hidden;
-  background: radial-gradient(ellipse at 78% 50%, rgba(25,110,155,.1), transparent 40%);
-}
-
-.about-layout {
-  display: grid;
-  grid-template-columns: 1.05fr .95fr;
-  align-items: center;
-  gap: 35px;
-}
-
-.about-copy h2 {
-  margin-top: 17px;
-  font-size: clamp(2.5rem, 5vw, 4.2rem);
-  line-height: 1.08;
-}
-
-.about-lead {
-  margin-top: 21px;
-  color: #e2f5ff;
-  font-size: 1.12rem;
-  line-height: 1.8;
-}
-
-.about-copy > p:not(.about-lead) {
-  margin-top: 16px;
-  color: var(--muted);
-  font-size: .92rem;
-  line-height: 1.9;
-}
-
-.founder-card {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-top: 27px;
-  padding: 18px;
-  border: 1px solid rgba(92,225,255,.22);
-  border-radius: 17px;
-  background: linear-gradient(120deg, rgba(92,225,255,.07), rgba(189,156,255,.035));
-  transition: transform .3s, border-color .3s, box-shadow .3s;
-}
-
-.founder-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(92,225,255,.5);
-  box-shadow: 0 12px 35px rgba(92,225,255,.08);
-}
-
-.founder-avatar {
-  display: grid;
-  place-items: center;
-  width: 55px;
-  height: 55px;
-  flex-shrink: 0;
-  border: 1px solid rgba(92,225,255,.4);
-  border-radius: 16px;
-  color: var(--cyan);
-  background: rgba(92,225,255,.09);
-  font: 800 1.15rem "Space Grotesk", sans-serif;
-}
-
-.founder-label {
-  color: var(--cyan);
-  font-size: .66rem;
-  font-weight: 800;
-  letter-spacing: .13em;
-}
-
-.founder-card h3 {
-  margin-top: 3px;
-  font-size: 1.12rem;
-}
-
-.founder-card p {
-  color: var(--muted);
-  font-size: .8rem;
-}
-
-.about-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 19px;
-}
-
-.about-pills span {
-  padding: 7px 11px;
-  border: 1px solid var(--border);
-  border-radius: 99px;
-  color: #b9d5e8;
-  background: rgba(255,255,255,.025);
-  font-size: .71rem;
-}
-
-/* ANIMATED GLOBE */
-
-.globe-stage {
-  position: relative;
-  width: 100%;
-  max-width: 510px;
-  aspect-ratio: 1;
-  margin-inline: auto;
-  display: grid;
-  place-items: center;
-  isolation: isolate;
-}
-
-.globe-stage::before {
-  content: "";
-  position: absolute;
-  inset: 15%;
-  z-index: -1;
-  border-radius: 50%;
-  background: rgba(30,144,220,.15);
-  filter: blur(65px);
-  animation: globeAura 5s ease-in-out infinite alternate;
-}
-
-.globe-stage::after {
-  content: "";
-  position: absolute;
-  inset: 8%;
-  z-index: -1;
-  border: 1px solid rgba(92,225,255,.06);
-  border-radius: 50%;
-  box-shadow: 0 0 0 25px rgba(92,225,255,.015), 0 0 0 55px rgba(92,225,255,.012);
-  animation: globeAura 7s ease-in-out infinite alternate-reverse;
-  pointer-events: none;
-}
-
-.globe-caption {
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  color: #b9d8ea;
-  font-size: .67rem;
-  font-weight: 800;
-  letter-spacing: .15em;
-  white-space: nowrap;
-  transform: translateX(-50%);
-}
-
-/* The globe itself */
-.globe {
-  position: relative;
-  width: 53%;
-  aspect-ratio: 1;
-  overflow: hidden;
-  border: 1px solid rgba(92,225,255,.65);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 32% 25%, rgba(105,222,255,.3), transparent 34%),
-    radial-gradient(circle at 72% 75%, rgba(91,86,220,.23), transparent 48%),
-    linear-gradient(140deg, #0e3858, #071526 68%, #102d4a);
-  box-shadow:
-    inset -25px -15px 50px rgba(0,0,0,.65),
-    inset 10px 10px 35px rgba(92,225,255,.14),
-    0 0 35px rgba(92,225,255,.2),
-    0 0 95px rgba(38,128,200,.12);
-  animation: globeFloat 6s ease-in-out infinite;
-}
-
-.globe::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  border-radius: 50%;
-  background: linear-gradient(125deg, rgba(255,255,255,.2), transparent 30%, transparent 73%, rgba(92,225,255,.1));
-  pointer-events: none;
-}
-
-.globe-grid {
-  position: absolute;
-  inset: -12%;
-  border-radius: 50%;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent 0 18px,
-    rgba(92,225,255,.23) 19px,
-    transparent 20px 36px
-  );
-  animation: globeGridMove 16s linear infinite;
-}
-
-.globe-longitude {
-  position: absolute;
-  inset: 0 22%;
-  border: 1px solid rgba(92,225,255,.48);
-  border-radius: 50%;
-  box-shadow: 0 0 12px rgba(92,225,255,.1);
-  animation: globeLongitude 12s linear infinite;
-}
-
-.globe-latitude {
-  position: absolute;
-  top: 27%;
-  left: -8%;
-  width: 116%;
-  height: 46%;
-  border: 1px solid rgba(92,225,255,.45);
-  border-radius: 50%;
-  transform: rotate(-13deg);
-  animation: globeLatitude 7s ease-in-out infinite alternate;
-}
-
-.globe-shine {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  border-radius: 50%;
-  background: linear-gradient(115deg, rgba(255,255,255,.16), transparent 32%, transparent 70%, rgba(92,225,255,.07));
-}
-
-.globe-land {
-  position: absolute;
-  z-index: 3;
-  background: linear-gradient(135deg, rgba(92,225,255,.68), rgba(82,149,220,.14));
-  border: 1px solid rgba(92,225,255,.55);
-  filter: drop-shadow(0 0 5px rgba(92,225,255,.3));
-}
-
-.land-one {
-  top: 19%;
-  left: 23%;
-  width: 24%;
-  height: 29%;
-  border-radius: 65% 35% 45% 55% / 40% 35% 65% 60%;
-  transform: rotate(25deg);
-  clip-path: polygon(32% 0, 80% 12%, 100% 36%, 72% 54%, 79% 78%, 46% 100%, 30% 70%, 0 50%, 15% 21%);
-}
-
-.land-two {
-  top: 49%;
-  left: 35%;
-  width: 20%;
-  height: 34%;
-  border-radius: 40% 60% 50% 50%;
-  transform: rotate(-16deg);
-  clip-path: polygon(24% 0, 76% 12%, 100% 42%, 62% 67%, 50% 100%, 27% 80%, 0 37%);
-}
-
-.land-three {
-  top: 26%;
-  right: 14%;
-  width: 27%;
-  height: 26%;
-  border-radius: 45% 55% 45% 55%;
-  transform: rotate(15deg);
-  clip-path: polygon(12% 0, 75% 8%, 100% 35%, 82% 57%, 59% 72%, 46% 100%, 20% 67%, 0 36%);
-}
-
-.globe-core {
-  position: absolute;
-  z-index: 6;
-  top: 50%;
-  left: 50%;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: white;
-  box-shadow: 0 0 14px white, 0 0 35px var(--cyan), 0 0 60px var(--cyan);
-  transform: translate(-50%,-50%);
-  animation: corePulse 3s ease-in-out infinite;
-}
-
-/* Three rotating orbits */
-.globe-orbit {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 86%;
-  height: 34%;
-  border: 1px solid rgba(92,225,255,.38);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.orbit-one {
-  transform: translate(-50%,-50%) rotate(-34deg);
-  animation: orbitSpin 15s linear infinite;
-}
-
-.orbit-two {
-  width: 94%;
-  height: 44%;
-  border-color: rgba(189,156,255,.32);
-  transform: translate(-50%,-50%) rotate(52deg);
-  animation: orbitSpinReverse 20s linear infinite;
-}
-
-.orbit-three {
-  width: 72%;
-  height: 96%;
-  border-color: rgba(112,255,192,.23);
-  transform: translate(-50%,-50%) rotate(35deg);
-  animation: orbitSpin 25s linear infinite;
-}
-
-.orbit-point {
-  position: absolute;
-  top: 50%;
-  right: -5px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--cyan);
-  box-shadow: 0 0 15px var(--cyan);
-}
-
-.purple-point {
-  background: var(--purple);
-  box-shadow: 0 0 15px var(--purple);
-}
-
-.green-point {
-  background: var(--green);
-  box-shadow: 0 0 15px var(--green);
-}
-
-.globe-label {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 12px;
-  border: 1px solid rgba(130,191,230,.2);
-  border-radius: 10px;
-  color: #d4eaf8;
-  background: rgba(5,15,27,.88);
-  backdrop-filter: blur(10px);
-  font-size: .64rem;
-  font-weight: 800;
-  letter-spacing: .1em;
-  box-shadow: 0 8px 25px rgba(0,0,0,.15);
-  animation: labelFloat 4s ease-in-out infinite;
-}
-
-.label-top {
-  top: 19%;
-  right: 3%;
-}
-
-.label-left {
-  left: 0;
-  top: 49%;
-  animation-delay: -1.4s;
-}
-
-.label-right {
-  right: 0;
-  bottom: 22%;
-  animation-delay: -2.2s;
-}
-
-.label-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--cyan);
-  box-shadow: 0 0 9px var(--cyan);
-}
-
-.purple-dot {
-  background: var(--purple);
-  box-shadow: 0 0 9px var(--purple);
-}
-
-.green-dot {
-  background: var(--green);
-  box-shadow: 0 0 9px var(--green);
-}
-
-.globe-bottom {
-  position: absolute;
-  bottom: 5%;
-  left: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  width: 100%;
-  color: #93b6cd;
-  font-size: .56rem;
-  font-weight: 800;
-  letter-spacing: .12em;
-  white-space: nowrap;
-  transform: translateX(-50%);
-}
-
-.globe-bottom-line {
-  width: 15px;
-  height: 1px;
-  background: var(--cyan);
-  opacity: .55;
-}
-
-/* ABOUT SECTION END */
-
-/* SUPPORT PANEL */
-
-.support-panel {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 28px;
-  padding: 31px;
-  border: 1px solid rgba(189,156,255,.2);
-  border-radius: 22px;
-  background: linear-gradient(115deg, rgba(189,156,255,.07), rgba(92,225,255,.035));
-}
-
-.support-panel h3 {
-  margin-top: 12px;
-  font-size: 1.4rem;
-}
-
-.support-panel p {
-  max-width: 660px;
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: .88rem;
-}
-
-/* FOOTER */
-
-footer {
-  padding: 32px 0 40px;
-  border-top: 1px solid rgba(130,191,230,.12);
-  color: #8298ae;
-  font-size: .78rem;
-}
-
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 25px;
-  flex-wrap: wrap;
-}
-
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-}
-
-.footer-links a:hover {
-  color: var(--cyan);
-}
-
-/* AI ASSISTANT */
-
-.ai-launcher {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  z-index: 80;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 57px;
-  padding: 10px 18px 10px 12px;
-  border: 1px solid rgba(92,225,255,.5);
-  border-radius: 999px;
-  color: #03121d;
-  background: linear-gradient(120deg, #5ce1ff, #9bbaff);
-  box-shadow: 0 8px 35px rgba(92,225,255,.2);
-  font-weight: 800;
-  animation: aiBreathing 3s ease-in-out infinite;
-  transition: transform .25s, box-shadow .25s;
-}
-
-.ai-launcher:hover {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 0 35px rgba(92,225,255,.4);
-}
-
-.ai-launcher-icon {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(3,18,29,.1);
-  font-size: 1.15rem;
-}
-
-.ai-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 110;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  background: rgba(1,6,13,.8);
-  backdrop-filter: blur(12px);
-}
-
-.ai-modal.open {
-  display: flex;
-  animation: modalFade .25s ease both;
-}
-
-.ai-dialog {
-  width: min(510px,100%);
-  padding: 29px;
-  border: 1px solid rgba(92,225,255,.3);
-  border-radius: 24px;
-  background:
-    radial-gradient(ellipse at 100% 0%, rgba(92,225,255,.12), transparent 45%),
-    #0b1727;
-  box-shadow: 0 25px 100px rgba(0,0,0,.5), 0 0 40px rgba(92,225,255,.08);
-  animation: dialogEnter .35s cubic-bezier(.2,.8,.2,1) both;
-}
-
-.ai-dialog-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
-}
-
-.ai-dialog h2 {
-  margin-top: 10px;
-  font-size: 1.7rem;
-}
-
-.ai-dialog > p {
-  margin-top: 15px;
-  color: var(--muted);
-  font-size: .9rem;
-}
-
-.ai-close {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  flex-shrink: 0;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  color: var(--text);
-  background: rgba(255,255,255,.04);
-  font-size: 1.2rem;
-  transition: transform .2s, background .2s;
-}
-
-.ai-close:hover {
-  transform: rotate(90deg);
-  background: rgba(255,255,255,.1);
-}
-
-.ai-dialog-actions {
-  display: grid;
-  gap: 12px;
-  margin-top: 23px;
-}
-
-.ai-dialog-actions .btn {
-  width: 100%;
-}
-
-.ai-disclaimer {
-  font-size: .74rem !important;
-}
-
-/* BACK TO TOP */
-
-.scroll-top {
-  position: fixed;
-  right: 27px;
-  bottom: 96px;
-  z-index: 70;
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  border: 1px solid rgba(92,225,255,.3);
-  border-radius: 13px;
-  color: var(--cyan);
-  background: rgba(8,20,34,.95);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(10px);
-  transition: opacity .25s, transform .25s, background .25s;
-}
-
-.scroll-top.visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-.scroll-top:hover {
-  background: rgba(92,225,255,.13);
-}
-
-/* AMBIENT PARTICLES */
-
-#atlas-particles {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.atlas-particle {
-  position: absolute;
-  bottom: -20px;
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: var(--cyan);
-  box-shadow: 0 0 12px rgba(92,225,255,.8);
-  opacity: 0;
-  animation: particleRise var(--duration,12s) linear var(--delay,0s) infinite;
-}
-
-.light-streak {
-  position: fixed;
-  top: -35vh;
-  left: var(--streak-left,50%);
-  width: 2px;
-  height: 24vh;
-  z-index: 2;
-  pointer-events: none;
-  opacity: 0;
-  background: linear-gradient(to bottom, transparent, rgba(92,225,255,.75), rgba(189,156,255,.4), transparent);
-  animation: streakFall 1.8s ease-in forwards;
-}
-
-/* SCROLL REVEAL */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1);
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ANIMATIONS */
-
-@keyframes gridMove {
-  from { background-position: 0 0; }
-  to { background-position: 96px 48px; }
-}
-
-@keyframes gradientFlow {
-  from { background-position: 0% center; }
-  to { background-position: 100% center; }
-}
-
-@keyframes brandGlow {
-  from { text-shadow: 0 0 4px rgba(92,225,255,.12); }
-  to { text-shadow: 0 0 16px rgba(92,225,255,.55); }
-}
-
-@keyframes statusPulse {
-  0%,100% { opacity: 1; box-shadow: 0 0 12px var(--green); }
-  50% { opacity: .55; box-shadow: 0 0 3px var(--green); }
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes heroEnter {
-  from { opacity: 0; transform: translateY(30px) scale(.97); filter: blur(8px); }
-  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-}
-
-@keyframes floatGlow {
-  0% { transform: translate3d(-20px,0,0) scale(.9); }
-  50% { transform: translate3d(50px,40px,0) scale(1.15); }
-  100% { transform: translate3d(-10px,-30px,0) scale(1); }
-}
-
-@keyframes orbitSpin {
-  from { rotate: 0deg; }
-  to { rotate: 360deg; }
-}
-
-@keyframes orbitSpinReverse {
-  from { rotate: 360deg; }
-  to { rotate: 0deg; }
-}
-
-@keyframes corePulse {
-  0%,100% { box-shadow: 0 0 25px rgba(92,225,255,.15); }
-  50% { box-shadow: 0 0 65px rgba(92,225,255,.4); }
-}
-
-@keyframes globeAura {
-  from { transform: scale(.88); opacity: .45; }
-  to { transform: scale(1.13); opacity: .9; }
-}
-
-@keyframes globeFloat {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes globeGridMove {
-  from { transform: rotate(0deg) scale(1.04); }
-  to { transform: rotate(360deg) scale(1.04); }
-}
-
-@keyframes globeLongitude {
-  from { transform: rotateY(0deg); }
-  to { transform: rotateY(360deg); }
-}
-
-@keyframes globeLatitude {
-  from { transform: rotate(-18deg) scaleY(.92); }
-  to { transform: rotate(18deg) scaleY(1.06); }
-}
-
-@keyframes labelFloat {
-  0%,100% { translate: 0 0; }
-  50% { translate: 0 -7px; }
-}
-
-@keyframes cardSweep {
-  from { left: -120%; }
-  to { left: 150%; }
-}
-
-@keyframes aiBreathing {
-  0%,100% { box-shadow: 0 8px 30px rgba(92,225,255,.2), 0 0 0 0 rgba(92,225,255,.18); }
-  50% { box-shadow: 0 8px 38px rgba(92,225,255,.32), 0 0 0 7px rgba(92,225,255,0); }
-}
-
-@keyframes particleRise {
-  0% { transform: translate3d(0,0,0) scale(.5); opacity: 0; }
-  12% { opacity: .65; }
-  70% { opacity: .35; }
-  100% { transform: translate3d(var(--drift,35px),-110vh,0) scale(1.4); opacity: 0; }
-}
-
-@keyframes streakFall {
-  0% { transform: translateY(0); opacity: 0; }
-  15% { opacity: .8; }
-  100% { transform: translateY(150vh); opacity: 0; }
-}
-
-@keyframes modalFade {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes dialogEnter {
-  from { opacity: 0; transform: translateY(18px) scale(.97); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 1000px) {
-  .nav-links { gap: 14px; }
-  .status { display: none; }
-  .about-layout { grid-template-columns: 1fr; gap: 35px; }
-  .about-copy { max-width: 760px; }
-  .globe-stage { max-width: 480px; }
-  .hero-orbit { right: -220px; opacity: .55; }
-}
-
-@media (max-width: 760px) {
-  .subject-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .nav-links { display: none; }
-  .atlas-grid { grid-template-columns: 1fr; }
-  .hero { min-height: auto; padding: 85px 0; }
-  .hero-orbit { right: -270px; opacity: .35; }
-  .support-panel { align-items: flex-start; flex-direction: column; }
-}
-
-@media (max-width: 520px) {
-  .container { width: calc(100% - 30px); }
-  section { padding: 65px 0; }
-  .nav { min-height: 70px; }
-  .brand img { width: 37px; height: 37px; }
-  .brand-name { font-size: 1.05rem; }
-  .brand-name span { font-size: .56rem; }
-  .hero h1 { font-size: clamp(2.8rem,13vw,4.2rem); }
-  .hero-description { font-size: .95rem; }
-  .subject-grid { grid-template-columns: 1fr; }
-  .subject-card { min-height: 195px; }
-  .atlas-card { padding: 21px; gap: 14px; }
-  .about-copy h2 { font-size: 2.7rem; }
-  .globe-stage { width: 100%; }
-  .globe-label { font-size: .53rem; padding: 7px 8px; }
-  .globe-caption { font-size: .58rem; }
-  .globe-bottom { font-size: .46rem; gap: 5px; }
-  .globe-bottom-line { width: 9px; }
-  .support-panel { padding: 23px; }
-  .ai-launcher { right: 14px; bottom: 14px; min-height: 52px; }
-  .scroll-top { right: 19px; bottom: 78px; }
-  .ai-dialog { padding: 22px; }
-  .footer-inner { flex-direction: column; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,*::before,*::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
-    scroll-behavior: auto !important;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>IAL ATLAS | Free Edexcel IAL Notes, Revision & Learning Resources</title>
+  <meta name="description" content="Explore IAL ATLAS, a free, independent, student-built Edexcel International A Level learning platform featuring Mathematics, Further Mathematics, Physics, Chemistry, Biology, Accounting, Economics, Computer Science and more.">
+  <meta name="keywords" content="IAL ATLAS, Edexcel IAL, International A Level, IAL notes, Mathematics, Physics, Chemistry, Biology, past papers, revision resources">
+  <meta name="author" content="Shuvojit Karmakar">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#05070d">
+
+  <link rel="canonical" href="https://ialatlas.com/">
+  <link rel="icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <meta property="og:title" content="IAL ATLAS | Explore. Learn. Master.">
+  <meta property="og:description" content="A free, independent, student-built learning platform for Edexcel International A Levels.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ialatlas.com/">
+  <meta property="og:image" content="https://ialatlas.com/logo.png">
+  <meta property="og:site_name" content="IAL ATLAS">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="IAL ATLAS | Free IAL Learning Resources">
+  <meta name="twitter:description" content="Explore a student-built learning platform for Edexcel International A Levels.">
+  <meta name="twitter:image" content="https://ialatlas.com/logo.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "IAL ATLAS",
+    "url": "https://ialatlas.com/",
+    "logo": "https://ialatlas.com/logo.png",
+    "description": "A free, independent, student-built educational platform for Edexcel International A Level learners.",
+    "founder": {
+      "@type": "Person",
+      "name": "Shuvojit Karmakar"
+    },
+    "sameAs": [
+      "https://skskarmakar334-create.github.io/ialatlas.github.io/"
+    ]
   }
+  </script>
 
-  .reveal,.subject-card {
-    opacity: 1;
-    transform: none;
-  }
-}
-</style>
+  <style>
+    :root {
+      --bg: #05070d;
+      --panel: rgba(12, 21, 35, 0.82);
+      --panel-light: rgba(15, 30, 47, 0.74);
+      --cyan: #00d9ff;
+      --blue: #397bff;
+      --violet: #9c6bff;
+      --text: #eff8ff;
+      --muted: #9aafc4;
+      --border: rgba(0, 217, 255, 0.18);
+      --max: 1240px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -3;
+      background:
+        radial-gradient(ellipse at 15% 15%, rgba(0, 117, 255, .12), transparent 40%),
+        radial-gradient(ellipse at 85% 45%, rgba(108, 47, 255, .09), transparent 36%),
+        linear-gradient(rgba(0, 217, 255, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 217, 255, .025) 1px, transparent 1px);
+      background-size: auto, auto, 48px 48px, 48px 48px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    #particleCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .68;
+    }
+
+    .cursor-glow {
+      position: fixed;
+      width: 280px;
+      height: 280px;
+      left: -500px;
+      top: -500px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+      background: radial-gradient(circle, rgba(0, 190, 255, .07), transparent 70%);
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 44px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 1000;
+      border-bottom: 1px solid transparent;
+      transition: background .3s, border-color .3s, box-shadow .3s;
+    }
+
+    .site-header.scrolled {
+      background: rgba(5, 7, 13, .88);
+      border-color: var(--border);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .18);
+    }
+
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      flex-shrink: 0;
+    }
+
+    .brand img {
+      width: 43px;
+      height: 43px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(0, 217, 255, .22));
+    }
+
+    .brand-name {
+      font: 700 19px/1.2 "Space Grotesk", sans-serif;
+      letter-spacing: 1.5px;
+    }
+
+    .brand-name span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font: 500 9px/1.4 "Inter", sans-serif;
+      letter-spacing: 2.6px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: #c4d4e5;
+      font-size: 12px;
+      font-weight: 600;
+      transition: color .25s;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: -7px;
+      height: 2px;
+      background: var(--cyan);
+      transition: right .25s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-links a:hover::after {
+      right: 0;
+    }
+
+    .nav-cta {
+      border: 1px solid rgba(0, 217, 255, .42);
+      border-radius: 8px;
+      padding: 9px 13px;
+      color: var(--cyan) !important;
+    }
+
+    .nav-cta::after {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: none;
+      color: var(--text);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 11px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 740px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 125px 0 70px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 650px;
+      height: 650px;
+      right: -120px;
+      top: 5%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 128, 255, .10), transparent 68%);
+      pointer-events: none;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      animation: riseIn 1s both;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      color: var(--cyan);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.8px;
+      text-transform: uppercase;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: #2dffb0;
+      border-radius: 50%;
+      box-shadow: 0 0 13px #2dffb0;
+      animation: blink 1.8s infinite;
+    }
+
+    .hero h1 {
+      max-width: 740px;
+      font: 700 clamp(43px, 5.4vw, 76px)/1.06 "Space Grotesk", sans-serif;
+      letter-spacing: -3px;
+    }
+
+    .gradient-text {
+      color: transparent;
+      background: linear-gradient(100deg, #fff 0%, var(--cyan) 42%, #8c8bff 88%);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .hero-description {
+      max-width: 590px;
+      margin-top: 24px;
+      color: #a8bbcf;
+      font-size: 15px;
+      line-height: 1.95;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 31px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 19px;
+      border-radius: 9px;
+      font-size: 12px;
+      font-weight: 700;
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    .button-primary {
+      color: #001018;
+      background: linear-gradient(110deg, var(--cyan), #74f2ff);
+      box-shadow: 0 0 25px rgba(0, 217, 255, .19);
+    }
+
+    .button-primary:hover {
+      box-shadow: 0 0 35px rgba(0, 217, 255, .36);
+    }
+
+    .button-secondary {
+      color: #eaf7ff;
+      border: 1px solid rgba(170, 210, 240, .23);
+      background: rgba(255, 255, 255, .025);
+    }
+
+    .button-secondary:hover {
+      border-color: var(--cyan);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      margin-top: 39px;
+      color: #8da5ba;
+      font-size: 10px;
+      letter-spacing: .5px;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .meta-check {
+      color: var(--cyan);
+    }
+
+    /* ANIMATED DIGITAL GLOBE */
+
+    .hero-globe {
+      width: 100%;
+      max-width: 550px;
+      justify-self: end;
+      position: relative;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      animation: globeEntrance 1.4s .15s both;
+      isolation: isolate;
+    }
+
+    .globe-caption {
+      position: absolute;
+      z-index: 5;
+      top: 7%;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      color: #86eaff;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .globe-aura {
+      position: absolute;
+      width: 78%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 139, 255, .20), rgba(49, 66, 210, .06) 48%, transparent 72%);
+      filter: blur(14px);
+      animation: auraPulse 5s ease-in-out infinite;
+    }
+
+    .globe-orbit {
+      position: absolute;
+      width: 97%;
+      height: 34%;
+      border: 1px solid rgba(0, 217, 255, .38);
+      border-radius: 50%;
+      transform: rotate(-28deg);
+      box-shadow: 0 0 12px rgba(0, 217, 255, .08);
+      animation: orbitSpin 17s linear infinite;
+    }
+
+    .globe-orbit.orbit-two {
+      width: 105%;
+      height: 47%;
+      transform: rotate(53deg);
+      border-color: rgba(132, 102, 255, .42);
+      animation-duration: 23s;
+      animation-direction: reverse;
+    }
+
+    .globe-orbit.orbit-three {
+      width: 92%;
+      height: 68%;
+      transform: rotate(76deg);
+      border-color: rgba(0, 217, 255, .19);
+      animation-duration: 31s;
+    }
+
+    .orbit-node {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      top: 12%;
+      left: 15%;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 14px var(--cyan), 0 0 28px rgba(0, 217, 255, .5);
+    }
+
+    .orbit-two .orbit-node {
+      top: auto;
+      bottom: 5%;
+      left: 20%;
+      background: #a28aff;
+      box-shadow: 0 0 14px #a28aff;
+    }
+
+    .globe-sphere {
+      width: 66%;
+      aspect-ratio: 1;
+      position: relative;
+      overflow: hidden;
+      border-radius: 50%;
+      z-index: 2;
+      background:
+        radial-gradient(ellipse at 30% 22%, rgba(118, 234, 255, .40), transparent 15%),
+        radial-gradient(ellipse at 35% 35%, rgba(12, 130, 224, .45), transparent 44%),
+        radial-gradient(circle at 65% 65%, #06152d, #071a36 48%, #020712 78%);
+      border: 1px solid rgba(0, 217, 255, .65);
+      box-shadow:
+        inset -22px -12px 38px rgba(0, 0, 0, .85),
+        inset 9px 6px 24px rgba(0, 205, 255, .22),
+        0 0 25px rgba(0, 183, 255, .24),
+        0 0 80px rgba(0, 117, 255, .13);
+      animation: sphereFloat 6s ease-in-out infinite;
+    }
+
+    .globe-sphere::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      z-index: 4;
+      background:
+        linear-gradient(90deg, transparent 46%, rgba(0, 217, 255, .25) 49.5%, rgba(0, 217, 255, .45) 50%, rgba(0, 217, 255, .16) 51%, transparent 54%),
+        linear-gradient(0deg, transparent 46%, rgba(0, 217, 255, .24) 49.5%, rgba(0, 217, 255, .36) 50%, rgba(0, 217, 255, .15) 51%, transparent 54%);
+      opacity: .45;
+      pointer-events: none;
+    }
+
+    .globe-grid {
+      position: absolute;
+      inset: -4%;
+      border-radius: 50%;
+      opacity: .42;
+      background:
+        repeating-linear-gradient(0deg, transparent 0 24px, rgba(0, 217, 255, .22) 25px 26px, transparent 27px 47px),
+        repeating-linear-gradient(90deg, transparent 0 24px, rgba(0, 217, 255, .20) 25px 26px, transparent 27px 47px);
+      mask-image: radial-gradient(ellipse, black 50%, transparent 72%);
+      -webkit-mask-image: radial-gradient(ellipse, black 50%, transparent 72%);
+      animation: gridDrift 18s linear infinite;
+    }
+
+    .globe-land {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background:
+        radial-gradient(ellipse at 34% 28%, rgba(69, 244, 208, .90) 0 3%, transparent 4%),
+        radial-gradient(ellipse at 41% 32%, rgba(36, 203, 179, .86) 0 7%, transparent 8%),
+        radial-gradient(ellipse at 48% 40%, rgba(23, 170, 153, .8) 0 5%, transparent 6%),
+        radial-gradient(ellipse at 62% 26%, rgba(39, 199, 194, .82) 0 8%, transparent 9%),
+        radial-gradient(ellipse at 68% 34%, rgba(29, 165, 190, .86) 0 4%, transparent 5%),
+        radial-gradient(ellipse at 30% 55%, rgba(39, 201, 176, .8) 0 7%, transparent 8%),
+        radial-gradient(ellipse at 40% 65%, rgba(24, 157, 163, .82) 0 4%, transparent 5%),
+        radial-gradient(ellipse at 64% 61%, rgba(30, 177, 199, .8) 0 9%, transparent 10%),
+        radial-gradient(ellipse at 72% 70%, rgba(37, 198, 186, .7) 0 4%, transparent 5%);
+      filter: drop-shadow(0 0 5px rgba(0, 255, 218, .3));
+      animation: landShift 18s linear infinite;
+    }
+
+    .globe-shine {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      z-index: 3;
+      background: linear-gradient(105deg, rgba(0, 229, 255, .13), transparent 43%, rgba(0, 0, 0, .5) 83%);
+      pointer-events: none;
+    }
+
+    .globe-scan {
+      position: absolute;
+      z-index: 5;
+      top: -10%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--cyan);
+      opacity: .75;
+      box-shadow: 0 0 12px var(--cyan), 0 0 25px var(--cyan);
+      animation: scanDown 5s ease-in-out infinite;
+    }
+
+    .globe-dot {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 0 12px var(--cyan), 0 0 25px var(--cyan);
+      z-index: 6;
+      animation: blink 2s infinite;
+    }
+
+    .globe-dot.dot-a { left: 22%; top: 33%; }
+    .globe-dot.dot-b { right: 22%; top: 49%; animation-delay: .7s; }
+    .globe-dot.dot-c { left: 42%; bottom: 18%; animation-delay: 1.2s; }
+
+    .globe-label {
+      position: absolute;
+      z-index: 6;
+      padding: 7px 10px;
+      border: 1px solid rgba(0, 217, 255, .26);
+      border-radius: 5px;
+      background: rgba(4, 12, 24, .83);
+      backdrop-filter: blur(8px);
+      color: #c9f8ff;
+      font-size: 9px;
+      letter-spacing: 1px;
+      box-shadow: 0 0 20px rgba(0, 217, 255, .06);
+    }
+
+    .globe-label.label-a { left: 0; top: 35%; }
+    .globe-label.label-b { right: -1%; bottom: 30%; }
+    .globe-label.label-c { left: 16%; bottom: 10%; }
+
+    .globe-label span {
+      color: var(--cyan);
+      margin-right: 4px;
+    }
+
+    .hero-bottom-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 217, 255, .36), rgba(156, 107, 255, .25), transparent);
+    }
+
+    /* GENERAL SECTIONS */
+
+    .section {
+      position: relative;
+      padding: 100px 0;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin-bottom: 38px;
+    }
+
+    .section-label {
+      margin-bottom: 13px;
+      color: var(--cyan);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .section h2,
+    .section-title {
+      font: 700 clamp(30px, 4vw, 47px)/1.18 "Space Grotesk", sans-serif;
+      letter-spacing: -1.3px;
+    }
+
+    .section-intro {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .subject-card {
+      min-height: 160px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 21px;
+      border: 1px solid rgba(130, 180, 220, .13);
+      border-radius: 13px;
+      background: linear-gradient(145deg, rgba(14, 29, 47, .82), rgba(7, 12, 23, .82));
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    .subject-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .subject-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0 0, rgba(0, 217, 255, .11), transparent 60%);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .subject-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0, 217, 255, .5);
+      box-shadow: 0 14px 38px rgba(0, 135, 255, .10);
+    }
+
+    .subject-card:hover::before {
+      opacity: 1;
+    }
+
+    .subject-top,
+    .subject-bottom {
+      position: relative;
+      z-index: 1;
+    }
+
+    .subject-icon {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border: 1px solid rgba(0, 217, 255, .19);
+      border-radius: 11px;
+      background: rgba(0, 217, 255, .06);
+      font-size: 21px;
+    }
+
+    .subject-card h3 {
+      font: 600 14px/1.45 "Space Grotesk", sans-serif;
+    }
+
+    .subject-card p {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .subject-arrow {
+      position: absolute;
+      right: 19px;
+      bottom: 18px;
+      color: var(--cyan);
+      font-size: 17px;
+      transition: transform .25s;
+    }
+
+    .subject-card:hover .subject-arrow {
+      transform: translateX(4px);
+    }
+
+    .section-end {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* ATLAS TOOLS */
+
+    .atlas-section {
+      border-top: 1px solid rgba(0, 217, 255, .09);
+      border-bottom: 1px solid rgba(0, 217, 255, .09);
+      background: linear-gradient(180deg, rgba(8, 17, 29, .75), rgba(6, 10, 19, .64));
+    }
+
+    .atlas-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .atlas-card {
+      position: relative;
+      padding: 26px 22px;
+      min-height: 220px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(7, 16, 29, .78);
+      transition: transform .3s, border-color .3s, background .3s;
+    }
+
+    .atlas-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 217, 255, .55);
+      background: rgba(8, 25, 43, .94);
+    }
+
+    .atlas-number {
+      color: var(--cyan);
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    .atlas-card h3 {
+      margin-top: 20px;
+      font: 600 18px "Space Grotesk", sans-serif;
+    }
+
+    .atlas-card p {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .atlas-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: var(--cyan);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* WHY SECTION */
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .why-card {
+      padding: 28px;
+      border: 1px solid rgba(130, 180, 220, .14);
+      border-radius: 14px;
+      background: var(--panel);
+      transition: transform .3s, border-color .3s;
+    }
+
+    .why-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 217, 255, .4);
+    }
+
+    .why-icon {
+      font-size: 28px;
+      margin-bottom: 17px;
+    }
+
+    .why-card h3 {
+      font: 600 19px "Space Grotesk", sans-serif;
+    }
+
+    .why-card p {
+      margin-top: 11px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    /* AI AND SUPPORT */
+
+    .support-panel {
+      position: relative;
+      overflow: hidden;
+      padding: 48px;
+      border: 1px solid rgba(0, 217, 255, .25);
+      border-radius: 18px;
+      background:
+        radial-gradient(ellipse at 100% 0, rgba(84, 81, 255, .15), transparent 45%),
+        linear-gradient(135deg, rgba(9, 27, 44, .95), rgba(8, 12, 25, .95));
+    }
+
+    .support-panel::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -100px;
+      bottom: -160px;
+      border: 1px solid rgba(0, 217, 255, .23);
+      border-radius: 50%;
+      box-shadow: 0 0 0 25px rgba(0, 217, 255, .025), 0 0 0 50px rgba(0, 217, 255, .02);
+    }
+
+    .support-panel h2 {
+      max-width: 680px;
+    }
+
+    .support-panel p {
+      max-width: 720px;
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .support-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* FOOTER */
+
+    .site-footer {
+      padding: 42px 0 25px;
+      border-top: 1px solid rgba(0, 217, 255, .12);
+      background: rgba(3, 6, 12, .75);
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 30px;
+      padding-bottom: 28px;
+    }
+
+    .footer-description {
+      max-width: 430px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 17px;
+      font-size: 11px;
+      color: #b5c7d9;
+    }
+
+    .footer-links a:hover {
+      color: var(--cyan);
+    }
+
+    .footer-bottom {
+      padding-top: 20px;
+      border-top: 1px solid rgba(130, 180, 220, .10);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      color: #73879b;
+      font-size: 10px;
+    }
+
+    .footer-bottom a {
+      color: #9eb4c9;
+    }
+
+    .back-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 50;
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(0, 217, 255, .32);
+      border-radius: 10px;
+      background: rgba(5, 14, 25, .9);
+      color: var(--cyan);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: .25s;
+    }
+
+    .back-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ANIMATIONS */
+
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes globeEntrance {
+      from { opacity: 0; transform: scale(.88) translateY(15px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    @keyframes sphereFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes orbitSpin {
+      from { rotate: 0deg; }
+      to { rotate: 360deg; }
+    }
+
+    @keyframes gridDrift {
+      from { transform: rotate(0deg) scale(1.08); }
+      to { transform: rotate(360deg) scale(1.08); }
+    }
+
+    @keyframes landShift {
+      from { transform: translateX(-2%) rotate(0deg); }
+      to { transform: translateX(2%) rotate(360deg); }
+    }
+
+    @keyframes scanDown {
+      0% { top: -10%; opacity: 0; }
+      10% { opacity: .7; }
+      90% { opacity: .7; }
+      100% { top: 110%; opacity: 0; }
+    }
+
+    @keyframes auraPulse {
+      0%, 100% { opacity: .6; transform: scale(.95); }
+      50% { opacity: 1; transform: scale(1.06); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: .45; }
+      50% { opacity: 1; }
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1050px) {
+      .nav-links { gap: 15px; }
+      .nav-links a { font-size: 11px; }
+      .subject-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .atlas-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero h1 { letter-spacing: -2px; }
+    }
+
+    @media (max-width: 820px) {
+      .nav-inner { min-height: 70px; }
+      .menu-toggle { display: block; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 16px;
+        right: 16px;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: rgba(5, 10, 19, .97);
+        backdrop-filter: blur(20px);
+      }
+      .nav-links.open { display: flex; flex-direction: column; }
+      .nav-links a { padding: 13px 12px; font-size: 13px; }
+      .nav-links a::after { display: none; }
+      .nav-cta { margin-top: 5px; }
+      .hero { min-height: auto; padding: 120px 0 50px; }
+      .hero-layout { grid-template-columns: 1fr; gap: 22px; }
+      .hero-content { text-align: center; }
+      .hero-description { margin-inline: auto; }
+      .hero-actions, .hero-meta { justify-content: center; }
+      .hero-globe { justify-self: center; max-width: 470px; }
+      .hero h1 { font-size: clamp(43px, 8vw, 67px); }
+      .section { padding: 75px 0; }
+      .subject-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .why-grid { grid-template-columns: 1fr; }
+      .footer-top { flex-direction: column; }
+    }
+
+    @media (max-width: 520px) {
+      .container { width: min(var(--max), calc(100% - 30px)); }
+      .brand img { width: 37px; height: 37px; }
+      .brand-name { font-size: 16px; }
+      .brand-name span { font-size: 8px; letter-spacing: 1.8px; }
+      .hero { padding-top: 110px; }
+      .hero h1 { font-size: 43px; letter-spacing: -1.8px; }
+      .hero-description { font-size: 13px; }
+      .hero-meta { gap: 11px 16px; font-size: 9px; }
+      .hero-globe { width: 100%; max-width: 370px; }
+      .globe-label { font-size: 7px; padding: 5px 6px; }
+      .globe-caption { font-size: 7px; letter-spacing: 2px; }
+      .subject-grid { gap: 10px; }
+      .subject-card { min-height: 145px; padding: 15px; }
+      .subject-icon { width: 38px; height: 38px; font-size: 18px; }
+      .subject-card h3 { font-size: 12px; }
+      .subject-arrow { right: 12px; bottom: 12px; }
+      .atlas-grid { grid-template-columns: 1fr; }
+      .atlas-card { min-height: 190px; }
+      .support-panel { padding: 27px 21px; }
+      .button { padding: 11px 14px; font-size: 11px; }
+      .footer-links { gap: 13px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+  <div class="cursor-glow" aria-hidden="true"></div>
 
-<div id="atlas-particles" aria-hidden="true"></div>
+  <header class="site-header" id="mainHeader">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="IAL ATLAS Home">
+        <img src="logo.png" alt="IAL ATLAS logo">
+        <span class="brand-name">
+          IAL ATLAS
+          <span>EXPLORE · LEARN · MASTER</span>
+        </span>
+      </a>
 
-<header class="site-header">
-  <div class="container nav">
-    <a class="brand" href="#home" aria-label="IAL ATLAS homepage">
-      <img src="logo.png" alt="IAL ATLAS logo" onerror="this.style.display='none'">
-      <div class="brand-name">
-        IAL ATLAS
-        <span>LEARN WITHOUT THE CONFUSION</span>
-      </div>
-    </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">
+        ☰
+      </button>
 
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="#subjects">Subjects</a>
-      <a href="#atlases">Atlases</a>
-      <a href="#about">About</a>
-      <a href="#support">Support</a>
-    </nav>
-
-    <div class="status">
-      <span class="status-dot"></span>
-      SYSTEM ONLINE
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#subjects">Subjects</a>
+        <a href="#atlases">Learning Atlases</a>
+        <a href="#why">Why IAL ATLAS</a>
+        <a href="about.html">About IAL ATLAS</a>
+        <a class="nav-cta" href="#support">Support the Project</a>
+      </nav>
     </div>
-  </div>
-</header>
+  </header>
 
-<main>
+  <main>
+    <!-- HERO: THE GLOBE IS AT THE STARTING SCREEN -->
+    <section class="hero" id="home">
+      <div class="container hero-layout">
+        <div class="hero-content">
+          <p class="eyebrow">
+            <span class="status-dot"></span>
+            INDEPENDENT STUDENT-BUILT LEARNING PLATFORM
+          </p>
 
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-glow one"></div>
-    <div class="hero-glow two"></div>
-    <div class="hero-orbit" aria-hidden="true">
-      <div class="hero-orbit-core"></div>
-    </div>
+          <h1>
+            Navigate your
+            <span class="gradient-text">IAL journey.</span>
+          </h1>
 
-    <div class="container">
-      <div class="hero-content">
-        <div class="eyebrow">A student-built learning universe</div>
+          <p class="hero-description">
+            Meet IAL ATLAS — a free, independent learning platform built to help Edexcel International A Level students explore subjects, understand difficult concepts and organise their revision in one place.
+          </p>
 
-        <h1>
-          Understand more.<br>
-          <span class="gradient-text">Learn without limits.</span>
-        </h1>
-
-        <p class="hero-description">
-          Welcome to IAL ATLAS — a free educational platform built
-          to make Edexcel International A Level learning clearer,
-          more accessible, and less confusing. Explore subjects,
-          revise concepts, and build understanding at your own pace.
-        </p>
-
-        <div class="hero-buttons">
-          <a class="btn btn-primary" href="#subjects">Explore subjects ↗</a>
-          <a class="btn btn-secondary" href="#atlases">Discover learning atlases</a>
-        </div>
-
-        <p class="hero-note">
-          <span>✦</span> Free learning resources. Built for students, by a student.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SUBJECTS -->
-  <section id="subjects">
-    <div class="container">
-      <div class="section-heading reveal">
-        <div class="eyebrow">Explore the knowledge universe</div>
-        <h2>One platform. <span class="gradient-text">Many possibilities.</span></h2>
-        <p>
-          Explore subjects and learning resources designed to help you
-          study smarter, understand concepts, and prepare for your goals.
-        </p>
-      </div>
-
-      <div class="subject-grid">
-
-        <a class="subject-card" href="mathematics.html">
-          <div class="subject-icon">∑</div>
-          <h3>Mathematics</h3>
-          <p>Explore formulas, pure mathematics, mechanics, and mathematical techniques.</p>
-          <div class="card-link">Explore Mathematics <span>→</span></div>
-        </a>
-
-        <a class="subject-card" href="further-mathematics.html">
-          <div class="subject-icon">∞</div>
-          <h3>Further Mathematics</h3>
-          <p>Go further with advanced mathematical concepts and problem-solving.</p>
-          <div class="card-link">Explore Further Maths <span>→</span></div>
-        </a>
-
-        <a class="subject-card" href="physics.html">
-          <div class="subject-icon">⚛</div>
-          <h3>Physics</h3>
-          <p>Understand the laws of nature, from mechanics to electricity and beyond.</p>
-          <div class="card-link">Explore Physics <span>→</span></div>
-        </a>
-
-        <a class="subject-card" href="chemistry.html">
-          <div class="subject-icon">⚗</div>
-          <h3>Chemistry</h3>
-          <p>Discover chemical principles, reactions, structures, and calculations.</p>
-          <div class="card-link">Explore Chemistry <span>→</span></div>
-        </a>
-
-        <a class="subject-card" href="biology.html">
-          <div class="subject-icon">⌬</div>
-          <h3>Biology</h3>
-          <p>Explore living systems, biological processes, and the science of life.</p>
-          <div class="card-link">Explore Biology <span>→</span></div>
-        </a>
-
-        <a class="subject-card" href="accounting.html">
-          <div class="subject-icon">▤</div>
-          <h3>Accounting</h3>
-          <p>Explore financial statements, accounting principles, and business records.</p>
-          <div class="card-link">Explore Accounting <span>→</span></div>
-        </a>
-
-        <a class="subject-card" href="economics.html">
-          <div class="subject-icon">↗</div>
-          <h3>Economics</h3>
-          <p>Understand markets, economic decisions, policies, and global systems.</p>
-          <div class="card-link">Explore Economics <span>→</span></div>
-        </a>
-
-        <a class="subject-card" href="computer-science.html">
-          <div class="subject-icon">⌘</div>
-          <h3>Computer Science</h3>
-          <p>Explore computational thinking, algorithms, programming, and systems.</p>
-          <div class="card-link">Explore Computer Science <span>→</span></div>
-        </a>
-
-        <a class="subject-card" href="psychology.html">
-          <div class="subject-icon">◉</div>
-          <h3>Psychology</h3>
-          <p>Explore human behaviour, cognition, research methods, and the mind.</p>
-          <div class="card-link">Explore Psychology <span>→</span></div>
-        </a>
-
-        <a class="subject-card" href="business.html">
-          <div class="subject-icon">◇</div>
-          <h3>Business</h3>
-          <p>Understand organisations, marketing, management, and business strategy.</p>
-          <div class="card-link">Explore Business <span>→</span></div>
-        </a>
-
-        <a class="subject-card" href="information-technology.html">
-          <div class="subject-icon">⌁</div>
-          <h3>Information Technology</h3>
-          <p>Explore digital systems, information management, and technology in practice.</p>
-          <div class="card-link">Explore IT <span>→</span></div>
-        </a>
-
-        <a class="subject-card" href="geography.html">
-          <div class="subject-icon">◎</div>
-          <h3>Geography</h3>
-          <p>Study environments, places, populations, and our changing planet.</p>
-          <div class="card-link">Explore Geography <span>→</span></div>
-        </a>
-
-        <a class="subject-card" href="history.html">
-          <div class="subject-icon">◷</div>
-          <h3>History</h3>
-          <p>Examine historical events, interpretations, evidence, and change over time.</p>
-          <div class="card-link">Explore History <span>→</span></div>
-        </a>
-
-        <a class="subject-card" href="english-language.html">
-          <div class="subject-icon">Aa</div>
-          <h3>English Language</h3>
-          <p>Explore communication, textual analysis, and linguistic choices.</p>
-          <div class="card-link">Explore English Language <span>→</span></div>
-        </a>
-
-        <a class="subject-card" href="english-literature.html">
-          <div class="subject-icon">✎</div>
-          <h3>English Literature</h3>
-          <p>Discover literary works, themes, characterisation, and interpretation.</p>
-          <div class="card-link">Explore Literature <span>→</span></div>
-        </a>
-
-        <a class="subject-card" href="sociology.html">
-          <div class="subject-icon">◌</div>
-          <h3>Sociology</h3>
-          <p>Study society, social relationships, institutions, and cultural change.</p>
-          <div class="card-link">Explore Sociology <span>→</span></div>
-        </a>
-
-        <a class="subject-card" href="law.html">
-          <div class="subject-icon">⚖</div>
-          <h3>Law</h3>
-          <p>Explore legal principles, institutions, justice, and legal reasoning.</p>
-          <div class="card-link">Explore Law <span>→</span></div>
-        </a>
-
-        <a class="subject-card" href="environmental-studies.html">
-          <div class="subject-icon">♧</div>
-          <h3>Environmental Studies</h3>
-          <p>Understand ecosystems, sustainability, environmental challenges, and solutions.</p>
-          <div class="card-link">Explore Environmental Studies <span>→</span></div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- LEARNING ATLASES -->
-  <section id="atlases">
-    <div class="container">
-      <div class="section-heading reveal">
-        <div class="eyebrow">Your learning toolkit</div>
-        <h2>Explore the <span class="gradient-text">learning atlases.</span></h2>
-        <p>
-          Structured resources can help you organise revision,
-          strengthen understanding, and practise more effectively.
-        </p>
-      </div>
-
-      <div class="atlas-grid">
-        <a class="atlas-card reveal" href="formula-atlas.html">
-          <div class="atlas-icon">∑</div>
-          <div>
-            <h3>Formula Atlas</h3>
-            <p>Review important formulas and mathematical relationships in a structured format.</p>
-            <div class="card-link">Explore formulas <span>→</span></div>
+          <div class="hero-actions">
+            <a href="#subjects" class="button button-primary">Explore Subjects <span>→</span></a>
+            <a href="#atlases" class="button button-secondary">Discover the Atlases</a>
           </div>
-        </a>
 
-        <a class="atlas-card reveal" href="theory-atlas.html">
-          <div class="atlas-icon">◈</div>
-          <div>
-            <h3>Theory Atlas</h3>
-            <p>Build conceptual understanding with organised notes and explanations.</p>
-            <div class="card-link">Explore theory <span>→</span></div>
-          </div>
-        </a>
-
-        <a class="atlas-card reveal" href="past-papers.html">
-          <div class="atlas-icon">▤</div>
-          <div>
-            <h3>Past Papers Atlas</h3>
-            <p>Explore examination practice resources and use past papers to support revision.</p>
-            <div class="card-link">Explore past papers <span>→</span></div>
-          </div>
-        </a>
-
-        <a class="atlas-card reveal" href="question-bank.html">
-          <div class="atlas-icon">⌁</div>
-          <div>
-            <h3>Question Bank</h3>
-            <p>Practise questions and strengthen understanding through regular practice.</p>
-            <div class="card-link">Practise questions <span>→</span></div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT IAL ATLAS + GLOBE -->
-  <section id="about" class="about-universe">
-    <div class="container about-layout">
-
-      <div class="about-copy reveal">
-        <div class="eyebrow">The story behind the platform</div>
-
-        <h2>
-          About <span class="gradient-text">IAL ATLAS</span>
-        </h2>
-
-        <p class="about-lead">
-          A learning universe built to make education clearer,
-          more accessible, and less confusing.
-        </p>
-
-        <p>
-          IAL ATLAS is a free, student-built educational platform
-          created to help Edexcel International A Level students
-          explore subjects, strengthen their understanding, and
-          access organised learning resources in one place.
-        </p>
-
-        <p>
-          The idea is simple: difficult concepts should become easier
-          to explore. Through subject-focused resources, learning
-          atlases, revision materials, and digital learning tools,
-          IAL ATLAS aims to make independent learning more approachable.
-        </p>
-
-        <p>
-          This project is built around the belief that students should
-          have better access to learning resources, regardless of
-          where they begin their educational journey.
-        </p>
-
-        <div class="founder-card">
-          <div class="founder-avatar">SK</div>
-          <div>
-            <span class="founder-label">FOUNDER &amp; DEVELOPER</span>
-            <h3>Shuvojit Karmakar</h3>
-            <p>Founder and developer of IAL ATLAS</p>
+          <div class="hero-meta">
+            <span><b class="meta-check">✓</b> Student-built</span>
+            <span><b class="meta-check">✓</b> Free learning resources</span>
+            <span><b class="meta-check">✓</b> Independent project</span>
           </div>
         </div>
 
-        <div class="about-pills">
-          <span>✦ Student-built</span>
-          <span>◎ Free learning resources</span>
-          <span>⌘ Digital education</span>
+        <div class="hero-globe" aria-label="Animated digital globe representing IAL ATLAS">
+          <div class="globe-caption">IAL ATLAS / GLOBAL LEARNING SYSTEM</div>
+          <div class="globe-aura"></div>
+
+          <div class="globe-orbit">
+            <span class="orbit-node"></span>
+          </div>
+          <div class="globe-orbit orbit-two">
+            <span class="orbit-node"></span>
+          </div>
+          <div class="globe-orbit orbit-three"></div>
+
+          <div class="globe-sphere">
+            <div class="globe-grid"></div>
+            <div class="globe-land"></div>
+            <div class="globe-shine"></div>
+            <div class="globe-scan"></div>
+            <span class="globe-dot dot-a"></span>
+            <span class="globe-dot dot-b"></span>
+            <span class="globe-dot dot-c"></span>
+          </div>
+
+          <div class="globe-label label-a"><span>●</span> KNOWLEDGE</div>
+          <div class="globe-label label-b"><span>●</span> DISCOVERY</div>
+          <div class="globe-label label-c"><span>●</span> LEARNING SYSTEM</div>
         </div>
       </div>
+      <div class="hero-bottom-line"></div>
+    </section>
 
-      <!-- Animated digital globe -->
-      <div class="globe-stage" role="img" aria-label="Animated digital globe representing the IAL ATLAS learning universe">
-
-        <div class="globe-caption">
-          <span class="status-dot"></span>
-          KNOWLEDGE UNIVERSE
-        </div>
-
-        <div class="globe-orbit orbit-one">
-          <span class="orbit-point"></span>
-        </div>
-
-        <div class="globe-orbit orbit-two">
-          <span class="orbit-point purple-point"></span>
-        </div>
-
-        <div class="globe-orbit orbit-three">
-          <span class="orbit-point green-point"></span>
-        </div>
-
-        <div class="globe">
-          <div class="globe-grid"></div>
-          <div class="globe-longitude"></div>
-          <div class="globe-latitude"></div>
-          <div class="globe-land land-one"></div>
-          <div class="globe-land land-two"></div>
-          <div class="globe-land land-three"></div>
-          <div class="globe-shine"></div>
-          <div class="globe-core"></div>
-        </div>
-
-        <div class="globe-label label-top">
-          <span class="label-dot"></span>
-          KNOWLEDGE
-        </div>
-
-        <div class="globe-label label-left">
-          <span class="label-dot purple-dot"></span>
-          DISCOVERY
-        </div>
-
-        <div class="globe-label label-right">
-          <span class="label-dot green-dot"></span>
-          LEARNING
-        </div>
-
-        <div class="globe-bottom">
-          <span>EXPLORE</span>
-          <span class="globe-bottom-line"></span>
-          <span>UNDERSTAND</span>
-          <span class="globe-bottom-line"></span>
-          <span>GROW</span>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- SUPPORT -->
-  <section id="support">
-    <div class="container">
-      <div class="support-panel reveal">
-        <div>
-          <div class="eyebrow">Support accessible education</div>
-          <h3>Help the learning universe grow.</h3>
-          <p>
-            Interested in supporting IAL ATLAS or discussing a
-            collaboration? Get in touch to learn more about supporting
-            this student-built educational project.
+    <!-- SUBJECTS -->
+    <section class="section" id="subjects">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="section-label">01 / EXPLORE YOUR SUBJECTS</p>
+          <h2>One platform. <span class="gradient-text">Many pathways.</span></h2>
+          <p class="section-intro">
+            Explore subject-specific learning resources through an organised digital learning environment. Choose a subject to begin.
           </p>
         </div>
 
-        <a
-          class="btn btn-primary"
-          href="https://wa.me/8801826609662?text=Hello%20IAL%20ATLAS!%20I%20would%20like%20to%20support%20your%20educational%20project."
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Support the project ↗
-        </a>
+        <div class="subject-grid">
+          <a class="subject-card" href="mathematics.html">
+            <div class="subject-top"><div class="subject-icon">∑</div><h3>Mathematics</h3><p>Pure Mathematics, Statistics and Mechanics</p></div><span class="subject-arrow">↗</span>
+          </a>
+          <a class="subject-card" href="further-mathematics.html">
+            <div class="subject-top"><div class="subject-icon">∞</div><h3>Further Mathematics</h3><p>Advanced mathematical concepts</p></div><span class="subject-arrow">↗</span>
+          </a>
+          <a class="subject-card" href="physics.html">
+            <div class="subject-top"><div class="subject-icon">⚛</div><h3>Physics</h3><p>Understand the laws of nature</p></div><span class="subject-arrow">↗</span>
+          </a>
+          <a class="subject-card" href="chemistry.html">
+            <div class="subject-top"><div class="subject-icon">⚗</div><h3>Chemistry</h3><p>Reactions, structures and principles</p></div><span class="subject-arrow">↗</span>
+          </a>
+          <a class="subject-card" href="biology.html">
+            <div class="subject-top"><div class="subject-icon">🧬</div><h3>Biology</h3><p>Explore living systems</p></div><span class="subject-arrow">↗</span>
+          </a>
+          <a class="subject-card" href="accounting.html">
+            <div class="subject-top"><div class="subject-icon">▤</div><h3>Accounting</h3><p>Financial records and reporting</p></div><span class="subject-arrow">↗</span>
+          </a>
+          <a class="subject-card" href="economics.html">
+            <div class="subject-top"><div class="subject-icon">📈</div><h3>Economics</h3><p>Markets, policy and economic theory</p></div><span class="subject-arrow">↗</span>
+          </a>
+          <a class="subject-card" href="computer-science.html">
+            <div class="subject-top"><div class="subject-icon">⌘</div><h3>Computer Science</h3><p>Algorithms, systems and computation</p></div><span class="subject-arrow">↗</span>
+          </a>
+          <a class="subject-card" href="psychology.html">
+            <div class="subject-top"><div class="subject-icon">🧠</div><h3>Psychology</h3><p>Human behaviour and cognition</p></div><span class="subject-arrow">↗</span>
+          </a>
+          <a class="subject-card" href="business.html">
+            <div class="subject-top"><div class="subject-icon">◇</div><h3>Business</h3><p>Organisations and decision-making</p></div><span class="subject-arrow">↗</span>
+          </a>
+          <a class="subject-card" href="information-technology.html">
+            <div class="subject-top"><div class="subject-icon">⌁</div><h3>Information Technology</h3><p>Digital systems and applications</p></div><span class="subject-arrow">↗</span>
+          </a>
+          <a class="subject-card" href="geography.html">
+            <div class="subject-top"><div class="subject-icon">🌍</div><h3>Geography</h3><p>People, places and environments</p></div><span class="subject-arrow">↗</span>
+          </a>
+          <a class="subject-card" href="history.html">
+            <div class="subject-top"><div class="subject-icon">⌛</div><h3>History</h3><p>Events, evidence and interpretation</p></div><span class="subject-arrow">↗</span>
+          </a>
+          <a class="subject-card" href="english-language.html">
+            <div class="subject-top"><div class="subject-icon">Aa</div><h3>English Language</h3><p>Language, communication and analysis</p></div><span class="subject-arrow">↗</span>
+          </a>
+          <a class="subject-card" href="english-literature.html">
+            <div class="subject-top"><div class="subject-icon">✎</div><h3>English Literature</h3><p>Texts, themes and interpretation</p></div><span class="subject-arrow">↗</span>
+          </a>
+          <a class="subject-card" href="sociology.html">
+            <div class="subject-top"><div class="subject-icon">◎</div><h3>Sociology</h3><p>Society, institutions and people</p></div><span class="subject-arrow">↗</span>
+          </a>
+          <a class="subject-card" href="law.html">
+            <div class="subject-top"><div class="subject-icon">⚖</div><h3>Law</h3><p>Legal principles and institutions</p></div><span class="subject-arrow">↗</span>
+          </a>
+          <a class="subject-card" href="environmental-studies.html">
+            <div class="subject-top"><div class="subject-icon">♧</div><h3>Environmental Studies</h3><p>Environmental systems and sustainability</p></div><span class="subject-arrow">↗</span>
+          </a>
+        </div>
+
+        <p class="section-end">Subject availability and content may vary as the platform continues to develop.</p>
+      </div>
+    </section>
+
+    <!-- LEARNING ATLASES -->
+    <section class="section atlas-section" id="atlases">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="section-label">02 / LEARNING TOOLS</p>
+          <h2>Your revision, <span class="gradient-text">better organised.</span></h2>
+          <p class="section-intro">
+            Use dedicated learning areas to review essential information, explore concepts and practise what you have learned.
+          </p>
+        </div>
+
+        <div class="atlas-grid">
+          <a class="atlas-card reveal" href="formula-atlas.html">
+            <span class="atlas-number">ATLAS / 01</span>
+            <h3>Formula Atlas</h3>
+            <p>Review important formulas and mathematical relationships in one organised place.</p>
+            <span class="atlas-link">Explore formulas →</span>
+          </a>
+          <a class="atlas-card reveal" href="theory-atlas.html">
+            <span class="atlas-number">ATLAS / 02</span>
+            <h3>Theory Atlas</h3>
+            <p>Build understanding with organised theoretical notes and concept explanations.</p>
+            <span class="atlas-link">Explore theory →</span>
+          </a>
+          <a class="atlas-card reveal" href="past-papers.html">
+            <span class="atlas-number">ATLAS / 03</span>
+            <h3>Past Papers Atlas</h3>
+            <p>Navigate exam-practice resources and prepare with a more structured approach.</p>
+            <span class="atlas-link">Explore past papers →</span>
+          </a>
+          <a class="atlas-card reveal" href="question-bank.html">
+            <span class="atlas-number">ATLAS / 04</span>
+            <h3>Question Bank</h3>
+            <p>Practise questions, check your understanding and reinforce what you have studied.</p>
+            <span class="atlas-link">Start practising →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY IAL ATLAS -->
+    <section class="section" id="why">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="section-label">03 / WHY IAL ATLAS</p>
+          <h2>Learn without <span class="gradient-text">the confusion.</span></h2>
+          <p class="section-intro">
+            International A Levels cover a broad range of concepts. IAL ATLAS aims to make useful resources easier to navigate and learning more organised.
+          </p>
+        </div>
+
+        <div class="why-grid">
+          <article class="why-card reveal">
+            <div class="why-icon">🧭</div>
+            <h3>Structured navigation</h3>
+            <p>Subject pages and learning sections help students navigate resources without unnecessary confusion.</p>
+          </article>
+          <article class="why-card reveal">
+            <div class="why-icon">📚</div>
+            <h3>Learning-focused resources</h3>
+            <p>Notes, formulas, explanations and practice materials can support understanding and revision.</p>
+          </article>
+          <article class="why-card reveal">
+            <div class="why-icon">🌱</div>
+            <h3>Built to keep growing</h3>
+            <p>IAL ATLAS is an independent student project that can expand as new resources and features are developed.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI AND SUPPORT -->
+    <section class="section" id="support">
+      <div class="container">
+        <div class="support-panel reveal">
+          <p class="section-label">04 / EXPLORE FURTHER</p>
+          <h2>Keep moving <span class="gradient-text">forward.</span></h2>
+          <p>
+            Explore the available learning resources, try the IAL ATLAS AI assistant, or support the continued development of this independent educational project.
+          </p>
+          <div class="support-actions">
+            <a class="button button-primary" href="https://agentency.com/agent/ial-atlas" target="_blank" rel="noopener noreferrer">Open IAL ATLAS AI ↗</a>
+            <a class="button button-secondary" href="https://wa.me/8801826609662?text=Hello%20IAL%20ATLAS!%20I%20would%20like%20to%20support%20your%20educational%20project." target="_blank" rel="noopener noreferrer">Support the Project ↗</a>
+            <a class="button button-secondary" href="about.html">Discover Our Story ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ABOUT IS A SEPARATE PAGE: about.html -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a class="brand" href="index.html">
+            <img src="logo.png" alt="IAL ATLAS logo">
+            <span class="brand-name">
+              IAL ATLAS
+              <span>EXPLORE · LEARN · MASTER</span>
+            </span>
+          </a>
+          <p class="footer-description">
+            A free, independent, student-built learning platform created to make Edexcel International A Levels easier to navigate and study.
+          </p>
+        </div>
+
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="#home">Home</a>
+          <a href="#subjects">Subjects</a>
+          <a href="#atlases">Learning Atlases</a>
+          <a href="#why">Why IAL ATLAS</a>
+          <a href="about.html">About IAL ATLAS</a>
+          <a href="#support">Support</a>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="currentYear">2026</span> IAL ATLAS · Independent student resource</span>
+        <span>Not affiliated with or endorsed by Pearson Edexcel.</span>
+        <a href="about.html">About the project →</a>
       </div>
     </div>
-  </section>
+  </footer>
 
-</main>
+  <a href="#home" class="back-top" id="backTop" aria-label="Back to top">↑</a>
 
-<!-- FOOTER -->
-<footer>
-  <div class="container footer-inner">
-    <div>
-      <strong style="color:var(--text);">IAL ATLAS</strong>
-      <p style="margin-top:5px;">Learn without the confusion.</p>
-      <p style="margin-top:6px;">© <span id="year"></span> IAL ATLAS. All rights reserved.</p>
-      <p style="margin-top:6px;max-width:670px;">
-        IAL ATLAS is an independent educational project and is not
-        affiliated with, endorsed by, or officially connected to
-        Pearson Edexcel. Check official specifications for examination requirements.
-      </p>
-    </div>
+  <script>
+    /* HEADER AND MOBILE MENU */
+    const header = document.getElementById("mainHeader");
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    const backTop = document.getElementById("backTop");
 
-    <div class="footer-links">
-      <a href="#home">Home</a>
-      <a href="#subjects">Subjects</a>
-      <a href="#atlases">Atlases</a>
-      <a href="#about">About</a>
-      <a href="#support">Support</a>
-    </div>
-  </div>
-</footer>
+    window.addEventListener("scroll", () => {
+      header.classList.toggle("scrolled", window.scrollY > 30);
+      backTop.classList.toggle("visible", window.scrollY > 500);
+    }, { passive: true });
 
-<!-- FLOATING AI BUTTON -->
-<button class="ai-launcher" id="aiOpen" aria-label="Open IAL ATLAS AI assistant">
-  <span class="ai-launcher-icon">✦</span>
-  <span>IAL ATLAS AI</span>
-</button>
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
 
-<!-- AI MODAL -->
-<div class="ai-modal" id="aiModal" role="dialog" aria-modal="true" aria-labelledby="aiTitle">
-  <div class="ai-dialog">
-    <div class="ai-dialog-top">
-      <div>
-        <div class="eyebrow">Your learning companion</div>
-        <h2 id="aiTitle">Meet IAL ATLAS AI.</h2>
-      </div>
-      <button class="ai-close" id="aiClose" aria-label="Close AI assistant">×</button>
-    </div>
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
 
-    <p>
-      Need help understanding a topic, revising a concept, or exploring
-      learning resources? Open the IAL ATLAS AI assistant to continue.
-    </p>
-
-    <div class="ai-dialog-actions">
-      <a
-        class="btn btn-primary"
-        href="https://agentency.com/agent/ial-atlas"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Open AI assistant ↗
-      </a>
-      <button class="btn btn-secondary" id="aiDismiss">
-        Continue exploring IAL ATLAS
-      </button>
-    </div>
-
-    <p class="ai-disclaimer">
-      AI-generated answers can contain mistakes. Verify important academic
-      information against trusted textbooks and official specifications.
-    </p>
-  </div>
-</div>
-
-<button class="scroll-top" id="scrollTop" aria-label="Scroll to top" title="Back to top">↑</button>
-
-<script>
-(() => {
-  "use strict";
-
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  document.getElementById("year").textContent = new Date().getFullYear();
-
-  /* Scroll reveal */
-  const revealElements = document.querySelectorAll(
-    ".section-heading, .about-copy, .support-panel, .atlas-card"
-  );
-
-  if ("IntersectionObserver" in window) {
-    const revealObserver = new IntersectionObserver((entries, observer) => {
+    /* REVEAL ANIMATIONS */
+    const revealObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          entry.target.classList.add("active");
           entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
+          revealObserver.unobserve(entry.target);
         }
       });
     }, { threshold: 0.12 });
 
-    revealElements.forEach(element => {
-      element.classList.add("reveal");
+    document.querySelectorAll(".reveal, .subject-card").forEach((element, index) => {
+      if (element.classList.contains("subject-card")) {
+        element.style.transitionDelay = `${(index % 4) * 45}ms`;
+      }
       revealObserver.observe(element);
     });
 
-    const cards = document.querySelectorAll(".subject-card");
+    /* PARTICLE NETWORK */
+    const canvas = document.getElementById("particleCanvas");
+    const ctx = canvas.getContext("2d");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let particles = [];
+    let canvasWidth = 0;
+    let canvasHeight = 0;
+    let animationFrame = null;
 
-    const cardObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const card = entry.target;
-          const index = Array.from(cards).indexOf(card);
+    function resizeCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvasWidth = window.innerWidth;
+      canvasHeight = window.innerHeight;
 
-          if (!reducedMotion) {
-            card.style.transitionDelay = `${(index % 3) * 90}ms`;
-          }
+      canvas.width = Math.floor(canvasWidth * dpr);
+      canvas.height = Math.floor(canvasHeight * dpr);
+      canvas.style.width = canvasWidth + "px";
+      canvas.style.height = canvasHeight + "px";
 
-          card.classList.add("is-visible");
-          observer.unobserve(card);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const count = canvasWidth < 600 ? 28 : canvasWidth < 1000 ? 48 : 72;
+      particles = Array.from({ length: count }, () => ({
+        x: Math.random() * canvasWidth,
+        y: Math.random() * canvasHeight,
+        vx: (Math.random() - 0.5) * 0.28,
+        vy: (Math.random() - 0.5) * 0.28,
+        r: Math.random() * 1.4 + 0.5
+      }));
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+
+        if (!reducedMotion) {
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0 || p.x > canvasWidth) p.vx *= -1;
+          if (p.y < 0 || p.y > canvasHeight) p.vy *= -1;
         }
-      });
-    }, { threshold: 0.08 });
 
-    cards.forEach(card => cardObserver.observe(card));
-  } else {
-    document.querySelectorAll(".subject-card, .reveal").forEach(element => {
-      element.classList.add("is-visible");
-    });
-  }
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(0,217,255,0.62)";
+        ctx.fill();
 
-  /* AI modal */
-  const modal = document.getElementById("aiModal");
-  const openButton = document.getElementById("aiOpen");
-  const closeButton = document.getElementById("aiClose");
-  const dismissButton = document.getElementById("aiDismiss");
-  let previousFocus = null;
+        for (let j = i + 1; j < particles.length; j++) {
+          const q = particles[j];
+          const dx = p.x - q.x;
+          const dy = p.y - q.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
 
-  function openModal() {
-    previousFocus = document.activeElement;
-    modal.classList.add("open");
-    document.body.style.overflow = "hidden";
-    closeButton.focus();
-  }
+          if (distance < 105) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
+            ctx.strokeStyle = `rgba(0,190,255,${0.11 * (1 - distance / 105)})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
 
-  function closeModal() {
-    modal.classList.remove("open");
-    document.body.style.overflow = "";
-
-    if (previousFocus && typeof previousFocus.focus === "function") {
-      previousFocus.focus();
-    }
-  }
-
-  openButton.addEventListener("click", openModal);
-  closeButton.addEventListener("click", closeModal);
-  dismissButton.addEventListener("click", closeModal);
-
-  modal.addEventListener("click", event => {
-    if (event.target === modal) closeModal();
-  });
-
-  document.addEventListener("keydown", event => {
-    if (event.key === "Escape" && modal.classList.contains("open")) {
-      closeModal();
-    }
-  });
-
-  /* Back to top */
-  const scrollTop = document.getElementById("scrollTop");
-
-  window.addEventListener("scroll", () => {
-    scrollTop.classList.toggle("visible", window.scrollY > 500);
-  }, { passive: true });
-
-  scrollTop.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: reducedMotion ? "auto" : "smooth"
-    });
-  });
-
-  /* Floating particles */
-  const particleLayer = document.getElementById("atlas-particles");
-
-  if (!reducedMotion) {
-    for (let i = 0; i < 22; i++) {
-      const particle = document.createElement("span");
-      particle.className = "atlas-particle";
-      particle.style.left = `${Math.random() * 100}%`;
-      particle.style.setProperty("--duration", `${10 + Math.random() * 16}s`);
-      particle.style.setProperty("--delay", `${-Math.random() * 25}s`);
-      particle.style.setProperty("--drift", `${Math.round(Math.random() * 100 - 50)}px`);
-      particleLayer.appendChild(particle);
+      if (!reducedMotion) {
+        animationFrame = requestAnimationFrame(drawParticles);
+      }
     }
 
-    /* Occasional falling light streak */
-    function createLightStreak() {
-      if (document.hidden) return;
+    resizeCanvas();
+    drawParticles();
 
-      const streak = document.createElement("span");
-      streak.className = "light-streak";
-      streak.style.setProperty("--streak-left", `${8 + Math.random() * 84}%`);
-      document.body.appendChild(streak);
+    window.addEventListener("resize", () => {
+      if (animationFrame) cancelAnimationFrame(animationFrame);
+      resizeCanvas();
+      drawParticles();
+    }, { passive: true });
 
-      streak.addEventListener("animationend", () => streak.remove(), { once: true });
+    /* CURSOR GLOW: DESKTOP ONLY */
+    const cursorGlow = document.querySelector(".cursor-glow");
+
+    if (window.matchMedia("(pointer: fine)").matches && !reducedMotion) {
+      document.addEventListener("mousemove", event => {
+        cursorGlow.style.left = event.clientX + "px";
+        cursorGlow.style.top = event.clientY + "px";
+      }, { passive: true });
     }
 
-    window.setInterval(() => {
-      if (Math.random() > 0.35) createLightStreak();
-    }, 6500);
-  }
-})();
-</script>
-
+    /* FOOTER YEAR */
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
 
