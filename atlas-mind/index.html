@@ -1,0 +1,1087 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070b16">
+  <meta name="description" content="ATLAS MIND is an interactive STEM learning lab. Discover misconceptions, explore concept connections, and improve your understanding of Mathematics, Physics and Chemistry.">
+  <link rel="canonical" href="https://ialatlas.com/atlas-mind/">
+  <title>ATLAS MIND — The STEM Learning Lab</title>
+  <style>
+    :root {
+      --bg: #070b16;
+      --panel: rgba(17, 25, 45, .78);
+      --line: rgba(123, 163, 210, .2);
+      --text: #edf5ff;
+      --muted: #93a6c2;
+      --cyan: #58f0e0;
+      --blue: #8293ff;
+      --green: #75edb1;
+      --red: #ff858e;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 15% 0%, #14284b 0, transparent 38%),
+        radial-gradient(ellipse at 95% 35%, #102b38 0, transparent 32%),
+        var(--bg);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    button, select { font: inherit; }
+
+    button { cursor: pointer; }
+
+    .container {
+      width: min(1120px, calc(100% - 36px));
+      margin: auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(7, 11, 22, .85);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 1.8px;
+    }
+
+    .brand span { color: var(--cyan); }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: 3px;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .nav-links a:hover { color: var(--cyan); }
+
+    .hero {
+      padding: 90px 0 62px;
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      align-items: center;
+      gap: 42px;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 11px;
+      letter-spacing: 3px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(44px, 7vw, 78px);
+      line-height: 1.02;
+      letter-spacing: -3px;
+      margin: 18px 0;
+    }
+
+    h1 span {
+      color: var(--cyan);
+      text-shadow: 0 0 36px #58f0e033;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 590px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 27px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 19px;
+      font-weight: 750;
+      color: var(--text);
+      background: rgba(255,255,255,.035);
+      transition: .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--cyan);
+    }
+
+    .btn-primary {
+      background: var(--cyan);
+      color: #07151a;
+      border-color: var(--cyan);
+    }
+
+    .btn-small { padding: 8px 12px; font-size: 12px; }
+
+    .orb-wrap {
+      min-height: 300px;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .orb {
+      width: 230px;
+      height: 230px;
+      border: 1px solid #58f0e077;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      position: relative;
+      background:
+        radial-gradient(circle at 35% 30%, #58f0e029, transparent 55%),
+        #0c1726;
+      box-shadow: 0 0 70px #58f0e019, inset 0 0 45px #58f0e010;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .orb:before, .orb:after {
+      content: "";
+      position: absolute;
+      inset: -18px;
+      border: 1px solid #8293ff55;
+      border-radius: 50%;
+      transform: rotateX(68deg) rotate(-25deg);
+    }
+
+    .orb:after {
+      inset: -35px;
+      border-color: #58f0e033;
+      transform: rotateX(68deg) rotate(35deg);
+    }
+
+    .orb-inner { text-align: center; }
+
+    .orb-symbol {
+      font-size: 62px;
+      line-height: 1.2;
+      color: var(--cyan);
+    }
+
+    .orb-inner small {
+      color: var(--muted);
+      letter-spacing: 3px;
+      font-size: 10px;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .status {
+      display: flex;
+      gap: 9px;
+      align-items: center;
+      color: var(--green);
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 14px var(--green);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 68px;
+    }
+
+    .stat, .panel, .subject-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      color: var(--cyan);
+    }
+
+    .stat span { color: var(--muted); font-size: 12px; }
+
+    section { scroll-margin-top: 95px; margin-bottom: 75px; }
+
+    .section-head { margin-bottom: 24px; }
+
+    h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -1px;
+      margin: 7px 0;
+    }
+
+    .section-head p, .muted { color: var(--muted); }
+
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .subject-card {
+      text-align: left;
+      color: var(--text);
+      cursor: pointer;
+      transition: .2s;
+      width: 100%;
+    }
+
+    .subject-card:hover, .subject-card.active {
+      transform: translateY(-3px);
+      border-color: var(--cyan);
+      background: #14283a;
+    }
+
+    .subject-icon { font-size: 28px; }
+
+    .subject-card h3 { margin: 8px 0 3px; }
+
+    .subject-card p { margin: 0; font-size: 12px; color: var(--muted); }
+
+    .lab-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel h3 { margin-top: 0; }
+
+    .question-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: var(--cyan);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    #questionText {
+      font-size: 21px;
+      font-weight: 750;
+      line-height: 1.5;
+      margin: 22px 0;
+    }
+
+    .options { display: grid; gap: 10px; }
+
+    .option {
+      width: 100%;
+      text-align: left;
+      padding: 13px 15px;
+      color: var(--text);
+      background: #0b1322;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      transition: .18s;
+    }
+
+    .option:hover:not(:disabled) {
+      border-color: var(--cyan);
+      background: #13243a;
+    }
+
+    .option.correct {
+      border-color: var(--green);
+      background: #123427;
+    }
+
+    .option.wrong {
+      border-color: var(--red);
+      background: #391d2a;
+    }
+
+    .option:disabled { cursor: default; }
+
+    .feedback {
+      display: none;
+      margin-top: 18px;
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #0a1422;
+    }
+
+    .feedback.show { display: block; }
+
+    .feedback h4 { margin: 0 0 7px; }
+
+    .feedback p { margin: 5px 0; color: var(--muted); font-size: 14px; }
+
+    .feedback .next { margin-top: 12px; }
+
+    .lab-controls {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .progress-track {
+      height: 6px;
+      background: #1c2940;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--cyan), var(--blue));
+      transition: width .3s;
+    }
+
+    .concept-map {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .concept {
+      position: relative;
+      padding: 15px 10px;
+      text-align: center;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #0a1322;
+      color: var(--text);
+      font-size: 12px;
+      transition: .2s;
+    }
+
+    .concept:hover, .concept.active {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      box-shadow: 0 0 20px #58f0e00d;
+    }
+
+    .concept-info {
+      margin-top: 14px;
+      padding: 14px;
+      border-left: 2px solid var(--cyan);
+      background: #0a1422;
+      border-radius: 0 10px 10px 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .concept-info strong { color: var(--text); }
+
+    .metric-list { display: grid; gap: 15px; }
+
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .metric span { color: var(--muted); font-size: 13px; }
+
+    .metric strong { color: var(--cyan); font-size: 19px; }
+
+    .notice {
+      border: 1px solid #8293ff55;
+      background: #15182d;
+      padding: 17px;
+      border-radius: 14px;
+      color: #c3c9ff;
+      font-size: 13px;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 30px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer a { color: var(--cyan); }
+
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; padding-top: 55px; gap: 10px; }
+      .orb-wrap { min-height: 260px; }
+      .orb { width: 190px; height: 190px; }
+      .nav-links { display: none; }
+      .stats { gap: 8px; }
+      .stat { padding: 14px; }
+      .stat strong { font-size: 23px; }
+      .stat span { font-size: 10px; }
+      .subject-grid { grid-template-columns: repeat(2, 1fr); }
+      .lab-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 400px) {
+      .container { width: calc(100% - 24px); }
+      .subject-grid { grid-template-columns: 1fr 1fr; }
+      .stat strong { font-size: 20px; }
+      h1 { letter-spacing: -2px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *:before, *:after {
+        animation-duration: .01ms !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#top">ATLAS <span>MIND</span><small>THE STEM LEARNING LAB</small></a>
+      <nav class="nav-links">
+        <a href="#subjects">Subjects</a>
+        <a href="#lab">Learning Lab</a>
+        <a href="#concept-map">Concept Map</a>
+        <a href="#evidence">Progress</a>
+      </nav>
+      <a class="btn btn-small" href="https://ialatlas.com/">IAL ATLAS ↗</a>
+    </div>
+  </header>
+
+  <main class="container" id="top">
+    <section class="hero">
+      <div>
+        <div class="status"><span class="dot"></span> LEARNING SYSTEM ONLINE</div>
+        <div class="eyebrow" style="margin-top:22px">A new way to understand STEM</div>
+        <h1>Don't just get the answer.<br><span>Find the gap.</span></h1>
+        <p>
+          A small interactive learning lab built to help students discover
+          what they understand, identify mistakes, and connect ideas across
+          Mathematics, Physics and Chemistry.
+        </p>
+        <div class="actions">
+          <a href="#lab" class="btn btn-primary">Enter the learning lab →</a>
+          <a href="#concept-map" class="btn">Explore concepts</a>
+        </div>
+      </div>
+      <div class="orb-wrap" aria-hidden="true">
+        <div class="orb">
+          <div class="orb-inner">
+            <div class="orb-symbol">∑</div>
+            <small>THINK · CONNECT</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="stat"><strong id="answeredStat">0</strong><span>Questions attempted</span></div>
+      <div class="stat"><strong id="accuracyStat">—</strong><span>Accuracy</span></div>
+      <div class="stat"><strong id="streakStat">0</strong><span>Correct answers in a row</span></div>
+    </div>
+
+    <section id="subjects">
+      <div class="section-head">
+        <div class="eyebrow">01 / Choose your field</div>
+        <h2>One mind. Three disciplines.</h2>
+        <p>Choose a subject to start a short diagnostic quiz.</p>
+      </div>
+      <div class="subject-grid">
+        <button class="subject-card active" data-subject="Mathematics">
+          <div class="subject-icon">∑</div><h3>Mathematics</h3>
+          <p>Functions, rates and reasoning</p>
+        </button>
+        <button class="subject-card" data-subject="Physics">
+          <div class="subject-icon">⚛</div><h3>Physics</h3>
+          <p>Forces, energy and motion</p>
+        </button>
+        <button class="subject-card" data-subject="Chemistry">
+          <div class="subject-icon">◉</div><h3>Chemistry</h3>
+          <p>Particles, reactions and structure</p>
+        </button>
+      </div>
+    </section>
+
+    <section id="lab">
+      <div class="section-head">
+        <div class="eyebrow">02 / Test your understanding</div>
+        <h2>The learning lab</h2>
+        <p>Answer first. Then explore the reasoning behind the answer.</p>
+      </div>
+
+      <div class="lab-grid">
+        <div class="panel">
+          <div class="question-meta">
+            <span id="questionSubject">MATHEMATICS</span>
+            <span id="questionCount">Question 1</span>
+          </div>
+          <div class="progress-track"><div class="progress-bar" id="questionProgress"></div></div>
+          <div id="questionText">Loading question…</div>
+          <div class="options" id="options"></div>
+          <div class="feedback" id="feedback" aria-live="polite"></div>
+          <div class="lab-controls">
+            <button class="btn btn-small" id="restartQuiz">Restart subject</button>
+            <button class="btn btn-primary btn-small" id="nextQuestion" disabled>Next question →</button>
+          </div>
+        </div>
+
+        <aside class="panel" id="concept-map">
+          <div class="eyebrow">03 / Connect the ideas</div>
+          <h3 style="margin-top:9px">Your concept map</h3>
+          <p class="muted" style="font-size:13px">
+            Select a concept to see how it connects to other areas of STEM.
+          </p>
+          <div class="concept-map" id="conceptNodes">
+            <button class="concept active" data-concept="functions">Functions</button>
+            <button class="concept" data-concept="proportions">Proportionality</button>
+            <button class="concept" data-concept="forces">Forces</button>
+            <button class="concept" data-concept="systems">Systems</button>
+            <button class="concept" data-concept="particles">Particles</button>
+            <button class="concept" data-concept="models">Scientific models</button>
+          </div>
+          <div class="concept-info" id="conceptInfo">
+            <strong>Functions</strong><br>
+            Functions describe how one quantity depends on another. They
+            help model motion, reaction rates and changing systems.
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="evidence">
+      <div class="section-head">
+        <div class="eyebrow">04 / Track your learning</div>
+        <h2>Progress, not guesswork.</h2>
+        <p>Your activity is saved in this browser using local storage.</p>
+      </div>
+      <div class="lab-grid">
+        <div class="panel">
+          <h3>Your learning record</h3>
+          <div class="metric-list">
+            <div class="metric"><span>Total questions attempted</span><strong id="totalAttempts">0</strong></div>
+            <div class="metric"><span>Correct answers</span><strong id="totalCorrect">0</strong></div>
+            <div class="metric"><span>Overall accuracy</span><strong id="overallAccuracy">—</strong></div>
+            <div class="metric"><span>Subjects explored</span><strong id="subjectsExplored">0 / 3</strong></div>
+          </div>
+          <div class="actions">
+            <button class="btn btn-small" id="exportResults">Export my results</button>
+            <button class="btn btn-small" id="clearResults">Clear my data</button>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>What should you do next?</h3>
+          <p id="recommendation" class="muted">
+            Start a quiz to receive a suggested next step.
+          </p>
+          <div class="notice">
+            <strong>Prototype note</strong><br>
+            This demo uses a fixed question bank and rule-based feedback.
+            It is not a live AI tutor, and the sample quiz is not a validated
+            examination or scientific assessment.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>ATLAS MIND · An independent STEM learning prototype</span>
+      <span>Built as part of <a href="https://ialatlas.com/">IAL ATLAS</a></span>
+    </div>
+  </footer>
+
+  <script>
+    const questionBank = {
+      Mathematics: [
+        {
+          q: "A function is defined by f(x) = 3x + 2. What is f(4)?",
+          options: ["14", "12", "10", "9"],
+          answer: 0,
+          explanation: "Substitute x = 4: f(4) = 3(4) + 2 = 14.",
+          misconception: "Remember that f(4) means the output when the input is 4. Multiply before adding."
+        },
+        {
+          q: "A line has gradient 3. What does this tell you?",
+          options: [
+            "y decreases by 3 whenever x increases by 1",
+            "y increases by 3 whenever x increases by 1",
+            "The line crosses the y-axis at 3",
+            "The line must pass through the origin"
+          ],
+          answer: 1,
+          explanation: "Gradient is change in y divided by change in x. A gradient of 3 means y increases by 3 for every increase of 1 in x.",
+          misconception: "Gradient describes how steep a line is and its direction, not necessarily its intercept."
+        },
+        {
+          q: "If y is directly proportional to x and y = 12 when x = 3, what is y when x = 5?",
+          options: ["15", "20", "9", "60"],
+          answer: 0,
+          explanation: "Direct proportion means y = kx. Here k = 12/3 = 4, so y = 4 × 5 = 20. The correct answer is 20.",
+          misconception: "Find the constant of proportionality first, then multiply by the new x value."
+        },
+        {
+          q: "What is the derivative of x²?",
+          options: ["x", "2x", "2", "x³"],
+          answer: 1,
+          explanation: "Using the power rule, d(xⁿ)/dx = nxⁿ⁻¹. Therefore d(x²)/dx = 2x.",
+          misconception: "The power becomes a coefficient, and the exponent decreases by one."
+        },
+        {
+          q: "A quantity increases from 50 to 60. What is the percentage increase?",
+          options: ["10%", "16.7%", "20%", "25%"],
+          answer: 2,
+          explanation: "The increase is 10. Percentage increase = (10/50) × 100% = 20%.",
+          misconception: "Divide the change by the original value, not the final value."
+        },
+        {
+          q: "If 2x + 7 = 19, what is x?",
+          options: ["5", "6", "12", "13"],
+          answer: 1,
+          explanation: "Subtract 7 from both sides: 2x = 12. Divide by 2: x = 6.",
+          misconception: "Use inverse operations in reverse order to isolate the unknown."
+        }
+      ],
+      Physics: [
+        {
+          q: "A car travels 100 metres in 5 seconds at constant speed. What is its speed?",
+          options: ["20 m/s", "50 m/s", "500 m/s", "0.05 m/s"],
+          answer: 0,
+          explanation: "Speed = distance ÷ time = 100 ÷ 5 = 20 m/s.",
+          misconception: "Speed is distance divided by time, not distance multiplied by time."
+        },
+        {
+          q: "What is the resultant force on an object moving at constant velocity in a straight line?",
+          options: ["Equal to its weight", "Zero", "Always increasing", "Equal to its momentum"],
+          answer: 1,
+          explanation: "Constant velocity means zero acceleration. By Newton's second law, resultant force F = ma = 0.",
+          misconception: "An object does not need a resultant force to keep moving at constant velocity."
+        },
+        {
+          q: "If the resultant force on a fixed-mass object doubles, what happens to its acceleration?",
+          options: ["It halves", "It stays the same", "It doubles", "It becomes zero"],
+          answer: 2,
+          explanation: "Newton's second law gives a = F/m. If mass is constant, doubling force doubles acceleration.",
+          misconception: "Acceleration is proportional to resultant force when mass is unchanged."
+        },
+        {
+          q: "Which energy transfer occurs when a ball falls from a height?",
+          options: [
+            "Kinetic to chemical",
+            "Gravitational potential to kinetic",
+            "Thermal to nuclear",
+            "Electrical to gravitational potential"
+          ],
+          answer: 1,
+          explanation: "As the ball falls, gravitational potential energy decreases and kinetic energy increases. Some energy may also transfer to the surroundings.",
+          misconception: "Energy is transferred between stores; it is not simply destroyed."
+        },
+        {
+          q: "What is the SI unit of force?",
+          options: ["Joule", "Watt", "Newton", "Pascal"],
+          answer: 2,
+          explanation: "Force is measured in newtons (N). One newton is one kilogram metre per second squared.",
+          misconception: "Joule measures energy, watt measures power, and pascal measures pressure."
+        },
+        {
+          q: "A wave has frequency 5 Hz and wavelength 2 m. What is its speed?",
+          options: ["2.5 m/s", "7 m/s", "10 m/s", "0.4 m/s"],
+          answer: 2,
+          explanation: "Wave speed v = fλ = 5 × 2 = 10 m/s.",
+          misconception: "Multiply frequency by wavelength to calculate wave speed."
+        }
+      ],
+      Chemistry: [
+        {
+          q: "What is the charge of a proton?",
+          options: ["−1", "0", "+1", "+2"],
+          answer: 2,
+          explanation: "A proton has a relative charge of +1. A neutron has charge 0 and an electron has charge −1.",
+          misconception: "Remember the three basic subatomic particles and their relative charges."
+        },
+        {
+          q: "What does the atomic number tell you?",
+          options: [
+            "Number of neutrons only",
+            "Number of protons",
+            "Number of protons plus neutrons",
+            "Number of electron shells"
+          ],
+          answer: 1,
+          explanation: "The atomic number equals the number of protons in the nucleus.",
+          misconception: "Mass number counts protons plus neutrons; atomic number counts protons."
+        },
+        {
+          q: "Why does increasing temperature usually increase reaction rate?",
+          options: [
+            "Particles stop moving",
+            "Particles have less energy",
+            "More collisions have enough energy to react",
+            "The activation energy always becomes zero"
+          ],
+          answer: 2,
+          explanation: "Higher temperature increases particles' average kinetic energy, so a greater fraction of collisions can overcome activation energy.",
+          misconception: "The key idea is the fraction of collisions with enough energy, not that activation energy disappears."
+        },
+        {
+          q: "What type of bonding occurs between oppositely charged ions?",
+          options: ["Metallic", "Ionic", "Covalent", "Hydrogen only"],
+          answer: 1,
+          explanation: "Ionic bonding is the electrostatic attraction between oppositely charged ions.",
+          misconception: "Covalent bonding involves shared pairs of electrons; ionic bonding involves attraction between ions."
+        },
+        {
+          q: "How many moles are present in 18 g of water (Mr = 18)?",
+          options: ["0.5 mol", "1 mol", "18 mol", "324 mol"],
+          answer: 1,
+          explanation: "Moles = mass ÷ molar mass = 18 ÷ 18 = 1 mol.",
+          misconception: "Divide the sample mass by its molar mass."
+        },
+        {
+          q: "What is the pH of a neutral solution at 25°C?",
+          options: ["0", "1", "7", "14"],
+          answer: 2,
+          explanation: "At 25°C, a neutral aqueous solution has pH 7.",
+          misconception: "Neutrality means equal hydrogen-ion and hydroxide-ion concentrations at that temperature."
+        }
+      ]
+    };
+
+    const conceptData = {
+      functions: {
+        title: "Functions",
+        text: "Functions describe how one quantity depends on another. They help model motion, reaction rates and changing systems.",
+        link: "Mathematics ↔ Physics ↔ Chemistry"
+      },
+      proportions: {
+        title: "Proportionality",
+        text: "Proportional relationships help predict how a quantity changes when another changes, such as distance at constant speed.",
+        link: "Ratios ↔ Graphs ↔ Equations"
+      },
+      forces: {
+        title: "Forces",
+        text: "Forces change motion. Newton's laws connect force, mass and acceleration through measurable relationships.",
+        link: "Vectors ↔ Motion ↔ Energy"
+      },
+      systems: {
+        title: "Systems",
+        text: "A system is a set of interacting parts. Choosing system boundaries helps us track energy, matter and changes.",
+        link: "Mechanics ↔ Thermodynamics ↔ Reactions"
+      },
+      particles: {
+        title: "Particles",
+        text: "Particle models help explain matter, temperature, pressure and chemical changes at a microscopic level.",
+        link: "Atomic structure ↔ States of matter ↔ Reactions"
+      },
+      models: {
+        title: "Scientific models",
+        text: "Models simplify reality so we can explain observations and make predictions. Every model has limits and assumptions.",
+        link: "Assumptions ↔ Evidence ↔ Prediction"
+      }
+    };
+
+    const state = {
+      subject: "Mathematics",
+      index: 0,
+      answered: false,
+      attempts: 0,
+      correct: 0,
+      streak: 0,
+      bestStreak: 0,
+      explored: [],
+      bySubject: {
+        Mathematics: { attempts: 0, correct: 0 },
+        Physics: { attempts: 0, correct: 0 },
+        Chemistry: { attempts: 0, correct: 0 }
+      }
+    };
+
+    const $ = id => document.getElementById(id);
+
+    function saveState() {
+      try {
+        localStorage.setItem("atlasMindProgressV1", JSON.stringify(state));
+      } catch (error) {
+        console.warn("Progress could not be saved in this browser.");
+      }
+    }
+
+    function loadState() {
+      try {
+        const saved = JSON.parse(localStorage.getItem("atlasMindProgressV1"));
+        if (!saved) return;
+        if (!saved.bySubject || !saved.explored) return;
+        Object.assign(state, saved);
+        if (!questionBank[state.subject]) state.subject = "Mathematics";
+        if (state.index < 0 || state.index >= questionBank[state.subject].length) state.index = 0;
+      } catch (error) {
+        console.warn("Saved progress was not readable.");
+      }
+    }
+
+    function renderQuestion() {
+      const questions = questionBank[state.subject];
+      const question = questions[state.index];
+      state.answered = false;
+
+      $("questionSubject").textContent = state.subject.toUpperCase();
+      $("questionCount").textContent = `Question ${state.index + 1} of ${questions.length}`;
+      $("questionText").textContent = question.q;
+      $("questionProgress").style.width = `${((state.index + 1) / questions.length) * 100}%`;
+      $("feedback").className = "feedback";
+      $("feedback").innerHTML = "";
+      $("nextQuestion").disabled = true;
+      $("nextQuestion").textContent = state.index === questions.length - 1 ? "Finish subject ✓" : "Next question →";
+
+      $("options").innerHTML = "";
+      question.options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.className = "option";
+        button.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
+        button.type = "button";
+        button.addEventListener("click", () => chooseAnswer(index));
+        $("options").appendChild(button);
+      });
+
+      document.querySelectorAll(".subject-card").forEach(button => {
+        button.classList.toggle("active", button.dataset.subject === state.subject);
+      });
+      updateStats();
+    }
+
+    function chooseAnswer(selected) {
+      if (state.answered) return;
+
+      const question = questionBank[state.subject][state.index];
+      const isCorrect = selected === question.answer;
+      state.answered = true;
+      state.attempts++;
+      state.bySubject[state.subject].attempts++;
+      state.explored = [...new Set([...state.explored, state.subject])];
+
+      if (isCorrect) {
+        state.correct++;
+        state.bySubject[state.subject].correct++;
+        state.streak++;
+        state.bestStreak = Math.max(state.bestStreak, state.streak);
+      } else {
+        state.streak = 0;
+      }
+
+      document.querySelectorAll(".option").forEach((button, index) => {
+        button.disabled = true;
+        if (index === question.answer) button.classList.add("correct");
+        if (index === selected && !isCorrect) button.classList.add("wrong");
+      });
+
+      const feedback = $("feedback");
+      feedback.className = "feedback show";
+      const title = document.createElement("h4");
+      title.textContent = isCorrect ? "✓ Correct — good reasoning!" : "↗ Not quite. Let's close the gap.";
+      title.style.color = isCorrect ? "var(--green)" : "var(--red)";
+
+      const explanation = document.createElement("p");
+      explanation.textContent = question.explanation;
+
+      const misconception = document.createElement("p");
+      misconception.textContent = "Learning tip: " + question.misconception;
+
+      feedback.replaceChildren(title, explanation, misconception);
+      $("nextQuestion").disabled = false;
+      saveState();
+      updateStats();
+      updateRecommendation();
+    }
+
+    function nextQuestion() {
+      if (!state.answered) return;
+
+      const questions = questionBank[state.subject];
+      if (state.index < questions.length - 1) {
+        state.index++;
+        renderQuestion();
+      } else {
+        const score = state.bySubject[state.subject];
+        const accuracy = score.attempts ? Math.round(score.correct / score.attempts * 100) : 0;
+        $("questionText").textContent = `Subject session complete: ${state.subject}`;
+        $("options").innerHTML = "";
+        $("feedback").className = "feedback show";
+        $("feedback").textContent = `You have answered ${score.attempts} questions in this subject, with ${accuracy}% accuracy across your recorded attempts. Try another subject to broaden your learning.`;
+        $("nextQuestion").disabled = true;
+        $("questionProgress").style.width = "100%";
+      }
+    }
+
+    function updateStats() {
+      $("answeredStat").textContent = state.attempts;
+      $("accuracyStat").textContent = state.attempts ? `${Math.round(state.correct / state.attempts * 100)}%` : "—";
+      $("streakStat").textContent = state.streak;
+      $("totalAttempts").textContent = state.attempts;
+      $("totalCorrect").textContent = state.correct;
+      $("overallAccuracy").textContent = state.attempts ? `${Math.round(state.correct / state.attempts * 100)}%` : "—";
+      $("subjectsExplored").textContent = `${state.explored.length} / 3`;
+    }
+
+    function updateRecommendation() {
+      const weakest = Object.entries(state.bySubject)
+        .filter(([, result]) => result.attempts > 0)
+        .sort((a, b) => (a[1].correct / a[1].attempts) - (b[1].correct / b[1].attempts))[0];
+
+      if (!weakest) {
+        $("recommendation").textContent = "Start with any subject. After answering questions, this area will suggest what to practise next.";
+        return;
+      }
+
+      const [subject, result] = weakest;
+      const accuracy = Math.round(result.correct / result.attempts * 100);
+      $("recommendation").textContent = `${subject} currently has your lowest recorded accuracy (${accuracy}%). Revisit the explanations, practise the relevant concepts, and retest later. This is a small sample, so treat it as a clue rather than a diagnosis.`;
+    }
+
+    function showConcept(key) {
+      const concept = conceptData[key];
+      if (!concept) return;
+      document.querySelectorAll(".concept").forEach(button => {
+        button.classList.toggle("active", button.dataset.concept === key);
+      });
+      $("conceptInfo").replaceChildren();
+
+      const title = document.createElement("strong");
+      title.textContent = concept.title;
+
+      const description = document.createElement("div");
+      description.textContent = concept.text;
+      description.style.marginTop = "5px";
+
+      const links = document.createElement("div");
+      links.textContent = concept.link;
+      links.style.color = "var(--cyan)";
+      links.style.marginTop = "8px";
+
+      $("conceptInfo").append(title, description, links);
+    }
+
+    function restartSubject() {
+      state.index = 0;
+      renderQuestion();
+    }
+
+    function clearResults() {
+      if (!confirm("Clear all recorded progress from this browser?")) return;
+      state.attempts = 0;
+      state.correct = 0;
+      state.streak = 0;
+      state.bestStreak = 0;
+      state.explored = [];
+      for (const subject of Object.keys(state.bySubject)) {
+        state.bySubject[subject] = { attempts: 0, correct: 0 };
+      }
+      saveState();
+      renderQuestion();
+      updateRecommendation();
+    }
+
+    document.querySelectorAll(".subject-card").forEach(button => {
+      button.addEventListener("click", () => {
+        state.subject = button.dataset.subject;
+        state.index = 0;
+        renderQuestion();
+        $("lab").scrollIntoView({ behavior: "smooth" });
+      });
+    });
+
+    document.querySelectorAll(".concept").forEach(button => {
+      button.addEventListener("click", () => showConcept(button.dataset.concept));
+    });
+
+    $("nextQuestion").addEventListener("click", nextQuestion);
+    $("restartQuiz").addEventListener("click", restartSubject);
+    $("clearResults").addEventListener("click", clearResults);
+
+    $("exportResults").addEventListener("click", () => {
+      const report = {
+        project: "ATLAS MIND",
+        exportedAt: new Date().toISOString(),
+        totalAttempts: state.attempts,
+        totalCorrect: state.correct,
+        accuracyPercent: state.attempts ? Math.round(state.correct / state.attempts * 100) : null,
+        exploredSubjects: state.explored,
+        bySubject: state.bySubject,
+        note: "Prototype activity data; not a validated assessment."
+      };
+      const blob = new Blob([JSON.stringify(report, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "atlas-mind-learning-report.json";
+      link.click();
+      URL.revokeObjectURL(url);
+    });
+
+    $("resetAll").addEventListener("click", () => {
+      if (confirm("Reset your ATLAS MIND progress?")) clearResults();
+    });
+
+    loadState();
+    renderQuestion();
+    updateRecommendation();
+    showConcept("functions");
+  </script>
+</body>
+</html>
