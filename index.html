@@ -910,7 +910,7 @@ header {
 .highlight-panel {
   position: relative;
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1fr;
   gap: 45px;
   align-items: center;
   padding: clamp(28px, 5vw, 55px);
@@ -1537,9 +1537,6 @@ footer {
 
       <div class="globe-stage" aria-label="Animated digital globe">
         <div class="globe-halo"></div>
-        <div class="globe-orbit"></div>
-        <div class="globe-orbit orbit-two"></div>
-        <div class="globe-orbit orbit-three"></div>
 
         <div class="globe-core">
           <canvas id="globeCanvas" class="globe-canvas"></canvas>
@@ -1548,13 +1545,7 @@ footer {
           <span class="globe-dot dot-three"></span>
         </div>
 
-        <span class="globe-satellite" aria-hidden="true">✦</span>
         <div class="globe-caption">Explore · Understand · Learn</div>
-      </div>
-
-      <div class="system-status">
-        <span class="status-dot"></span>
-        SYSTEM ONLINE
       </div>
 
       <h1>
@@ -1797,12 +1788,6 @@ footer {
           <a href="about.html" class="btn btn-secondary">Discover IAL ATLAS <span>↗</span></a>
         </div>
 
-        <div class="highlight-visual" aria-hidden="true">
-          <div class="visual-ring"></div>
-          <div class="visual-ring ring-two"></div>
-          <div class="visual-core">✦</div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -1889,13 +1874,12 @@ footer {
 <!-- AI ASSISTANT -->
 
 <button class="ai-launcher" id="aiLauncher" type="button" aria-label="Open IAL ATLAS AI assistant">
-  <span class="ai-symbol">✦</span>
   <span>IAL ATLAS AI</span>
 </button>
 
 <div class="ai-window" id="aiWindow" role="dialog" aria-label="IAL ATLAS AI assistant" aria-hidden="true">
   <div class="ai-window-header">
-    <strong>✦ IAL ATLAS AI</strong>
+    <strong>IAL ATLAS AI</strong>
     <button id="aiClose" type="button" aria-label="Close AI assistant">×</button>
   </div>
 
