@@ -1,173 +1,189 @@
-xml
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-    <url>
-        <loc>https://ialatlas.com/</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/mathematics.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/pure-mathematics.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/algebra-functions.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/coordinate-geometry.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/differentiation.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/integration.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/sequences-series.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/trigonometry.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/statistics.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/statistics-1.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/statistics-2.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/statistics-3.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/mechanics.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/mechanics-1.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/mechanics-2.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/mechanics-3.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/mechanics-vectors.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/mechanics-kinematics.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/mechanics-further-kinematics.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/mechanics-dynamics.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/mechanics-models.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/mechanics-moments.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/mechanics-statics.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/mechanics-statics-rigid-bodies.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/mechanics-centres-of-mass.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/mechanics-collisions.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/mechanics-work-and-energy.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/physics.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/physics-1.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/physics-2.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/physics-3.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/physics-4.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/physics-5.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/physics-6.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/chemistry.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/chemistry-1.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/chemistry-2.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/chemistry-3.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/chemistry-4.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/chemistry-5.html</loc>
-    </url>
-
-    <url>
-        <loc>https://ialatlas.com/chemistry-6.html</loc>
-    </url>
+  <url>
+    <loc>https://ialatlas.com/</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/about.html</loc>
+    <image:image>
+      <image:loc>https://ialatlas.com/Shuvojit.jpeg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/formula-atlas.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/theory-atlas.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/past-papers.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/question-bank.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/mathematics.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/pure-mathematics.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/algebra-functions.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/coordinate-geometry.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/differentiation.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/integration.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/sequences-series.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/trigonometry.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/statistics.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/statistics-1.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/statistics-2.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/statistics-3.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/mechanics.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/mechanics-1.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/mechanics-2.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/mechanics-3.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/mechanics-vectors.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/mechanics-kinematics.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/mechanics-further-kinematics.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/mechanics-dynamics.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/mechanics-models.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/mechanics-moments.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/mechanics-statics.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/mechanics-statics-rigid-bodies.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/mechanics-centres-of-mass.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/mechanics-collisions.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/mechanics-work-and-energy.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/further-mathematics.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/physics.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/physics-1.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/physics-2.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/physics-3.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/physics-4.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/physics-5.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/physics-6.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/chemistry.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/chemistry-1.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/chemistry-2.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/chemistry-3.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/chemistry-4.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/chemistry-5.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/chemistry-6.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/biology.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/biology-1.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/biology-2.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/biology-3.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/biology-4.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/biology-5.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/biology-6.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/accounting.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/business.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/computer-science.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/economics.html</loc>
+  </url>
+  <url>
+    <loc>https://ialatlas.com/psychology.html</loc>
+  </url>
 
 </urlset>
